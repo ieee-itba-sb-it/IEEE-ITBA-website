@@ -1,0 +1,32 @@
+.text-content{
+    padding: 70px 20% 0 20%; /* TOP RIGHT BOTTOM LEFT, info: https://www.w3schools.com/css/css_padding.asp */
+    text-align: center;
+    justify-content: center;
+}
+
+.global-container{
+    width:100%;
+    background:#e3f2fd;
+    padding:100px;
+}
+.myCardRed{
+  max-width: 300px;
+  color: #ef5350;
+  /*background-color: #00b0ff;*/
+}
+.myCardYellow{
+  max-width: 300px;
+  color: #ffb300;
+}
+.myCardGreen{
+  max-width: 300px;
+  color: #00c853;
+}
+.aboutIEEE{
+  max-width: 400px;
+  color: #000000;
+  /*background-color: #00b0ff;*/
+}
+.text{
+  color: #000000;
+}

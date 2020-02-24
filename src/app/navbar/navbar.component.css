@@ -1,0 +1,10 @@
+.middle {
+    justify-content: center;
+}
+
+.img-container {
+    display: block;
+}
+.full-width{
+    width:100%;
+}

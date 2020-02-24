@@ -1,0 +1,18 @@
+.global-container{
+    padding:100px;
+    width:100%;
+    background:#f3e5f5 ;
+}
+.myCardIeeextreme{
+    max-width: 500px;
+    color: #ff6d00;
+  }
+  .text{
+    text-align: left;
+    color: #000000;
+  }
+  .myCardPythonCurso{
+    max-width: 500px;
+    color: #01579b;
+    
+  }
