@@ -3,16 +3,25 @@
     width:100%;
     background:#f3e5f5 ;
 }
+.global-container-b{
+  padding:100px;
+  width:100%;
+  background:#fff8e1 ;
+}
 .myCardIeeextreme{
     max-width: 500px;
     color: #ff6d00;
   }
-  .text{
-    text-align: left;
-    color: #000000;
-  }
-  .myCardPythonCurso{
-    max-width: 500px;
-    color: #01579b;
-    
-  }
+.text{
+  text-align: left;
+  color: #000000;
+}
+.myCardPythonCurso{
+  max-width: 500px;
+  color: #01579b;
+  
+}
+.base-image{
+  width: 400px;
+  padding:20px;
+}

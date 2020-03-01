@@ -27,6 +27,8 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
     "hammerjs": "^2.0.8",
+    "ngx-page-scroll": "^7.0.0",
+    "ngx-page-scroll-core": "^7.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

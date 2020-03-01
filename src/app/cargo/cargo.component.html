@@ -1,0 +1,10 @@
+<div class="box" fxLayoutAlign="start center" fxLayout="column">
+    <img class="image-cargo" src="{{imageurl}}">
+    <h3 class="nombre"> {{nombre}} <br>
+    {{apellido}} </h3>
+    <h5 class="font-weight-bold deep-orange-lighter-hover mb-3"> <b>{{cargo}}</b> </h5>
+    {{email}}
+    <div *ngIf="linkedin" fxLayoutAlign="center center" fxLayout="row">
+       <a href="{{linkedin}}"> <img class="linkedin" src="assets\icons\linked-in.png"></a>
+    </div>
+</div>

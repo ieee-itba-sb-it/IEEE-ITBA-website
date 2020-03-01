@@ -1,0 +1,29 @@
+.global-container{
+    color: #eceff1;
+    background: #75787b;
+}
+.logo-container{
+    padding: 20px;
+}
+.logo{
+    height:70px;
+    margin:5px;
+    
+}
+.logo-ieee{
+    height:45px;
+    margin:5px;
+}
+.logo-ieee-branch{
+    height:70px;
+    margin:5px;
+    padding:10px;
+}
+.final-text{
+    margin:15px;
+}
+.final-area{
+    background: #424242;
+    color: #ffffff;
+    size: 10px;
+}

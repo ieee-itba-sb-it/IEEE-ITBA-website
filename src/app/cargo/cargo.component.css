@@ -1,0 +1,25 @@
+.image-cargo{
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    padding: 20px;
+}
+.box{
+    border: 1px dotted #000;
+    padding: 20px;
+    margin: 20px;
+    background: #e1f5fe;
+    width: 200px;
+    height: 400px;
+}
+.linkedin{
+    width:40px;
+    margin:10px;
+}
+.nombre{
+    text-align: center;
+
+}
+.cargo{
+    
+}

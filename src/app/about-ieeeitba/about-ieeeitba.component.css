@@ -1,13 +1,15 @@
-.text-content{
-    padding: 70px 20% 0 20%; /* TOP RIGHT BOTTOM LEFT, info: https://www.w3schools.com/css/css_padding.asp */
-    text-align: center;
-    justify-content: center;
-}
 
 .global-container{
     width:100%;
     background:#e3f2fd;
     padding:100px;
+}
+
+.global-container-b{
+  width:100%;
+  background:#ffffff;
+  padding:100px;
+
 }
 .myCardRed{
   max-width: 300px;
@@ -23,10 +25,15 @@
   color: #00c853;
 }
 .aboutIEEE{
-  max-width: 500px;
+  max-width: 700px;
   color: #000000;
   /*background-color: #00b0ff;*/
 }
 .text{
   color: #000000;
+  padding-top:30px;
+}
+.mainIcon{
+  max-width:100%;
+  height: auto;
 }
