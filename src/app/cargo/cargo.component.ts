@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-cargo',
+  selector: 'app-cargo' ,
   templateUrl: './cargo.component.html',
   styleUrls: ['./cargo.component.css']
-})
+}) 
 export class CargoComponent implements OnInit {
   @Input() cargo: string;
   @Input() nombre: string;

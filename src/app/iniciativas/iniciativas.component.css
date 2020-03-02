@@ -1,0 +1,27 @@
+.myCardWie{
+    max-width: 1000px;
+    color: #6c258cff;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.global-container{
+    padding:50px;
+    width:100%;
+    background:#e8f5e9 ;
+}
+.myCardClubProgramadores{
+    max-width: 1000px;
+    color: #01579b;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.global-container-b{
+    padding:50px;
+    width:100%;
+    background:#e8eaf6;
+}
+.imageContent{
+    max-width: 350px;
+    width: auto;
+    padding: 30px;
+  }

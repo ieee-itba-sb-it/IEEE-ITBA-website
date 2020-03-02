@@ -1,27 +1,40 @@
 .global-container{
-    padding:100px;
+    padding:50px;
     width:100%;
     background:#f3e5f5 ;
 }
 .global-container-b{
-  padding:100px;
+  padding:50px;
   width:100%;
   background:#fff8e1 ;
 }
 .myCardIeeextreme{
-    max-width: 500px;
+    max-width: 1000px;
     color: #ff6d00;
-  }
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .text{
-  text-align: left;
+  padding: 10px;
   color: #000000;
+  text-align: center;
 }
 .myCardPythonCurso{
-  max-width: 500px;
-  color: #01579b;
-  
+    max-width: 1000px;
+    color: #01579b;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .base-image{
   width: 400px;
   padding:20px;
+}
+.imageContent{
+  max-width: 350px;
+  width: auto;
+  padding: 30px;
+  border-radius: 50%;
+}
+.card-ieeextreme{
+  padding: 10px;
 }

@@ -1,18 +1,17 @@
 .global-container{
     color: #eceff1;
     background: #75787b;
+    width: 100%;
 }
 .logo-container{
     padding: 20px;
 }
 .logo{
     height:70px;
-    margin:5px;
     
 }
 .logo-ieee{
     height:45px;
-    margin:5px;
 }
 .logo-ieee-branch{
     height:70px;
