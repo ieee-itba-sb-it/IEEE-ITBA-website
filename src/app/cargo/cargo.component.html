@@ -1,19 +1,19 @@
 <div class="box" fxLayoutAlign="start center" fxLayout="column">
-    <img class="image-cargo" src="{{imageurl}}">
+    <div>
+      <img class="image-cargo" src="{{imageurl}}">
+    </div>
     <div fxLayoutAlign="center center" fxLayout="row">
         <p class="nombre"> {{nombre}} <br>
         {{apellido}} </p>
     </div>
-
-    <p class="font-weight-bold deep-orange-lighter-hover mb-3"> <b>{{cargo}}</b> </p>
+    <div class="cargo" fxLayoutAlign="center center" fxLayout="row">
+      <p class="text">{{cargo}}</p>
+    </div>
     <div *ngIf="linkedin" fxLayoutAlign="center center" fxLayout="row">
         <a href="{{linkedin}}"> <img class="linkedin" src="assets\icons\linked-in.png"></a>
     </div>
+    <!--{{email}}-->
     <div *ngIf="!linkedin" fxLayoutAlign="center center" fxLayout="row">
         <a href="{{linkedin}}"> <img class="linkedin" src="assets\icons\linked-in.png"></a>
     </div>
-    <!--{{email}}-->
-    <!--<div *ngIf="linkedin" fxLayoutAlign="center center" fxLayout="row">
-        <a href="{{linkedin}}"> <img class="linkedin" src="assets\icons\linked-in.png"></a>
-    </div>-->
 </div>
