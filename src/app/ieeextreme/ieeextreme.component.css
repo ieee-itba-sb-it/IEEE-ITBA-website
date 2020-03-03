@@ -1,0 +1,67 @@
+.title{
+    color: #ff6d00;
+    font-weight: bold;
+    padding: 50px;
+    text-align: center;
+}
+.spacenav{
+    min-height:50px;
+}
+.ieeextreme-background{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/image/ieee-extreme.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.ieeextreme-big{
+    height:100%;
+}
+.ieeextreme{
+    background:rgba(255, 248, 225, 0.7);
+    padding:50px;
+    /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/image/ieee-extreme.jpg");*/
+    /*background-image: */
+    
+}
+.ieeextreme2{
+    background:#fbe9e7;
+    padding:50px;
+}
+.fecha{
+    color: #ff6d00;
+    font-weight: bold;
+    font-size:25px;
+}
+.circle{
+    color: #1565c0;
+    background: #ffcc80;
+    width:150px;
+    height:150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #000000;
+    margin: 10px;
+}
+.text{
+    width:50%;
+    text-align: center;
+    font-size:15px;
+    color : #000000;
+}
+.text2{
+    width:50%;
+    text-align: center;
+    font-size:13px;
+    color: #000000;
+    font-weight: lighter;
+}
+.circle-container{
+    padding:20px;
+}

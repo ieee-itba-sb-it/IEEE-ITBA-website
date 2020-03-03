@@ -19,6 +19,9 @@ import { myEasing } from './easing';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { IniciativasComponent } from './iniciativas/iniciativas.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
     CargoComponent,
     SponsorsComponent,
     IniciativasComponent,
-    IeeextremeComponent
+    IeeextremeComponent,
+    MainMenuComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +45,10 @@ import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
     MDBBootstrapModule.forRoot(),
     NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     RouterModule.forRoot([
-      { path: '', redirectTo: '', pathMatch: 'full'},
+      { path: '', component: MainMenuComponent},
       { path: 'ieeextreme', component: IeeextremeComponent}
   ]),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
     .global-container{
         width:100%;
         background: #ffffff;;
-        padding:100px;
+        padding:10px;
         text-align: center;
     }
 }
