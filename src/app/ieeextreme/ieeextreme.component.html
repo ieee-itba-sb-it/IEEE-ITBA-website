@@ -1,7 +1,4 @@
-
-
 <div class="spacenav">
-
 </div>
 
 <div class="ieeextreme-background" fxLayoutAlign="center center" fxLayout="column">
@@ -13,22 +10,45 @@
             <!--<div [fxFlex.gt-sm]="50"  fxLayoutAlign="center center" fxLayout="row">
                 <img  class="imageContent" src="../assets/image/ieee-extreme.jpg">
             </div> -->
-            <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
-                <div fxLayout="column" fxLayoutAlign="center center" class="circle area">
-                    10
-                    <p class="text2">Ediciones realizadas </p>
+            <div [fxHide.lt-md]="true">
+                <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
+                        10
+                        <p class="text2">Ediciones realizadas </p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
+                        70+
+                        <p class="text2">Participantes año 2019</p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
+                        15
+                        <p class="text2">Equipos top 500/8000 </p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="last-circle">
+                        24 hs
+                        <p class="text2">de competencia</p>
+                    </div>
                 </div>
-                <div fxLayout="column" fxLayoutAlign="center center" class="circle area">
-                    70+
-                    <p class="text2">Participantes año 2019</p>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center" class="circle area">
-                    15
-                    <p class="text2">Equipos top 500/8000 </p>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center" class="last-circle">
-                    24 hs
-                    <p class="text2">de competencia</p>
+            </div>
+
+            <div [fxHide.gt-sm]="true">
+                <div class="circle-container" fxLayoutAlign="center center" fxLayout="column">
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
+                        10
+                        <p class="text2">Ediciones realizadas </p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
+                        70+
+                        <p class="text2">Participantes año 2019</p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
+                        15
+                        <p class="text2">Equipos top 500/8000 </p>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" class="last-circle2">
+                        24 hs
+                        <p class="text2">de competencia</p>
+                    </div>
                 </div>
             </div>
     </div>
@@ -36,13 +56,13 @@
 
 <div class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
     <div class="ieeextreme2" fxLayoutAlign="center center" fxLayout="row">
-        <div [fxFlex]="50">
+        <div [fxFlex.gt-sm]="50">
             <h1 class="title2">¡Resolve problemas en equipo! </h1>
             <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
                 <p class="text"> La IEEExtreme programming competition es una competencia de programación de 24 hs donde competidores de distintas universidades y carreras dedican gran esfuerzo y motivación en pos de incrementar su habilidad de resolver problemas en equipo y pasar un gran momento.</p>
             </div>
         </div>
-        <div [fxFlex]="50" fxLayoutAlign="center center" fxLayout="row">
+        <div [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
             <img src="assets/image/meeting.png">
         </div>
     </div>
@@ -50,14 +70,17 @@
 
 <div class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
     <div class="ieeextreme3" fxLayoutAlign="center center" fxLayout="row">
-        <div [fxFlex]="50" fxLayoutAlign="center center" fxLayout="row">
+        <div [fxHide.lt-md]="true" [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
             <img src="assets/image/winning.png">
         </div>
-        <div [fxFlex]="50">
+        <div [fxFlex.gt-sm]="50">
             <h1 class="title2">¿Queres participar? </h1>
             <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
                 <p class="text"> Abrimos un formulario para aquellos que esten interesados en la competencia de este año, cuando abramos las inscripciones les mandaremos una notificación. ¡Aprovecha el tiempo para conseguir un equipo y entrenar! </p>
             </div>
+        </div>
+        <div [fxHide.gt-sm]="true" [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
+            <img src="assets/image/winning.png">
         </div>
     </div>
 </div>
@@ -69,7 +92,7 @@
             <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
                 <p class="text"> Para el desarrollo de la competencia requerimos fondos, por lo que estamos en la busqueda de nuevos auspiciantes para nuestro evento. Para más información contactar a cualquier miembro de nuestro equipo de fundraising</p>
             </div>
-            <div  fxLayoutAlign="center center" fxLayout="row">
+            <div class="fundraising" fxLayoutAlign="center center" fxLayout="row">
                 <div class="persona">
                     <div><b>Franco Moriconi</b></div>
                     <div>fmoriconi@itba.edu.ar </div>

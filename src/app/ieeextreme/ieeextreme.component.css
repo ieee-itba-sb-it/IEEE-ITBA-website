@@ -41,11 +41,15 @@
     background:#fbe9e7;
     padding:50px;
     width:100%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .ieeextreme3{
     background:#ede7f6;
     padding:50px;
     width:100%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .ieeextreme4{
     background:#e3f2fd;
@@ -74,6 +78,16 @@
     text-align: center;
     border-right: 1px dashed #000000;
 }
+.circle2{
+    color: #1565c0;
+    /*background: #ffcc80;*/
+    width:150px;
+    height:150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px dashed #000000;
+}
 .last-circle{
     color: #1565c0;
     /*background: #ffcc80;*/
@@ -84,8 +98,16 @@
     text-align: center;
     /*border-right: 1px solid #000000;*/
 }
+.last-circle2{
+    color: #1565c0;
+    /*background: #ffcc80;*/
+    width:150px;
+    height:150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
 .text{
-    width:50%;
     text-align: center;
     font-size:15px;
     color : #000000;
@@ -99,4 +121,8 @@
 }
 .circle-container{
     padding:20px;
+}
+.fundraising{
+    flex-wrap: wrap;
+    justify-content: center;
 }
