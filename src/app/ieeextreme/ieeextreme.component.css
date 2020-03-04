@@ -4,6 +4,12 @@
     padding: 50px;
     text-align: center;
 }
+.title2{
+    color: #ff6d00;
+    font-weight: bold;
+    padding: 50px;
+    text-align: center;
+}
 .spacenav{
     min-height:50px;
 }
@@ -11,7 +17,7 @@
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/image/ieee-extreme.jpg");
     background-attachment: fixed;
     background-size: cover;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     height: 100%;
@@ -21,10 +27,12 @@
 
 .ieeextreme-big{
     height:100%;
+    width:100%;
 }
 .ieeextreme{
-    background:rgba(255, 248, 225, 0.7);
+    background:rgba(255, 248, 225, 1);
     padding:50px;
+    width:100%;
     /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/image/ieee-extreme.jpg");*/
     /*background-image: */
     
@@ -32,6 +40,24 @@
 .ieeextreme2{
     background:#fbe9e7;
     padding:50px;
+    width:100%;
+}
+.ieeextreme3{
+    background:#ede7f6;
+    padding:50px;
+    width:100%;
+}
+.ieeextreme4{
+    background:#e3f2fd;
+    padding:50px;
+    width:100%;
+}
+.persona{
+    margin:20px;
+    padding:20px;
+    border: 1px dashed #000000;
+    text-align: center;
+    width: 200px;
 }
 .fecha{
     color: #ff6d00;
@@ -40,14 +66,23 @@
 }
 .circle{
     color: #1565c0;
-    background: #ffcc80;
+    /*background: #ffcc80;*/
     width:150px;
     height:150px;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    border: 1px solid #000000;
-    margin: 10px;
+    border-right: 1px dashed #000000;
+}
+.last-circle{
+    color: #1565c0;
+    /*background: #ffcc80;*/
+    width:150px;
+    height:150px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    /*border-right: 1px solid #000000;*/
 }
 .text{
     width:50%;

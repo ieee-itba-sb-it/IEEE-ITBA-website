@@ -44,10 +44,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
     NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
-    RouterModule.forRoot([
-      { path: '', component: MainMenuComponent},
-      { path: 'ieeextreme', component: IeeextremeComponent}
-  ]),
     BrowserAnimationsModule,
   ],
   providers: [],
