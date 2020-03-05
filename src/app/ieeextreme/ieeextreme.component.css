@@ -26,7 +26,8 @@
 }
 
 .ieeextreme-big{
-    height:100%;
+    min-height:100%;
+    
     width:100%;
 }
 .ieeextreme{
@@ -53,6 +54,11 @@
 }
 .ieeextreme4{
     background:#e3f2fd;
+    padding:50px;
+    width:100%;
+}
+.ieeextreme5{
+    background:white;
     padding:50px;
     width:100%;
 }
@@ -125,4 +131,8 @@
 .fundraising{
     flex-wrap: wrap;
     justify-content: center;
+}
+.logo-sponsor{
+    width:200px;
+    margin:50px;
 }

@@ -22,6 +22,7 @@ import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IniciativasComponent,
     IeeextremeComponent,
     MainMenuComponent,
-    ContactoComponent
+    ContactoComponent,
+    NavbarIeeextremeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+.middle {
+    justify-content: center;
+}
+.spacenav{
+    height:40px;
+}
+.img-container {
+    display: block;
+}
+.full-width{
+    width:100%;
+
+}
+.full-width-white{
+    background: #42a5f5;
+    color: #000000;
+    padding:10px;
+}
+.whitebackground-fullwidth{
+    width:100%;
+    background: #b2ebf2;
+    background-attachment: fixed;
+    background-size: cover;
+    position: fixed;
+}
+.white-text{
+    color:#ffffff;
+}
+.text-itba-ieee{
+    color: #000000;
+}
