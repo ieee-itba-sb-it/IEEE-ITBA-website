@@ -6,7 +6,6 @@
         background: #e1f5fe;
         width: 180px;
         height: auto;
-
     }
     .image-cargo{
         border-radius: 50%;
@@ -21,7 +20,7 @@
       border: 1px dotted #000;
       margin: 10px;
       background: #e1f5fe;
-      width: 120px;
+      width: 100%;
       height: auto;
   }
   .image-cargo{
