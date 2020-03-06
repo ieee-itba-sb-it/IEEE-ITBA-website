@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: Montserrat;
+  font-weight: normal;
+  src: url(assets/fonts/Montserrat-Regular.otf) format("opentype");
+}
+@font-face {
+  font-family: Aileron;
+  font-weight: normal;
+  src: url(assets/fonts/Aileron-Regular.otf) format("opentype");
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Aileron, "Helvetica Neue", sans-serif; }

@@ -27,8 +27,11 @@
 
 .ieeextreme-big{
     min-height:100%;
-    
+
     width:100%;
+}
+.information{
+  max-width: 1000px;
 }
 .ieeextreme{
     background:rgba(255, 248, 225, 1);
@@ -36,7 +39,7 @@
     width:100%;
     /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/image/ieee-extreme.jpg");*/
     /*background-image: */
-    
+
 }
 .ieeextreme2{
     background:#fbe9e7;
@@ -67,7 +70,7 @@
     padding:20px;
     border: 1px dashed #000000;
     text-align: center;
-    width: 200px;
+    min-width: 200px;
 }
 .fecha{
     color: #ff6d00;
