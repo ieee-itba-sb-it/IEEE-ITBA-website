@@ -1,5 +1,7 @@
 
-@media screen and (min-width: 700px){
+
+
+@media screen and (min-width: 600px){
     .box {
         border: 1px dotted #000;
         margin: 10px;
@@ -15,20 +17,24 @@
         margin-top: 10px;
     }
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 600px){
   .box {
       border: 1px dotted #000;
       margin: 10px;
       background: #e1f5fe;
-      width: 100%;
-      height: auto;
+
   }
   .image-cargo{
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      padding: 10px;
-      margin-top: 10px;
+      max-width:90%;
+      max-height: 90%;
+      margin:10px;
+  }
+  :host{
+    width:90%;
+  }
+  .nombreYcargo{
+    margin:10px;
   }
 }
 .back{
@@ -64,3 +70,4 @@
 .cargo{
   height:30px;
 }
+
