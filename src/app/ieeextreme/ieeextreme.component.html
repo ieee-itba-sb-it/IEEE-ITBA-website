@@ -7,11 +7,20 @@
 
 <div id="about-ieeextreme" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
     <div class="ieeextreme" fxLayoutAlign="center center" fxLayout="column">
-      <div class="information">
-            <h1 class="title"> IEEExtreme programming competition</h1>
-            <!--<div [fxFlex.gt-sm]="50"  fxLayoutAlign="center center" fxLayout="row">
-                <img  class="imageContent" src="../assets/image/ieee-extreme.jpg">
-            </div> -->
+        
+        <div class="information" fxLayoutAlign="center center" fxLayout="column">
+            <div fxLayoutAlign="center center" fxLayout.lt-md="column" fxLayout.gt-sm="row">
+                <div [fxFlex.gt-sm]="50" >
+                    <h1 class="title"> IEEExtreme programming competition</h1>
+                <!--<div [fxFlex.gt-sm]="50"  fxLayoutAlign="center center" fxLayout="row">
+                    <img  class="imageContent" src="../assets/image/ieee-extreme.jpg">
+                </div> -->
+                </div>
+
+                <div [fxFlex.gt-sm]="50">
+                    <img src="assets/image/Xtreme_color.png" class="image">
+                </div>
+            </div>
             <div [fxHide.lt-md]="true">
                 <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
                     <div fxLayout="column" fxLayoutAlign="center center" class="circle">
@@ -53,13 +62,15 @@
                     </div>
                 </div>
             </div>
+            
         </div>
+        
     </div>
 </div>
 
 <div class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
     <div class="ieeextreme2" fxLayoutAlign="center center" fxLayout="row">
-      <div class="information">
+      <div class="information" fxLayout.lt-md="column" fxLayout.gt-sm="row">
         <div [fxFlex.gt-sm]="50">
             <h1 class="title2">¡Resolve problemas en equipo! </h1>
             <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
@@ -75,7 +86,7 @@
 
 <div id="participa" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
     <div class="ieeextreme3" fxLayoutAlign="center center" fxLayout="row">
-        <div class="information">
+        <div class="information" fxLayout.lt-md="column" fxLayout.gt-sm="row">
           <div [fxHide.lt-md]="true" [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
               <img src="assets/image/winning.png">
           </div>
@@ -111,6 +122,10 @@
                 <div class="persona">
                     <div><b>Ricardo Lin</b></div>
                     <div>xlin@itba.edu.ar </div>
+                </div>
+                <div class="persona">
+                    <div><b>Gonzalo Rímini Carol</b></div>
+                    <div>grímini@itba.edu.ar </div>
                 </div>
             </div>
         </div>
