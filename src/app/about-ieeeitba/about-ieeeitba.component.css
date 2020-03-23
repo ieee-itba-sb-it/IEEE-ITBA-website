@@ -28,7 +28,9 @@
 }
 .aboutIEEE{
   max-width: 700px;
+  height:100%;
   color: #000000;
+  padding:70px;
   /*background-color: #00b0ff;*/
 }
 .text{
@@ -37,7 +39,7 @@
   text-align: center;
 }
 .mainIcon{
-  max-width:100%;
+  width:auto;
   height: auto;
   margin: 10px;
 }

@@ -23,6 +23,9 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
+import { NuevoComponentComponent } from './nuevo-component/nuevo-component.component';
+import { Compenent1Component } from './compenent1/compenent1.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme
     IeeextremeComponent,
     MainMenuComponent,
     ContactoComponent,
-    NavbarIeeextremeComponent
+    NavbarIeeextremeComponent,
+    NuevoComponentComponent,
+    Compenent1Component,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
