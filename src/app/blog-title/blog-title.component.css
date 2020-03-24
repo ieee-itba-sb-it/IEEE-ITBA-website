@@ -1,0 +1,35 @@
+.global{
+    padding:10px;
+    min-height: 100%;
+    background: #f3f3f3;
+}
+.title{
+    font-size: 50px;
+    text-align: center;
+    padding:10px;
+}
+.bold{
+    font-weight: bold;
+}
+.title-container{
+    width:100%;
+}
+
+.main-container{
+    text-align: left;
+    width:100%;
+    max-width:1500px;
+    background: #ffffff;
+    margin:10px;
+}
+.logo-image{
+    width:90px;
+}
+.image{
+    border-left: 1px solid #ABB6BE;
+    padding:10px;
+}
+
+:host {
+    width: 100%;
+}

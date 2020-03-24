@@ -1,23 +1,6 @@
 .global{
-    background: #f3f3f3;
     padding:10px;
-}
-.title{
-    font-size: 50px;
-    text-align: center;
-    padding:10px;
-}
-.bold{
-    font-weight: bold;
-}
-.title-container{
+    min-height: 100%;
+    width:100%;
     background: #f3f3f3;
-}
-
-.main-container{
-    text-align: left;
-    min-width:1500px;
-}
-.logo-image{
-    width:90px;
 }

@@ -26,7 +26,8 @@ import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme
 import { NuevoComponentComponent } from './nuevo-component/nuevo-component.component';
 import { Compenent1Component } from './compenent1/compenent1.component';
 import { BlogComponent } from './blog/blog.component';
-import { PostCardComponent } from './post-card/post-card.component';
+import { BlogContentComponent } from './blog-content/blog-content.component';
+import { BlogTitleComponent } from './blog-title/blog-title.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PostCardComponent } from './post-card/post-card.component';
     NuevoComponentComponent,
     Compenent1Component,
     BlogComponent,
-    PostCardComponent
+    BlogContentComponent,
+    BlogTitleComponent
   ],
   imports: [
     BrowserModule,
