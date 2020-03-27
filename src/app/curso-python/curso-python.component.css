@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+html {
+    min-height:200%;
+    background-size: cover;
+}
+
+body {
+    padding: 10%;
+    background: rgb(50,39,88);
+    background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+p{
+    color: whitesmoke;
+    margin-top: 3vmin;
+    margin-bottom: 3vmin;
+    background: rgba(245, 245, 245, 0.2);
+    padding: 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+}
+
+.transparentButton {
+    padding: 2vmin;
+    border: solid 2px whitesmoke;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    background-color: transparent;
+    transition: all .5s ease;
+}
+
+.transparentButton:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+#homeText { display: inline; }
+
+#titleBar h1 {
+    color: whitesmoke;
+    vertical-align: middle;
+    margin-left: auto;
+    padding-left: 1vmin;
+    text-align: right;
+}
+
+#titleBar {
+    display: inline;
+    display: flex;
+    flex-direction: row;
+}
+
+.halfRight {
+    padding: 1vmin;
+    margin: 1vmin;
+    float: right;
+    width: 45%;
+}
+
+.halfLeft {
+    padding: 1vmin;
+    margin: 1vmin;
+    float: left;
+    width: 45%;
+}
+
+mdb-card {
+    border-radius: 5vmin;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+}
+
+h2{
+    font-size: 5vmin;
+    text-align: center;
+    color: whitesmoke;
+}
+
+#anotate {
+    margin-top: 4vmin;
+    border-radius: 5vmin;
+    align-content: center;
+    border: solid whitesmoke 2px;
+}
+
+#anotateButton {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer {
+    align-content: center;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+}
+
+td {
+    align-content: center;
+    text-align: center;
+}
+
+/* Flex */
+
+@media (max-width: 600px) {
+    #homeText { display: none; }
+}
