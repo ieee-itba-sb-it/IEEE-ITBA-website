@@ -93,19 +93,39 @@ h2{
 }
 
 footer {
+    position: relative;
+    bottom: 10%;
     align-content: center;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed;
     background-size: cover;
+    max-width: 100%;
 }
 
-td {
-    align-content: center;
+.col-sm {
     text-align: center;
+    padding-bottom: 5vmin;
 }
 
 /* Flex */
 
 @media (max-width: 600px) {
     #homeText { display: none; }
+    .halfLeft { 
+        display: inline-block; 
+        width: 100% !important; 
+        margin-left: auto;
+    }
+    .halfRight { 
+        display: inline-block; 
+        width: 100% !important; 
+        margin-left: auto;
+    }
+    #anotate {
+        width: 100%;
+    }
+    html {
+        min-height:350%;
+    }
+
 }
