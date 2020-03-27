@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
-    min-height:200%;
+    min-height: 200%;
     background-size: cover;
 }
 
@@ -48,7 +48,8 @@ p{
 }
 
 #titleBar {
-    display: inline;
+    padding-left: 1vmin;
+    padding-right: 2vmin;
     display: flex;
     flex-direction: row;
 }
@@ -109,6 +110,12 @@ footer {
 
 /* Flex */
 
+@media (max-width: 1000px) {
+    html {
+        min-height:300%;
+    }
+}
+
 @media (max-width: 600px) {
     #homeText { display: none; }
     .halfLeft { 
@@ -129,3 +136,5 @@ footer {
     }
 
 }
+
+
