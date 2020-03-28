@@ -29,6 +29,8 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogContentComponent } from './blog-content/blog-content.component';
 import { BlogTitleComponent } from './blog-title/blog-title.component';
 import { CursoPythonComponent } from './curso-python/curso-python.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { NewnavbarComponent } from './newnavbar/newnavbar.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { CursoPythonComponent } from './curso-python/curso-python.component';
     BlogContentComponent,
     BlogTitleComponent,
     CursoPythonComponent,
+    MainpageComponent,
+    NewnavbarComponent,
   ],
   imports: [
     BrowserModule,

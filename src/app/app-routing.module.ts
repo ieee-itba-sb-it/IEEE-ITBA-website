@@ -6,9 +6,10 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { NuevoComponentComponent } from './nuevo-component/nuevo-component.component';
 import { BlogComponent } from './blog/blog.component'
 import { CursoPythonComponent } from './curso-python/curso-python.component'
+import { MainpageComponent } from './mainpage/mainpage.component';
 
 const routes: Routes = [
-  { path: '', component: MainMenuComponent},
+  { path: '', component: MainpageComponent},
   { path: 'ieeextreme', component: IeeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent }
