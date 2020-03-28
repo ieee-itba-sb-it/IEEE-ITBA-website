@@ -7,8 +7,10 @@ html {
 
 body {
     padding: 10%;
-    background: rgb(50,39,88);
-    background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    /*OLDBACKGROUND*/
+    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
@@ -98,14 +100,22 @@ footer {
     bottom: 10%;
     align-content: center;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     max-width: 100%;
 }
 
 .col-sm {
     text-align: center;
-    padding-bottom: 5vmin;
+    padding-top: auto;
+    vertical-align: middle;
+}
+
+img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Flex */
