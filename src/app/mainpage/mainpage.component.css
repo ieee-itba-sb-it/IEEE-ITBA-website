@@ -28,6 +28,14 @@ body {
     align-content: center;
 }
 
+.bottomLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-bottom: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
 #mainTxt{
     display: inline-block;
     position: relative;
@@ -47,8 +55,7 @@ body {
 
 mdb-card {
     border-radius: 5vmin;
-    margin-top: 1vmin;
-    margin-bottom: 1vmin;
+    margin: 1.5vmin;
 }
 
 mdb-card-text {
