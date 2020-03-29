@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IeeeEventosComponent } from './ieee-eventos/ieee-eventos.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
@@ -9,7 +9,8 @@ import { CursoPythonComponent } from './curso-python/curso-python.component'
 import { MainpageComponent } from './mainpage/mainpage.component';
 
 const routes: Routes = [
-  { path: '', component: MainpageComponent},
+  { path: '', component: MainMenuComponent},
+  { path: 'newmain', component: MainpageComponent},
   { path: 'ieeextreme', component: IeeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent }

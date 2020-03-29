@@ -26,7 +26,6 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
 import { NuevoComponentComponent } from './nuevo-component/nuevo-component.component';
-import { Compenent1Component } from './compenent1/compenent1.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogContentComponent } from './blog-content/blog-content.component';
 import { BlogTitleComponent } from './blog-title/blog-title.component';
@@ -52,7 +51,6 @@ import { TeamComponent } from './team/team.component';
     ContactoComponent,
     NavbarIeeextremeComponent,
     NuevoComponentComponent,
-    Compenent1Component,
     BlogComponent,
     BlogContentComponent,
     BlogTitleComponent,
