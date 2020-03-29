@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { NgModule } from '@angular/core';
 
@@ -32,6 +34,7 @@ import { CursoPythonComponent } from './curso-python/curso-python.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { NewnavbarComponent } from './newnavbar/newnavbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { FooterComponent } from './footer/footer.component';
     MainpageComponent,
     NewnavbarComponent,
     FooterComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,8 @@ import { FooterComponent } from './footer/footer.component';
     MDBBootstrapModule.forRoot(),
     NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     BrowserAnimationsModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

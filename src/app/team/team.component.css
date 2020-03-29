@@ -1,0 +1,25 @@
+mat-tab-group {
+    font-size: 4vmin;
+    color: whitesmoke;
+}
+  
+mdb-card {
+    border-radius: 5vmin;
+    margin: 1.5vmin;
+    color: black;
+    max-height: 50vmin;
+}
+
+mdb-card-text {
+    text-align: left;
+    color: black;
+}
+
+mat-panel-description {
+    text-align: right;
+}
+
+.cardIcon {
+    font-size: 5vmin;
+    padding: 1vmin;
+}

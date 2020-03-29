@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <header>
     <app-newnavbar></app-newnavbar>
 </header>
+
 <body>
 
   <!-- Inicio -->
-  <div class="topbottomLine">
+  <div class="topbottomLine" id="home">
     <div class="container">
       <div class="row">
         <div class="col-sm">
@@ -76,8 +79,144 @@
       </mdb-card>
     </div>
   </div>
-
   
+  <!-- Eventos -->
+  <div class="bottomLine">
+    <h1 id="eventos">Eventos</h1>
+    <div class="card-group">
+
+    <!--IEEExtreme-->
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"></mdb-card-img>
+        <a><div class="mask rgba-white-slight"></div></a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>IEEExtreme</h4>
+        </mdb-card-title>
+  
+        <hr>
+
+        <mdb-card-text>
+          La IEEExtreme es una competencia internacional de programación prescencial en equipos que tiene la particularidad de durar 24 hs. Somos la sede más importante del país del toreno.
+        </mdb-card-text>
+  
+        <a class="link-text">
+          <h5 class="waves-light" mdbWavesEffect>Ver más
+            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+          </h5>
+        </a>
+      </mdb-card-body>
+
+    </mdb-card>
+
+    <!--Clases de Pyhton-->
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"></mdb-card-img>
+        <a><div class="mask rgba-white-slight"></div></a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Clases de Python</h4>
+        </mdb-card-title>
+  
+        <hr>
+
+        <mdb-card-text>
+          La programación es una habilidad que no es exclusiva de una profesión. Nuestro curso introductorio de Python esta orientado a estudiantes y profesionales de distintos campos que no son afines a la computación pero que indirectamente la necesitan.
+        </mdb-card-text>
+  
+        <a class="link-text" href="./clasespython">
+          <h5 class="waves-light" mdbWavesEffect>Ver más
+            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+          </h5>
+        </a>
+      </mdb-card-body>
+
+    </mdb-card>
+    </div>
+
+  </div>
+
+  <!-- Iniciativas -->
+  <div class="bottomLine">
+    <h1 id="iniciativas">Iniciativas</h1>
+    <div class="card-group">
+
+    <!-- WIE -->
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"></mdb-card-img>
+        <a><div class="mask rgba-white-slight"></div></a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Women in Engineering</h4>
+        </mdb-card-title>
+  
+        <hr>
+
+        <mdb-card-text>
+          Nuestro objetivo es promover la diversidad en la tecnología mediante la educacion y representación.
+        </mdb-card-text>
+  
+        <a class="link-text">
+          <h5 class="waves-light" mdbWavesEffect>Ver más
+            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+          </h5>
+        </a>
+      </mdb-card-body>
+
+    </mdb-card>
+
+    <!--Club de Programadores-->
+    <mdb-card>
+      <div class="view overlay waves-light" mdbWavesEffect>
+        <mdb-card-img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"></mdb-card-img>
+        <a><div class="mask rgba-white-slight"></div></a>
+      </div>
+
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>Club de Programadores</h4>
+        </mdb-card-title>
+  
+        <hr>
+
+        <mdb-card-text>
+          Estamos construyendo un equipo de personas que tengan interés en incrementar pasión por la programación y mejorar su trabajo en equipo. La programación es una habilidad que siempre se puede mejorar y la experiencia de competir programando marca una antes y un después.
+        </mdb-card-text>
+  
+        <a class="link-text">
+          <h5 class="waves-light" mdbWavesEffect>Ver más
+            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+          </h5>
+        </a>
+      </mdb-card-body>
+
+    </mdb-card>
+    </div>
+
+  </div>
+
+  <!-- Equipo -->
+  <div class="bottomLine">
+    <h1 id="equipo">Equipo</h1>
+    <br>
+    <app-team></app-team>
+  </div>
+
 </body>
+
 <app-footer></app-footer>
+
 </html>

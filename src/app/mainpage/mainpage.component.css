@@ -48,11 +48,6 @@ body {
     text-align: center;
 }
 
-#firstDiv {
-    position: absolute;
-    top: 20%;
-}
-
 mdb-card {
     border-radius: 5vmin;
     margin: 1.5vmin;
@@ -60,6 +55,14 @@ mdb-card {
 
 mdb-card-text {
     text-align: left;
+}
+
+h1 {
+    color: whitesmoke;
+}
+
+.right {
+    text-align: right;
 }
 
 
