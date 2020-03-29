@@ -1,6 +1,11 @@
-mat-tab-group {
-    font-size: 4vmin;
-    color: whitesmoke;
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:whitesmoke;
+    background-color: transparent;
+}
+    
+::ng-deep .mat-ink-bar {
+    background-color: var(--primary-color,whitesmoke) !important;
 }
   
 mdb-card {
@@ -8,6 +13,7 @@ mdb-card {
     margin: 1.5vmin;
     color: black;
     max-height: 50vmin;
+    padding-bottom: 1.5vmin;
 }
 
 mdb-card-text {
@@ -17,6 +23,20 @@ mdb-card-text {
 
 mat-panel-description {
     text-align: right;
+}
+
+mat-expansion-panel {
+    background-color: transparent;
+    margin-top: 1.5vmin;
+}
+
+mat-expansion-panel-header {
+    border: whitesmoke 1px solid;
+    border-radius: 5vmin;
+}
+
+mat-panel-title {
+    color: whitesmoke;
 }
 
 .cardIcon {

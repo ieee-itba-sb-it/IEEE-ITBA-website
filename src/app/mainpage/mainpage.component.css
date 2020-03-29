@@ -36,6 +36,13 @@ body {
     align-content: center;
 }
 
+.noLine{
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    vertical-align: middle;
+    align-content: center;
+}
+
 #mainTxt{
     display: inline-block;
     position: relative;
@@ -59,12 +66,22 @@ mdb-card-text {
 
 h1 {
     color: whitesmoke;
+    font-size: 5vmin;
 }
 
 .right {
     text-align: right;
 }
 
+#mailus {
+    color: whitesmoke;
+    font-size: 15vmin;
+}
+
+.whitebckg {
+    background-color: transparent;
+    color: white;
+}
 
 /* Flex */
 
