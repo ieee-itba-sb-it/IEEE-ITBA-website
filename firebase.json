@@ -1,10 +1,17 @@
 {
+  "database": {
+    "rules": "database.rules.json"
+  },
   "hosting": {
-    "public": "public",
+    "public": "dist/ITBA-IEEE-Website-A9",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    } ]
   }
 }

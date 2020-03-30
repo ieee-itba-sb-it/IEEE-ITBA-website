@@ -71,7 +71,7 @@ import { TeamComponent } from './team/team.component';
     BrowserAnimationsModule,
     MatTabsModule,
     MatExpansionModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]

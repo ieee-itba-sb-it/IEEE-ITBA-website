@@ -142,6 +142,10 @@
               "devServerTarget": "ITBA-IEEE-Website-A9:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
