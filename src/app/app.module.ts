@@ -4,9 +4,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from 'angularfire2'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from './../environments/environment'
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -68,7 +70,8 @@ import { TeamComponent } from './team/team.component';
     NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     BrowserAnimationsModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,26 +1,10 @@
 {
   "hosting": {
-    "public": "dist\\ITBA-IEEE-Website-A9",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "/public/**",
-        "destination": "/public.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
-  },
-  "database": {
-    "rules": "database.rules.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
   }
 }
