@@ -10,6 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment'
 
+//Translations
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutIEEEItbaComponent } from './about-ieeeitba/about-ieeeitba.component';
@@ -36,6 +41,12 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { NewnavbarComponent } from './newnavbar/newnavbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TeamComponent } from './team/team.component';
+import { config } from 'rxjs';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -71,6 +82,14 @@ import { TeamComponent } from './team/team.component';
     BrowserAnimationsModule,
     MatTabsModule,
     MatExpansionModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    HttpClientModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],

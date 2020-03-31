@@ -1,0 +1,52 @@
+{
+	"HOME": {
+		"CLASSES": {
+			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
+			"TITLE": "Python Courses"
+		},
+		"COMISIONS": {
+			"DC": "DC",
+			"EDUCATION": "Education",
+			"FUNDRAISING": "Fundraising",
+			"ID": "I+D",
+			"MEDIACOM": "Mediacom"
+		},
+		"COMPETITION": {
+			"TEXT": "We truly think that competition is capable of generating a healthy and ideal environment to challenge and transcend personal limits.\n",
+			"TITLE": "Competition"
+		},
+		"CONTACTS": {
+			"TEXT": "We foster the creation of new ties because we understand how fundamental the search and permanent renovation of connection is for any type of technological advancement.",
+			"TITLE": "Contacts"
+		},
+		"CONTACTUS": {
+			"1": "For general inquiries, send an email to ",
+			"2": " If you have questions about sponsorships or you are interested in sponsoring one of our events contact any Fundraising member."
+		},
+		"DESC": "We are a student organization from ITBA. Our objective is the development of technology and its aplications for humanity's advancement.",
+		"EDUCATION": {
+			"TEXT": "We believe in the great importance of developing pedagogical and didactic techniques as an indispensable motor for knowledge diffusion.",
+			"TITLE": "Education"
+		},
+		"IEEEXTREME": {
+			"TEXT": "IEEExtreme is an international competition with the particularity of lasting 24hs and occurring at the same time all over the world. IEEE-ITBA is the most important organizer in the country.",
+			"TITLE": "IEEExtreme Competition"
+		},
+		"PROGCLUB": {
+			"TEXT": "We are working in the creation of a team that is composed by people with interest in increasing their passion for programming and develop their team, communication and technical skills. Programming is a skill that can always be further developed and the experience of competing is truly unique.",
+			"TITLE": "Programmer Club"
+		},
+		"SEEMORE": "See More",
+		"WIE": {
+			"TEXT": "Our objective is to promote gender diversity in tech through education and representation.",
+			"TITLE": "Women in Engineering"
+		}
+	},
+	"NAVBAR": {
+		"CONTACT": "Contact",
+		"EVENTS": "Events",
+		"HOME": "Home",
+		"INITIATIVES": "Initiatives",
+		"TEAM": "Team"
+	}
+}

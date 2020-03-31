@@ -1,0 +1,52 @@
+{
+	"HOME": {
+		"CLASSES": {
+			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientado a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
+			"TITLE": "Cursos de Python"
+		},
+		"COMISIONS": {
+			"DC": "CD",
+			"EDUCATION": "Educación",
+			"FUNDRAISING": "Fundraising",
+			"ID": "I+D",
+			"MEDIACOM": "Mediacom"
+		},
+		"COMPETITION": {
+			"TEXT": "Sostenemos que la competencia es capaz de generar un ambiente sano e idóneo para desafiar y trascender los límites de uno mismo.",
+			"TITLE": "Competición"
+		},
+		"CONTACTS": {
+			"TEXT": "Promovemos la creación de nuevos vínculos porque entendemos fundamental la búsqueda y renovación permanente de conexiones para cualquier mejora tecnológica.",
+			"TITLE": "Contactos"
+		},
+		"CONTACTUS": {
+			"1": "Para consultas generales enviar un mail a ",
+			"2": " Para consultas sobre sponsorship en nuestros eventos contactar a cualquier miembro de nuestro equipo de fundraising."
+		},
+		"DESC": "Somos una organización estudiantil del ITBA cuyo objetivo es el desarrollo de la tecnología y sus aplicaciones para el avance de la humanidad.",
+		"EDUCATION": {
+			"TEXT": "Creemos en la importancia del desarrollo de técnicas pedagógicas y didácticas como motor indispensable de la difusión del conocimiento.",
+			"TITLE": "Educacion"
+		},
+		"IEEEXTREME": {
+			"TEXT": "IEEExtreme es una competencia internacional con la particularidad de durar 24hs y darse simultáneamente en todo el mundo. IEEE-ITBA es la sede del torneo más importante del país.",
+			"TITLE": "Competición IEEExtreme"
+		},
+		"PROGCLUB": {
+			"TEXT": "Estamos trabajando en la creación de un equipo que integre personas con intereses en incrementar su pasión por la programación y mejorar sus habilidades tanto de escribir código como de trabajar en equipo. La programación es una habilidad que siempre guarda lugar a la mejora y la experiencia de competir programando marca un antes y un después.",
+			"TITLE": "Club de Programadores"
+		},
+		"SEEMORE": "Ver Más",
+		"WIE": {
+			"TEXT": "Nuestro objetivo es promover la diversidad de género en la tecnología mediante la educación y representación.",
+			"TITLE": "Women in Engineering"
+		}
+	},
+	"NAVBAR": {
+		"CONTACT": "Contacto",
+		"EVENTS": "Eventos",
+		"HOME": "Home",
+		"INITIATIVES": "Iniciativas",
+		"TEAM": "Equipo"
+	}
+}

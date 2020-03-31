@@ -1,8 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { PageScrollService } from 'ngx-page-scroll-core';
+
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -12,8 +14,16 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 })
 export class NewnavbarComponent implements OnInit {
 
-  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {
+  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService) {
+    translate.addLangs(['en','es']);
+    translate.setDefaultLang('es');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/es|en/)? browserLang:'en');
   }
+  useLanguage(language: string) {
+    this.translate.use(language);    
+  }
+  
 
   ngOnInit() {
     this.pageScrollService.scroll({

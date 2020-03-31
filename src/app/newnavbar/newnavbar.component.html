@@ -10,19 +10,19 @@
     <!-- Menu -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">Home</button>
+        <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">Eventos</button>
+        <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">Iniciativas</button>
+        <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">Equipo</button>
+        <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">Contacto</button>
+        <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
       </li>
     </ul>
     
@@ -36,6 +36,16 @@
       <li class="nav-item">
         <a href="https://www.instagram.com/ieee.itba/" class="nav-link">
           <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="useLanguage('es')" class="nav-link">
+          es
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="useLanguage('en')" class="nav-link">
+          en
         </a>
       </li>
     </ul>

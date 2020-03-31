@@ -18,6 +18,8 @@ footer {
 
 .imgFooter {
     position: relative;
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
     top: 50%;
     transform: translateY(-50%);
 }

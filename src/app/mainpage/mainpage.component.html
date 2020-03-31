@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Main Page</title>
 </head>
 
 <header>
@@ -21,8 +21,7 @@
           <img src="./../../assets/image/Logo circular/IEEE-Logo-Darkest.png" height="250vmin" alt="Logo ITBA-IEEE">
         </div>
         <div class="col-sm">
-          <div class="whiteRoundedBlock" id="mainTxt">Somos una organización estudiantil del ITBA cuyo objetivo es el
-            desarrollo de la tecnología y sus aplicaciones para el avance de la humanidad.</div>
+          <div class="whiteRoundedBlock" id="mainTxt">{{ 'HOME.DESC' | translate }}</div>
         </div>
       </div>
     </div>
@@ -38,12 +37,10 @@
         <mdb-card-body>
   
           <mdb-card-title>
-            <h4>Educación</h4>
+            <h4>{{ 'HOME.EDUCATION.TITLE' | translate }}</h4>
           </mdb-card-title>
   
-          <mdb-card-text> Sostenemos que el aprendizaje permanente mediante técnicas didácticas a la altura es
-            indispensable
-            para difundir el conocimiento. </mdb-card-text>
+          <mdb-card-text>{{ 'HOME.EDUCATION.TEXT' | translate }}</mdb-card-text>
   
         </mdb-card-body>
       </mdb-card>
@@ -54,11 +51,10 @@
         <mdb-card-body>
   
           <mdb-card-title>
-            <h4>Competencia</h4>
+            <h4>{{ 'HOME.COMPETITION.TITLE' | translate }}</h4>
           </mdb-card-title>
   
-          <mdb-card-text> Entendemos que la superación permanente mediante competencias puede generar ambientes donde los
-            limites son dificiles de encontrar. </mdb-card-text>
+          <mdb-card-text>{{ 'HOME.COMPETITION.TEXT' | translate }}</mdb-card-text>
   
         </mdb-card-body>
       </mdb-card>
@@ -69,11 +65,10 @@
         <mdb-card-body>
   
           <mdb-card-title>
-            <h4>Contactos</h4>
+            <h4>{{ 'HOME.CONTACTS.TITLE' | translate }}</h4>
           </mdb-card-title>
   
-          <mdb-card-text> Defendemos que la busqueda y renovación permanente de conexiones es clave para cualquier mejora
-            técnologica. </mdb-card-text>
+          <mdb-card-text>{{ 'HOME.CONTACTS.TEXT' | translate }}</mdb-card-text>
   
         </mdb-card-body>
       </mdb-card>
@@ -82,7 +77,7 @@
   
   <!-- Eventos -->
   <div class="bottomLine">
-    <h1 id="eventos">Eventos</h1>
+    <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>
     <div class="card-group">
 
     <!--IEEExtreme-->
@@ -95,17 +90,15 @@
       <mdb-card-body>
 
         <mdb-card-title>
-          <h4>IEEExtreme</h4>
+          <h4>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h4>
         </mdb-card-title>
   
         <hr>
 
-        <mdb-card-text>
-          La IEEExtreme es una competencia internacional de programación prescencial en equipos que tiene la particularidad de durar 24 hs. Somos la sede más importante del país del toreno.
-        </mdb-card-text>
+        <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
   
         <a class="link-text">
-          <h5 class="waves-light" mdbWavesEffect>Ver más
+          <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
             <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
           </h5>
         </a>
@@ -123,17 +116,15 @@
       <mdb-card-body>
 
         <mdb-card-title>
-          <h4>Clases de Python</h4>
+          <h4>{{ 'HOME.CLASSES.TITLE' | translate }}</h4>
         </mdb-card-title>
   
         <hr>
 
-        <mdb-card-text>
-          La programación es una habilidad que no es exclusiva de una profesión. Nuestro curso introductorio de Python esta orientado a estudiantes y profesionales de distintos campos que no son afines a la computación pero que indirectamente la necesitan.
-        </mdb-card-text>
+        <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
   
-        <a class="link-text" href="./clasespython">
-          <h5 class="waves-light" mdbWavesEffect>Ver más
+        <a class="link-text" href="/clasespython">
+          <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
             <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
           </h5>
         </a>
@@ -146,7 +137,7 @@
 
   <!-- Iniciativas -->
   <div class="bottomLine">
-    <h1 id="iniciativas">Iniciativas</h1>
+    <h1 id="iniciativas">{{ 'NAVBAR.INITIATIVES' | translate }}</h1>
     <div class="card-group">
 
     <!-- WIE -->
@@ -159,14 +150,12 @@
       <mdb-card-body>
 
         <mdb-card-title>
-          <h4>Women in Engineering</h4>
+          <h4>{{ 'HOME.WIE.TITLE' | translate }}</h4>
         </mdb-card-title>
   
         <hr>
 
-        <mdb-card-text>
-          Nuestro objetivo es promover la diversidad en la tecnología mediante la educacion y representación.
-        </mdb-card-text>
+        <mdb-card-text>{{ 'HOME.WIE.TEXT' | translate }}</mdb-card-text>
   
         <a class="link-text">
           <h5 class="waves-light" mdbWavesEffect>Ver más
@@ -187,14 +176,12 @@
       <mdb-card-body>
 
         <mdb-card-title>
-          <h4>Club de Programadores</h4>
+          <h4>{{ 'HOME.PROGCLUB.TITLE' | translate }}</h4>
         </mdb-card-title>
   
         <hr>
 
-        <mdb-card-text>
-          Estamos construyendo un equipo de personas que tengan interés en incrementar pasión por la programación y mejorar su trabajo en equipo. La programación es una habilidad que siempre se puede mejorar y la experiencia de competir programando marca una antes y un después.
-        </mdb-card-text>
+        <mdb-card-text>{{ 'HOME.PROGCLUB.TEXT' | translate }}</mdb-card-text>
   
         <a class="link-text">
           <h5 class="waves-light" mdbWavesEffect>Ver más
@@ -210,18 +197,18 @@
 
   <!-- Equipo -->
   <div class="bottomLine">
-    <h1 id="equipo">Equipo</h1>
+    <h1 id="equipo">{{ 'NAVBAR.TEAM' | translate }}</h1>
     <br>
     <app-team></app-team>
   </div>
 
   <!-- Contacto -->
   <div class="noLine">
-    <h1 id="contacto">Contacto</h1>
+    <h1 id="contacto">{{ 'NAVBAR.CONTACT' | translate }}</h1>
     <div class="container">
       <div class="row">
         <div class="col-sm">
-          <div class="whiteRoundedBlock" style="text-align: left;">Para consultas generales enviar un mail a <a href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>. Para consultas sobre sponsorship en nuestros eventos contactar a cualquier miembro de nuestro equipo de fundraising.</div>
+          <div class="whiteRoundedBlock" style="text-align: left;">{{ 'HOME.CONTACTUS.1' | translate }}<a href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>.{{ 'HOME.CONTACTUS.2' | translate }}</div>
         </div>
         <div class="col-sm" id="mailus">
           <a href="mailto:ieee@itba.edu.ar" class="whitebckg"><i class="fas fa-at"></i><h2>Mail Us&nbsp;<i class="fas fa-reply"></i></h2></a>
