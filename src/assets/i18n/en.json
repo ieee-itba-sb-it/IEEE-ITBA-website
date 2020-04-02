@@ -1,5 +1,39 @@
 {
 	"HOME": {
+		"CARGO": {
+			"CD": {
+				"GENERALSEC": "General Secretary",
+				"PRESIDENT": "President",
+				"TREASURER": "Treasurer",
+				"VP": "Vice president"
+			},
+			"EDUCATION": {
+				"ASSISTANT": "Tutor Assistant",
+				"HEADTUTOR": "Head Tutor",
+				"RRPP": "Logistics & PR",
+				"TITLE": "Education",
+				"TUTOR": "Tutor"
+			},
+			"FUNDRAISING": {
+				"LOGISTICS": "Fundraiser & Logistics",
+				"RRPP": "HR & PR"
+			},
+			"ID": {
+				"ASSISTANT": "I+D Assistant",
+				"CHIEF": "I+D Chief"
+			},
+			"MEDIACOM": {
+				"CC": "Content Creator",
+				"DESIGNER": "Designer",
+				"WEBMASTER": "Webmaster & Editor"
+			},
+			"VOLUNTEERS": {
+				"FUNDRAISINGMENTOR": "Fundraising Mentor",
+				"GENERALASSIST": "General Assistant",
+				"TEAMMENTOR": "Competitive Teams Mentor",
+				"VOLUNTEER": "Volunteer"
+			}
+		},
 		"CLASSES": {
 			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
 			"TITLE": "Python Courses"

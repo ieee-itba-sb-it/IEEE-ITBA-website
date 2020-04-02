@@ -7,6 +7,10 @@
 ::ng-deep .mat-ink-bar {
     background-color: var(--primary-color,whitesmoke) !important;
 }
+
+::ng-deep .mat-expansion-indicator::after {
+    color: whitesmoke;
+}
   
 mdb-card {
     border-radius: 5vmin;
