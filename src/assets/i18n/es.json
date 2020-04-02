@@ -42,6 +42,31 @@
 			"TITLE": "Women in Engineering"
 		}
 	},
+	"IEEEXTREME": {
+		"FACTS": {
+			"EDITIONS": "Ediciones realizadas",
+			"HOURS": "de competencia",
+			"PARTICIPANTS": "Participantes año 2019",
+			"TOPTEAMS": "Equipos en top 500 de 8000"
+		},
+		"NAVBAR": {
+			"SPONSOR": "Sponsor",
+			"TAKEPART": "Participa",
+			"TOP": "Arriba"
+		},
+		"PARTICIPATE": {
+			"TEXT": "Abrimos un formulario para aquellos que estén interesados en la competencia de este año, cuando abramos las inscripciones les mandaremos una notificación. ¡Aprovecha el tiempo para conseguir un equipo y entrenar!",
+			"TITLE": "¿Querés participar?"
+		},
+		"SPONSORSHIP": {
+			"TEXT": "Para el desarrollo de la competencia requerimos fondos, por lo que estamos en la búsqueda de nuevos auspiciantes para nuestro evento. Para más información contactar a cualquier miembro de nuestro equipo de fundraising:",
+			"TITLE": "Sponsors que nos han acompañado"
+		},
+		"TEAM": {
+			"TEXT": "La IEEExtreme programming competition es una competencia de programación de 24 hs donde competidores de distintas universidades y carreras dedican gran esfuerzo y motivación en pos de incrementar su habilidad de resolver problemas en equipo y pasar un gran momento.",
+			"TITLE": "¡Resolvé problemas en equipo!"
+		}
+	},
 	"NAVBAR": {
 		"CONTACT": "Contacto",
 		"EVENTS": "Eventos",

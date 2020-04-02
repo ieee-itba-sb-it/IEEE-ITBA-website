@@ -10,19 +10,16 @@
       <!-- Menu -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
+          <button onclick="window.location.href = '#';" class="buttonNavbar" type="button"><i class="fas fa-angle-left"></i>&nbsp;{{ 'NAVBAR.HOME' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
+          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TOP' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
+          <button (click)="scrollTo('#takepart')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TAKEPART' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
-        </li>
-        <li class="nav-item">
-          <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
+          <button (click)="scrollTo('#sponsorship')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.SPONSOR' | translate }}</button>
         </li>
       </ul>
       

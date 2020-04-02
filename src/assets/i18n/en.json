@@ -42,6 +42,31 @@
 			"TITLE": "Women in Engineering"
 		}
 	},
+	"IEEEXTREME": {
+		"FACTS": {
+			"EDITIONS": "Past editions",
+			"HOURS": "long",
+			"PARTICIPANTS": "Participants in 2019",
+			"TOPTEAMS": "Teams in best 500 of 8000"
+		},
+		"NAVBAR": {
+			"SPONSOR": "Sponsor",
+			"TAKEPART": "Take Part",
+			"TOP": "Top"
+		},
+		"PARTICIPATE": {
+			"TEXT": "We opened a form for those that are interested in this year's competition. When we open registrations we will notify you. In the mean time, you can get yourself a team to start training!",
+			"TITLE": "Want to participate?"
+		},
+		"SPONSORSHIP": {
+			"TEXT": "In order to take part in the competition we require founding, that is why we are in the looking for new sponsors for our event. For more information please contact any member of our fundraising team:",
+			"TITLE": "Past Sponsors"
+		},
+		"TEAM": {
+			"TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
+			"TITLE": "Tackle problems as a team!"
+		}
+	},
 	"NAVBAR": {
 		"CONTACT": "Contact",
 		"EVENTS": "Events",
