@@ -42,6 +42,8 @@ import { NewnavbarComponent } from './newnavbar/newnavbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TeamComponent } from './team/team.component';
 import { config } from 'rxjs';
+import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
+import { NewnavbarIeextremeComponent } from './newnavbar-ieextreme/newnavbar-ieextreme.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,6 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewnavbarComponent,
     FooterComponent,
     TeamComponent,
+    NewnavbarIeextremeComponent,
+    NewieeextremeComponent,
   ],
   imports: [
     BrowserModule,

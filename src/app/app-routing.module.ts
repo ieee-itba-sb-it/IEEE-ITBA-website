@@ -7,11 +7,12 @@ import { NuevoComponentComponent } from './nuevo-component/nuevo-component.compo
 import { BlogComponent } from './blog/blog.component'
 import { CursoPythonComponent } from './curso-python/curso-python.component'
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 
 const routes: Routes = [
   { path: '', component: MainMenuComponent},
   { path: 'newmain', component: MainpageComponent},
-  { path: 'ieeextreme', component: IeeextremeComponent },
+  { path: 'ieeextreme', component: NewieeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent }
 ];
