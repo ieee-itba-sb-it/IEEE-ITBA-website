@@ -73,5 +73,21 @@
 		"HOME": "Home",
 		"INITIATIVES": "Iniciativas",
 		"TEAM": "Equipo"
+	},
+	"PYTHONCOURSES": {
+		"CLASSES": {
+			"C1": "Introducción a la programación en Python: variables, operadores, control de flujo, funciones.",
+			"C2": "Tipos de datos (int, float, string, boolean), estructuras de datos (lista, diccionario, set, tuplas), operaciones con tipos de datos, operaciones con estructuras de datos.",
+			"C3": "Repaso de flujo, repaso de estructuras de datos, lectura y escritura de archivos, operaciones sobre datos de archivos, introducción a librerías.",
+			"C4": "Introducción a matplotlib, visualización de datos, personalización de los gráficos, ventajas y desventajas uso de Python y Excel.",
+			"TITLE": "Clase "
+		},
+		"DESC": "Este público es cada vez más grande pero típicamente no tienen tiempo disponible. Con esto en mente, el curso fue diseñado con un formato amigable de cuatro clases de tres horas de forma tal que pueda realizarse como actividad complementaria al estudio curricular o al trabajo, con un fuerte énfasis en ejemplos prácticos que se relacionen fácilmente con casos de aplicación realistas para la vida profesional. A esto se suma la asistencia personalizada para dar respuesta a la gran heterogeneidad de los participantes, considerando las diferentes carreras, profesiones y edades presentes.",
+		"ENROLLBUTTON": "Anotate",
+		"QUESTIONS": {
+			"TEXT": "Tenemos un SubReddit para contestar dudas: ",
+			"TITLE": "Consultas"
+		},
+		"TITLE": "Cursos Principiante de Python 2020"
 	}
 }

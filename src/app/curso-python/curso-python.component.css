@@ -15,6 +15,31 @@ body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+header {
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    /*OLDBACKGROUND*/
+    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+#icons {
+    text-align: center;
+    color: whitesmoke;
+}
+
+.icon {
+    color: whitesmoke;
+}
+
+#iconscontainer {
+    width: 20%;
+    padding-top: 3vmin;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 p{
     color: whitesmoke;
     margin-top: 3vmin;
@@ -93,6 +118,7 @@ h2{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    margin-bottom: 2vmin;
 }
 
 footer {
@@ -128,6 +154,7 @@ img {
 
 @media (max-width: 600px) {
     #homeText { display: none; }
+    #homebutton { height: 10vmin; }
     .halfLeft { 
         display: inline-block; 
         width: 100% !important; 

@@ -5,22 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Courses</title>
 </head>
-<body>
-    <div id="titleBar">
-        <button onclick="location.href='index.html'" class="transparentButton" mdbWavesEffect><i class="fas fa-angle-left"></i>&nbsp;<div id="homeText">Home</div></button>
-        <h1>Cursos Principiante de Python 2020</h1>
+<header>
+    <!-- Icons on right -->
+    <div id="iconscontainer">
+        <table style="width:100%">
+            <tr id="icons">
+                <td>
+                    <a href="https://www.linkedin.com/company/ieee-itba" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                </td>
+                <td>
+                    <a href="https://www.instagram.com/ieee.itba/" class="icon"><i class="fab fa-instagram"></i></a>
+                </td>
+                <td>
+                    <a (click)="useLanguage('es')" class="icon">es</a>
+                </td>
+                <td>
+                    <a (click)="useLanguage('en')" class="icon">en</a>
+                </td>
+            </tr>
+        </table>
     </div>
+</header>
+<body>
 
+    <div id="titleBar">
+        <button onclick="location.href='index.html'" class="transparentButton" mdbWavesEffect id="homebutton"><i class="fas fa-angle-left"></i>&nbsp;<div id="homeText">Home</div></button>
+        <h1>{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
+    </div>
 
     <!-- Date and inscription -->
     <div class="halfLeft" id="anotate">
         <h2>27/03/2020</h2>
-        <button id="anotateButton" type="button" onclick="window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLScjjsJZjGfgHhzGJbi3SCEnhXXeeHBLpPHdq85FZ5_al1YA4A/viewform';" class="transparentButton" mdbWavesEffect><i class="fas fa-pen"></i>&nbsp;&nbsp;Anotate</button>
+        <button id="anotateButton" type="button" onclick="window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLScjjsJZjGfgHhzGJbi3SCEnhXXeeHBLpPHdq85FZ5_al1YA4A/viewform';" class="transparentButton" mdbWavesEffect><i class="fas fa-pen"></i>&nbsp;&nbsp;{{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }}</button>
     </div>
 
     <!-- Introductory text -->
     <div class="halfRight">
-        <p>Este público es cada vez más grande pero típicamente no tienen tiempo disponible. Con esto en mente, el curso fue diseñado con un formato amigable de cuatro clases de tres horas de forma tal que pueda realizarse como actividad complementaria al estudio curricular o al trabajo, con un fuerte énfasis en ejemplos prácticos que se relacionen fácilmente con casos de aplicación realistas para la vida profesional. A esto se suma la asistencia personalizada para dar respuesta a la gran heterogeneidad de los participantes, considerando las diferentes carreras, profesiones y edades presentes.</p>
+        <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
     </div>
 
     <!-- Cards Temario -->
@@ -31,11 +52,11 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>Clase 1</h4>
+                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1</h4>
                 </mdb-card-title>
     
                 <!--Text-->
-                <mdb-card-text> Introducción a la programación en Python, Variables, Operadores, Control de flujo, Funciones</mdb-card-text>
+                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</mdb-card-text>
             </mdb-card-body>
         </mdb-card>
         <!-- Card -->
@@ -44,11 +65,11 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>Clase 2</h4>
+                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2</h4>
                 </mdb-card-title>
     
                 <!--Text-->
-                <mdb-card-text> Tipos de datos (int, float, string, boolean), Estructuras de datos (Lista, Dict, Set, Tuplas), Operaciones con tipos de datos, Operaciones con estructuras de datos.</mdb-card-text>
+                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</mdb-card-text>
             </mdb-card-body>
         </mdb-card>
         <!-- Card -->
@@ -57,11 +78,11 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>Clase 3</h4>
+                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3</h4>
                 </mdb-card-title>
     
                 <!--Text-->
-                <mdb-card-text> Repaso de flujo, Repaso de estructuras de datos, Lectura y escritura de archivos, Operaciones sobre datos de archivos, Introducción a librerías</mdb-card-text>
+                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</mdb-card-text>
             </mdb-card-body>
         </mdb-card>
         <!-- Card -->
@@ -70,11 +91,11 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>Clase 4</h4>
+                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 4</h4>
                 </mdb-card-title>
     
                 <!--Text-->
-                <mdb-card-text>Introducción a matplotlib, Visualización de datos, Personalización de los gráficos, Ventajas y desventajas uso de Python y Excel</mdb-card-text>
+                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C4' | translate }}</mdb-card-text>
             </mdb-card-body>
         </mdb-card>
     </div>
@@ -87,29 +108,15 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>Consultas</h4>
+                    <h4>{{ 'PYTHONCOURSES.QUESTIONS.TITLE' | translate }}</h4>
                 </mdb-card-title>
     
                 <!--Text-->
-                <mdb-card-text> Tenemos un SubReddit para contestar dudas: <a href="https://www.reddit.com/r/CursoDePythonITBA">https://www.reddit.com/r/CursoDePythonITBA</a></mdb-card-text>
+                <mdb-card-text>{{ 'PYTHONCOURSES.QUESTIONS.TEXT' | translate }}<a href="https://www.reddit.com/r/CursoDePythonITBA">https://www.reddit.com/r/CursoDePythonITBA</a></mdb-card-text>
             </mdb-card-body>
         </mdb-card>
     </div>
 
 </body>
-<footer>
-    <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <img src="./../../assets/image/ieee_mb_white.png" alt="Logo IEEE" width="190vmin">
-          </div>
-          <div class="col-sm">
-            <img src="./../../assets/image/Logo circular/IEEE-Logo-Darkest.png" width="100vmin">
-          </div>
-          <div class="col-sm">
-            <img src="./../../assets/image/Marca-ITBA-Color-Blanco-ALTA.png" alt="Logo ITBA" width="170vmin">
-          </div>
-        </div>
-      </div>
-</footer>
+<app-footer></app-footer>
 </html>
