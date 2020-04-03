@@ -18,6 +18,7 @@ mdb-card {
     color: black;
     max-height: 50vmin;
     padding-bottom: 1.5vmin;
+    min-height: 300px;
 }
 
 mdb-card-text {
