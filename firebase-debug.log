@@ -1,0 +1,62 @@
+[debug] [2020-04-10T16:41:40.031Z] ----------------------------------------------------------------------
+[debug] [2020-04-10T16:41:40.033Z] Command:       D:\Program Files\nodejs\node.exe C:\Users\lucas\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-04-10T16:41:40.034Z] CLI Version:   8.0.0
+[debug] [2020-04-10T16:41:40.034Z] Platform:      win32
+[debug] [2020-04-10T16:41:40.034Z] Node Version:  v12.16.1
+[debug] [2020-04-10T16:41:40.060Z] Time:          Fri Apr 10 2020 13:41:40 GMT-0300 (Argentina Standard Time)
+[debug] [2020-04-10T16:41:40.060Z] ----------------------------------------------------------------------
+[debug] [2020-04-10T16:41:40.060Z] 
+[debug] [2020-04-10T16:41:40.096Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-10T16:41:40.097Z] > authorizing via signed-in user
+[debug] [2020-04-10T16:41:40.097Z] [iam] checking project ieeeitba for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2020-04-10T16:41:40.098Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-04-10T16:41:40.099Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-04-10T16:41:40.880Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 10 Apr 2020 16:41:40 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-10T16:41:40.894Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ieeeitba:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2020-04-10T16:41:46.159Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 10 Apr 2020 16:41:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1104","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-10T16:41:46.161Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ieeeitba  
+ 
+[debug] [2020-04-10T16:41:48.508Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 10 Apr 2020 16:41:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'ieeeitba'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2020-04-10T16:41:48.522Z] >>> HTTP REQUEST PUT https://ieeeitba.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
+[debug] [2020-04-10T16:41:50.775Z] <<< HTTP RESPONSE 200 {"server":"nginx","date":"Fri, 10 Apr 2020 16:41:50 GMT","content-type":"application/json; charset=utf-8","content-length":"15","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
+[info] +  database: rules syntax for database ieeeitba is valid
+[debug] [2020-04-10T16:41:50.779Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/ieeeitba/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-04-10T16:41:53.648Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 10 Apr 2020 16:41:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[ieeeitba]: beginning deploy...
+[info] i  hosting[ieeeitba]: found 193 files in dist/ITBA-IEEE-Website-A9
+[debug] [2020-04-10T16:41:55.450Z] [hosting] hash cache [ZGlzdFxJVEJBLUlFRUUtV2Vic2l0ZS1BOQ] stored for 193 files
+[debug] [2020-04-10T16:41:55.451Z] [hosting][hash queue][FINAL] {"max":1604,"min":0,"avg":42.134715025906736,"active":0,"complete":193,"success":193,"errored":0,"retried":0,"total":193,"elapsed":1733}
+[debug] [2020-04-10T16:41:55.451Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/ieeeitba/versions/de1412d69de333f3:populateFiles  
+ <request body omitted>
+[debug] [2020-04-10T16:42:00.431Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 10 Apr 2020 16:42:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-10T16:42:00.437Z] [hosting][populate queue][FINAL] {"max":4987,"min":4987,"avg":4987,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":4992}
+[debug] [2020-04-10T16:42:00.437Z] [hosting] uploads queued: 14
+[debug] [2020-04-10T16:42:22.229Z] [uploadQueue] Retrying task d90d624a87b35092e66a65194ef2f2e04e88bf798bd939395a3ea0116775d51a
+[debug] [2020-04-10T16:42:22.266Z] [uploadQueue] Retrying task 355a931d3de6397568567cdbf3546620dbade3a71f4ab031d49661a22d37ee84
+[debug] [2020-04-10T16:42:22.269Z] [uploadQueue] Retrying task 68fb27ed67b14f9987580ccad8594b71104271a31ef0cd468c8cf702281ae820
+[debug] [2020-04-10T16:42:22.270Z] [uploadQueue] Retrying task 2abe718ba4dfbb9bd7ffada12d2b971e687d4e66a5da70f9a914666d0bb13801
+[debug] [2020-04-10T16:42:22.271Z] [uploadQueue] Retrying task fa70e7d8b2f43566410ab28eef37aa1383c9cccaec13ebca75731559a70e612b
+[debug] [2020-04-10T16:42:22.271Z] [uploadQueue] Retrying task 465fb336bac8b72ad205e3cc008769593579be4774cec08b74fe1e101ac73fe8
+[debug] [2020-04-10T16:42:22.272Z] [uploadQueue] Retrying task 1939f222dcd1fc8f9e26b2e01b230267f476fe77a2faea4a76f3611471fd8886
+[debug] [2020-04-10T16:42:22.273Z] [uploadQueue] Retrying task fc3b55ee9b21de32492a319fc749e8e61d5e9f319cff485468741713f987bbf7
+[debug] [2020-04-10T16:42:22.274Z] [uploadQueue] Retrying task ba4c2aa819923e4e56fcb905ff754aede76cc700522ac5129b3325a6e6d2a87d
+[debug] [2020-04-10T16:42:22.277Z] [uploadQueue] Retrying task 25857ee83ebd57ca1711a29baaff7cc43f8f739d68bb3121ca3e300bc3d4afa4
+[debug] [2020-04-10T16:42:40.514Z] [uploadQueue] Retrying task 1939f222dcd1fc8f9e26b2e01b230267f476fe77a2faea4a76f3611471fd8886
+[debug] [2020-04-10T16:42:40.515Z] [uploadQueue] Retrying task 68fb27ed67b14f9987580ccad8594b71104271a31ef0cd468c8cf702281ae820
+[debug] [2020-04-10T16:42:40.713Z] [uploadQueue] Retrying task fc3b55ee9b21de32492a319fc749e8e61d5e9f319cff485468741713f987bbf7
+[debug] [2020-04-10T16:42:40.715Z] [uploadQueue] Retrying task 25857ee83ebd57ca1711a29baaff7cc43f8f739d68bb3121ca3e300bc3d4afa4
