@@ -10,8 +10,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 
 const routes: Routes = [
-  { path: '', component: MainMenuComponent},
-  { path: 'newmain', component: MainpageComponent},
+  { path: '', component: MainpageComponent},
   { path: 'ieeextreme', component: NewieeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent }

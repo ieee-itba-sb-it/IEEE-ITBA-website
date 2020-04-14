@@ -84,6 +84,14 @@ h1 {
     color: white;
 }
 
+#logotext{
+    font-family: Calibri, sans-serif;
+    text-align: left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* Flex */
 
 @media (max-width: 950px) {
