@@ -70,6 +70,10 @@
 			"TEXT": "Estamos trabajando en la creación de un equipo que integre personas con intereses en incrementar su pasión por la programación y mejorar sus habilidades tanto de escribir código como de trabajar en equipo. La programación es una habilidad que siempre guarda lugar a la mejora y la experiencia de competir programando marca un antes y un después.",
 			"TITLE": "Club de Programadores"
 		},
+		"CS": {
+			"TEXT": "Computer Society es una sociedad técnica dedicada a inspirar y educar en diversa áreas de tecnología relacionadas con la informática. Computer Society es de las redes más grandes que conectan profesionales en todo el mundo. Organizamos actividades y charlas sobre tecnologías actuales, con el fin de acercar toda esa información y conocimiento a estudiantes y a cualquier interesado en aprender más.",
+			"TITLE": "Computer Society"
+		},
 		"SEEMORE": "Ver Más",
 		"WIE": {
 			"TEXT": "Nuestro objetivo es promover la diversidad de género en la tecnología mediante la educación y representación.",

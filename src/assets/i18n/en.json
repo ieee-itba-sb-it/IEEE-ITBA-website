@@ -70,6 +70,10 @@
 			"TEXT": "We are working in the creation of a team that is composed by people with interest in increasing their passion for programming and develop their team, communication and technical skills. Programming is a skill that can always be further developed and the experience of competing is truly unique.",
 			"TITLE": "Programmer Club"
 		},
+		"CS": {
+			"TEXT": "IEEE Computer Society is a technical society whose objective is to inspire and educate in different technology areas related to informatics. We are one of the biggest networks that connect professionals around the globe. In ITBA we organize activities related to modern technologies aiming to make interested people such as students to learn more.",
+			"TITLE": "Computer Society"
+		},
 		"SEEMORE": "See More",
 		"WIE": {
 			"TEXT": "Our objective is to promote gender diversity in tech through education and representation.",
