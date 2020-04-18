@@ -32,6 +32,7 @@
     "angularfire2": "^5.4.2",
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
+    "date-fns": "^2.12.0",
     "firebase": "^7.14.1",
     "hammerjs": "^2.0.8",
     "ngx-countdown": "^9.0.0",
