@@ -45,6 +45,10 @@ import { config } from 'rxjs';
 import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 import { NewnavbarIeextremeComponent } from './newnavbar-ieextreme/newnavbar-ieextreme.component';
 
+import { firebaseConfig } from './secrets';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -93,6 +97,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     HttpClientModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],

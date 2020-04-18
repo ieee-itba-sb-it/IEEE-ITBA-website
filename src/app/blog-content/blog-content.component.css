@@ -28,6 +28,16 @@
 .logo-image-left{
     border-right: 1px solid #ABB6BE; 
     padding:10px;
+    width:100px;
+}
+.news-title{
+    margin:20px;
+    font-size:30px;
+    font-weight: bold;
+}
+.news-content{
+    margin:20px;
+    min-height: 100px;
 }
 :host {
     width: 100%;
