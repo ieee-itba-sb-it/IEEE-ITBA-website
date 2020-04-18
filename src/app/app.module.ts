@@ -4,7 +4,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +48,7 @@ import { firebaseConfig } from './secrets';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { BlogEntryComponent } from './blog-entry/blog-entry.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -80,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamComponent,
     NewnavbarIeextremeComponent,
     NewieeextremeComponent,
+    BlogEntryComponent,
   ],
   imports: [
     BrowserModule,

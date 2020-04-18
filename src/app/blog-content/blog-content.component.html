@@ -1,10 +1,7 @@
-<div class="main-container" fxLayoutAlign="center center" fxLayout="row">
+<div class="main-container" fxLayoutAlign="center center" fxLayout="column">
 
-    <div class="news-content" fxLayoutAlign="center center" fxLayout="column">
-        <div class="news-title">Noticia 1</div>
-        <div class="news-content">
-            Contenido
-        </div>
-    </div>
+    <app-blog-entry *ngFor="let blogEntry of (blogData | async)" [newsItem]="blogEntry">
+
+    </app-blog-entry>
     
 </div>
