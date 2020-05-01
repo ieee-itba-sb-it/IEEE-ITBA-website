@@ -118,6 +118,8 @@
 			"C2": "Data types (int, float, string, bool), data structures (lists, dictionary, set, tuples), operations with data types, operations with data structures. ",
 			"C3": "Flux review, data structure review, reading and writing files, operations with data from files, introduction to libraries.",
 			"C4": "Introduction to matplotlib, data visualization, graph customization, advantages and disadvantages of using Python and Excel.",
+			"INTEGRADOR_TITLE": "Final work",
+			"INTEGRADOR": "The objetive of the final work is to make participants to show they have learn the course objetives by means of a practical example",
 			"TITLE": "Class"
 		},
 		"DESC": "This course's public is getting bigger and bigger but one of the issues we've found is that students don't usually have a lot of available time. With this in mind, the course has been designed with a work-friendly format consisting of four classes of three hours each, where we emphasize practical examples with real applications in the real world. Finally, and considering the great heterogeneity of participants, we decided to offer personal support and question solving.",

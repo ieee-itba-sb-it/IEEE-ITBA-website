@@ -33,11 +33,6 @@
         <h1>{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
     </div>
 
-    <!-- Date and inscription -->
-    <div class="halfLeft" id="anotate">
-        <h2>27/03/2020</h2>
-        <button id="anotateButton" type="button" onclick="window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLScjjsJZjGfgHhzGJbi3SCEnhXXeeHBLpPHdq85FZ5_al1YA4A/viewform';" class="transparentButton" mdbWavesEffect><i class="fas fa-pen"></i>&nbsp;&nbsp;{{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }}</button>
-    </div>
 
     <!-- Introductory text -->
     <div class="halfRight">
@@ -52,7 +47,9 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1</h4>
+                    <h4>
+                        <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_1_Curso_Python.ipynb#scrollTo=4FLV1yxDh9Rh">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1 </a>
+                    </h4>
                 </mdb-card-title>
     
                 <!--Text-->
@@ -65,7 +62,7 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2</h4>
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_2_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2 </a>
                 </mdb-card-title>
     
                 <!--Text-->
@@ -78,7 +75,7 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3</h4>
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_3_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3 </a>
                 </mdb-card-title>
     
                 <!--Text-->
@@ -91,11 +88,24 @@
             <mdb-card-body>
                 <!--Title-->
                 <mdb-card-title>
-                    <h4>{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 4</h4>
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 4 </a>
                 </mdb-card-title>
     
                 <!--Text-->
                 <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C4' | translate }}</mdb-card-text>
+            </mdb-card-body>
+        </mdb-card>
+
+        <mdb-card>
+            <!--Card content-->
+            <mdb-card-body>
+                <!--Title-->
+                <mdb-card-title>
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}  </a>
+                </mdb-card-title>
+    
+                <!--Text-->
+                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}</mdb-card-text>
             </mdb-card-body>
         </mdb-card>
     </div>
@@ -113,6 +123,24 @@
     
                 <!--Text-->
                 <mdb-card-text>{{ 'PYTHONCOURSES.QUESTIONS.TEXT' | translate }}<a href="https://www.reddit.com/r/CursoDePythonITBA">https://www.reddit.com/r/CursoDePythonITBA</a></mdb-card-text>
+                
+                <mdb-card-text>{{ 'PYTHONCOURSES.QUESTIONS.TEXT_VIDEOS' | translate }}
+                    <ul>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=Hh_V3bCHgrM" > Q/A {{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1 </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=8Vzn4eo6g4o" > Q/A {{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2 </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=ePkmka2JAVc" > Q/A {{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3 </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=a6np_39os4w" > Q/A {{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 4 </a>
+                        </li>
+                    </ul>
+                </mdb-card-text>
+
             </mdb-card-body>
         </mdb-card>
     </div>
