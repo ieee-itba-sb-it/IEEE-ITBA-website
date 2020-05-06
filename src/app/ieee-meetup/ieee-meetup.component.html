@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
+</head>
+<header>
+    <!-- Icons on right -->
+    <div id="iconscontainer">
+        <table style="width:100%">
+            <tr id="icons">
+                <td>
+                    <a href="https://www.linkedin.com/company/ieee-itba" class="icon"><i class="fab fa-linkedin-in"></i></a>
+                </td>
+                <td>
+                    <a  href="https://www.instagram.com/ieee.itba/" class="icon"><i class="fab fa-instagram"></i></a>
+                </td>
+                <td> 
+                    <a (click)="useLanguage('es')" class="icon">es</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</header>
+
+<body fxLayout="column" fxLayoutAlign="center center">
+    <mdb-card  id="smallCard">
+        <div class="view overlay waves-light" mdbWavesEffect >
+          <mdb-card-img src="https://i.ibb.co/swW694N/Whats-App-Image-2020-05-06-at-4-12-48-PM.jpg" alt='{{ "IEEEMEETUP.TITLE" | translate }}'></mdb-card-img>
+          <a><div class="mask rgba-white-slight"></div></a>
+        </div>
+    
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{ 'IEEEMEETUP.TITLE' | translate }}</h4>
+          </mdb-card-title>
+          <hr>
+          <mdb-card-text>{{ 'IEEEMEETUP.CONTENT' | translate }} </mdb-card-text>
+          <hr>
+          <mdb-card-text><a href="https://Bit.ly/MeetUpIEEE">Bit.ly/MeetUpIEEE</a></mdb-card-text>
+        </mdb-card-body>
+        
+      </mdb-card>
+      
+    <div id="titleBar">
+        <h1>{{ 'IEEEMEETUP.TITLE' | translate }}</h1>
+    </div>
+    <div id="meetup">
+
+    </div>
+</body>
+<app-footer></app-footer>

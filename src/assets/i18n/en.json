@@ -118,7 +118,7 @@
 			"C2": "Data types (int, float, string, bool), data structures (lists, dictionary, set, tuples), operations with data types, operations with data structures. ",
 			"C3": "Flux review, data structure review, reading and writing files, operations with data from files, introduction to libraries.",
 			"C4": "Introduction to matplotlib, data visualization, graph customization, advantages and disadvantages of using Python and Excel.",
-			"INTEGRADOR_TITLE": "Final work",
+			"INTEGRADOR-TITLE": "Final work",
 			"INTEGRADOR": "The objetive of the final work is to make participants to show they have learn the course objetives by means of a practical example",
 			"TITLE": "Class"
 		},
@@ -129,5 +129,13 @@
 			"TITLE": "Questions"
 		},
 		"TITLE": "Python Beginner's courses 2020 "
+	},
+	"IEEEMEETUP-2":{
+		"TITLE": "IEEE - 2nd Meet Up",
+		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
+	},
+	"IEEEMEETUP":{
+		"TITLE": "IEEE - 2do Meet Up",
+		"CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publica los temas que quieras que se discutan en el form!"
 	}
 }

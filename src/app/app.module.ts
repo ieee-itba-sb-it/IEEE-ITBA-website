@@ -49,6 +49,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BlogEntryComponent } from './blog-entry/blog-entry.component';
+import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewnavbarIeextremeComponent,
     NewieeextremeComponent,
     BlogEntryComponent,
+    IeeeMeetupComponent,
   ],
   imports: [
     BrowserModule,
