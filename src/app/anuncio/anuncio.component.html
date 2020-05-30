@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
+</head>
+<header>
+    <!-- Icons on right -->
+    
+</header>
+
+<body fxLayout="column" fxLayoutAlign="center center">
+
+
+    <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column"> 
+        <div class="col-sm" >
+            <h1 id="logotext">{{(newsData | async).title}} </h1>
+        </div>
+    </div>
+    
+    <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
+        <div class="col-sm">
+            <h1 id="whitetext">{{(newsData | async).author}}</h1>
+        </div>  
+    </div>
+  
+    <div class="topbottomLine" fxLayoutAlign="center center" fxLayout="column"> 
+        <p id="whitetext" >{{(newsData | async).content}} </p>
+        <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
+    </div>
+
+    <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
+        <br>
+    </div>
+</body>
+<app-footer></app-footer>

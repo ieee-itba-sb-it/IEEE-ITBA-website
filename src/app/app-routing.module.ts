@@ -9,13 +9,17 @@ import { CursoPythonComponent } from './curso-python/curso-python.component'
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
+import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent},
   { path: 'ieeextreme', component: NewieeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent },
-  { path: 'ieeemeetup', component: IeeeMeetupComponent }
+  { path: 'ieeemeetup', component: IeeeMeetupComponent },
+  { path: 'wierecruiting', component: WieRecruitingComponent },
+  { path: 'anuncios/:id', component: AnuncioComponent}
 ];
 
 @NgModule({

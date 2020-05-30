@@ -45,6 +45,27 @@ export class BlogService {
     });
   }
 
+  getBlogEntry(name : string) : Observable<newsItem>{ /* Consiguir un blog entry particular */
+    var ans : BehaviorSubject<newsItem> = new BehaviorSubject(null);
+
+    this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
+      var doc = data.data();
+
+      ans.next(
+        createNewsItem(
+          doc["title"],
+          doc["content"],
+          doc["image-url"],
+          doc["date"],
+          doc["author"],
+          doc["reference"]
+        )
+      );
+    });
+
+    return ans.asObservable();
+  }
+
   addBlogEntry(news: newsItem){
     this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
       console.log(`News item with reference ${news.reference} added`);

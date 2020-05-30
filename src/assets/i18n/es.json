@@ -134,6 +134,10 @@
 	},
 	"IEEEMEETUP":{
 		"TITLE": "IEEE - 2do Meet Up",
-		"CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publica los temas que quieras que se discutan en el form!"
+		"CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publicá los temas que quieras que se discutan en el form!"
+	},
+	"WIERECRUITING":{
+		"TITLE": "WIE ITBA Recruiting"	,
+		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
 	}
 }

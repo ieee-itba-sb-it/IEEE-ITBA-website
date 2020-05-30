@@ -50,6 +50,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BlogEntryComponent } from './blog-entry/blog-entry.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
+import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
+import { AnuncioComponent } from './anuncio/anuncio.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -83,6 +85,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewieeextremeComponent,
     BlogEntryComponent,
     IeeeMeetupComponent,
+    WieRecruitingComponent,
+    AnuncioComponent,
   ],
   imports: [
     BrowserModule,
