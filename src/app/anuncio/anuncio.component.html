@@ -7,31 +7,62 @@
 </head>
 <header>
     <!-- Icons on right -->
-    
-</header>
+    <app-navbar-anuncios></app-navbar-anuncios>
+</header> 
 
-<body fxLayout="column" fxLayoutAlign="center center">
-
+<div *ngIf="(newsData | async)" class="body" fxLayoutAlign="center center" fxLayout="column">
+    <div class="spacenav">
+    </div>
+    <div fxLayoutAlign="center center" fxLayout="column">
+        <div fxLayoutAlign="center center" fxLayout="column">
+            <p class="author-text">Por {{(newsData | async).author}}</p>
+        </div>
+    </div>
 
     <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column"> 
-        <div class="col-sm" >
-            <h1 id="logotext">{{(newsData | async).title}} </h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" >
+                    <h1 id="logotext">{{(newsData | async).title}} </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottomLine"> 
+        <div fxLayoutAlign="center center" fxLayout="column">
+            <div class=" add-margin"> 
+                <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python"></mdb-card-img>
+                <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
+            </div>
+            
         </div>
     </div>
     
-    <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
-        <div class="col-sm">
-            <h1 id="whitetext">{{(newsData | async).author}}</h1>
-        </div>  
+    <div class="topbottomLine">
+        <div class="container" fxLayoutAlign="center center" fxLayout="column">
+            <div class="row">
+                <div class="col-sm">
+                    <div [innerHTML]="content" class="add-margin whitetext">  </div>
+                </div>
+            </div>
+        </div>
+        <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
     </div>
-  
-    <div class="topbottomLine" fxLayoutAlign="center center" fxLayout="column"> 
-        <p id="whitetext" >{{(newsData | async).content}} </p>
-        <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
+    
+    <div class="bottomLine"> 
     </div>
+    <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" >
+                    <h1 id="whitetext">{{(newsData | async).author}}</h1>
+                </div>
+            </div>
+        </div> 
+    </div>-->
+    <div class="addMargin">
+        <app-footer></app-footer>
+    </div>
+</div>
 
-    <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
-        <br>
-    </div>
-</body>
-<app-footer></app-footer>

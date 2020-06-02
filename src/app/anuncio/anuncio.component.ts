@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
@@ -15,19 +15,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AnuncioComponent implements OnInit {
   newsData: Observable<newsItem>;
+  content: string = "";
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['es']);// esta página esta solo en español
    // translate.setDefaultLang('es');
     //const browserLang = translate.getBrowserLang();
     /*translate.use(browserLang.match(/es|en/)? browserLang:'es');*/
-     
     this.useLanguage("en");
 
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getBlogEntries();
     this.newsData = this.blogService.getBlogEntry(this.route.snapshot.paramMap.get('id'));
-
+    this.newsData.subscribe((data : newsItem) => {
+      if (data != null){
+        console.log(data.content);
+        this.content = data.content;
+      }
+    });
   }
   useLanguage(language: string) {
     this.translate.use(language);    

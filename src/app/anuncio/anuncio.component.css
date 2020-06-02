@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
-    min-height: 200%;
     background-size: cover;
 }
 
-body {
+.body {
     padding: 20px;
     background: rgb(10,27,103);
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
@@ -42,7 +41,10 @@ header {
 #smallCard {
     max-width: 500px;
 }
-p{
+.spacenav{
+    min-height:80px;
+}
+.cover-area{
     color: whitesmoke;
     margin-top: 3vmin;
     margin-bottom: 3vmin;
@@ -50,6 +52,7 @@ p{
     padding: 3vmin;
     border-radius: 5vmin;
     text-align: justify;
+    line-height: 50px;
 }
 
 .transparentButton {
@@ -133,6 +136,9 @@ footer {
     background-size: cover;
     max-width: 100%;
 }
+.addMargin{
+    margin:80px;
+}
 
 .col-sm {
     text-align: center;
@@ -150,7 +156,7 @@ img {
 
 @media (max-width: 1000px) {
     html {
-        min-height:300%;
+        min-height:200%;
     }
 }
 
@@ -171,12 +177,13 @@ img {
         width: 100%;
     }
     html {
-        min-height:350%;
+        min-height:200%;
     }
 
 }
 
 .topbottomLine {
+    
     padding-top: 5vmin;
     padding-bottom: 5vmin;
     border-top: whitesmoke 2px solid;
@@ -194,7 +201,55 @@ img {
     font-size:50px;
     line-height: 50px;
 }
-#whitetext{
+.whitetext{
     color:#ffffff;
-    line-height: 50px;
+    line-height: 40px;
+    max-width:850px;
+    font-size: 20px;
+    text-align: left;
+}
+.whitetext-photo-text{
+    color:#ffffff;
+    font-size:15px;
+    text-align: left;
+    margin:10px;
+}
+.whitetext::first-letter {
+    font-size: 200%;
+    font-weight: bold;
+}
+.whitetext-right{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    color: #ffffff;
+}
+.whiteRoundedBlock{
+    background-color: whitesmoke;
+    padding: 3%;
+    border-radius: 5vmin;
+    padding: 3vmin;
+}
+.roundedBlock{
+    border-radius: 5vmin;
+}
+.blog-img{
+    
+    margin:20px;
+}
+.blog-card{
+    max-width: 1000px;
+}
+.spaced-p{
+    line-height: 30px;
+}
+.add-margin{
+    margin:20px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+.author-text{
+    font-size:20px;
+    color: #ffffff;
+    margin:20px;
 }

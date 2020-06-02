@@ -11,6 +11,7 @@ import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component'
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
+import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'cursospython', component: CursoPythonComponent },
   { path: 'ieeemeetup', component: IeeeMeetupComponent },
   { path: 'wierecruiting', component: WieRecruitingComponent },
-  { path: 'anuncios/:id', component: AnuncioComponent}
+  { path: 'anuncios/:id', component: AnuncioComponent},
+  { path: 'editAnuncio/:id', component: EditarAnuncioComponent}
 ];
 
 @NgModule({

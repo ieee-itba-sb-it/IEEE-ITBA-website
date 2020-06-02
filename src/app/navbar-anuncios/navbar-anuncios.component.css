@@ -1,0 +1,26 @@
+
+.buttonNavbar {
+    padding: 1.5vmin;
+    text-align: center;
+    margin: 1vmin;
+    border: whitesmoke 2px solid;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    background-color: transparent;
+    transition: all ease 0.5s;
+}
+
+.buttonNavbar:hover {
+    color: black;
+    background-color: whitesmoke;
+}
+
+.nav-item{
+    text-align: right;
+}
+
+#nav {
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    color: white;
+}

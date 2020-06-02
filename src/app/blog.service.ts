@@ -33,16 +33,28 @@ export class BlogService {
             createNewsItem(
               doc["title"],
               doc["content"],
-              doc["image-url"],
+              doc["imageUrl"],
               doc["date"],
               doc["author"],
-              doc["reference"]
+              doc["imageText"],
+              doc["reference"],
             )
           )
         }
         // update observer
         this.blogData.next(ans);
     });
+  }
+  setBlogEntry(content: newsItem){
+    var call = new BehaviorSubject<boolean>(false);
+
+    this.afs.collection(this.collectionName).doc(content.reference).set(content).then( data => {
+        call.next(true);
+      }
+    );
+    
+
+    return call.asObservable();
   }
 
   getBlogEntry(name : string) : Observable<newsItem>{ /* Consiguir un blog entry particular */
@@ -55,9 +67,10 @@ export class BlogService {
         createNewsItem(
           doc["title"],
           doc["content"],
-          doc["image-url"],
+          doc["imageUrl"],
           doc["date"],
           doc["author"],
+          doc["imageText"],
           doc["reference"]
         )
       );

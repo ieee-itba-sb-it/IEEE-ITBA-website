@@ -52,6 +52,8 @@ import { BlogEntryComponent } from './blog-entry/blog-entry.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
+import { NavbarAnunciosComponent } from './navbar-anuncios/navbar-anuncios.component';
+import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -87,6 +89,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     IeeeMeetupComponent,
     WieRecruitingComponent,
     AnuncioComponent,
+    NavbarAnunciosComponent,
+    EditarAnuncioComponent,
   ],
   imports: [
     BrowserModule,

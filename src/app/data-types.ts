@@ -1,3 +1,6 @@
+import { database } from 'firebase';
+import { firestore } from 'firebase/app';
+import Timestamp = firestore.Timestamp;
 
 export interface newsItem{
     title: string;
@@ -5,15 +8,17 @@ export interface newsItem{
     imageUrl: string;
     author: string;
     reference: string;
-    date: Number;
+    date: Date ;
+    imageText: string;
 }
 
 export function createNewsItem(
     title: string, 
     content: string, 
     imageUrl: string,
-    date: Number,
+    date: Timestamp,
     author: string,
+    imageText: string,
     reference: string) : newsItem{
-        return {title: title, content: content, imageUrl: imageUrl, date: date, author: author, reference: reference}
+        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText}
 }
