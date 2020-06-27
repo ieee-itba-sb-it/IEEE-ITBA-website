@@ -9,11 +9,11 @@ import { BlogService } from '../blog.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-anuncio',
-  templateUrl: './anuncio.component.html',
-  styleUrls: ['./anuncio.component.css']
+  selector: 'app-noticia',
+  templateUrl: './noticia.component.html',
+  styleUrls: ['./noticia.component.css']
 })
-export class AnuncioComponent implements OnInit {
+export class NoticiaComponent implements OnInit {
   newsData: Observable<newsItem>;
   content: string = "";
 

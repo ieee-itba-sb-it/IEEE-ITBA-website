@@ -10,8 +10,9 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
-import { AnuncioComponent } from './anuncio/anuncio.component';
+import { NoticiaComponent } from './noticia/noticia.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent},
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: 'cursospython', component: CursoPythonComponent },
   { path: 'ieeemeetup', component: IeeeMeetupComponent },
   { path: 'wierecruiting', component: WieRecruitingComponent },
-  { path: 'anuncios/:id', component: AnuncioComponent},
-  { path: 'editAnuncio/:id', component: EditarAnuncioComponent}
+  { path: 'noticias/:id', component: NoticiaComponent},
+  { path: 'editNoticia/:id', component: EditarAnuncioComponent},
+  { path: 'noticias', component: NoticiasComponent}
 ];
 
 @NgModule({

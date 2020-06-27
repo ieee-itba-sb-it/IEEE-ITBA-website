@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+html {
+    background-size: cover;
+}
+
+.body {
+    padding: 20px;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    /*OLDBACKGROUND*/
+    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    /*OLDBACKGROUND*/
+    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+#icons {
+    text-align: center;
+    color: whitesmoke;
+}
+
+
+/*.width400{
+    width: 50%;
+    min-width: 400px;
+    padding:5px;
+}*/
+.cardContent{
+    margin:20px;
+    padding:20px;
+}
+.icon {
+    color: whitesmoke;
+}
+/*.news-img{
+    height:100%;
+}*/
+@media (max-width: 960px) {
+    .image-container{
+        min-width: 100%;
+    }
+    .card-container{
+        margin-bottom:50px;
+        width:100%;
+        max-width: 500px;
+    }
+    .width1000{
+        width:100%;
+        padding:0px;
+    }
+    .title{
+        font-size:30px;
+        font-weight: bold;
+        margin:10px;
+        line-height: 40px;
+    }
+}
+@media (min-width: 960px){
+    .image-container{
+
+    }
+    .width1000{
+        
+        width:90%;
+    }
+    .card-container{
+        max-width: 1200px;
+        width:100%;
+    }
+    .title{
+        font-size:40px;
+        font-weight: bold;
+        margin:10px;
+        line-height: 40px;
+    }
+}
+
+#iconscontainer {
+    width: 20%;
+    padding-top: 3vmin;
+    margin-left: auto;
+    margin-right: auto;
+}
+#smallCard {
+    max-width: 500px;
+}
+.spacenav{
+    min-height:80px;
+}
+.cover-area{
+    color: whitesmoke;
+    margin-top: 3vmin;
+    margin-bottom: 3vmin;
+    background: rgba(245, 245, 245, 0.2);
+    padding: 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+    line-height: 50px;
+}
+
+.transparentButton {
+    padding: 2vmin;
+    border: solid 2px whitesmoke;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    background-color: transparent;
+    transition: all .5s ease;
+}
+
+.transparentButton:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+#homeText { display: inline; }
+
+#titleBar h1 {
+    color: whitesmoke;
+    vertical-align: middle;
+    margin-left: auto;
+    padding-left: 1vmin;
+    text-align: right;
+}
+
+#titleBar {
+    padding-left: 1vmin;
+    padding-right: 2vmin;
+    display: flex;
+    flex-direction: row;
+}
+
+.halfRight {
+    padding: 1vmin;
+    margin: 1vmin;
+    float: right;
+    width: 45%;
+}
+
+.halfLeft {
+    padding: 1vmin;
+    margin: 1vmin;
+    float: left;
+    width: 45%;
+}
+
+mdb-card {
+    border-radius: 5vmin;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+}
+
+h2{
+    font-size: 5vmin;
+    text-align: center;
+    color: whitesmoke;
+}
+
+#anotate {
+    margin-top: 4vmin;
+    border-radius: 5vmin;
+    align-content: center;
+    border: solid whitesmoke 2px;
+}
+
+#anotateButton {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2vmin;
+}
+
+footer {
+    position: relative;
+    bottom: 10%;
+    align-content: center;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    max-width: 100%;
+}
+.addMargin{
+    margin:80px;
+}
+
+.col-sm {
+    text-align: center;
+    padding-top: auto;
+    vertical-align: middle;
+}
+
+img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Flex */
+
+@media (max-width: 1000px) {
+    html {
+        min-height:200%;
+    }
+}
+
+@media (max-width: 600px) {
+    #homeText { display: none; }
+    #homebutton { height: 10vmin; }
+    .halfLeft { 
+        display: inline-block; 
+        width: 100% !important; 
+        margin-left: auto;
+    }
+    .halfRight { 
+        display: inline-block; 
+        width: 100% !important; 
+        margin-left: auto;
+    }
+    #anotate {
+        width: 100%;
+    }
+    html {
+        min-height:200%;
+    }
+
+}
+
+.topbottomLine {
+    max-width: 1000px;
+    width:80%;
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: whitesmoke 2px solid;
+    border-bottom: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+#logotext{
+    font-family: Calibri, sans-serif;
+    text-align: left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color:#ffffff;
+    font-size:50px;
+    line-height: 50px;
+}
+.whitetext{
+    color:#ffffff;
+    line-height: 40px;
+    max-width:850px;
+    font-size: 20px;
+    text-align: left;
+}
+.whitetext-photo-text{
+    color:#ffffff;
+    font-size:15px;
+    text-align: left;
+    margin:10px;
+}
+.whitetext::first-letter {
+    font-size: 200%;
+    font-weight: bold;
+}
+.whitetext-right{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    color: #ffffff;
+}
+.whiteRoundedBlock{
+    background-color: whitesmoke;
+    padding: 3%;
+    border-radius: 5vmin;
+    padding: 3vmin;
+}
+.roundedBlock{
+    border-radius: 5vmin;
+}
+.blog-img{
+    
+    margin:20px;
+}
+.blog-card{
+    max-width: 1000px;
+}
+.spaced-p{
+    line-height: 30px;
+}
+.add-margin{
+    margin:20px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+.author-text{
+    font-size:20px;
+    color: #ffffff;
+    margin:20px;
+}
+.white-title{
+    color:#ffffff;
+    font-size:40px;
+    text-align: center;
+}
+

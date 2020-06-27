@@ -4,6 +4,7 @@ import Timestamp = firestore.Timestamp;
 
 export interface newsItem{
     title: string;
+    shortIntro: string;
     content: string;
     imageUrl: string;
     author: string;
@@ -15,10 +16,11 @@ export interface newsItem{
 export function createNewsItem(
     title: string, 
     content: string, 
+    shortIntro: string,
     imageUrl: string,
     date: Timestamp,
     author: string,
     imageText: string,
     reference: string) : newsItem{
-        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText}
+        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro}
 }

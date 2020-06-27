@@ -36,6 +36,7 @@ export class EditarAnuncioComponent implements OnInit {
             document.getElementById("autor").setAttribute("value",  data.author);
             document.getElementById("imageUrl").setAttribute("value",  data.imageUrl);
             document.getElementById("imageText").setAttribute("value",  data.imageText);
+            document.getElementById("shortIntro").setAttribute("value",  data.shortIntro);
             document.getElementById("content").innerHTML = data.content;
           }
         }
@@ -53,24 +54,33 @@ export class EditarAnuncioComponent implements OnInit {
     var autor = (<HTMLInputElement>document.getElementById("autor")).value;
     var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;
     var reference = (<HTMLInputElement>document.getElementById("nombreUrl")).value;
-
+    var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     console.log(reference);
 
-    this.blogService.setBlogEntry(
-      createNewsItem(
-        title,
-        content,
-        imageUrl,
-        Timestamp.fromDate(new Date()),
-        autor,
-        imageText,
-        reference
-      )
-    ).subscribe(sent => {
-      if (sent){
-        this.router.navigate([`/anuncios/${reference}`]);
-      }
-    })
+    if (title != ''){
+      this.blogService.setBlogEntry(
+        createNewsItem(
+          title,
+          content,
+          shortIntro,
+          imageUrl,
+          Timestamp.fromDate(new Date()),
+          autor,
+          imageText,
+          reference
+        )
+      ).subscribe(sent => {
+        if (sent){
+          this.router.navigate([`/anuncios/${reference}`]);
+        }
+      })
+    }else{
+      this.blogService.deleteBlogEntry(reference).subscribe(sent => {
+        if (sent){
+          this.router.navigate([`/anuncios`]);
+        }
+      });
+    }
 
 
   }

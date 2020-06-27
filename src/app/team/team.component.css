@@ -48,3 +48,8 @@ mat-panel-title {
     font-size: 5vmin;
     padding: 1vmin;
 }
+
+.color-wie{
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+}

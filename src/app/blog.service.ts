@@ -20,7 +20,13 @@ export class BlogService {
   setCollectionName(collectionName: string){
     this.collectionName = collectionName;
   }
-
+  deleteBlogEntry(name: string){
+    var call = new BehaviorSubject<boolean>(false);
+    this.afs.collection(this.collectionName).doc(name).delete().then( data => {
+      call.next(true);
+    });
+    return call.asObservable();
+  }
   getBlogEntries(){ /* Program ask to update blog content in main page */
     this.afs.collection(this.collectionName).get().subscribe(data => {
 
@@ -33,6 +39,7 @@ export class BlogService {
             createNewsItem(
               doc["title"],
               doc["content"],
+              doc["shortIntro"],
               doc["imageUrl"],
               doc["date"],
               doc["author"],
@@ -41,6 +48,7 @@ export class BlogService {
             )
           )
         }
+        
         // update observer
         this.blogData.next(ans);
     });
@@ -67,6 +75,7 @@ export class BlogService {
         createNewsItem(
           doc["title"],
           doc["content"],
+          doc["shortIntro"],
           doc["imageUrl"],
           doc["date"],
           doc["author"],

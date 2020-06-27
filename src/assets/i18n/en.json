@@ -110,7 +110,8 @@
 		"EVENTS": "Events",
 		"HOME": "Home",
 		"INITIATIVES": "Initiatives",
-		"TEAM": "Team"
+		"TEAM": "Team",
+		"NEWS": "News"
 	},
 	"PYTHONCOURSES": {
 		"CLASSES": {
@@ -141,5 +142,9 @@
 	"WIERECRUITING":{
 		"TITLE": "WIE ITBA Recruiting"	,
 		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting. ¡No dudes consultar cualquier duda que tengas!"
+	},
+	"SUBSECTIONS":{
+		"WIE":"Women in engineering",
+		"CS":"Computer Society"
 	}
 }
