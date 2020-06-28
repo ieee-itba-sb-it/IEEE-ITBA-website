@@ -32,6 +32,22 @@
 				"GENERALASSIST": "Asistente General",
 				"TEAMMENTOR": "Mentor de Equipos Competitivos",
 				"VOLUNTEER": "Voluntario"
+			},
+			"WIE": {
+				"PRESIDENTE":"Presidente",
+				"VICEPRESIDENTE":"Vicepresidente",
+				"TESORERA":"Tesorera",
+				"COMUNICACION":"Comunicación",
+				"PLANIFICACION":"Planificación",
+				"VOLUNTARIA":"Voluntaria"
+			},
+			"CS": {
+				"PRESIDENTE":"Presidente",
+				"VICEPRESIDENTE":"Vicepresidente",
+				"GENERALSEC":"Secretario General",
+				"TESORERO":"Tesorero",
+				"PUBLICRELATIONS":"Relaciones pulbicas",
+				"LOGISTIC":"Logistica"
 			}
 		},
 		"CLASSES": {
