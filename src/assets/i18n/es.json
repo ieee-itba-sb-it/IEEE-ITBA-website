@@ -39,15 +39,17 @@
 				"TESORERA":"Tesorera",
 				"COMUNICACION":"Comunicación",
 				"PLANIFICACION":"Planificación",
-				"VOLUNTARIA":"Voluntaria"
+				"VOLUNTARIA":"Voluntaria",
+				"VOLUNTARIO":"Voluntario"
 			},
 			"CS": {
 				"PRESIDENTE":"Presidente",
 				"VICEPRESIDENTE":"Vicepresidente",
 				"GENERALSEC":"Secretario General",
 				"TESORERO":"Tesorero",
-				"PUBLICRELATIONS":"Relaciones pulbicas",
-				"LOGISTIC":"Logistica"
+				"PUBLICRELATIONS":"Relaciones públicas",
+				"LOGISTIC":"Logística",
+				"COMPETITIVEPROGRAMMING":"Programación Competitiva"
 			}
 		},
 		"CLASSES": {

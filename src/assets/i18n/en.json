@@ -36,18 +36,20 @@
 			"WIE": {
 				"PRESIDENTE":"President",
 				"VICEPRESIDENTE":"Vice president",
-				"TESORERO":"Treasurer",
+				"TESORERA":"Treasurer",
 				"COMUNICACION":"Comunication",
 				"PLANIFICATION":"Planification",
-				"VOLUNTARIA":"Volunteer"
+				"VOLUNTARIA":"Volunteer",
+				"VOLUNTARIO":"Volunteer"
 			},
 			"CS": {
 				"PRESIDENTE":"President",
 				"VICEPRESIDENTE":"Vice president",
 				"GENERALSEC":"General Secretary",
 				"TESORERO":"Treasurer",
-				"PUBLICRELATIONS":"Relaciones pulbicas",
-				"LOGISTIC":"Logistic"
+				"PUBLICRELATIONS":"Relaciones publicas",
+				"LOGISTIC":"Logistic",
+				"COMPETITIVEPROGRAMMING":"Competitive Programming"
 			}
 		},
 		"CLASSES": {

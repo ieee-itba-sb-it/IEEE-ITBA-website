@@ -26,7 +26,7 @@ export class NoticiasComponent implements OnInit {
       console.log(data);
 
       this.newsData = data;
-      this.newsData.sort( (a:newsItem, b:newsItem) => a.date.getDate()-b.date.getDate());
+      this.newsData.sort( (a:newsItem, b:newsItem) => (a.date.getTime()>b.date.getTime()?-1:1));
     });
   }
 
