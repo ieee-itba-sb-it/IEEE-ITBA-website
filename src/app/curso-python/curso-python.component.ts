@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CursoPythonComponent implements OnInit {
 
   constructor(public translate: TranslateService) {
+    scroll(0,0);
     translate.addLangs(['en','es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
