@@ -29,7 +29,7 @@
 <body>
 
     <div id="titleBar">
-        <button onclick="location.href='index.html'" class="transparentButton" mdbWavesEffect id="homebutton"><i class="fas fa-angle-left"></i>&nbsp;<div id="homeText">Home</div></button>
+        <button [routerLink]="['/home']" class="transparentButton" mdbWavesEffect id="homebutton"><i class="fas fa-angle-left"></i>&nbsp;<div id="homeText">Home</div></button>
         <h1>{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
     </div>
 

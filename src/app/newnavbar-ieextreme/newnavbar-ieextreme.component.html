@@ -10,7 +10,7 @@
       <!-- Menu -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button onclick="window.location.href = '#';" class="buttonNavbar" type="button"><i class="fas fa-angle-left"></i>&nbsp;{{ 'NAVBAR.HOME' | translate }}</button>
+          <button [routerLink]="['/home']" class="buttonNavbar" type="button"><i class="fas fa-angle-left"></i>&nbsp;{{ 'NAVBAR.HOME' | translate }}</button>
         </li>
         <li class="nav-item">
           <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TOP' | translate }}</button>
