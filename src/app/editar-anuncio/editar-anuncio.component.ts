@@ -27,7 +27,7 @@ export class EditarAnuncioComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id') != null){
       this.newsData = this.blogService.getBlogEntry(this.route.snapshot.paramMap.get('id'));
 
-      this.newsData.subscribe((data => {
+      this.newsData.subscribe((data: newsItem) => {
           if (data){
             console.log(data);
 
@@ -37,10 +37,11 @@ export class EditarAnuncioComponent implements OnInit {
             document.getElementById("imageUrl").setAttribute("value",  data.imageUrl);
             document.getElementById("imageText").setAttribute("value",  data.imageText);
             document.getElementById("shortIntro").setAttribute("value",  data.shortIntro);
+            (<HTMLInputElement>document.getElementById("listed")).checked = data.listed;
             document.getElementById("content").innerHTML = data.content;
           }
         }
-      ));
+      );
     }
 
   }
@@ -55,6 +56,8 @@ export class EditarAnuncioComponent implements OnInit {
     var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;
     var reference = (<HTMLInputElement>document.getElementById("nombreUrl")).value;
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
+    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
+
     console.log(reference);
 
     if (title != ''){
@@ -67,7 +70,8 @@ export class EditarAnuncioComponent implements OnInit {
           Timestamp.fromDate(new Date()),
           autor,
           imageText,
-          reference
+          reference,
+          listed
         )
       ).subscribe(sent => {
         if (sent){

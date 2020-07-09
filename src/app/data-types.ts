@@ -11,6 +11,7 @@ export interface newsItem{
     reference: string;
     date: Date ;
     imageText: string;
+    listed: boolean;
 }
 
 export function createNewsItem(
@@ -21,6 +22,7 @@ export function createNewsItem(
     date: Timestamp,
     author: string,
     imageText: string,
-    reference: string) : newsItem{
-        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro}
+    reference: string,
+    listed: boolean) : newsItem{
+        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed}
 }
