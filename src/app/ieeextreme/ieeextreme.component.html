@@ -1,152 +1,144 @@
-<app-navbar-ieeextreme></app-navbar-ieeextreme>
-<div class="spacenav">
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="ieeextreme-background" fxLayoutAlign="center center" fxLayout="column">
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEExtreme</title>
+</head>
+<header>
+    <app-navbar-ieeextreme></app-navbar-ieeextreme>
+</header>
 
-<div id="about-ieeextreme" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
-    <div class="ieeextreme" fxLayoutAlign="center center" fxLayout="column">
-        
-        <div class="information" fxLayoutAlign="center center" fxLayout="column">
-            <div fxLayoutAlign="center center" fxLayout.lt-md="column" fxLayout.gt-sm="row">
-                <div [fxFlex.gt-sm]="50" >
-                    <h1 class="title"> IEEExtreme programming competition</h1>
-                <!--<div [fxFlex.gt-sm]="50"  fxLayoutAlign="center center" fxLayout="row">
-                    <img  class="imageContent" src="../assets/image/ieee-extreme.jpg">
-                </div> -->
-                </div>
+<body>
 
-                <div [fxFlex.gt-sm]="50">
-                    <img src="assets/image/Xtreme_color.png" class="image">
-                </div>
+    <!-- Inicio and facts -->
+    <div class="topbottomLine" id="home">
+        <img src="./../../assets/image/XtremeLogoWhite.png" height="150vmin" alt="Logo ITBA-IEEE">
+        <div class="container" id="facts">
+            <div class="row">
+              <div class="col-sm">
+                  <h1>10</h1>
+                  <h3 class="facts">{{ 'IEEEXTREME.FACTS.EDITIONS' | translate }}</h3>
+              </div>
+              <div class="dottedlineright"></div>
+              <div class="col-sm">
+                    <h1>54+</h1>
+                    <h3 class="facts">{{ 'IEEEXTREME.FACTS.PARTICIPANTS' | translate }}</h3>
+              </div>
+              <div class="dottedlineright"></div>
+              <div class="col-sm">
+                    <h1>11</h1>
+                    <h3 class="facts">{{ 'IEEEXTREME.FACTS.TOPTEAMS' | translate }}</h3>
+              </div>
+              <div class="dottedlineright"></div>
+              <div class="col-sm">
+                    <h1>24hs</h1>
+                    <h3 class="facts">{{ 'IEEEXTREME.FACTS.HOURS' | translate }}</h3>
+              </div>
             </div>
-            <div [fxHide.lt-md]="true">
-                <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
-                        10
-                        <p class="text2">Ediciones realizadas </p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
-                        54+
-                        <p class="text2">Participantes año 2019</p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle">
-                        11
-                        <p class="text2">Equipos top 500/8000 </p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="last-circle">
-                        24 hs
-                        <p class="text2">de competencia</p>
-                    </div>
-                </div>
-            </div>
-
-            <div [fxHide.gt-sm]="true">
-                <div class="circle-container" fxLayoutAlign="center center" fxLayout="column">
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
-                        10
-                        <p class="text2">Ediciones realizadas </p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
-                        54+
-                        <p class="text2">Participantes año 2019</p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="circle2">
-                        11
-                        <p class="text2">Equipos top 500/8000 </p>
-                    </div>
-                    <div fxLayout="column" fxLayoutAlign="center center" class="last-circle2">
-                        24 hs
-                        <p class="text2">de competencia</p>
-                    </div>
-                </div>
-            </div>
-            
         </div>
-        
     </div>
-</div>
 
-<div class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
-    <div class="ieeextreme2" fxLayoutAlign="center center" fxLayout="row">
-      <div class="information" fxLayout.lt-md="column" fxLayout.gt-sm="row">
-        <div [fxFlex.gt-sm]="50">
-            <h1 class="title2">¡Resolvé problemas en equipo! </h1>
-            <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
-                <p class="text"> La IEEExtreme programming competition es una competencia de programación de 24 hs donde competidores de distintas universidades y carreras dedican gran esfuerzo y motivación en pos de incrementar su habilidad de resolver problemas en equipo y pasar un gran momento.</p>
+    <!-- Resolve problemas en equipo -->
+    <div class="bottomLine">
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <h2>{{ 'IEEEXTREME.TEAM.TITLE' | translate }}</h2>
+                <div class="transparent">{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</div>
+              </div>
+              <div class="col-sm">
+                <img src="./../../assets/image/teamdisc.png" height="200vmin" alt="Logo ITBA-IEEE">
+              </div>
             </div>
         </div>
-        <div [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
-            <img src="assets/image/meeting.png">
+    </div>
+
+    <!-- Queres participar -->
+    <div class="bottomLine" id="takepart">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <img src="./../../assets/image/tournament.png" height="200vmin" alt="Logo ITBA-IEEE">
+                </div>
+              <div class="col-sm">
+                <h2>{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}</h2>
+                <div class="transparent">{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sponsor 2020 -->
+    <div class="noLine" id="sponsorship">
+      <h1>Sponsorship 2020</h1>
+      <p class="whitebckg">{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="sponsorContact">
+                  <h3>Franco Moriconi</h3>
+                  <a href="mailto:fmoriconi@itba.edu.ar" class="whiteLink">fmoriconi@itba.edu.ar</a>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="sponsorContact">
+                  <h3>Ariel Nowik</h3>
+                  <a href="mailto:anowik@itba.edu.ar" class="whiteLink">anowik@itba.edu.ar</a>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="sponsorContact">
+                  <h3>Ricardo Lin</h3>
+                  <a href="mailto:xlin@itba.edu.ar" class="whiteLink">xlin@itba.edu.ar</a>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="sponsorContact">
+                  <h3>Gonzalo Rímini Carol</h3>
+                  <a href="mailto:grimini@itba.edu.ar" class="whiteLink">grimini@itba.edu.ar</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prev Sponsors -->
+    <div class="bottomLine">
+      <h1 class="right">{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h1>
+      <div class="container">
+        <div class="row" style="margin-top: 2vmin;">
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/avature.png" height="50vmin" alt="Logo Avature" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/eiwa.png" height="60vmin" alt="Logo Eiwa" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/flowics.png" height="30vmin" alt="Logo Flowics" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/inclusion.png" height="40vmin" alt="Logo Inclusion" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+        </div>
+        <div class="row" style="margin-top: 2vmin;">
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/mulesoft.png" height="50vmin" alt="Logo Mulesoft" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/pampa.png" height="50vmin" alt="Logo Pampa" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/tgs.png" height="40vmin" alt="Logo TGS" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
+          <div class="col-sm">
+            <img src="./../../assets/image/sponsors/unify.png" height="30vmin" alt="Logo Unify" style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
         </div>
       </div>
     </div>
-</div>
 
-<div id="participa" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
-    <div class="ieeextreme3" fxLayoutAlign="center center" fxLayout="row">
-        <div class="information" fxLayout.lt-md="column" fxLayout.gt-sm="row">
-          <div [fxHide.lt-md]="true" [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
-              <img src="assets/image/winning.png">
-          </div>
-          <div [fxFlex.gt-sm]="50">
-              <h1 class="title2">¿Querés participar? </h1>
-              <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
-                  <p class="text"> Abrimos un formulario para aquellos que esten interesados en la competencia de este año, cuando abramos las inscripciones les mandaremos una notificación. ¡Aprovecha el tiempo para conseguir un equipo y entrenar! </p>
-              </div>
-          </div>
-          <div [fxHide.gt-sm]="true" [fxFlex.gt-sm]="50" fxLayoutAlign="center center" fxLayout="row">
-              <img src="assets/image/winning.png">
-          </div>
-        </div>
-    </div>
-</div>
-
-<div id="sponsors" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
-    <div class="ieeextreme4" fxLayoutAlign="center center" fxLayout="column">
-        <div class="information">
-            <h1 class="title2">Sponsorhip 2020</h1>
-            <div class="circle-container" fxLayoutAlign="center center" fxLayout="row">
-                <p class="text"> Para el desarrollo de la competencia requerimos fondos, por lo que estamos en la busqueda de nuevos auspiciantes para nuestro evento. Para más información contactar a cualquier miembro de nuestro equipo de fundraising</p>
-            </div>
-            <div class="fundraising" fxLayoutAlign="center center" fxLayout="row">
-                <div class="persona">
-                    <div><b>Franco Moriconi</b></div>
-                    <div>fmoriconi@itba.edu.ar </div>
-                </div>
-                <div class="persona">
-                    <div><b>Ariel Nowik</b></div>
-                    <div>anowik@itba.edu.ar </div>
-                </div>
-                <div class="persona">
-                    <div><b>Ricardo Lin</b></div>
-                    <div>xlin@itba.edu.ar </div>
-                </div>
-                <div class="persona">
-                    <div><b>Gonzalo Rímini Carol</b></div>
-                    <div>grímini@itba.edu.ar </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div id="sponsors" class="ieeextreme-big" fxLayoutAlign="center center" fxLayout="column">
-    <div class="ieeextreme5" fxLayoutAlign="center center" fxLayout="column">
-        <div class="information">
-            <h1 class="title2">Sponsors que nos han acompañado</h1>
-            <p class="text"> Estos son algunos de los sponsors que nos han acompañado en ediciones anteriores.</p>
-            <div class="fundraising" fxLayoutAlign="center center" fxLayout="row">
-                <img class="logo-sponsor" src="assets/image/sponsors/eiwa.png">
-                <img class="logo-sponsor" src="assets/image/sponsors/flowics.png">
-                <img class="logo-sponsor" src="assets/image/sponsors/inclusion.png">
-                <img class="logo-sponsor" src="assets/image/sponsors/tgs.jpg">
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<app-itba-ieee-marca></app-itba-ieee-marca>
+</body>
+<app-footer></app-footer>
+</html>

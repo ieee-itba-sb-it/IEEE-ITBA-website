@@ -25,7 +25,7 @@
 			"MEDIACOM": {
 				"CC": "Creador de Contenido",
 				"DESIGNER": "Diseñador",
-				"WEBMASTER": "Webmaster & Editor"
+				"WEBMASTER": "Webmaster & Editor General"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Mentor de Fundraising",
@@ -34,6 +34,7 @@
 				"VOLUNTEER": "Voluntario"
 			},
 			"WIE": {
+<<<<<<< HEAD
 				"PRESIDENTE":"Presidente",
 				"VICEPRESIDENTE":"Vicepresidente",
 				"TESORERA":"Tesorera",
@@ -43,13 +44,24 @@
 				"VOLUNTARIO":"Voluntario",
 				"REDES":"Redes Sociales",
 				"WEBMASTER":"Webmaster"
+=======
+				"PRESIDENT":"Presidente",
+				"VP":"Vicepresidente",
+				"TREASURER":"Tesorera",
+				"COMM":"Comunicación",
+				"PLANNING":"Planificación",
+				"FEMVOLUNTEER":"Voluntaria",
+				"VOLUNTEER":"Voluntario",
+				"SOCIAL": "Redes Sociales",
+				"WEBMASTER":"Webmaster & Editor de WIE"
+>>>>>>> 3acb6cc6914110255845b4669d7989713cdef150
 			},
 			"CS": {
-				"PRESIDENTE":"Presidente",
-				"VICEPRESIDENTE":"Vicepresidente",
+				"PRESIDENT":"Presidente",
+				"VP":"Vicepresidente",
 				"GENERALSEC":"Secretario General",
-				"TESORERO":"Tesorero",
-				"PUBLICRELATIONS":"Relaciones públicas",
+				"TREASURER":"Tesorero",
+				"RRPP":"Relaciones públicas",
 				"LOGISTIC":"Logística",
 				"COMPETITIVEPROGRAMMING":"Programación Competitiva"
 			}
@@ -160,9 +172,12 @@
 	"WIERECRUITING":{
 		"TITLE": "WIE ITBA Recruiting"	,
 		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
+<<<<<<< HEAD
 	},
 	"SUBSECTIONS":{
 		"WIE":"Women In Engineering",
 		"CS":"Computer Society"
+=======
+>>>>>>> 3acb6cc6914110255845b4669d7989713cdef150
 	}
 }

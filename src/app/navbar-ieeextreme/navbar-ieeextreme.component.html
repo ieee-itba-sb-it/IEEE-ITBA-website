@@ -1,46 +1,52 @@
-<!--<div class="navbar" fxLayoutAlign="center center" fxLayout="row">
-    <div>IEEExtreme</div> 
-    <div>Acerca de</div>
-    <div>Participa</div>
-    <div>Sponsors</div>
-</div>-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark light-blue darken-3 justify-content-between fixed-top" [containerInside]="false">
-    <!-- Collapsible content -->
-        
-        <!-- Links -->
-        
-        
-        <!--<img src="../../assets/img/ieee-logo.png" class="img-container" alt="mdb logo">-->
-        <!--<a class="navbar-brand" href=""><b>IEEE ITBA &nbsp;&nbsp;</b></a>-->
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" id="nav" mdbStickyHeader>
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
+  
+    <!-- All Items -->
+    <links>
     
-    <div class="full-width" fxLayoutAlign="center center" fxLayout="column">
-        <div class="spacenav">
-        
-        </div>
-        <div class="full-width" fxLayoutAlign="center center" fxLayout="row" >
-            <div>
-                <links class="collapse navbar-collapse "> 
-                    
-                <ul class="flex-fill navbar-nav">
-                    <li class="nav-item">
-                        <a pageScroll (click)="scrollTo('#about-ieeextreme')" class="nav-link waves-light" mdbWavesEffect><b>IEEExtreme</b><span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a pageScroll (click)="scrollTo('#participa')" class="nav-link waves-light" mdbWavesEffect>Participa<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a pageScroll (click)="scrollTo('#sponsors')" class="nav-link waves-light" mdbWavesEffect>Sponsors<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-                </links>  
-            </div>
-        </div>
-        
-    </div>
-    
-</mdb-navbar>
-<mdb-navbar SideClass="navbar navbar-dark blue lighten-1 justify-content-between fixed-top" [containerInside]="false">
-    <div class="text-itba-ieee" fxLayoutAlign="center center" fxLayout="row">
-        <a class="text-itba-ieee" href=""><b>IEEE-ITBA Student Branch</b></a>&nbsp;>&nbsp;<b>IEEExtreme</b>
-    </div>
-</mdb-navbar>
+      <!-- Menu -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <button [routerLink]="['/home']" class="buttonNavbar" type="button"><i class="fas fa-angle-left"></i>&nbsp;{{ 'NAVBAR.HOME' | translate }}</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TOP' | translate }}</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="scrollTo('#takepart')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TAKEPART' | translate }}</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="scrollTo('#sponsorship')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.SPONSOR' | translate }}</button>
+        </li>
+      </ul>
+      
+      <!-- Icons on right -->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a href="https://www.linkedin.com/company/ieee-itba" class="nav-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="https://www.instagram.com/ieee.itba/" class="nav-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="useLanguage('es')" class="nav-link">
+            es
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="useLanguage('en')" class="nav-link">
+            en
+          </a>
+        </li>
+      </ul>
+  
+    </links>
+  
+  </mdb-navbar>

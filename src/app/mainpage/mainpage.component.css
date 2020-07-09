@@ -7,8 +7,6 @@ body {
     padding: 10%;
     background: rgb(10,27,103);
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    /*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
@@ -58,12 +56,17 @@ body {
 }
 
 mdb-card {
-    border-radius: 5vmin;
+    border-bottom-left-radius: 5vmin;
+    border-bottom-right-radius: 5vmin;
     margin: 1.5vmin;
 }
 
 mdb-card-text {
     text-align: left;
+}
+
+mdb-card-img {
+    padding: 2.5px;
 }
 
 h1 {

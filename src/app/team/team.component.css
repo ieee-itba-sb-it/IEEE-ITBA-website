@@ -11,20 +11,6 @@
 ::ng-deep .mat-expansion-indicator::after {
     color: whitesmoke;
 }
-  
-mdb-card {
-    border-radius: 5vmin;
-    margin: 1.5vmin;
-    color: black;
-    max-height: 50vmin;
-    padding-bottom: 1.5vmin;
-    min-height: 300px;
-}
-
-mdb-card-text {
-    text-align: left;
-    color: black;
-}
 
 mat-panel-description {
     text-align: right;
@@ -44,17 +30,12 @@ mat-panel-title {
     color: whitesmoke;
 }
 
-.cardIcon {
-    font-size: 5vmin;
-    padding: 1vmin;
+#colorWie{
+    color: rgb(177, 138, 240);
+    /* text-shadow: 0px 0px 5px rgb(177, 138, 240); */
 }
 
-.color-wie{
-    background: rgb(177, 138, 240);
-    background: linear-gradient(75deg, rgb(177, 138, 240), rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-}
-
-.color-cs{
-    background: rgb(252, 192, 111);
-    background: linear-gradient(75deg, rgb(252, 192, 111), rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+#colorCS{
+    color: rgb(252, 192, 111);
+    /* text-shadow: 0px 0px 5px rgb(252, 192, 111); */
 }

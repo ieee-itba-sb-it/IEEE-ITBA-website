@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IeeextremeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    scroll(0,0);
+  }
 
   ngOnInit(): void {
   }
