@@ -40,7 +40,9 @@
 				"COMUNICACION":"Comunication",
 				"PLANIFICATION":"Planification",
 				"VOLUNTARIA":"Volunteer",
-				"VOLUNTARIO":"Volunteer"
+				"VOLUNTARIO":"Volunteer",
+				"REDES":"Social Media",
+				"WEBMASTER":"Webmaster"
 			},
 			"CS": {
 				"PRESIDENTE":"President",

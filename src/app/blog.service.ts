@@ -45,6 +45,7 @@ export class BlogService {
               doc["author"],
               doc["imageText"],
               doc["reference"],
+              doc["listed"]
             )
           )
         }
@@ -80,7 +81,8 @@ export class BlogService {
           doc["date"],
           doc["author"],
           doc["imageText"],
-          doc["reference"]
+          doc["reference"],
+          doc["listed"]
         )
       );
     });

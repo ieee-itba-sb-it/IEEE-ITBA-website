@@ -40,7 +40,9 @@
 				"COMUNICACION":"Comunicación",
 				"PLANIFICACION":"Planificación",
 				"VOLUNTARIA":"Voluntaria",
-				"VOLUNTARIO":"Voluntario"
+				"VOLUNTARIO":"Voluntario",
+				"REDES":"Redes Sociales",
+				"WEBMASTER":"Webmaster"
 			},
 			"CS": {
 				"PRESIDENTE":"Presidente",
@@ -95,7 +97,7 @@
 		"SEEMORE": "Ver Más",
 		"WIE": {
 			"TEXT": "Nuestro objetivo es promover la diversidad de género en la tecnología mediante la educación y representación.",
-			"TITLE": "Women in Engineering"
+			"TITLE": "Women In Engineering"
 		}
 	},
 	"IEEEXTREME": {
@@ -160,7 +162,7 @@
 		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
 	},
 	"SUBSECTIONS":{
-		"WIE":"Women in engineering",
+		"WIE":"Women In Engineering",
 		"CS":"Computer Society"
 	}
 }
