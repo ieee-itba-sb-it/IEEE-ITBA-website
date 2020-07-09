@@ -1,1 +1,27 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div id="mainFrame">
+        <br>
+        <div id="title">
+            <h1>New User?</h1>
+            <h2>Register now.</h2>
+        </div>
+        <br>
+        <div class="email-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="mfaraday@example.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

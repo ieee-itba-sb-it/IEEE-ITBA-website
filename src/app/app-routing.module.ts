@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'noticias/:id', component: NoticiaComponent},
   { path: 'editNoticia/:id', component: EditarAnuncioComponent},
   { path: 'noticias', component: NoticiasComponent},
-  { path: 'register', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
+  { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
 ];
 
