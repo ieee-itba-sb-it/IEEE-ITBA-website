@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" id="nav" mdbStickyHeader>
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="./../../assets/image/Logo circular/IEEE-Logo-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
   
     <!-- All Items -->
     <links>
@@ -10,16 +10,19 @@
       <!-- Menu -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button [routerLink]="['/home']" class="buttonNavbar" type="button"><i class="fas fa-angle-left"></i>&nbsp;{{ 'NAVBAR.HOME' | translate }}</button>
+          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TOP' | translate }}</button>
+          <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#takepart')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.TAKEPART' | translate }}</button>
+          <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
         </li>
         <li class="nav-item">
-          <button (click)="scrollTo('#sponsorship')" class="buttonNavbar" type="button">{{ 'IEEEXTREME.NAVBAR.SPONSOR' | translate }}</button>
+          <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
+        </li>
+        <li class="nav-item">
+          <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
         </li>
       </ul>
       
@@ -43,6 +46,11 @@
         <li class="nav-item">
           <a (click)="useLanguage('en')" class="nav-link">
             en
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['']" class="nav-link">
+            <i class="fas fa-sign-in-alt"></i>
           </a>
         </li>
       </ul>

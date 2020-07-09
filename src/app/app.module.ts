@@ -28,13 +28,9 @@ import { BlogContentComponent } from './blog-content/blog-content.component';
 import { BlogTitleComponent } from './blog-title/blog-title.component';
 import { CursoPythonComponent } from './curso-python/curso-python.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { NewnavbarComponent } from './newnavbar/newnavbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TeamComponent } from './team/team.component';
 import { config } from 'rxjs';
-import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
-import { NewnavbarIeextremeComponent } from './newnavbar-ieextreme/newnavbar-ieextreme.component';
-
 import { firebaseConfig } from './secrets';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -47,6 +43,9 @@ import { NoticiasComponent } from './noticias/noticias.component';
 import { NavbarAnunciosComponent } from './navbar-anuncios/navbar-anuncios.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { TeamCardComponent } from './team-card/team-card.component';
+import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
+import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,11 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BlogTitleComponent,
     CursoPythonComponent,
     MainpageComponent,
-    NewnavbarComponent,
     FooterComponent,
     TeamComponent,
-    NewnavbarIeextremeComponent,
-    NewieeextremeComponent,
     BlogEntryComponent,
     IeeeMeetupComponent,
     WieRecruitingComponent,
@@ -78,6 +74,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditarAnuncioComponent,
     NoticiasComponent,
     TeamCardComponent,
+    IeeextremeComponent,
+    NavbarIeeextremeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

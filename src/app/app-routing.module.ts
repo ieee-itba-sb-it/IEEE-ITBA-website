@@ -3,17 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlogComponent } from './blog/blog.component'
 import { CursoPythonComponent } from './curso-python/curso-python.component'
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { NewieeextremeComponent } from './newieeextreme/newieeextreme.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
 import { NoticiaComponent } from './noticia/noticia.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { NoticiasComponent } from './noticias/noticias.component';
+import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent},
   { path: 'home', redirectTo: '', pathMatch: 'full'},
-  { path: 'ieeextreme', component: NewieeextremeComponent },
+  { path: 'ieeextreme', component: IeeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent },
   { path: 'ieeemeetup', component: IeeeMeetupComponent },

@@ -7,11 +7,11 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-newnavbar-ieextreme',
-  templateUrl: './newnavbar-ieextreme.component.html',
-  styleUrls: ['./newnavbar-ieextreme.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NewnavbarIeextremeComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService) {
     translate.addLangs(['en','es']);
@@ -27,7 +27,7 @@ export class NewnavbarIeextremeComponent implements OnInit {
   ngOnInit() {
     this.pageScrollService.scroll({
       document: this.document,
-      scrollTarget: '.about-ieee',
+      scrollTarget: '#home',
     });
   }
   scrollTo(target: string){

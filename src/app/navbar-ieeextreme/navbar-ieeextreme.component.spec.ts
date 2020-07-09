@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewnavbarComponent } from './newnavbar.component';
+import { NavbarIeeextremeComponent } from './navbar-ieeextreme.component';
 
-describe('NewnavbarComponent', () => {
-  let component: NewnavbarComponent;
-  let fixture: ComponentFixture<NewnavbarComponent>;
+describe('NavbarIeeextremeComponent', () => {
+  let component: NavbarIeeextremeComponent;
+  let fixture: ComponentFixture<NavbarIeeextremeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewnavbarComponent ]
+      declarations: [ NavbarIeeextremeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewnavbarComponent);
+    fixture = TestBed.createComponent(NavbarIeeextremeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
