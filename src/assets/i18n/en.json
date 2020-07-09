@@ -25,7 +25,7 @@
 			"MEDIACOM": {
 				"CC": "Content Creator",
 				"DESIGNER": "Designer",
-				"WEBMASTER": "Webmaster & Editor"
+				"WEBMASTER": "General Webmaster & Editor"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Fundraising Mentor",
@@ -40,7 +40,9 @@
 				"COMM":"Communication",
 				"PLANNING":"Planning",
 				"FEMVOLUNTEER":"Volunteer",
-				"VOLUNTEER":"Volunteer"
+				"SOCIAL": "Social Media",
+				"VOLUNTEER":"Volunteer",
+				"WEBMASTER":"WIE Webmaster & Editor"
 			},
 			"CS": {
 				"PRESIDENT":"President",

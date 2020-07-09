@@ -15,7 +15,7 @@ export class TeamCardComponent implements OnInit {
   // Constants
 
   peopleCD = [
-    new Person("Ariel Nowik","https://i.ibb.co/YX5j6nw/arielnowik.jpg","https://www.linkedin.com/in/ariel-nowik-13608a158/","anowik@itba.edu.ar",'HOME.CARGO.CS.PRESIDENTE'),
+    new Person("Ariel Nowik","https://i.ibb.co/YX5j6nw/arielnowik.jpg","https://www.linkedin.com/in/ariel-nowik-13608a158/","anowik@itba.edu.ar",'HOME.CARGO.CD.PRESIDENT'),
     new Person("Dante Kieniguiel","https://i.ibb.co/Z2YjBfn/dantekienigiel.jpg","https://www.linkedin.com/in/dante-k-572396bb/","dkienigiel@itba.edu.ar",'HOME.CARGO.CD.VP'),
     new Person("Franco Moriconi","https://i.ibb.co/D7JsB7Q/francomoriconi.jpg","https://www.linkedin.com/in/franco-moriconi-0002a0196/","fmoriconi@itba.edu.ar",'HOME.CARGO.CD.TREASURER'),
     new Person("Carola Pedrosa","https://i.ibb.co/K9SbCTJ/carolapedrosa.jpg","https://www.linkedin.com/in/carola-pedrosa-87342b1a3/","cpedrosa@itba.edu.ar",'HOME.CARGO.CD.GENERALSEC')
@@ -55,8 +55,21 @@ export class TeamCardComponent implements OnInit {
     new Person("Elisabet del Pilar Crespo","https://i.ibb.co/YB7N3hp/d-with-VSCO-with-dog1-preset.jpg","https://www.linkedin.com/in/elisabet-del-pilar-crespo/","ecrespo@itba.edu.ar",'HOME.CARGO.WIE.VP'),
     new Person("Catalina Lucena Maguire","https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg","https://www.linkedin.com/in/catalina-lucena-maguire-322033169/","clucena@itba.edu.ar",'HOME.CARGO.WIE.TREASURER'),
     new Person("Sofia Petrozzino","https://i.ibb.co/1RMpjj0/sofiapetrozzino.jpg","https://www.linkedin.com/in/sof%C3%ADa-petrozzino-22406a177/","spetrozzino@itba.edu.ar",'HOME.CARGO.WIE.COMM'),
-    new Person("Sofia Cerretini","https://i.ibb.co/JmVtNQ8/sofia-cerritini.jpg","http://linkedin.com/in/sofia-cerretini-2452691a5/","scerretini@itba.edu.ar",'HOME.CARGO.WIE.PLANNING'),
-    new Person("Aldana Bruno","https://i.ibb.co/fMNMQHf/aldanabruno.jpg","https://www.linkedin.com/in/aldana-bruno-5631a1177/","abruno@itba.edu.ar",'HOME.CARGO.WIE.COMM')
+    new Person("Sofia Cerretini","https://i.ibb.co/JmVtNQ8/sofia-cerritini.jpg","http://linkedin.com/in/sofia-cerretini-2452691a5/","scerretini@itba.edu.ar",'HOME.CARGO.WIE.PLANNING')
+  ];
+
+  peopleWIErow2 = [
+    new Person("Aldana Bruno","https://i.ibb.co/fMNMQHf/aldanabruno.jpg","https://www.linkedin.com/in/aldana-bruno-5631a1177/","abruno@itba.edu.ar",'HOME.CARGO.WIE.COMM'),
+    new Person("Patricio Whittingslow","https://i.ibb.co/JkCmGXZ/patriciowhittingslow.jpg","https://www.linkedin.com/in/patricio-whittingslow-3b9564140/","pwhittingslow@itba.edu.ar",'HOME.CARGO.WIE.VOLUNTEER'),
+    new Person("Ariel Nowik","https://i.ibb.co/YX5j6nw/arielnowik.jpg","https://www.linkedin.com/in/ariel-nowik-13608a158/","anowik@itba.edu.ar",'HOME.CARGO.WIE.VOLUNTEER'),
+    new Person("Candelaria Ruiz","https://i.ibb.co/zfT818s/candelariaruiz.jpg","https://www.linkedin.com/in/mar%C3%ADa-candelaria-ruiz-casas/","mariruiz@itba.edu.ar",'HOME.CARGO.WIE.FEMVOLUNTEER')
+  ];
+
+  peopleWIErow3 = [
+    new Person("Carola Pedrosa","https://i.ibb.co/K9SbCTJ/carolapedrosa.jpg","https://www.linkedin.com/in/carola-pedrosa-87342b1a3/","cpedrosa@itba.edu.ar",'HOME.CARGO.WIE.FEMVOLUNTEER'),
+    new Person("Paula Oseroff","https://i.ibb.co/MgBJDmG/paula-oseroff.png","http://linkedin.com/in/paula-oseroff-44a0a2189","poseroff@itba.edu.ar",'HOME.CARGO.WIE.WEBMASTER'),
+    new Person("Lucía Malfetana","https://i.ibb.co/JyghYss/Luc-a-Malfetana.jpg","http://linkedin.com/in/luc%C3%ADa-m-61801a1a8","lmalfetana@itba.edu.ar",'HOME.CARGO.WIE.SOCIAL'),
+    new Person("Tamara Raquel Canillas","https://i.ibb.co/jgKsQ0Q/Tamara-Raquel-Canillas.jpg","https://www.linkedin.com/in/tamaracanillas","tcanillas@itba.edu.ar",'HOME.CARGO.WIE.FEMVOLUNTEER')
   ];
 
   peopleCS = [
@@ -102,6 +115,12 @@ export class TeamCardComponent implements OnInit {
         break;
       case 'WIE':
         this.people=this.peopleWIE;
+        break;
+      case 'WIE2':
+        this.people=this.peopleWIErow2;
+        break;
+      case 'WIE3':
+        this.people=this.peopleWIErow3;
         break;
       case 'CS':
         this.people=this.peopleCS;
