@@ -46,6 +46,7 @@ import { NoticiaComponent } from './noticia/noticia.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { NavbarAnunciosComponent } from './navbar-anuncios/navbar-anuncios.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
+import { TeamCardComponent } from './team-card/team-card.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarAnunciosComponent,
     EditarAnuncioComponent,
     NoticiasComponent,
+    TeamCardComponent,
   ],
   imports: [
     BrowserModule,

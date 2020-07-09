@@ -461,9 +461,11 @@
 
             <br><br>
 
+            
+            <!-- WIE -->
             <mat-expansion-panel class="mat-elevation-z0">
-                <mat-expansion-panel-header class="color-wie">
-                    <mat-panel-title>
+                <mat-expansion-panel-header>
+                    <mat-panel-title id="colorWie">
                         {{ 'SUBSECTIONS.WIE' | translate }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
@@ -651,20 +653,21 @@
                 
             </mat-expansion-panel>
 
+            <!-- CS -->
             <mat-expansion-panel class="mat-elevation-z0">
-                <mat-expansion-panel-header class="color-cs">
-                    <mat-panel-title>
+                <mat-expansion-panel-header>
+                    <mat-panel-title id="colorCS">
                         {{ 'SUBSECTIONS.CS' | translate }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="bottomLine">
                     <div class="card-group">
+
+                        <!-- Ignacio Villanueva -->
                         <mdb-card>
 
-                            <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-                                <mdb-card-img src="https://i.ibb.co/s2TtgHv/fbt.jpg" alt="Foto de Ignacio Villanueva"></mdb-card-img>
-                                <a><div class="mask rgba-white-slight"></div></a>
-                            </div>
+                            <mdb-card-img src="https://i.ibb.co/s2TtgHv/fbt.jpg" alt="Foto de Ignacio Villanueva"></mdb-card-img>
+                            <a><div class="mask rgba-white-slight"></div></a>
 
                             <mdb-card-body cascade="true" class="text-center pb-0 px-0">
                                 <h4 class="card-title"><strong>Ignacio Villanueva</strong></h4>
@@ -677,6 +680,7 @@
                             </mdb-card-body>
                         </mdb-card>
 
+                        <!-- Gonzalo Hirsch -->
                         <mdb-card>
 
                             <div class="view view-cascade overlay waves-light" mdbWavesEffect>
@@ -695,6 +699,7 @@
                             </mdb-card-body>
                         </mdb-card>
 
+                        <!-- Catalena Lucena Maguire -->
                         <mdb-card>
                             <div class="view view-cascade overlay waves-light" mdbWavesEffect>
                                 <mdb-card-img src="https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg" alt="Foto de Catalena Lucena Maguire"></mdb-card-img>
@@ -834,6 +839,18 @@
                     </div>
 
                 </div>
+            </mat-expansion-panel>
+
+            <!-- CS -->
+            <mat-expansion-panel class="mat-elevation-z0">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        caca
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <app-team-card></app-team-card>
+
             </mat-expansion-panel>
             
         </mat-accordion>
