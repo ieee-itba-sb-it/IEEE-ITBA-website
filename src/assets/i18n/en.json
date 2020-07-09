@@ -34,21 +34,21 @@
 				"VOLUNTEER": "Volunteer"
 			},
 			"WIE": {
-				"PRESIDENTE":"President",
-				"VICEPRESIDENTE":"Vice president",
-				"TESORERA":"Treasurer",
-				"COMUNICACION":"Comunication",
-				"PLANIFICATION":"Planification",
-				"VOLUNTARIA":"Volunteer",
-				"VOLUNTARIO":"Volunteer"
+				"PRESIDENT":"President",
+				"VP":"Vice president",
+				"TREASURER":"Treasurer",
+				"COMM":"Communication",
+				"PLANNING":"Planning",
+				"FEMVOLUNTEER":"Volunteer",
+				"VOLUNTEER":"Volunteer"
 			},
 			"CS": {
-				"PRESIDENTE":"President",
-				"VICEPRESIDENTE":"Vice president",
+				"PRESIDENT":"President",
+				"VP":"Vice president",
 				"GENERALSEC":"General Secretary",
-				"TESORERO":"Treasurer",
-				"PUBLICRELATIONS":"Relaciones publicas",
-				"LOGISTIC":"Logistic",
+				"TREASURER":"Treasurer",
+				"RRPP":"Public Relationships",
+				"LOGISTIC":"Logistics",
 				"COMPETITIVEPROGRAMMING":"Competitive Programming"
 			}
 		},

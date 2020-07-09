@@ -34,20 +34,20 @@
 				"VOLUNTEER": "Voluntario"
 			},
 			"WIE": {
-				"PRESIDENTE":"Presidente",
-				"VICEPRESIDENTE":"Vicepresidente",
-				"TESORERA":"Tesorera",
-				"COMUNICACION":"Comunicación",
-				"PLANIFICACION":"Planificación",
-				"VOLUNTARIA":"Voluntaria",
-				"VOLUNTARIO":"Voluntario"
+				"PRESIDENT":"Presidente",
+				"VP":"Vicepresidente",
+				"TREASURER":"Tesorera",
+				"COMM":"Comunicación",
+				"PLANNING":"Planificación",
+				"FEMVOLUNTEER":"Voluntaria",
+				"VOLUNTEER":"Voluntario"
 			},
 			"CS": {
-				"PRESIDENTE":"Presidente",
-				"VICEPRESIDENTE":"Vicepresidente",
+				"PRESIDENT":"Presidente",
+				"VP":"Vicepresidente",
 				"GENERALSEC":"Secretario General",
-				"TESORERO":"Tesorero",
-				"PUBLICRELATIONS":"Relaciones públicas",
+				"TREASURER":"Tesorero",
+				"RRPP":"Relaciones públicas",
 				"LOGISTIC":"Logística",
 				"COMPETITIVEPROGRAMMING":"Programación Competitiva"
 			}

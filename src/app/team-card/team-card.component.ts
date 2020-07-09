@@ -51,24 +51,24 @@ export class TeamCardComponent implements OnInit {
   ];
 
   peopleWIE = [
-    new Person("Malu Stewart Harris","https://i.ibb.co/Fwd34CH/MariaLuz.jpg","#","mastewart@itba.edu.ar",'HOME.CARGO.WIE.PRESIDENTE'),
-    new Person("Elisabet del Pilar Crespo","https://i.ibb.co/YB7N3hp/d-with-VSCO-with-dog1-preset.jpg","https://www.linkedin.com/in/elisabet-del-pilar-crespo/","ecrespo@itba.edu.ar",'HOME.CARGO.WIE.VICEPRESIDENTE'),
-    new Person("Catalina Lucena Maguire","https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg","https://www.linkedin.com/in/catalina-lucena-maguire-322033169/","clucena@itba.edu.ar",'HOME.CARGO.WIE.TESORERA'),
-    new Person("Sofia Petrozzino","https://i.ibb.co/1RMpjj0/sofiapetrozzino.jpg","https://www.linkedin.com/in/sof%C3%ADa-petrozzino-22406a177/","spetrozzino@itba.edu.ar",'HOME.CARGO.WIE.COMUNICACION'),
-    new Person("Sofia Cerretini","https://i.ibb.co/JmVtNQ8/sofia-cerritini.jpg","http://linkedin.com/in/sofia-cerretini-2452691a5/","scerretini@itba.edu.ar",'HOME.CARGO.WIE.PLANIFICACION'),
-    new Person("Aldana Bruno","https://i.ibb.co/fMNMQHf/aldanabruno.jpg","https://www.linkedin.com/in/aldana-bruno-5631a1177/","abruno@itba.edu.ar",'HOME.CARGO.WIE.COMUNICACION')
+    new Person("Malu Stewart Harris","https://i.ibb.co/Fwd34CH/MariaLuz.jpg","#","mastewart@itba.edu.ar",'HOME.CARGO.WIE.PRESIDENT'),
+    new Person("Elisabet del Pilar Crespo","https://i.ibb.co/YB7N3hp/d-with-VSCO-with-dog1-preset.jpg","https://www.linkedin.com/in/elisabet-del-pilar-crespo/","ecrespo@itba.edu.ar",'HOME.CARGO.WIE.VP'),
+    new Person("Catalina Lucena Maguire","https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg","https://www.linkedin.com/in/catalina-lucena-maguire-322033169/","clucena@itba.edu.ar",'HOME.CARGO.WIE.TREASURER'),
+    new Person("Sofia Petrozzino","https://i.ibb.co/1RMpjj0/sofiapetrozzino.jpg","https://www.linkedin.com/in/sof%C3%ADa-petrozzino-22406a177/","spetrozzino@itba.edu.ar",'HOME.CARGO.WIE.COMM'),
+    new Person("Sofia Cerretini","https://i.ibb.co/JmVtNQ8/sofia-cerritini.jpg","http://linkedin.com/in/sofia-cerretini-2452691a5/","scerretini@itba.edu.ar",'HOME.CARGO.WIE.PLANNING'),
+    new Person("Aldana Bruno","https://i.ibb.co/fMNMQHf/aldanabruno.jpg","https://www.linkedin.com/in/aldana-bruno-5631a1177/","abruno@itba.edu.ar",'HOME.CARGO.WIE.COMM')
   ];
 
   peopleCS = [
-    new Person("Ignacio Villanueva","https://i.ibb.co/s2TtgHv/fbt.jpg","https://www.linkedin.com/in/ignacio-villanueva-256541176/","ivillanueva@itba.edu.ar",'HOME.CARGO.CS.PRESIDENTE'),
-    new Person("Gonzalo Hirsch","https://i.ibb.co/tZ0ZyY3/gonzalohirsch.jpg","https://ar.linkedin.com/in/gonzalo-hirsch-5b4854155/","ghirsch@itba.edu.ar",'HOME.CARGO.CS.VICEPRESIDENTE'),
-    new Person("Catalina Lucena Maguire","https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg","https://www.linkedin.com/in/catalina-lucena-maguire-322033169/","clucena@itba.edu.ar",'HOME.CARGO.WIE.TESORERA'),
+    new Person("Ignacio Villanueva","https://i.ibb.co/s2TtgHv/fbt.jpg","https://www.linkedin.com/in/ignacio-villanueva-256541176/","ivillanueva@itba.edu.ar",'HOME.CARGO.CS.PRESIDENT'),
+    new Person("Gonzalo Hirsch","https://i.ibb.co/tZ0ZyY3/gonzalohirsch.jpg","https://ar.linkedin.com/in/gonzalo-hirsch-5b4854155/","ghirsch@itba.edu.ar",'HOME.CARGO.CS.VP'),
+    new Person("Catalina Lucena Maguire","https://i.ibb.co/m5LWTL8/Catalena-Lucena.jpg","https://www.linkedin.com/in/catalina-lucena-maguire-322033169/","clucena@itba.edu.ar",'HOME.CARGO.WIE.TREASURER'),
     new Person("Uriel Mijura","https://i.ibb.co/vX8kHb0/Uriel-Mijura.jpg","#","umihura@itba.edu.ar",'HOME.CARGO.CS.GENERALSEC'),
     new Person("Malu Stewart Harris","https://i.ibb.co/Fwd34CH/MariaLuz.jpg","#","mastewart@itba.edu.ar",'HOME.CARGO.CS.COMPETITIVEPROGRAMMING')
   ];
 
   peopleCSrow2 = [
-    new Person("Julián Matías Vuoso","https://i.ibb.co/dL2XYfF/Juli-Vuoso.jpg","https://www.linkedin.com/in/julian-vuoso-425788192/","juvuoso@itba.edu.ar",'HOME.CARGO.CS.PUBLICRELATIONS'),
+    new Person("Julián Matías Vuoso","https://i.ibb.co/dL2XYfF/Juli-Vuoso.jpg","https://www.linkedin.com/in/julian-vuoso-425788192/","juvuoso@itba.edu.ar",'HOME.CARGO.CS.RRPP'),
     new Person("Juan Gabriel Griggios","https://i.ibb.co/7JRcVw0/grigio.jpg","https://ar.linkedin.com/in/juan-gabriel-griggio-816823198/","jgriggio@itba.edu.ar",'HOME.CARGO.CS.LOGISTIC'),
     new Person("Ignacio Alberto Méndez","https://i.ibb.co/G998BW4/alvaro-mendez.jpg","https://www.linkedin.com/in/ignacio-m%C3%A9ndez-62b3b1181/","ignmendez@itba.edu.ar",'HOME.CARGO.CS.LOGISTIC'),
     new Person("Julián Tallar","https://i.ibb.co/rx5NyP1/Juli-Tallar.jpg","https://www.linkedin.com/in/juli%C3%A1n-tallar/","jtallar@itba.edu.ar",'HOME.CARGO.CS.LOGISTIC'),
