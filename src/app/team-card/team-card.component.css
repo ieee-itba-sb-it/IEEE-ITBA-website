@@ -1,22 +1,8 @@
-::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-    color:whitesmoke;
-    background-color: transparent;
-}
-    
-::ng-deep .mat-ink-bar {
-    background-color: var(--primary-color,whitesmoke) !important;
-}
-
-::ng-deep .mat-expansion-indicator::after {
-    color: whitesmoke;
-}
-  
 mdb-card {
     border-bottom-left-radius: 5vmin;
     border-bottom-right-radius: 5vmin;
     margin: 1.5vmin;
     color: black;
-    max-height: 50vmin;
     padding-bottom: 1.5vmin;
     min-height: 300px;
 }
@@ -30,20 +16,19 @@ mdb-card-text {
     color: black;
 }
 
-mat-panel-description {
-    text-align: right;
+h4 {
+    font-family: roboto;
+    font-size: 17.5px;
 }
 
-mat-expansion-panel {
-    background-color: transparent;
-    margin-top: 1.5vmin;
+h5 {
+    font-family: roboto;
+    font-size: 15px;
 }
 
-mat-expansion-panel-header {
-    border: whitesmoke 1px solid;
-    border-radius: 5vmin;
-}
-
-mat-panel-title {
-    color: whitesmoke;
+.cardIcon {
+    font-size: 40px;
+    padding: 1vmin;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
 }
