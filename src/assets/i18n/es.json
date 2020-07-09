@@ -34,17 +34,6 @@
 				"VOLUNTEER": "Voluntario"
 			},
 			"WIE": {
-<<<<<<< HEAD
-				"PRESIDENTE":"Presidente",
-				"VICEPRESIDENTE":"Vicepresidente",
-				"TESORERA":"Tesorera",
-				"COMUNICACION":"Comunicación",
-				"PLANIFICACION":"Planificación",
-				"VOLUNTARIA":"Voluntaria",
-				"VOLUNTARIO":"Voluntario",
-				"REDES":"Redes Sociales",
-				"WEBMASTER":"Webmaster"
-=======
 				"PRESIDENT":"Presidente",
 				"VP":"Vicepresidente",
 				"TREASURER":"Tesorera",
@@ -54,7 +43,6 @@
 				"VOLUNTEER":"Voluntario",
 				"SOCIAL": "Redes Sociales",
 				"WEBMASTER":"Webmaster & Editor de WIE"
->>>>>>> 3acb6cc6914110255845b4669d7989713cdef150
 			},
 			"CS": {
 				"PRESIDENT":"Presidente",
@@ -172,12 +160,5 @@
 	"WIERECRUITING":{
 		"TITLE": "WIE ITBA Recruiting"	,
 		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
-<<<<<<< HEAD
-	},
-	"SUBSECTIONS":{
-		"WIE":"Women In Engineering",
-		"CS":"Computer Society"
-=======
->>>>>>> 3acb6cc6914110255845b4669d7989713cdef150
 	}
 }

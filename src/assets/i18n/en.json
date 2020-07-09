@@ -34,17 +34,6 @@
 				"VOLUNTEER": "Volunteer"
 			},
 			"WIE": {
-<<<<<<< HEAD
-				"PRESIDENTE":"President",
-				"VICEPRESIDENTE":"Vice president",
-				"TESORERA":"Treasurer",
-				"COMUNICACION":"Comunication",
-				"PLANIFICATION":"Planification",
-				"VOLUNTARIA":"Volunteer",
-				"VOLUNTARIO":"Volunteer",
-				"REDES":"Social Media",
-				"WEBMASTER":"Webmaster"
-=======
 				"PRESIDENT":"President",
 				"VP":"Vice president",
 				"TREASURER":"Treasurer",
@@ -54,7 +43,6 @@
 				"SOCIAL": "Social Media",
 				"VOLUNTEER":"Volunteer",
 				"WEBMASTER":"WIE Webmaster & Editor"
->>>>>>> 3acb6cc6914110255845b4669d7989713cdef150
 			},
 			"CS": {
 				"PRESIDENT":"President",
