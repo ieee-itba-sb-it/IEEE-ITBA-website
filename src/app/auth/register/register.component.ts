@@ -13,6 +13,10 @@ export class RegisterComponent implements OnInit {
 
   //Data
   signupForm: HTMLElement;
+  alertText: HTMLElement;
+  text: string;
+
+  //Form data
   fname: string;
   lname: string;
   email: string;
@@ -26,6 +30,7 @@ export class RegisterComponent implements OnInit {
 
     //Consts
     this.signupForm = document.getElementById('singup-form');
+    this.alertText = document.getElementById('passerr');
 
     //Listener submit
     this.signupForm.addEventListener('submit', (e) => {
@@ -44,10 +49,19 @@ export class RegisterComponent implements OnInit {
 
       if (this.pass==this.passConf){
         console.log("Passwords match.")
-        this.authService.signup(this.email, this.pass);
+        if(this.authService.signup(this.email, this.pass)){
+          this.text="There was an error.";
+          this.alertText.style.color="red";
+        }
+        else{
+          this.text="Success.";
+          this.alertText.style.color="green";
+        } 
       }
       else {
         console.log("Passwords dont match.")
+          this.text="Passwords dont match.";
+          this.alertText.style.color="red";
       }
 
     });
