@@ -1,30 +1,99 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    padding: 10%;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
 
 h1 {
-    font-size: 10vmin;
+    font-size: 15vmin;
+    margin-bottom: 5vmin;
     text-align: center;
 }
 
 h2 {
-    font-size: 5vmin;
+    font-size: 10vmin;
     padding-bottom: 1vmin;
 }
 
-.email-container .mat-form-field + .mat-form-field {
-    margin-left: 8px;
+input{
+    width: 100%;
+    height: 6vmin;
+    margin-bottom: 2vmin;
+    border: solid #4F4F4F 1px;
+    color: #4F4F4F;
+    border-radius: 6vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+    font-family: Roboto;
+    font-size: 4vmin;
+}
+
+label{
+    font-family: Roboto;
+    font-size: 5vmin;
+    color: #4F4F4F;
+}
+
+button{
+    font-family: Roboto;
+    font-size: 5vmin;
+    border: solid #4F4F4F 3px;
+    color: #4F4F4F;
+    border-radius: 6vmin;
+    padding-left: 3vmin;
+    padding-right: 3vmin;
+    text-align: center;
+    margin: 1vmin;
+    transition: all ease 0.5s;
+}
+
+button:hover {
+    background-color: #4F4F4F;
+    color: whitesmoke;
+    border-color: whitesmoke;
+}
+
+.inputField{
+    width: auto;
+    padding-left: 5vmin;
+    padding-right: 5vmin;
 }
 
 #mainFrame {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20vmin;
-    width: 40%;
-    background-color: grey;
+    background-color: whitesmoke;
+    padding: 3%;
+    border-radius: 6vmin;
+    padding: 3vmin;
 }
 
 #title {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    background-color: cyan;
+    color: #4F4F4F;
     padding-top: 2vmin;
+}
+
+#passerr{
+    margin-left: auto;
+    float: right;
+    max-width: 45%;
+    font-family: Roboto;
+    font-size: 5vmin;
+    color: #4F4F4F;
+}
+
+#flex{
+    display: flex;
+    align-items: center;
+    padding-top: 2vmin;
+    padding-left: 5vmin;
+    padding-right: 5vmin;
 }

@@ -42,14 +42,14 @@
     "ngx-countdown": "^9.0.0",
     "ngx-page-scroll": "^7.0.0",
     "ngx-page-scroll-core": "^7.0.0",
-    "rxjs": "~6.5.4",
+    "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/architect": "<0.900 || ^0.900.0-0 || ^9.0.0-0",
     "@angular-devkit/build-angular": "^0.1000.1",
-    "@angular/cli": "^9.1.10",
+    "@angular/cli": "^9.1.12",
     "@angular/compiler-cli": "~9.1.0-next.1",
     "@angular/language-service": "~9.1.0-next.1",
     "@types/jasmine": "~3.5.0",

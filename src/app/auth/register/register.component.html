@@ -13,15 +13,34 @@
             <h2>Register now.</h2>
         </div>
         <br>
-        <div class="email-container">
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your email</mat-label>
-              <input matInput placeholder="mfaraday@example.com" [formControl]="email" required>
-              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-        </div>
+        <form id="singup-form">
+            <div class="inputField">
+              <label for="fname">First Name:</label>
+              <input type="text" id="fname" required><br>
+            </div>
+            <div class="inputField">
+              <label for="lname">Last Name:</label>
+              <input type="text" id="lname" required><br>
+            </div>
+            <div class="inputField">
+              <label for="email">Email:</label>
+              <input type="text" id="email" required><br>
+            </div>
+            <div class="inputField">
+              <label for="pass">Password:</label>
+              <input type="password" id="pass" required><br>
+            </div>
+            <div class="inputField">
+                <label for="passConf">Password Confirmation:</label>
+                <input type="password" id="passConf" required><br>
+            </div>
+            <br>
+            <div id="flex">
+                <button type="submit" style="float: left;">Sign Up</button>
+                <h3 id="passerr">Passwords dont match</h3>
+            </div>
+        </form>
+        <br><br><br><br>
     </div>
-    
-    
 </body>
 </html>
