@@ -84,7 +84,7 @@ export class AuthService {
       //Message the user
       switch (err.code) {
         case "auth/invalid-email": {
-          element.textContent="Invalid email adress.";
+          element.textContent="Invalid email address.";
           element.style.color='red';
           break;
         }

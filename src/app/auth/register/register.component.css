@@ -15,16 +15,17 @@ body {
 h1 {
     padding-left: 5vmin;
     padding-right: 5vmin;
-    font-size: 13vmin;
-    margin-bottom: 5vmin;
-    text-align: center;
+    font-size: 5.5vw;
+    line-height: 5.5vw;
 }
 
 h2 {
     padding-left: 5vmin;
     padding-right: 5vmin;
-    font-size: 10vmin;
+    font-size: 4.5vw;
+    line-height: 4.5vw;
     padding-bottom: 1vmin;
+    font-weight: 100;
 }
 
 h3 {
@@ -52,18 +53,18 @@ input{
     border-radius: 6vmin;
     padding-left: 2vmin;
     padding-right: 2vmin;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 4vmin;
 }
 
 label{
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 5vmin;
     color: #4F4F4F;
 }
 
 button{
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 5vmin;
     border: solid #4F4F4F 3px;
     color: #4F4F4F;
@@ -96,7 +97,7 @@ button:hover {
 }
 
 .smallbutton {
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 3vmin;
     border: solid #4F4F4F 3px;
     color: #4F4F4F;
