@@ -6,7 +6,9 @@
     <title>Register</title>
 </head>
 <body>
-    <div id="mainFrame">
+  <div class="row">
+    <div class="col-sm" fxLayoutAlign="center center" fxLayout="column">
+      <div class="mainFrame">
         <br>
         <div id="title">
             <h1>New User?</h1>
@@ -24,7 +26,7 @@
             </div>
             <div class="inputField">
               <label for="email">Email:</label>
-              <input type="text" id="email" required><br>
+              <input type="email" id="email" required><br>
             </div>
             <div class="inputField">
               <label for="pass">Password:</label>
@@ -37,10 +39,27 @@
             <br>
             <div id="flex">
                 <button type="submit" style="float: left;">Sign Up</button>
-                <h3 id="passerr">{{text}}</h3>
+                <h4 id="passerr" [hidden]="isHidden3">placeholder</h4>
             </div>
         </form>
         <br><br><br><br>
+      </div>
     </div>
+    <div class="col-sm">
+      <div class="mainFrame" style="padding: 10%;">
+        Registrate para recibir nuestro newsletter, acceder a la seccion de comentarios, ver noticias y mucho mas!
+        <hr>
+        <h3>Forgot Password?</h3>
+        <button class="smallbutton" (click)="chgpass()">Change Password</button>
+        <form id="changepass">
+          <input type="email" [hidden]="isHidden" placeholder="e-mail" id="emailchange">
+        </form>
+        <h4 id="passChgConf" [hidden]="isHidden2">placeholder</h4>
+        <hr>
+        <h3>Already Singed Up?</h3>
+        <button class="smallbutton" [routerLink]="['/login']">Log In</button>
+      </div>
+    </div>
+  </div>  
 </body>
 </html>
