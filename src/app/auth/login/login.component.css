@@ -1,0 +1,62 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    font-size: 3vmin;
+    padding: 10%;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+h1{
+    font-size: 30pt;
+}
+
+h3{
+    font-size: 15pt;
+    text-align: center;
+}
+
+#mainFrame {
+    padding: 5vmin;
+    background-color: red;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#email{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 7vh;
+    font-size: 4vh;
+    border: solid #4F4F4F 3px;
+    color: #4F4F4F;
+    border-radius: 6vmin;
+    padding-left: 3vmin;
+    padding-right: 3vmin;
+}
+
+#login{
+    margin-top: 2vmin;
+    height: 7vh;
+    font-size: 4vh;
+    border: solid #4F4F4F 3px;
+    color: #4F4F4F;
+    border-radius: 6vmin;
+    padding-left: 3vmin;
+    padding-right: 3vmin;
+    text-align: center;
+    transition: all ease 0.5s;
+}
+
+#login:hover {
+    background-color: #4F4F4F;
+    color: whitesmoke;
+    border-color: whitesmoke;
+}

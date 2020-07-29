@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="row">
-    <div class="col-sm" fxLayoutAlign="center center" fxLayout="column">
+    <div class="col-sm">
       <div class="mainFrame">
         <br>
         <div id="title">
@@ -36,13 +36,20 @@
                 <label for="passConf">Password Confirmation:</label>
                 <input type="password" id="passConf" required><br>
             </div>
-            <br>
-            <div id="flex">
-                <button type="submit" style="float: left;">Sign Up</button>
-                <h4 id="passerr" [hidden]="isHidden3">placeholder</h4>
+
+            <div class="inputField">
+              <div class="row">
+                <div class="col-sm">
+                  <button type="submit" style="float: left;">Sign Up</button>
+                </div>
+                <div class="col-sm">
+                  <h4 id="passerr" [hidden]="isHidden3">placeholder</h4>
+                </div>
+              </div>
             </div>
+                
         </form>
-        <br><br><br><br>
+        <br>
       </div>
     </div>
     <div class="col-sm">

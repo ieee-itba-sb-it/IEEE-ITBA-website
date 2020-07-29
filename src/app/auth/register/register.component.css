@@ -4,12 +4,13 @@ html {
 }
 
 body {
-    font-size: 3vmin;
+    font-size: 15pt;
     padding: 10%;
     background: rgb(10,27,103);
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
 }
 
 h1 {
@@ -29,50 +30,39 @@ h2 {
 }
 
 h3 {
-    font-size: 5vmin;
-    padding-bottom: 1vmin;
-    padding-left: 1.5vmin;
+    font-size: 2.5vw;
     margin-bottom: 0;
 }
 
 h4 {
-    font-size: 4vmin;
-    padding-bottom: 1vmin;
-    padding-left: 1.5vmin;
-    margin-bottom: 0;
+    font-size: 2.5vw;
     text-align: right;
-    color: #4F4F4F;
+    font-weight: 100;
 }
 
 input{
     width: 100%;
-    height: 6vmin;
+    height: 30pt;
     margin-bottom: 2vmin;
     border: solid #4F4F4F 1px;
-    color: #4F4F4F;
-    border-radius: 6vmin;
+    border-radius: 30px;
     padding-left: 2vmin;
     padding-right: 2vmin;
-    font-family: 'Roboto';
-    font-size: 4vmin;
+    font-size: 20pt;
 }
 
 label{
-    font-family: 'Roboto';
-    font-size: 5vmin;
-    color: #4F4F4F;
+    font-size: 15pt;
 }
 
 button{
-    font-family: 'Roboto';
-    font-size: 5vmin;
-    border: solid #4F4F4F 3px;
+    font-size: 20pt;
+    border: solid #4F4F4F 1px;
     color: #4F4F4F;
-    border-radius: 6vmin;
-    padding-left: 3vmin;
-    padding-right: 3vmin;
+    border-radius: 30px;
+    padding-left: 10pt;
+    padding-right: 10pt;
     text-align: center;
-    margin: 1vmin;
     transition: all ease 0.5s;
 }
 
@@ -91,21 +81,19 @@ button:hover {
 .mainFrame {
     background-color: whitesmoke;
     padding: 3%;
-    border-radius: 6vmin;
+    border-radius: 30px;
     padding: 3vmin;
     margin-top: 3vmin;
 }
 
 .smallbutton {
-    font-family: 'Roboto';
-    font-size: 3vmin;
-    border: solid #4F4F4F 3px;
-    color: #4F4F4F;
-    border-radius: 6vmin;
-    padding-left: 3vmin;
-    padding-right: 3vmin;
+    font-size: 15pt;
+    border: solid #4F4F4F 1px;
+    border-radius: 30px;
+    padding-left: 10pt;
+    padding-right: 10pt;
     text-align: center;
-    margin: 1vmin;
+    margin-top: 10pt;
     transition: all ease 0.5s;
 }
 
@@ -113,24 +101,19 @@ button:hover {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    color: #4F4F4F;
     padding-top: 2vmin;
 }
 
 #passerr{
     margin-left: auto;
-    text-align: right;
-    max-width: 45%;
-}
-
-#flex{
-    display: flex;
-    align-items: center;
-    padding-top: 2vmin;
-    padding-left: 5vmin;
-    padding-right: 5vmin;
+    text-align: left;
+    font-size: 20pt;
 }
 
 #emailchange{
-    margin: 1vmin;
+    margin-top: 10pt;
+}
+
+#passChgConf{
+    font-size: 20pt;
 }
