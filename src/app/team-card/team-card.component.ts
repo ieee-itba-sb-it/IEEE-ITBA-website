@@ -98,36 +98,46 @@ export class TeamCardComponent implements OnInit {
 
   ngOnInit(): void {
     switch (this.type) {
-      case "CD":
+      case "CD": {
         this.people=this.peopleCD;
         break;
-      case 'Mediacom':
+      }
+      case 'Mediacom': {
         this.people=this.peopleMediacom;
         break;
-      case 'ID':
+      }
+      case 'ID': {
         this.people=this.peopleID;
         break;
-      case 'Fundraising':
+      }        
+      case 'Fundraising': {
         this.people=this.peopleFundr;
         break;
-      case 'Education':
+      }        
+      case 'Education': {
         this.people=this.peopleEdu;
         break;
-      case 'WIE':
+      }        
+      case 'WIE': {
         this.people=this.peopleWIE;
         break;
-      case 'WIE2':
+      }        
+      case 'WIE2': {
         this.people=this.peopleWIErow2;
         break;
-      case 'WIE3':
+      }        
+      case 'WIE3': {
         this.people=this.peopleWIErow3;
         break;
-      case 'CS':
+      }        
+      case 'CS': {
         this.people=this.peopleCS;
         break;
-      case 'CS2':
+      }        
+      case 'CS2': {
         this.people=this.peopleCSrow2;
         break;
+      }        
     }
   }
 

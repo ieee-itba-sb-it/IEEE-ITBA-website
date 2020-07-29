@@ -10,7 +10,9 @@
         <h1>Hola!<br>Logueate.</h1><hr>
         <form id="account">
             <input type="email" id="email" placeholder="ieee@itba.edu.ar"><br>
+            <input type="password" id="pass" placeholder="*****"><br>
             <button id="login">Log In</button>
+            <h4 id="passerr" [hidden]="isHidden"></h4>
         </form>
         <br><br>
         <h3>
