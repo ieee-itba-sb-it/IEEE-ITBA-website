@@ -10,6 +10,7 @@ body {
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: whitesmoke;
 }
 
 h1{
@@ -21,42 +22,61 @@ h3{
     text-align: center;
 }
 
+hr {
+    border-color: whitesmoke;
+}
+
+a{
+    color: whitesmoke;
+}
+
+a:any-link{
+    color: whitesmoke;
+}
+
+a:hover{
+    color: rgb(138, 169, 255);
+}
+
 #mainFrame {
     padding: 5vmin;
-    background-color: red;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    background-color: rgba(245, 245, 245, 0.3);
+    border-radius: 5vmin;
 }
 
-#email{
+input{
     width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 7vh;
-    font-size: 4vh;
-    border: solid #4F4F4F 3px;
-    color: #4F4F4F;
-    border-radius: 6vmin;
-    padding-left: 3vmin;
-    padding-right: 3vmin;
+    height: 30pt;
+    margin-bottom: 2vmin;
+    border: solid whitesmoke 1px;
+    border-radius: 30px;
+    padding: 2vmin;
+    font-size: 15pt;
+    background-color: rgba(245, 245, 245, 0.1);
+    color: whitesmoke;
 }
 
-#login{
-    margin-top: 2vmin;
-    height: 7vh;
-    font-size: 4vh;
-    border: solid #4F4F4F 3px;
-    color: #4F4F4F;
-    border-radius: 6vmin;
-    padding-left: 3vmin;
-    padding-right: 3vmin;
+input::placeholder{
+    color: rgba(245, 245, 245, 0.5);
+}
+
+button{
+    font-size: 15pt;
+    height: 30pt;
+    border: solid whitesmoke 1px;
+    color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.1);
+    border-radius: 30px;
+    padding-left: 10pt;
+    padding-right: 10pt;
     text-align: center;
     transition: all ease 0.5s;
 }
 
-#login:hover {
-    background-color: #4F4F4F;
-    color: whitesmoke;
-    border-color: whitesmoke;
+button:hover {
+    background-color: whitesmoke;
+    color: black;
 }
