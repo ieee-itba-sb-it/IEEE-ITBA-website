@@ -1,4 +1,3 @@
-import { database } from 'firebase';
 import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 
@@ -14,6 +13,20 @@ export interface newsItem{
     listed: boolean;
 }
 
+export enum roles{
+    regularUser,
+    admin
+}
+
+export interface IEEEuser{
+    fname: string;
+    lname: string;
+    email: string;
+    photoURL: string;
+    uID: string;
+    role: number;
+}
+
 export function createNewsItem(
     title: string, 
     content: string, 
@@ -25,4 +38,11 @@ export function createNewsItem(
     reference: string,
     listed: boolean) : newsItem{
         return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed}
+}
+
+export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, uID: string) {
+    var newUser : IEEEuser;
+    var role = roles.regularUser
+    newUser = {fname,lname,email,photoURL,uID,role};
+    return newUser;
 }

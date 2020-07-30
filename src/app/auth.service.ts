@@ -1,12 +1,13 @@
-import { Injectable, ComponentFactoryResolver } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
+
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { IEEEuser, createRegularUser } from './data-types';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,12 @@ export class AuthService {
 
   //Vars
   user: firebase.User;
+  accountObs: Observable<IEEEuser>;
+  account: IEEEuser;
 
   //Constructor
-  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
+
     this.user = firebaseAuth.auth.currentUser;
 
     //Seteamos observer
@@ -31,23 +35,51 @@ export class AuthService {
         var photoURL = usuario.photoURL;
         var uid = usuario.uid;
         console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
+        
+        //Get user info from database
+        {
+          console.log('Getting user data from db...');
+          if (usuario){
+            console.log('Logued in user found.');
+            var ans : BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
+            
+            afs.collection('users').doc(usuario.email).get().subscribe( data => {
+              //Save the updated data to our local var
+              var doc = data.data();
+              ans.next(createRegularUser(doc['fname'],doc['lname'],doc['email'],doc['photoURL'],doc['uID']));
+              this.accountObs = ans.asObservable;
+            })
+          }
+          else {
+            console.log('No logued in user found. (Shouldnt get here)'); 
+          }
+        }
+
       }
       else {
         // User is signed out.
+        console.log('User logued out.')
       }
     });
 
   }
 
-  //Methods
+  //---------------Methods---------------
 
   //Signup with email and password
-  signup(email: string, password: string, element: HTMLElement) {
+  signup(email: string, password: string, fname: string, lname: string, element: HTMLElement) {
+
     this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => {
+        this.account = createRegularUser(fname,lname,email,'',this.firebaseAuth.auth.currentUser.uid);
         console.log('Success!', value);
         element.textContent="Signed Up!";
         element.style.color="green";
+
+        this.afs.collection('users').doc(email).set(this.account).then(data => {
+          console.log('News item with reference '+email +' added.');
+        })
+
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
@@ -82,11 +114,14 @@ export class AuthService {
 
   //Login with email and password
   login(email: string, password: string, element: HTMLElement) {
+
     this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
     .then(value => {
       console.log('Success!');
       element.textContent="Logued In!";
       element.style.color="green";
+      //Get his info
+
       //Redirect home
       setTimeout(() => {
         this.router.navigate(['home']);
@@ -143,11 +178,6 @@ export class AuthService {
     }
   }
 
-  //User data
-  getUserData(){
-    return this.user;
-  }
-
   //Change password
   changePass(email: string, element: HTMLElement) {
     this.firebaseAuth.auth.sendPasswordResetEmail(email)
@@ -179,6 +209,25 @@ export class AuthService {
       }
 
     });
+
+  }
+
+  //-----------Info Getters-----------
+
+  //Get user Name
+  getCurrentUser() : Observable<IEEEuser> {
+    var ans : BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
+
+    this.firebaseAuth.auth.onAuthStateChanged(function(usuario) {
+      if(usuario){ //There is an user
+        firebase.firestore().collection('users').doc(usuario.email).get().then(function (data) {
+          var doc = data.data();
+          ans.next(createRegularUser(doc['fname'],doc['lname'],doc['email'],doc['photoURL'],doc['uID']));
+        })
+      }
+    });
+
+    return ans.asObservable();
 
   }
 

@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
 
       if (this.pass==this.passConf){
         console.log("Passwords match.")
-        this.authService.signup(this.email, this.pass, this.alertText);
+        this.authService.signup(this.email,this.pass,this.fname,this.lname,this.alertText);
       }
       else {
         this.alertText.textContent="Passwords dont match.";

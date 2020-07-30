@@ -19,8 +19,26 @@
     text-align: right;
 }
 
+.row{
+    border: solid 1px red;
+    width: 100%;
+}
+
 #nav {
     background: rgb(10,27,103);
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    color: white;
+    color: whitesmoke;
+}
+
+#accountButton{
+    background-color: transparent;
+    border: 0px;
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+}
+
+::ng-deep.mat-menu-panel {
+    transform: translate(0px, 30%); 
+    transition: transform 2s ease-in;
 }

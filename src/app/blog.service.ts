@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { newsItem, createNewsItem } from './data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { create } from 'domain';
-import { blogCollectionName } from './secrets';
 
 /* This file make interface with databe to get blog data */
 
@@ -84,7 +82,7 @@ export class BlogService {
           doc["reference"],
           doc["listed"]
         )
-      );
+      )
     });
 
     return ans.asObservable();

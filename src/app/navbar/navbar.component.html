@@ -1,60 +1,68 @@
 <!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" id="nav" mdbStickyHeader>
 
-    <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
+
+  <!-- All Items -->
+  <links>
   
-    <!-- All Items -->
-    <links>
+    <!-- Menu -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
+      </li>
+      <li class="nav-item">
+        <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
+      </li>
+      <li class="nav-item">
+        <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
+      </li>
+      <li class="nav-item">
+        <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
+      </li>
+      <li class="nav-item">
+        <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
+      </li>
+    </ul>
     
-      <!-- Menu -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
-        </li>
-        <li class="nav-item">
-          <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
-        </li>
-        <li class="nav-item">
-          <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
-        </li>
-        <li class="nav-item">
-          <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
-        </li>
-        <li class="nav-item">
-          <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
-        </li>
-      </ul>
-      
-      <!-- Icons on right -->
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a href="https://www.linkedin.com/company/ieee-itba" class="nav-link">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://www.instagram.com/ieee.itba/" class="nav-link">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a (click)="useLanguage('es')" class="nav-link">
-            es
-          </a>
-        </li>
-        <li class="nav-item">
-          <a (click)="useLanguage('en')" class="nav-link">
-            en
-          </a>
-        </li>
-        <li class="nav-item">
-          <a [routerLink]="['']" class="nav-link">
-            <i class="fas fa-sign-in-alt"></i>
-          </a>
-        </li>
-      </ul>
+    <!-- Icons on right -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a href="https://www.linkedin.com/company/ieee-itba" class="nav-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="https://www.instagram.com/ieee.itba/" class="nav-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="useLanguage('es')" class="nav-link">
+          es
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (click)="useLanguage('en')" class="nav-link">
+          en
+        </a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-item">
+        <a [matMenuTriggerFor]="menu" class="nav-link">
+          <i class="fas fa-user-circle" style="font-size: large;"></i>
+          <div id="account" style="display: inline;"></div>
+        </a>
+      </li>
+
+    </ul>
+
+  </links>
   
-    </links>
-  
-  </mdb-navbar>
+</mdb-navbar>
+
+<mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item [routerLink]="['/login']">Login</button>
+  <button mat-menu-item [routerLink]="['/register']">Register</button>
+</mat-menu>

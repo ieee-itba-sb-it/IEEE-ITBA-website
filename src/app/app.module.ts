@@ -46,6 +46,7 @@ import { TeamCardComponent } from './team-card/team-card.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -97,7 +98,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
