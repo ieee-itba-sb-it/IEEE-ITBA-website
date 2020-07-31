@@ -9,6 +9,7 @@ import { NoticiaComponent } from './noticia/noticia.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
+import { NewsMainpageComponent } from './news/news-mainpage/news-mainpage.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent},
@@ -18,9 +19,10 @@ const routes: Routes = [
   { path: 'cursospython', component: CursoPythonComponent },
   { path: 'ieeemeetup', component: IeeeMeetupComponent },
   { path: 'wierecruiting', component: WieRecruitingComponent },
-  { path: 'noticias/:id', component: NoticiaComponent},
-  { path: 'editNoticia/:id', component: EditarAnuncioComponent},
-  { path: 'noticias', component: NoticiasComponent},
+  { path: 'noticias/:id', component: NoticiaComponent },
+  { path: 'editNoticia/:id', component: EditarAnuncioComponent },
+  { path: 'noticias', component: NoticiasComponent },
+  { path: 'news', component: NewsMainpageComponent },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
 ];

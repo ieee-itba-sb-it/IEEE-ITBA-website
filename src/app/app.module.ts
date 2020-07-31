@@ -47,7 +47,7 @@ import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { NewsModule } from './news/news.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -99,7 +99,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    MatMenuModule
+    MatMenuModule,
+    NewsModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
