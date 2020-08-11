@@ -48,6 +48,10 @@ import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewsModule } from './news/news.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -84,7 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
-    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
+    NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
     BrowserAnimationsModule,
     MatTabsModule,
     MatExpansionModule,
@@ -100,7 +104,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireAuthModule,
     HttpClientModule,
     MatMenuModule,
-    NewsModule
+    NewsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
