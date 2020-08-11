@@ -20,9 +20,9 @@ export class NoticiasComponent implements OnInit {
   constructor(private blogService: BlogService) { 
     this.blogService.setCollectionName(blogCollectionName);
 
-    this.blogService.getBlogEntries();
+    this.blogService.getDocs();
 
-    this.newsDataObs = this.blogService.blogEntriesObs();
+    this.newsDataObs = this.blogService.docsObs();
 
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo

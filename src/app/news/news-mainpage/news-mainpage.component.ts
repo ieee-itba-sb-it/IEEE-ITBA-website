@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from 'src/app/blog.service';
 
 @Component({
   selector: 'app-news-mainpage',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsMainpageComponent implements OnInit {
 
-  constructor() { }
+  //Adding Service
+  constructor(private dbs: BlogService) { }
 
   ngOnInit(): void {
+    this.getAllDocs();
+  }
+
+  //Get all articles
+  getAllDocs(){
+    //Setting Collection
+    this.dbs.setCollectionName('blog-entries');
+
+    this.dbs.getDocs(); //get docs
   }
 
 }

@@ -1,2 +1,68 @@
 <h1>row article</h1>
-<app-article-card></app-article-card>
+
+<div class="card-group">
+    
+    <!--Card-->
+    <mdb-card *ngFor="let article of articles">
+
+        <!--Card image-->
+        <div class="view overlay waves-light" mdbWavesEffect>
+            <mdb-card-img src="https://mdbootstrap.com/img/Photos/Others/food.jpg"></mdb-card-img>
+            <a>
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        <!--/.Card image-->
+    
+        <!--Button-->
+        <a mdbBtn floating="true" class="btn-action ml-auto mr-4 mdb-color lighten-3 waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="chevron-right" class="pl-1 waves-light" mdbWavesEffect></mdb-icon>
+        </a>
+    
+        <!--Card content-->
+        <mdb-card-body>
+    
+            <!--Title-->
+            <mdb-card-title>
+                <h4>{{article.title}}</h4>
+            </mdb-card-title>
+        
+            <hr>
+            <!--Text-->
+            <p class="font-small grey-dark-text mb-0">{{article.desc}}</p>
+        </mdb-card-body>
+
+        <!--/.Card content-->
+        <!-- Card footer -->
+        <mdb-card-footer class="mdb-color lighten-3 text-center">
+            <ul class="list-unstyled list-inline font-small mt-3">
+                <li class="list-inline-item pr-2 white-text">
+                    <mdb-icon far icon="clock" class="pr-1"></mdb-icon>
+                    05/10/2015
+                </li>
+                <li class="list-inline-item pr-2">
+                    <a href="#" class="white-text">
+                        <mdb-icon far icon="comments" class="pr-1"></mdb-icon>
+                        12
+                    </a>
+                </li>
+                <li class="list-inline-item pr-2">
+                    <a href="#" class="white-text">
+                        <mdb-icon fab icon="facebook-f" class="pr-1"> </mdb-icon>
+                        21
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="white-text">
+                        <mdb-icon fab icon="twitter" class="pr-1"> </mdb-icon>
+                        5
+                    </a>
+                </li>
+            </ul>
+        </mdb-card-footer>
+        <!-- Card footer -->
+
+    </mdb-card>
+    <!--/.Card-->
+
+</div>

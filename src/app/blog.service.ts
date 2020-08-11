@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { newsItem, createNewsItem } from './data-types';
+import { newsItem, createNewsItem, createNewsItemWithDate } from './data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /* This file make interface with databe to get blog data */
@@ -10,49 +10,67 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class BlogService {
   
+  //----------Variables----------
   blogData: BehaviorSubject<newsItem[]> = new BehaviorSubject([]);
   collectionName: string;
 
   constructor(private afs: AngularFirestore) { }
 
+  //----------Methods----------
+
+  //Setting collection to use
   setCollectionName(collectionName: string){
     this.collectionName = collectionName;
   }
-  deleteBlogEntry(name: string){
+
+  //Delete doc from setted collecion
+  deleteDoc(name: string){
     var call = new BehaviorSubject<boolean>(false);
     this.afs.collection(this.collectionName).doc(name).delete().then( data => {
       call.next(true);
     });
     return call.asObservable();
   }
-  getBlogEntries(){ /* Program ask to update blog content in main page */
+
+  //Gets all docs from setted collection
+  getDocs(){
+    console.log('Getting Docs...');    
+    
     this.afs.collection(this.collectionName).get().subscribe(data => {
+      var ans : newsItem[] = [];
 
-        var ans : newsItem[] = [];
-
-        for (const blogEntry in data.docs){
-          var doc = data.docs[blogEntry].data();
-          // Add the next blog item
-          ans.push(
-            createNewsItem(
-              doc["title"],
-              doc["content"],
-              doc["shortIntro"],
-              doc["imageUrl"],
-              doc["date"],
-              doc["author"],
-              doc["imageText"],
-              doc["reference"],
-              doc["listed"]
-            )
+      for (const blogEntry in data.docs){
+        var doc = data.docs[blogEntry].data();
+        // Add the next blog item
+        ans.push(
+          createNewsItem(
+            doc["title"],
+            doc["content"],
+            doc["shortIntro"],
+            doc["imageUrl"],
+            doc["date"],
+            doc["author"],
+            doc["imageText"],
+            doc["reference"],
+            doc["tags"],
+            doc["listed"]
           )
-        }
+        )
         
-        // update observer
-        this.blogData.next(ans);
+      }
+      console.log('Received docs:');    
+      console.log(ans);
+      // update observer
+      this.blogData.next(ans);
+      
     });
+
+    
+
   }
-  setBlogEntry(content: newsItem){
+
+  //Sets a doc inside a collection
+  setDoc(content: newsItem){
     var call = new BehaviorSubject<boolean>(false);
 
     this.afs.collection(this.collectionName).doc(content.reference).set(content).then( data => {
@@ -64,7 +82,8 @@ export class BlogService {
     return call.asObservable();
   }
 
-  getBlogEntry(name : string) : Observable<newsItem>{ /* Consiguir un blog entry particular */
+  //Get a single doc from a collection
+  getDoc(name : string) : Observable<newsItem>{
     var ans : BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
@@ -80,7 +99,8 @@ export class BlogService {
           doc["author"],
           doc["imageText"],
           doc["reference"],
-          doc["listed"]
+          doc["listed"],
+          doc["tags"]
         )
       )
     });
@@ -88,19 +108,53 @@ export class BlogService {
     return ans.asObservable();
   }
 
-  addBlogEntry(news: newsItem){
+  //N in array
+  getNDoc(n: number) : Observable<newsItem>{
+    console.log('Getting ' + n + ' doc...');
+    
+    var ans : BehaviorSubject<newsItem> = new BehaviorSubject(null);
+
+    this.blogData.subscribe( data => {
+      var doc = data[0];
+
+      ans.next(
+        createNewsItemWithDate(
+          doc.title,
+          doc.content,
+          doc.shortIntro,
+          doc.imageUrl,
+          doc.date,
+          doc.author,
+          doc.imageText,
+          doc.reference,
+          doc.tags,
+          doc.listed
+        )
+      )
+      console.log('caca '+ans);
+      
+
+    });
+
+    return ans.asObservable();
+  }
+
+  //Adds doc to setted collection
+  addDoc(news: newsItem){
     this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
       console.log(`News item with reference ${news.reference} added`);
     })
   }
   
-  removeBlogEntry(news: newsItem){
+  //Deletes doc from given instance
+  deleteDocObj(news: newsItem){
     this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {
       console.log(`News with reference ${news.reference} deleted`);
     })
   }
 
-  blogEntriesObs(): Observable<newsItem[]>{ // get news data observable
+  //Gets a collection observable
+  docsObs(): Observable<newsItem[]>{
     return this.blogData.asObservable();
   }
 

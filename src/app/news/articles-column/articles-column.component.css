@@ -1,0 +1,62 @@
+
+button{
+    font-size: 15pt;
+    height: 30pt;
+    border: solid whitesmoke 1px;
+    color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.1);
+    border-radius: 30px;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    text-align: center;
+    transition: all ease 0.5s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.cardnews{
+    display: inline-block;
+    margin: 10px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+ul.tags li {
+    display:inline;
+    border-left: solid 1px;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    margin-right: 4pt;
+}
+
+ul{
+    padding-left: 0;
+}
+
+img{
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    padding: 2px;
+}
+
+#textSection{
+    padding: 20px;
+}
+
+h3{
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+.loading{
+    background: rgb(198,198,198);
+    border-radius: 20px;
+    padding: 2px;
+    color: rgb(198,198,198);
+}

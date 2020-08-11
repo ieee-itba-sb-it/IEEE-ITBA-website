@@ -25,8 +25,8 @@ export class NoticiaComponent implements OnInit {
     this.useLanguage("en");
 
     this.blogService.setCollectionName(blogCollectionName);
-    this.blogService.getBlogEntries();
-    this.newsData = this.blogService.getBlogEntry(this.route.snapshot.paramMap.get('id'));
+    this.blogService.getDocs();
+    this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
     this.newsData.subscribe((data : newsItem) => {
       if (data != null){
         console.log(data.content);

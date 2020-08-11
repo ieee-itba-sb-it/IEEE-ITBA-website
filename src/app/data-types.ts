@@ -8,9 +8,10 @@ export interface newsItem{
     imageUrl: string;
     author: string;
     reference: string;
-    date: Date ;
+    date: Date;
     imageText: string;
     listed: boolean;
+    tags: string[];
 }
 
 export enum roles{
@@ -36,8 +37,23 @@ export function createNewsItem(
     author: string,
     imageText: string,
     reference: string,
+    tags: string[],
     listed: boolean) : newsItem{
-        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed}
+        return {title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed, tags: tags}
+}
+
+export function createNewsItemWithDate(
+    title: string, 
+    content: string, 
+    shortIntro: string,
+    imageUrl: string,
+    date: Date,
+    author: string,
+    imageText: string,
+    reference: string,
+    tags: string[],
+    listed: boolean) : newsItem{
+        return {title: title, content: content, imageUrl: imageUrl, date: date, author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed, tags: tags}
 }
 
 export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, uID: string) {

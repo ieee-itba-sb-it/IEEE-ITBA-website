@@ -1,0 +1,32 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    padding: 10%;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+h1{
+    color: whitesmoke;
+    text-align: center;
+    font-size: 60pt;
+    font-weight: lighter;
+    font-family: 'Inconsolata', monospace;
+}
+
+h4{
+    color: whitesmoke;
+    text-align: center;
+    font-size: 20pt;
+    font-weight: lighter;
+    font-family: 'Inconsolata', monospace;
+}
+
+hr{
+    border: whitesmoke solid 1px;
+}
