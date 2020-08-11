@@ -25,7 +25,7 @@ export class EditarAnuncioComponent implements OnInit {
   ngOnInit(): void {
     this.blogService.setCollectionName(blogCollectionName);
     if (this.route.snapshot.paramMap.get('id') != null){
-      this.newsData = this.blogService.getBlogEntry(this.route.snapshot.paramMap.get('id'));
+      this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
       this.newsData.subscribe((data: newsItem) => {
           if (data){
@@ -57,11 +57,12 @@ export class EditarAnuncioComponent implements OnInit {
     var reference = (<HTMLInputElement>document.getElementById("nombreUrl")).value;
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
+    var tags= ['hola','chau'];
 
     console.log(reference);
 
     if (title != ''){
-      this.blogService.setBlogEntry(
+      this.blogService.setDoc(
         createNewsItem(
           title,
           content,
@@ -71,6 +72,7 @@ export class EditarAnuncioComponent implements OnInit {
           autor,
           imageText,
           reference,
+          tags,
           listed
         )
       ).subscribe(sent => {
@@ -79,7 +81,7 @@ export class EditarAnuncioComponent implements OnInit {
         }
       })
     }else{
-      this.blogService.deleteBlogEntry(reference).subscribe(sent => {
+      this.blogService.deleteDoc(reference).subscribe(sent => {
         if (sent){
           this.router.navigate([`/anuncios`]);
         }

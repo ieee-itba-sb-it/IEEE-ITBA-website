@@ -8,13 +8,16 @@ import { ArticlesColumnComponent } from './articles-column/articles-column.compo
 //Angular material
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
-import { ArticleCardComponent } from './article-card/article-card.component';
 
 //Bootstrap material
 import { ButtonsModule, WavesModule, CardsModule, IconsModule  } from 'angular-bootstrap-md'
 
+//Services
+import { BlogService } from './../blog.service';
+
 @NgModule({
-  declarations: [NewsMainpageComponent, MainArticleComponent, ArticlesRowComponent, ArticlesColumnComponent, ArticleCardComponent],
+  providers: [ BlogService ],
+  declarations: [NewsMainpageComponent, MainArticleComponent, ArticlesRowComponent, ArticlesColumnComponent],
   imports: [
     CommonModule,
     MatGridListModule,

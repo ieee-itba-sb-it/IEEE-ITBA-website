@@ -26,10 +26,12 @@ export class NavbarComponent implements OnInit {
 
   //----------Methods----------
 
+  //Translator
   useLanguage(language: string) {
     this.translate.use(language);    
   }
 
+  //Set Up
   ngOnInit() {
     this.pageScrollService.scroll({
       document: this.document,
@@ -50,6 +52,7 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  //Scroll
   ngAfterViewInit() {
     this.pageScrollService.scroll({
       document: this.document,
@@ -57,6 +60,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  //Scroll
   scrollTo(target: string){
     console.log(target);
     this.pageScrollService.scroll({

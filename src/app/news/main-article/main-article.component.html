@@ -1,37 +1,68 @@
-<mat-grid-list cols="2">
 
-    <!-- Main part -->
-    <mat-grid-tile>
-
+<!-- Loading -->
+<div class="card" *ngIf="!newsData?.title">
+    <div class="card-body">
         <table>
             <!-- Tags -->
             <tr>
-                <ul>
-                    <li>tag1</li>
-                    <li>tag2</li>
-                    <li>tag3</li>
+                <ul class="tags">
+                    <li class="loading">tag1</li>
+                    <li class="loading">tag2</li>
+                    <li class="loading">tag2</li>
                 </ul>
             </tr>
             <!-- Title -->
             <tr>
-                <h1>Article Text</h1>
+                <h1 class="loading">Place holder title this shouldnt be visible</h1>
             </tr>
             <!-- Short description -->
             <tr>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eius nostrum odio inventore nobis? Quia iure voluptas necessitatibus ab? Veritatis quasi repellat nesciunt nemo distinctio pariatur ut inventore impedit veniam.
+                <p class="loading">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, nemo numquam asperiores accusamus nostrum consequuntur beatae quam quasi, hic cupiditate excepturi! At voluptatem sed facere aperiam est quod, vel cumque!
                 </p>
             </tr>
             <!-- Date -->
             <tr>
-                <h4>Date</h4>
+                <h4 class="loading">date</h4>
+                <h4 class="loading">Por author</h4>
             </tr>
         </table>
+    </div>
 
-    </mat-grid-tile>
+    <div class="card-img">
+        <div class="loading" style="height: 200px; width: auto; margin: 2px;"></div>
+    </div>
+</div>
 
-    <!-- Photos -->
-    <mat-grid-tile>
-        <img src="https://i.kym-cdn.com/entries/icons/facebook/000/029/959/Screen_Shot_2019-06-05_at_1.26.32_PM.jpg" alt="stonk" id="articlePhoto">
-    </mat-grid-tile>
-</mat-grid-list>
+<!-- Loaded -->
+<div class="card" id="mainArticle" *ngIf="newsData?.title">
+    <div class="card-body">
+        <table>
+            <!-- Tags -->
+            <tr>
+                <ul class="tags">
+                    <li *ngFor="let tag of newsData.tags">{{tag}}</li>
+                </ul>
+            </tr>
+            <!-- Title -->
+            <tr>
+                <h1>{{newsData.title}}</h1>
+            </tr>
+            <!-- Short description -->
+            <tr>
+                <p>
+                    {{newsData.shortIntro}}
+                </p>
+            </tr>
+            <!-- Date -->
+            <tr>
+                <h4>{{newsData.date.getDay()+'-'+newsData.date.getMonth()+'-'+newsData.date.getFullYear()}}</h4>
+                <h4>Por {{newsData.author}}</h4>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card-img">
+        <img src="{{newsData.imageUrl}}" alt="{{newsData.imageText}}" id="articlePhoto">
+    </div>
+</div>

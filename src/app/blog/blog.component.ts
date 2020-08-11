@@ -15,8 +15,8 @@ export class BlogComponent implements OnInit {
 
   constructor(private blogService: BlogService) { 
     this.blogService.setCollectionName(blogCollectionName);
-    this.blogService.getBlogEntries();
-    this.newsData = this.blogService.blogEntriesObs();
+    this.blogService.getDocs();
+    this.newsData = this.blogService.docsObs();
   }
 
   ngOnInit(): void {
