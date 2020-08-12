@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';

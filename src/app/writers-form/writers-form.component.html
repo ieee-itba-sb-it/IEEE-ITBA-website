@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WritersForm</title>
 </head>
+
 <header>
 </header>
 
@@ -19,15 +20,65 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <div>
 
+    <mat-card>
+      <mat-grid-list cols="4" rowHeight="4:1">
+        <mat-grid-tile colspan="4">
+          <mat-form-field class="example-full-width" style="width:50vw">
+            <mat-label>Titulo</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4">
+          <mat-form-field class="example-full-width" style="width:50vw">
+            <mat-label>Copete</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4">
+          <mat-form-field appearance="fill">
+            <mat-label>Font Size</mat-label>
+            <mat-select>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold"><i class="material-icons">format_bold</i></mat-button-toggle>
+            <mat-button-toggle value="italic"><i class="material-icons">format_italic</i></mat-button-toggle>
+            <mat-button-toggle value="underline"><i class="material-icons">format_underline</i></mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold"><i class="material-icons">format_align_left</i></mat-button-toggle>
+            <mat-button-toggle value="italic"><i class="material-icons">format_align_center</i></mat-button-toggle>
+            <mat-button-toggle value="underline"><i class="material-icons">format_align_right</i></mat-button-toggle>
+            <mat-button-toggle value="underline"><i class="material-icons">format_align_justify</i></mat-button-toggle>
+          </mat-button-toggle-group>
+          <button mat-icon-button>
+            <mat-icon>format_list_numbered</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>format_list_bulleted</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="8">
+          <mat-form-field appearance="fill" style="width:50vw">
+            <mat-label>Cuerpo</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card>
   </div>
 
 
 
 
 </body>
+
 
 </html>

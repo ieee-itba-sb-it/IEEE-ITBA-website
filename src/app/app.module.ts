@@ -44,6 +44,7 @@ import { NavbarAnunciosComponent } from './navbar-anuncios/navbar-anuncios.compo
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { TeamCardComponent } from './team-card/team-card.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
+import { WritersFormComponent } from './writers-form/writers-form.component';
 import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -52,6 +53,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -82,6 +87,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IeeextremeComponent,
     NavbarIeeextremeComponent,
     NavbarComponent,
+    WritersFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +115,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule
+
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
