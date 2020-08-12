@@ -10,7 +10,7 @@ import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.componen
 import { NoticiasComponent } from './noticias/noticias.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 import { NewsMainpageComponent } from './news/news-mainpage/news-mainpage.component';
-import { WritersFormComponent } from './writers-form/writers-form.component';
+import { WriteNewsComponent } from './write-news/write-news.component';
 
 const routes: Routes = [
   { path: '', component: MainpageComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'editNoticia/:id', component: EditarAnuncioComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'news', component: NewsMainpageComponent },
-  { path: 'writers-form', component: WritersFormComponent },
+  { path: 'write-news', component: WriteNewsComponent },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
 ];
