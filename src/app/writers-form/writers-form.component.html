@@ -26,37 +26,62 @@
   <div>
 
     <mat-card>
+
       <mat-grid-list cols="4" rowHeight="4:1">
+        <!-- Title -->
         <mat-grid-tile colspan="4">
           <mat-form-field class="example-full-width" style="width:50vw">
             <mat-label>Titulo</mat-label>
             <input matInput>
           </mat-form-field>
         </mat-grid-tile>
+
+        <!-- Copete -->
         <mat-grid-tile colspan="4">
           <mat-form-field class="example-full-width" style="width:50vw">
             <mat-label>Copete</mat-label>
             <input matInput>
           </mat-form-field>
         </mat-grid-tile>
+
         <mat-grid-tile colspan="4">
+
+          <!-- Font Size -->
           <mat-form-field appearance="fill">
-            <mat-label>Font Size</mat-label>
+            <mat-label>Tamaño de Fuente</mat-label>
             <mat-select>
+              <mat-option value="option8">8</mat-option>
+              <mat-option value="option9">9</mat-option>
+              <mat-option value="option11">11</mat-option>
+              <mat-option value="option12">12</mat-option>
+              <mat-option value="option14">14</mat-option>
+              <mat-option value="option18">18</mat-option>
+              <mat-option value="option24">24</mat-option>
+              <mat-option value="option30">30</mat-option>
+              <mat-option value="option36">36</mat-option>
+              <mat-option value="option48">48</mat-option>
+              <mat-option value="option60">60</mat-option>
+              <mat-option value="option72">72</mat-option>
+              <mat-option value="option96">96</mat-option>
             </mat-select>
           </mat-form-field>
 
+          <!-- Font Style -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <mat-button-toggle value="bold"><i class="material-icons">format_bold</i></mat-button-toggle>
             <mat-button-toggle value="italic"><i class="material-icons">format_italic</i></mat-button-toggle>
             <mat-button-toggle value="underline"><i class="material-icons">format_underline</i></mat-button-toggle>
           </mat-button-toggle-group>
+
+          <!-- Text Alignment -->
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <mat-button-toggle value="bold"><i class="material-icons">format_align_left</i></mat-button-toggle>
             <mat-button-toggle value="italic"><i class="material-icons">format_align_center</i></mat-button-toggle>
             <mat-button-toggle value="underline"><i class="material-icons">format_align_right</i></mat-button-toggle>
             <mat-button-toggle value="underline"><i class="material-icons">format_align_justify</i></mat-button-toggle>
           </mat-button-toggle-group>
+
+          <!-- Item Lists  -->
           <button mat-icon-button>
             <mat-icon>format_list_numbered</mat-icon>
           </button>
@@ -64,6 +89,8 @@
             <mat-icon>format_list_bulleted</mat-icon>
           </button>
         </mat-grid-tile>
+
+        <!-- Body -->
         <mat-grid-tile colspan="4" rowspan="8">
           <mat-form-field appearance="fill" style="width:50vw">
             <mat-label>Cuerpo</mat-label>
@@ -75,10 +102,6 @@
     </mat-card>
   </div>
 
-
-
-
 </body>
-
 
 </html>
