@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="topbottomLine" id="home">
+    <div class="topbottomLine" id="home" style="margin-bottom:2%">
         <div class="container">
             <div class="row">
                 <div class="col-sm">
@@ -21,11 +21,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div>
-
         <mat-card>
 
             <mat-grid-list cols="4" rowHeight="4:1">
@@ -46,18 +44,18 @@
                 </mat-grid-tile>
 
                 <!-- Body -->
-                <mat-grid-tile colspan="4" rowspan="6">
+                <mat-grid-tile colspan="4" rowspan="3">
                     <form [formGroup]="editorForm">
                         <div class="form-group">
                             <label for="editor">Cuerpo</label>
-                            <quill-editor formControlName="editor"></quill-editor>
+                            <quill-editor formControlName="editor" style="height: 500px"></quill-editor>
                         </div>
                     </form>
                 </mat-grid-tile>
 
                 <!-- Submit Buttons -->
                 <mat-grid-tile colspan="4">
-                    <button mat-raised-button color="primary">SUBIR NOTICIA</button>
+                    <button mat-raised-button color="primary" style="margin-right: 20px">SUBIR NOTICIA</button>
 
                     <button mat-stroked-button color="primary">VISTA PREVIA</button>
                 </mat-grid-tile>
