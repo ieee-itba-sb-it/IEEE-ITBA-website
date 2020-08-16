@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-write-news',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WriteNewsComponent implements OnInit {
 
-  constructor() { }
+  editorForm: FormGroup;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.editorForm = new FormGroup({
+      'editor': new FormControl(null)
+    })
   }
 
 }
