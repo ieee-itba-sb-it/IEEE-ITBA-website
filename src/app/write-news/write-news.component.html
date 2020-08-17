@@ -30,16 +30,32 @@
                 <!-- Title -->
                 <mat-grid-tile colspan="4">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Titulo</mat-label>
-                        <input matInput>
+                        <mat-label>Título</mat-label>
+                        <input id="title" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
 
-                <!-- Copete -->
+                <!-- Short Intro -->
                 <mat-grid-tile colspan="4">
                     <mat-form-field class="example-full-width" style="width:50vw">
                         <mat-label>Copete</mat-label>
-                        <input matInput>
+                        <input id="shortIntro" matInput>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <!-- Author -->
+                <mat-grid-tile colspan="4">
+                    <mat-form-field class="example-full-width" style="width:50vw">
+                        <mat-label>Autor</mat-label>
+                        <input id="author" matInput>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <!-- Image -->
+                <mat-grid-tile colspan="4">
+                    <mat-form-field class="example-full-width" style="width:50vw">
+                        <mat-label>Imagen de Portada</mat-label>
+                        <input id="imageUrl" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -55,7 +71,8 @@
 
                 <!-- Submit Buttons -->
                 <mat-grid-tile colspan="4">
-                    <button mat-raised-button color="primary" style="margin-right: 20px">SUBIR NOTICIA</button>
+                    <button mat-raised-button color="primary" id="submitNews" (click)="submitNews()"
+                        style="margin-right: 20px">SUBIR NOTICIA</button>
 
                     <button mat-stroked-button color="primary">VISTA PREVIA</button>
                 </mat-grid-tile>
