@@ -28,7 +28,7 @@
 
             <mat-grid-list cols="4" rowHeight="4:1">
                 <!-- Title -->
-                <mat-grid-tile colspan="4">
+                <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
                         <mat-label>Título</mat-label>
                         <input id="title" matInput>
@@ -36,7 +36,7 @@
                 </mat-grid-tile>
 
                 <!-- Short Intro -->
-                <mat-grid-tile colspan="4">
+                <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
                         <mat-label>Copete</mat-label>
                         <input id="shortIntro" matInput>
@@ -44,7 +44,7 @@
                 </mat-grid-tile>
 
                 <!-- Author -->
-                <mat-grid-tile colspan="4">
+                <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
                         <mat-label>Autor</mat-label>
                         <input id="author" matInput>
@@ -52,7 +52,7 @@
                 </mat-grid-tile>
 
                 <!-- Image -->
-                <mat-grid-tile colspan="4">
+                <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
                         <mat-label>Imagen de Portada</mat-label>
                         <input id="imageUrl" matInput>
@@ -60,11 +60,11 @@
                 </mat-grid-tile>
 
                 <!-- Body -->
-                <mat-grid-tile colspan="4" rowspan="5">
+                <mat-grid-tile colspan="4" rowspan="9">
                     <form [formGroup]="editorForm">
                         <div class="form-group">
                             <label for="editor">Cuerpo</label>
-                            <quill-editor formControlName="editor" style="height: 500px"></quill-editor>
+                            <quill-editor formControlName="editor"></quill-editor>
                         </div>
                     </form>
                 </mat-grid-tile>
