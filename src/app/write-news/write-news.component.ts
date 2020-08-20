@@ -28,38 +28,39 @@ export class WriteNewsComponent implements OnInit {
   submitNews() {
 
     var content = document.getElementsByClassName('ql-editor')[0].innerHTML;
-    console.log(content);
     var title = (<HTMLInputElement>document.getElementById("title")).value;
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     var author = (<HTMLInputElement>document.getElementById("author")).value;
     var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
+    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
+    var reference = title.toLowerCase().replace(" ", "-");
 
-    /* if (title != '') {
-       this.blogService.setDoc(
-         createNewsItem(
-           title,
-           content,
-           shortIntro,
-           imageUrl,
-           Timestamp.fromDate(new Date()),
-           author,
-           imageText,
-           reference,
-           null,
-           null
-         )
-       ).subscribe(sent => {
-         if (sent) {
-           this.router.navigate([`/anuncios/${reference}`]);
-         }
-       })
-     } else {
-       this.blogService.deleteDoc(reference).subscribe(sent => {
-         if (sent) {
-           this.router.navigate([`/anuncios`]);
-         }
-       });
-     }*/
+    if (title != '') {
+      this.blogService.setDoc(
+        createNewsItem(
+          title,
+          content,
+          shortIntro,
+          imageUrl,
+          null,//Timestamp.fromDate(new Date()), 
+          author,
+          null,
+          reference,
+          null,
+          listed
+        )
+      ).subscribe(sent => {
+        if (sent) {
+          this.router.navigate([`/anuncios/${reference}`]);
+        }
+      })
+    } else {
+      this.blogService.deleteDoc(reference).subscribe(sent => {
+        if (sent) {
+          this.router.navigate([`/anuncios`]);
+        }
+      });
+    }
   }
 
 
