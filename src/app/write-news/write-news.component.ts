@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from "@angular/router";
 import { newsItem, createNewsItem } from '../data-types';
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import Timestamp = firestore.Timestamp;
+import { blogCollectionName } from '../secrets';
 
 @Component({
   selector: 'app-write-news',
@@ -20,6 +21,7 @@ export class WriteNewsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService) { }
 
   ngOnInit() {
+    this.blogService.setCollectionName(blogCollectionName);
     this.editorForm = new FormGroup({
       'editor': new FormControl(null)
     })
@@ -34,6 +36,9 @@ export class WriteNewsComponent implements OnInit {
     var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
     var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
     var reference = title.toLowerCase().replace(" ", "-");
+    var tags = ['tecnología'];
+    var imageText = 'epigrafe'
+    console.log(content);
 
     if (title != '') {
       this.blogService.setDoc(
@@ -42,22 +47,22 @@ export class WriteNewsComponent implements OnInit {
           content,
           shortIntro,
           imageUrl,
-          null,//Timestamp.fromDate(new Date()), 
+          Timestamp.fromDate(new Date()),
           author,
-          null,
+          imageText,
           reference,
-          null,
+          tags,
           listed
         )
       ).subscribe(sent => {
         if (sent) {
-          this.router.navigate([`/anuncios/${reference}`]);
+          this.router.navigate([`/noticias/${reference}`]);
         }
       })
     } else {
       this.blogService.deleteDoc(reference).subscribe(sent => {
         if (sent) {
-          this.router.navigate([`/anuncios`]);
+          this.router.navigate([`/noticias`]);
         }
       });
     }
