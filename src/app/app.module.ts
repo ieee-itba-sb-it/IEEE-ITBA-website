@@ -59,6 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { WriteNewsComponent } from './write-news/write-news.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -121,6 +122,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCardModule,
     MatGridListModule,
     MatSelectModule,
+    MatSnackBarModule,
     QuillModule.forRoot(),
     ReactiveFormsModule
 
