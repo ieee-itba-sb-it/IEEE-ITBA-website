@@ -48,6 +48,18 @@ import { NavbarIeeextremeComponent } from './navbar-ieeextreme/navbar-ieeextreme
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewsModule } from './news/news.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
+import { WriteNewsComponent } from './write-news/write-news.component';
+import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -78,13 +90,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     IeeextremeComponent,
     NavbarIeeextremeComponent,
     NavbarComponent,
+    WriteNewsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
-    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
+    NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
     BrowserAnimationsModule,
     MatTabsModule,
     MatExpansionModule,
@@ -100,7 +113,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireAuthModule,
     HttpClientModule,
     MatMenuModule,
-    NewsModule
+    NewsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule
+
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],

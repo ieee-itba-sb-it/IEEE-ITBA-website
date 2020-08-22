@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
 </head>
 
 <header>
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 </header>
 
 <body>
@@ -33,103 +33,109 @@
   <!-- Educacion, Competencia, Contacto -->
   <div class="bottomLine">
     <div class="card-group">
-  
+
       <!-- Educacion -->
       <mdb-card>
         <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
         <mdb-card-body>
-  
+
           <mdb-card-title>
             <h4>{{ 'HOME.EDUCATION.TITLE' | translate }}</h4>
           </mdb-card-title>
-  
+
           <mdb-card-text>{{ 'HOME.EDUCATION.TEXT' | translate }}</mdb-card-text>
-  
+
         </mdb-card-body>
       </mdb-card>
-  
+
       <!-- Competencia -->
       <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/YX53J4W/competition.jpg" alt="Foto de Competencia de programacion"></mdb-card-img>
+        <mdb-card-img src="https://i.ibb.co/YX53J4W/competition.jpg" alt="Foto de Competencia de programacion">
+        </mdb-card-img>
         <mdb-card-body>
-  
+
           <mdb-card-title>
             <h4>{{ 'HOME.COMPETITION.TITLE' | translate }}</h4>
           </mdb-card-title>
-  
+
           <mdb-card-text>{{ 'HOME.COMPETITION.TEXT' | translate }}</mdb-card-text>
-  
+
         </mdb-card-body>
       </mdb-card>
-  
+
       <!-- Contacto -->
       <mdb-card>
         <mdb-card-img src="https://i.ibb.co/2hsYPdQ/contacts.jpg" alt="Foto durante ICIT2020"></mdb-card-img>
         <mdb-card-body>
-  
+
           <mdb-card-title>
             <h4>{{ 'HOME.CONTACTS.TITLE' | translate }}</h4>
           </mdb-card-title>
-  
+
           <mdb-card-text>{{ 'HOME.CONTACTS.TEXT' | translate }}</mdb-card-text>
-  
+
         </mdb-card-body>
       </mdb-card>
     </div>
   </div>
-  
+
   <!-- Eventos -->
   <div class="bottomLine">
     <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>
     <div class="card-group">
 
-    <!--IEEExtreme-->
-    <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme"></mdb-card-img>
-        <a><div class="mask rgba-white-slight"></div></a>
-
-      <mdb-card-body>
-
-        <mdb-card-title>
-          <h4>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h4>
-        </mdb-card-title>
-  
-        <hr>
-
-        <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
-  
-        <a class="link-text" [routerLink]="['/ieeextreme']">
-          <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-          </h5>
+      <!--IEEExtreme-->
+      <mdb-card>
+        <mdb-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme">
+        </mdb-card-img>
+        <a>
+          <div class="mask rgba-white-slight"></div>
         </a>
-      </mdb-card-body>
 
-    </mdb-card>
+        <mdb-card-body>
 
-    <!--Clases de Pyhton-->
-    <mdb-card>
+          <mdb-card-title>
+            <h4>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h4>
+          </mdb-card-title>
+
+          <hr>
+
+          <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
+
+          <a class="link-text" [routerLink]="['/ieeextreme']">
+            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+            </h5>
+          </a>
+        </mdb-card-body>
+
+      </mdb-card>
+
+      <!--Clases de Pyhton-->
+      <mdb-card>
         <mdb-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python"></mdb-card-img>
-        <a><div class="mask rgba-white-slight"></div></a>
-
-      <mdb-card-body>
-
-        <mdb-card-title>
-          <h4>{{ 'HOME.CLASSES.TITLE' | translate }}</h4>
-        </mdb-card-title>
-  
-        <hr>
-
-        <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
-  
-        <a class="link-text" [routerLink]="['/cursospython']">
-          <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-            <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-          </h5>
+        <a>
+          <div class="mask rgba-white-slight"></div>
         </a>
-      </mdb-card-body>
 
-    </mdb-card>
+        <mdb-card-body>
+
+          <mdb-card-title>
+            <h4>{{ 'HOME.CLASSES.TITLE' | translate }}</h4>
+          </mdb-card-title>
+
+          <hr>
+
+          <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
+
+          <a class="link-text" [routerLink]="['/cursospython']">
+            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+            </h5>
+          </a>
+        </mdb-card-body>
+
+      </mdb-card>
     </div>
 
   </div>
@@ -139,83 +145,89 @@
     <h1 id="iniciativas">{{ 'NAVBAR.INITIATIVES' | translate }}</h1>
     <div class="card-group">
 
-    <!-- WIE -->
-    <mdb-card>
-      <div class="view overlay waves-light" mdbWavesEffect>
-        <mdb-card-img src="./../../assets/image/logos/wie.jpg"></mdb-card-img>
-        <a><div class="mask rgba-white-slight"></div></a>
-      </div>
+      <!-- WIE -->
+      <mdb-card>
+        <div class="view overlay waves-light" mdbWavesEffect>
+          <mdb-card-img src="./../../assets/image/logos/wie.jpg"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-      <mdb-card-body>
+        <mdb-card-body>
 
-        <mdb-card-title>
-          <h4>{{ 'HOME.WIE.TITLE' | translate }}</h4>
-        </mdb-card-title>
-  
-        <hr>
+          <mdb-card-title>
+            <h4>{{ 'HOME.WIE.TITLE' | translate }}</h4>
+          </mdb-card-title>
 
-        <mdb-card-text>{{ 'HOME.WIE.TEXT' | translate }}</mdb-card-text>
-  
-        <!-- <a class="link-text">
+          <hr>
+
+          <mdb-card-text>{{ 'HOME.WIE.TEXT' | translate }}</mdb-card-text>
+
+          <!-- <a class="link-text">
           <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
             <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
           </h5>
         </a> -->
-      </mdb-card-body>
+        </mdb-card-body>
 
-    </mdb-card>
+      </mdb-card>
 
-    <!--Club de Programadores-->
-    <mdb-card>
-      <div class="view overlay waves-light" mdbWavesEffect>
-        <mdb-card-img src="https://i.ibb.co/XkZVrrz/progteam.jpg"></mdb-card-img>
-        <a><div class="mask rgba-white-slight"></div></a>
-      </div>
+      <!--Club de Programadores-->
+      <mdb-card>
+        <div class="view overlay waves-light" mdbWavesEffect>
+          <mdb-card-img src="https://i.ibb.co/XkZVrrz/progteam.jpg"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-      <mdb-card-body>
+        <mdb-card-body>
 
-        <mdb-card-title>
-          <h4>{{ 'HOME.PROGCLUB.TITLE' | translate }}</h4>
-        </mdb-card-title>
-  
-        <hr>
+          <mdb-card-title>
+            <h4>{{ 'HOME.PROGCLUB.TITLE' | translate }}</h4>
+          </mdb-card-title>
 
-        <mdb-card-text>{{ 'HOME.PROGCLUB.TEXT' | translate }}</mdb-card-text>
-  
-        <!-- <a class="link-text">
+          <hr>
+
+          <mdb-card-text>{{ 'HOME.PROGCLUB.TEXT' | translate }}</mdb-card-text>
+
+          <!-- <a class="link-text">
           <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
             <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
           </h5>
         </a> -->
-      </mdb-card-body>
+        </mdb-card-body>
 
-    </mdb-card>
+      </mdb-card>
 
-    <!--Computer Society-->
-    <mdb-card>
-      <div class="view overlay waves-light" mdbWavesEffect>
-        <mdb-card-img src="https://i.ibb.co/QPcgkLJ/cs.jpg"></mdb-card-img>
-        <a><div class="mask rgba-white-slight"></div></a>
-      </div>
+      <!--Computer Society-->
+      <mdb-card>
+        <div class="view overlay waves-light" mdbWavesEffect>
+          <mdb-card-img src="https://i.ibb.co/QPcgkLJ/cs.jpg"></mdb-card-img>
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-      <mdb-card-body>
+        <mdb-card-body>
 
-        <mdb-card-title>
-          <h4>{{ 'HOME.CS.TITLE' | translate }}</h4>
-        </mdb-card-title>
-  
-        <hr>
+          <mdb-card-title>
+            <h4>{{ 'HOME.CS.TITLE' | translate }}</h4>
+          </mdb-card-title>
 
-        <mdb-card-text>{{ 'HOME.CS.TEXT' | translate }}</mdb-card-text>
-  
-        <!-- <a class="link-text">
+          <hr>
+
+          <mdb-card-text>{{ 'HOME.CS.TEXT' | translate }}</mdb-card-text>
+
+          <!-- <a class="link-text">
           <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
             <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
           </h5>
         </a> -->
-      </mdb-card-body>
+        </mdb-card-body>
 
-    </mdb-card>
+      </mdb-card>
 
     </div>
 
@@ -234,10 +246,13 @@
     <div class="container">
       <div class="row">
         <div class="col-sm">
-          <div class="whiteRoundedBlock" style="text-align: left;">{{ 'HOME.CONTACTUS.1' | translate }}<a href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>.{{ 'HOME.CONTACTUS.2' | translate }}</div>
+          <div class="whiteRoundedBlock" style="text-align: left;">{{ 'HOME.CONTACTUS.1' | translate }}<a
+              href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>.{{ 'HOME.CONTACTUS.2' | translate }}</div>
         </div>
         <div class="col-sm" id="mailus">
-          <a href="mailto:ieee@itba.edu.ar" class="whitebckg"><i class="fas fa-at"></i><h2>Mail Us&nbsp;<i class="fas fa-reply"></i></h2></a>
+          <a href="mailto:ieee@itba.edu.ar" class="whitebckg"><i class="fas fa-at"></i>
+            <h2>Mail Us&nbsp;<i class="fas fa-reply"></i></h2>
+          </a>
         </div>
       </div>
     </div>

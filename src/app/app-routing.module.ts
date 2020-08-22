@@ -10,10 +10,11 @@ import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.componen
 import { NoticiasComponent } from './noticias/noticias.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
 import { NewsMainpageComponent } from './news/news-mainpage/news-mainpage.component';
+import { WriteNewsComponent } from './write-news/write-news.component';
 
 const routes: Routes = [
-  { path: '', component: MainpageComponent},
-  { path: 'home', redirectTo: '', pathMatch: 'full'},
+  { path: '', component: MainpageComponent },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'ieeextreme', component: IeeextremeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'cursospython', component: CursoPythonComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'editNoticia/:id', component: EditarAnuncioComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'news', component: NewsMainpageComponent },
+  { path: 'write-news', component: WriteNewsComponent },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
 ];
