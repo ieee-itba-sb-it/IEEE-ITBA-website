@@ -60,6 +60,7 @@ import { WriteNewsComponent } from './write-news/write-news.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -124,7 +125,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     MatSnackBarModule,
     QuillModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EmojiModule
 
     // AngularFireModule.initializeApp(environment.firebase),
   ],

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
 <header>
     <!-- Icons on right -->
     <app-navbar-anuncios></app-navbar-anuncios>
-</header> 
+</header>
 
 <div *ngIf="(newsData | async)" class="body" fxLayoutAlign="center center" fxLayout="column">
     <div class="spacenav">
@@ -19,38 +20,39 @@
         </div>
     </div>
 
-    <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column"> 
+    <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
         <div class="container">
             <div class="row">
-                <div class="col-sm" >
+                <div class="col-sm">
                     <h1 id="logotext">{{(newsData | async).title}} </h1>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="bottomLine"> 
+    <div class="bottomLine">
         <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
-            <div class="add-margin"> 
-                <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python"></mdb-card-img>
+            <div class="add-margin">
+                <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python">
+                </mdb-card-img>
                 <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
             </div>
-            
+
         </div>
     </div>
-    
+
     <div class="topbottomLine">
         <div class="container" fxLayoutAlign="center center" fxLayout="column">
             <div class="row">
                 <div class="col-sm">
-                    <div [innerHTML]="content" class="add-margin whitetext">  </div>
+                    <div [innerHTML]="content" class="add-margin whitetext"> </div>
                 </div>
             </div>
         </div>
         <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
     </div>
-    
-    <div class="bottomLine"> 
+
+    <div class="bottomLine">
     </div>
     <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
         <div class="container">
@@ -61,8 +63,11 @@
             </div>
         </div> 
     </div>-->
+    <div>
+        <ngx-emoji [emoji]="{ id: 'smiley', skin: 3 }" size="40"></ngx-emoji>
+        <ngx-emoji [emoji]="{ id: 'heart', skin: 3 }" size="40"></ngx-emoji>
+    </div>
     <div class="addMargin">
         <app-footer></app-footer>
     </div>
 </div>
-
