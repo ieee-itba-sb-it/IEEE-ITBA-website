@@ -18,15 +18,20 @@ export class TeamCardComponent implements OnInit {
     new Person("Ariel Nowik","https://i.ibb.co/YX5j6nw/arielnowik.jpg","https://www.linkedin.com/in/ariel-nowik-13608a158/","anowik@itba.edu.ar",'HOME.CARGO.CD.PRESIDENT'),
     new Person("Dante Kieniguiel","https://i.ibb.co/Z2YjBfn/dantekienigiel.jpg","https://www.linkedin.com/in/dante-k-572396bb/","dkienigiel@itba.edu.ar",'HOME.CARGO.CD.VP'),
     new Person("Franco Moriconi","https://i.ibb.co/D7JsB7Q/francomoriconi.jpg","https://www.linkedin.com/in/franco-moriconi-0002a0196/","fmoriconi@itba.edu.ar",'HOME.CARGO.CD.TREASURER'),
-    new Person("Carola Pedrosa","https://i.ibb.co/K9SbCTJ/carolapedrosa.jpg","https://www.linkedin.com/in/carola-pedrosa-87342b1a3/","cpedrosa@itba.edu.ar",'HOME.CARGO.CD.GENERALSEC')
+    new Person("Guillermina Gargiulo","https://i.ibb.co/LJwn3RF/Guille-Gargiulo.png","https://www.linkedin.com/in/guillermina-gargiulo-0677181b0/","ggargiulo@itba.edu.ar",'HOME.CARGO.CD.GENERALSEC')
   ];
 
   peopleMediacom = [
     new Person("Lucas Vidmar","https://i.ibb.co/8P3trjg/lucasvidmar.jpg","https://www.linkedin.com/in/lucasvidmar/","lvidmar@itba.edu.ar",'HOME.CARGO.MEDIACOM.WEBMASTER'),
+    new Person("Eugenia Sol Piñeiro","https://i.ibb.co/rvw8HVm/Euge-pineiro.png","https://www.linkedin.com/in/eugenia-piñeiro","epineiro@itba.edu.ar",'HOME.CARGO.MEDIACOM.WEBMASTER'),
     new Person("Alex Moldovan","https://i.ibb.co/5rf7cSJ/alexmoldovan.jpg","#","amoldovan@itba.edu.ar",'HOME.CARGO.MEDIACOM.DESIGNER'),
     new Person("Sofia Petrozzino","https://i.ibb.co/1RMpjj0/sofiapetrozzino.jpg","https://www.linkedin.com/in/sof%C3%ADa-petrozzino-22406a177/","spetrozzino@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
     new Person("Aldana Bruno","https://i.ibb.co/fMNMQHf/aldanabruno.jpg","https://www.linkedin.com/in/aldana-bruno-5631a1177/","abruno@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
-    new Person("Nicole Bartellini","https://i.ibb.co/g429zc7/nicolebartellini.jpg","#","nbartellini@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC')
+    new Person("Nicole Bartellini","https://i.ibb.co/g429zc7/nicolebartellini.jpg","#","nbartellini@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
+    new Person("Barbara Zoani","https://i.ibb.co/9gn333L/Barbara-Zaoni.png","https://www.linkedin.com/in/barbara-zoani-gray-7070111b0","bzoani@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
+    new Person("Agustin Guillino","https://i.ibb.co/RT0twqX/Agustin-Guillino.jpg","https://www.linkedin.com/in/agust%C3%ADn-luis-gullino-a87083197/", "agullino@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
+    new Person("Lucas Catolino","https://i.ibb.co/yRK2dP2/Lucas-Catolino.jpg","https://www.linkedin.com/in/lucas-catolino-431b52167/","lcatolino@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC'),
+    new Person("Zahira Gimenez","https://i.ibb.co/9bg6z1K/Zahira-Gimenez.jpg","#","zjimenez@itba.edu.ar",'HOME.CARGO.MEDIACOM.CC')
   ];
 
   peopleID = [
