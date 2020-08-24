@@ -61,6 +61,9 @@ import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { BarRatingModule } from "ngx-bar-rating";
+import { MatChipsModule } from '@angular/material/chips';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -126,7 +129,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     QuillModule.forRoot(),
     ReactiveFormsModule,
-    EmojiModule
+    EmojiModule,
+    BarRatingModule,
+    MatChipsModule
 
     // AngularFireModule.initializeApp(environment.firebase),
   ],

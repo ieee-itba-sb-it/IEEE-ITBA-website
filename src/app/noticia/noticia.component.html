@@ -31,10 +31,12 @@
     </div>
 
     <div class="bottomLine">
+
         <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
             <div class="add-margin">
                 <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python">
                 </mdb-card-img>
+
                 <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
             </div>
 
@@ -49,8 +51,42 @@
                 </div>
             </div>
         </div>
+        <!--Emoji Rating-->
+        <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
+        <div style="margin-bottom:10px">
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
+                (emojiClick)="rateNews()"></ngx-emoji>
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
+                (emojiClick)="rateNews()"></ngx-emoji>
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40" (emojiClick)="rateNews()">
+            </ngx-emoji>
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40" (emojiClick)="rateNews()">
+            </ngx-emoji>
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
+                (emojiClick)="rateNews()"></ngx-emoji>
+        </div>
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip>
+                0 <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip>
+            <mat-chip>
+                0 <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip>
+            <mat-chip>
+                0 <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip>
+            <mat-chip>
+                0 <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip>
+            <mat-chip>
+                0 <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip>
+        </mat-chip-list>
+
+        <!-- Date -->
         <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
     </div>
+
 
     <div class="bottomLine">
     </div>
@@ -63,10 +99,8 @@
             </div>
         </div> 
     </div>-->
-    <div>
-        <ngx-emoji [emoji]="{ id: 'smiley', skin: 3 }" size="40"></ngx-emoji>
-        <ngx-emoji [emoji]="{ id: 'heart', skin: 3 }" size="40"></ngx-emoji>
-    </div>
+
+
     <div class="addMargin">
         <app-footer></app-footer>
     </div>

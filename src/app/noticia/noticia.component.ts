@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
-import { blogCollectionName} from '../secrets';
+import { blogCollectionName } from '../secrets';
 import { Observable } from 'rxjs';
 import { newsItem } from '../data-types';
 import { BlogService } from '../blog.service';
@@ -19,7 +19,7 @@ export class NoticiaComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['es']);// esta página esta solo en español
-   // translate.setDefaultLang('es');
+    // translate.setDefaultLang('es');
     //const browserLang = translate.getBrowserLang();
     /*translate.use(browserLang.match(/es|en/)? browserLang:'es');*/
     this.useLanguage("en");
@@ -27,15 +27,15 @@ export class NoticiaComponent implements OnInit {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
     this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
-    this.newsData.subscribe((data : newsItem) => {
-      if (data != null){
+    this.newsData.subscribe((data: newsItem) => {
+      if (data != null) {
         console.log(data.content);
         this.content = data.content;
       }
     });
   }
   useLanguage(language: string) {
-    this.translate.use(language);    
+    this.translate.use(language);
   }
 
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class NoticiaComponent implements OnInit {
       scrollTarget: '#meetup',
     });
 
+  }
+
+  rateNews() {
+    console.log("Hola");
   }
 
 }

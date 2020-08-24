@@ -224,6 +224,12 @@ img {
     text-align: right;
     color: #ffffff;
 }
+.whitetext-left{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    color: #ffffff;
+}
 .whiteRoundedBlock{
     background-color: whitesmoke;
     padding: 3%;
