@@ -56,33 +56,39 @@
         <div style="margin-bottom:10px">
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
                 (emojiClick)="rateNews('one')"></ngx-emoji>
+
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
                 (emojiClick)="rateNews('two')"></ngx-emoji>
+
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
                 (emojiClick)="rateNews('grin')">
             </ngx-emoji>
+
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
                 (emojiClick)="rateNews('joy')">
             </ngx-emoji>
+
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
                 (emojiClick)="rateNews('heart')"></ngx-emoji>
         </div>
-        <mat-chip-list aria-label="Fish selection">
+        <mat-chip-list aria-label="Emoji selection">
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
+                {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
                 </ngx-emoji>
             </mat-chip>
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15"></ngx-emoji>
+                {{(newsData | async).ratings[1]}} <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15">
+                </ngx-emoji>
             </mat-chip>
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
+                {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
             </mat-chip>
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
+                {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
             </mat-chip>
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15"></ngx-emoji>
+                {{(newsData | async).ratings[4]}} <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15">
+                </ngx-emoji>
             </mat-chip>
         </mat-chip-list>
 

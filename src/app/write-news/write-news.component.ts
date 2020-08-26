@@ -41,7 +41,8 @@ export class WriteNewsComponent implements OnInit {
     console.log(listed);
     var reference = title.toLowerCase().replace(" ", "-");
     var tags = ['tecnología'];
-    var imageText = 'epigrafe'
+    var imageText = 'epigrafe';
+    var ratings = [0, 0, 0, 0, 0];
     console.log(content);
 
     if (title != '') {
@@ -56,7 +57,8 @@ export class WriteNewsComponent implements OnInit {
           imageText,
           reference,
           tags,
-          true //listed  //use listed if you dont wanna show the news right immediately in the news page (it's for debugging)
+          true, //listed  //use listed if you dont wanna show the news right immediately in the news page (it's for debugging)
+          ratings
         )
       ).subscribe(sent => {
         if (sent) {

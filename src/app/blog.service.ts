@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BlogService {
-  
+
   //----------Variables----------
   blogData: BehaviorSubject<newsItem[]> = new BehaviorSubject([]);
   collectionName: string;
@@ -19,27 +19,27 @@ export class BlogService {
   //----------Methods----------
 
   //Setting collection to use
-  setCollectionName(collectionName: string){
+  setCollectionName(collectionName: string) {
     this.collectionName = collectionName;
   }
 
   //Delete doc from setted collecion
-  deleteDoc(name: string){
+  deleteDoc(name: string) {
     var call = new BehaviorSubject<boolean>(false);
-    this.afs.collection(this.collectionName).doc(name).delete().then( data => {
+    this.afs.collection(this.collectionName).doc(name).delete().then(data => {
       call.next(true);
     });
     return call.asObservable();
   }
 
   //Gets all docs from setted collection
-  getDocs(){
-    console.log('Getting Docs...');    
-    
-    this.afs.collection(this.collectionName).get().subscribe(data => {
-      var ans : newsItem[] = [];
+  getDocs() {
+    console.log('Getting Docs...');
 
-      for (const blogEntry in data.docs){
+    this.afs.collection(this.collectionName).get().subscribe(data => {
+      var ans: newsItem[] = [];
+
+      for (const blogEntry in data.docs) {
         var doc = data.docs[blogEntry].data();
         // Add the next blog item
         ans.push(
@@ -53,38 +53,39 @@ export class BlogService {
             doc["imageText"],
             doc["reference"],
             doc["tags"],
-            doc["listed"]
+            doc["listed"],
+            doc["ratings"]
           )
         )
-        
+
       }
-      console.log('Received docs:');    
+      console.log('Received docs:');
       console.log(ans);
       // update observer
       this.blogData.next(ans);
-      
+
     });
 
-    
+
 
   }
 
   //Sets a doc inside a collection
-  setDoc(content: newsItem){
+  setDoc(content: newsItem) {
     var call = new BehaviorSubject<boolean>(false);
 
-    this.afs.collection(this.collectionName).doc(content.reference).set(content).then( data => {
-        call.next(true);
-      }
+    this.afs.collection(this.collectionName).doc(content.reference).set(content).then(data => {
+      call.next(true);
+    }
     );
-    
+
 
     return call.asObservable();
   }
 
   //Get a single doc from a collection
-  getDoc(name : string) : Observable<newsItem>{
-    var ans : BehaviorSubject<newsItem> = new BehaviorSubject(null);
+  getDoc(name: string): Observable<newsItem> {
+    var ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
       var doc = data.data();
@@ -100,7 +101,8 @@ export class BlogService {
           doc["imageText"],
           doc["reference"],
           doc["listed"],
-          doc["tags"]
+          doc["tags"],
+          doc["ratings"],
         )
       )
     });
@@ -109,12 +111,12 @@ export class BlogService {
   }
 
   //N in array
-  getNDoc(n: number) : Observable<newsItem>{
+  getNDoc(n: number): Observable<newsItem> {
     console.log('Getting ' + n + ' doc...');
-    
-    var ans : BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
-    this.blogData.subscribe( data => {
+    var ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
+
+    this.blogData.subscribe(data => {
       var doc = data[0];
 
       ans.next(
@@ -128,11 +130,12 @@ export class BlogService {
           doc.imageText,
           doc.reference,
           doc.tags,
-          doc.listed
+          doc.listed,
+          doc.ratings
         )
       )
-      console.log('caca '+ans);
-      
+      console.log('caca ' + ans);
+
 
     });
 
@@ -140,22 +143,30 @@ export class BlogService {
   }
 
   //Adds doc to setted collection
-  addDoc(news: newsItem){
+  addDoc(news: newsItem) {
     this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
       console.log(`News item with reference ${news.reference} added`);
     })
   }
-  
+
   //Deletes doc from given instance
-  deleteDocObj(news: newsItem){
+  deleteDocObj(news: newsItem) {
     this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {
       console.log(`News with reference ${news.reference} deleted`);
     })
   }
 
   //Gets a collection observable
-  docsObs(): Observable<newsItem[]>{
+  docsObs(): Observable<newsItem[]> {
     return this.blogData.asObservable();
+  }
+
+  incrementRating(news: newsItem, rating: number) {
+    var aux: number[] = news.ratings;
+    aux[rating]++;
+    this.afs.collection(this.collectionName).doc(news.reference).set({
+      ratings: aux
+    })
   }
 
 }

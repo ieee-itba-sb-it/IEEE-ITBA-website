@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NoticiaComponent implements OnInit {
   newsData: Observable<newsItem>;
   content: string = "";
+  data: newsItem;
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['es']);// esta página esta solo en español
@@ -31,6 +32,7 @@ export class NoticiaComponent implements OnInit {
       if (data != null) {
         console.log(data.content);
         this.content = data.content;
+        this.data = data;
       }
     });
   }
@@ -49,6 +51,7 @@ export class NoticiaComponent implements OnInit {
 
   rateNews(emoji: string) {
     console.log(emoji);
+    this.blogService.incrementRating(this.data, 0);
   }
 
 }
