@@ -64,7 +64,16 @@ h1 {
     color: whitesmoke;
     font-size: 5vmin;
 }
-
+h2{
+    color: whitesmoke;
+    font-size: 3vmin;
+}
+.full-height{
+    height:100%;
+}
+.addMargin{
+    margin:80px;
+}
 .right {
     text-align: right;
 }
@@ -80,6 +89,7 @@ h1 {
 }
 
 #logotext{
+    white-space: nowrap;
     font-family: 'Roboto', sans-serif;
     text-align: left;
     position: relative;
