@@ -134,7 +134,6 @@ export class BlogService {
           doc.ratings
         )
       )
-      console.log('caca ' + ans);
 
 
     });

@@ -63,6 +63,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { BarRatingModule } from "ngx-bar-rating";
 import { MatChipsModule } from '@angular/material/chips';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarIeeextremeComponent,
     NavbarComponent,
     WriteNewsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
