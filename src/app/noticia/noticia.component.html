@@ -55,19 +55,22 @@
         <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
         <div style="margin-bottom:10px">
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
-                (emojiClick)="rateNews()"></ngx-emoji>
+                (emojiClick)="rateNews('one')"></ngx-emoji>
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
-                (emojiClick)="rateNews()"></ngx-emoji>
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40" (emojiClick)="rateNews()">
+                (emojiClick)="rateNews('two')"></ngx-emoji>
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
+                (emojiClick)="rateNews('grin')">
             </ngx-emoji>
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40" (emojiClick)="rateNews()">
+            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
+                (emojiClick)="rateNews('joy')">
             </ngx-emoji>
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
-                (emojiClick)="rateNews()"></ngx-emoji>
+                (emojiClick)="rateNews('heart')"></ngx-emoji>
         </div>
         <mat-chip-list aria-label="Fish selection">
             <mat-chip>
-                0 <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15"></ngx-emoji>
+                0 <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
+                </ngx-emoji>
             </mat-chip>
             <mat-chip>
                 0 <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15"></ngx-emoji>

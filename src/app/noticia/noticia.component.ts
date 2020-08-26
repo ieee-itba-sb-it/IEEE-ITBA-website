@@ -47,8 +47,8 @@ export class NoticiaComponent implements OnInit {
 
   }
 
-  rateNews() {
-    console.log("Hola");
+  rateNews(emoji: string) {
+    console.log(emoji);
   }
 
 }
