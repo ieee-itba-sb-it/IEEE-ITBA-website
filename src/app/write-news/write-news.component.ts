@@ -35,10 +35,7 @@ export class WriteNewsComponent implements OnInit {
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     var author = (<HTMLInputElement>document.getElementById("author")).value;
     var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
-    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var hide = !listed;
-    console.log(hide);
-    console.log(listed);
+    //var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
     var reference = title.toLowerCase().replace(" ", "-");
     var tags = ['tecnología'];
     var imageText = 'epigrafe';
@@ -63,8 +60,6 @@ export class WriteNewsComponent implements OnInit {
       ).subscribe(sent => {
         if (sent) {
           this.router.navigate([`/noticias/${reference}`]);
-        } else {
-          this.openSnackBar();
         }
       })
     } else {

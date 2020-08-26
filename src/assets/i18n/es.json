@@ -2,7 +2,7 @@
 	"HOME": {
 		"CARGO": {
 			"CD": {
-				"GENERALSEC": "Secretario General",
+				"GENERALSEC": "Secretaria General",
 				"PRESIDENT": "Presidente",
 				"TREASURER": "Tesorero",
 				"VP": "Vicepresidente"
@@ -20,12 +20,14 @@
 			},
 			"ID": {
 				"ASSISTANT": "Asistente de I+D",
-				"CHIEF": "Jefe de I+D"
+				"CHIEF": "Coordinador de I+D"
 			},
 			"MEDIACOM": {
 				"CC": "Creador de Contenido",
 				"DESIGNER": "Diseñador",
-				"WEBMASTER": "Webmaster & Editor General"
+				"WEBMASTER": "Webmaster & Editor General",
+				"REDACTOR": "Redactor",
+				"DIBUJANTE": "Creador de Contenido, Dibujante"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Mentor de Fundraising",
