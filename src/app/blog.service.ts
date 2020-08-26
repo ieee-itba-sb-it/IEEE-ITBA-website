@@ -164,7 +164,7 @@ export class BlogService {
   incrementRating(news: newsItem, rating: number) {
     var aux: number[] = news.ratings;
     aux[rating]++;
-    this.afs.collection(this.collectionName).doc(news.reference).set({
+    this.afs.collection(this.collectionName).doc(news.reference).update({
       ratings: aux
     })
   }

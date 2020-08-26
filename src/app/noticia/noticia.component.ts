@@ -17,6 +17,8 @@ export class NoticiaComponent implements OnInit {
   newsData: Observable<newsItem>;
   content: string = "";
   data: newsItem;
+  isVisbile: boolean = false;
+  emojisVisible: boolean = !this.isVisbile;
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['es']);// esta página esta solo en español
@@ -49,9 +51,11 @@ export class NoticiaComponent implements OnInit {
 
   }
 
-  rateNews(emoji: string) {
+  rateNews(emoji: string, rating: number) {
     console.log(emoji);
-    this.blogService.incrementRating(this.data, 0);
+    this.blogService.incrementRating(this.data, rating);
+    this.isVisbile = true;
+    this.emojisVisible = false;
   }
 
 }

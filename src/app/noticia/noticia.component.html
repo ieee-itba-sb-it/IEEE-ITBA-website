@@ -53,25 +53,25 @@
         </div>
         <!--Emoji Rating-->
         <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
-        <div style="margin-bottom:10px">
+        <div style="margin-bottom:10px" *ngIf="emojisVisible">
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
-                (emojiClick)="rateNews('one')"></ngx-emoji>
+                (emojiClick)="rateNews('one', 0)"></ngx-emoji>
 
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
-                (emojiClick)="rateNews('two')"></ngx-emoji>
+                (emojiClick)="rateNews('two', 1)"></ngx-emoji>
 
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
-                (emojiClick)="rateNews('grin')">
+                (emojiClick)="rateNews('grin', 2)">
             </ngx-emoji>
 
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
-                (emojiClick)="rateNews('joy')">
+                (emojiClick)="rateNews('joy', 3)">
             </ngx-emoji>
 
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
-                (emojiClick)="rateNews('heart')"></ngx-emoji>
+                (emojiClick)="rateNews('heart', 4)"></ngx-emoji>
         </div>
-        <mat-chip-list aria-label="Emoji selection">
+        <mat-chip-list aria-label="Emoji selection" *ngIf="isVisbile">
             <mat-chip>
                 {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
                 </ngx-emoji>
