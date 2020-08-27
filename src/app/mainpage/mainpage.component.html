@@ -29,56 +29,79 @@
       </div>
     </div>
   </div>
-
-  <!-- Educacion, Competencia, Contacto -->
+  <!-- Ieeextreme -->
   <div class="bottomLine">
-    <div class="card-group">
-
-      <!-- Educacion -->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
+    <div class="card-group" fxLayoutAlign="center center">
+      <mdb-card class="maxwidth600">
+        <mdb-card-img src="https://i.ibb.co/L549XMk/flyer-ieeextreme-para-campus-v3.jpg" alt="Foto de Curso de Python"></mdb-card-img>
         <mdb-card-body>
 
           <mdb-card-title>
-            <h4>{{ 'HOME.EDUCATION.TITLE' | translate }}</h4>
+            <h4>{{ 'HOME.IEEEXTREME.NOW.TITLE' | translate }} </h4>
           </mdb-card-title>
 
-          <mdb-card-text>{{ 'HOME.EDUCATION.TEXT' | translate }}</mdb-card-text>
+          <mdb-card-text>{{ 'HOME.IEEEXTREME.NOW.TEXT' | translate }} </mdb-card-text>
 
-        </mdb-card-body>
-      </mdb-card>
-
-      <!-- Competencia -->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/YX53J4W/competition.jpg" alt="Foto de Competencia de programacion">
-        </mdb-card-img>
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.COMPETITION.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <mdb-card-text>{{ 'HOME.COMPETITION.TEXT' | translate }}</mdb-card-text>
-
-        </mdb-card-body>
-      </mdb-card>
-
-      <!-- Contacto -->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/2hsYPdQ/contacts.jpg" alt="Foto durante ICIT2020"></mdb-card-img>
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.CONTACTS.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <mdb-card-text>{{ 'HOME.CONTACTS.TEXT' | translate }}</mdb-card-text>
-
+          <a class="link-text" href='https://bit.ly/ieeextreme14'>
+            <h5 class="waves-light" mdbWavesEffect>bit.ly/ieeextreme14
+              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+            </h5>
+          </a>
         </mdb-card-body>
       </mdb-card>
     </div>
   </div>
 
+  <!-- Educacion, Competencia, Contacto -->
+  <div *ngIf="false">
+    <div class="bottomLine">
+      <div class="card-group">
+
+        <!-- Educacion -->
+        <mdb-card>
+          <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
+          <mdb-card-body>
+
+            <mdb-card-title>
+              <h4>{{ 'HOME.EDUCATION.TITLE' | translate }}</h4>
+            </mdb-card-title>
+
+            <mdb-card-text>{{ 'HOME.EDUCATION.TEXT' | translate }}</mdb-card-text>
+
+          </mdb-card-body>
+        </mdb-card>
+
+        <!-- Competencia -->
+        <mdb-card>
+          <mdb-card-img src="https://i.ibb.co/YX53J4W/competition.jpg" alt="Foto de Competencia de programacion">
+          </mdb-card-img>
+          <mdb-card-body>
+
+            <mdb-card-title>
+              <h4>{{ 'HOME.COMPETITION.TITLE' | translate }}</h4>
+            </mdb-card-title>
+
+            <mdb-card-text>{{ 'HOME.COMPETITION.TEXT' | translate }}</mdb-card-text>
+
+          </mdb-card-body>
+        </mdb-card>
+
+        <!-- Contacto -->
+        <mdb-card>
+          <mdb-card-img src="https://i.ibb.co/2hsYPdQ/contacts.jpg" alt="Foto durante ICIT2020"></mdb-card-img>
+          <mdb-card-body>
+
+            <mdb-card-title>
+              <h4>{{ 'HOME.CONTACTS.TITLE' | translate }}</h4>
+            </mdb-card-title>
+
+            <mdb-card-text>{{ 'HOME.CONTACTS.TEXT' | translate }}</mdb-card-text>
+
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
   <!-- Eventos -->
   <div class="bottomLine">
     <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>

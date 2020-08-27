@@ -96,7 +96,9 @@ h2{
     top: 50%;
     transform: translateY(-50%);
 }
-
+.maxwidth600{
+    max-width: 600px;
+}
 /* Flex */
 
 @media (max-width: 950px) {
