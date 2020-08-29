@@ -86,7 +86,12 @@
 		},
 		"IEEEXTREME": {
 			"TEXT": "IEEExtreme es una competencia internacional con la particularidad de durar 24hs y darse simultáneamente en todo el mundo. IEEE-ITBA es la sede del torneo más importante del país.",
-			"TITLE": "Competición IEEExtreme"
+			"TITLE": "Competición IEEExtreme",
+			"NOW":
+				{
+						"TEXT": "¿Te gusta programar? ¿Resolver desafíos? ¡Anótate en la Ieeextreme 14.0 que se llevará a cabo los días 23 y 24 de octubre! ¡Ganáte un Itbot!",
+						"TITLE": "¡Anótate a la Ieeextreme 14.0!"
+				}
 		},
 		"PROGCLUB": {
 			"TEXT": "Estamos trabajando en la creación de un equipo que integre personas con intereses en incrementar su pasión por la programación y mejorar sus habilidades tanto de escribir código como de trabajar en equipo. La programación es una habilidad que siempre guarda lugar a la mejora y la experiencia de competir programando marca un antes y un después.",

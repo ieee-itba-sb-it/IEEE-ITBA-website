@@ -3,6 +3,9 @@
     "rules": "database.rules.json"
   },
   "hosting": {
+    "headers": [
+      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+    ],
     "public": "dist/ITBA-IEEE-Website-A9",
     "ignore": [
       "firebase.json",
