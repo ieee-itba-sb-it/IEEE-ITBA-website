@@ -10,63 +10,64 @@
     <!-- Icons on right -->
     <app-navbar-anuncios></app-navbar-anuncios>
 </header>
-<div class="body" fxLayoutAlign="center center" fxLayout="column">
-    <div class="spacenav">
-    </div>
-    <div class="spacenav">
-    </div>
-    <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <h1 id="eventos" class="white-title">Noticias</h1>
+
+<body>
+    <div class="body" fxLayoutAlign="center center" fxLayout="column">
+        <div class="spacenav">
+        </div>
+        <div class="spacenav">
+        </div>
+        <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h1 id="eventos" class="white-title">Noticias</h1>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="spacenav">
-    </div>
+        <div class="spacenav">
+        </div>
+        <div class="row width1000" fxLayoutAlign="center center">
+            <div *ngFor="let noticia of newsData">
+                <div class="col-sm">
+                    <a href="noticias/{{noticia.reference}}">
+                        <mdb-card class="card-container">
+                            <div fxLayoutAlign="center center" fxLayout.lt-md="column" fxLayout.gt-sm="row"
+                                class="view overlay waves-light" mdbWavesEffect>
+                                <div fxFlex.gt-sm="40" class="image-container">
+                                    <mdb-card-img src="{{noticia.imageUrl}}" alt="Foto de competicion IEEExtreme">
+                                    </mdb-card-img>
+                                </div>
+                                <!--<a><div class="mask rgba-white-slight"></div></a>-->
+                                <mdb-card-body fxFlex="60">
+                                    <mdb-card-title>
+                                        <h1 class="title">{{noticia.title}}</h1>
+                                    </mdb-card-title>
 
-    <app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
+                                    <hr>
 
-    <div class="row width1000" fxLayoutAlign="center center">
-        <div *ngFor="let noticia of newsData">
-            <div class="col-sm">
-                <a href="noticias/{{noticia.reference}}">
-                    <mdb-card class="card-container">
-                        <div fxLayoutAlign="center center" fxLayout.lt-md="column" fxLayout.gt-sm="row"
-                            class="view overlay waves-light" mdbWavesEffect>
-                            <div fxFlex.gt-sm="40" class="image-container">
-                                <mdb-card-img src="{{noticia.imageUrl}}" alt="Foto de competicion IEEExtreme">
-                                </mdb-card-img>
+                                    <mdb-card-text> Por {{noticia.author}}</mdb-card-text>
+
+                                    <a class="link-text">
+                                        <h5 class="waves-light" mdbWavesEffect>
+                                            <!--<mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                                        -->
+                                        </h5>
+                                    </a>
+                                </mdb-card-body>
                             </div>
-                            <!--<a><div class="mask rgba-white-slight"></div></a>-->
-                            <mdb-card-body fxFlex="60">
-                                <mdb-card-title>
-                                    <h1 class="title">{{noticia.title}}</h1>
-                                </mdb-card-title>
-
-                                <hr>
-
-                                <mdb-card-text> Por {{noticia.author}}</mdb-card-text>
-
-                                <a class="link-text">
-                                    <h5 class="waves-light" mdbWavesEffect>
-                                        <!--<mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-                                    -->
-                                    </h5>
-                                </a>
-                            </mdb-card-body>
-                        </div>
-                    </mdb-card>
-                </a>
+                        </mdb-card>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="addMargin">
-            
+
         </div>
     </div>
 </body>
 
 <app-footer></app-footer>
+
 </html>
