@@ -35,10 +35,11 @@ export class WriteNewsComponent implements OnInit {
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     var author = (<HTMLInputElement>document.getElementById("author")).value;
     var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
-    //var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var reference = title.toLowerCase().replace(" ", "-");
+    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
+    var reference = title.toLowerCase().split(' ').join('-'); //replace("/ /g", "-");
     var tags = ['tecnología'];
-    var imageText = 'epigrafe'
+    var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;;
+    var ratings = [0, 0, 0, 0, 0];
     console.log(content);
 
     if (title != '') {
@@ -53,7 +54,8 @@ export class WriteNewsComponent implements OnInit {
           imageText,
           reference,
           tags,
-          true //listed  //use listed if you dont wanna show the news right immediately in the news page (it's for debugging)
+          listed,
+          ratings
         )
       ).subscribe(sent => {
         if (sent) {

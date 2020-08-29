@@ -60,6 +60,11 @@ import { WriteNewsComponent } from './write-news/write-news.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { BarRatingModule } from "ngx-bar-rating";
+import { MatChipsModule } from '@angular/material/chips';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -91,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarIeeextremeComponent,
     NavbarComponent,
     WriteNewsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,7 +130,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     MatSnackBarModule,
     QuillModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EmojiModule,
+    BarRatingModule,
+    MatChipsModule
 
     // AngularFireModule.initializeApp(environment.firebase),
   ],

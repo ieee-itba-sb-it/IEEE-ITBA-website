@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
-import { blogCollectionName} from '../secrets';
+import { blogCollectionName } from '../secrets';
 import { Observable } from 'rxjs';
 import { newsItem, createNewsItem } from '../data-types';
 import { BlogService } from '../blog.service';
@@ -24,28 +24,28 @@ export class EditarAnuncioComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogService.setCollectionName(blogCollectionName);
-    if (this.route.snapshot.paramMap.get('id') != null){
+    if (this.route.snapshot.paramMap.get('id') != null) {
       this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
       this.newsData.subscribe((data: newsItem) => {
-          if (data){
-            console.log(data);
+        if (data) {
+          console.log(data);
 
-            document.getElementById("titulo").setAttribute("value",  data.title);
-            document.getElementById("nombreUrl").setAttribute("value",  data.reference);
-            document.getElementById("autor").setAttribute("value",  data.author);
-            document.getElementById("imageUrl").setAttribute("value",  data.imageUrl);
-            document.getElementById("imageText").setAttribute("value",  data.imageText);
-            document.getElementById("shortIntro").setAttribute("value",  data.shortIntro);
-            (<HTMLInputElement>document.getElementById("listed")).checked = data.listed;
-            document.getElementById("content").innerHTML = data.content;
-          }
+          document.getElementById("titulo").setAttribute("value", data.title);
+          document.getElementById("nombreUrl").setAttribute("value", data.reference);
+          document.getElementById("autor").setAttribute("value", data.author);
+          document.getElementById("imageUrl").setAttribute("value", data.imageUrl);
+          document.getElementById("imageText").setAttribute("value", data.imageText);
+          document.getElementById("shortIntro").setAttribute("value", data.shortIntro);
+          (<HTMLInputElement>document.getElementById("listed")).checked = data.listed;
+          document.getElementById("content").innerHTML = data.content;
         }
+      }
       );
     }
 
   }
-  sendAnuncio(){
+  sendAnuncio() {
     console.log("sending...");
     var title = (<HTMLInputElement>document.getElementById("titulo")).value;
     console.log(title);
@@ -57,11 +57,12 @@ export class EditarAnuncioComponent implements OnInit {
     var reference = (<HTMLInputElement>document.getElementById("nombreUrl")).value;
     var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
     var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var tags= ['hola','chau'];
+    var tags = ['hola', 'chau'];
+    var ratings = [0, 0, 0, 0, 0];
 
     console.log(reference);
 
-    if (title != ''){
+    if (title != '') {
       this.blogService.setDoc(
         createNewsItem(
           title,
@@ -73,16 +74,17 @@ export class EditarAnuncioComponent implements OnInit {
           imageText,
           reference,
           tags,
-          listed
+          listed,
+          ratings
         )
       ).subscribe(sent => {
-        if (sent){
+        if (sent) {
           this.router.navigate([`/anuncios/${reference}`]);
         }
       })
-    }else{
+    } else {
       this.blogService.deleteDoc(reference).subscribe(sent => {
-        if (sent){
+        if (sent) {
           this.router.navigate([`/anuncios`]);
         }
       });
