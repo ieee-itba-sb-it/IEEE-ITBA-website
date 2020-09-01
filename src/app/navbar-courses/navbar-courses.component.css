@@ -1,0 +1,53 @@
+
+.buttonNavbar {
+    padding: 1.5vmin;
+    text-align: center;
+    margin: 1vmin;
+    border: whitesmoke 2px solid;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    background-color: transparent;
+    transition: all ease 0.5s;
+}
+
+.buttonNavbar:hover {
+    color: black;
+    background-color: whitesmoke;
+}
+
+.nav-item{
+    text-align: right;
+}
+
+.row{
+    border: solid 1px red;
+    width: 100%;
+}
+
+.transparentButton {
+    padding: 2vmin;
+    border: solid 2px whitesmoke;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    background-color: transparent;
+    transition: all .5s ease;
+}
+
+#nav {
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    color: whitesmoke;
+}
+
+#accountButton{
+    background-color: transparent;
+    border: 0px;
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+}
+
+::ng-deep.mat-menu-panel {
+    transform: translate(0px, 30%); 
+    transition: transform 2s ease-in;
+}

@@ -50,6 +50,28 @@ p{
     text-align: justify;
 }
 
+h1 {
+    color: whitesmoke;
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+.col-sm {
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+
+.topbottomLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: whitesmoke 2px solid;
+    border-bottom: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
 .transparentButton {
     padding: 2vmin;
     border: solid 2px whitesmoke;
