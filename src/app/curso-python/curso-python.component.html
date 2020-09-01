@@ -21,113 +21,114 @@
             </div>
         </div>
     </div>
-
-
-
-
     <!-- Introductory text -->
-    <div class="halfRight">
+    <div>
         <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
     </div>
 
     <!-- Cards Temario -->
-    <div class="halfLeft">
-        <!-- Card -->
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <h4>
-                        <a
-                            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_1_Curso_Python.ipynb#scrollTo=4FLV1yxDh9Rh">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                            1 </a>
-                    </h4>
-                </mdb-card-title>
+    <div>
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title><a
+                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_1_Curso_Python.ipynb#scrollTo=4FLV1yxDh9Rh">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                                1 </a></mat-card-title>
+                        <mat-card-subtitle>Introducción</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+            <!-- Card -->
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title><a
+                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_2_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                                2 </a></mat-card-title>
+                        <mat-card-subtitle>Tipos de Datos</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+            <!-- Card -->
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title><a
+                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_3_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                                3 </a></mat-card-title>
+                        <mat-card-subtitle>Archivos</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+            <!-- Card -->
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title><a
+                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                                4 </a></mat-card-title>
+                        <mat-card-subtitle>Matplot</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ 'PYTHONCOURSES.CLASSES.C4' | translate }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title><a
+                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}
+                            </a></mat-card-title>
+                        <mat-card-subtitle></mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
 
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</mdb-card-text>
-            </mdb-card-body>
-        </mdb-card>
-        <!-- Card -->
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <a
-                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_2_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                        2 </a>
-                </mdb-card-title>
+            <mat-grid-tile>
 
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</mdb-card-text>
-            </mdb-card-body>
-        </mdb-card>
-        <!-- Card -->
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <a
-                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_3_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                        3 </a>
-                </mdb-card-title>
-
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</mdb-card-text>
-            </mdb-card-body>
-        </mdb-card>
-        <!-- Card -->
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <a
-                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                        4 </a>
-                </mdb-card-title>
-
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.C4' | translate }}</mdb-card-text>
-            </mdb-card-body>
-        </mdb-card>
-
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <a
-                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}
-                    </a>
-                </mdb-card-title>
-
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}</mdb-card-text>
-            </mdb-card-body>
-        </mdb-card>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 
     <!-- Consultas -->
-    <div class="halfRight">
-        <!-- Card -->
-        <mdb-card>
-            <!--Card content-->
-            <mdb-card-body>
-                <!--Title-->
-                <mdb-card-title>
-                    <h4>{{ 'PYTHONCOURSES.QUESTIONS.TITLE' | translate }}</h4>
-                </mdb-card-title>
+    <div>
 
-                <!--Text-->
-                <mdb-card-text>{{ 'PYTHONCOURSES.QUESTIONS.TEXT' | translate }}<a
+        <mat-card style="margin-top: 15px">
+            <mat-card-header>
+
+                <mat-card-title>{{ 'PYTHONCOURSES.QUESTIONS.TITLE' | translate }}</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div>
+                    {{ 'PYTHONCOURSES.QUESTIONS.TEXT' | translate }}<a
                         href="https://www.reddit.com/r/CursoDePythonITBA">https://www.reddit.com/r/CursoDePythonITBA</a>
-                </mdb-card-text>
 
-                <mdb-card-text>{{ 'PYTHONCOURSES.QUESTIONS.TEXT_VIDEOS' | translate }}
+                </div>
+                <div>{{ 'PYTHONCOURSES.QUESTIONS.TEXT' | translate }}<a
+                        href="https://www.reddit.com/r/CursoDePythonITBA">https://www.reddit.com/r/CursoDePythonITBA</a>
+                </div>
+                <div>
+                    <div>{{ 'PYTHONCOURSES.QUESTIONS.TEXT_VIDEOS' | translate }}</div>
                     <ul>
                         <li>
                             <a href="https://www.youtube.com/watch?v=Hh_V3bCHgrM"> Q/A
@@ -146,10 +147,10 @@
                                 {{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }} 4 </a>
                         </li>
                     </ul>
-                </mdb-card-text>
+                </div>
 
-            </mdb-card-body>
-        </mdb-card>
+            </mat-card-content>
+        </mat-card>
     </div>
 
 </body>

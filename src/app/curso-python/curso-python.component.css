@@ -61,6 +61,18 @@ h1 {
     margin-bottom: 1vmin;
     text-align: center;
 }
+.example-card {
+    max-width: 500px;
+    height: 170px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+ 
+  
+  .example-header-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
+    background-size: cover;
+  }
 
 
 .topbottomLine {
