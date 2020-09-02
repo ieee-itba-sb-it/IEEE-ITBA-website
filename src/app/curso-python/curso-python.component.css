@@ -61,10 +61,8 @@ h1 {
     margin-bottom: 1vmin;
     text-align: center;
 }
+
 .example-card {
-    max-width: 500px;
-    height: 170px;
-    margin-right: 10px;
     margin-bottom: 15px;
   }
  
@@ -127,6 +125,10 @@ h1 {
     margin: 1vmin;
     float: left;
     width: 45%;
+}
+
+.marginTop {
+    margin-top: 30px;
 }
 
 mdb-card {

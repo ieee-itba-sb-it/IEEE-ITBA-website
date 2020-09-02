@@ -27,86 +27,79 @@
     </div>
 
     <!-- Cards Temario -->
-    <div>
-        <mat-grid-list cols="3" rowHeight="2:1">
-            <mat-grid-tile>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title><a
-                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_1_Curso_Python.ipynb#scrollTo=4FLV1yxDh9Rh">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                                1 </a></mat-card-title>
-                        <mat-card-subtitle>Introducción</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-            <!-- Card -->
-            <mat-grid-tile>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title><a
-                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_2_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                                2 </a></mat-card-title>
-                        <mat-card-subtitle>Tipos de Datos</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-            <!-- Card -->
-            <mat-grid-tile>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title><a
-                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_3_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                                3 </a></mat-card-title>
-                        <mat-card-subtitle>Archivos</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-            <!-- Card -->
-            <mat-grid-tile>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title><a
-                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                                4 </a></mat-card-title>
-                        <mat-card-subtitle>Matplot</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ 'PYTHONCOURSES.CLASSES.C4' | translate }}
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title><a
-                                href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}
-                            </a></mat-card-title>
-                        <mat-card-subtitle></mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}
-                    </mat-card-content>
-                </mat-card>
-            </mat-grid-tile>
 
-            <mat-grid-tile>
+    <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-            </mat-grid-tile>
-        </mat-grid-list>
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_1_Curso_Python.ipynb#scrollTo=4FLV1yxDh9Rh">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                        1 </a></mat-card-title>
+                <mat-card-subtitle>Introducción</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_2_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                        2 </a></mat-card-title>
+                <mat-card-subtitle>Tipos de Datos</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_3_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                        3 </a></mat-card-title>
+                <mat-card-subtitle>Archivos</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">{{ 'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                        4 </a></mat-card-title>
+                <mat-card-subtitle>Matplot</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ 'PYTHONCOURSES.CLASSES.C4' | translate }}
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">{{ 'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}
+                    </a></mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}
+            </mat-card-content>
+        </mat-card>
+
     </div>
 
     <!-- Consultas -->
