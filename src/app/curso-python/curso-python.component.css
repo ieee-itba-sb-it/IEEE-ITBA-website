@@ -50,6 +50,38 @@ p{
     text-align: justify;
 }
 
+h1 {
+    color: whitesmoke;
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+.col-sm {
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+.example-card {
+    margin-bottom: 15px;
+  }
+ 
+  
+  .example-header-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
+    background-size: cover;
+  }
+
+
+.topbottomLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: whitesmoke 2px solid;
+    border-bottom: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
 .transparentButton {
     padding: 2vmin;
     border: solid 2px whitesmoke;
@@ -93,6 +125,10 @@ p{
     margin: 1vmin;
     float: left;
     width: 45%;
+}
+
+.marginTop {
+    margin-top: 30px;
 }
 
 mdb-card {

@@ -1,0 +1,45 @@
+footer {
+    padding-bottom: 5vmin;
+    position: relative;
+    top: 100%;
+    align-content: center;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background: rgb(10,27,103);
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background-size: cover;
+    max-width: 100%;
+}
+
+.col-sm {
+    text-align: center;
+    padding-top: auto;
+    vertical-align: middle;
+    margin-left: 39vmin;
+}
+
+.col-sm3 {
+    text-align: center;
+    padding-top: auto;
+    vertical-align: middle;
+  
+}
+
+.col-sm2 {
+    text-align: center;
+    padding-top: auto;
+    vertical-align: middle;
+    margin-right: 41vmin;
+}
+
+.imgFooter {
+    position: relative;
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.container {
+    position: relative;
+    top: -40;
+}

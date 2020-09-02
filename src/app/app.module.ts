@@ -64,6 +64,8 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { BarRatingModule } from "ngx-bar-rating";
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { NavbarCoursesComponent } from './navbar-courses/navbar-courses.component';
+import { DynamicFooterComponent } from './dynamic-footer/dynamic-footer.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -97,6 +99,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     WriteNewsComponent,
     LoadingSpinnerComponent,
+    NavbarCoursesComponent,
+    DynamicFooterComponent,
   ],
   imports: [
     BrowserModule,
