@@ -34,24 +34,24 @@
 				"VOLUNTEER": "Volunteer"
 			},
 			"WIE": {
-				"PRESIDENT":"President",
-				"VP":"Vice president",
-				"TREASURER":"Treasurer",
-				"COMM":"Communication",
-				"PLANNING":"Planning",
-				"FEMVOLUNTEER":"Volunteer",
+				"PRESIDENT": "President",
+				"VP": "Vice president",
+				"TREASURER": "Treasurer",
+				"COMM": "Communication",
+				"PLANNING": "Planning",
+				"FEMVOLUNTEER": "Volunteer",
 				"SOCIAL": "Social Media",
-				"VOLUNTEER":"Volunteer",
-				"WEBMASTER":"WIE Webmaster & Editor"
+				"VOLUNTEER": "Volunteer",
+				"WEBMASTER": "WIE Webmaster & Editor"
 			},
 			"CS": {
-				"PRESIDENT":"President",
-				"VP":"Vice president",
-				"GENERALSEC":"General Secretary",
-				"TREASURER":"Treasurer",
-				"RRPP":"Public Relationships",
-				"LOGISTIC":"Logistics",
-				"COMPETITIVEPROGRAMMING":"Competitive Programming"
+				"PRESIDENT": "President",
+				"VP": "Vice president",
+				"GENERALSEC": "General Secretary",
+				"TREASURER": "Treasurer",
+				"RRPP": "Public Relationships",
+				"LOGISTIC": "Logistics",
+				"COMPETITIVEPROGRAMMING": "Competitive Programming"
 			}
 		},
 		"CLASSES": {
@@ -135,13 +135,17 @@
 	},
 	"PYTHONCOURSES": {
 		"CLASSES": {
-			"C1": "Introduction to Python programming: variables, operators, flux control and functions.",
-			"C2": "Data types (int, float, string, bool), data structures (lists, dictionary, set, tuples), operations with data types, operations with data structures. ",
+			"C1": "Introduction to Python programming: variables, operators, flow control (if, while, for), functions.",
+			"C2": "Data types (int, float, string, bool), data structures (List, Dictionary, Set, Tuples), operations with data types, operations with data structures. ",
 			"C3": "Flux review, data structure review, reading and writing files, operations with data from files, introduction to libraries.",
-			"C4": "Introduction to matplotlib, data visualization, graph customization, advantages and disadvantages of using Python and Excel.",
+			"C4": "Introduction to matplotlib, reading and writing files Excel and CSV , data manipulation with Pandas, file manipulation with non-structured information",
 			"INTEGRADOR-TITLE": "Final work",
-			"INTEGRADOR": "The objetive of the final work is to make participants to show they have learn the course objetives by means of a practical example",
-			"TITLE": "Class"
+			"INTEGRADOR": "The objetive of the final work is to create an application, complete and functional, integrating the contents learned throughout the course.",
+			"TITLE": "Class",
+			"DATE1": "October 2",
+			"DATE2": "October 9",
+			"DATE3": "October 16",
+			"DATE4": "October 23"
 		},
 		"DESC": "This course's public is getting bigger and bigger but one of the issues we've found is that students don't usually have a lot of available time. With this in mind, the course has been designed with a work-friendly format consisting of four classes of three hours each, where we emphasize practical examples with real applications in the real world. Finally, and considering the great heterogeneity of participants, we decided to offer personal support and question solving.",
 		"ENROLLBUTTON": "Enroll",
@@ -151,7 +155,7 @@
 		},
 		"TITLE": "Python Beginner's courses 2020 "
 	},
-	"IEEEMEETUP":{
+	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2nd Meet Up",
 		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
 	}
