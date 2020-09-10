@@ -68,6 +68,7 @@ import { NavbarCoursesComponent } from './navbar-courses/navbar-courses.componen
 import { DynamicFooterComponent } from './dynamic-footer/dynamic-footer.component';
 
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
