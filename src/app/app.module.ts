@@ -66,6 +66,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { NavbarCoursesComponent } from './navbar-courses/navbar-courses.component';
 import { DynamicFooterComponent } from './dynamic-footer/dynamic-footer.component';
+import { ForumComponent } from './forum/forum.component';
 
 
 
@@ -102,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingSpinnerComponent,
     NavbarCoursesComponent,
     DynamicFooterComponent,
+    ForumComponent,
   ],
   imports: [
     BrowserModule,
