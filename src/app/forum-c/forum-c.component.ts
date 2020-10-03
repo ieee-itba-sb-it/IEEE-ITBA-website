@@ -17,19 +17,19 @@ export class ForumCComponent implements OnInit {
     if (uid != null && tid != null){
       
       window.location.replace(
-        `https://curso.whittileaks.com/f/${uid}/unsuscribe/${tid}`
+        `https://curso.whittileaks.com/u/${uid}/unsuscribe/${tid}`
       );
 
     }else if (uid != null){
       
       window.location.replace(
-        `https://curso.whittileaks.com/f/${uid}`
+        `https://curso.whittileaks.com/u/${uid}`
       );
 
     }else{
 
       window.location.replace(
-        `https://curso.whittileaks.com/f/`
+        `https://curso.whittileaks.com/u/`
       );
 
     }

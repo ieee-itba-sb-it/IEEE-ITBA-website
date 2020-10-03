@@ -14,7 +14,7 @@ export class ForumDComponent implements OnInit {
     var uid: string = this.route.snapshot.paramMap.get("uid");
     
     window.location.replace(
-      `https://curso.whittileaks.com/f/${uid}/unsuscribe`
+      `https://curso.whittileaks.com/u/${uid}/unsuscribe`
     )
 
   }
