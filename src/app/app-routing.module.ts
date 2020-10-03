@@ -13,6 +13,10 @@ import { NewsMainpageComponent } from './news/news-mainpage/news-mainpage.compon
 import { WriteNewsComponent } from './write-news/write-news.component';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { ForumComponent } from './forum/forum.component'
+import { ForumBComponent } from './forum-b/forum-b.component';
+import { ForumCComponent } from './forum-c/forum-c.component';
+import { ForumDComponent } from './forum-d/forum-d.component';
+
 
 const routes: Routes = [
   { path: '', component: MainpageComponent },
@@ -28,6 +32,17 @@ const routes: Routes = [
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'news', component: NewsMainpageComponent },
   { path: 'python', component: ForumComponent },
+  { path: 'python/f/:forum_title/c/:cat_title/:tid', component: ForumComponent },
+  { path: 'python/f/:forum_title/c/:cat_title', component: ForumComponent },
+  { path: 'python/f/:forum_title/c', component: ForumBComponent },
+  { path: 'python/f/:forum_title', component: ForumComponent },
+  { path: 'python/f', component: ForumComponent },
+
+  { path: 'python/u/:uid/unsubscribe/:tid', component: ForumCComponent },
+  { path: 'python/u/:uid/unsubscribe', component: ForumDComponent },
+  { path: 'python/u/:uid', component: ForumCComponent },
+  { path: 'python/u', component: ForumCComponent },
+  
   { path: 'write-news', component: WriteNewsComponent },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }

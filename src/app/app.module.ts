@@ -67,6 +67,9 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { NavbarCoursesComponent } from './navbar-courses/navbar-courses.component';
 import { DynamicFooterComponent } from './dynamic-footer/dynamic-footer.component';
 import { ForumComponent } from './forum/forum.component';
+import { ForumBComponent } from './forum-b/forum-b.component';
+import { ForumCComponent } from './forum-c/forum-c.component';
+import { ForumDComponent } from './forum-d/forum-d.component';
 
 
 
@@ -104,6 +107,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarCoursesComponent,
     DynamicFooterComponent,
     ForumComponent,
+    ForumBComponent,
+    ForumCComponent,
+    ForumDComponent,
   ],
   imports: [
     BrowserModule,
