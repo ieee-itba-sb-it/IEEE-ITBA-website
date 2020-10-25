@@ -200,8 +200,7 @@ footer {
 
 img {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 50%; 
 }
 
 /* Flex */
@@ -312,3 +311,16 @@ img {
     text-align: center;
 }
 
+.example-card {
+    max-width: 300px;
+  }
+  
+.example-header-image {
+background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+background-size: cover;
+}
+
+.margin-top{
+    margin-top: 50px;
+}
+  

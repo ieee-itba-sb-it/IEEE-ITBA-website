@@ -28,36 +28,19 @@
         </div>
         <div class="spacenav">
         </div>
+
         <div class="row width1000" fxLayoutAlign="center center">
             <div *ngFor="let noticia of newsData">
-                <div class="col-sm">
+
+                <div class="col-sm margin-top">
                     <a href="noticias/{{noticia.reference}}">
-                        <mdb-card class="card-container">
-                            <div fxLayoutAlign="center center" fxLayout.lt-md="column" fxLayout.gt-sm="row"
-                                class="view overlay waves-light" mdbWavesEffect>
-                                <div fxFlex.gt-sm="40" class="image-container">
-                                    <mdb-card-img src="{{noticia.imageUrl}}" alt="Foto de competicion IEEExtreme">
-                                    </mdb-card-img>
-                                </div>
-                                <!--<a><div class="mask rgba-white-slight"></div></a>-->
-                                <mdb-card-body fxFlex="60">
-                                    <mdb-card-title>
-                                        <h1 class="title">{{noticia.title}}</h1>
-                                    </mdb-card-title>
-
-                                    <hr>
-
-                                    <mdb-card-text> Por {{noticia.author}}</mdb-card-text>
-
-                                    <a class="link-text">
-                                        <h5 class="waves-light" mdbWavesEffect>
-                                            <!--<mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-                                        -->
-                                        </h5>
-                                    </a>
-                                </mdb-card-body>
-                            </div>
-                        </mdb-card>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <mat-card-title>{{noticia.title}}</mat-card-title>
+                                <mat-card-subtitle>Por {{noticia.author}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img height="200px" mat-card-image src="{{noticia.imageUrl}}" alt="Foto de Noticia">
+                        </mat-card>
                     </a>
                 </div>
             </div>
