@@ -59,7 +59,8 @@
         </div>
         <!--Emoji Rating-->
         <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
-        <div style="margin-bottom:10px">
+
+        <div style="margin-bottom:10px" *ngIf="emojisVisible">
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
                 (emojiClick)="rateNews('one', 0)"></ngx-emoji>
 
@@ -77,6 +78,7 @@
             <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
                 (emojiClick)="rateNews('heart', 4)"></ngx-emoji>
         </div>
+        <div class="whitetext-left" *ngIf="isVisbile">Gracias por votar ! </div>
         <mat-chip-list aria-label="Emoji selection">
             <mat-chip>
                 {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
