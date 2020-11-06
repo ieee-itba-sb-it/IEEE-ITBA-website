@@ -16,7 +16,7 @@ export class TeamCardComponent implements OnInit {
 
   peopleCD = [
     new Person("Ariel Nowik", "https://i.ibb.co/YX5j6nw/arielnowik.jpg", "https://www.linkedin.com/in/ariel-nowik-13608a158/", "anowik@itba.edu.ar", 'HOME.CARGO.CD.PRESIDENT'),
-    new Person("Dante Kieniguiel", "https://i.ibb.co/Z2YjBfn/dantekienigiel.jpg", "https://www.linkedin.com/in/dante-k-572396bb/", "dkienigiel@itba.edu.ar", 'HOME.CARGO.CD.VP'),
+    new Person("Dante Kienigiel", "https://i.ibb.co/Z2YjBfn/dantekienigiel.jpg", "https://www.linkedin.com/in/dante-k-572396bb/", "dkienigiel@itba.edu.ar", 'HOME.CARGO.CD.VP'),
     new Person("Franco Moriconi", "https://i.ibb.co/D7JsB7Q/francomoriconi.jpg", "https://www.linkedin.com/in/franco-moriconi-0002a0196/", "fmoriconi@itba.edu.ar", 'HOME.CARGO.CD.TREASURER'),
     new Person("Guillermina Gargiulo", "https://i.ibb.co/LJwn3RF/Guille-Gargiulo.png", "https://www.linkedin.com/in/guillermina-gargiulo-0677181b0/", "ggargiulo@itba.edu.ar", 'HOME.CARGO.CD.GENERALSEC')
   ];
@@ -100,7 +100,7 @@ export class TeamCardComponent implements OnInit {
 
   peopleCSrow2 = [
     new Person("Julián Matías Vuoso", "https://i.ibb.co/dL2XYfF/Juli-Vuoso.jpg", "https://www.linkedin.com/in/julian-vuoso-425788192/", "juvuoso@itba.edu.ar", 'HOME.CARGO.CS.RRPP'),
-    new Person("Juan Gabriel Griggios", "https://i.ibb.co/7JRcVw0/grigio.jpg", "https://ar.linkedin.com/in/juan-gabriel-griggio-816823198/", "jgriggio@itba.edu.ar", 'HOME.CARGO.CS.LOGISTIC'),
+    new Person("Juan Gabriel Griggio", "https://i.ibb.co/7JRcVw0/grigio.jpg", "https://ar.linkedin.com/in/juan-gabriel-griggio-816823198/", "jgriggio@itba.edu.ar", 'HOME.CARGO.CS.LOGISTIC'),
     new Person("Ignacio Alberto Méndez", "https://i.ibb.co/G998BW4/alvaro-mendez.jpg", "https://www.linkedin.com/in/ignacio-m%C3%A9ndez-62b3b1181/", "ignmendez@itba.edu.ar", 'HOME.CARGO.CS.LOGISTIC'),
     new Person("Julián Tallar", "https://i.ibb.co/rx5NyP1/Juli-Tallar.jpg", "https://www.linkedin.com/in/juli%C3%A1n-tallar/", "jtallar@itba.edu.ar", 'HOME.CARGO.CS.LOGISTIC'),
     new Person("Florencia Petrikovich", "https://i.ibb.co/vcfqtQf/flor-petrovich.jpg", "https://www.linkedin.com/in/florencia-petrikovich-a2b3aa1a6/", "fpetrikovich@itba.edu.ar", 'HOME.CARGO.CS.LOGISTIC')
