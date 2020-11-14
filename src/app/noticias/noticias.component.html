@@ -29,7 +29,14 @@
         <div class="spacenav">
         </div>
 
+        <div *ngIf="showLoadingSpinner">
+            <app-loading-spinner>
+
+            </app-loading-spinner>
+        </div>
         <div class="row width1000" fxLayoutAlign="center center">
+
+
             <div *ngFor="let noticia of newsData">
 
                 <div class="col-sm margin-top">

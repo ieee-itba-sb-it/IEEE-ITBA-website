@@ -23,23 +23,21 @@ export class NoticiasComponent implements OnInit {
 
     this.blogService.getDocs();
     this.newsDataObs = this.blogService.docsObs();
-    this.newsDataObs.subscribe(() => this.showLoadingSpinner = false);
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       console.log(data);
-
       this.newsData = [];
-
+      if (data.length > 0){
+        this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
+      }
       for (var i in data) {
         if (data[i].listed) {
           this.newsData.push(data[i]);
         }
       }
-
       this.newsData.sort((a: newsItem, b: newsItem) => (a.date.getTime() > b.date.getTime() ? -1 : 1));
 
     });
-
 
   }
 
