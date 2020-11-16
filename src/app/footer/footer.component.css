@@ -20,6 +20,13 @@ footer {
     position: relative;
     padding-top: 2vmin;
     padding-bottom: 2vmin;
-    top: 50%;
-    transform: translateY(-50%);
+}
+.container{
+    width:100%;
+}
+:host {
+    width:100%;
+}
+.margin-logo{
+    margin:10px;
 }

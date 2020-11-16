@@ -81,7 +81,10 @@ header {
         line-height: 40px;
     }
 }
-
+.height500{
+    height:170px;
+    vertical-align: middle;
+}
 #iconscontainer {
     width: 20%;
     padding-top: 3vmin;

@@ -191,6 +191,15 @@ img {
     vertical-align: middle;
     align-content: center;
 }
+.notopbottomLine {
+    
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: whitesmoke 0px solid;
+    border-bottom: whitesmoke 0px solid;
+    vertical-align: middle;
+    align-content: center;
+}
 #logotext{
     font-family: Calibri, sans-serif;
     text-align: left;
@@ -262,4 +271,7 @@ img {
     color: #ffffff;
     margin:20px;
     max-width:850px;
+}
+.screen-height{
+    height:100%;
 }

@@ -99,6 +99,9 @@ h2{
 .maxwidth600{
     max-width: 600px;
 }
+.maxwidth400{
+    max-width: 400px;
+}
 /* Flex */
 
 @media (max-width: 950px) {

@@ -11,114 +11,132 @@
     <app-navbar-anuncios></app-navbar-anuncios>
 </header>
 
-<div *ngIf="(newsData | async)" class="body" fxLayoutAlign="center center" fxLayout="column">
-    <div class="spacenav">
-    </div>
-    <div fxLayoutAlign="center center" fxLayout="column">
-        <div fxLayoutAlign="center center" fxLayout="column">
-            <p class="author-text">Por {{(newsData | async).author}}</p>
-        </div>
-    </div>
+<body>
+    <!--<div *ngIf="showLoadingSpinner">
+        <app-loading-spinner>
 
-    <div class="topbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <h1 id="logotext">{{(newsData | async).title}} </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div fxLayoutAlign="center center" fxLayout="column">
-        <div fxLayoutAlign="center center" fxLayout="column">
-            <p class="add-margin author-text">{{(newsData | async).shortIntro}}</p>
-        </div>
-    </div>
-
-    <div class="bottomLine">
-
-        <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
-            <div class="add-margin">
-                <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python">
-                </mdb-card-img>
-
-                <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="topbottomLine">
-        <div class="container" fxLayoutAlign="center center" fxLayout="column">
-            <div class="row">
-                <div class="col-sm">
-                    <div [innerHTML]="content" class="add-margin whitetext"> </div>
-                </div>
-            </div>
-        </div>
-        <!--Emoji Rating-->
-        <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
-
-        <div style="margin-bottom:10px" *ngIf="emojisVisible">
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
-                (emojiClick)="rateNews('one', 0)"></ngx-emoji>
-
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
-                (emojiClick)="rateNews('two', 1)"></ngx-emoji>
-
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
-                (emojiClick)="rateNews('grin', 2)">
-            </ngx-emoji>
-
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
-                (emojiClick)="rateNews('joy', 3)">
-            </ngx-emoji>
-
-            <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
-                (emojiClick)="rateNews('heart', 4)"></ngx-emoji>
-        </div>
-        <div class="whitetext-left" *ngIf="isVisbile">Gracias por votar ! </div>
-        <mat-chip-list aria-label="Emoji selection">
-            <mat-chip>
-                {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
-                </ngx-emoji>
-            </mat-chip>
-            <mat-chip>
-                {{(newsData | async).ratings[1]}} <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15">
-                </ngx-emoji>
-            </mat-chip>
-            <mat-chip>
-                {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
-            </mat-chip>
-            <mat-chip>
-                {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
-            </mat-chip>
-            <mat-chip>
-                {{(newsData | async).ratings[4]}} <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15">
-                </ngx-emoji>
-            </mat-chip>
-        </mat-chip-list>
-
-        <!-- Date -->
-        <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
-    </div>
-
-
-    <div class="bottomLine">
-    </div>
-    <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm" >
-                    <h1 id="whitetext">{{(newsData | async).author}}</h1>
-                </div>
-            </div>
-        </div> 
+        </app-loading-spinner>
     </div>-->
 
+    <div class="body" fxLayoutAlign="center center" fxLayout="column">
+        <div class="spacenav">
+        </div>
 
-    <div class="addMargin">
-        <app-footer></app-footer>
+        <div *ngIf="!(newsData | async)">
+            <div class="screen-height">
+                <app-loading-spinner>
+                </app-loading-spinner>
+            </div>
+        </div>
+        
+        <div *ngIf="(newsData | async)" fxLayoutAlign="center center" fxLayout="column">
+            <div fxLayoutAlign="center center" fxLayout="column">
+                <div fxLayoutAlign="center center" fxLayout="column">
+                    <p class="author-text">{{(newsData | async).author}}</p>
+                    
+                </div>
+            </div>
+
+            <div class="notopbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h1 id="logotext">{{(newsData | async).title}} </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayoutAlign="center center" fxLayout="column">
+                <div fxLayoutAlign="center center" fxLayout="column">
+                    <p class="add-margin author-text">{{(newsData | async).shortIntro}}</p>
+                </div>
+            </div>
+
+            <div class="bottomLine">
+
+                <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
+                    <div class="add-margin">
+                        <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python">
+                        </mdb-card-img>
+
+                        <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="topbottomLine">
+                <div class="container" fxLayoutAlign="center center" fxLayout="column">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div [innerHTML]="content" class="add-margin whitetext"> </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Emoji Rating-->
+                <div style="margin-bottom:20px" class="whitetext-left">¿Qué te pareció la noticia?</div>
+
+                <div style="margin-bottom:10px" *ngIf="emojisVisible">
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
+                        (emojiClick)="rateNews('one', 0)"></ngx-emoji>
+
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
+                        (emojiClick)="rateNews('two', 1)"></ngx-emoji>
+
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
+                        (emojiClick)="rateNews('grin', 2)">
+                    </ngx-emoji>
+
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
+                        (emojiClick)="rateNews('joy', 3)">
+                    </ngx-emoji>
+
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
+                        (emojiClick)="rateNews('heart', 4)"></ngx-emoji>
+                </div>
+                <div class="whitetext-left" *ngIf="isVisbile">Gracias por votar ! </div>
+                <mat-chip-list aria-label="Emoji selection">
+                    <mat-chip>
+                        {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
+                        </ngx-emoji>
+                    </mat-chip>
+                    <mat-chip>
+                        {{(newsData | async).ratings[1]}} <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15">
+                        </ngx-emoji>
+                    </mat-chip>
+                    <mat-chip>
+                        {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
+                    </mat-chip>
+                    <mat-chip>
+                        {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
+                    </mat-chip>
+                    <mat-chip>
+                        {{(newsData | async).ratings[4]}} <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15">
+                        </ngx-emoji>
+                    </mat-chip>
+                </mat-chip-list>
+
+                <!-- Date -->
+                <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
+            </div>
+
+
+            <div class="bottomLine">
+            </div>
+            <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column"> 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm" >
+                            <h1 id="whitetext">{{(newsData | async).author}}</h1>
+                        </div>
+                    </div>
+                </div> 
+            </div>-->
+        </div>
+        <div class="add-margin">
+            <app-footer></app-footer>
+        </div>
     </div>
-</div>
+</body>
+</html>

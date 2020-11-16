@@ -159,6 +159,10 @@
 		"TITLE": "IEEE - 2nd Meet Up",
 		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
 	},
+	"IEEENEWS": {
+		"TITLE": "IEEE News",
+		"CONTENT": "¡Accede a la página de noticias de IEEE ITBA!"
+	},
 	"GENERAL": {
 		"ALL": "ALL",
 		"ACTUAL": "ACTUAL"

@@ -19,7 +19,8 @@ export class NoticiaComponent implements OnInit {
   data: newsItem;
   isVisbile: boolean = false;
   emojisVisible: boolean = !this.isVisbile;
-
+  showLoadingSpinner: boolean = true;
+  
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['es']);// esta página esta solo en español
     // translate.setDefaultLang('es');
@@ -36,6 +37,7 @@ export class NoticiaComponent implements OnInit {
         console.log(data.content);
         this.content = data.content;
         this.data = data;
+        this.showLoadingSpinner = false; // significa que la noticia ya esta cargada, sacamos el icono de cargando
       }
     });
   }
