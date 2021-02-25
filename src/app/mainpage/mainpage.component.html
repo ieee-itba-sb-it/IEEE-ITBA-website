@@ -9,12 +9,20 @@
 
 <header>
   <app-navbar></app-navbar>
+  <div class="banner">
+    <img src="assets/image/banner6.jpg" alt="Snow" class="max-width">
+    <div class="main-title">ITBA IEEE</div>
+    <div class="subtitle">Student Branch</div>
+  </div>
 </header>
 
-<body>
 
-  <!-- Inicio -->
-  <div class="topbottomLine" id="home">
+
+<!-- Inicio -->
+
+
+<body>
+  <!--<div class="topbottomLine" id="home">
     <div class="container">
       <div class="row">
         <div class="col-sm" [fxFlex.gt-xs]="20" fxLayoutAlign="center center" fxLayout="column">
@@ -28,7 +36,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Ieeextreme -->
   <!--<div class="bottomLine">
     <div class="card-group" fxLayoutAlign="center center">
@@ -56,7 +64,7 @@
   <!-- IEEENews -->
   <div *ngIf="true">
     <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column">
-      <div class="card-group maxwidth400" >
+      <div class="card-group maxwidth400">
 
         <mdb-card>
           <mdb-card-img src="assets/image/IEEENews3.png">
@@ -68,7 +76,7 @@
             </mdb-card-title>
 
             <mdb-card-text>{{ 'HOME.IEEENEWS.CONTENT' | translate }}</mdb-card-text>
-                
+
             <a class="link-text" [routerLink]="['/noticias']">
               <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
                 <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
@@ -311,7 +319,7 @@
       </div>
     </div>
   </div>
-  
+
   <app-footer></app-footer>
 </body>
 
