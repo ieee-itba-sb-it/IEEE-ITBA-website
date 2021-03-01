@@ -3,9 +3,8 @@ footer {
     position: relative;
     top: 100%;
     align-content: center;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif; 
+    background: linear-gradient(75deg, rgb(172, 183, 235) 0%, rgb(196, 217, 241) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     max-width: 100%;
 }

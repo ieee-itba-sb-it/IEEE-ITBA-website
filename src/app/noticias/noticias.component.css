@@ -1,24 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
-    background-size: cover;
+    background-size: cover; 
 }
 
-.body {
-    padding: 20px;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    /*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
-    background-size: cover;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-}
-
-header {
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    /*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+body {
+    padding: 10%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
@@ -28,22 +17,18 @@ header {
     color: whitesmoke;
 }
 
-
-/*.width400{
-    width: 50%;
-    min-width: 400px;
-    padding:5px;
-}*/
+.shadow {
+    box-shadow: 20px 20px 10px rgb(82, 82, 82);
+}
+ 
 .cardContent{
     margin:20px;
     padding:20px;
 }
 .icon {
     color: whitesmoke;
-}
-/*.news-img{
-    height:100%;
-}*/
+} 
+
 @media (max-width: 960px) {
     .image-container{
         min-width: 100%;

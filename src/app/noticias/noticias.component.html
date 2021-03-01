@@ -7,26 +7,16 @@
     <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
 </head>
 <header>
-    <!-- Icons on right -->
-    <app-navbar-anuncios></app-navbar-anuncios>
+    <app-navbar></app-navbar>
 </header>
 
 <body>
     <div class="body" fxLayoutAlign="center center" fxLayout="column">
-        <!--<div *ngIf="showLoadingSpinner">
-            <app-loading-spinner>
 
-            </app-loading-spinner>
-        </div>-->
-
-        <div class="spacenav">
-        </div>
-        <div class="spacenav">
-        </div>
+        <div class="spacenav"></div>
+        <div class="spacenav"></div>
         <div *ngIf="showLoadingSpinner">
-            <app-loading-spinner>
-
-            </app-loading-spinner>
+            <app-loading-spinner></app-loading-spinner>
         </div>
         <div *ngIf="!showLoadingSpinner" id="home" fxLayoutAlign="center center" fxLayout="column">
             <div class="container">
@@ -46,7 +36,7 @@
             <div *ngFor="let noticia of newsData">
                 <div class="col-sm margin-top">
                     <a href="noticias/{{noticia.reference}}">
-                        <mat-card class="example-card">
+                        <mat-card class="example-card shadow">
                             <mat-card-header class="height500" fxLayoutAlign="center center">
                                 <mat-card-title>{{noticia.title}}</mat-card-title>
                                 <mat-card-subtitle>{{noticia.author}}</mat-card-subtitle>
@@ -62,5 +52,6 @@
         </div>
         <app-footer></app-footer>
     </div>
-    </body>
+</body>
+
 </html>
