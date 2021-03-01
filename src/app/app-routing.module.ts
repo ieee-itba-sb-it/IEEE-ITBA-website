@@ -6,6 +6,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
 import { WieRecruitingComponent } from './wie-recruiting/wie-recruiting.component';
 import { NoticiaComponent } from './noticia/noticia.component';
+import { TeamComponent } from './team/team.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'editNoticia/:id', component: EditarAnuncioComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'sponsors', component: SponsorsComponent },
+  { path: 'team', component: TeamComponent },
   { path: 'news', component: NewsMainpageComponent },
   { path: 'python', component: ForumComponent },
   { path: 'python/f/:forum_title/c/:cat_title/:tid', component: ForumComponent },
@@ -42,7 +44,7 @@ const routes: Routes = [
   { path: 'python/u/:uid/unsubscribe', component: ForumDComponent },
   { path: 'python/u/:uid', component: ForumCComponent },
   { path: 'python/u', component: ForumCComponent },
-  
+
   { path: 'write-news', component: WriteNewsComponent },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }

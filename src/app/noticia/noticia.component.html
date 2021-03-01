@@ -7,8 +7,7 @@
     <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
 </head>
 <header>
-    <!-- Icons on right -->
-    <app-navbar-anuncios></app-navbar-anuncios>
+    <app-navbar></app-navbar>
 </header>
 
 <body>
@@ -28,12 +27,12 @@
                 </app-loading-spinner>
             </div>
         </div>
-        
+
         <div *ngIf="(newsData | async)" fxLayoutAlign="center center" fxLayout="column">
             <div fxLayoutAlign="center center" fxLayout="column">
                 <div fxLayoutAlign="center center" fxLayout="column">
                     <p class="author-text">{{(newsData | async).author}}</p>
-                    
+
                 </div>
             </div>
 
@@ -57,7 +56,8 @@
 
                 <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
                     <div class="add-margin">
-                        <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}" alt="Foto de Curso de Python">
+                        <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}"
+                            alt="Foto de Curso de Python">
                         </mdb-card-img>
 
                         <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
@@ -106,10 +106,12 @@
                         </ngx-emoji>
                     </mat-chip>
                     <mat-chip>
-                        {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15"></ngx-emoji>
+                        {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15">
+                        </ngx-emoji>
                     </mat-chip>
                     <mat-chip>
-                        {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15"></ngx-emoji>
+                        {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15">
+                        </ngx-emoji>
                     </mat-chip>
                     <mat-chip>
                         {{(newsData | async).ratings[4]}} <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15">
@@ -118,7 +120,7 @@
                 </mat-chip-list>
 
                 <!-- Date -->
-                <p class="whitetext-right">{{  ((newsData | async).date ) | date:'medium'}} </p>
+                <p class="whitetext-right">{{ ((newsData | async).date ) | date:'medium'}} </p>
             </div>
 
 
@@ -139,4 +141,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-    color:whitesmoke;
+    color:rgb(23, 46, 148);
     background-color: transparent;
 }
     
@@ -9,7 +9,7 @@
 }
 
 ::ng-deep .mat-expansion-indicator::after {
-    color: whitesmoke;
+    color:rgb(23, 46, 148);
 }
 
 mat-panel-description {
@@ -22,12 +22,12 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-    border: whitesmoke 1px solid;
+    border: rgb(23, 46, 148) 1px solid;
     border-radius: 5vmin;
 }
 
 mat-panel-title {
-    color: whitesmoke;
+    color:rgb(23, 46, 148);
 }
 
 #colorWie{
