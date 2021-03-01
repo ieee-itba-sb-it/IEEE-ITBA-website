@@ -66,6 +66,7 @@ body {
     color: whitesmoke;
     text-align: justify;
 }
+ 
 
 h1 {
     color: whitesmoke;
@@ -132,8 +133,13 @@ h2 {
 }
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-    color: white; 
+    color:  rgb(23, 46, 148);
   }
+
+  /* ink bar */
+::ng-deep .mat-ink-bar {
+    background-color:  rgb(23, 46, 148) !important;
+    }
 
 
 /* Flex */
