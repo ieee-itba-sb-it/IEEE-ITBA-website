@@ -2,30 +2,31 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" id="nav" mdbStickyHeader>
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" href="/home"><img
+        src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a>
+  </mdb-navbar-brand>
 
   <!-- All Items -->
   <links>
-  
+
     <!-- Menu -->
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <button (click)="scrollTo('#home')" class="buttonNavbar" type="button">{{ 'NAVBAR.HOME' | translate }}</button>
+      <li class="nav-item">
+        <button onclick="window.location.href = '/noticias'" class="buttonNavbar" type="button">{{ 'NAVBAR.NEWS' |
+          translate
+          }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#eventos')" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' | translate }}</button>
+        <button onclick="window.location.href = '/team'" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate
+          }}</button>
       </li>
       <li class="nav-item">
-        <button (click)="scrollTo('#iniciativas')" class="buttonNavbar" type="button">{{ 'NAVBAR.INITIATIVES' | translate }}</button>
-      </li>
-      <li class="nav-item">
-        <button (click)="scrollTo('#equipo')" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate }}</button>
-      </li>
-      <li class="nav-item">
-        <button (click)="scrollTo('#contacto')" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' | translate }}</button>
+        <button onclick="window.location.href = '/contact'" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
+          translate
+          }}</button>
       </li>
     </ul>
-    
+
     <!-- Icons on right -->
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
@@ -59,7 +60,7 @@
     </ul>
 
   </links>
-  
+
 </mdb-navbar>
 
 <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
