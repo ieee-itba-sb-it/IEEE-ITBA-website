@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment'
 
+//contact-page
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 //Translations
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -70,6 +72,7 @@ import { ForumComponent } from './forum/forum.component';
 import { ForumBComponent } from './forum-b/forum-b.component';
 import { ForumCComponent } from './forum-c/forum-c.component';
 import { ForumDComponent } from './forum-d/forum-d.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 
 
@@ -110,6 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForumBComponent,
     ForumCComponent,
     ForumDComponent,
+    ContactPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -146,11 +150,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     EmojiModule,
     BarRatingModule,
-    MatChipsModule
-
+    MatChipsModule,
+    NoopAnimationsModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
