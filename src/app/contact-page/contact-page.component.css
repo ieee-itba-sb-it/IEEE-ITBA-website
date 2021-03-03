@@ -2,6 +2,7 @@ body {
 	padding-top: 150px;
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%);
     background-size: cover;
+	min-height: 100%;
 	/*OLDBACKGROUND*/
     /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -74,3 +75,5 @@ textarea{
 	min-height: 60px;
 	max-height: 89px;
 }
+
+
