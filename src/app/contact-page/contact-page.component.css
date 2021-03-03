@@ -40,8 +40,8 @@ h3{
 form.contact {
 	display: flex;
 	flex-direction: column;
-	max-width: 200px;
-	width: 200px;
+	max-width: 400px;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
@@ -51,6 +51,11 @@ input,
 button {
 	margin-bottom: 10px;
 }
+
+.white-text{
+	text-decoration: white;
+}
+
 button {
 	margin-top: 10px;
 	background-color: transparent;

@@ -35,7 +35,7 @@ export class ContactPageComponent implements OnInit {
       formData.append("message", this.form.get("message").value);
       this.isLoading = true; // sending the post request async so it's in progress
       this.submitted = false; // hide the response message on multiple submits
-      this.http.post("YOUR GOOGLE WEB APP URL HERE", formData).subscribe(
+      this.http.post("https://script.google.com/macros/s/AKfycbysqdSLOBqHvn0eyfYgc-i1XU1ZGO_IIrCR_SWRNSKxQSyGeNS3mPRey0bIuKXC2H02/exec", formData).subscribe(
         (response) => {
           // choose the response message
           if (response["result"] == "success") {
