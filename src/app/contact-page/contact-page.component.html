@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+</head>
+<header>
+    <app-navbar-courses></app-navbar-courses>
+</header>
+
+<body>
+    <section id="contact">
+       <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="contacto">Contacto</h1>
+                    <h3>Completá los siguientes datos, nos contactaremos a la brevedad.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
+                        <mat-form-field>
+                          <mat-label>Nombre</mat-label>
+                          <input class="white-text" matInput [formControl]="name" required>
+                          <mat-error *ngIf="name.invalid">Please enter your name</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-label>Email</mat-label>
+                          <input class="white-text" matInput [formControl]="email" placeholder="email@example.com" required>
+                          <mat-error *ngIf="email.invalid">Please enter a valid email</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                          <mat-label>Mensaje</mat-label>
+                          <textarea class="white-text" matInput [formControl]="message" maxlength="256" placeholder="I'm interested in..." required></textarea>
+                          <mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
+                          <mat-error *ngIf="message.invalid">Please enter a message</mat-error>
+                        </mat-form-field>
+                        <button [disabled]="isLoading" class="submit" type="submit">Enviar</button>
+                        <input [formControl]="honeypot" class="hidden" type="text" />
+                        <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
+                          <span class="white-text">{{responseMessage}}</span>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <app-footer></app-footer>
+    
+</body>
+
+</html>

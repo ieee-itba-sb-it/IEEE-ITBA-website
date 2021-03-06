@@ -1,0 +1,79 @@
+body {
+	padding-top: 150px;
+    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%);
+    background-size: cover;
+	min-height: 100%;
+	/*OLDBACKGROUND*/
+    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.contacto{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 36px;
+	letter-spacing: -0.2px;
+	word-spacing: 2.6px;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: normal;
+}
+
+h3{
+	color: #FFFFFF;
+}
+
+.space-up{
+	padding-top: 50px;
+}
+
+.hidden {
+	display: none
+}
+.visible {
+	display: block
+}
+.center-text {
+	text-align: center
+}
+form.contact {
+	display: flex;
+	flex-direction: column;
+	max-width: 400px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	margin-bottom: 50px;
+}
+input,
+button {
+	margin-bottom: 10px;
+}
+
+.white-text{
+	text-decoration: white;
+}
+
+button {
+	margin-top: 10px;
+	background-color: transparent;
+	color: black;
+	border: 1px solid black;
+	padding: 4px 16px;
+	transition: 0.4s;
+	width: 100%;
+	margin-top: 10px;
+}
+button:hover:enabled{
+	color: white;
+	background-color: black;
+}
+
+textarea{
+	min-height: 60px;
+	max-height: 89px;
+}
+
+
