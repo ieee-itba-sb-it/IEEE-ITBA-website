@@ -46,6 +46,16 @@ body {
     text-align: center;
 }
 
+.news-card {
+    height: 25rem;
+    justify-content: center;
+}
+.news-card-img {
+    align-self: center;
+    margin: auto;
+    height: 15rem;
+}
+
 mdb-card {
     border-bottom-left-radius: 5vmin;
     border-bottom-right-radius: 5vmin;

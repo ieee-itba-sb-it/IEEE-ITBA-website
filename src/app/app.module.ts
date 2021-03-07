@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment'
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 //contact-page
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 //Translations
@@ -151,7 +153,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmojiModule,
     BarRatingModule,
     MatChipsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    CarouselModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],

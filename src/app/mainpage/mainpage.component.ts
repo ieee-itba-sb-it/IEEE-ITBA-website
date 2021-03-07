@@ -6,6 +6,8 @@ import { BlogService } from '../blog.service';
 import { newsItem } from '../data-types';
 import { blogCollectionName } from '../secrets';
 
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
@@ -15,6 +17,19 @@ export class MainpageComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   latestNews: newsItem[];
 
+  customOptions: any = {
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    responsiveClass: true,
+    navText: ['<', '>'],
+    responsive: {
+      0: { items: 1 },
+      480: { items: 2 },
+      940: { items: 3 }
+    },
+    nav: true
+  };
 
   constructor(public translate: TranslateService, private blogService: BlogService) {
     translate.addLangs(['en','es']);
