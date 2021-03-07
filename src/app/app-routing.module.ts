@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'python/f/:forum_title/c', component: ForumBComponent },
   { path: 'python/f/:forum_title', component: ForumComponent },
   { path: 'python/f', component: ForumComponent },
-  { path: 'contact-page', component: ContactPageComponent},
+  { path: 'contact', component: ContactPageComponent},
 
   { path: 'python/u/:uid/unsubscribe/:tid', component: ForumCComponent },
   { path: 'python/u/:uid/unsubscribe', component: ForumDComponent },
