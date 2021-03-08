@@ -16,6 +16,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class MainpageComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   latestNews: newsItem[];
+  latestLimit: number = 12;
+  showLoadingSpinner: boolean = true;
 
   customOptions: any = {
     loop: true,
@@ -46,7 +48,15 @@ export class MainpageComponent implements OnInit {
       this.latestNews = data;
       this.latestNews.sort((a: newsItem, b: newsItem) => (a.date.getTime() > b.date.getTime() ? -1 : 1));
 
-      this.latestNews.slice(5, this.latestNews.length -1);
+      let aux: newsItem[] = [];
+      for(var i = 0; i < this.latestNews.length; i++){
+        if(i < this.latestLimit){
+          aux.push(this.latestNews[i]);
+        }
+      }
+
+      this.latestNews = aux;
+      this.showLoadingSpinner = false;
 
       console.log("aca estan las latest news", this.latestNews);
 

@@ -46,6 +46,40 @@ body {
     text-align: center;
 }
 
+.news-container {
+    background: #f0f0f0;
+}
+.news-header{
+    width: 100%;
+}
+
+.news-container-title{
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    float:left;
+}
+
+.news-logo{
+    text-align: center;
+    margin: 0.5rem;
+}
+.news-logo img{
+    height: 5rem;
+    float:left;
+}
+
+
+
+.news-content-flavor {
+    font-size: 1.25rem;
+    margin-top: 1.6rem;
+    float: right;
+}
+
 .news-card {
     height: 25rem;
     justify-content: center;
@@ -54,6 +88,7 @@ body {
     align-self: center;
     margin: auto;
     height: 15rem;
+    object-fit: contain;
 }
 
 mdb-card {
