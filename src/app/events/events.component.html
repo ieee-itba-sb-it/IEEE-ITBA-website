@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+</head>
+
+<header>
+  <app-navbar></app-navbar>
+   
+</header>
+
+<body>
+    <div class="row pt-5 mt-5 mr-5 ml-5 d-flex justify-content-center row-eq-height">
+        
+        <div class="col-5">
+            <!--Clases de Pyhton-->
+            <mdb-card>
+                <mdb-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python"></mdb-card-img>
+                <a>
+                <div class="mask rgba-white-slight"></div>
+                </a>
+
+                <mdb-card-body>
+
+                <mdb-card-title>
+                    <h2>{{ 'HOME.CLASSES.TITLE' | translate }}</h2>
+                </mdb-card-title>
+
+                <hr>
+
+                <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
+
+                <a class="link-text" [routerLink]="['/cursospython']">
+                    <h4 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                    <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                    </h4>
+                </a>
+                </mdb-card-body>
+
+            </mdb-card>
+        </div>
+        <div class="col-5">
+            <!--IEEExtreme-->
+            <mdb-card>
+                <mdb-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme">
+                </mdb-card-img>
+                <a>
+                <div class="mask rgba-white-slight"></div>
+                </a>
+
+                <mdb-card-body>
+
+                <mdb-card-title>
+                    <h2>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h2>
+                </mdb-card-title>
+
+                <hr>
+
+                <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
+
+                <a class="link-text" [routerLink]="['/ieeextreme']">
+                    <h4 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                    <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                    </h4>
+                </a>
+                </mdb-card-body>
+
+            </mdb-card>
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+
+</body>
+
+</html>
