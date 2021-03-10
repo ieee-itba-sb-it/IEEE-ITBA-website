@@ -5,10 +5,10 @@ html {
 
 body {
     padding: 10%;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    /*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    padding-top: 5%;
+    padding-bottom: 0%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
@@ -22,16 +22,17 @@ body {
 .topbottomLine {
     padding-top: 5vmin;
     padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
+    border-top: rgb(10,27,103) 2px solid;
+    border-bottom: rgb(10,27,103) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
 
+
 .bottomLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
-    border-bottom: whitesmoke 2px solid;
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
+    border-bottom: rgb(10,27,103) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -55,6 +56,10 @@ body {
     text-align: center;
 }
 
+.extremeLogo{
+    width: 35%;
+}
+
 .col-sm {
     margin-top: 1vmin;
     margin-bottom: 1vmin;
@@ -62,7 +67,7 @@ body {
 }
 
 .transparent {
-    background-color: rgba(245, 245, 245, 0.3);
+    background-color: grey;
     padding: 3vmin;
     border-radius: 5vmin;
     color: whitesmoke;
@@ -83,13 +88,14 @@ mdb-card-text {
 }
 
 h1 {
-    color: whitesmoke;
+    color: black;
     font-size: 5vmin;
     font-weight: lighter;
 }
 
 .right {
     text-align: right;
+    color: black;
 }
 
 #mailus {
@@ -97,16 +103,16 @@ h1 {
     font-size: 15vmin;
 }
 
-.whitebckg {
+.blackbckg {
     background-color: transparent;
-    color: black;
-    background-color: whitesmoke;
+    color: white;
+    background-color: grey;
     padding: 3vmin;
     border-radius: 5vmin;
 }
 
 .facts {
-    color: whitesmoke;
+    color: black;
     text-align: center;
     font-weight: lighter;
 }
@@ -116,12 +122,22 @@ h1 {
 }
 
 h2 {
-    color: whitesmoke;
+    color: black;
 }
 
 .sponsorContact {
     color: whitesmoke;
-    background-color: rgba(245, 245, 245, 0.3);
+    background-color: grey;
+    text-align: center;
+    font-weight: lighter;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+
+.sponsor {
+    color: whitesmoke;
+    background-color: lightgray;
     text-align: center;
     font-weight: lighter;
     padding: 3vmin;
@@ -137,6 +153,21 @@ h2 {
 @media (max-width: 950px) {
     body {
         padding-top: 20%;
+    }
+
+    .extremeLogo{
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 25%;
+    }
+
+    .extremeLogo{
+        width: 70%;
     }
 
 }
