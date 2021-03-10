@@ -166,5 +166,16 @@
 	"GENERAL": {
 		"ALL": "ALL",
 		"ACTUAL": "ACTUAL"
+	},
+	"CONTACT": {
+		"TITLE": "Contact",
+		"SUBTITLE": "Complete the following information, we will contact you shortly.",
+		"NAME": "Name",
+		"NAME_ERROR": "Please enter your name",
+		"EMAIL": "Email",
+		"EMAIL_ERROR": "Please enter a valid email",
+		"MESSAGE": "Message",
+		"MESSAGE_ERROR": "Please enter a message",
+		"SEND": "Send"
 	}
 }

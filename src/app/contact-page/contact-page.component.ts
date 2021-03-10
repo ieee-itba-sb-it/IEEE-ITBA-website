@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-page',
@@ -16,7 +17,13 @@ export class ContactPageComponent implements OnInit {
   submitted: boolean = false; // show and hide the success message
   isLoading: boolean = false; // disable the submit button if we're loading
   responseMessage: string; // the response message to show to the user
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, public translate: TranslateService) {
+    scroll(0,0);
+    translate.addLangs(['en','es']);
+    translate.setDefaultLang('es');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/es|en/)? browserLang:'en');
+    
     this.form = this.formBuilder.group({
       name: this.name,
       email: this.email,
@@ -24,6 +31,15 @@ export class ContactPageComponent implements OnInit {
       honeypot: this.honeypot
     });
   }
+  
+  useLanguage(language: string) {
+    this.translate.use(language);    
+  }
+
+
+
+
+
   ngOnInit(): void {
   }
   onSubmit() {
