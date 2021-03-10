@@ -91,6 +91,10 @@ body {
     object-fit: contain;
 }
 
+.section-title {
+    color: #181818;
+}
+
 mdb-card {
     border-bottom-left-radius: 5vmin;
     border-bottom-right-radius: 5vmin;
@@ -159,7 +163,9 @@ h2{
     bottom: 2em;
     left: 2em;
     font-size: 3em;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
+    font-weight: 700;
+    letter-spacing: 2px;
   }
 
   .subtitle {
