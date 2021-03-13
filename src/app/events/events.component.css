@@ -18,3 +18,62 @@ body {
     display: -ms-flexbox;
     display:         flex;
   }
+
+  .card-group-row{
+    display:flex;
+}
+.card-group-col{
+    flex: 1;
+
+    padding: 1em;
+    /*border:solid;*/
+}
+@media screen and (max-width: 700px) {
+    .card-group-row{
+        display: inline-block;
+    }
+    .card-group-col {
+        width: 90%;
+        margin-bottom: 25px;
+    }
+}
+.event-card {
+    margin: auto;
+    height: 100%;
+}
+
+.event-card-img {
+    width: 100%;
+}
+
+.ieeextreme-filter {
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+}
+.ieeextreme-text {
+    top: 60%;
+}
+
+.cursopython-filter {
+    filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
+}
+
+.cursopython-text {
+    top: 10%;
+}
+
+
+.image-with-text {
+    position: relative;
+    width: 100%;
+}
+.text-on-image {
+    position:absolute;
+    text-align: center;
+    /*top: 50%;*/
+    width: 100%;
+    /*font-size: min(4rem, 5vw);*/
+    font-size: calc(4vw);
+    font-weight: 900;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 1px;
+}

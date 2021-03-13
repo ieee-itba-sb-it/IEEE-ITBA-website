@@ -30,7 +30,7 @@ body {
 }
 
 p{
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     margin-top: 3vmin;
     margin-bottom: 3vmin;
     background: rgba(245, 245, 245, 0.2);
@@ -40,7 +40,7 @@ p{
 }
 
 h1 {
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-size: 5vmin;
     font-weight: lighter;
 }
@@ -88,7 +88,7 @@ h1 {
 #homeText { display: inline; }
 
 #titleBar h1 {
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     vertical-align: middle;
     margin-left: auto;
     padding-left: 1vmin;

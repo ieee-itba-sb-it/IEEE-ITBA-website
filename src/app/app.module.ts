@@ -25,7 +25,6 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { myEasing } from './easing';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { IniciativasComponent } from './iniciativas/iniciativas.component';
-import { ContactoComponent } from './contacto/contacto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogComponent } from './blog/blog.component';
 import { BlogContentComponent } from './blog-content/blog-content.component';
@@ -88,8 +87,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     ItbaIeeeMarcaComponent,
     SponsorsComponent,
-    IniciativasComponent,
-    ContactoComponent,
+    IniciativasComponent, 
     BlogComponent,
     BlogContentComponent,
     BlogTitleComponent,
