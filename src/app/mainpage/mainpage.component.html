@@ -129,15 +129,18 @@
 
   <!-- Eventos (material angular) -->
   <div class="bottomLine">
-    <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>
+    <h1 id="eventos" class="section-title">{{ 'NAVBAR.EVENTS' | translate }}</h1>
     <div class="card-group-row">
       <div class="card-group-col">
         <!--IEEExtreme-->
         <mat-card class="event-card">
-          <img mat-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme" class="event-card-img"/>
+          <div class="image-with-text">
+            <img mat-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme" class="event-card-img ieeextreme-filter"/>
+            <p class="text-on-image ieeextreme-text">{{ 'HOME.IEEEXTREME.TITLE' | translate }}</p>
+          </div>
           <mat-card-content class="mt-2">
             <mat-card-title>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</mat-card-title>
-            <p>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</p>
+            <p class="lead">{{ 'HOME.IEEEXTREME.TEXT' | translate }}</p>
             <a class="link-text" [routerLink]="['/ieeextreme']">
               <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
                 <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
@@ -150,10 +153,13 @@
       <div class="card-group-col">
         <!--Clases de Pyhton-->
         <mat-card class="event-card">
-          <img mat-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python" class="event-card-img"/>
+          <div class="image-with-text">
+            <img mat-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python" class="event-card-img cursopython-filter"/>
+            <p class="text-on-image cursopython-text">{{ 'HOME.CLASSES.TITLE' | translate }}</p>
+          </div>
           <mat-card-content class="mt-2">
             <mat-card-title>{{ 'HOME.CLASSES.TITLE' | translate }}</mat-card-title>
-            <p>{{ 'HOME.CLASSES.TEXT' | translate }}</p>
+            <p class="lead">{{ 'HOME.CLASSES.TEXT' | translate }}</p>
             <a class="link-text" [routerLink]="['/cursospython']">
               <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
                 <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
