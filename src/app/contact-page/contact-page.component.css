@@ -7,6 +7,19 @@ body {
 	padding-top: 160px;
 }
 
+.topbottomLine { 
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
+    vertical-align: middle;
+    align-content: center;
+    
+}
+
+.page-title {
+    color: #0d47a1;
+	font-size: 2.5em
+}
+
 .contacto{
 	font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 36px;

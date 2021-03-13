@@ -30,6 +30,18 @@ mat-panel-title {
     color:rgb(23, 46, 148);
 }
 
+.topbottomLine { 
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
+    vertical-align: middle;
+    align-content: center;
+    
+}
+
+.page-title {
+    color: #0d47a1
+}
+
 #colorWie{
     color: rgb(177, 138, 240);
     /* text-shadow: 0px 0px 5px rgb(177, 138, 240); */
