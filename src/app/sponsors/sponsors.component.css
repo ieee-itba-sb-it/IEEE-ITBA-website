@@ -17,13 +17,16 @@ body {
     border-radius: 5vmin;
 }
 
-.topbottomLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
+.topbottomLine { 
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
+    
+}
+
+.page-title {
+    color: #0d47a1
 }
 
 .bottomLine {
@@ -37,7 +40,7 @@ body {
 .topLine {
     padding-top: 5vmin;
     padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
+    border-top: rgb(92, 91, 91) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -69,7 +72,7 @@ body {
  
 
 h1 {
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-size: 5vmin;
     font-weight: lighter;
 }
