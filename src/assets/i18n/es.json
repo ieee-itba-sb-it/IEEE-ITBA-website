@@ -178,5 +178,16 @@
 	"WIERECRUITING": {
 		"TITLE": "WIE ITBA Recruiting",
 		"CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
+	},
+	"CONTACT": {
+		"TITLE": "Contacto",
+		"SUBTITLE": "Completá los siguientes datos, nos contactaremos a la brevedad.",
+		"NAME": "Nombre",
+		"NAME_ERROR": "Por favor, ingresá tu nombre",
+		"EMAIL": "Email",
+		"EMAIL_ERROR": "Por favor, ingresá un email válido",
+		"MESSAGE": "Mensaje",
+		"MESSAGE_ERROR": "Por favor, ingresá un mensaje",
+		"SEND": "Enviar"
 	}
 }
