@@ -1,11 +1,10 @@
 body {
-	padding-top: 150px;
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%);
+    padding: 10%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
-	min-height: 100%;
-	/*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	padding-top: 160px;
 }
 
 .contacto{
@@ -13,7 +12,7 @@ body {
 	font-size: 36px;
 	letter-spacing: -0.2px;
 	word-spacing: 2.6px;
-	color: #FFFFFF;
+	color: rgb(23, 46, 148);
 	font-weight: 700;
 	text-decoration: none solid rgb(68, 68, 68);
 	font-style: normal;
@@ -21,7 +20,7 @@ body {
 }
 
 h3{
-	color: #FFFFFF;
+	color: rgb(68, 68, 68);
 }
 
 .space-up{
@@ -40,7 +39,7 @@ h3{
 form.contact {
 	display: flex;
 	flex-direction: column;
-	max-width: 400px;
+	max-width: 600px;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
@@ -63,17 +62,19 @@ button {
 	border: 1px solid black;
 	padding: 4px 16px;
 	transition: 0.4s;
-	width: 100%;
+	width: 40%;
+	min-width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
 	margin-top: 10px;
 }
 button:hover:enabled{
 	color: white;
-	background-color: black;
+	background-color: rgb(23, 46, 148);
 }
 
 textarea{
 	min-height: 60px;
 	max-height: 89px;
 }
-
-

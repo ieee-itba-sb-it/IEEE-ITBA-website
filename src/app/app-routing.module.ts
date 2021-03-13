@@ -18,6 +18,7 @@ import { ForumBComponent } from './forum-b/forum-b.component';
 import { ForumCComponent } from './forum-c/forum-c.component';
 import { ForumDComponent } from './forum-d/forum-d.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { EventsComponent } from './events/events.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'python/f/:forum_title/c', component: ForumBComponent },
   { path: 'python/f/:forum_title', component: ForumComponent },
   { path: 'python/f', component: ForumComponent },
-  { path: 'contact-page', component: ContactPageComponent},
+  { path: 'contact', component: ContactPageComponent},
+  { path: 'events', component: EventsComponent},
 
   { path: 'python/u/:uid/unsubscribe/:tid', component: ForumCComponent },
   { path: 'python/u/:uid/unsubscribe', component: ForumDComponent },
