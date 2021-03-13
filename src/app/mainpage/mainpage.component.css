@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    padding: 10%;
+    padding: 10% 10% 0 10%;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
@@ -45,6 +45,117 @@ body {
 .col-sm {
     text-align: center;
 }
+
+.news-container {
+    background: #f0f0f0;
+}
+.news-header{
+    width: 100%;
+}
+
+.news-container-title{
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+    margin-right: 1rem;
+    float:left;
+}
+
+.news-logo{
+    text-align: center;
+    margin: 0.5rem;
+}
+.news-logo img{
+    height: 5rem;
+    float:left;
+}
+
+
+
+.news-content-flavor {
+    font-size: 1.25rem;
+    margin-top: 1.6rem;
+    float: right;
+}
+
+.news-card {
+    height: 25rem;
+    justify-content: center;
+}
+.news-card-img {
+    align-self: center;
+    margin: auto;
+    height: 15rem;
+    object-fit: contain;
+}
+
+.section-title {
+    color: #181818;
+}
+
+
+.card-group-row{
+    display:flex;
+}
+.card-group-col{
+    flex: 1;
+
+    padding: 1em;
+    /*border:solid;*/
+}
+@media screen and (max-width: 700px) {
+    .card-group-row{
+        display: inline-block;
+    }
+    .card-group-col {
+        width: 90%;
+        margin-bottom: 25px;
+    }
+}
+.event-card {
+    margin: auto;
+    height: 100%;
+}
+
+.event-card-img {
+    width: 100%;
+}
+
+.ieeextreme-filter {
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+}
+.ieeextreme-text {
+    top: 60%;
+}
+
+.cursopython-filter {
+    filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
+}
+
+.cursopython-text {
+    top: 10%;
+}
+
+
+.image-with-text {
+    position: relative;
+    width: 100%;
+}
+.text-on-image {
+    position:absolute;
+    text-align: center;
+    /*top: 50%;*/
+    width: 100%;
+    /*font-size: min(4rem, 5vw);*/
+    font-size: calc(4vw);
+    font-weight: 900;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 1px;
+}
+
+
 
 mdb-card {
     border-bottom-left-radius: 5vmin;
@@ -114,7 +225,9 @@ h2{
     bottom: 2em;
     left: 2em;
     font-size: 3em;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
+    font-weight: 700;
+    letter-spacing: 2px;
   }
 
   .subtitle {
