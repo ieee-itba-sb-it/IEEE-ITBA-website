@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    padding: 10%;
+    padding: 10% 10% 0 10%;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
@@ -93,6 +93,24 @@ body {
 
 .section-title {
     color: #181818;
+}
+
+.card-group-row{
+    display:flex;
+}
+.card-group-col{
+    flex: 1;
+
+    padding: 1em;
+    /*border:solid;*/
+}
+.event-card {
+    margin: auto;
+    height: 100%;
+}
+
+.event-card-img {
+    width: 100%;
 }
 
 mdb-card {

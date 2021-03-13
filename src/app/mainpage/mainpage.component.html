@@ -126,66 +126,47 @@
       </div>
     </div>
   </div>
-  <!-- Eventos -->
+
+  <!-- Eventos (material angular) -->
   <div class="bottomLine">
     <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>
-    <div class="card-group">
+    <div class="card-group-row">
+      <div class="card-group-col">
+        <!--IEEExtreme-->
+        <mat-card class="event-card">
+          <img mat-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme" class="event-card-img"/>
+          <mat-card-content class="mt-2">
+            <mat-card-title>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</mat-card-title>
+            <p>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</p>
+            <a class="link-text" [routerLink]="['/ieeextreme']">
+              <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+              </h5>
+            </a>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-      <!--IEEExtreme-->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme">
-        </mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+      <div class="card-group-col">
+        <!--Clases de Pyhton-->
+        <mat-card class="event-card">
+          <img mat-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python" class="event-card-img"/>
+          <mat-card-content class="mt-2">
+            <mat-card-title>{{ 'HOME.CLASSES.TITLE' | translate }}</mat-card-title>
+            <p>{{ 'HOME.CLASSES.TEXT' | translate }}</p>
+            <a class="link-text" [routerLink]="['/cursospython']">
+              <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+              </h5>
+            </a>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <hr>
-
-          <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
-
-          <a class="link-text" [routerLink]="['/ieeextreme']">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a>
-        </mdb-card-body>
-
-      </mdb-card>
-
-      <!--Clases de Pyhton-->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.CLASSES.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <hr>
-
-          <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
-
-          <a class="link-text" [routerLink]="['/cursospython']">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a>
-        </mdb-card-body>
-
-      </mdb-card>
     </div>
 
   </div>
+
   <div *ngIf="false">
     <!-- Iniciativas -->
     <div class="bottomLine">
@@ -308,26 +289,10 @@
     </div>
   </div>
 
-  <!-- Contacto -->
-  <div class="noLine">
-    <h1 id="contacto">{{ 'NAVBAR.CONTACT' | translate }}</h1>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="whiteRoundedBlock" style="text-align: left;">{{ 'HOME.CONTACTUS.1' | translate }}<a
-              href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>.{{ 'HOME.CONTACTUS.2' | translate }}</div>
-        </div>
-        <div class="col-sm" id="mailus">
-          <a href="mailto:ieee@itba.edu.ar" class="whitebckg"><i class="fas fa-at"></i>
-            <h2>Mail Us&nbsp;<i class="fas fa-reply"></i></h2>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <app-footer></app-footer>
+
 </body>
+<app-footer></app-footer>
 
 
 </html>
