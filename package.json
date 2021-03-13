@@ -45,6 +45,7 @@
     "material-design-icons": "^3.0.1",
     "ngx-bar-rating": "^1.1.0",
     "ngx-countdown": "^9.0.0",
+    "ngx-owl-carousel-o": "^5.0.0",
     "ngx-page-scroll": "^7.0.0",
     "ngx-page-scroll-core": "^7.0.0",
     "ngx-quill": "^12.0.1",

@@ -24,31 +24,55 @@
 <body>
   <!-- IEEENews -->
   <div *ngIf="true">
-    <div class="bottomLine" fxLayoutAlign="center center" fxLayout="column">
-      <div class="card-group maxwidth400">
-
-        <mdb-card>
-          <mdb-card-img src="assets/image/IEEENews3.png">
-          </mdb-card-img>
-          <mdb-card-body>
-
-            <mdb-card-title>
-              <h4>{{ 'HOME.IEEENEWS.TITLE' | translate }}</h4>
-            </mdb-card-title>
-
-            <mdb-card-text>{{ 'HOME.IEEENEWS.CONTENT' | translate }}</mdb-card-text>
-
+    <mat-card class="news-container">
+      <mat-card-header>
+        <div class="row news-header">
+          <div class="col news-logo">
             <a class="link-text" [routerLink]="['/noticias']">
-              <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-                <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-              </h5>
+              <img src="assets/image/IEEENews3.png" class="news-logo">
+              <h3 class="news-container-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h3>
             </a>
-          </mdb-card-body>
+          </div>
+          <div class="col">
+            <p class="news-content-flavor">
+              {{ 'HOME.IEEENEWS.CONTENT' | translate }}
+              <a class="link-text" [routerLink]="['/noticias']">
+                <h4 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                  <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                </h4>
+              </a>
+            </p>
 
-        </mdb-card>
+          </div>
+        </div>
+      </mat-card-header>
 
+      <div *ngIf="showLoadingSpinner">
+        <app-loading-spinner></app-loading-spinner>
       </div>
-    </div>
+      <div *ngIf="latestNews">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let noticia of latestNews">
+            <ng-template carouselSlide >
+              <a href="noticias/{{noticia.reference}}">
+                <mat-card class="news-card">
+                    <mat-card-header class="height500" fxLayoutAlign="center center">
+                        <mat-card-title>{{ noticia.title }}</mat-card-title>
+                        <mat-card-subtitle>{{ noticia.author }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img
+                      class="news-card-img" mat-card-image
+                      src="{{noticia.imageUrl}}" alt="Foto de Noticia"
+                    >
+                </mat-card>
+              </a>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+
+    </mat-card>
+
   </div>
 
 
@@ -102,66 +126,53 @@
       </div>
     </div>
   </div>
-  <!-- Eventos -->
+
+  <!-- Eventos (material angular) -->
   <div class="bottomLine">
-    <h1 id="eventos">{{ 'NAVBAR.EVENTS' | translate }}</h1>
-    <div class="card-group">
+    <h1 id="eventos" class="section-title">{{ 'NAVBAR.EVENTS' | translate }}</h1>
+    <div class="card-group-row">
+      <div class="card-group-col">
+        <!--IEEExtreme-->
+        <mat-card class="event-card">
+          <div class="image-with-text">
+            <img mat-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme" class="event-card-img ieeextreme-filter"/>
+            <p class="text-on-image ieeextreme-text">{{ 'HOME.IEEEXTREME.TITLE' | translate }}</p>
+          </div>
+          <mat-card-content class="mt-2">
+            <mat-card-title>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</mat-card-title>
+            <p class="lead">{{ 'HOME.IEEEXTREME.TEXT' | translate }}</p>
+            <a class="link-text" [routerLink]="['/ieeextreme']">
+              <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+              </h5>
+            </a>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-      <!--IEEExtreme-->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme">
-        </mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+      <div class="card-group-col">
+        <!--Clases de Pyhton-->
+        <mat-card class="event-card">
+          <div class="image-with-text">
+            <img mat-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python" class="event-card-img cursopython-filter"/>
+            <p class="text-on-image cursopython-text">{{ 'HOME.CLASSES.TITLE' | translate }}</p>
+          </div>
+          <mat-card-content class="mt-2">
+            <mat-card-title>{{ 'HOME.CLASSES.TITLE' | translate }}</mat-card-title>
+            <p class="lead">{{ 'HOME.CLASSES.TEXT' | translate }}</p>
+            <a class="link-text" [routerLink]="['/cursospython']">
+              <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
+                <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+              </h5>
+            </a>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <hr>
-
-          <mdb-card-text>{{ 'HOME.IEEEXTREME.TEXT' | translate }}</mdb-card-text>
-
-          <a class="link-text" [routerLink]="['/ieeextreme']">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a>
-        </mdb-card-body>
-
-      </mdb-card>
-
-      <!--Clases de Pyhton-->
-      <mdb-card>
-        <mdb-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-
-        <mdb-card-body>
-
-          <mdb-card-title>
-            <h4>{{ 'HOME.CLASSES.TITLE' | translate }}</h4>
-          </mdb-card-title>
-
-          <hr>
-
-          <mdb-card-text>{{ 'HOME.CLASSES.TEXT' | translate }}</mdb-card-text>
-
-          <a class="link-text" [routerLink]="['/cursospython']">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a>
-        </mdb-card-body>
-
-      </mdb-card>
     </div>
 
   </div>
+
   <div *ngIf="false">
     <!-- Iniciativas -->
     <div class="bottomLine">
@@ -255,26 +266,39 @@
       </div>
     </div>
   </div>
-  <!-- Contacto -->
-  <div class="noLine">
-    <h1 id="contacto">{{ 'NAVBAR.CONTACT' | translate }}</h1>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="whiteRoundedBlock" style="text-align: left;">{{ 'HOME.CONTACTUS.1' | translate }}<a
-              href="mailto:ieee@itba.edu.ar">ieee@itba.edu.ar</a>.{{ 'HOME.CONTACTUS.2' | translate }}</div>
-        </div>
-        <div class="col-sm" id="mailus">
-          <a href="mailto:ieee@itba.edu.ar" class="whitebckg"><i class="fas fa-at"></i>
-            <h2>Mail Us&nbsp;<i class="fas fa-reply"></i></h2>
-          </a>
+
+  <!-- Sponsors Actuales -->
+  <div class="bottomLine">
+    <div class="row">
+      <h1 class="section-title">Sponsors</h1>
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <img src="assets/image/sponsors/jpmorgan.png" height="70vmin" alt="Logo Innovid"
+                    style="position: relative; top: 50%; transform: translateY(-50%);">
+            </div>
+            <div class="col-sm">
+                <img src="assets/image/sponsors/innovid.png" height="35vmin" alt="Logo Innovid"
+                    style="position: relative; top: 50%; transform: translateY(-50%);">
+            </div>
+            <div class="col-sm">
+                <img src="assets/image/sponsors/eiwa.png" height="180vmin" alt="Logo Eiwa"
+                    style="position: relative; top: 50%; transform: translateY(-50%);">
+            </div>
         </div>
       </div>
+
+
     </div>
   </div>
 
-  <app-footer></app-footer>
+
+
 </body>
+<app-footer></app-footer>
 
 
 </html>
