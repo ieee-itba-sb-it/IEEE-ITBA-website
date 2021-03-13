@@ -3,18 +3,26 @@
 
         <mdb-card *ngFor="let person of people">
 
-            <mdb-card-img [src]="person.photo" alt="Foto de {{person.name}}"></mdb-card-img>
-            <a><div class="mask rgba-white-slight"></div></a>
-        
-            <mdb-card-body cascade="true" class="text-center pb-0 px-0">
-                <h4><strong>{{person.name}}</strong></h4>
-                <h5>{{ person.cargo | translate }}</h5>
-        
-                <!-- Linkedin -->
-                <a mdbWavesEffect class="cardIcon" href="{{person.linkedin}}"><i class="fab fa-linkedin"></i></a>
-                <!-- Mail -->
-                <a mdbWavesEffect class="cardIcon" href="mailto:{{person.mail}}"><i class="fas fa-envelope"></i></a>
-            </mdb-card-body>
+            <div *ngIf="person.name=='white'; else elseBlock">
+                <div class="white-box">
+                </div>
+            </div>
+            
+            
+            <ng-template #elseBlock>
+                <mdb-card-img [src]="person.photo" alt="Foto de {{person.name}}"></mdb-card-img>
+                <a><div class="mask rgba-white-slight"></div></a>
+            
+                <mdb-card-body cascade="true" class="text-center pb-0 px-0">
+                    <h4><strong>{{person.name}}</strong></h4>
+                    <h5>{{ person.cargo | translate }}</h5>
+            
+                    <!-- Linkedin -->
+                    <a mdbWavesEffect class="cardIcon" href="{{person.linkedin}}"><i class="fab fa-linkedin"></i></a>
+                    <!-- Mail -->
+                    <a mdbWavesEffect class="cardIcon" href="mailto:{{person.mail}}"><i class="fas fa-envelope"></i></a>
+                </mdb-card-body>
+            </ng-template>
         
         </mdb-card>
 
