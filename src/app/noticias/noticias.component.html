@@ -12,7 +12,7 @@
 
 <body>
     <div class="body" fxLayoutAlign="center center" fxLayout="column">
-        
+
         <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
             <div class="container">
                 <div class="row">
@@ -48,10 +48,10 @@
                     <a href="noticias/{{noticia.reference}}">
                         <mat-card class="example-card shadow">
                             <mat-card-header class="height500" fxLayoutAlign="center center">
-                                <mat-card-title>{{noticia.title}}</mat-card-title>
-                                <mat-card-subtitle>{{noticia.author}}</mat-card-subtitle>
+                                <mat-card-title class="wordWrapping">{{noticia.title}}</mat-card-title>
+                                <mat-card-subtitle class="wordWrapping">{{noticia.author}}</mat-card-subtitle>
                             </mat-card-header>
-                            <img height="200px" mat-card-image src="{{noticia.imageUrl}}" alt="Foto de Noticia">
+                            <img height="200px" mat-card-image src="{{noticia.imageUrl}}" alt="Foto de Noticia" class="newsImg">
                         </mat-card>
                     </a>
                 </div>
