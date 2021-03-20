@@ -152,14 +152,14 @@ img {
 @media (max-width: 600px) {
     #homeText { display: none; }
     #homebutton { height: 10vmin; }
-    .halfLeft { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfLeft {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
-    .halfRight { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfRight {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
     #anotate {
@@ -172,7 +172,7 @@ img {
 }
 
 .topbottomLine {
-    
+
     padding-top: 5vmin;
     padding-bottom: 5vmin;
     border-top: whitesmoke 2px solid;
@@ -181,7 +181,7 @@ img {
     align-content: center;
 }
 .notopbottomLine {
-    
+
     padding-top: 5vmin;
     padding-bottom: 5vmin;
     border-top: whitesmoke 0px solid;
@@ -195,19 +195,20 @@ img {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    color:#ffffff;
+   /* color:#ffffff;*/
+    font-weight: 600;
     font-size:50px;
     line-height: 50px;
 }
 .whitetext{
-    color:#ffffff;
+   /* color:#ffffff; */
     line-height: 40px;
     max-width:850px;
     font-size: 20px;
     text-align: left;
 }
 .whitetext-photo-text{
-    color:#ffffff;
+   /* color:#ffffff; */
     font-size:15px;
     text-align: left;
     margin:10px;
@@ -220,13 +221,13 @@ img {
     font-size: 20px;
     font-weight: bold;
     text-align: right;
-    color: #ffffff;
+    /* color: #ffffff; */
 }
 .whitetext-left{
     font-size: 20px;
     font-weight: bold;
     text-align: left;
-    color: #ffffff;
+    /* color: #ffffff; */
 }
 .whiteRoundedBlock{
     background-color: whitesmoke;
@@ -241,7 +242,7 @@ img {
     max-width: 700px;
 }
 .blog-img{
-    
+
     margin:20px;
 }
 .blog-card{
@@ -257,10 +258,17 @@ img {
 }
 .author-text{
     font-size:20px;
-    color: #ffffff;
+    color:rgb(90, 90, 90);
+    /*color: #ffffff;*/
     margin:20px;
     max-width:850px;
 }
 .screen-height{
     height:100%;
+}
+
+.word-break{
+    word-wrap:break-word;
+
+    word-break: break-word;
 }

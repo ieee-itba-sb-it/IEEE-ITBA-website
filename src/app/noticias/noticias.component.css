@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
-    background-size: cover; 
+    background-size: cover;
 }
 
 body {
@@ -12,12 +12,12 @@ body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-    
+
 }
 
 .page-title {
@@ -33,14 +33,14 @@ body {
 .shadow {
     box-shadow: 20px 20px 10px rgb(82, 82, 82);
 }
- 
+
 .cardContent{
     margin:20px;
     padding:20px;
 }
 .icon {
     color: whitesmoke;
-} 
+}
 
 @media (max-width: 960px) {
     .image-container{
@@ -65,7 +65,7 @@ body {
 @media (min-width: 960px){
 
     .width1000{
-        
+
         width:90%;
     }
     .card-container{
@@ -199,7 +199,7 @@ footer {
 
 img {
     position: relative;
-    top: 50%; 
+    top: 50%;
 }
 
 /* Flex */
@@ -213,14 +213,14 @@ img {
 @media (max-width: 600px) {
     #homeText { display: none; }
     #homebutton { height: 10vmin; }
-    .halfLeft { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfLeft {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
-    .halfRight { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfRight {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
     #anotate {
@@ -285,7 +285,7 @@ img {
     border-radius: 5vmin;
 }
 .blog-img{
-    
+
     margin:20px;
 }
 .blog-card{
@@ -313,7 +313,7 @@ img {
 .example-card {
     max-width: 300px;
   }
-  
+
 .example-header-image {
 background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
 background-size: cover;
@@ -322,4 +322,13 @@ background-size: cover;
 .margin-top{
     margin-top: 50px;
 }
-  
+
+
+.wordWrapping{
+    word-wrap:break-word;
+    word-break: break-word;
+}
+
+.newsImg {
+    object-fit: contain;
+}
