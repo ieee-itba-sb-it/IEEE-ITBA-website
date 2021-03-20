@@ -34,26 +34,38 @@
 				"GENERALASSIST": "Asistente General",
 				"TEAMMENTOR": "Mentor de Equipos Competitivos",
 				"VOLUNTEER": "Voluntario"
+			}
+		},
+		"CARGO2021": {
+			"CD": {
+				"PRESIDENT": "President"
 			},
-			"WIE": {
-				"PRESIDENT": "Presidente",
-				"VP": "Vicepresidente",
-				"TREASURER": "Tesorera",
-				"COMM": "Comunicación",
-				"PLANNING": "Planificación",
-				"FEMVOLUNTEER": "Voluntaria",
-				"VOLUNTEER": "Voluntario",
-				"SOCIAL": "Redes Sociales",
-				"WEBMASTER": "Webmaster & Editor de WIE"
+			"EDUCATION": {
+				"TITLE": "Educación",
+				"CO-DIRECTOR": "Co-Director",
+				"ASSISTANT": "Educador"
 			},
-			"CS": {
-				"PRESIDENT": "Presidente",
-				"VP": "Vicepresidente",
-				"GENERALSEC": "Secretario General",
-				"TREASURER": "Tesorero",
-				"RRPP": "Relaciones públicas",
-				"LOGISTIC": "Logística",
-				"COMPETITIVEPROGRAMMING": "Programación Competitiva"
+			"FUNDRAISING": {
+				"ASSISTANT": "Fundraiser",
+				"CO-DIRECTOR": "Co-Director"
+			},
+			"ID": {
+				"ASSISTANT": "Investigador",
+				"CHIEF": "Director"
+			},
+			"MEDIACOM": {
+				"DIRECTOR": "Director",
+				"DESIGNER": "Creador de Contenido"
+			},
+			"VOLUNTEERS": {
+				"FUNDRAISINGMENTOR": "Mentor de Fundraising",
+				"GENERALASSIST": "Asistente General",
+				"TEAMMENTOR": "Mentor de Equipos Competitivos",
+				"VOLUNTEER": "Voluntario"
+			},
+			"IT": {
+				"DIRECTOR": "Director",
+				"WEBMASTER": "Webmaster"
 			}
 		},
 		"IEEENEWS": {
