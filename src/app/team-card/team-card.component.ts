@@ -22,9 +22,9 @@ export class TeamCardComponent implements OnInit {
 
     peopleMediacom_2021 = [
       new Person("Alex Moldovan", "https://i.ibb.co/5rf7cSJ/alexmoldovan.jpg", "#", "amoldovan@itba.edu.ar", 'HOME.CARGO.MEDIACOM.DIBUJANTE'),
-      new Person("Agustin Gullino", "?", "#", "?@itba.edu.ar", '?'),
-      new Person("Sofia Altman", "?", "#", "?@itba.edu.ar", '?'),
-      new Person("Nicole Czemerinski", "?", "#", "?@itba.edu.ar", '?'),
+      new Person("Agustin Gullino", "https://i.ibb.co/Pw5MkV2/Agustin-Guillino.jpg", "#", "?@itba.edu.ar", '?'),
+      new Person("Sofia Altman", "https://i.ibb.co/vdph6YM/Sof-a-Altman.jpg", "#", "?@itba.edu.ar", '?'),
+      new Person("Nicole Czemerinski", "https://i.ibb.co/yYczXLK/Nicole-Czemerinski.jpg", "#", "?@itba.edu.ar", '?'),
     ]
 
     peopleMediacom2_2021 = [
@@ -49,9 +49,9 @@ export class TeamCardComponent implements OnInit {
       new Person("Carlos Angel Chen", "https://i.ibb.co/Y2HLmTm/Carlos-Chen.jpg", "https://www.linkedin.com/in/carlos-angel-chen/", "cchen@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
     ];
     peopleFundr2_2021 = [
-      new Person("Martin Romano", "https://i.ibb.co/7zYkGtG/xilin.jpg", "?", "?@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.RRPP'),
-      new Person("Nicolás Bustelo", "https://i.ibb.co/M5kk8JY/oliviadevincenti.jpg", "#", "?@itba.edu.ar", '?'),
-      new Person("Manuel Machado", "https://i.ibb.co/HrqHtZV/nicolaspelayo.jpg", "?", "?@itba.edu.ar", '?'),
+      new Person("Martin Romano", "https://i.ibb.co/L6bmm4y/Martin-Romano.jpg", "?", "?@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.RRPP'),
+      new Person("Nicolás Bustelo", "https://i.ibb.co/DKGwT2n/Nicol-s-Bustelo.jpg", "#", "?@itba.edu.ar", '?'),
+      new Person("Manuel Machado", "https://i.ibb.co/Lk5rRvG/Manuel-Machado.jpg", "?", "?@itba.edu.ar", '?'),
       new Person("Lucas Agustín Vittor", "https://i.ibb.co/3Cp0vY0/Lucas-Vittor.jpg", "?", "?@itba.edu.ar", '?')
     ];
 
@@ -59,20 +59,20 @@ export class TeamCardComponent implements OnInit {
       new Person("Pedro Hernán García", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO.EDUCATION.HEADTUTOR'),
       new Person("Matías Bergerman", "https://i.ibb.co/rvWJBCt/matiasbergerman.jpg", "https://www.linkedin.com/in/mat%C3%ADas-bergerman-a934881a5/", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.HEADTUTOR'),
       new Person("Patricio Whittingslow", "https://i.ibb.co/JkCmGXZ/patriciowhittingslow.jpg", "https://www.linkedin.com/in/patricio-whittingslow-3b9564140/", "pwhittingslow@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
-      new Person("Ignacio Cutignola", "https://i.ibb.co/JkCmGXZ/patriciowhittingslow.jpg", "?", "?@itba.edu.ar", '?')
+      new Person("Ignacio Cutignola", "https://i.ibb.co/PZYTy7t/Ignacio-Cutignola.jpg", "?", "?@itba.edu.ar", '?')
     ]
   
     peopleEdu2_2021 = [
       new Person("Francisco Basili", "https://i.ibb.co/sKw2BDC/Fran-Basili.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4", "fbasili@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
       new Person("Matías Sebastian Baiges", "https://i.ibb.co/cvdfKQ7/oznor-TO-soft.jpg", "https://www.linkedin.com/in/mat%C3%ADas-baiges-115bb21b4/", "mbaiges@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
       new Person("Agustin Lara Acosta", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "https://www.linkedin.com/in/agustin-lara-acosta-55075b1ab/", "alara@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
-      new Person("Alejo Figueroa", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "?", "?@itba.edu.ar", '?'),
+      new Person("Alejo Figueroa", "https://i.ibb.co/TTfpCN7/Alejo-Figueroa.jpg", "?", "?@itba.edu.ar", '?'),
     ];
 
     peopleIT_2021 = [
       new Person("Eugenia Sol Piñeiro", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/eugenia-piñeiro", "epineiro@itba.edu.ar", 'HOME.CARGO.MEDIACOM.WEBMASTER'),
-      new Person("Matías Santiago Francois", "https://i.ibb.co/cvdfKQ7/oznor-TO-soft.jpg", "?", "?@itba.edu.ar", '?'),
-      new Person("Matias Ricarte", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "?", "?@itba.edu.ar", '?'),
+      new Person("Matías Santiago Francois", "?", "?", "?@itba.edu.ar", '?'),
+      new Person("Matias Ricarte", "?", "?", "?@itba.edu.ar", '?'),
     ];
 
     peopleWIE_2021 = [
