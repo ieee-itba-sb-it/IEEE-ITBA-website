@@ -51,3 +51,27 @@ mat-panel-title {
     color: rgb(252, 192, 111);
     /* text-shadow: 0px 0px 5px rgb(252, 192, 111); */
 }
+
+.center-text {
+	text-align: center
+}
+
+.contacto{
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 36px;
+	letter-spacing: -0.2px;
+	word-spacing: 2.6px;
+	color: rgb(23, 46, 148);
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: normal;
+}
+
+body {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	padding-top: 160px;
+}

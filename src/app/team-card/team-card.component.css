@@ -5,6 +5,8 @@ mdb-card {
     color: black;
     padding-bottom: 1.5vmin;
     min-height: 300px;
+    max-width: 400px;
+    min-width: 100px;
 }
 
 mdb-card-img {
@@ -32,3 +34,9 @@ h5 {
     margin-top: 2vmin;
     margin-bottom: 2vmin;
 }
+
+.white-box { 
+    min-height: 300px;
+    margin: 1.5vmin;
+    padding-bottom: 1.5vmin;
+    }

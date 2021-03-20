@@ -110,6 +110,10 @@
 			"TITLE": "Women In Engineering"
 		}
 	},
+	"TEAM": {
+		"TITLE": "Equipo",
+		"SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
+	},
 	"IEEEXTREME": {
 		"FACTS": {
 			"EDITIONS": "Ediciones realizadas",
