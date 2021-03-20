@@ -244,6 +244,11 @@ h2{
     color: white;
 }
 
+.sponsors {
+    margin:5rem 2rem 5rem 2rem;
+    /*    top left bottom right*/
+}
+
 
 /* Flex */
 

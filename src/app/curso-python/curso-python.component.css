@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
-    min-height: 200%;
+    /*min-height: 200%;*/
     background-size: cover;
 }
 
@@ -54,8 +54,8 @@ h1 {
 .example-card {
     margin-bottom: 15px;
   }
- 
-  
+
+
   .example-header-image {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
     background-size: cover;
@@ -70,6 +70,15 @@ h1 {
     vertical-align: middle;
     align-content: center;
 }
+
+
+@media (max-width: 700px) {
+    .topbottomLine {
+        padding-top: 30%;
+    }
+
+}
+
 
 .transparentButton {
     padding: 2vmin;
@@ -170,24 +179,24 @@ img {
 }
 
 /* Flex */
-
+/*
 @media (max-width: 1000px) {
     html {
         min-height:300%;
     }
 }
-
+*/
 @media (max-width: 600px) {
     #homeText { display: none; }
     #homebutton { height: 10vmin; }
-    .halfLeft { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfLeft {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
-    .halfRight { 
-        display: inline-block; 
-        width: 100% !important; 
+    .halfRight {
+        display: inline-block;
+        width: 100% !important;
         margin-left: auto;
     }
     #anotate {
