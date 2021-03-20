@@ -237,8 +237,8 @@ img {
     width:80%;
     padding-top: 5vmin;
     padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
 }

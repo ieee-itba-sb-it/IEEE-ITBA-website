@@ -3,7 +3,7 @@
     color:rgb(23, 46, 148);
     background-color: transparent;
 }
-    
+
 ::ng-deep .mat-ink-bar {
     background-color: var(--primary-color,whitesmoke) !important;
 }
@@ -30,12 +30,18 @@ mat-panel-title {
     color:rgb(23, 46, 148);
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-    
+
+}
+.containerTitle {
+    align-content: center;
+    justify-content: center;
+    align-self: center;
+    width: 90%;
 }
 
 .page-title {
