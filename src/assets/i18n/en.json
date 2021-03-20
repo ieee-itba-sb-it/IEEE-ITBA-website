@@ -32,26 +32,38 @@
 				"GENERALASSIST": "General Assistant",
 				"TEAMMENTOR": "Competitive Teams Mentor",
 				"VOLUNTEER": "Volunteer"
+			}
+		},
+		"CARGO2021": {
+			"CD": {
+				"PRESIDENT": "President"
 			},
-			"WIE": {
-				"PRESIDENT": "President",
-				"VP": "Vice president",
-				"TREASURER": "Treasurer",
-				"COMM": "Communication",
-				"PLANNING": "Planning",
-				"FEMVOLUNTEER": "Volunteer",
-				"SOCIAL": "Social Media",
-				"VOLUNTEER": "Volunteer",
-				"WEBMASTER": "WIE Webmaster & Editor"
+			"EDUCATION": {
+				"TITLE": "Education",
+				"CO-DIRECTOR": "Co-Director",
+				"ASSISTANT": "Educator"
 			},
-			"CS": {
-				"PRESIDENT": "President",
-				"VP": "Vice president",
-				"GENERALSEC": "General Secretary",
-				"TREASURER": "Treasurer",
-				"RRPP": "Public Relationships",
-				"LOGISTIC": "Logistics",
-				"COMPETITIVEPROGRAMMING": "Competitive Programming"
+			"FUNDRAISING": {
+				"ASSISTANT": "Fundraiser",
+				"CO-DIRECTOR": "Co-Director"
+			},
+			"ID": {
+				"ASSISTANT": "Researcher",
+				"CHIEF": "Chief"
+			},
+			"MEDIACOM": {
+				"DIRECTOR": "Chief",
+				"DESIGNER": "Content Creator"
+			},
+			"VOLUNTEERS": {
+				"FUNDRAISINGMENTOR": "Fundraising Mentor",
+				"GENERALASSIST": "General Assistant",
+				"TEAMMENTOR": "Competitive Teams Mentor",
+				"VOLUNTEER": "Volunteer"
+			},
+			"IT": {
+				"DIRECTOR": "Chief",
+				"WEBMASTER": "Webmaster"
 			}
 		},
 		"CLASSES": {
