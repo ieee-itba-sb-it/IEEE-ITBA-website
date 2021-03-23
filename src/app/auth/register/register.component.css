@@ -4,13 +4,12 @@ html {
 }
 
 body {
-    font-size: 15pt;
     padding: 10%;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    color: #4F4F4F;
+	padding-top: 160px;
 }
 
 h1 {
@@ -18,6 +17,10 @@ h1 {
     padding-right: 5vmin;
     font-size: 5.5vw;
     line-height: 5.5vw;
+}
+
+.white-font {
+    color: whitesmoke;
 }
 
 h2 {
@@ -44,7 +47,6 @@ input{
     width: 100%;
     height: 30pt;
     margin-bottom: 2vmin;
-    border: solid #4F4F4F 1px;
     border-radius: 30px;
     padding-left: 2vmin;
     padding-right: 2vmin;
@@ -56,10 +58,10 @@ label{
 }
 
 button{
-    font-size: 20pt;
-    border: solid #4F4F4F 1px;
-    color: #4F4F4F;
-    border-radius: 30px;
+    font-size: 15pt;
+    border: solid #0d47a1 1px;
+    color: #0d47a1;
+    border-radius: 25px;
     padding-left: 10pt;
     padding-right: 10pt;
     text-align: center;
@@ -67,7 +69,7 @@ button{
 }
 
 button:hover {
-    background-color: #4F4F4F;
+    background-color: #0d47a1 ;
     color: whitesmoke;
     border-color: whitesmoke;
 }
@@ -79,7 +81,7 @@ button:hover {
 }
 
 .mainFrame {
-    background-color: whitesmoke;
+    background-color:  rgba(144, 144, 144, 0.2);
     padding: 3%;
     border-radius: 30px;
     padding: 3vmin;
@@ -87,13 +89,12 @@ button:hover {
 }
 
 .smallbutton {
-    font-size: 15pt;
+    font-size: 10pt;
     border: solid #4F4F4F 1px;
-    border-radius: 30px;
+    border-radius: 20px;
     padding-left: 10pt;
     padding-right: 10pt;
     text-align: center;
-    margin-top: 10pt;
     transition: all ease 0.5s;
 }
 
@@ -116,4 +117,35 @@ button:hover {
 
 #passChgConf{
     font-size: 20pt;
+}
+
+.topbottomLine { 
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.page-title {
+    color: #0d47a1;
+    font-size: 2.5em
+}
+
+.blue-font {
+    color : #0d47a1;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color:  #0d47a1 !important;
+   }
+  
+::ng-deep.mat-form-field-underline {
+/*change color of underline*/
+background-color:  #0d47a1 !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+/*change color of underline when focused*/
+background-color:  #0d47a1 !important;;
 }
