@@ -6,65 +6,89 @@
     <title>Register</title>
 </head>
 <body>
-  <div class="row">
-    <div class="col-sm">
-      <div class="mainFrame">
-        <br>
-        <div id="title">
-            <h1>New User?</h1>
-            <h2>Register now.</h2>
+  <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm pt-1 pb-1 d-flex justify-content-center" >
+                <h1 class="page-title">Register</h1>
+            </div>
         </div>
-        <br>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div>
+      <div class="mainFrame">
+        
+        <div class="row">
         <form id="singup-form">
+          
+          
             <div class="inputField">
-              <label for="fname">First Name:</label>
-              <input type="text" id="fname" required><br>
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label for="fname">First Name:</mat-label>
+                <input type="text" id="fname" required matInput>
+              </mat-form-field>
             </div>
             <div class="inputField">
-              <label for="lname">Last Name:</label>
-              <input type="text" id="lname" required><br>
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label for="lname">Last Name:</mat-label>
+                <input type="text" id="lname" required matInput>
+              </mat-form-field>
             </div>
             <div class="inputField">
-              <label for="email">Email:</label>
-              <input type="email" id="email" required><br>
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label for="email">Email:</mat-label>
+                <input type="email" id="email" required matInput>
+              </mat-form-field>
             </div>
             <div class="inputField">
-              <label for="pass">Password:</label>
-              <input type="password" id="pass" required><br>
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label for="pass">Password:</mat-label>
+                <input type="password" id="pass" required matInput>
+              </mat-form-field>
             </div>
             <div class="inputField">
-                <label for="passConf">Password Confirmation:</label>
-                <input type="password" id="passConf" required><br>
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label for="passConf">Password Confirmation:</mat-label>
+                <input type="password" id="passConf" required matInput>
+              </mat-form-field>
             </div>
 
-            <div class="inputField">
+            <div class="inputField d-flex justify-content-center">
               <div class="row">
-                <div class="col-sm">
-                  <button type="submit" style="float: left;">Sign Up</button>
+                <div class=" row d-flex justify-content-center">
+                  <button type="submit">Sign Up</button>
                 </div>
-                <div class="col-sm">
-                  <h4 id="passerr" [hidden]="isHidden3"></h4>
-                </div>
+               
               </div>
             </div>
-                
+
+            <div class="row d-flex justify-content-center">
+              <h4 id="passerr" [hidden]="isHidden3"></h4>
+            </div>
+            <div class="row d-flex justify-content-center mt-4">
+              <!--<div class="mr-2 blue-font">Forgot Password?</div>
+              
+              <button class="smallbutton" (click)="chgpass()">Change Password</button>
+
+              <mat-form-field id="changepass" class="example-full-width" style="width:50vw">
+                <mat-label for="emailchange">New Password</mat-label>
+                <input type="email"  [hidden]="isHidden" placeholder="e-mail" id="emailchange" required matInput>
+              </mat-form-field>
+
+              <form id="changepass">
+                <input type="email" [hidden]="isHidden" placeholder="e-mail" id="emailchange">
+              </form>
+              <h4 id="passChgConf" [hidden]="isHidden2"></h4>-->
+            </div>
+
+
+            <div class="row d-flex justify-content-center mt-4">
+              <div class="mr-2 blue-font">Already Singed Up?</div>
+              <button class="smallbutton" [routerLink]="['/login']">Log In</button>
+            </div>
         </form>
-        <br>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div class="mainFrame" style="padding: 10%;">
-        Registrate para recibir nuestro newsletter, acceder a la seccion de comentarios, ver noticias y mucho mas!
-        <hr>
-        <h3>Forgot Password?</h3>
-        <button class="smallbutton" (click)="chgpass()">Change Password</button>
-        <form id="changepass">
-          <input type="email" [hidden]="isHidden" placeholder="e-mail" id="emailchange">
-        </form>
-        <h4 id="passChgConf" [hidden]="isHidden2"></h4>
-        <hr>
-        <h3>Already Singed Up?</h3>
-        <button class="smallbutton" [routerLink]="['/login']">Log In</button>
+        </div>
       </div>
     </div>
   </div>  
