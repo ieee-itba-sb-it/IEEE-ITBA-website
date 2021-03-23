@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Log In</title>
 </head>
+
+<header>
+  
+  </header>
 <body>
+    <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm pt-1 pb-1" >
+                    <h1 class="page-title">Log In</h1>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="mainFrame">
-        <h1>Hola!<br>Logueate.</h1><hr>
+        <h1></h1>
         <form id="account">
             <input type="email" id="email" placeholder="ieee@itba.edu.ar"><br>
             <input type="password" id="pass" placeholder="*****"><br>
-            <button id="login">Log In</button>
+            <div class="d-flex justify-content-center"><button id="login">Log In</button></div>
+            
             <h4 id="passerr" [hidden]="isHidden"></h4>
         </form>
         <br><br>

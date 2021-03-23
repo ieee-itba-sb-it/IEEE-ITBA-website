@@ -4,13 +4,12 @@ html {
 }
 
 body {
-    font-size: 15pt;
     padding: 10%;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    color: #4F4F4F;
+	padding-top: 160px;
 }
 
 h1 {

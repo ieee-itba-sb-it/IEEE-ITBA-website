@@ -206,5 +206,13 @@
 		"MESSAGE": "Mensaje",
 		"MESSAGE_ERROR": "Por favor, ingresá un mensaje",
 		"SEND": "Enviar"
+	}, 
+	"LOGIN": {
+		"TITLE": "Iniciar Sesión",
+		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?", 
+		"CLICK": "Recuperar Contraseña"
+	}, 
+	"REGISTER": {
+		"TITLE": "Registrarse"
 	}
 }
