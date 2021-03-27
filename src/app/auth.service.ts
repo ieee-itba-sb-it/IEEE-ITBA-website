@@ -35,14 +35,14 @@ export class AuthService {
         var photoURL = usuario.photoURL;
         var uid = usuario.uid;
         console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
-        
+
         //Get user info from database
         {
           console.log('Getting user data from db...');
           if (usuario){
             console.log('Logued in user found.');
             var ans : BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
-            
+
             afs.collection('users').doc(usuario.email).get().subscribe( data => {
               //Save the updated data to our local var
               var doc = data.data();
@@ -51,7 +51,7 @@ export class AuthService {
             })
           }
           else {
-            console.log('No logued in user found. (Shouldnt get here)'); 
+            console.log('No logued in user found. (Shouldnt get here)');
           }
         }
 
@@ -158,7 +158,7 @@ export class AuthService {
           break;
         }
       }
-      
+
     });
   }
 
@@ -230,5 +230,4 @@ export class AuthService {
     return ans.asObservable();
 
   }
-
 }
