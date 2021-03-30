@@ -74,7 +74,7 @@
 </mdb-navbar>
 
 <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
-  <button mat-menu-item *ngIf="logguedIn" [routerLink]="['/logout']">{{ 'LOGOUT.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="logguedIn" (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</button>
   <button mat-menu-item *ngIf="!logguedIn" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</button>
   <button mat-menu-item *ngIf="!logguedIn" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</button>
 </mat-menu>
