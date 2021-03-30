@@ -17,7 +17,8 @@ export interface newsItem {
 
 export enum roles {
     regularUser,
-    admin
+    admin,
+    contentCreator
 }
 
 export interface IEEEuser {

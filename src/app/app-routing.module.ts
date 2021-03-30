@@ -22,6 +22,7 @@ import { EventsComponent } from './events/events.component';
 
 import {AuthGuardService} from './service/auth-guard.service';
 import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
+import { roles } from './data-types';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -37,7 +38,10 @@ const routes: Routes = [
   {
     path: 'editNoticia/:id',
     component: EditarAnuncioComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: [roles.contentCreator, roles.admin]
+    }
     //canActivate: [AngularFireAuthGuard],
     //data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
@@ -62,7 +66,10 @@ const routes: Routes = [
   {
     path: 'write-news',
     component: WriteNewsComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: [roles.contentCreator, roles.admin]
+    }
     //canActivate: [AngularFireAuthGuard],
     //data: { authGuardPipe: redirectUnauthorizedToLogin }
   },

@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IEEEuser } from '../data-types';
+import { IEEEuser, roles } from '../data-types';
 import { catchError } from 'rxjs/operators';
 
 
@@ -21,7 +21,7 @@ export class AuthGuardService implements CanActivate{
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
     // here we check if user is logged in or not
 
-
+    const expectedRole: Array<roles> = next.data.expectedRole;
 
     this.user = this.authService.getCurrentUser();
 
@@ -29,7 +29,11 @@ export class AuthGuardService implements CanActivate{
     let p:Promise<boolean> = new Promise((resolve, reject) => {
       setTimeout(() => {
         this.user.subscribe( (usuario: IEEEuser) => {
-          if (usuario){
+
+          console.log("usuario", usuario);
+
+          if (usuario && expectedRole.includes(usuario.role)){
+            console.log('you shall pass');
             return resolve(true);
           }
           else {
