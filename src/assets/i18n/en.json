@@ -194,13 +194,19 @@
 		"MESSAGE": "Message",
 		"MESSAGE_ERROR": "Please enter a message",
 		"SEND": "Send"
-	}, 
+	},
 	"LOGIN": {
 		"TITLE": "Log In",
-		"FORGOT_PASSWORD": "Forgot your password?", 
+		"FORGOT_PASSWORD": "Forgot your password?",
 		"CLICK": "Recover Password"
-	}, 
+	},
 	"REGISTER": {
 		"TITLE": "Register"
+	},
+	"LOGOUT": {
+		"TITLE": "Log Out"
+	},
+	"WELCOME": {
+		"TEXT": " Welcome back, "
 	}
 }

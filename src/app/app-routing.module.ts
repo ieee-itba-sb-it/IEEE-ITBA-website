@@ -20,6 +20,11 @@ import { ForumDComponent } from './forum-d/forum-d.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { EventsComponent } from './events/events.component';
 
+import {AuthGuardService} from './service/auth-guard.service';
+import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
+import { roles } from './data-types';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   { path: '', component: MainpageComponent },
@@ -30,7 +35,16 @@ const routes: Routes = [
   { path: 'ieeemeetup', component: IeeeMeetupComponent },
   { path: 'wierecruiting', component: WieRecruitingComponent },
   { path: 'noticias/:id', component: NoticiaComponent },
-  { path: 'editNoticia/:id', component: EditarAnuncioComponent },
+  {
+    path: 'editNoticia/:id',
+    component: EditarAnuncioComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: [roles.contentCreator, roles.admin]
+    }
+    //canActivate: [AngularFireAuthGuard],
+    //data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'team', component: TeamComponent },
@@ -49,7 +63,16 @@ const routes: Routes = [
   { path: 'python/u/:uid', component: ForumCComponent },
   { path: 'python/u', component: ForumCComponent },
 
-  { path: 'write-news', component: WriteNewsComponent },
+  {
+    path: 'write-news',
+    component: WriteNewsComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: [roles.contentCreator, roles.admin]
+    }
+    //canActivate: [AngularFireAuthGuard],
+    //data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterModule) }
 ];
