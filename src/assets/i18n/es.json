@@ -217,5 +217,13 @@
 		"BODY": "Cuerpo",
 		"CHECKBUTTON": "Mostrar en la página de noticias",
 		"UPLOAD": "SUBIR NOTICIA"
+	}, 
+	"LOGIN": {
+		"TITLE": "Iniciar Sesión",
+		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?", 
+		"CLICK": "Recuperar Contraseña"
+	}, 
+	"REGISTER": {
+		"TITLE": "Registrarse"
 	}
 }
