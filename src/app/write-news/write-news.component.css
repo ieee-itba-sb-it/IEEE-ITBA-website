@@ -5,12 +5,11 @@ html {
 
 body {
     padding: 10%;
-    background: rgb(10,27,103);
-    background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
-    /*OLDBACKGROUND*/
-    /* background: linear-gradient(75deg, rgba(50,39,88,1) 0%, rgba(201,83,107,1) 39%, rgba(227,157,64,1) 100%) no-repeat center center fixed; */
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	padding-top: 160px;
 }
 
 .whiteRoundedBlock{
@@ -19,11 +18,15 @@ body {
     border-radius: 5vmin;
 }
 
-.topbottomLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
+.page-title {
+    color: #0d47a1;
+	font-size: 2.5em;
+}
+
+.topbottomLine { 
+    padding-top: 15px;
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -132,11 +135,3 @@ h2 {
     color: whitesmoke;
 }
 
-/* Flex */
-
-@media (max-width: 950px) {
-    body {
-        padding-top: 20%;
-    }
-
-}

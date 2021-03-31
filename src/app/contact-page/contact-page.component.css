@@ -15,10 +15,29 @@ body {
     
 }
 
+.flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.flexText{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+
+
 .page-title {
     color: #0d47a1;
-	font-size: 2.5em
+	font-size: 2.5em;
 }
+
 
 .contacto{
 	font-family: "Arial Black", Gadget, sans-serif;
@@ -90,4 +109,38 @@ button:hover:enabled{
 textarea{
 	min-height: 60px;
 	max-height: 89px;
+}
+
+.column1 {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	/* flex 1 para la relacion 2 a 1 del titulo */
+	flex: 2;
+  }
+
+.column2 {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	/* flex 2 para la relacion 2 a 1 del titulo */
+	flex: 3;
+}
+
+.IEEEContactImage{
+	width: 20%;
+	max-width: 72px;
+	min-width: 36px;
+}
+
+
+@media (min-width: 768px) {
+   
+	.flexText{
+		display: flex;
+		/* centrado horizontal */
+		justify-content: left;
+		/* centrado vertical */
+		align-items: center;
+	}
 }

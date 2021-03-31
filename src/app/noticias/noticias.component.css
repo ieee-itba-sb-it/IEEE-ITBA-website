@@ -26,6 +26,36 @@ body {
     font-size: 2.5em
 }
 
+.IEEENoticiasImage{
+	width: 20%;
+	max-width: 72px;
+	min-width: 36px;
+}
+
+.flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.flexText{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.topbottomLine { 
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
+    vertical-align: middle;
+    align-content: center;
+    
+}
+
 #icons {
     text-align: center;
     color: whitesmoke;
@@ -199,8 +229,7 @@ footer {
 }
 
 img {
-    position: relative;
-    top: 50%;
+    
 }
 
 /* Flex */
@@ -235,9 +264,8 @@ img {
 
 .topbottomLine {
     max-width: 1000px;
-    width:80%;
+    width:100%;
     padding-top: 5vmin;
-    padding-bottom: 5vmin;
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
@@ -332,4 +360,16 @@ background-size: cover;
 
 .newsImg {
     object-fit: contain;
+    position: relative;
+    top: 50%;
+}
+@media (min-width: 768px) {
+   
+	.flexText{
+		display: flex;
+		/* centrado horizontal */
+		justify-content: left;
+		/* centrado vertical */
+		align-items: center;
+	}
 }

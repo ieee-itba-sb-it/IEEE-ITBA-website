@@ -206,5 +206,16 @@
 		"MESSAGE": "Mensaje",
 		"MESSAGE_ERROR": "Por favor, ingresá un mensaje",
 		"SEND": "Enviar"
+	},
+	"WRITE-NEW": {
+		"TITLE": "Escribir Noticia",
+		"TITLE2": "Título",
+		"POMPADOUR": "Copete",
+		"AUTHOR": "Autor",
+		"COVERIMG": "Imagen de portada",
+		"EPIGRAPH": "Epígrafe",
+		"BODY": "Cuerpo",
+		"CHECKBUTTON": "Mostrar en la página de noticias",
+		"UPLOAD": "SUBIR NOTICIA"
 	}
 }

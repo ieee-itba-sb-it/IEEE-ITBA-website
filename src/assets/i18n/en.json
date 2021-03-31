@@ -194,5 +194,16 @@
 		"MESSAGE": "Message",
 		"MESSAGE_ERROR": "Please enter a message",
 		"SEND": "Send"
+	},
+	"WRITE-NEW": {
+		"TITLE": "Write New",
+		"TITLE2": "Title",
+		"POMPADOUR": "Pompadour",
+		"AUTHOR": "Author",
+		"COVERIMG": "Cover Image",
+		"EPIGRAPH": "Epigraph",
+		"BODY": "Body",
+		"CHECKBUTTON": "show on the news page",
+		"UPLOAD": "UPLOAD NEWS"
 	}
 }

@@ -14,6 +14,29 @@ body {
     align-content: center;
 }
 
+.flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.IEEEEventsImage{
+	width: 20%;
+	max-width: 72px;
+	min-width: 36px;
+}
+
+.flexText{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+
 .page-title {
     color: #0d47a1;
     font-size: 2.5em
@@ -87,4 +110,15 @@ body {
     font-weight: 900;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+   
+	.flexText{
+		display: flex;
+		/* centrado horizontal */
+		justify-content: left;
+		/* centrado vertical */
+		align-items: center;
+	}
 }
