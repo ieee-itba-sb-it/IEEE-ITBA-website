@@ -34,15 +34,15 @@ export class AuthService {
         var emailVerified = usuario.emailVerified;
         var photoURL = usuario.photoURL;
         var uid = usuario.uid;
-        console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
-        
+        //console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
+
         //Get user info from database
         {
           console.log('Getting user data from db...');
           if (usuario){
             console.log('Logued in user found.');
             var ans : BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
-            
+
             afs.collection('users').doc(usuario.email).get().subscribe( data => {
               //Save the updated data to our local var
               var doc = data.data();
@@ -51,7 +51,7 @@ export class AuthService {
             })
           }
           else {
-            console.log('No logued in user found. (Shouldnt get here)'); 
+            console.log('No logued in user found. (Shouldnt get here)');
           }
         }
 
@@ -72,17 +72,17 @@ export class AuthService {
     this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => {
         this.account = createRegularUser(fname,lname,email,'',this.firebaseAuth.auth.currentUser.uid);
-        console.log('Success!', value);
+        //console.log('Success!', value);
         element.textContent="Signed Up!";
         element.style.color="green";
 
         this.afs.collection('users').doc(email).set(this.account).then(data => {
-          console.log('News item with reference '+email +' added.');
+          //console.log('News item with reference '+email +' added.');
         })
 
       })
       .catch(err => {
-        console.log('Something went wrong:',err.message);
+        //console.log('Something went wrong:',err.message);
 
         //Switch error
         switch (err.code){
@@ -117,7 +117,7 @@ export class AuthService {
 
     this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
     .then(value => {
-      console.log('Success!');
+     // console.log('Success!');
       element.textContent="Logued In!";
       element.style.color="green";
       //Get his info
@@ -128,7 +128,7 @@ export class AuthService {
       }, 2000);  //2s
     })
     .catch(err => {
-      console.log('Something went wrong:',err.message);
+     // console.log('Something went wrong:',err.message);
 
       //Message the user
       switch (err.code) {
@@ -158,7 +158,7 @@ export class AuthService {
           break;
         }
       }
-      
+
     });
   }
 
@@ -182,12 +182,12 @@ export class AuthService {
   changePass(email: string, element: HTMLElement) {
     this.firebaseAuth.auth.sendPasswordResetEmail(email)
     .then(value => {
-      console.log('Success!', value);
+     // console.log('Success!', value);
       element.textContent="Email Sent!";
       element.style.color="green";
     })
     .catch(err => {
-      console.log('Something went wrong:',err.message);
+      //console.log('Something went wrong:',err.message);
 
       //Message the user
       switch (err.code) {
@@ -230,5 +230,4 @@ export class AuthService {
     return ans.asObservable();
 
   }
-
 }

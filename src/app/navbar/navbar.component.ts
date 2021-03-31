@@ -16,6 +16,7 @@ import { IEEEuser } from '../data-types';
 export class NavbarComponent implements OnInit {
 
   user: Observable<IEEEuser>;
+  logguedIn: boolean = false;
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private authService: AuthService) {
     translate.addLangs(['en','es']);
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
 
   //Translator
   useLanguage(language: string) {
-    this.translate.use(language);    
+    this.translate.use(language);
   }
 
   //Set Up
@@ -41,9 +42,10 @@ export class NavbarComponent implements OnInit {
     //Load name
     this.user = this.authService.getCurrentUser();
     this.user.subscribe( (usuario: IEEEuser) => {
-      
+
       if (usuario){
         document.getElementById('account').innerText=' Welcome back, ' + usuario.fname;
+        this.logguedIn = true;
       }
       else {
         document.getElementById('account').innerText=' Log In';
@@ -67,6 +69,11 @@ export class NavbarComponent implements OnInit {
       document: this.document,
       scrollTarget: target,
     });
+  }
+
+  logoutUser(){
+    this.authService.logout();
+    window.location.reload();
   }
 
 }

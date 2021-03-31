@@ -220,10 +220,16 @@
 	}, 
 	"LOGIN": {
 		"TITLE": "Iniciar Sesión",
-		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?", 
+		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
 		"CLICK": "Recuperar Contraseña"
-	}, 
+	},
 	"REGISTER": {
 		"TITLE": "Registrarse"
+	},
+	"LOGOUT": {
+		"TITLE": "Cerrar Sesión"
+	},
+	"WELCOME": {
+		"TEXT": " Bienvenido/a, "
 	}
 }

@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     this.isHidden2=true;
     this.isHidden3=true;
 
-    console.log("Init");
+    //console.log("Init");
 
     //Consts
     this.signupForm = document.getElementById('singup-form');
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
     this.signupForm.addEventListener('submit', (e) => {
 
       e.preventDefault(); //dont refresh
-      console.log("Submitted.");
+      //console.log("Submitted.");
 
       //Get data
       this.email = this.signupForm['email'].value;
@@ -55,11 +55,11 @@ export class RegisterComponent implements OnInit {
       this.fname = this.signupForm['fname'].value;
       this.lname = this.signupForm['lname'].value;
 
-      console.log(this.fname, this.lname, this.email, this.pass, this.passConf);
+      //console.log(this.fname, this.lname, this.email, this.pass, this.passConf);
       this.isHidden3=false;
 
       if (this.pass==this.passConf){
-        console.log("Passwords match.")
+        //console.log("Passwords match.")
         this.authService.signup(this.email,this.pass,this.fname,this.lname,this.alertText);
       }
       else {
