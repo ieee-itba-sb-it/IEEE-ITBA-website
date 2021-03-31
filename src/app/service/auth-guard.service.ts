@@ -30,10 +30,11 @@ export class AuthGuardService implements CanActivate{
       setTimeout(() => {
         this.user.subscribe( (usuario: IEEEuser) => {
 
-          console.log("usuario", usuario);
-
-          if (usuario && expectedRole.includes(usuario.role)){
-            console.log('you shall pass');
+          //console.log("usuario", usuario);
+          //this is for the future!
+          //if (usuario && expectedRole.includes(usuario.role)){
+          if (usuario){
+            //console.log('you shall pass');
             return resolve(true);
           }
           else {
