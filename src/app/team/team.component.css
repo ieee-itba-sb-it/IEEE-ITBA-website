@@ -35,8 +35,8 @@ mat-panel-title {
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-
 }
+
 .containerTitle {
     align-content: center;
     justify-content: center;
@@ -45,7 +45,30 @@ mat-panel-title {
 }
 
 .page-title {
-    color: #0d47a1
+    color: #0d47a1;
+	font-size: 2.5em;
+}
+
+.IEEETeamImage{
+	width: 20%;
+	max-width: 72px;
+	min-width: 36px;
+}
+
+.flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.flexText{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
 }
 
 #colorWie{
@@ -75,9 +98,23 @@ mat-panel-title {
 }
 
 body {
+    padding: 10%;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	padding-top: 160px;
 }
+
+
+@media (min-width: 768px) {
+   
+	.flexText{
+		display: flex;
+		/* centrado horizontal */
+		justify-content: left;
+		/* centrado vertical */
+		align-items: center;
+	}
+}
+

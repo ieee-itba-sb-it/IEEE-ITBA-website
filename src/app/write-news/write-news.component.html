@@ -8,7 +8,7 @@
 </head>
 
 <header>
-    <app-navbar-courses></app-navbar-courses>
+    <app-navbar></app-navbar>
 </header>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <h1 id="logotext">Redactar Noticia</h1>
+                    <h1 id="logotext" class="page-title">{{ 'WRITE-NEW.TITLE' | translate }}</h1>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <!-- Title -->
                 <mat-grid-tile colspan="4">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Título</mat-label>
+                        <mat-label>{{ 'WRITE-NEW.TITLE2' | translate }}</mat-label>
                         <input id="title" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -38,7 +38,7 @@
                 <!-- Short Intro -->
                 <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Copete</mat-label>
+                        <mat-label>{{ 'WRITE-NEW.POMPADOUR' | translate }}</mat-label>
                         <input id="shortIntro" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -46,7 +46,7 @@
                 <!-- Author -->
                 <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Autor</mat-label>
+                        <mat-label>{{ 'WRITE-NEW.AUTHOR' | translate }}</mat-label>
                         <input id="author" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -54,7 +54,7 @@
                 <!-- Image -->
                 <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Imagen de Portada</mat-label>
+                        <mat-label>{{ 'WRITE-NEW.COVERIMG' | translate }}</mat-label>
                         <input id="imageUrl" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -62,7 +62,7 @@
                 <!-- Epigrafe -->
                 <mat-grid-tile colspan="2">
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>Epígrafe</mat-label>
+                        <mat-label>{{ 'WRITE-NEW.EPIGRAPH' | translate }}</mat-label>
                         <input id="imageText" matInput>
                     </mat-form-field>
                 </mat-grid-tile>
@@ -71,7 +71,7 @@
                 <mat-grid-tile colspan="4" rowspan="9">
                     <form [formGroup]="editorForm">
                         <div class="form-group">
-                            <label for="editor">Cuerpo</label>
+                            <label for="editor">{{ 'WRITE-NEW.BODY' | translate }}</label>
                             <quill-editor formControlName="editor"></quill-editor>
                         </div>
                     </form>
@@ -84,10 +84,10 @@
                     <!-- Listed -->
                     <div class="custom-control custom-checkbox" style="margin-right: 20px">
                         <input type="checkbox" class="custom-control-input" id="listed">
-                        <label class="custom-control-label" for="listed">Mostrar en la página de noticias</label>
+                        <label class="custom-control-label" for="listed">{{ 'WRITE-NEW.CHECKBUTTON' | translate }}</label>
                     </div><br><br>
                     <button mat-raised-button color="primary" id="submitNews" (click)="submitNews()"
-                        style="margin-right: 20px">SUBIR NOTICIA</button>
+                        style="margin-right: 20px">{{ 'WRITE-NEW.UPLOAD' | translate }}</button>
 
 
                 </mat-grid-tile>

@@ -28,7 +28,7 @@ export class LoginComponent  implements OnInit {
 
     this.isHidden=true;
 
-    console.log("Init");
+    //console.log("Init");
 
     //Consts
     this.signupForm = document.getElementById('account');
@@ -38,16 +38,16 @@ export class LoginComponent  implements OnInit {
     this.signupForm.addEventListener('submit', (e) => {
 
       e.preventDefault(); //dont refresh
-      console.log("Submitted.");
+     // console.log("Submitted.");
 
       //Get data
       this.email = this.signupForm['email'].value;
       this.pass = this.signupForm['pass'].value;
 
-      console.log(this.email, this.pass);
+      //console.log(this.email, this.pass);
       
       //Login
-      console.log("Trying to log in...");
+      //console.log("Trying to log in...");
       this.isHidden=false;
       this.authService.login(this.email,this.pass,this.alertText);
 
