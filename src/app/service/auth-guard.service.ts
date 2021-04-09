@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 import { IEEEuser, roles } from '../data-types';
 import { catchError } from 'rxjs/operators';
 
+import {UserService} from '../service/user.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class AuthGuardService implements CanActivate{
 
   user: Observable<IEEEuser>;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
 
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
@@ -28,16 +30,19 @@ export class AuthGuardService implements CanActivate{
 
     let p:Promise<boolean> = new Promise((resolve, reject) => {
       setTimeout(() => {
-        this.user.subscribe( (usuario: IEEEuser) => {
+        this.user.subscribe( async (usuario: IEEEuser) => {
 
-          //console.log("usuario", usuario);
+          let userRole : number = await this.userService.getCurrentUserRole(usuario.email);
           //this is for the future!
-          //if (usuario && expectedRole.includes(usuario.role)){
-          if (usuario){
+          if (usuario && expectedRole.includes(userRole)){
             //console.log('you shall pass');
             return resolve(true);
           }
-          else {
+          else if(usuario){
+            this.router.navigate(['home']);
+            return resolve(false);
+          }
+          else{
             this.router.navigate(['login']);
             return resolve(false);
           }

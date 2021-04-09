@@ -34,6 +34,7 @@ export class AuthService {
         var emailVerified = usuario.emailVerified;
         var photoURL = usuario.photoURL;
         var uid = usuario.uid;
+        //var role = usuario.role;
         //console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
 
         //Get user info from database
