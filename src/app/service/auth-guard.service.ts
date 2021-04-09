@@ -39,7 +39,7 @@ export class AuthGuardService implements CanActivate{
             return resolve(true);
           }
           else if(usuario){
-            this.router.navigate(['home']);
+            this.router.navigate(['error401']);
             return resolve(false);
           }
           else{
