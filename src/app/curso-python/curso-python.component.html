@@ -23,7 +23,10 @@
     </div>
     <!-- Introductory text -->
     <div>
+        <h2>{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}</h2>
         <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
+        <h3>{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}</h3>
+        <p>{{ 'PYTHONCOURSES.FORMAT' | translate }}</p>
     </div>
 
     <!-- Cards Temario -->
@@ -41,7 +44,7 @@
                     1
                     <!--</a>-->
                 </mat-card-title>
-                <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE1' | translate }}</mat-card-subtitle>
+                <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
@@ -59,7 +62,7 @@
                     2
                     <!--</a>-->
                 </mat-card-title>
-                <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE2' | translate }}</mat-card-subtitle>
+                <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
@@ -77,45 +80,10 @@
                     3
                     <!--</a>-->
                 </mat-card-title>
-                <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE3' | translate }}</mat-card-subtitle>
+                <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE3' | translate }}</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>
-                    <!--<a
-                       href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Clase_4_Curso_Python.ipynb">-->{{
-                    'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                    4
-                    <!--</a>-->
-                </mat-card-title>
-                <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE4' | translate }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                {{ 'PYTHONCOURSES.CLASSES.C4' | translate }}
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>
-                    <!--<a
-                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Trabajo_integrador.ipynb">-->{{
-                    'PYTHONCOURSES.CLASSES.INTEGRADOR-TITLE' | translate }}
-                    <!-- </a>-->
-                </mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                {{ 'PYTHONCOURSES.CLASSES.INTEGRADOR' | translate }}
             </mat-card-content>
         </mat-card>
 

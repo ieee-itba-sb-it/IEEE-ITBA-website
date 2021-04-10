@@ -153,26 +153,22 @@
 	},
 	"PYTHONCOURSES": {
 		"CLASSES": {
-			"C1": "Introduction to Python programming: variables, operators, flow control (if, while, for), functions.",
-			"C2": "Data types (int, float, string, bool), data structures (List, Dictionary, Set, Tuples), operations with data types, operations with data structures. ",
-			"C3": "Flux review, data structure review, reading and writing files, operations with data from files, introduction to libraries.",
-			"C4": "Introduction to matplotlib, reading and writing files Excel and CSV , data manipulation with Pandas, file manipulation with non-structured information",
-			"INTEGRADOR-TITLE": "Final work",
-			"INTEGRADOR": "The objetive of the final work is to create an application, complete and functional, integrating the contents learned throughout the course.",
-			"TITLE": "Class",
-			"DATE1": "October 4",
-			"DATE2": "October 11",
-			"DATE3": "October 18",
-			"DATE4": "October 25"
+			"C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
+			"C2": "Data Types:(int, float, string, boolean), Data type operations, Lists, List operations, Text file manipulation",
+			"C3": "Data structures(Dictionary, Set, Tuple), Data structure operations, Introduction to libraries and examples, Application cases",
+			"TITLE": "Class "
 		},
-		"DESC": "This course's public is getting bigger and bigger but one of the issues we've found is that students don't usually have a lot of available time. With this in mind, the course has been designed with a work-friendly format consisting of four classes of three hours each, where we emphasize practical examples with real applications in the real world. Finally, and considering the great heterogeneity of participants, we decided to offer personal support and question solving.",
+		"DESC_TITLE": "Description",
+		"DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming, without the need to become an expert in the topic. The contents of this introductory course are oriented towards people with no Python experience. We will go over the basics and fundamentals of programming and the Python language, putting into practice what we learn through interactive challenges and practical exercises.",
+		"FORMAT_SUBTITLE":"Course format",
+		"FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
 		"ENROLLBUTTON": "Enroll",
 		"QUESTIONS": {
 			"TEXT": "We opened a SubReddit to answer questions: ",
 			"TEXT_VIDEOS": "Check our live videos with more info about our classes !",
 			"TITLE": "Questions"
 		},
-		"TITLE": "Python Beginner's courses 2020 "
+		"TITLE": "Introductory Python Course"
 	},
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2nd Meet Up",

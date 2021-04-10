@@ -163,26 +163,22 @@
 	},
 	"PYTHONCOURSES": {
 		"CLASSES": {
-			"C1": "Introducción a la programación en Python: variables, operadores, control de flujo (if, while, for), funciones.",
-			"C2": "Tipos de datos (int, float, string, boolean), estructuras de datos (List, Dictionary, Set, Tuple), operaciones con tipos de datos, Operaciones con estructuras de datos.",
-			"C3": "Introducción a librerias, lectura y escritura de archivos formato Excel y CSV, manipulación de datos con Pandas, manipulación de archivos de información no estructurada.",
-			"C4": "Introducción a matplotlib, visualización de datos, personalización de los gráficos, casos de aplicación.",
-			"INTEGRADOR-TITLE": "Proyecto Final",
-			"INTEGRADOR": "El objetivo de este proyecto final es crear una aplicación práctica, que sea completa y funcional, integrando contenidos aprendidos a lo largo del curso",
-			"TITLE": "Clase ",
-			"DATE1": "4 de Octubre",
-			"DATE2": "11 de Octubre",
-			"DATE3": "18 de Octubre",
-			"DATE4": "25 de Octubre"
+			"C1": "Introducción a la programación en Python, Variables, Operadores, Control de flujo (if, while, for), Funciones",
+			"C2": "Tipos de datos (int, float, string, boolean), Operaciones con tipos de datos, Listas, Operaciones con listas, Manipulación de archivos de texto",
+			"C3": "Estructuras de datos (Dictionary, Set, Tuple), Operaciones con estructuras de datos, Introducción a las librerías, Casos de aplicación",
+			"TITLE": "Clase "
 		},
-		"DESC": "Este público es cada vez más grande pero típicamente no tienen tiempo disponible. Con esto en mente, el curso fue diseñado con un formato amigable de cuatro clases de tres horas de forma tal que pueda realizarse como actividad complementaria al estudio curricular o al trabajo, con un fuerte énfasis en ejemplos prácticos que se relacionen fácilmente con casos de aplicación realistas para la vida profesional. A esto se suma la asistencia personalizada para dar respuesta a la gran heterogeneidad de los participantes, considerando las diferentes carreras, profesiones y edades presentes.",
+		"DESC_TITLE": "Descripción",
+		"DESC": "Este curso forma parte de una serie de cursos que ofrecemos, la cual tiene como objetivo principal aprender lo suficiente para automatizar tareas comunes, manipular archivos y hojas de datos de manera eficiente, y representar información gráficamente de manera sencilla. Todas estas tareas pueden ser realizadas usando programación sin necesitar convertirse en un experto del tema. El contenido de este curso introductorio está orientado hacia aquellos que no tienen experiencia programando en Python. Se verán conceptos y temas fundamentales acerca de la programación y del lenguaje Python, poniendo en práctica lo aprendido mediante desafíos interactivos y ejercicios prácticos.",
+		"FORMAT_SUBTITLE":"Formato del curso",
+		"FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
 		"ENROLLBUTTON": "Anotate",
 		"QUESTIONS": {
 			"TEXT": "Tenemos un SubReddit para contestar dudas: ",
 			"TEXT_VIDEOS": "Tenemos videos en vivo con consultas sobre las clases:",
 			"TITLE": "Consultas"
 		},
-		"TITLE": "Cursos Principiante de Python 2020"
+		"TITLE": "Curso Introductorio de Python"
 	},
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2do Meet Up",

@@ -136,9 +136,10 @@ mdb-card {
 }
 
 h2{
-    font-size: 5vmin;
-    text-align: center;
-    color: whitesmoke;
+    font-size: 3vmin;
+    margin-left: 20px;
+    text-align: left;
+    color: black;
 }
 
 #anotate {
@@ -164,6 +165,11 @@ footer {
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     max-width: 100%;
+}
+
+h3{
+    margin-left: 20px;
+    color: black;
 }
 
 .col-sm {
