@@ -1,10 +1,10 @@
 <body>
-    <p>HTTP: <span>401</span></p>
+    <p class="statusCode">401</p>
     <div class="texto">
-        <span class="an-1">No tienes permiso para acceder a esa página</span>
+        <span class="message">{{ 'ERROR.ROLE' | translate }}</span>
     </div>
-    <div class="margin">
-        <button>Volver a la página principal</button>
+    <div class="goback">
+        <button class="goback-button" onclick="window.location.href = '/'">{{ 'ERROR.GOBACK' | translate }}</button>
     </div>
 </body>
 

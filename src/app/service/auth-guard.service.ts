@@ -32,17 +32,16 @@ export class AuthGuardService implements CanActivate{
       setTimeout(() => {
         this.user.subscribe( async (usuario: IEEEuser) => {
 
-          let userRole : number = await this.userService.getCurrentUserRole(usuario.email);
-          //this is for the future!
-          if (usuario && expectedRole.includes(userRole)){
-            //console.log('you shall pass');
-            return resolve(true);
-          }
-          else if(usuario){
-            this.router.navigate(['error401']);
-            return resolve(false);
-          }
-          else{
+          if(usuario){
+            let userRole : number = await this.userService.getCurrentUserRole(usuario.email);
+
+            if(expectedRole.includes(userRole)){
+              return resolve(true);
+            }else{
+              this.router.navigate(['error401']);
+              return resolve(false);
+            }
+          }else{
             this.router.navigate(['login']);
             return resolve(false);
           }

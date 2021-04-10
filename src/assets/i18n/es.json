@@ -232,5 +232,9 @@
 	},
 	"WELCOME": {
 		"TEXT": " Bienvenido/a, "
+	},
+	"ERROR": {
+		"ROLE": "No tienes permiso para acceder a esa página",
+		"GOBACK": "Volver a la página principal"
 	}
 }

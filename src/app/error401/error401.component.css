@@ -5,10 +5,55 @@
 }
 
 body {
-    background: rgb(40,40,40);
+    /*background: rgb(40,40,40);*/
     overflow: hidden;
 }
 
+.statusCode {
+    text-align: center;
+    font-size: calc(7vw + 2rem);
+    font-weight: 900;
+    color: #0d47a1;
+    letter-spacing: 1px;
+}
+
+.texto {
+    text-align: center;
+}
+
+.message {
+    font-size: larger;
+    font-weight: 700;
+    margin-top: auto;
+}
+
+.goback {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    color: #373a3c;
+}
+
+.goback-button {
+    font-size: medium;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    padding:  0.7rem 1rem 0.7rem 1rem;
+    border: solid #373a3c;
+    color: #373a3c;
+    border-radius: 5px;
+    background-color: inherit;
+    border-width: 3px;
+    transition: all 175ms ease-in-out  ;
+}
+.goback-button:hover {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white;
+    background-color: #0d47a1;
+    border-color: white;
+}
+
+/*
 p {
     font-family: "Bevan", cursive;
     font-size: 130px;
@@ -62,3 +107,4 @@ button:hover:enabled{
         font-size: 14vw;
     }
 }
+*/
