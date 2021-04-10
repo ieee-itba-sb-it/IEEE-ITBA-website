@@ -158,7 +158,8 @@
 		"INITIATIVES": "Iniciativas",
 		"TEAM": "Equipo",
 		"NEWS": "Noticias",
-		"SPONSORS": "Auspiciantes"
+		"SPONSORS": "Auspiciantes",
+		"WRITENEWS" : "Crear Noticia"
 	},
 	"PYTHONCOURSES": {
 		"CLASSES": {
@@ -217,7 +218,7 @@
 		"BODY": "Cuerpo",
 		"CHECKBUTTON": "Mostrar en la página de noticias",
 		"UPLOAD": "SUBIR NOTICIA"
-	}, 
+	},
 	"LOGIN": {
 		"TITLE": "Iniciar Sesión",
 		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
@@ -231,5 +232,9 @@
 	},
 	"WELCOME": {
 		"TEXT": " Bienvenido/a, "
+	},
+	"ERROR": {
+		"ROLE": "No tienes permiso para acceder a esa página",
+		"GOBACK": "Volver a la página principal"
 	}
 }

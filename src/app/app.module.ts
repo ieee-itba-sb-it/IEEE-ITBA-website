@@ -75,6 +75,7 @@ import { ForumCComponent } from './forum-c/forum-c.component';
 import { ForumDComponent } from './forum-d/forum-d.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { EventsComponent } from './events/events.component';
+import { Error401Component } from './error401/error401.component';
 
 
 
@@ -116,6 +117,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForumDComponent,
     ContactPageComponent,
     EventsComponent,
+    Error401Component,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,7 @@ import { ForumCComponent } from './forum-c/forum-c.component';
 import { ForumDComponent } from './forum-d/forum-d.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { EventsComponent } from './events/events.component';
+import { Error401Component } from './error401/error401.component';
 
 import {AuthGuardService} from './service/auth-guard.service';
 import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'python/f', component: ForumComponent },
   { path: 'contact', component: ContactPageComponent},
   { path: 'events', component: EventsComponent},
+  { path: 'error401', component: Error401Component},
 
   { path: 'python/u/:uid/unsubscribe/:tid', component: ForumCComponent },
   { path: 'python/u/:uid/unsubscribe', component: ForumDComponent },

@@ -1,0 +1,110 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*background: rgb(40,40,40);*/
+    overflow: hidden;
+}
+
+.statusCode {
+    text-align: center;
+    font-size: calc(7vw + 2rem);
+    font-weight: 900;
+    color: #0d47a1;
+    letter-spacing: 1px;
+}
+
+.texto {
+    text-align: center;
+}
+
+.message {
+    font-size: larger;
+    font-weight: 700;
+    margin-top: auto;
+}
+
+.goback {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    color: #373a3c;
+}
+
+.goback-button {
+    font-size: medium;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    padding:  0.7rem 1rem 0.7rem 1rem;
+    border: solid #373a3c;
+    color: #373a3c;
+    border-radius: 5px;
+    background-color: inherit;
+    border-width: 3px;
+    transition: all 175ms ease-in-out  ;
+}
+.goback-button:hover {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white;
+    background-color: #0d47a1;
+    border-color: white;
+}
+
+/*
+p {
+    font-family: "Bevan", cursive;
+    font-size: 130px;
+    margin: 10vh 0 0;
+    text-align: center;
+    letter-spacing: 5px;
+    background-color: black;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+
+.texto {
+    color: #bdbdbd;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    margin: 0 30px 25px;
+}
+
+.margin{
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+}
+
+button {
+	background-color: transparent;
+	color: black;
+	border: 1px solid black;
+	padding: 4px 16px;
+	transition: 0.4s;
+	width: 20%;
+    height: 40px;
+	min-width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+	margin-top: 10px;
+}
+button:hover:enabled{
+	color: white;
+	background-color: rgb(0, 98, 155);
+}
+
+
+@media screen and (max-width: 880px) {
+    p {
+        font-size: 14vw;
+    }
+}
+*/
