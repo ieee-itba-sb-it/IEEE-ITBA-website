@@ -172,7 +172,7 @@
 		"DESC": "Este curso forma parte de una serie de cursos que ofrecemos, la cual tiene como objetivo principal aprender lo suficiente para automatizar tareas comunes, manipular archivos y hojas de datos de manera eficiente, y representar información gráficamente de manera sencilla. Todas estas tareas pueden ser realizadas usando programación sin necesitar convertirse en un experto del tema. El contenido de este curso introductorio está orientado hacia aquellos que no tienen experiencia programando en Python. Se verán conceptos y temas fundamentales acerca de la programación y del lenguaje Python, poniendo en práctica lo aprendido mediante desafíos interactivos y ejercicios prácticos.",
 		"FORMAT_SUBTITLE":"Formato del curso",
 		"FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
-		"ENROLLBUTTON": "Anotate",
+		"ENROLLBUTTON": "¡Anotate ahora!",
 		"QUESTIONS": {
 			"TEXT": "Tenemos un SubReddit para contestar dudas: ",
 			"TEXT_VIDEOS": "Tenemos videos en vivo con consultas sobre las clases:",

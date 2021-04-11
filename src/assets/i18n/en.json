@@ -162,7 +162,7 @@
 		"DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming, without the need to become an expert in the topic. The contents of this introductory course are oriented towards people with no Python experience. We will go over the basics and fundamentals of programming and the Python language, putting into practice what we learn through interactive challenges and practical exercises.",
 		"FORMAT_SUBTITLE":"Course format",
 		"FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
-		"ENROLLBUTTON": "Enroll",
+		"ENROLLBUTTON": "Enroll now!",
 		"QUESTIONS": {
 			"TEXT": "We opened a SubReddit to answer questions: ",
 			"TEXT_VIDEOS": "Check our live videos with more info about our classes !",
