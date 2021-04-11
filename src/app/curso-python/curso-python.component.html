@@ -16,16 +16,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <h1 id="logotext">{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
+                    <h1 id="logotext" class="course-title">{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
                 </div>
             </div>
         </div>
     </div>
     <!-- Introductory text -->
     <div>
-        <h2>{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}</h2>
+        <h2 class="course-subtitle">{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}</h2>
         <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
-        <h3>{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}</h3>
+        <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}</h2>
         <p>{{ 'PYTHONCOURSES.FORMAT' | translate }}</p>
     </div>
 
@@ -133,10 +133,10 @@
 -->
 
     <div>
-        <mat-card>
+        <mat-card class="no-shadow">
             <div class="d-flex justify-content-center align-items-center">
             <button class="goback-button">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejjpuBKMdk6S4I1_IGi6TkIMdD1A41Y1axRAiyFj_Fj4tApQ/closedform">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejjpuBKMdk6S4I1_IGi6TkIMdD1A41Y1axRAiyFj_Fj4tApQ/closedform" class="button-text">
                     {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
             </button>
         </div>
@@ -144,7 +144,7 @@
     </div>
 
     <div class="faq-section">
-        <h1 class="section-title">{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}</h1>
+        <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}</h2>
         <mat-accordion class="faq-accordion">
 
             <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">

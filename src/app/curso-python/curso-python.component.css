@@ -216,22 +216,46 @@ img {
 
 
 .goback-button {
-    font-size: medium;
+    font-size: calc(0.5vw + 1rem);
     font-weight: 600;
     margin-top: 0.25rem;
     padding:  0.7rem 1rem 0.7rem 1rem;
-    border: solid #373a3c;
-    color: #373a3c;
+    border: solid rgb(23, 46, 148);
+    color: rgb(23, 46, 148) !important;
     border-radius: 5px;
     background-color: inherit;
     border-width: 3px;
-    transition: all 175ms ease-in-out  ;
+    transition: all 175ms ease-in-out;
 }
 .goback-button:hover {
     box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
-    color: white;
+    color: white !important;
     background-color: #0d47a1;
     border-color: white;
+}
+
+.goback-button >.button-text {
+    color: rgb(23, 46, 148) !important;
+}
+.goback-button:hover > .button-text{
+    color: white !important;
+}
+
+.course-title {
+    font-size: calc(2vw + 2rem);
+    font-weight: 600;
+    color: #0d47a1;
+    letter-spacing: 1px;
+}
+.course-subtitle {
+    font-size: calc(1vw + 1rem);
+    color: rgba(13, 71, 161, 0.8);
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.no-shadow {
+    box-shadow: none !important;
 }
 
 .faq-section {
