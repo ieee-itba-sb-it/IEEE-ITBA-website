@@ -63,8 +63,8 @@ h1 {
 
 
 .topbottomLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
     border-top: whitesmoke 2px solid;
     border-bottom: whitesmoke 2px solid;
     vertical-align: middle;
@@ -216,7 +216,7 @@ img {
 
 
 .goback-button {
-    font-size: calc(0.5vw + 1rem);
+    font-size: calc(0.5vw + 0.5rem);
     font-weight: 600;
     margin-top: 0.25rem;
     padding:  0.7rem 1rem 0.7rem 1rem;
@@ -242,16 +242,16 @@ img {
 }
 
 .course-title {
-    font-size: calc(2vw + 2rem);
-    font-weight: 600;
+    font-size: calc(1.5vw + 1rem);
+    font-weight: 400;
     color: #0d47a1;
     letter-spacing: 1px;
 }
 .course-subtitle {
-    font-size: calc(1vw + 1rem);
+    font-size: calc(0.7vw + 0.7rem);
     color: rgba(13, 71, 161, 0.8);
     font-weight: 600;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 }
 
 .no-shadow {
@@ -270,8 +270,7 @@ img {
     height:max-content;
 }
 .faq-question {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1rem; 
 }
 .faq-answer {
     font-size: larger;
