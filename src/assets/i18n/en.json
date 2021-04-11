@@ -168,7 +168,30 @@
 			"TEXT_VIDEOS": "Check our live videos with more info about our classes !",
 			"TITLE": "Questions"
 		},
-		"TITLE": "Introductory Python Course"
+		"TITLE": "Introductory Python Course",
+		"FAQ": {
+			"TITLE": "Frequently asked questions",
+			"1": {
+				"QUESTION": "Do I need to have experience programming?",
+				"ANSWER": "No! We will explain everything from scratch, with a nice pace."
+			},
+			"2": {
+				"QUESTION": "Will I receive a certificate after finishing the course?",
+				"ANSWER": "Yes! You will get a certificate after completing the mandatory programming challenges before their respective due date."
+			},
+			"3": {
+				"QUESTION": "Who can enter this course?",
+				"ANSWER": "This course is free and open to everyone. Since it’s oriented towards a professional environment, it’s advisable, though not mandatory, to have finished high school."
+			},
+			"4": {
+				"QUESTION": "How can I ask questions or ask for help?",
+				"ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
+			},
+			"5": {
+				"QUESTION": "Can I interact with the rest of the participants?",
+				"ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
+			}
+		}
 	},
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2nd Meet Up",

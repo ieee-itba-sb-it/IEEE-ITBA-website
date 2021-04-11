@@ -233,3 +233,55 @@ img {
     background-color: #0d47a1;
     border-color: white;
 }
+
+.faq-section {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+}
+
+.faq-accordion {
+    margin-top: 1.5rem;
+}
+.faq-panel {
+    height:max-content;
+}
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.faq-answer {
+    font-size: larger;
+}
+
+/** tomado de team component css */
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:rgb(23, 46, 148);
+    background-color: transparent;
+}
+
+::ng-deep .mat-ink-bar {
+    background-color: var(--primary-color,whitesmoke) !important;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    color:rgb(23, 46, 148);
+}
+
+mat-panel-description {
+    text-align: right;
+}
+
+mat-expansion-panel {
+    background-color: transparent;
+    margin-top: 1.5vmin;
+}
+
+mat-expansion-panel-header {
+    border: rgb(23, 46, 148) 1px solid;
+    border-radius: 5vmin;
+}
+
+mat-panel-title {
+    color:rgb(23, 46, 148);
+}
