@@ -20,7 +20,7 @@
 			},
 			"ID": {
 				"ASSISTANT": "I+D Assistant",
-				"CHIEF": "I+D Chief"
+				"Director": "I+D Director"
 			},
 			"MEDIACOM": {
 				"CC": "Content Creator",
@@ -49,10 +49,10 @@
 			},
 			"ID": {
 				"ASSISTANT": "Researcher",
-				"CHIEF": "Chief"
+				"Director": "Director"
 			},
 			"MEDIACOM": {
-				"DIRECTOR": "Chief",
+				"DIRECTOR": "Director",
 				"DESIGNER": "Content Creator"
 			},
 			"VOLUNTEERS": {
@@ -62,7 +62,7 @@
 				"VOLUNTEER": "Volunteer"
 			},
 			"IT": {
-				"DIRECTOR": "Chief",
+				"DIRECTOR": "Director",
 				"WEBMASTER": "Webmaster"
 			}
 		},
