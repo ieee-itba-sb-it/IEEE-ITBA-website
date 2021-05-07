@@ -38,7 +38,10 @@
 		},
 		"CARGO2021": {
 			"CD": {
-				"PRESIDENT": "President"
+				"GENERALSEC": "Secretaria General",
+				"PRESIDENT": "Presidente",
+				"TREASURER": "Tesorero",
+				"VP": "Vicepresidente"
 			},
 			"EDUCATION": {
 				"TITLE": "Educación",
