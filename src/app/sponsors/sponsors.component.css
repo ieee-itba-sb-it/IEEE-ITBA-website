@@ -137,6 +137,10 @@ h2 {
     color: whitesmoke;
 }
 
+.padding{
+    padding-left: 40px;
+}
+
 .sponsorContact {
     color: whitesmoke;
     background-color: rgba(245, 245, 245, 0.3);
