@@ -10,7 +10,12 @@ body {
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     padding-top: 160px;
+    padding-bottom: 3%;
 }
+/* Thick red border */
+hr.new {
+    height: 6px;
+  }
 
 .page-title {
     color: #0d47a1;
@@ -18,6 +23,14 @@ body {
 }
 
 .flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.center{
 	display: flex;
 	/* centrado horizontal */
 	justify-content: center;
@@ -84,6 +97,17 @@ body {
     margin-bottom: 1vmin;
     text-align: center;
 }
+
+.top_margin{
+    margin-top: 3vmin;
+}
+
+.subtitle{
+    color: #0d47a1;
+    font-weight: 500;
+    font-size: 24px;
+}
+
 
 .transparent {
     background-color: rgba(245, 245, 245, 0.3);
