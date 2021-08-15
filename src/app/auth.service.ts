@@ -41,7 +41,7 @@ export class AuthService {
         {
           console.log('Getting user data from db...');
           if (usuario){
-            console.log('Logued in user found.');
+            console.log('Logged in user found.');
             var ans : BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
 
             afs.collection('users').doc(usuario.email).get().subscribe( data => {
@@ -52,14 +52,14 @@ export class AuthService {
             })
           }
           else {
-            console.log('No logued in user found. (Shouldnt get here)');
+            console.log('No logged in user found. (Shouldnt get here)');
           }
         }
 
       }
       else {
         // User is signed out.
-        console.log('User logued out.')
+        console.log('User logged out.')
       }
     });
 
@@ -119,7 +119,7 @@ export class AuthService {
     this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
     .then(value => {
      // console.log('Success!');
-      element.textContent="Logued In!";
+      element.textContent="Logged In!";
       element.style.color="green";
       //Get his info
 
