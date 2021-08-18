@@ -1,17 +1,16 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CursoPythonComponent } from './curso-python/curso-python.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
-import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
-import { NoticiaComponent } from './noticia/noticia.component';
-import { TeamComponent } from './team/team.component';
+import { CursoPythonComponent } from './modules/curso-python/curso-python.component';
+import { MainpageComponent } from './modules/mainpage/mainpage.component';
+import { NoticiaComponent } from './modules/noticia/noticia.component';
+import { TeamComponent } from './modules/team/team.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
-import { NoticiasComponent } from './noticias/noticias.component';
-import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
-import { WriteNewsComponent } from './write-news/write-news.component';
-import { SponsorsComponent } from './sponsors/sponsors.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { EventsComponent } from './events/events.component';
+import { NoticiasComponent } from './modules/noticias/noticias.component';
+import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
+import { WriteNewsComponent } from './modules/write-news/write-news.component';
+import { SponsorsComponent } from './modules/sponsors/sponsors.component';
+import { ContactPageComponent } from './modules/contact-page/contact-page.component';
+import { EventsComponent } from './modules/events/events.component';
 import { Error401Component } from './error401/error401.component';
 
 import {AuthGuardService} from './core/services/auth-guard.service';
@@ -25,7 +24,6 @@ const routes: Routes = [
   { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'ieeextreme', component: IeeextremeComponent },
   { path: 'cursospython', component: CursoPythonComponent },
-  { path: 'ieeemeetup', component: IeeeMeetupComponent },
   { path: 'noticias/:id', component: NoticiaComponent },
   {
     path: 'editNoticia/:id',

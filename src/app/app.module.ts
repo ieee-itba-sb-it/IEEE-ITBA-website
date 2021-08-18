@@ -22,24 +22,23 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { myEasing } from './easing';
-import { SponsorsComponent } from './sponsors/sponsors.component';
+import { SponsorsComponent } from './modules/sponsors/sponsors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CursoPythonComponent } from './curso-python/curso-python.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
+import { CursoPythonComponent } from './modules/curso-python/curso-python.component';
+import { MainpageComponent } from './modules/mainpage/mainpage.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { TeamComponent } from './team/team.component';
+import { TeamComponent } from './modules/team/team.component';
 import { config } from 'rxjs';
 import { firebaseConfig } from './secrets';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { IeeeMeetupComponent } from './ieee-meetup/ieee-meetup.component';
-import { NoticiaComponent } from './noticia/noticia.component';
-import { NoticiasComponent } from './noticias/noticias.component';
+import { NoticiaComponent } from './modules/noticia/noticia.component';
+import { NoticiasComponent } from './modules/noticias/noticias.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
-import { TeamCardComponent } from './team-card/team-card.component';
-import { IeeextremeComponent } from './ieeextreme/ieeextreme.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { TeamCardComponent } from './modules/team-card/team-card.component';
+import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,7 +48,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
-import { WriteNewsComponent } from './write-news/write-news.component';
+import { WriteNewsComponent } from './modules/write-news/write-news.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -57,8 +56,8 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { BarRatingModule } from 'ngx-bar-rating';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { EventsComponent } from './events/events.component';
+import { ContactPageComponent } from './modules/contact-page/contact-page.component';
+import { EventsComponent } from './modules/events/events.component';
 import { Error401Component } from './error401/error401.component';
 
 
@@ -75,7 +74,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainpageComponent,
     FooterComponent,
     TeamComponent,
-    IeeeMeetupComponent,
     NoticiaComponent,
     EditarAnuncioComponent,
     NoticiasComponent,

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { BlogService } from '../blog.service';
+import { BlogService } from '../../blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from "@angular/router";
-import { newsItem, createNewsItem } from '../data-types';
+import { newsItem, createNewsItem } from '../../data-types';
 import Timestamp = firestore.Timestamp;
-import { blogCollectionName } from '../secrets';
+import { blogCollectionName } from '../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

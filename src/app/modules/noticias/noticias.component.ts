@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { blogCollectionName } from '../secrets';
-import { BlogService } from '../blog.service';
+import { blogCollectionName } from '../../secrets';
+import { BlogService } from '../../blog.service';
 import { pipe, Observable } from 'rxjs';
-import { newsItem } from '../data-types';
+import { newsItem } from '../../data-types';
 import { map } from 'rxjs/operators';
 
 @Component({
