@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { IEEEuser} from '../data-types';
+import { IEEEuser} from '../../data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { userCollectionName} from '../secrets';
+import { userCollectionName} from '../../secrets';
 
 @Injectable({
   providedIn: 'root'

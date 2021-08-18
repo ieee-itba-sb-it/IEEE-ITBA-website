@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IEEEuser, roles } from '../data-types';
+import { IEEEuser, roles } from '../../data-types';
 import { catchError } from 'rxjs/operators';
 
-import {UserService} from '../service/user.service';
+import {UserService} from './user.service';
 
 
 @Injectable({

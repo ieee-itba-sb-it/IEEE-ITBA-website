@@ -8,7 +8,7 @@ import { newsItem, createNewsItem } from '../data-types';
 import { BlogService } from '../blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import Timestamp = firestore.Timestamp;
 
@@ -31,14 +31,14 @@ export class EditarAnuncioComponent implements OnInit {
         if (data) {
           console.log(data);
 
-          document.getElementById("titulo").setAttribute("value", data.title);
-          document.getElementById("nombreUrl").setAttribute("value", data.reference);
-          document.getElementById("autor").setAttribute("value", data.author);
-          document.getElementById("imageUrl").setAttribute("value", data.imageUrl);
-          document.getElementById("imageText").setAttribute("value", data.imageText);
-          document.getElementById("shortIntro").setAttribute("value", data.shortIntro);
-          (<HTMLInputElement>document.getElementById("listed")).checked = data.listed;
-          document.getElementById("content").innerHTML = data.content;
+          document.getElementById('titulo').setAttribute('value', data.title);
+          document.getElementById('nombreUrl').setAttribute('value', data.reference);
+          document.getElementById('autor').setAttribute('value', data.author);
+          document.getElementById('imageUrl').setAttribute('value', data.imageUrl);
+          document.getElementById('imageText').setAttribute('value', data.imageText);
+          document.getElementById('shortIntro').setAttribute('value', data.shortIntro);
+          (document.getElementById('listed') as HTMLInputElement).checked = data.listed;
+          document.getElementById('content').innerHTML = data.content;
         }
       }
       );
@@ -46,23 +46,23 @@ export class EditarAnuncioComponent implements OnInit {
 
   }
   sendAnuncio() {
-    console.log("sending...");
-    var title = (<HTMLInputElement>document.getElementById("titulo")).value;
+    console.log('sending...');
+    const title = (document.getElementById('titulo') as HTMLInputElement).value;
     console.log(title);
 
-    var content = (<HTMLInputElement>document.getElementById("content")).value;
-    var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
-    var autor = (<HTMLInputElement>document.getElementById("autor")).value;
-    var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;
-    var reference = (<HTMLInputElement>document.getElementById("nombreUrl")).value;
-    var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
-    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var tags = ['hola', 'chau'];
-    var ratings = [0, 0, 0, 0, 0];
+    const content = (document.getElementById('content') as HTMLInputElement).value;
+    const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
+    const autor = (document.getElementById('autor') as HTMLInputElement).value;
+    const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
+    const reference = (document.getElementById('nombreUrl') as HTMLInputElement).value;
+    const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
+    const listed = (document.getElementById('listed') as HTMLInputElement).checked;
+    const tags = ['hola', 'chau'];
+    const ratings = [0, 0, 0, 0, 0];
 
     console.log(reference);
 
-    if (title != '') {
+    if (title !== '') {
       this.blogService.setDoc(
         createNewsItem(
           title,
@@ -81,7 +81,7 @@ export class EditarAnuncioComponent implements OnInit {
         if (sent) {
           this.router.navigate([`/anuncios/${reference}`]);
         }
-      })
+      });
     } else {
       this.blogService.deleteDoc(reference).subscribe(sent => {
         if (sent) {

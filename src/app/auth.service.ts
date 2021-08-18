@@ -87,17 +87,17 @@ export class AuthService {
 
         //Switch error
         switch (err.code){
-          case "auth/email-already-in-use": { //Email used
+          case "authentication/email-already-in-use": { //Email used
             element.textContent="Email already in use.";
             element.style.color="red";
             break;
           }
-          case "auth/invalid-email": { //Invalid email
+          case "authentication/invalid-email": { //Invalid email
             element.textContent="Invalid email.";
             element.style.color="red";
             break;
           }
-          case "auth/weak-password": { //Weak pass
+          case "authentication/weak-password": { //Weak pass
             element.textContent="Pass too weak.";
             element.style.color="red";
             break;
@@ -133,22 +133,22 @@ export class AuthService {
 
       //Message the user
       switch (err.code) {
-        case "auth/invalid-email": {
+        case "authentication/invalid-email": {
           element.textContent="Invalid email address.";
           element.style.color='red';
           break;
         }
-        case "auth/user-not-found": {
+        case "authentication/user-not-found": {
           element.textContent="No user corresponding to provided email.";
           element.style.color='red';
           break;
         }
-        case "auth/wrong-password": {
+        case "authentication/wrong-password": {
           element.textContent="Wrong Password.";
           element.style.color='red';
           break;
         }
-        case "auth/user-disabled": {
+        case "authentication/user-disabled": {
           element.textContent="User disabled.";
           element.style.color='red';
           break;
@@ -192,12 +192,12 @@ export class AuthService {
 
       //Message the user
       switch (err.code) {
-        case "auth/invalid-email": {
+        case "authentication/invalid-email": {
           element.textContent="Invalid email address.";
           element.style.color='red';
           break;
         }
-        case "auth/user-not-found": {
+        case "authentication/user-not-found": {
           element.textContent="No user corresponding to provided email.";
           element.style.color='red';
           break;
