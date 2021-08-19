@@ -9,7 +9,6 @@ import { NoticiasComponent } from './modules/noticias/noticias.component';
 import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
 import { WriteNewsComponent } from './modules/write-news/write-news.component';
 import { SponsorsComponent } from './modules/sponsors/sponsors.component';
-import { ContactPageComponent } from './modules/contact-page/contact-page.component';
 import { EventsComponent } from './modules/events/events.component';
 import { Error401Component } from './error401/error401.component';
 
@@ -38,7 +37,10 @@ const routes: Routes = [
   { path: 'noticias', component: NoticiasComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'team', component: TeamComponent },
-  { path: 'contact', component: ContactPageComponent},
+  {
+    path: 'contact',
+    loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
+  },
   { path: 'events', component: EventsComponent},
   { path: 'error401', component: Error401Component},
 

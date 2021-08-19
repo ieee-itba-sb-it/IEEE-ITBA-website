@@ -11,7 +11,7 @@ import { environment } from './../environments/environment';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
-// contact-page
+// contact
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 // Translations
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -26,7 +26,7 @@ import { SponsorsComponent } from './modules/sponsors/sponsors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CursoPythonComponent } from './modules/curso-python/curso-python.component';
 import { MainpageComponent } from './modules/mainpage/mainpage.component';
-import { FooterComponent } from './core/footer/footer.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { TeamComponent } from './modules/team/team.component';
 import { config } from 'rxjs';
 import { firebaseConfig } from './secrets';
@@ -38,7 +38,7 @@ import { NoticiasComponent } from './modules/noticias/noticias.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { TeamCardComponent } from './modules/team-card/team-card.component';
 import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
-import { NavbarComponent } from './core/navbar/navbar.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,9 +56,12 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { BarRatingModule } from 'ngx-bar-rating';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { ContactPageComponent } from './modules/contact-page/contact-page.component';
+import { ContactPageComponent } from './modules/contact/pages/contact/contact-page.component';
 import { EventsComponent } from './modules/events/events.component';
 import { Error401Component } from './error401/error401.component';
+
+
+import {SharedModule} from './shared/shared.module';
 
 
 
@@ -72,21 +75,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     SponsorsComponent,
     CursoPythonComponent,
     MainpageComponent,
-    FooterComponent,
     TeamComponent,
     NoticiaComponent,
     EditarAnuncioComponent,
     NoticiasComponent,
     TeamCardComponent,
     IeeextremeComponent,
-    NavbarComponent,
     WriteNewsComponent,
     LoadingSpinnerComponent,
-    ContactPageComponent,
     EventsComponent,
     Error401Component,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
@@ -125,6 +126,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

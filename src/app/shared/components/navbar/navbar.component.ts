@@ -4,11 +4,11 @@ import { DOCUMENT } from '@angular/common';
 import { PageScrollService } from 'ngx-page-scroll-core';
 
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../../auth.service';
 import { Observable } from 'rxjs';
-import { IEEEuser , roles } from '../../data-types';
+import { IEEEuser , roles } from '../../../data-types';
 
-import {UserService} from '../services/user.service';
+import {UserService} from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-navbar',
