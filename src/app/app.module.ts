@@ -22,21 +22,21 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { myEasing } from './easing';
-import { SponsorsComponent } from './modules/sponsors/sponsors.component';
+import { SponsorsComponent } from './modules/sponsors/pages/sponsors/sponsors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CursoPythonComponent } from './modules/curso-python/pages/curso-python/curso-python.component';
-import { MainpageComponent } from './modules/mainpage/mainpage.component';
+import { MainpageComponent } from './modules/mainpage/pages/mainpage/mainpage.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { TeamComponent } from './modules/team/team.component';
+import { TeamComponent } from './modules/team/pages/team/team.component';
 import { config } from 'rxjs';
 import { firebaseConfig } from './secrets';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { NoticiaComponent } from './modules/noticia/noticia.component';
-import { NoticiasComponent } from './modules/noticias/noticias.component';
+import { NoticiaComponent } from './modules/noticias/pages/noticia/noticia.component';
+import { NoticiasComponent } from './modules/noticias/pages/noticias/noticias.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
-import { TeamCardComponent } from './modules/team-card/team-card.component';
+import { TeamCardComponent } from './modules/team/components/team-card/team-card.component';
 import { IeeextremeComponent } from './modules/ieeextreme/pages/ieeextreme/ieeextreme.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -55,9 +55,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { BarRatingModule } from 'ngx-bar-rating';
 import { MatChipsModule } from '@angular/material/chips';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 import { ContactPageComponent } from './modules/contact/pages/contact/contact-page.component';
-import { EventsComponent } from './modules/events/events.component';
+import { EventsComponent } from './modules/events/pages/events/events.component';
 import { Error401Component } from './error401/error401.component';
 
 
@@ -72,16 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    SponsorsComponent,
-    MainpageComponent,
-    TeamComponent,
-    NoticiaComponent,
     EditarAnuncioComponent,
-    NoticiasComponent,
-    TeamCardComponent,
     WriteNewsComponent,
-    LoadingSpinnerComponent,
-    EventsComponent,
     Error401Component,
   ],
   imports: [

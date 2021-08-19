@@ -1,37 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {CursoPythonComponent} from './pages/curso-python/curso-python.component';
+import {SponsorsComponent} from './pages/sponsors/sponsors.component';
 import {SharedModule} from '../../shared/shared.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatCardModule} from '@angular/material/card';
-import {FlexLayoutModule} from '@angular/flex-layout';
 
 const routes: Routes = [
-  { path: '',  component: CursoPythonComponent }
+  { path: '',  component: SponsorsComponent}
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
+  declarations: [ SponsorsComponent ],
   imports: [
     routing,
     CommonModule,
     SharedModule,
+    MatTabsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    MatExpansionModule,
-    MatCardModule,
-    FlexLayoutModule
-  ],
-  declarations: [CursoPythonComponent],
+    })
+  ]
 })
-export class CursoPythonModule { }
+export class SponsorsModule { }

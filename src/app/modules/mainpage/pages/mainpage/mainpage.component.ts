@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { BlogService } from '../../blog.service';
-import { newsItem } from '../../data-types';
-import { blogCollectionName } from '../../secrets';
+import { BlogService } from '../../../../core/services/blog/blog.service';
+import { newsItem } from '../../../../data-types';
+import { blogCollectionName } from '../../../../secrets';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
 

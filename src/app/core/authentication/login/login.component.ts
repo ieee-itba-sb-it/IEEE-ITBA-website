@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { auth } from 'firebase';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent  implements OnInit {
   //Data
   signupForm: HTMLElement;
   alertText: HTMLElement;
-  
+
   //Visual vars
   isHidden: boolean;
 
@@ -45,14 +45,14 @@ export class LoginComponent  implements OnInit {
       this.pass = this.signupForm['pass'].value;
 
       //console.log(this.email, this.pass);
-      
+
       //Login
       //console.log("Trying to log in...");
       this.isHidden=false;
       this.authService.login(this.email,this.pass,this.alertText);
 
     });
-    
+
   }
 
 }

@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {CursoPythonComponent} from './pages/curso-python/curso-python.component';
+import {NoticiasComponent} from '../noticias/pages/noticias/noticias.component';
+import {NoticiaComponent} from '../noticias/pages/noticia/noticia.component';
+import {TeamComponent} from './pages/team/team.component';
+import {TeamCardComponent} from './components/team-card/team-card.component';
 import {SharedModule} from '../../shared/shared.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatCardModule} from '@angular/material/card';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 const routes: Routes = [
-  { path: '',  component: CursoPythonComponent }
+  { path: '',  component: TeamComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
+  declarations: [ TeamComponent, TeamCardComponent ],
   imports: [
     routing,
     CommonModule,
@@ -28,10 +32,9 @@ export const routing = RouterModule.forChild(routes);
         deps: [HttpClient]
       }
     }),
+    MatTabsModule,
     MatExpansionModule,
-    MatCardModule,
-    FlexLayoutModule
-  ],
-  declarations: [CursoPythonComponent],
+    MDBBootstrapModule.forRoot()
+  ]
 })
-export class CursoPythonModule { }
+export class TeamModule { }

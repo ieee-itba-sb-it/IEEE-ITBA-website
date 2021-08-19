@@ -2,10 +2,10 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
-import { blogCollectionName } from '../../secrets';
+import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
-import { newsItem } from '../../data-types';
-import { BlogService } from '../../blog.service';
+import { newsItem } from '../../../../data-types';
+import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

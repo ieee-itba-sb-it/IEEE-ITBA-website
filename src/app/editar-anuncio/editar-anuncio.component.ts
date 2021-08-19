@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { blogCollectionName } from '../secrets';
 import { Observable } from 'rxjs';
 import { newsItem, createNewsItem } from '../data-types';
-import { BlogService } from '../blog.service';
+import { BlogService } from '../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';

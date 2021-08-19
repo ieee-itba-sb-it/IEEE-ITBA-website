@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {CursoPythonComponent} from './pages/curso-python/curso-python.component';
+import {EventsComponent} from './pages/events/events.component';
 import {SharedModule} from '../../shared/shared.module';
+import {RouterModule, Routes} from '@angular/router';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatCardModule} from '@angular/material/card';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatCardImage, MatCardModule} from '@angular/material/card';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 const routes: Routes = [
-  { path: '',  component: CursoPythonComponent }
+  { path: '',  component: EventsComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
+  declarations: [ EventsComponent ],
   imports: [
     routing,
     CommonModule,
@@ -28,10 +28,8 @@ export const routing = RouterModule.forChild(routes);
         deps: [HttpClient]
       }
     }),
-    MatExpansionModule,
     MatCardModule,
-    FlexLayoutModule
-  ],
-  declarations: [CursoPythonComponent],
+    MDBBootstrapModule.forRoot()
+  ]
 })
-export class CursoPythonModule { }
+export class EventsModule { }

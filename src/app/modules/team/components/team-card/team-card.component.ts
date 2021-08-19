@@ -1,7 +1,7 @@
 // Para usar este componente solo hay que inputearle el type que puede ser cualquiera de las categorias y eso te carga el array con datos de esa categoria
 
 import { Component, OnInit, Input } from '@angular/core';
-import { Person } from './person';
+import { Person } from '../../../../shared/models/person/person';
 
 @Component({
   selector: 'app-team-card',

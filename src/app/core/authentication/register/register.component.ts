@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { auth } from 'firebase';
 
 @Component({
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   //Data
   signupForm: HTMLElement;
   alertText: HTMLElement;
-  
+
   //Visual vars
   isHidden: boolean;
   isHidden2: boolean;
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
       }
 
     });
-    
+
   }
 
   //Change Pass
@@ -83,5 +83,5 @@ export class RegisterComponent implements OnInit {
     }
 
   }
-  
+
 }

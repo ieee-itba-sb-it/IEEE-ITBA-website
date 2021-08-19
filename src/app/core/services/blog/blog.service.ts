@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { newsItem, createNewsItem, createNewsItemWithDate } from './data-types';
+import { newsItem, createNewsItem, createNewsItemWithDate } from '../../../data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /* This file make interface with databe to get blog data */

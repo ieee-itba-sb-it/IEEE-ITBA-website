@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { BlogService } from '../../blog.service';
+import { BlogService } from '../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from "@angular/router";
