@@ -10,7 +10,7 @@ import { IeeextremeComponent } from './modules/ieeextreme/pages/ieeextreme/ieeex
 import { WriteNewsComponent } from './modules/write-news/write-news.component';
 import { SponsorsComponent } from './modules/sponsors/pages/sponsors/sponsors.component';
 import { EventsComponent } from './modules/events/pages/events/events.component';
-import { Error401Component } from './error401/error401.component';
+import { Error401Component } from './shared/components/error401/error401.component';
 
 import {AuthGuardService} from './core/services/authorization-guard/auth-guard.service';
 import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';

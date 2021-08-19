@@ -58,7 +58,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 import { ContactPageComponent } from './modules/contact/pages/contact/contact-page.component';
 import { EventsComponent } from './modules/events/pages/events/events.component';
-import { Error401Component } from './error401/error401.component';
+import { Error401Component } from './shared/components/error401/error401.component';
 
 
 import {SharedModule} from './shared/shared.module';
