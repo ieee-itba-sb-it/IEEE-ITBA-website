@@ -1,12 +1,12 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CursoPythonComponent } from './modules/curso-python/curso-python.component';
+import { CursoPythonComponent } from './modules/curso-python/pages/curso-python/curso-python.component';
 import { MainpageComponent } from './modules/mainpage/mainpage.component';
 import { NoticiaComponent } from './modules/noticia/noticia.component';
 import { TeamComponent } from './modules/team/team.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { NoticiasComponent } from './modules/noticias/noticias.component';
-import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
+import { IeeextremeComponent } from './modules/ieeextreme/pages/ieeextreme/ieeextreme.component';
 import { WriteNewsComponent } from './modules/write-news/write-news.component';
 import { SponsorsComponent } from './modules/sponsors/sponsors.component';
 import { EventsComponent } from './modules/events/events.component';
@@ -21,8 +21,14 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   { path: '', component: MainpageComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: 'ieeextreme', component: IeeextremeComponent },
-  { path: 'cursospython', component: CursoPythonComponent },
+  {
+    path: 'ieeextreme',
+    loadChildren: () => import('./modules/ieeextreme/ieeextreme.module').then(m => m.IeeextremeModule)
+  },
+  {
+    path: 'cursospython',
+    loadChildren: () => import('./modules/curso-python/curso-python.module').then(m => m.CursoPythonModule)
+  },
   { path: 'noticias/:id', component: NoticiaComponent },
   {
     path: 'editNoticia/:id',

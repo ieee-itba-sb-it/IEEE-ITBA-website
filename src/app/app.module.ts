@@ -24,7 +24,7 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { myEasing } from './easing';
 import { SponsorsComponent } from './modules/sponsors/sponsors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CursoPythonComponent } from './modules/curso-python/curso-python.component';
+import { CursoPythonComponent } from './modules/curso-python/pages/curso-python/curso-python.component';
 import { MainpageComponent } from './modules/mainpage/mainpage.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { TeamComponent } from './modules/team/team.component';
@@ -37,7 +37,7 @@ import { NoticiaComponent } from './modules/noticia/noticia.component';
 import { NoticiasComponent } from './modules/noticias/noticias.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { TeamCardComponent } from './modules/team-card/team-card.component';
-import { IeeextremeComponent } from './modules/ieeextreme/ieeextreme.component';
+import { IeeextremeComponent } from './modules/ieeextreme/pages/ieeextreme/ieeextreme.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -73,14 +73,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SponsorsComponent,
-    CursoPythonComponent,
     MainpageComponent,
     TeamComponent,
     NoticiaComponent,
     EditarAnuncioComponent,
     NoticiasComponent,
     TeamCardComponent,
-    IeeextremeComponent,
     WriteNewsComponent,
     LoadingSpinnerComponent,
     EventsComponent,
