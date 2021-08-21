@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IEEEuser, createRegularUser } from '../../../data-types';
+import { IEEEuser, createRegularUser } from '../../../shared/models/data-types';
 
 @Injectable({
   providedIn: 'root',

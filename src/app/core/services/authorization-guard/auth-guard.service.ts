@@ -4,7 +4,7 @@ import { AuthService } from '../authorization/auth.service';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IEEEuser, roles } from '../../../data-types';
+import { IEEEuser, roles } from '../../../shared/models/data-types';
 import { catchError } from 'rxjs/operators';
 
 import {UserService} from '../user/user.service';

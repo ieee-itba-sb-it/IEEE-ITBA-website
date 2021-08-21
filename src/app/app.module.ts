@@ -20,8 +20,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
-import { myEasing } from './easing';
+import {EasingLogic, NgxPageScrollCoreModule} from 'ngx-page-scroll-core';
 import { SponsorsComponent } from './modules/sponsors/pages/sponsors/sponsors.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CursoPythonComponent } from './modules/curso-python/pages/curso-python/curso-python.component';
@@ -35,7 +34,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NoticiaComponent } from './modules/noticias/pages/noticia/noticia.component';
 import { NoticiasComponent } from './modules/noticias/pages/noticias/noticias.component';
-import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
+import { EditarAnuncioComponent } from './modules/write-news/pages/editar-anuncio/editar-anuncio.component';
 import { TeamCardComponent } from './modules/team/components/team-card/team-card.component';
 import { IeeextremeComponent } from './modules/ieeextreme/pages/ieeextreme/ieeextreme.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -48,7 +47,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
-import { WriteNewsComponent } from './modules/write-news/write-news.component';
+import { WriteNewsComponent } from './modules/write-news/pages/write-news/write-news.component';
 import { QuillModule } from 'ngx-quill';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -69,22 +68,29 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
+  // easeInOutExpo easing
+  if (t === 0) {
+    return b;
+  }
+  if (t === d) {
+    return b + c;
+  }
+  if ((t /= d / 2) < 1) {
+    return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+  }
+
+  return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+};
+
 @NgModule({
   declarations: [
     AppComponent,
-    EditarAnuncioComponent,
-    WriteNewsComponent,
   ],
   imports: [
-    SharedModule,
-    BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule,
-    MDBBootstrapModule.forRoot(),
     NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
     BrowserAnimationsModule,
-    MatTabsModule,
-    MatExpansionModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -96,23 +102,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatGridListModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    QuillModule.forRoot(),
-    ReactiveFormsModule,
-    EmojiModule,
-    BarRatingModule,
-    MatChipsModule,
-    NoopAnimationsModule,
-    CarouselModule
     // AngularFireModule.initializeApp(environment.firebase),
   ],
   exports: [],

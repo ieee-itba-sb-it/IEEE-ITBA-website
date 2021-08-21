@@ -4,7 +4,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
-import { newsItem } from '../../../../data-types';
+import { newsItem } from '../../../../shared/models/data-types';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 
