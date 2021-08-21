@@ -1,34 +1,9 @@
 import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 
-export interface newsItem {
-    title: string;
-    shortIntro: string;
-    content: string;
-    imageUrl: string;
-    author: string;
-    reference: string;
-    date: Date;
-    imageText: string;
-    listed: boolean;
-    tags: string[];
-    ratings: number[];
-}
-
-export enum roles {
-    regularUser,
-    admin,
-    contentCreator
-}
-
-export interface IEEEuser {
-    fname: string;
-    lname: string;
-    email: string;
-    photoURL: string;
-    uID: string;
-    role: number;
-}
+import { IEEEuser } from './ieee-user/ieee-user';
+import { roles } from './roles/roles.enum';
+import { newsItem } from './news-item/news-item';
 
 export function createNewsItem(
     title: string,

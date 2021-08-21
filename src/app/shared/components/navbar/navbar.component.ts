@@ -6,7 +6,8 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/authorization/auth.service';
 import { Observable } from 'rxjs';
-import { IEEEuser , roles } from '../../models/data-types';
+import { IEEEuser } from '../../models/ieee-user/ieee-user';
+import { roles } from '../../models/roles/roles.enum';
 
 import {UserService} from '../../../core/services/user/user.service';
 

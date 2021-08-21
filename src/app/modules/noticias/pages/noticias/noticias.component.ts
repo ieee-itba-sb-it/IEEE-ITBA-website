@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { pipe, Observable } from 'rxjs';
-import { newsItem } from '../../../../shared/models/data-types';
+import { newsItem } from '../../../../shared/models/news-item/news-item';
 import { map } from 'rxjs/operators';
 
 @Component({

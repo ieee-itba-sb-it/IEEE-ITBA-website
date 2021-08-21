@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 import { BlogService } from '../../../../core/services/blog/blog.service';
-import { newsItem } from '../../../../shared/models/data-types';
+import { newsItem } from '../../../../shared/models/news-item/news-item';
 import { blogCollectionName } from '../../../../secrets';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';

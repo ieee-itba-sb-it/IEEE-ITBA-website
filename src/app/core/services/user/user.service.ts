@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { IEEEuser} from '../../../shared/models/data-types';
+import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { userCollectionName} from '../../../secrets';
 
