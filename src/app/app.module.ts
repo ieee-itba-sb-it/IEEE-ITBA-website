@@ -74,7 +74,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     EditarAnuncioComponent,
     WriteNewsComponent,
-    Error401Component,
   ],
   imports: [
     SharedModule,

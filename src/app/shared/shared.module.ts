@@ -14,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {RouterModule, Routes} from '@angular/router';
 import {ContactPageComponent} from '../modules/contact/pages/contact/contact-page.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import {Error401Component} from './components/error401/error401.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -21,7 +22,7 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component],
   imports: [
     routing,
     CommonModule,
@@ -36,6 +37,6 @@ export const routing = RouterModule.forChild(routes);
     MDBBootstrapModule.forRoot(),
     MatMenuModule
   ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent]
+  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component]
 })
 export class SharedModule { }
