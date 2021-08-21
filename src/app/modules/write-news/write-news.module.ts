@@ -15,6 +15,7 @@ import {QuillModule} from 'ngx-quill';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },
@@ -43,7 +44,9 @@ export const routing = RouterModule.forChild(routes);
     QuillModule,
     MatButtonModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSnackBarModule,
+    QuillModule.forRoot()
   ]
 })
 export class WriteNewsModule { }
