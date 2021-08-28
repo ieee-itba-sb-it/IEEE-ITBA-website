@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
+</head>
+<header>
+    <app-navbar></app-navbar>
+</header>
+
+<body>
+
+    <div class="body" fxLayoutAlign="center center" fxLayout="column">
+
+        <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
+                      <img src="../../../../../assets/image/IEEENews_sin_fondo.png" alt="News" class="IEEENoticiasImage">
+                    </div>
+                    <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
+                      <h1 class="page-title">{{ 'NAVBAR.NEWS' | translate }}</h1>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <div *ngIf="showLoadingSpinner">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <div class="spacenav">
+        </div>
+
+        <div class="row width1000" fxLayoutAlign="center center">
+            <div *ngFor="let noticia of newsData">
+                <div class="col-sm margin-top">
+                    <a href="noticias/{{noticia.reference}}">
+                        <mat-card class="example-card shadow">
+                            <mat-card-header class="height500" fxLayoutAlign="center center">
+                                <mat-card-title class="wordWrapping">{{noticia.title}}</mat-card-title>
+                                <mat-card-subtitle class="wordWrapping">{{noticia.author}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img height="200px" mat-card-image src="{{noticia.imageUrl}}" alt="Foto de Noticia" class="newsImg">
+                        </mat-card>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="addMargin">
+
+        </div>
+        <app-footer></app-footer>
+    </div>
+</body>
+
+</html>

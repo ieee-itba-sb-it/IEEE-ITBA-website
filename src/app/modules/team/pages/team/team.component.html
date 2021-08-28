@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+</head>
+
+<header>
+    <app-navbar></app-navbar>
+</header>
+
+<body>
+
+
+    <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
+                  <img src="../../../../../assets/image/IEEETeams.png" alt="Team" class="IEEETeamImage">
+                </div>
+                <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
+                  <h1 class="page-title">{{ 'NAVBAR.TEAM' | translate }}</h1>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    <div class="mt-5 mr-5 ml-5">
+
+        <mat-tab-group dynamicHeight>
+
+            <!-- ************************ -->
+            <!-- *       2021           * -->
+            <!-- ************************ -->
+
+            <mat-tab label="2021">
+                <br>
+                <mat-accordion>
+                    <!-- Photos at imgbb -->
+
+                    <!-- CD -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CD
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="CD_2021"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Mediacom -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Mediacom
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Mediacom_2021"></app-team-card>
+                        <app-team-card type="Mediacom2_2021"></app-team-card>
+                    </mat-expansion-panel>
+
+                    <!-- IT -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                IT
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="IT_2021"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Educacion -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ 'HOME.CARGO.EDUCATION.TITLE' | translate }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Education_2021"></app-team-card>
+                        <app-team-card type="Education2_2021"></app-team-card>
+                    </mat-expansion-panel>
+
+                    <!-- I+D -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                I+D
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="ID_2021"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Fundraising -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Fundraising
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Fundraising_2021"></app-team-card>
+                        <app-team-card type="Fundraising2_2021"></app-team-card>
+
+                    </mat-expansion-panel>
+
+
+
+
+                    <br><br>
+
+                </mat-accordion>
+
+            </mat-tab>
+
+            <!-- ************************ -->
+            <!-- *       2020           * -->
+            <!-- ************************ -->
+
+
+            <mat-tab label="2020">
+                <br>
+                <mat-accordion>
+                    <!-- Photos at imgbb -->
+
+                    <!-- CD -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CD
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="CD"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Mediacom -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Mediacom
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Mediacom"></app-team-card>
+                        <app-team-card type="Mediacom2"></app-team-card>
+                    </mat-expansion-panel>
+
+                    <!-- Educacion -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ 'HOME.CARGO.EDUCATION.TITLE' | translate }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Education"></app-team-card>
+                        <app-team-card type="Education2"></app-team-card>
+                    </mat-expansion-panel>
+
+
+                    <!-- I+D -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                I+D
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="ID"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Fundraising -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Fundraising
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Fundraising"></app-team-card>
+
+                    </mat-expansion-panel>
+
+
+
+                    <br><br>
+
+                </mat-accordion>
+
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <app-footer></app-footer>
+</body>
+
+</html>
