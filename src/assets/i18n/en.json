@@ -196,6 +196,43 @@
 			}
 		}
 	},
+  "DATAANALYSIS": {
+    "CLASSES": {
+      "C1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "C2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "C3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "TITLE": "Class "
+    },
+    "DESC_TITLE": "Description",
+    "DESC": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "FORMAT_SUBTITLE":"Course format",
+    "FORMAT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "ENROLLBUTTON": "Enroll now!",
+    "TITLE": "Data Analysis Course",
+    "FAQ": {
+      "TITLE": "Frequently asked questions",
+      "1": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "2": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "3": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "4": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "5": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    }
+  },
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2nd Meet Up",
 		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
