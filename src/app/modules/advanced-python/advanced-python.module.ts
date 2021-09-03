@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataAnalysisComponent } from './pages/data-analysis/data-analysis.component';
-import {MatCardModule} from '@angular/material/card';
+import { AdvancedPythonComponent } from './pages/advanced-python/advanced-python.component';
 import {SharedModule} from '../../shared/shared.module';
+import {MatCardModule} from '@angular/material/card';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpLoaderFactory} from '../../app.module';
+import {HttpClient} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpLoaderFactory} from '../../app.module';
-import {HttpClient} from '@angular/common/http';
 
 const routes: Routes = [
-  { path: '',  component: DataAnalysisComponent }
+  { path: '',  component: AdvancedPythonComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [DataAnalysisComponent],
+  declarations: [AdvancedPythonComponent],
   imports: [
     routing,
     CommonModule,
@@ -34,4 +34,4 @@ export const routing = RouterModule.forChild(routes);
     MatExpansionModule
   ]
 })
-export class DataAnalysisModule { }
+export class AdvancedPythonModule { }

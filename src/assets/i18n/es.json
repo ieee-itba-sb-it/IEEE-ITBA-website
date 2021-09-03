@@ -243,6 +243,43 @@
       }
     }
   },
+  "ADVANCEDPYTHON": {
+    "CLASSES": {
+      "C1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "C2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "C3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "TITLE": "Clase "
+    },
+    "DESC_TITLE": "Descripción",
+    "DESC": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "FORMAT_SUBTITLE":"Formato del curso",
+    "FORMAT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "ENROLLBUTTON": "¡Anotate ahora!",
+    "TITLE": "Curso Avanzado de Python",
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "1": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "2": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "3": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "4": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "5": {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      }
+    }
+  },
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2do Meet Up",
 		"CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publicá los temas que quieras que se discutan en el form!"
