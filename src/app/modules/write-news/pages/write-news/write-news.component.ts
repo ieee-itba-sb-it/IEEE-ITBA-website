@@ -37,11 +37,12 @@ export class WriteNewsComponent implements OnInit {
     var author = (<HTMLInputElement>document.getElementById("author")).value;
     var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
     var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var reference = title.toLowerCase().split(' ').join('-'); //replace("/ /g", "-");
+    var reference = encodeURIComponent( title.toLowerCase().split(' ').join('-').replaceAll('?', 'q') ); //replace("/ /g", "-");
     var tags = ['tecnología'];
     var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;;
     var ratings = [0, 0, 0, 0, 0];
     console.log(content);
+    console.log(reference)
 
     if (title != '') {
       this.blogService.setDoc(

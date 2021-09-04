@@ -16,7 +16,8 @@
     ],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "ESNext.String"
     ],
     "resolveJsonModule": true,
     "esModuleInterop": true,
