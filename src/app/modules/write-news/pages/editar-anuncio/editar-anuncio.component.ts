@@ -55,7 +55,7 @@ export class EditarAnuncioComponent implements OnInit {
     const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
     const autor = (document.getElementById('autor') as HTMLInputElement).value;
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
-    const reference = (document.getElementById('nombreUrl') as HTMLInputElement).value;
+    const reference = encodeURIComponent( (document.getElementById('nombreUrl') as HTMLInputElement).value.replaceAll('?', 'q')  );
     const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
     const listed = (document.getElementById('listed') as HTMLInputElement).checked;
     const tags = ['hola', 'chau'];
