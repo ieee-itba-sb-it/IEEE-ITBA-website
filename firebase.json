@@ -12,6 +12,18 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "ieeeitba.web.app/**",
+        "destination": "ieeeitba.org.ar/**",
+        "type": 301
+      },
+      {
+        "source": "ieeeitba.firebaseapp.com/**",
+        "destination": "ieeeitba.org.ar/**",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
