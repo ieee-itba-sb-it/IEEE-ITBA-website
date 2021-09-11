@@ -69,6 +69,10 @@
 				"WEBMASTER": "Webmaster"
 			}
 		},
+		"IEEENEWS": {
+			"TITLE": "IEEE News",
+			"CONTENT": "Find out the latest technological and scientific news!"
+		},
 		"CLASSES": {
 			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
 			"TITLE": "Python Courses"
@@ -137,7 +141,7 @@
 		},
 		"SPONSORSHIP": {
 			"TEXT": "In order to take part in the competition we require founding, that is why we are in the looking for new sponsors for our event. For more information please contact any member of our fundraising team:",
-			"TITLE": ""
+			"TITLE": "Sponsors who have supported us"
 		},
 		"TEAM": {
 			"TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
