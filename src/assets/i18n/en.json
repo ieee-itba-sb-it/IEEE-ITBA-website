@@ -69,6 +69,10 @@
 				"WEBMASTER": "Webmaster"
 			}
 		},
+		"IEEENEWS": {
+			"TITLE": "IEEE News",
+			"CONTENT": "¡Find out the latest technological and scientific news!"
+		},
 		"CLASSES": {
 			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
 			"TITLE": "Python Courses"
@@ -273,10 +277,6 @@
 	"IEEEMEETUP": {
 		"TITLE": "IEEE - 2nd Meet Up",
 		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
-	},
-	"IEEENEWS": {
-		"TITLE": "IEEE News",
-		"CONTENT": "¡Accede a la página de noticias de IEEE ITBA!"
 	},
 	"GENERAL": {
 		"ALL": "PREVIOUS",
