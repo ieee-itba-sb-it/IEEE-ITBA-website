@@ -208,75 +208,48 @@
 	},
   "DATAANALYSIS": {
     "CLASSES": {
-      "C1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-      "C2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-      "C3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "C1": {
+        "M1": "Introducción a librerías (repaso)",
+        "M2": "Lectura y escritura de archivos formato Excel y CSV",
+        "M3": "Manipulación de datos con Pandas"
+      },
+      "C2": {
+        "M1": "Introducción a matplotlib",
+        "M2": "Visualización de datos",
+        "M3": "Personalización de los gráficos",
+        "M4": "Casos de aplicación"
+      },
       "TITLE": "Clase "
     },
     "DESC_TITLE": "Descripción",
-    "DESC": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "DESC": "Este curso forma parte de una serie de cursos que ofrecemos, la cual tiene como objetivo principal aprender lo suficiente para automatizar tareas comunes, manipular archivos y hojas de datos de manera eficiente, y representar información gráficamente de manera sencilla. Todas estas tareas pueden ser realizadas usando programación sin necesidad de convertirse en un experto del tema.\nEl contenido de este curso está orientado hacia aquellos que tienen conocimientos básicos sobre programación en Python (tales como tipos de datos, funciones y estructuras de datos). Se verán conceptos y temas fundamentales acerca de librerías, lectura de archivos y análisis y representación de datos, poniendo en práctica lo aprendido mediante desafíos interactivos y ejercicios prácticos.",
     "FORMAT_SUBTITLE":"Formato del curso",
-    "FORMAT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "CONTENT_TITLE": "Contenido",
+    "CONTENT_DESC": "El curso consiste de 2 clases cubriendo los siguientes temas",
     "TITLE": "Curso de Análisis de Datos",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
       "1": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+        "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
       },
       "2": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+        "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
       },
       "3": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "QUESTION": "¿Quiénes pueden participar del curso?",
+        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
       },
       "4": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
       },
       "5": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      }
-    }
-  },
-  "ADVANCEDPYTHON": {
-    "CLASSES": {
-      "C1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-      "C2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-      "C3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-      "TITLE": "Clase "
-    },
-    "DESC_TITLE": "Descripción",
-    "DESC": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-    "FORMAT_SUBTITLE":"Formato del curso",
-    "FORMAT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-    "ENROLLBUTTON": "¡Anotate ahora!",
-    "TITLE": "Curso Avanzado de Python",
-    "FAQ": {
-      "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      "2": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      "3": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      "4": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      "5": {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
       }
     }
   },

@@ -24,10 +24,12 @@
 
 <div>
   <div class="d-flex flex-row-reverse">
-    <button class="goback-button">
-      <a href="" class="button-text">
-        {{ 'DATAANALYSIS.ENROLLBUTTON' | translate }} </a>
-    </button>
+    <!-- Button is inside <a> tag because it allows a greater hitmark -->
+    <a href="https://forms.gle/HoKbXFNMDZGJmJtm9" target="_blank" class="button-text">
+      <button class="goback-button">
+        {{ 'DATAANALYSIS.ENROLLBUTTON' | translate }}
+      </button>
+    </a>
   </div>
 </div>
 
@@ -41,7 +43,12 @@
 
 <!-- Cards Temario -->
 
-<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
+<div>
+  <h2 class="course-subtitle">{{ 'DATAANALYSIS.CONTENT_TITLE' | translate }}</h2>
+  <p>{{ 'DATAANALYSIS.CONTENT_DESC' | translate }}</p>
+</div>
+
+<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center">
 
   <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
             fxFlex.lt-sm="100%">
@@ -53,11 +60,15 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      {{ 'DATAANALYSIS.CLASSES.C1' | translate }}
+      <mat-list>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M1' | translate }}</mat-list-item>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M2' | translate }}</mat-list-item>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M3' | translate }}</mat-list-item>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+  <mat-card class="example-card" fxFlex="0 1 calc(40% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
             fxFlex.lt-sm="100%">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -67,21 +78,12 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      {{ 'DATAANALYSIS.CLASSES.C2' | translate }}
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>
-        {{'DATAANALYSIS.CLASSES.TITLE' | translate }}
-        3
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      {{ 'DATAANALYSIS.CLASSES.C3' | translate }}
+      <mat-list>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M1' | translate }}</mat-list-item>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M2' | translate }}</mat-list-item>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M3' | translate }}</mat-list-item>
+        <mat-list-item><mat-icon matListIcon>fiber_manual_record</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M4' | translate }}</mat-list-item>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 
@@ -112,15 +114,29 @@
     <br>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm sponsors">
-          <img src="../../../../../assets/image/content/template.png" height="80vmin" alt="Logo template"
+      <div class="row" style="margin-top: 2vmin;">
+        <div class="col-sm">
+          <img src="../../../../../assets/image/content/jpmorgan.png" height="90vmin" alt="Logo JP Morgan"
                style="position: relative; top: 50%; transform: translateY(-50%);">
         </div>
-        <div class="col-sm sponsors">
-          <img src="../../../../../assets/image/content/template.png" height="80vmin" alt="Logo template"
+        <div class="col-sm">
+          <img src="../../../../../assets/image/content/axion-energy.png" height="100vmin" alt="Logo Axion Energy"
                style="position: relative; top: 50%; transform: translateY(-50%);">
         </div>
+        <div class="col-sm">
+          <img src="../../../../../assets/image/content/flowics_logo-horizontal-full-color.png" height="70vmin" alt="Logo Flowics"
+               style="position: relative; top: 50%; transform: translateY(-50%); ">
+        </div>
+        </div>
+        <div class="row" style="margin-top: 2vmin;">
+          <div class="col-sm">
+            <img src="../../../../../assets/image/content/pan-american-energy.png" height="75vmin" alt="Logo Pan American Energy"
+                 style="position: relative; top: 50%; transform: translateY(-50%); ">
+          </div>
+          <div class="col-sm">
+            <img src="../../../../../assets/image/content/innovid.png" height="35vmin" alt="Logo Innovid"
+                 style="position: relative; top: 50%; transform: translateY(-50%);">
+          </div>
       </div>
     </div>
 

@@ -9,6 +9,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 const routes: Routes = [
   { path: '',  component: DataAnalysisComponent }
@@ -23,6 +25,8 @@ export const routing = RouterModule.forChild(routes);
     CommonModule,
     SharedModule,
     MatCardModule,
+    MatListModule,
+    MatIconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
