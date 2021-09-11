@@ -57,7 +57,7 @@ h1 {
 
 
 .example-header-image {
-  background-image: url('https://i.pinimg.com/originals/09/b0/08/09b008ceb45878eb34180d23506e4212.gif');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
   background-size: cover;
 }
 
@@ -307,4 +307,8 @@ mat-expansion-panel-header {
 
 mat-panel-title {
   color:rgb(23, 46, 148);
+}
+
+.mat-list .mat-list-item {
+  height: 50px; /* default is 72px */
 }

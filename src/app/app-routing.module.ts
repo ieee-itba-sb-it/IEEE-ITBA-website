@@ -20,8 +20,6 @@ const routes: Routes = [
   { path: 'contact', loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule) },
   { path: 'events', loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule) },
   { path: 'data-analysis', loadChildren: () => import('./modules/data-analysis/data-analysis.module').then(m => m.DataAnalysisModule) },
-  { path: 'advanced-python', loadChildren: () =>
-      import('./modules/advanced-python/advanced-python.module').then(m => m.AdvancedPythonModule) },
   { path: 'error401', component: Error401Component},
   {
     path: 'write-news',
