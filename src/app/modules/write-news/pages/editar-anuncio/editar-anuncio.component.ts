@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';
 
+import { sanitizeString } from '../../utils'
+
 import Timestamp = firestore.Timestamp;
 
 @Component({
@@ -55,7 +57,7 @@ export class EditarAnuncioComponent implements OnInit {
     const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
     const autor = (document.getElementById('autor') as HTMLInputElement).value;
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
-    const reference = encodeURIComponent( (document.getElementById('nombreUrl') as HTMLInputElement).value.replaceAll('?', 'q')  );
+    const reference = encodeURIComponent( sanitizeString( (document.getElementById('nombreUrl') as HTMLInputElement).value )  );
     const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
     const listed = (document.getElementById('listed') as HTMLInputElement).checked;
     const tags = ['hola', 'chau'];
