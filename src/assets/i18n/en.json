@@ -3,7 +3,8 @@
 		"TITLE":"Student Branch",
 		"CARGO": {
 			"CD": {
-				"GENERALSEC": "Operational manager and General Secretary",
+				"OPANDGENSEC": "Operational manager and General Secretary",
+				"GENERALSEC": "General Secretary",
 				"PRESIDENT": "President",
 				"TREASURER": "Treasurer",
 				"VP": "Vice president"
@@ -24,9 +25,14 @@
 				"Director": "I+D Director"
 			},
 			"MEDIACOM": {
+				"DIRECTOR": "Media Director",
+				"DIRECTOR_AND_WRITER": "Media Director and Writter",
 				"CC": "Content Creator",
 				"DESIGNER": "Designer",
-				"WEBMASTER": "General Webmaster & Editor"
+				"WEBMASTER": "General Webmaster & Editor",
+				"WRITER": "Writer",
+				"ILUSTRATOR": "Illustrator",
+				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Fundraising Mentor",

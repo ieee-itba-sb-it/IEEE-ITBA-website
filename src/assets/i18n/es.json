@@ -3,7 +3,8 @@
 		"TITLE":"Rama Estudiantil",
 		"CARGO": {
 			"CD": {
-				"GENERALSEC": "Directora de Operaciones y Secretaria General",
+				"OPANDGENSEC": "Directora de Operaciones y Secretaria General",
+				"GENERALSEC": "Secretaria General",
 				"PRESIDENT": "Presidente",
 				"TREASURER": "Tesorero",
 				"VP": "Vicepresidente"
@@ -24,11 +25,14 @@
 				"CHIEF": "Coordinador de I+D"
 			},
 			"MEDIACOM": {
+				"DIRECTOR": "Director de Medios",
+				"DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
 				"CC": "Creador de Contenido",
 				"DESIGNER": "Diseñador",
 				"WEBMASTER": "Webmaster & Editor General",
-				"REDACTOR": "Redactor",
-				"DIBUJANTE": "Creador de Contenido, Dibujante"
+				"WRITER": "Redactor",
+				"ILUSTRATOR": "Dibujante",
+				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Mentor de Fundraising",
