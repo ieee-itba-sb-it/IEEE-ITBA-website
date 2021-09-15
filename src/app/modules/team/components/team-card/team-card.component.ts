@@ -17,10 +17,10 @@ export class TeamCardComponent implements OnInit {
   // Actual
 
   peopleCD_actual = [
-    new Person("Ariel Nowik", "https://i.ibb.co/YX5j6nw/arielnowik.jpg", "https://www.linkedin.com/in/ariel-nowik-13608a158/", "anowik@itba.edu.ar", 'HOME.CARGO2021.CD.PRESIDENT'),
+    new Person("Pedro Hernán García", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO2021.CD.PRESIDENT'),    
+    new Person("Francisco Basili", "https://i.ibb.co/YX5j6nw/arielnowik.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4/", "fbasili@itba.edu.ar", 'HOME.CARGO2021.CD.VP'),
     new Person("Olivia de Vincenti", "https://i.ibb.co/M5kk8JY/oliviadevincenti.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO2021.CD.GENERALSEC'),
     new Person("Xi Lin", "https://i.ibb.co/7zYkGtG/xilin.jpg", "https://www.linkedin.com/in/xi-lin-0945951a0/", "xlin@itba.edu.ar", 'HOME.CARGO2021.CD.TREASURER'),
-    new Person("Pedro Hernán García", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO2021.CD.VP'),
   ];
 
   peopleMediacom_actual = [
