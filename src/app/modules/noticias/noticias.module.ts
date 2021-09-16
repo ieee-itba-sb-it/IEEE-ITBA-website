@@ -13,6 +13,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MatChipsModule} from '@angular/material/chips';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import {CookieService} from 'ngx-cookie-service';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const routes: Routes = [
   { path: '',  component: NoticiasComponent },
@@ -38,7 +40,9 @@ export const routing = RouterModule.forChild(routes);
     MatCardModule,
     MDBBootstrapModule.forRoot(),
     MatChipsModule,
-    EmojiModule
-  ]
+    EmojiModule,
+    MatGridListModule
+  ],
+  providers: [ CookieService ]
 })
 export class NoticiasModule { }
