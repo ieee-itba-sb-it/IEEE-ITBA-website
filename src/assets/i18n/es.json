@@ -42,6 +42,10 @@
 				"GENERALASSIST": "Asistente General",
 				"TEAMMENTOR": "Mentor de Equipos Competitivos",
 				"VOLUNTEER": "Voluntario"
+			},"IT": {
+				"DIRECTOR": "Director de TI",
+				"DEV": "Desarrollador",
+				"DATA": "Analista de Datos"
 			}
 		},
 		"CARGO2021": {

@@ -77,10 +77,15 @@ export class TeamCardComponent implements OnInit {
     new Person("Josue Francisco Laszeski", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "https://www.linkedin.com/in/josue-francisco-laszeski-549711214/", "jlaszeski@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
   ];
 
-  peopleIT_actual = [
-    new Person("Eugenia Sol Piñeiro", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/eugenia-piñeiro", "epineiro@itba.edu.ar", 'HOME.CARGO.IT.DIRECTOR'),
-    new Person("Matías Santiago Francois", "https://i.ibb.co/6mq1FSp/Matias-Francois.jpg", "https://www.linkedin.com/in/matias-francois/", "mfrancois@itba.edu.ar", 'HOME.CARGO.IT.WEBMASTER'),
-    new Person("Matias Ricarte", "https://i.ibb.co/x5rVdTb/Matias-Ricarte.jpg", "https://www.linkedin.com/in/matias-agustin-ricarte-183b271a3/", "mricarte@itba.edu.ar", 'HOME.CARGO.IT.WEBMASTER'),
+  peopleIT_actual_1 = [
+    new Person("Matías Santiago Francois", "https://i.ibb.co/6mq1FSp/Matias-Francois.jpg", "https://www.linkedin.com/in/matias-francois/", "mfrancois@itba.edu.ar", 'HOME.CARGO.IT.DIRECTOR'),
+    new Person("Lucas Vittor", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "linkedin.com/lvvittor", "lvittor@itba.edu.ar", 'HOME.CARGO.IT.DATA'),
+  ];
+
+  peopleIT_actual_2 = [
+    new Person("Nicolás Ezequiel Birsa", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/nicol%C3%A1s-ezequiel-birsa-63631a1a1/", "nbirsa@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
+    new Person("Matias Ricarte", "https://i.ibb.co/x5rVdTb/Matias-Ricarte.jpg", "https://www.linkedin.com/in/matias-agustin-ricarte-183b271a3/", "mricarte@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
+    new Person("Luciano Boccardi", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/lboccardi", "lboccardi@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
   ];
 
 
@@ -232,8 +237,12 @@ export class TeamCardComponent implements OnInit {
         this.people = this.peopleMediacom3_actual;
         break;
       }
-      case 'IT_actual': {
-        this.people = this.peopleIT_actual;
+      case 'IT_actual_1': {
+        this.people = this.peopleIT_actual_1;
+        break;
+      }
+      case 'IT_actual_2': {
+        this.people = this.peopleIT_actual_2;
         break;
       }
       case 'ID_actual': {

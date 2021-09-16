@@ -42,6 +42,11 @@
 				"GENERALASSIST": "General Assistant",
 				"TEAMMENTOR": "Competitive Teams Mentor",
 				"VOLUNTEER": "Volunteer"
+			},
+			"IT": {
+				"DIRECTOR": "IT Director",
+				"DEV": "Developer",
+				"DATA": "Data Analyst"
 			}
 		},
 		"CARGO2021": {
