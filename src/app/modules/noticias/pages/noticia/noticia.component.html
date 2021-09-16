@@ -77,46 +77,22 @@
                 <!--Emoji Rating-->
                 <div style="margin-bottom:20px" class="whitetext-left word-break">¿Qué te pareció la noticia?</div>
 
-                <div style="margin-bottom:10px" *ngIf="emojisVisible">
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'thumbsdown', skin: 3 }" size="40"
-                        (emojiClick)="rateNews('one', 0)"></ngx-emoji>
-
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'confused', skin: 3 }" size="40"
-                        (emojiClick)="rateNews('two', 1)"></ngx-emoji>
-
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'grin', skin: 3 }" size="40"
-                        (emojiClick)="rateNews('grin', 2)">
-                    </ngx-emoji>
-
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'joy', skin: 3 }" size="40"
-                        (emojiClick)="rateNews('joy', 3)">
-                    </ngx-emoji>
-
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: 'heart_eyes', skin: 3 }" size="40"
-                        (emojiClick)="rateNews('heart', 4)"></ngx-emoji>
+                <div class="d-inline-flex" style="margin-bottom:10px" *ngIf="emojisVisible">
+                  <div class="mr-2" *ngFor="let emoji of emojisList; index as i">
+                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: emoji, skin: 3 }" size="40"
+                               (emojiClick)="rateNews(emoji, i)"></ngx-emoji>
+                  </div>
                 </div>
-                <div class="whitetext-left" *ngIf="isVisbile">Gracias por votar ! </div>
-                <mat-chip-list aria-label="Emoji selection">
-                    <mat-chip>
-                        {{(newsData | async).ratings[0]}} <ngx-emoji [emoji]="{ id: 'thumbsdown', skin: 3 }" size="15">
-                        </ngx-emoji>
-                    </mat-chip>
-                    <mat-chip>
-                        {{(newsData | async).ratings[1]}} <ngx-emoji [emoji]="{ id: 'confused', skin: 3 }" size="15">
-                        </ngx-emoji>
-                    </mat-chip>
-                    <mat-chip>
-                        {{(newsData | async).ratings[2]}} <ngx-emoji [emoji]="{ id: 'grin', skin: 3 }" size="15">
-                        </ngx-emoji>
-                    </mat-chip>
-                    <mat-chip>
-                        {{(newsData | async).ratings[3]}} <ngx-emoji [emoji]="{ id: 'joy', skin: 3 }" size="15">
-                        </ngx-emoji>
-                    </mat-chip>
-                    <mat-chip>
-                        {{(newsData | async).ratings[4]}} <ngx-emoji [emoji]="{ id: 'heart_eyes', skin: 3 }" size="15">
-                        </ngx-emoji>
-                    </mat-chip>
+
+                <div style="margin-bottom:20px" class="whitetext-left word-break" *ngIf="isVisbile">Gracias por votar ! </div>
+
+              <mat-chip-list aria-label="Emoji selection">
+                <div *ngFor="let emoji of emojisList; index as i">
+                  <mat-chip style="pointer-events: none" [selected]="isSelected(i)">
+                    {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
+                  </mat-chip>
+                </div>
+
                 </mat-chip-list>
 
                 <!-- Date -->
