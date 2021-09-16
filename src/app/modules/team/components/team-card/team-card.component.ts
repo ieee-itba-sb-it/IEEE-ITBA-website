@@ -18,8 +18,8 @@ export class TeamCardComponent implements OnInit {
 
   peopleCD_actual = [
     new Person("Pedro Hernán García", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO.CD.PRESIDENT'),    
-    new Person("Francisco Basili", "https://i.ibb.co/YX5j6nw/arielnowik.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4/", "fbasili@itba.edu.ar", 'HOME.CARGO.CD.VP'),
-    new Person("Olivia de Vincenti", "https://i.ibb.co/M5kk8JY/oliviadevincenti.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.CD.OPANDGENSEC'),
+    new Person("Francisco Basili", "https://i.ibb.co/pxyDj71/Foto-Perfil-FRANCISCO-BASILI.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4/", "fbasili@itba.edu.ar", 'HOME.CARGO.CD.VP'),
+    new Person("Olivia de Vincenti", "https://i.ibb.co/qJ9vg3r/Whats-App-Image-2021-09-16-at-12-13-03.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.CD.OPANDGENSEC'),
     new Person("Xi Lin", "https://i.ibb.co/7zYkGtG/xilin.jpg", "https://www.linkedin.com/in/xi-lin-0945951a0/", "xlin@itba.edu.ar", 'HOME.CARGO.CD.TREASURER'),
   ];
 
@@ -85,7 +85,7 @@ export class TeamCardComponent implements OnInit {
   peopleIT_actual_2 = [
     new Person("Nicolás Ezequiel Birsa", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/nicol%C3%A1s-ezequiel-birsa-63631a1a1/", "nbirsa@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
     new Person("Matias Ricarte", "https://i.ibb.co/x5rVdTb/Matias-Ricarte.jpg", "https://www.linkedin.com/in/matias-agustin-ricarte-183b271a3/", "mricarte@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
-    new Person("Luciano Boccardi", "https://i.ibb.co/rvw8HVm/Euge-pineiro.png", "https://www.linkedin.com/in/lboccardi", "lboccardi@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
+    new Person("Luciano Boccardi", "https://i.ibb.co/qJ9vg3r/Whats-App-Image-2021-09-16-at-12-13-03.jpg", "https://www.linkedin.com/in/lboccardi", "lboccardi@itba.edu.ar", 'HOME.CARGO.IT.DEV'),
   ];
 
 

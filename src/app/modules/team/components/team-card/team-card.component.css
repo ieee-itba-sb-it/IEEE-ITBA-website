@@ -18,6 +18,11 @@ mdb-card-text {
     color: black;
 }
 
+.card-group{
+    display: flex;
+    justify-content: center;
+}
+
 h4 {
     font-family: roboto;
     font-size: 17.5px;
