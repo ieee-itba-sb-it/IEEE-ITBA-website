@@ -25,6 +25,7 @@
 			"ID": {
 				"ASSISTANT": "I+D Assistant",
 				"RESEARCHER": "I+D Researcher",
+				"CHIEFA": "I+D Director",
 				"CHIEF": "I+D Director"
 			},
 			"MEDIACOM": {
@@ -34,7 +35,9 @@
 				"DESIGNER": "Designer",
 				"WEBMASTER": "General Webmaster & Editor",
 				"WRITER": "Writer",
+				"REDACTOR": "Writer",
 				"ILUSTRATOR": "Illustrator",
+				"DIBUJANTE": "Ilustrator",
 				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {

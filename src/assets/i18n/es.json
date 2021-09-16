@@ -25,16 +25,19 @@
 			"ID": {
 				"ASSISTANT": "Asistente de I+D",
 				"RESEARCHER": "I+D Investigador",
+				"CHIEFA": "Directora de I+D",
 				"CHIEF": "Director de I+D"
 			},
 			"MEDIACOM": {
-				"DIRECTOR": "Director de Medios",
+				"DIRECTOR": "Directora de Medios",
 				"DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
 				"CC": "Creador de Contenido",
 				"DESIGNER": "Diseñador",
 				"WEBMASTER": "Webmaster & Editor General",
 				"WRITER": "Redactor",
+				"REDACTOR": "Redactor",
 				"ILUSTRATOR": "Dibujante",
+				"DIBUJANTE": "Dibujante",
 				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {
