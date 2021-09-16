@@ -3,12 +3,14 @@
 		"TITLE":"Rama Estudiantil",
 		"CARGO": {
 			"CD": {
+				"OPANDGENSEC": "Directora de Operaciones y Secretaria General",
 				"GENERALSEC": "Secretaria General",
 				"PRESIDENT": "Presidente",
 				"TREASURER": "Tesorero",
 				"VP": "Vicepresidente"
 			},
 			"EDUCATION": {
+				"DIRECTOR": "Director de Educación",
 				"ASSISTANT": "Ayudante de tutorías",
 				"HEADTUTOR": "Tutor Encargado",
 				"RRPP": "RRPP & Logística",
@@ -16,25 +18,37 @@
 				"TUTOR": "Tutor"
 			},
 			"FUNDRAISING": {
+				"DIRECTOR": "Director de Fundraising",
 				"LOGISTICS": "Fundraiser & Logística",
 				"RRPP": "RRHH & RRPP"
 			},
 			"ID": {
 				"ASSISTANT": "Asistente de I+D",
-				"CHIEF": "Coordinador de I+D"
+				"RESEARCHER": "I+D Investigador",
+				"CHIEFA": "Directora de I+D",
+				"CHIEF": "Director de I+D"
 			},
 			"MEDIACOM": {
+				"DIRECTOR": "Directora de Medios",
+				"DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
 				"CC": "Creador de Contenido",
 				"DESIGNER": "Diseñador",
 				"WEBMASTER": "Webmaster & Editor General",
+				"WRITER": "Redactor",
 				"REDACTOR": "Redactor",
-				"DIBUJANTE": "Creador de Contenido, Dibujante"
+				"ILUSTRATOR": "Dibujante",
+				"DIBUJANTE": "Dibujante",
+				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Mentor de Fundraising",
 				"GENERALASSIST": "Asistente General",
 				"TEAMMENTOR": "Mentor de Equipos Competitivos",
 				"VOLUNTEER": "Voluntario"
+			},"IT": {
+				"DIRECTOR": "Director de TI",
+				"DEV": "Desarrollador",
+				"DATA": "Analista de Datos"
 			}
 		},
 		"CARGO2021": {
