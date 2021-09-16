@@ -66,15 +66,15 @@ export class TeamCardComponent implements OnInit {
   ];
 
   peopleEdu_actual = [
-    new Person("Pedro Hernán García", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO.EDUCATION.CO-DIRECTOR'),
-    new Person("Francisco Basili", "https://i.ibb.co/sKw2BDC/Fran-Basili.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4", "fbasili@itba.edu.ar", 'HOME.CARGO.EDUCATION.CO-DIRECTOR'),
-    new Person("Ignacio Cutignola", "https://i.ibb.co/PZYTy7t/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201/", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
+    new Person("Matías Bergerman", "https://i.ibb.co/rvWJBCt/matiasbergerman.jpg", "https://www.linkedin.com/in/mbergerman", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
+    new Person("Alejo Agustín Figueroa", "https://i.ibb.co/TTfpCN7/Alejo-Figueroa.jpg", "https://www.linkedin.com/mwlite/in/alejo-agustin-figueroa-204589147", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
+    new Person("Ignacio Cutignola", "https://i.ibb.co/PZYTy7t/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ]
 
   peopleEdu2_actual = [
-    new Person("Matías Bergerman", "https://i.ibb.co/rvWJBCt/matiasbergerman.jpg", "https://www.linkedin.com/in/mat%C3%ADas-bergerman-a934881a5/", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
-    new Person("Agustin Lara Acosta", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "https://www.linkedin.com/in/agustin-lara-acosta-55075b1ab/", "alara@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
-    new Person("Alejo Figueroa", "https://i.ibb.co/TTfpCN7/Alejo-Figueroa.jpg", "https://www.linkedin.com/in/alejo-agustin-figueroa-204589147/", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
+    new Person("Agustin Luis Gullino", "https://i.ibb.co/sKw2BDC/Fran-Basili.jpg", "https://www.linkedin.com/in/agust%C3%ADn-luis-gullino-a87083197/", "agullino@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
+    new Person("Agustín Iannaccio", "https://i.ibb.co/dGkMqMj/Pedro-Garcia.jpg", "https://www.linkedin.com/in/agustiniannaccio/", "aiannaccio@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
+    new Person("Josue Francisco Laszeski", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "https://www.linkedin.com/in/josue-francisco-laszeski-549711214/", "jlaszeski@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
   ];
 
   peopleIT_actual = [
