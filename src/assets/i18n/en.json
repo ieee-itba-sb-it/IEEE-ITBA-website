@@ -22,7 +22,8 @@
 			},
 			"ID": {
 				"ASSISTANT": "I+D Assistant",
-				"Director": "I+D Director"
+				"RESEARCHER": "I+D Researcher",
+				"CHIEF": "I+D Director"
 			},
 			"MEDIACOM": {
 				"DIRECTOR": "Media Director",

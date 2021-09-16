@@ -42,10 +42,16 @@ export class TeamCardComponent implements OnInit {
   ];
 
   peopleID_actual = [
-    new Person("Candelaria Ruiz", "https://i.ibb.co/zfT818s/candelariaruiz.jpg", "https://www.linkedin.com/in/mar%C3%ADa-candelaria-ruiz-casas/", "mariruiz@itba.edu.ar", 'HOME.CARGO.ID.CHIEF'),
-    new Person("Alan Mechoulam", "https://i.ibb.co/8B973Hk/alanmechoulam.jpg", "https://www.linkedin.com/in/alanmechoulam/", "amechoulam@itba.edu.ar", 'HOME.CARGO.ID.ASSISTANT'),
-    new Person("Juan Martín Mujica Buj", "https://i.ibb.co/0JtCzJj/Juan-Martin-Mujica-Buj.jpg", "https://www.linkedin.com/in/juan-mart%C3%ADn-mujica-buj-4a301b18b/", "jmujica@itba.edu.ar", 'HOME.CARGO.ID.ASSISTANT'),
-    new Person("Dante Kienigiel", "https://i.ibb.co/31vBrMv/Dante-Kienigiel.jpg", "https://www.linkedin.com/in/dante-k-572396bb/", "dkienigiel@itba.edu.ar", 'HOME.CARGO.ID.ASSISTANT')
+    new Person("María Candelaria Ruiz Casas", "https://i.ibb.co/zfT818s/candelariaruiz.jpg", "http://linkedin.com/in/maría-candelaria-ruiz-casas", "mariruiz@itba.edu.ar", 'HOME.CARGO.ID.CHIEF'),
+    new Person("Damián Ezequiel Sergi", "https://i.ibb.co/8B973Hk/alanmechoulam.jpg", "https://www.linkedin.com/in/dami%C3%A1n-ezequiel-sergi-0141ba168/", "dsergi@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
+    new Person("Santiago Sandrini", "https://i.ibb.co/0JtCzJj/Juan-Martin-Mujica-Buj.jpg", "https://www.linkedin.com/in/santiago-sandrini-ab543b219", "ssandrini@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
+    new Person("Manuel Dizenhaus", "https://i.ibb.co/31vBrMv/Dante-Kienigiel.jpg", "www.linkedin.com/in/manuel-dizenhaus", "mdizenhaus@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER')
+  ];
+
+  peopleID_actual_2 = [
+    new Person("Fernanda Belen Cattaneo", "https://i.ibb.co/zfT818s/candelariaruiz.jpg", "www.linkedin.com/in/fernanda-belen-cattaneo-itba", "fcattaneo@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
+    new Person("Santiago López Franceschini", "https://i.ibb.co/8B973Hk/alanmechoulam.jpg", "https://www.linkedin.com/in/santiago-l%C3%B3pez-franceschini-61761021b/", "slopezfranceschini@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
+    new Person("Juan Martín Mujica Buj", "https://i.ibb.co/0JtCzJj/Juan-Martin-Mujica-Buj.jpg", "https://www.linkedin.com/in/juan-mart%C3%ADn-mujica-buj-4a301b18b", "jmujica@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
   ];
 
   peopleFundr_actual = [
@@ -234,6 +240,10 @@ export class TeamCardComponent implements OnInit {
       }
       case 'ID_actual': {
         this.people = this.peopleID_actual;
+        break;
+      }
+      case 'ID_actual_2': {
+        this.people = this.peopleID_actual_2;
         break;
       }
       case 'Fundraising_actual': {
