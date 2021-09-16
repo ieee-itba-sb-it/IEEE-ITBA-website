@@ -7,7 +7,7 @@ body {
 	padding-top: 160px;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
@@ -91,8 +91,16 @@ body {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
 }
 
-.cursopython-text {
+.cursopython-text{
     top: 10%;
+}
+
+.cursoanalisis-text{
+    top: 10%;
+}
+
+.bitcup-text{
+    top: 70%;
 }
 
 
@@ -113,7 +121,7 @@ body {
 }
 
 @media (min-width: 768px) {
-   
+
 	.flexText{
 		display: flex;
 		/* centrado horizontal */

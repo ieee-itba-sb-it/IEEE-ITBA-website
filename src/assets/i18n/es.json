@@ -80,6 +80,14 @@
 			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientado a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
 			"TITLE": "Cursos de Python"
 		},
+    "DATAANALYSIS": {
+      "TEXT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "TITLE": "Curso de Análisis de Datos en Python"
+    },
+    "BITCUP": {
+      "TEXT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "TITLE": "Bitcup"
+    },
 		"COMISIONS": {
 			"DC": "CD",
 			"EDUCATION": "Educación",
