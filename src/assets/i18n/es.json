@@ -222,11 +222,13 @@
       },
       "TITLE": "Clase "
     },
+	"SOLUTION": "Solucionario",
     "DESC_TITLE": "Descripción",
     "DESC": "Este curso forma parte de una serie de cursos que ofrecemos, la cual tiene como objetivo principal aprender lo suficiente para automatizar tareas comunes, manipular archivos y hojas de datos de manera eficiente, y representar información gráficamente de manera sencilla. Todas estas tareas pueden ser realizadas usando programación sin necesidad de convertirse en un experto del tema.\nEl contenido de este curso está orientado hacia aquellos que tienen conocimientos básicos sobre programación en Python (tales como tipos de datos, funciones y estructuras de datos). Se verán conceptos y temas fundamentales acerca de librerías, lectura de archivos y análisis y representación de datos, poniendo en práctica lo aprendido mediante desafíos interactivos y ejercicios prácticos.",
     "FORMAT_SUBTITLE":"Formato del curso",
     "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
+	"TESTBUTTON": "Empezar el examen",
     "CONTENT_TITLE": "Contenido",
     "CONTENT_DESC": "El curso consiste de 2 clases cubriendo los siguientes temas",
     "TITLE": "Curso de Análisis de Datos en Python",

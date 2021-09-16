@@ -216,11 +216,13 @@
       },
       "TITLE": "Class "
     },
+	"SOLUTION": "Solutionary",
     "DESC_TITLE": "Description",
     "DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming without the need to become an expert in the topic.\n\nThe contents of this course are oriented towards people who are already familiar with the basics of Python programming (such as data types, functions and data structures). We will go over the basics and fundamentals of libraries, file reading and data analysis and representation, putting into practice what we learn through interactive challenges and practical exercises.",
     "FORMAT_SUBTITLE":"Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
+	"TESTBUTTON": "Start Test",
     "CONTENT_TITLE": "Course contents",
     "CONTENT_DESC": "The course consists of 2 classes covering the following topics",
     "TITLE": "Data Analysis in Python Course",
