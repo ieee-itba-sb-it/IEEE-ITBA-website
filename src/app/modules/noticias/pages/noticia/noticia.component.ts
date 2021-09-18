@@ -68,7 +68,9 @@ export class NoticiaComponent implements OnInit {
 
   rateNews(emoji: string, rating: number) {
     if (this.cookieValue === '') {
-      this.cookieService.set(this.cookieName, emoji);
+      const expirationDate = new Date();
+      expirationDate.setDate( expirationDate.getDate() + 365);
+      this.cookieService.set(this.cookieName, emoji, expirationDate);
       this.blogService.incrementRating(this.data, rating);
       this.isVisbile = true;
       this.emojisVisible = false;

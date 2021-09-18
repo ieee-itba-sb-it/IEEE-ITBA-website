@@ -79,7 +79,7 @@
 
                 <div class="d-inline-flex" style="margin-bottom:10px" *ngIf="emojisVisible">
                   <div class="mr-2" *ngFor="let emoji of emojisList; index as i">
-                    <ngx-emoji style="margin-right: 7px" [emoji]="{ id: emoji, skin: 3 }" size="40"
+                    <ngx-emoji style="margin-right: 7px; cursor:pointer" [emoji]="{ id: emoji, skin: 3 }" size="40"
                                (emojiClick)="rateNews(emoji, i)"></ngx-emoji>
                   </div>
                 </div>
