@@ -24,20 +24,20 @@ export class TeamCardComponent implements OnInit {
   ];
 
   peopleMediacom_actual = [
-    new Person("Martina Mattias Raposo", "https://i.ibb.co/ZGz2fhj/MARTINA-MATTIAS-RAPOSO.jpg", "https://www.linkedin.com/in/martinamattiasraposo/", "cmattias@itba.edu.ar", 'HOME.CARGO.MEDIACOM.DIRECTOR'),
+    new Person("Martina Mattias Raposo", "https://i.ibb.co/Xjpfwc1/MARTINA-MATTIAS-RAPOSO.jpg", "https://www.linkedin.com/in/martinamattiasraposo/", "cmattias@itba.edu.ar", 'HOME.CARGO.MEDIACOM.DIRECTOR'),
     new Person("Lucas Catolino", "https://i.ibb.co/GHQPHTq/Lucas-Catolino.jpg", "https://www.linkedin.com/in/lucas-catolino-431b52167/", "lcatolino@itba.edu.ar", 'HOME.CARGO.MEDIACOM.DIRECTOR_AND_WRITER'),
-    new Person("Abril Herrlein", "https://i.ibb.co/H2vPfWQ/ABRIL-HERRLEIN.jpg", "linkedin.com/AbrilHerrlein", "aherrlein@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
+    new Person("Abril Herrlein", "https://i.ibb.co/vjRvSY6/ABRIL-HERRLEIN.jpg", "linkedin.com/AbrilHerrlein", "aherrlein@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
   ]
 
   peopleMediacom2_actual = [
-    new Person("Julieta Gagliardi ", "https://i.ibb.co/92M3ct9/JULIETA-GAGLIARDI.png", "https://www.linkedin.com/in/julieta-gagliardi-aa7406157", "jgagliardi@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
-    new Person("Clara Muruzábal", "https://i.ibb.co/s1JRPLp/Clara-Muruz-bal.jpg", "https://www.linkedin.com/mwlite/in/clara-muruzabal-5976301b8", "cmuruzabal@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
-    new Person("Nicolas Matias Margenat", "https://i.ibb.co/0FFQLmj/NICOL-S-MAT-AS-MARGENAT.png", "https://www.linkedin.com/in/nicol%C3%A1s-margenat-018291208", "nmargenat@itba.edu.ar", "HOME.CARGO.MEDIACOM.WRITER")
+    new Person("Julieta Gagliardi ", "https://i.ibb.co/qyzQ7Xs/JULIETA-GAGLIARDI.jpg", "https://www.linkedin.com/in/julieta-gagliardi-aa7406157", "jgagliardi@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
+    new Person("Clara Muruzábal", "https://i.ibb.co/ZBkdH6z/Clara-Muruz-bal.jpg", "https://www.linkedin.com/mwlite/in/clara-muruzabal-5976301b8", "cmuruzabal@itba.edu.ar", 'HOME.CARGO.MEDIACOM.CM'),
+    new Person("Nicolas Matias Margenat", "https://i.ibb.co/t21YqTC/NICOL-S-MAT-AS-MARGENAT.png", "https://www.linkedin.com/in/nicol%C3%A1s-margenat-018291208", "nmargenat@itba.edu.ar", "HOME.CARGO.MEDIACOM.WRITER")
   ];
 
   peopleMediacom3_actual = [
-    new Person("Victor Oh", "https://i.ibb.co/qkv5V6r/Victor-Christian-Oh.jpg", "https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar", "voh@itba.edu.ar", "HOME.CARGO.MEDIACOM.WRITER"),
-    new Person("Juan Bautista Capristo", "https://i.ibb.co/41NGmgF/JUAN-BAUTISTA-CAPRISTO.png", "https://www.linkedin.com/in/juanbautistacapristo/", "jcapristo@itba.edu.ar", 'HOME.CARGO.MEDIACOM.ILUSTRATOR'),
+    new Person("Victor Oh", "https://i.ibb.co/55qctvY/Victor-Christian-Oh.jpg", "https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar", "voh@itba.edu.ar", "HOME.CARGO.MEDIACOM.WRITER"),
+    new Person("Juan Bautista Capristo", "https://i.ibb.co/tb4dTbv/JUAN-BAUTISTA-CAPRISTO.jpg", "https://www.linkedin.com/in/juanbautistacapristo/", "jcapristo@itba.edu.ar", 'HOME.CARGO.MEDIACOM.ILUSTRATOR'),
     new Person("Alexander Stephan Moldovan Loayza", "https://i.ibb.co/DLmg1Ms/alexmoldovan.jpg", "linkedin.com/in/alexander-moldovan-a22842145", "amoldovan@itba.edu.ar", 'HOME.CARGO.MEDIACOM.ILUSTRATOR')
   ];
 
