@@ -43,7 +43,7 @@ export class TeamCardComponent implements OnInit {
 
   peopleID_actual = [
     new Person("María Candelaria Ruiz Casas", "https://i.ibb.co/7K81m8z/candelariaruiz.jpg", "http://linkedin.com/in/maría-candelaria-ruiz-casas", "mariruiz@itba.edu.ar", 'HOME.CARGO.ID.CHIEFA'),
-    new Person("Damián Ezequiel Sergi", "https://i.ibb.co/gRZb7hs/DAMIAN-EZEQUIEL-SERGI.jpg", "https://www.linkedin.com/in/dami%C3%A1n-ezequiel-sergi-0141ba168/", "dsergi@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
+    new Person("Damián Ezequiel Sergi", "https://i.ibb.co/0Vx8n0t/DAMIAN-EZEQUIEL-SERGI.jpg", "https://www.linkedin.com/in/dami%C3%A1n-ezequiel-sergi-0141ba168/", "dsergi@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
     new Person("Santiago Sandrini", "https://i.ibb.co/5cPjdPZ/SANTIAGO-SANDRINI.jpg", "https://www.linkedin.com/in/santiago-sandrini-ab543b219", "ssandrini@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
   ];
 
@@ -51,24 +51,24 @@ export class TeamCardComponent implements OnInit {
     new Person("Fernanda Belen Cattaneo", "https://i.ibb.co/FqbzFLr/FERNANDA-BELEN-CATTANEO.jpg", "www.linkedin.com/in/fernanda-belen-cattaneo-itba", "fcattaneo@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
     new Person("Santiago López Franceschini", "https://i.ibb.co/HV6v4yk/SANTIAGO-L-PEZ-FRANCESCHINI.jpg", "https://www.linkedin.com/in/santiago-l%C3%B3pez-franceschini-61761021b/", "slopezfranceschini@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
     new Person("Juan Martín Mujica Buj", "https://i.ibb.co/vswfTGV/Juan-Martin-Mujica-Buj.jpg", "https://www.linkedin.com/in/juan-mart%C3%ADn-mujica-buj-4a301b18b", "jmujica@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER'),
-    new Person("Manuel Dizenhaus", "https://i.ibb.co/ykTZX5H/MANUEL-DIZENHAUS.jpg", "www.linkedin.com/in/manuel-dizenhaus", "mdizenhaus@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER')
+    new Person("Manuel Dizenhaus", "https://i.ibb.co/R9HYkfj/MANUEL-DIZENHAUS.jpg", "www.linkedin.com/in/manuel-dizenhaus", "mdizenhaus@itba.edu.ar", 'HOME.CARGO.ID.RESEARCHER')
   ];
 
   peopleFundr_actual = [
     new Person("Nicolás Bustelo", "https://i.ibb.co/xXFdLyT/Nicol-s-Bustelo.jpg", "https://www.linkedin.com/in/nicol%C3%A1s-bustelo/", "nbustelo@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.DIRECTOR'),
-    new Person("Ernestina Petti", "https://i.ibb.co/xGMgP7T/ERNESTINA-PETTI.png", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
-    new Person("Carlos Angel Chen", "https://i.ibb.co/JH36yT8/CARLOS-CHEN.jpg", "https://www.linkedin.com/in/carlos-angel-chen/", "cchen@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
+    new Person("Ernestina Petti", "https://i.ibb.co/7JgT6gT/ERNESTINA-PETTI.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
+    new Person("Carlos Angel Chen", "https://i.ibb.co/59DPXqY/CARLOS-CHEN.jpg", "https://www.linkedin.com/in/carlos-angel-chen/", "cchen@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
   ];
   peopleFundr2_actual = [
-    new Person("Gaspar Maschietto", "https://i.ibb.co/Jj6mcfC/source-other-uid-C09-EF53-E-32-A0-4-D8-B-8-FF3-31-A55925-D714-1629926331945-origin-gallery-fte-sourc.jpg", "https://www.linkedin.com/in/gaspar-maschietto-557766123", "gmaschietto@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
-    new Person("Manuel Machado", "https://i.ibb.co/xfb2MQj/Manuel-Machado.png", "https://www.linkedin.com/in/manuelmachado7/", "manmachado@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
-    new Person("Martin Javier Romano", "https://i.ibb.co/fDz9q30/MARTIN-JAVIER-ROMANO.jpg", "https://www.linkedin.com/in/nicol%C3%A1s-fern%C3%A1ndez-pelayo-9530521a5/", "nifernandez@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
+    new Person("Gaspar Maschietto", "https://i.ibb.co/6tbcRTn/Gaspar-Maschietto.jpg", "https://www.linkedin.com/in/gaspar-maschietto-557766123", "gmaschietto@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
+    new Person("Manuel Machado", "https://i.ibb.co/jGm2LtB/Manuel-Machado.jpg", "https://www.linkedin.com/in/manuelmachado7/", "manmachado@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
+    new Person("Martin Javier Romano", "https://i.ibb.co/jL4bWhR/MARTIN-JAVIER-ROMANO.jpg", "https://www.linkedin.com/in/nicol%C3%A1s-fern%C3%A1ndez-pelayo-9530521a5/", "nifernandez@itba.edu.ar", 'HOME.CARGO.FUNDRAISING.LOGISTICS'),
   ];
 
   peopleEdu_actual = [
     new Person("Matías Bergerman", "https://i.ibb.co/HKZQLZh/matiasbergerman.jpg", "https://www.linkedin.com/in/mbergerman", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
     new Person("Alejo Agustín Figueroa", "https://i.ibb.co/m8cVKQZ/ALEJO-AGUSTIN-FIGUEROA.jpg", "https://www.linkedin.com/mwlite/in/alejo-agustin-figueroa-204589147", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
-    new Person("Ignacio Cutignola", "https://i.ibb.co/BwmWWJD/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
+    new Person("Ignacio Cutignola", "https://i.ibb.co/89d5fGd/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ]
 
   peopleEdu2_actual = [
