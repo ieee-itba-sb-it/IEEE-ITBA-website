@@ -204,7 +204,7 @@ export class TeamCardComponent implements OnInit {
     new Person("Francisco Basili", "https://i.ibb.co/sKw2BDC/Fran-Basili.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4", "fbasili@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
     new Person("Matías Sebastian Baiges", "https://i.ibb.co/cvdfKQ7/oznor-TO-soft.jpg", "https://www.linkedin.com/in/mat%C3%ADas-baiges-115bb21b4/", "mbaiges@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
     new Person("Agustin Lara Acosta", "https://i.ibb.co/g76mW7d/Agustin-Lara.jpg", "https://www.linkedin.com/in/agustin-lara-acosta-55075b1ab/", "alara@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
-    new Person("Leandro Ezequiel Rodriguez", "https://i.ibb.co/tbBkxyH/Ezequiel-Rodriguez.jpg", "https://www.linkedin.com/in/ezequiel-rodriguez-87484917b/", "learodriguez@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
+    new Person("Leandro Ezequiel Rodríguez", "https://i.ibb.co/tbBkxyH/Ezequiel-Rodriguez.jpg", "https://www.linkedin.com/in/ezequiel-rodriguez-87484917b/", "learodriguez@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ];
 
 
