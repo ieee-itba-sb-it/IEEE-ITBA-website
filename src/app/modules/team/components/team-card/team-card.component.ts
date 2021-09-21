@@ -18,8 +18,8 @@ export class TeamCardComponent implements OnInit {
 
   peopleCD_actual = [
     new Person("Pedro Hernán García", "https://i.ibb.co/5jv18Xf/Pedro-Garcia.jpg", "https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4", "pegarcia@itba.edu.ar", 'HOME.CARGO.CD.PRESIDENT'),    
-    new Person("Francisco Basili", "https://i.ibb.co/M58fCYW/FRANCISCO-BASILI.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4/", "fbasili@itba.edu.ar", 'HOME.CARGO.CD.VP'),
-    new Person("Olivia de Vincenti", "https://i.ibb.co/301sVYd/OLIVIA-DE-VINCENTI.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.CD.OPANDGENSEC'),
+    new Person("Francisco Basili", "https://i.ibb.co/dkHQ0S8/FRANCISCO-BASILI.jpg", "https://www.linkedin.com/in/francisco-basili-0a38821b4/", "fbasili@itba.edu.ar", 'HOME.CARGO.CD.VP'),
+    new Person("Olivia de Vincenti", "https://i.ibb.co/bFtPRX5/OLIVIA-DE-VINCENTI.jpg", "https://www.linkedin.com/in/olivia-de-vincenti/", "odevincenti@itba.edu.ar", 'HOME.CARGO.CD.OPANDGENSEC'),
     new Person("Xi Lin", "https://i.ibb.co/D7NM0TV/xilin.jpg", "https://www.linkedin.com/in/xi-lin-0945951a0/", "xlin@itba.edu.ar", 'HOME.CARGO.CD.TREASURER'),
   ];
 
@@ -67,7 +67,7 @@ export class TeamCardComponent implements OnInit {
 
   peopleEdu_actual = [
     new Person("Matías Bergerman", "https://i.ibb.co/HKZQLZh/matiasbergerman.jpg", "https://www.linkedin.com/in/mbergerman", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
-    new Person("Alejo Agustín Figueroa", "https://i.ibb.co/cwLTkD7/ALEJO-AGUSTIN-FIGUEROA.jpg", "https://www.linkedin.com/mwlite/in/alejo-agustin-figueroa-204589147", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
+    new Person("Alejo Agustín Figueroa", "https://i.ibb.co/m8cVKQZ/ALEJO-AGUSTIN-FIGUEROA.jpg", "https://www.linkedin.com/mwlite/in/alejo-agustin-figueroa-204589147", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
     new Person("Ignacio Cutignola", "https://i.ibb.co/BwmWWJD/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ]
 
