@@ -36,7 +36,7 @@
                     <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
 
                       <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
-                      <mat-radio-group class="justify-content-center" formControlName="destination">
+                      <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
                         <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
                         <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
                       </mat-radio-group>
