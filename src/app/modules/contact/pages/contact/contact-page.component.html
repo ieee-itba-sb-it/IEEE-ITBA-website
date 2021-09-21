@@ -34,7 +34,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
-                        <mat-form-field>
+
+                      <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
+                      <mat-radio-group class="justify-content-center" formControlName="destination">
+                        <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
+                        <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
+                      </mat-radio-group>
+
+                      <mat-form-field>
                           <mat-label>{{ 'CONTACT.NAME' | translate }}</mat-label>
                           <input matInput [formControl]="name" required>
                           <mat-error *ngIf="name.invalid">{{ 'CONTACT.NAME_ERROR' | translate }}</mat-error>

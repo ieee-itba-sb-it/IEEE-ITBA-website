@@ -9,7 +9,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpLoaderFactory} from '../../app.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 const routes: Routes = [
   { path: '',  component: ContactPageComponent }
@@ -18,21 +19,22 @@ const routes: Routes = [
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatRadioModule
+    ],
   declarations: [
     ContactPageComponent
   ]

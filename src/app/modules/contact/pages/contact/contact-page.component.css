@@ -7,12 +7,12 @@ body {
 	padding-top: 160px;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-    
+
 }
 
 .flexImage{
@@ -135,7 +135,7 @@ textarea{
 
 
 @media (min-width: 768px) {
-   
+
 	.flexText{
 		display: flex;
 		/* centrado horizontal */
@@ -143,4 +143,15 @@ textarea{
 		/* centrado vertical */
 		align-items: center;
 	}
+}
+
+.mat-radio-group{
+  display:flex ;
+  width:100%;
+  justify-content: space-between;
+}
+
+.mat-radio-button{
+  margin-left: 2em;
+  margin-right: 2em;
 }
