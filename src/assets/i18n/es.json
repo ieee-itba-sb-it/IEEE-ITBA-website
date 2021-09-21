@@ -284,6 +284,9 @@
 	"CONTACT": {
 		"TITLE": "Contacto",
 		"SUBTITLE": "Completá los siguientes datos, nos contactaremos a la brevedad.",
+    "DESTINATION": "Enviar a",
+    "ADMINISTRATION": "Administración",
+    "COURSES": "Cursos",
 		"NAME": "Nombre",
 		"NAME_ERROR": "Por favor, ingresá tu nombre",
 		"EMAIL": "Email",

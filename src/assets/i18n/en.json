@@ -280,6 +280,9 @@
 	"CONTACT": {
 		"TITLE": "Contact",
 		"SUBTITLE": "Complete the following information, we will contact you shortly.",
+    "DESTINATION": "Send to",
+    "ADMINISTRATION": "Administration",
+    "COURSES": "Courses",
 		"NAME": "Name",
 		"NAME_ERROR": "Please enter your name",
 		"EMAIL": "Email",
