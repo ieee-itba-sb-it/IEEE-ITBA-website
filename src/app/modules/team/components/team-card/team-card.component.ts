@@ -68,13 +68,15 @@ export class TeamCardComponent implements OnInit {
   peopleEdu_actual = [
     new Person("Matías Bergerman", "https://i.ibb.co/HKZQLZh/matiasbergerman.jpg", "https://www.linkedin.com/in/mbergerman", "mbergerman@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
     new Person("Alejo Agustín Figueroa", "https://i.ibb.co/m8cVKQZ/ALEJO-AGUSTIN-FIGUEROA.jpg", "https://www.linkedin.com/mwlite/in/alejo-agustin-figueroa-204589147", "alfigueroa@itba.edu.ar", 'HOME.CARGO.EDUCATION.DIRECTOR'),
-    new Person("Ignacio Cutignola", "https://i.ibb.co/89d5fGd/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
+    new Person("Ignacio Cutignola", "https://i.ibb.co/89d5fGd/Ignacio-Cutignola.jpg", "https://www.linkedin.com/in/ignacio-cutignola-4a6865201", "icutignola@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
+    new Person("Matías López", "https://i.ibb.co/thMCfY9/MATIAS-ALEJANDRO-LOPEZ-MARTINEZ.jpg", "https://www.linkedin.com/in/mat%C3%ADas-l%C3%B3pez-4532bb21a", "matilopez@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ]
 
   peopleEdu2_actual = [
     new Person("Agustin Luis Gullino", "https://i.ibb.co/D59rv6f/Agustin-Guillino.jpg", "https://www.linkedin.com/in/agust%C3%ADn-luis-gullino-a87083197/", "agullino@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
     new Person("Agustín Iannaccio", "https://i.ibb.co/jH3d80n/AGUST-N-EZEQUIEL-IANNACCIO.jpg", "https://www.linkedin.com/in/agustiniannaccio/", "aiannaccio@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
     new Person("Josue Francisco Laszeski", "https://i.ibb.co/DRRHv75/JOSUE-FRANCISCO-LASZESKI.jpg", "https://www.linkedin.com/in/josue-francisco-laszeski-549711214/", "jlaszeski@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT'),
+    new Person("Nicolás Chiffone Guarde", "https://i.ibb.co/qJXQFqq/Nicolas-Chiffone-Guarde.jpg", "www.linkedin.com/in/nicolas-chiffone-guarde", "nchiffone@itba.edu.ar", 'HOME.CARGO.EDUCATION.ASSISTANT')
   ];
 
   peopleIT_actual_1 = [
