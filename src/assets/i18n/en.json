@@ -3,12 +3,14 @@
 		"TITLE":"Student Branch",
 		"CARGO": {
 			"CD": {
+				"OPANDGENSEC": "Operational manager and General Secretary",
 				"GENERALSEC": "General Secretary",
 				"PRESIDENT": "President",
 				"TREASURER": "Treasurer",
 				"VP": "Vice president"
 			},
 			"EDUCATION": {
+				"DIRECTOR": "Education Director",
 				"ASSISTANT": "Tutor Assistant",
 				"HEADTUTOR": "Head Tutor",
 				"RRPP": "Logistics & PR",
@@ -16,23 +18,38 @@
 				"TUTOR": "Tutor"
 			},
 			"FUNDRAISING": {
+				"DIRECTOR": "Fundraising Director",
 				"LOGISTICS": "Fundraiser & Logistics",
 				"RRPP": "HR & PR"
 			},
 			"ID": {
 				"ASSISTANT": "I+D Assistant",
-				"Director": "I+D Director"
+				"RESEARCHER": "I+D Researcher",
+				"CHIEFA": "I+D Director",
+				"CHIEF": "I+D Director"
 			},
 			"MEDIACOM": {
+				"DIRECTOR": "Media Director",
+				"DIRECTOR_AND_WRITER": "Media Director and Writter",
 				"CC": "Content Creator",
 				"DESIGNER": "Designer",
-				"WEBMASTER": "General Webmaster & Editor"
+				"WEBMASTER": "General Webmaster & Editor",
+				"WRITER": "Writer",
+				"REDACTOR": "Writer",
+				"ILUSTRATOR": "Illustrator",
+				"DIBUJANTE": "Ilustrator",
+				"CM": "Community Manager"
 			},
 			"VOLUNTEERS": {
 				"FUNDRAISINGMENTOR": "Fundraising Mentor",
 				"GENERALASSIST": "General Assistant",
 				"TEAMMENTOR": "Competitive Teams Mentor",
 				"VOLUNTEER": "Volunteer"
+			},
+			"IT": {
+				"DIRECTOR": "IT Director",
+				"DEV": "Developer",
+				"DATA": "Data Analyst"
 			}
 		},
 		"CARGO2021": {
@@ -263,6 +280,9 @@
 	"CONTACT": {
 		"TITLE": "Contact",
 		"SUBTITLE": "Complete the following information, we will contact you shortly.",
+    "DESTINATION": "Send to",
+    "ADMINISTRATION": "Administration",
+    "COURSES": "Courses",
 		"NAME": "Name",
 		"NAME_ERROR": "Please enter your name",
 		"EMAIL": "Email",

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { newsItem } from '../../../../shared/models/news-item/news-item';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-noticia',
@@ -15,18 +16,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NoticiaComponent implements OnInit {
   newsData: Observable<newsItem>;
-  content: string = "";
+  content = '';
   data: newsItem;
-  isVisbile: boolean = false;
+  isVisbile = false;
   emojisVisible: boolean = !this.isVisbile;
-  showLoadingSpinner: boolean = true;
+  showLoadingSpinner = true;
+  cookieValue: string;
+  cookieName: string;
+  emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
 
-  constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private blogService: BlogService) {
-    translate.addLangs(['es']);// esta página esta solo en español
+  constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService,
+              @Inject(DOCUMENT) private document: any, public translate: TranslateService,
+              private blogService: BlogService, private cookieService: CookieService) {
+    translate.addLangs(['es']);
+    // esta página esta solo en español
     // translate.setDefaultLang('es');
-    //const browserLang = translate.getBrowserLang();
+    // const browserLang = translate.getBrowserLang();
     /*translate.use(browserLang.match(/es|en/)? browserLang:'es');*/
-    this.useLanguage("en");
+    this.useLanguage('en');
 
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
@@ -34,10 +41,9 @@ export class NoticiaComponent implements OnInit {
 
     this.newsData.subscribe((data: newsItem) => {
       if (data != null) {
-        console.log(data.content);
         this.content = data.content;
         this.data = data;
-        this.showLoadingSpinner = false; // significa que la noticia ya esta cargada, sacamos el icono de cargando
+        this.showLoadingSpinner = false;
       }
     });
   }
@@ -46,19 +52,32 @@ export class NoticiaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.useLanguage("en");
+    this.useLanguage('en');
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: '#meetup',
     });
+    this.cookieName = `${this.route.snapshot.paramMap.get('id')}-vote`;
+    this.cookieValue = this.cookieService.get(this.cookieName);
+    if (this.cookieValue !== '') {
+      this.isVisbile = true;
+      this.emojisVisible = false;
+    }
 
   }
 
   rateNews(emoji: string, rating: number) {
-    console.log(emoji);
-    this.blogService.incrementRating(this.data, rating);
-    this.isVisbile = true;
-    this.emojisVisible = false;
+    if (this.cookieValue === '') {
+      const expirationDate = new Date();
+      expirationDate.setDate( expirationDate.getDate() + 365);
+      this.cookieService.set(this.cookieName, emoji, expirationDate);
+      this.blogService.incrementRating(this.data, rating);
+      this.isVisbile = true;
+      this.emojisVisible = false;
+    }
   }
 
+  isSelected(i: number) {
+    return this.cookieValue === this.emojisList[i];
+  }
 }
