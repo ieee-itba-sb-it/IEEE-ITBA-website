@@ -1,17 +1,17 @@
-const troublesomeCharacters = [ '?', ':']
 export function sanitizeString(input: string) : string {
-    //console.log("input: ", input)
 
-    //clean up troublesome characters
-    let output = input;
-    for(let char of troublesomeCharacters){
-        //console.log("char: ", char)
-        output = output.replaceAll(char, '')
-    }
-    //clean up repeating '-' that replaced spaces
-    output = output.replace(/-{2,}/g, "-");
+    let output: string;
+    output = input.toLowerCase();
 
-    //console.log("output: ", output)
+    //taking care of diatrical signs (tildes, otros signos que se agregan a las letras)
+    output = output.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    //clean up troublesome characters (remplaza todo caracter que no sea digito, letra, guion bajo (\w), espacio por vacio (\s), o sea las quita)
+    output = output.replace(/[^\w\s]/gi, '')
+    //exchange spaces for dashes
+    output = output.split(' ').join('-')
+    //remove contiguous repeated dashes
+    output = output.replace(/-{2,}/g, "-")
+
 
     return output;
 }
