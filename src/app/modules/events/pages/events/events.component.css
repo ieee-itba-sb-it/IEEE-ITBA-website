@@ -95,8 +95,16 @@ body {
     top: 10%;
 }
 
+.cursoanalisis-filter {
+  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+}
+
 .cursoanalisis-text{
     top: 10%;
+}
+
+.bitcup-filter {
+  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
 }
 
 .bitcup-text{
