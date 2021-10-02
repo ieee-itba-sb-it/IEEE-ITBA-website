@@ -169,6 +169,14 @@
 			"TITLE": "¡Resolvé problemas en equipo!"
 		}
 	},
+	"BITCUP":{
+		"BITCUP-TITLE": "¡Bit cup!",
+		"BITCUP-TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo ¡Podés aprovechar para practicar para la IEEEXtreme y conocer el mundo de la programación competitiva!",
+		"FORMAT": "Formato",
+		"FORMAT-TEXT": "La competencia funciona a partir de una serie de problemas a resolver que se van habilitando a lo largo de su desarrollo. Se evalúa a partir de un set de casos de prueba tal que mientras más superes, más puntos sumás. Se deberá tener en cuenta los límites en cuanto a memoria y tiempo de procesamiento.",
+		"LEVEL": "¿Nivel?",
+		"LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
+	},
 	"NAVBAR": {
 		"CONTACT": "Contacto",
 		"EVENTS": "Eventos",
