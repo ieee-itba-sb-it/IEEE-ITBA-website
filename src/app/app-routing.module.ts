@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'team', loadChildren: () => import('./modules/team/team.module').then(m => m.TeamModule) },
   { path: 'contact', loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule) },
   { path: 'events', loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule) },
+  { path: 'bitcup', loadChildren: () => import('./modules/bitcup/bitcup.module').then(m => m.BitcupModule) },
   { path: 'data-analysis', loadChildren: () => import('./modules/data-analysis/data-analysis.module').then(m => m.DataAnalysisModule) },
   { path: 'error401', component: Error401Component},
   {
