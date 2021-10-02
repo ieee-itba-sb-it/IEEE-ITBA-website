@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-bitcup',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BitcupComponent implements OnInit {
 
-  constructor() { }
+  constructor(public translate: TranslateService) 
+  { 
+    scroll(0, 0);
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
+  }
 
   ngOnInit(): void {
   }

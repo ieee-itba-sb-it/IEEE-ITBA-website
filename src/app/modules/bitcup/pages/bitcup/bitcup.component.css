@@ -1,0 +1,173 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    padding: 10%;
+    padding-top: 5%;
+    padding-bottom: 0%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.whiteRoundedBlock{
+    background-color: whitesmoke;
+    padding: 3%;
+    border-radius: 5vmin;
+}
+
+.topbottomLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: rgb(10,27,103) 2px solid;
+    border-bottom: rgb(10,27,103) 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+
+.bottomLine {
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
+    border-bottom: rgb(10,27,103) 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.topLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.noLine{
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    vertical-align: middle;
+    align-content: center;
+}
+
+#home {
+    text-align: center;
+}
+
+.extremeLogo{
+    width: 35%;
+}
+
+.col-sm {
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+.transparent {
+    background-color: grey;
+    padding: 3vmin;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    text-align: justify;
+}
+
+#facts {
+    margin-top: 8vmin;
+}
+
+mdb-card {
+    border-radius: 5vmin;
+    margin: 1.5vmin;
+}
+
+mdb-card-text {
+    text-align: left;
+}
+
+h1 {
+    color: black;
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+.right {
+    text-align: right;
+    color: black;
+}
+
+#mailus {
+    color: whitesmoke;
+    font-size: 15vmin;
+}
+
+.blackbckg {
+    background-color: transparent;
+    color: white;
+    background-color: grey;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+.facts {
+    color: black;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.dottedlineright {
+    border-right: whitesmoke dashed 1px;
+}
+
+h2 {
+    color: black;
+}
+
+.sponsorContact {
+    color: whitesmoke;
+    background-color: grey;
+    text-align: center;
+    font-weight: lighter;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+
+.sponsor {
+    color: whitesmoke;
+    background-color: lightgray;
+    text-align: center;
+    font-weight: lighter;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+.whiteLink {
+    color: whitesmoke;
+}
+
+/* Flex */
+
+@media (max-width: 950px) {
+    body {
+        padding-top: 20%;
+    }
+
+    .extremeLogo{
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 25%;
+    }
+
+    .extremeLogo{
+        width: 70%;
+    }
+
+}
