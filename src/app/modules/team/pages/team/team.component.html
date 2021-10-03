@@ -32,6 +32,102 @@
         <mat-tab-group dynamicHeight>
 
             <!-- ************************ -->
+            <!-- *       Actual         * -->
+            <!-- ************************ -->
+
+            <mat-tab label="Actual">
+                <br>
+                <mat-accordion>
+                    <!-- Photos at imgbb -->
+
+                    <!-- CD -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CD
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="CD_actual"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Mediacom -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Mediacom
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Mediacom_actual"></app-team-card>
+                        <app-team-card type="Mediacom2_actual"></app-team-card>
+                        <app-team-card type="Mediacom3_actual"></app-team-card>
+                    </mat-expansion-panel>
+
+                    <!-- IT -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                IT
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="IT_actual_1"></app-team-card>
+                        <app-team-card type="IT_actual_2"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Educacion -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ 'HOME.CARGO.EDUCATION.TITLE' | translate }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Education_actual"></app-team-card>
+                        <app-team-card type="Education2_actual"></app-team-card>
+                    </mat-expansion-panel>
+
+                    <!-- I+D -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                I+D
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="ID_actual"></app-team-card>
+                        <app-team-card type="ID_actual_2"></app-team-card>
+
+                    </mat-expansion-panel>
+
+                    <!-- Fundraising -->
+                    <mat-expansion-panel class="mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Fundraising
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <app-team-card type="Fundraising_actual"></app-team-card>
+                        <app-team-card type="Fundraising2_actual"></app-team-card>
+
+                    </mat-expansion-panel>
+
+
+
+
+                    <br><br>
+
+                </mat-accordion>
+
+            </mat-tab>
+
+
+
+            <!-- ************************ -->
             <!-- *       2021           * -->
             <!-- ************************ -->
 
