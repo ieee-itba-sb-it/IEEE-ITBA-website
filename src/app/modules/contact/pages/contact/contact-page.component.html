@@ -35,12 +35,6 @@
                 <div class="col-lg-12">
                     <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
 
-                      <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
-                      <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
-                        <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
-                        <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
-                      </mat-radio-group>
-
                       <mat-form-field>
                           <mat-label>{{ 'CONTACT.NAME' | translate }}</mat-label>
                           <input matInput [formControl]="name" required>
@@ -57,6 +51,13 @@
                           <mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
                           <mat-error *ngIf="message.invalid">{{ 'CONTACT.MESSAGE_ERROR' | translate }}</mat-error>
                         </mat-form-field>
+
+                        <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
+                        <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
+                          <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
+                          <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
+                        </mat-radio-group>
+
                         <button [ngClass]="!submitted? 'visible': 'hidden' " [disabled]="isLoading" class="submit" type="submit">{{ 'CONTACT.SEND' | translate }}</button>
                         <input [formControl]="honeypot" class="hidden" type="text" />
                         <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
