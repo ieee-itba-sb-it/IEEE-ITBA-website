@@ -24,6 +24,21 @@
     width: 100%;
 }
 
+.es-en-button{
+  color: white;
+  transition: all ease 0.5s;
+}
+
+.es-en-button:hover{
+  color: black;
+  background-color: whitesmoke;
+}
+
+.mat-button-toggle-checked{
+  background-color: whitesmoke;
+  color: black;
+}
+
 #nav {
     background: #0d47a1;
     color: whitesmoke;
@@ -38,6 +53,6 @@
 }
 
 ::ng-deep.mat-menu-panel {
-    transform: translate(0px, 30%); 
+    transform: translate(0px, 30%);
     transition: transform 2s ease-in;
 }
