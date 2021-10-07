@@ -104,18 +104,18 @@ body {
 }
 
 .bitcup-filter {
-  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+  filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
 }
 
 .bitcup-text{
     top: 70%;
 }
 
-
 .image-with-text {
     position: relative;
     width: 100%;
 }
+
 .text-on-image {
     position:absolute;
     text-align: center;
@@ -126,6 +126,10 @@ body {
     font-weight: 900;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 1px;
+    text-shadow: -1px 1px 0 #000,
+                  1px 1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px -1px 0 #000;
 }
 
 @media (min-width: 768px) {

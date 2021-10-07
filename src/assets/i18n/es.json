@@ -91,16 +91,16 @@
 			"CONTENT": "¡Enterate de las últimas noticias científicas y tecnológicas!"
 		},
 		"CLASSES": {
-			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientado a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
+			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientados a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
 			"TITLE": "Cursos de Python"
 		},
     "DATAANALYSIS": {
-      "TEXT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "TEXT": "Gracias al pack de opciones gráficas disponibles, acompañado de herramientas de visualización que facilitan el acceso a los datos, Python es el lenguaje de programación preferido entre tanto los científicos de datos como los analistas de datos. Con nuestro curso aprenderás a usar algunas de estas herramientas, sólo necesitando un conocimiento básico de python como base.",
       "TITLE": "Curso de Análisis de Datos en Python"
     },
     "BITCUP": {
-      "TEXT": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "TITLE": "Bitcup"
+      "TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA. Su dificultad es variada, por lo que sirve como una introducción al mundo de la programación competitiva.",
+      "TITLE": "Bit Cup"
     },
 		"COMISIONS": {
 			"DC": "CD",
