@@ -71,6 +71,11 @@ h1 {
   align-content: center;
 }
 
+.hover-card:hover {
+  background-color: rgba(13, 71, 161, 0.8);
+  color: white;
+}
+
 
 @media (max-width: 700px) {
   .topbottomLine {
@@ -87,6 +92,14 @@ h1 {
   color: whitesmoke;
   background-color: transparent;
   transition: all .5s ease;
+}
+
+.whitse-text:hover{
+  color:white;
+}
+
+.white-text{
+  color:black;
 }
 
 .transparentButton:hover {
@@ -127,6 +140,10 @@ h1 {
 
 .marginTop {
   margin-top: 30px;
+}
+
+.division{
+  width:100%;
 }
 
 mdb-card {
@@ -239,6 +256,10 @@ img {
 }
 .goback-button:hover > .button-text{
   color: white !important;
+}
+
+.divid{
+  all: unset;
 }
 
 .course-title {
