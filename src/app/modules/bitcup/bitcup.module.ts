@@ -14,7 +14,6 @@ const routes: Routes = [
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [BitcupComponent],
   imports: [
     routing,
     CommonModule,
@@ -26,6 +25,7 @@ export const routing = RouterModule.forChild(routes);
         deps: [HttpClient]
       }
     }),
-  ]
+  ],
+  declarations: [BitcupComponent]
 })
 export class BitcupModule { }
