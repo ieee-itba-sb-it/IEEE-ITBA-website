@@ -308,11 +308,16 @@
 		"CHECKBUTTON": "Mostrar en la página de noticias",
 		"UPLOAD": "SUBIR NOTICIA"
 	},
-	"LOGIN": {
-		"TITLE": "Iniciar Sesión",
-		"FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
-		"CLICK": "Recuperar Contraseña"
-	},
+  "LOGIN": {
+    "TITLE": "Iniciar Sesión",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "BUTTON": "Iniciar Sesión",
+    "NO_ACCOUNT": "¿No tenés una cuenta?",
+    "SIGN_UP": "Registrarse",
+    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+    "CLICK": "Recuperar Contraseña"
+  },
 	"REGISTER": {
 		"TITLE": "Registrarse"
 	},

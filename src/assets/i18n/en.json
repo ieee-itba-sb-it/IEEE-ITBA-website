@@ -306,6 +306,11 @@
 	},
 	"LOGIN": {
 		"TITLE": "Log In",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "BUTTON": "Log In",
+    "NO_ACCOUNT": "Don't have an account?",
+    "SIGN_UP": "Sign Up",
 		"FORGOT_PASSWORD": "Forgot your password?",
 		"CLICK": "Recover Password"
 	},

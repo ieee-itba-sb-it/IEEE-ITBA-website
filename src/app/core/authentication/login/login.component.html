@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>{{ 'LOGIN.TITLE' | translate }}</title>
 </head>
 
 <header>
-
-  </header>
+  <app-navbar></app-navbar>
+</header>
 <body>
     <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
         <div class="container">
             <div class="row">
                 <div class="col-sm pt-1 pb-1" >
-                    <h1 class="page-title">Log In</h1>
+                    <h1 class="page-title">{{ 'LOGIN.TITLE' | translate }}</h1>
                 </div>
             </div>
         </div>
@@ -25,25 +25,25 @@
             <form id="account">
                 <div>
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label for="email">Email</mat-label>
+                        <mat-label for="email">{{ 'LOGIN.EMAIL' | translate }}</mat-label>
                         <input type="email" id="email" placeholder="mail@itba.edu.ar" required matInput>
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label for="pass">Password</mat-label>
+                        <mat-label for="pass">{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
                         <input type="password" id="pass" placeholder="*********" required matInput>
                     </mat-form-field>
                 </div>
-                <div class="d-flex justify-content-center"><button id="login">Log In</button></div>
+                <div class="d-flex justify-content-center"><button id="login">{{ 'LOGIN.BUTTON' | translate }}</button></div>
 
                 <h4 id="passerr" [hidden]="isHidden"></h4>
             </form>
         </div>
 
         <div class="row d-flex justify-content-center mt-5">
-            <h4>Don't have an account yet?</h4>
-            <a class="ml-2" href="/register">Sign Up</a>
+            <h4>{{ 'LOGIN.NO_ACCOUNT' | translate }}</h4>
+            <a class="ml-2" href="/register">{{ 'LOGIN.SIGN_UP' | translate }}</a>
         </div>
 
     </div>

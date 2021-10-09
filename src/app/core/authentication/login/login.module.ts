@@ -7,12 +7,16 @@ import { LoginComponent } from './login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {SharedModule} from '../../../shared/shared.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
+    SharedModule,
+    TranslateModule,
     LoginRoutingModule,
     MatFormFieldModule,
     MatInputModule,
