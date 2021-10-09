@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { auth } from 'firebase';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -10,75 +11,85 @@ import { auth } from 'firebase';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, public translate: TranslateService) {
+    scroll(0, 0);
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('es');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
+  }
 
-  //Data
+  // Data
   signupForm: HTMLElement;
   alertText: HTMLElement;
 
-  //Visual vars
+  // Visual vars
   isHidden: boolean;
   isHidden2: boolean;
   isHidden3: boolean;
 
-  //Form data
+  // Form data
   fname: string;
   lname: string;
   email: string;
   pass: string;
   passConf: string;
 
-  //On Init
+  useLanguage(language: string) {
+    this.translate.use(language);
+  }
+
+  // On Init
   ngOnInit(): void {
 
-    this.isHidden=true;
-    this.isHidden2=true;
-    this.isHidden3=true;
+    this.isHidden = true;
+    this.isHidden2 = true;
+    this.isHidden3 = true;
 
-    //console.log("Init");
+    // console.log("Init");
 
-    //Consts
+    // Consts
     this.signupForm = document.getElementById('singup-form');
     this.alertText = document.getElementById('passerr');
 
-    //Listener submit
+    // Listener submit
     this.signupForm.addEventListener('submit', (e) => {
 
-      e.preventDefault(); //dont refresh
-      //console.log("Submitted.");
+      e.preventDefault(); // dont refresh
+      // console.log("Submitted.");
 
-      //Get data
+      // Get data
       this.email = this.signupForm['email'].value;
       this.pass = this.signupForm['pass'].value;
       this.passConf = this.signupForm['passConf'].value
-      //Save in database
+      // Save in database
       this.fname = this.signupForm['fname'].value;
       this.lname = this.signupForm['lname'].value;
 
-      //console.log(this.fname, this.lname, this.email, this.pass, this.passConf);
-      this.isHidden3=false;
+      // console.log(this.fname, this.lname, this.email, this.pass, this.passConf);
+      this.isHidden3 = false;
 
-      if (this.pass==this.passConf){
-        //console.log("Passwords match.")
-        this.authService.signup(this.email,this.pass,this.fname,this.lname,this.alertText);
+      if (this.pass === this.passConf){
+        // console.log("Passwords match.")
+        this.authService.signup(this.email, this.pass, this.fname, this.lname, this.alertText);
       }
       else {
-        this.alertText.textContent="Passwords dont match.";
-        this.alertText.style.color="red";
+        this.alertText.textContent = 'Passwords dont match.';
+        this.alertText.style.color = 'red';
       }
 
     });
 
   }
 
-  //Change Pass
+  // Change Pass
   chgpass(){
 
     if (this.isHidden) {
-      this.isHidden=false;
+      this.isHidden = false;
     }
     else {
-      this.isHidden2=false;
+      this.isHidden2 = false;
       this.authService.changePass(document.getElementById('changepass')['emailchange'].value, document.getElementById('passChgConf'));
     }
 

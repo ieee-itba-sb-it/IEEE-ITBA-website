@@ -318,9 +318,17 @@
     "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
     "CLICK": "Recuperar Contraseña"
   },
-	"REGISTER": {
-		"TITLE": "Registrarse"
-	},
+  "REGISTER": {
+    "TITLE": "Registrarse",
+    "FIRST_NAME": "Nombre",
+    "LAST_NAME": "Apellido",
+    "EMAIL": "Email",
+    "PASSWORD": "Contraseña",
+    "REPEAT_PASSWORD": "Repetir Contraseña",
+    "BUTTON": "Registrarse",
+    "ALREADY_SIGNED_UP": "¿Ya estás registrado?",
+    "LOGIN": "Iniciar Sesión"
+  },
 	"LOGOUT": {
 		"TITLE": "Cerrar Sesión"
 	},

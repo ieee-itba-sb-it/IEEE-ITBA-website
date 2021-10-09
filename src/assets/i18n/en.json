@@ -315,7 +315,15 @@
 		"CLICK": "Recover Password"
 	},
 	"REGISTER": {
-		"TITLE": "Register"
+		"TITLE": "Register",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "REPEAT_PASSWORD": "Repeat Password",
+    "BUTTON": "Sign Up",
+    "ALREADY_SIGNED_UP": "Already signed up?",
+    "LOGIN": "Log In"
 	},
 	"LOGOUT": {
 		"TITLE": "Log Out"

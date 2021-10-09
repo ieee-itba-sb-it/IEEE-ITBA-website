@@ -7,17 +7,21 @@ import { RegisterComponent } from './register.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {SharedModule} from '../../../shared/shared.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [RegisterComponent],
   imports: [
     CommonModule,
-    RegisterRoutingModule, 
+    SharedModule,
+    TranslateModule,
+    RegisterRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule
   ]
 })
 export class RegisterModule {
-  
+
 }

@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+<header>
+  <app-navbar></app-navbar>
+</header>
 <body>
   <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
     <div class="container">
         <div class="row">
             <div class="col-sm pt-1 pb-1 d-flex justify-content-center" >
-                <h1 class="page-title">Register</h1>
+                <h1 class="page-title">{{ 'REGISTER.TITLE' | translate }}</h1>
             </div>
         </div>
     </div>
@@ -25,31 +28,31 @@
 
             <div class="inputField">
               <mat-form-field class="example-full-width" style="width:50vw">
-                <mat-label for="fname">First Name:</mat-label>
+                <mat-label for="fname">{{ 'REGISTER.FIRST_NAME' | translate }}:</mat-label>
                 <input type="text" id="fname" required matInput>
               </mat-form-field>
             </div>
             <div class="inputField">
               <mat-form-field class="example-full-width" style="width:50vw">
-                <mat-label for="lname">Last Name:</mat-label>
+                <mat-label for="lname">{{ 'REGISTER.LAST_NAME' | translate }}:</mat-label>
                 <input type="text" id="lname" required matInput>
               </mat-form-field>
             </div>
             <div class="inputField">
               <mat-form-field class="example-full-width" style="width:50vw">
-                <mat-label for="email">Email:</mat-label>
+                <mat-label for="email">{{ 'REGISTER.EMAIL' | translate }}:</mat-label>
                 <input type="email" id="email" required matInput>
               </mat-form-field>
             </div>
             <div class="inputField">
               <mat-form-field class="example-full-width" style="width:50vw">
-                <mat-label for="pass">Password:</mat-label>
+                <mat-label for="pass">{{ 'REGISTER.PASSWORD' | translate }}:</mat-label>
                 <input type="password" id="pass" required matInput>
               </mat-form-field>
             </div>
             <div class="inputField">
               <mat-form-field class="example-full-width" style="width:50vw">
-                <mat-label for="passConf">Password Confirmation:</mat-label>
+                <mat-label for="passConf">{{ 'REGISTER.REPEAT_PASSWORD' | translate }}:</mat-label>
                 <input type="password" id="passConf" required matInput>
               </mat-form-field>
             </div>
@@ -57,7 +60,7 @@
             <div class="inputField d-flex justify-content-center">
               <div class="row">
                 <div class=" row d-flex justify-content-center">
-                  <button type="submit">Sign Up</button>
+                  <button type="submit">{{ 'REGISTER.BUTTON' | translate }}</button>
                 </div>
 
               </div>
@@ -84,8 +87,8 @@
 
 
             <div class="row d-flex justify-content-center mt-4">
-              <div class="mr-2 blue-font">Already Signed Up?</div>
-              <button class="smallbutton" [routerLink]="['/login']">Log In</button>
+              <div class="mr-2 blue-font">{{ 'REGISTER.ALREADY_SIGNED_UP' | translate }}</div>
+              <button class="smallbutton" [routerLink]="['/login']">{{ 'REGISTER.LOGIN' | translate }}</button>
             </div>
         </form>
         </div>
