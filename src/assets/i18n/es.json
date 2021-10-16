@@ -91,9 +91,17 @@
 			"CONTENT": "¡Enterate de las últimas noticias científicas y tecnológicas!"
 		},
 		"CLASSES": {
-			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientado a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
+			"TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientados a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
 			"TITLE": "Cursos de Python"
 		},
+    "DATAANALYSIS": {
+      "TEXT": "Gracias al pack de opciones gráficas disponibles, acompañado de herramientas de visualización que facilitan el acceso a los datos, Python es el lenguaje de programación preferido entre tanto los científicos de datos como los analistas de datos. Con nuestro curso aprenderás a usar algunas de estas herramientas, sólo necesitando un conocimiento básico de python como base.",
+      "TITLE": "Curso de Análisis de Datos en Python"
+    },
+    "BITCUP": {
+      "TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA. Su dificultad es variada, por lo que sirve como una introducción al mundo de la programación competitiva.",
+      "TITLE": "Bit Cup"
+    },
 		"COMISIONS": {
 			"DC": "CD",
 			"EDUCATION": "Educación",
@@ -168,6 +176,14 @@
 			"TEXT": "La IEEExtreme programming competition es una competencia de programación de 24 hs donde competidores de distintas universidades y carreras dedican gran esfuerzo y motivación en pos de incrementar su habilidad de resolver problemas en equipo y pasar un gran momento.",
 			"TITLE": "¡Resolvé problemas en equipo!"
 		}
+	},
+	"BITCUP":{
+		"BITCUP-TITLE": "¡Bit cup!",
+		"BITCUP-TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo ¡Podés aprovechar para practicar para la IEEEXtreme y conocer el mundo de la programación competitiva!",
+		"FORMAT": "Formato",
+		"FORMAT-TEXT": "La competencia funciona a partir de una serie de problemas a resolver que se van habilitando a lo largo de su desarrollo. Se evalúa a partir de un set de casos de prueba tal que mientras más superes, más puntos sumás. Se deberá tener en cuenta los límites en cuanto a memoria y tiempo de procesamiento.",
+		"LEVEL": "¿Nivel?",
+		"LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
 	},
 	"NAVBAR": {
 		"CONTACT": "Contacto",

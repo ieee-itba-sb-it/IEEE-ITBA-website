@@ -7,7 +7,7 @@ body {
 	padding-top: 160px;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
@@ -81,6 +81,10 @@ body {
 }
 
 .ieeextreme-filter {
+    filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
+    transition: all ease-in 125ms;
+}
+.ieeextreme-filter:hover {
     filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
 }
 .ieeextreme-text {
@@ -88,18 +92,47 @@ body {
 }
 
 .cursopython-filter {
+    filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(60%);
+    transition: all ease-in 125ms;
+}
+.cursopython-filter:hover {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
+
 }
 
-.cursopython-text {
+.cursopython-text{
     top: 10%;
 }
 
+.cursoanalisis-filter {
+  filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
+  transition: all ease-in 125ms;
+}
+.cursoanalisis-filter:hover {
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+  }
+
+.cursoanalisis-text{
+    top: 10%;
+}
+
+.bitcup-filter {
+    filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(70%);
+    transition: all ease-in 125ms;
+}
+.bitcup-filter:hover {
+    filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(70%);
+}
+
+.bitcup-text{
+    top: 70%;
+}
 
 .image-with-text {
     position: relative;
     width: 100%;
 }
+
 .text-on-image {
     position:absolute;
     text-align: center;
@@ -110,10 +143,14 @@ body {
     font-weight: 900;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 1px;
+    text-shadow: -1px 1px 0 #000,
+                  1px 1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px -1px 0 #000;
 }
 
 @media (min-width: 768px) {
-   
+
 	.flexText{
 		display: flex;
 		/* centrado horizontal */

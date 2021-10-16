@@ -52,15 +52,12 @@
           <i class="fab fa-instagram"></i>
         </a>
       </li>
+      <!-- Language toggle button -->
       <li class="nav-item">
-        <a (click)="useLanguage('es')" class="nav-link">
-          es
-        </a>
-      </li>
-      <li class="nav-item">
-        <a (click)="useLanguage('en')" class="nav-link">
-          en
-        </a>
+        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle class="es-en-button" value="es" checked=true (click)="useLanguage('es')">es</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="en" (click)="useLanguage('en')">en</mat-button-toggle>
+        </mat-button-toggle-group>
       </li>
       <!-- Dropdown -->
       <li class="nav-item">

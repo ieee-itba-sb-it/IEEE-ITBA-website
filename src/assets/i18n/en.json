@@ -91,6 +91,10 @@
 			"TITLE": "IEEE News",
 			"CONTENT": "Find out the latest technological and scientific news!"
 		},
+    "BITCUP": {
+      "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
+      "TITLE": "Bit Cup"
+    },
 		"CLASSES": {
 			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
 			"TITLE": "Python Courses"
@@ -123,6 +127,10 @@
 			"TEXT": "IEEExtreme is an international competition with the particularity of lasting 24hs and occurring at the same time all over the world. IEEE-ITBA is the most important organizer in the country.",
 			"TITLE": "IEEExtreme Competition"
 		},
+    "DATAANALYSIS": {
+      "TEXT": "Thanks to the pack of graphical options along with visualization tools that make data more accessible, Python is named as the most preferred language among the data analysts and data scientists. With our course you will learn how to use some of these tools, only requiring having basic Python knowledge to do so.",
+      "TITLE": "Data Analysis in Python Course"
+    },
 		"PROGCLUB": {
 			"TEXT": "We are working in the creation of a team that is composed by people with interest in increasing their passion for programming and develop their team, communication and technical skills. Programming is a skill that can always be further developed and the experience of competing is truly unique.",
 			"TITLE": "Programmer Club"
@@ -165,6 +173,14 @@
 			"TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
 			"TITLE": "Tackle problems as a team!"
 		}
+	},
+	"BITCUP":{
+		"BITCUP-TITLE": "Bit cup!",
+		"BITCUP-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
+		"FORMAT": "Format",
+		"FORMAT-TEXT": "This competition consists of solving a series of challenges released as the competition develops. It is graded from a set of test cases so that your score increases as you pass more test cases. Memory limits and processing time will need to be taken into account.",
+		"LEVEL": "¿Level?",
+		"LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
 	},
 	"NAVBAR": {
 		"CONTACT": "Contact",
