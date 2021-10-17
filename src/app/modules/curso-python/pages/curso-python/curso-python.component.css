@@ -13,6 +13,10 @@ body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+.not-available-background-color{
+    background-color: lightgrey;
+}
+
 #icons {
     text-align: center;
     color: whitesmoke;
