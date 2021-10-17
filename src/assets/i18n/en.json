@@ -257,7 +257,7 @@
     "ENROLLBUTTON": "Enroll now!",
 	"TESTBUTTON": "Start Test",
     "CONTENT_TITLE": "Course contents",
-    "CONTENT_DESC": "The course consists of 2 classes covering the following topics",
+    "CONTENT_DESC": "The course consists of 2 classes covering the following topics, to access the contents of the classes and the solutions you can click on the corresponding button.",
     "TITLE": "Data Analysis in Python Course",
     "FAQ": {
       "TITLE": "Frequently asked questions",
