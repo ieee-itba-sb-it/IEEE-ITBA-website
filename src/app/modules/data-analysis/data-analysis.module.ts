@@ -11,6 +11,7 @@ import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
   { path: '',  component: DataAnalysisComponent }
@@ -20,22 +21,23 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [DataAnalysisComponent],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatCardModule,
-    MatListModule,
-    MatIconModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    FlexLayoutModule,
-    MatExpansionModule
-  ]
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatCardModule,
+        MatListModule,
+        MatIconModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        FlexLayoutModule,
+        MatExpansionModule,
+        MatButtonModule
+    ]
 })
 export class DataAnalysisModule { }
