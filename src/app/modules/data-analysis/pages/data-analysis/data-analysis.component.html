@@ -33,17 +33,18 @@
   </div>
 </div>
 
-<!-- !Uncomment to create the test button -->
+<!-- !Uncomment to create the test button
 <br>
 <div>
   <div class="d-flex flex-row-reverse">
-    <a href="https://forms.gle/WyiyjGozXZBafRoT7" target="_blank" class="button-text">
+    <a href="https://forms.gle/SHhy6eeTMhnh5YL36" target="_blank" class="button-text">
       <button class="goback-button">
         {{ 'DATAANALYSIS.TESTBUTTON' | translate }}
       </button>
     </a>
   </div>
 </div>
+-->
 
 <!-- Introductory text -->
 <div>
@@ -60,10 +61,8 @@
   <p>{{ 'DATAANALYSIS.CONTENT_DESC' | translate }}</p>
 </div>
 
-<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center"> 
-  <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_1_Analisis_de_Datos.ipynb"  fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-  fxFlex.lt-sm="100%">
-  <mat-card class="example-card hover-card">
+<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center stretch">
+  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%" >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -78,12 +77,15 @@
           <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M3' | translate }}</mat-list-item>
         </mat-list>
       </mat-card-content>
-    </mat-card>
-  </a>
 
-  <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_2_Analisis_de_Datos.ipynb"  fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-  fxFlex.lt-sm="100%">
-  <mat-card class="example-card hover-card">
+      <mat-card-actions align="center">
+        <a>
+          <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.CLASSES.BUTTON' | translate }}</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+
+  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image">  </div>
       <mat-card-title>
@@ -99,30 +101,34 @@
         <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M4' | translate }}</mat-list-item>
       </mat-list>
     </mat-card-content>
+    <mat-card-actions align="center">
+      <a>
+        <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.CLASSES.BUTTON' | translate }}</button>
+      </a>
+    </mat-card-actions>
   </mat-card>
-  </a>
-  
 
 </div>
-<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center"> 
+
+<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center">
 <!-- Solucionario 1 -->
-  <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_1.ipynb"  fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-  fxFlex.lt-sm="100%">
-  <mat-card class="example-card hover-card">
+  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%" fxFill>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>
         {{'DATAANALYSIS.SOLUTION' | translate }}
         1
       </mat-card-title>
-    </mat-card-header>  
+    </mat-card-header>
+    <mat-card-actions align="center">
+      <a>
+        <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+      </a>
+    </mat-card-actions>
   </mat-card>
-  </a>
 
 <!-- Solucionario 2 -->
-  <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_2.ipynb"  fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-fxFlex.lt-sm="100%">
-    <mat-card class="example-card hover-card">
+    <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -130,8 +136,12 @@ fxFlex.lt-sm="100%">
           2
         </mat-card-title>
       </mat-card-header>
+      <mat-card-actions align="center">
+        <a>
+          <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+        </a>
+      </mat-card-actions>
     </mat-card>
-  </a>
 </div>
 
 <div class="faq-section">

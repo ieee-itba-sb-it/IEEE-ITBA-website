@@ -53,6 +53,11 @@ h1 {
 
 .example-card {
   margin-bottom: 15px;
+  display:grid;
+  grid-template-rows: 1fr auto;
+}
+.example-card mat-card-actions {
+  text-align: center;
 }
 
 
