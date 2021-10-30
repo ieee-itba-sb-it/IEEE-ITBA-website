@@ -84,7 +84,7 @@ body {
     filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
     transition: all ease-in 125ms;
 }
-.ieeextreme-filter:hover {
+.event-card:hover .ieeextreme-filter {
     filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
 }
 .ieeextreme-text {
@@ -95,7 +95,7 @@ body {
     filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(60%);
     transition: all ease-in 125ms;
 }
-.cursopython-filter:hover {
+.event-card:hover .cursopython-filter {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
 
 }
@@ -105,10 +105,10 @@ body {
 }
 
 .cursoanalisis-filter {
-  filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
-  transition: all ease-in 125ms;
+    filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
+    transition: all ease-in 125ms;
 }
-.cursoanalisis-filter:hover {
+.event-card:hover .cursoanalisis-filter {
     filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
   }
 
@@ -120,7 +120,7 @@ body {
     filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(70%);
     transition: all ease-in 125ms;
 }
-.bitcup-filter:hover {
+.event-card:hover .bitcup-filter {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(70%);
 }
 
