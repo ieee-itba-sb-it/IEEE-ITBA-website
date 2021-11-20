@@ -78,54 +78,57 @@ body {
 
 .event-card-img {
     width: 100%;
+    object-fit: cover;
+    height: 16em;
+    scale: 1.3;
+    object-position: center center;
+}
+
+.event-card:hover .event-card-img {
+    animation: event-move 40s infinite;
+}
+
+@keyframes event-move {
+    from {object-position: top left;}
+    50% {object-position: bottom right;}
+    to {object-position: top left;}
 }
 
 .ieeextreme-filter {
-    filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
     transition: all ease-in 125ms;
 }
-.event-card:hover .ieeextreme-filter {
-    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
-}
+
 .ieeextreme-text {
-    top: 60%;
+    top: 30%;
 }
 
 .cursopython-filter {
-    filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(60%);
-    transition: all ease-in 125ms;
-}
-.event-card:hover .cursopython-filter {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
-
+    transition: all ease-in 125ms;
 }
 
 .cursopython-text{
-    top: 10%;
+    top: 20%;
 }
 
 .cursoanalisis-filter {
-    filter: sepia(100%) hue-rotate(190deg) saturate(0%) brightness(60%);
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
     transition: all ease-in 125ms;
 }
-.event-card:hover .cursoanalisis-filter {
-    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
-  }
+
 
 .cursoanalisis-text{
-    top: 10%;
+    top: 5%;
 }
 
 .bitcup-filter {
-    filter: sepia(100%) hue-rotate(308deg) saturate(0%) brightness(70%);
-    transition: all ease-in 125ms;
-}
-.event-card:hover .bitcup-filter {
     filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(70%);
+    transition: all ease-in 125ms;
 }
 
 .bitcup-text{
-    top: 70%;
+    top: 35%;
 }
 
 .image-with-text {
@@ -158,4 +161,16 @@ body {
 		/* centrado vertical */
 		align-items: center;
 	}
+}
+
+@media (min-width: 1000px) {
+    .text-on-image {
+        font-size: calc(3vw);
+    }
+    .ieeextreme-text {
+        top: 10%;
+    }
+    .cursoanalisis-text{
+        top: 5%;
+    }
 }
