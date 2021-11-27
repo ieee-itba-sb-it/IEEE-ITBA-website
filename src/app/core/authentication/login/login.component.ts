@@ -42,12 +42,12 @@ export class LoginComponent  implements OnInit {
     // console.log("Init");
 
     // Consts
-    this.signupForm = document.getElementById('account');
+    this.signupForm = document.getElementById('account-form');
     this.alertText = document.getElementById('passerr');
 
     // Listener submit
     this.signupForm.addEventListener('submit', (e) => {
-
+      //alert('submitted');
       e.preventDefault(); // dont refresh
      // console.log("Submitted.");
 
@@ -58,7 +58,7 @@ export class LoginComponent  implements OnInit {
       // console.log(this.email, this.pass);
 
       // Login
-      // console.log("Trying to log in...");
+      console.log("Trying to log in...");
       this.isHidden = false;
       this.authService.login(this.email, this.pass, this.alertText);
 
