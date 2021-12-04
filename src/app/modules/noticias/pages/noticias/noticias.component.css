@@ -48,12 +48,12 @@ body {
 	align-items: center;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-    
+
 }
 
 #icons {
@@ -229,7 +229,7 @@ footer {
 }
 
 img {
-    
+
 }
 
 /* Flex */
@@ -340,8 +340,8 @@ img {
 }
 
 .example-card {
-    max-width: 300px;
-  }
+    width: 300px;
+}
 
 .example-header-image {
 background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
@@ -364,7 +364,7 @@ background-size: cover;
     top: 50%;
 }
 @media (min-width: 768px) {
-   
+
 	.flexText{
 		display: flex;
 		/* centrado horizontal */
