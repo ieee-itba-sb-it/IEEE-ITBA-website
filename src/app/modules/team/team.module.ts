@@ -12,6 +12,7 @@ import {HttpClient} from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { IndividualCardComponent } from './components/individual-card/individual-card.component';
 
 const routes: Routes = [
   { path: '',  component: TeamComponent }
@@ -20,7 +21,7 @@ const routes: Routes = [
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [ TeamComponent, TeamCardComponent ],
+  declarations: [ TeamComponent, TeamCardComponent, IndividualCardComponent ],
   imports: [
     routing,
     CommonModule,
