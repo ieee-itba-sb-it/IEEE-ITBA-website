@@ -1,0 +1,42 @@
+mdb-card {
+    border-bottom-left-radius: 5vmin;
+    border-bottom-right-radius: 5vmin;
+    margin: 1.5vmin;
+    color: black;
+    padding-bottom: 1.5vmin;
+    min-height: 300px;
+    max-width: 400px;
+    min-width: 100px;
+}
+
+mdb-card-img {
+    padding: 2.5px;
+}
+
+mdb-card-text {
+    text-align: left;
+    color: black;
+}
+
+h4 {
+    font-family: roboto;
+    font-size: 17.5px;
+}
+
+h5 {
+    font-family: roboto;
+    font-size: 15px;
+}
+
+.cardIcon {
+    font-size: 35px;
+    padding: 1vmin;
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+}
+
+.white-box { 
+    min-height: 300px;
+    margin: 1.5vmin;
+    padding-bottom: 1.5vmin;
+    }

@@ -1,6 +1,5 @@
+import { TeamMember } from './../../../../shared/models/team-member';
 import { Component, Input, OnInit } from '@angular/core';
-import { Person } from 'src/app/shared/models/person/person';
-
 @Component({
   selector: 'app-individual-card',
   templateUrl: './individual-card.component.html',
@@ -9,7 +8,7 @@ import { Person } from 'src/app/shared/models/person/person';
 export class IndividualCardComponent implements OnInit {
 
   @Input()
-  person: Person = null;
+  person: TeamMember = null;
 
   constructor() { }
 
