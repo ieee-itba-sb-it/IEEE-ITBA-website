@@ -360,8 +360,9 @@
     "GOBACK": "Volver a la página principal"
   },
   "RAS": {
-    "TITLE": "ITBA IEEE",
-    "SUBTITLE": "RAS Student Branch Chapter"
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "RAS Student Branch Chapter",
+    "UPCOMING": "Proximos Eventos: Competencia de Robótica"
   },
   "WIP": "Sitio en construcción"
 }

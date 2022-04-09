@@ -355,8 +355,9 @@
     "GOBACK": "Go back to the homepage"
   },
   "RAS": {
-    "TITLE": "ITBA IEEE",
-    "SUBTITLE": "RAS Student Branch Chapter"
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "RAS Student Branch Chapter",
+    "UPCOMING": "Upcoming Events: Robotics Competition"
   },
   "WIP": "Site under construction"
 }

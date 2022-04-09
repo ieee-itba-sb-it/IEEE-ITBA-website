@@ -55,10 +55,11 @@ body {
 
 .titleRow {
   margin-top: 2.5rem;
+  margin-bottom: 2rem;
   color: var(--ras-red);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 .title {
   margin: auto 0 auto 0;
