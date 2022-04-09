@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITBA IEEE RAS Student Branch Chapter</title>
+  </head>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <body>
+    <div class="bottomLine" id="home">
+      <div class="container" id="wip">
+        <div class="titleRow">
+          <h1 class="title">{{ "RAS.TITLE" | translate }}</h1>
+          <h3 class="subtitle">{{ "RAS.SUBTITLE" | translate }}</h3>
+        </div>
+        <img
+          src="../../../../../assets/image/IEEE_RAS_logo_4C_stacked-HiRes.png"
+          class="rasLogo"
+          alt="Logo ITBA-IEEE"
+        />
+      </div>
+      <div>
+        <p class="wip-subtitle">{{ "RAS.UPCOMING" | translate }}</p>
+        <br />
+        <p class="wip-subtitle">{{ "WIP" | translate }}</p>
+      </div>
+    </div>
+  </body>
+  <app-footer></app-footer>
+</html>
