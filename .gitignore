@@ -47,3 +47,6 @@ Thumbs.db
 
 # Secrets
 src/app/secrets.ts
+
+# Firebase
+.firebase/
