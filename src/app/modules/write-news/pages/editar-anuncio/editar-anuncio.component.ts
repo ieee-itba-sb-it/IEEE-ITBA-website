@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';
 
-import { sanitizeString } from '../../utils'
+import { sanitizeString } from '../../utils';
 
 import Timestamp = firestore.Timestamp;
 

@@ -9,7 +9,7 @@ import { Person } from '../../../../shared/models/person/person';
   styleUrls: ['./team-card.component.css']
 })
 export class TeamCardComponent implements OnInit {
-  white= false;
+  white = false;
   people: Person[];
 
   // Constants
