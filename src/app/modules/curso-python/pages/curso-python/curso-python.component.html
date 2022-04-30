@@ -205,6 +205,20 @@
         </mat-accordion>
     </div>
 
+    <!-- Terminos y condiciones -->
+    <div class="tyc-section">
+        <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="course-subtitle">{{'TYC.TITLE' | translate}}</mat-panel-title>
+            </mat-expansion-panel-header >
+            <div *ngFor="let section of tyc" class="mt-4">
+                <span class="tyc-subtitle mb-2">{{section.title | translate}}</span>
+                <br/>
+                <span style="font-size: larger">{{section.text | translate}}</span>
+            </div>
+        </mat-expansion-panel>    
+    </div>
+
     <!-- Sponsors Actuales -->
   <!-- <div class="bottomLine mt-4">
     <div class="row">

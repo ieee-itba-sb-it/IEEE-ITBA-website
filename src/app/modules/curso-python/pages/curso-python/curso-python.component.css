@@ -302,6 +302,14 @@ img {
     font-size: larger;
 }
 
+.tyc-section {
+    margin-top:4rem;
+    margin-bottom:4rem;
+}
+.tyc-subtitle{
+    color:rgb(23, 46, 148);
+    font-size:1.4rem;
+}
 /** tomado de team component css */
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
