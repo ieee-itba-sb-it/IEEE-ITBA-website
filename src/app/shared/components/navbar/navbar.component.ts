@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
 
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
-  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private authService: AuthService, private userService: UserService) {
+  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,private authService: AuthService, private userService: UserService) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
