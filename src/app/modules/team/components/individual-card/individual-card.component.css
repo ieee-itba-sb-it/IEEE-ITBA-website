@@ -7,3 +7,8 @@ mdb-card-img {
 mdb-card {
     margin-top: 3em;
 }
+
+.cardIcon {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
