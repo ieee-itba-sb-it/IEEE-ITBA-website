@@ -1,0 +1,14 @@
+mdb-card-img {
+    width: 20em;
+    padding: 0.5em;
+    object-fit: fill;
+}
+
+mdb-card {
+    margin-top: 3em;
+}
+
+.cardIcon {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}

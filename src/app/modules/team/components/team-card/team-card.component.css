@@ -18,7 +18,7 @@ mdb-card-text {
     color: black;
 }
 
-.card-group{
+.card-group {
     display: flex;
     justify-content: center;
 }
@@ -40,8 +40,14 @@ h5 {
     margin-bottom: 2vmin;
 }
 
-.white-box { 
+.white-box {
     min-height: 300px;
     margin: 1.5vmin;
     padding-bottom: 1.5vmin;
-    }
+}
+
+.card-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
