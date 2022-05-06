@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class IeeextremeComponent implements OnInit {
 
   constructor() {
-    scroll(0,0);
+    scroll(0, 0);
   }
 
   ngOnInit(): void {

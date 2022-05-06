@@ -23,7 +23,7 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component ],
     imports: [
         routing,
         CommonModule,

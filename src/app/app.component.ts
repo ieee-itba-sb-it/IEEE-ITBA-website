@@ -13,13 +13,13 @@ import { browser } from 'protractor';
 })
 export class AppComponent {
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService) {
-    translate.addLangs(['en','es']);
+    translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/)? browserLang:'en');
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
   }
+  title = 'ITBA-IEEE-Website-A9';
   useLanguage(language: string) {
     this.translate.use(language);
   }
-  title = 'ITBA-IEEE-Website-A9';
 }

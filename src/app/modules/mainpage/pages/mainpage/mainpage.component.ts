@@ -16,8 +16,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class MainpageComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   latestNews: newsItem[];
-  latestLimit: number = 12;
-  showLoadingSpinner: boolean = true;
+  latestLimit = 12;
+  showLoadingSpinner = true;
 
   customOptions: any = {
     loop: true,
@@ -34,10 +34,10 @@ export class MainpageComponent implements OnInit {
   };
 
   constructor(public translate: TranslateService, private blogService: BlogService) {
-    translate.addLangs(['en','es']);
+    translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/)? browserLang:'en');
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
 
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
@@ -48,9 +48,9 @@ export class MainpageComponent implements OnInit {
       this.latestNews = data;
       this.latestNews.sort((a: newsItem, b: newsItem) => (a.date.getTime() > b.date.getTime() ? -1 : 1));
 
-      let aux: newsItem[] = [];
-      for(var i = 0; i < this.latestNews.length; i++){
-        if(i < this.latestLimit){
+      const aux: newsItem[] = [];
+      for (let i = 0; i < this.latestNews.length; i++){
+        if (i < this.latestLimit){
           aux.push(this.latestNews[i]);
         }
       }
@@ -58,7 +58,7 @@ export class MainpageComponent implements OnInit {
       this.latestNews = aux;
       this.showLoadingSpinner = false;
 
-      console.log("aca estan las latest news", this.latestNews);
+      console.log('aca estan las latest news', this.latestNews);
 
     });
   }

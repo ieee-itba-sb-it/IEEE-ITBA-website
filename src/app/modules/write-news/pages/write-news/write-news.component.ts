@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { newsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
 import Timestamp = firestore.Timestamp;
@@ -26,24 +26,24 @@ export class WriteNewsComponent implements OnInit {
   ngOnInit() {
     this.blogService.setCollectionName(blogCollectionName);
     this.editorForm = new FormGroup({
-      'editor': new FormControl(null)
-    })
+      editor: new FormControl(null)
+    });
   }
 
   submitNews() {
 
-    var content = document.getElementsByClassName('ql-editor')[0].innerHTML;
-    var title = (<HTMLInputElement>document.getElementById("title")).value;
-    var shortIntro = (<HTMLInputElement>document.getElementById("shortIntro")).value;
-    var author = (<HTMLInputElement>document.getElementById("author")).value;
-    var imageUrl = (<HTMLInputElement>document.getElementById("imageUrl")).value;
-    var listed = (<HTMLInputElement>document.getElementById("listed")).checked;
-    var reference =  encodeURIComponent( sanitizeString( title ) );
-    var tags = ['tecnología'];
-    var imageText = (<HTMLInputElement>document.getElementById("imageText")).value;;
-    var ratings = [0, 0, 0, 0, 0];
+    const content = document.getElementsByClassName('ql-editor')[0].innerHTML;
+    const title = (document.getElementById('title') as HTMLInputElement).value;
+    const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
+    const author = (document.getElementById('author') as HTMLInputElement).value;
+    const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
+    const listed = (document.getElementById('listed') as HTMLInputElement).checked;
+    const reference =  encodeURIComponent( sanitizeString( title ) );
+    const tags = ['tecnología'];
+    const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
+    const ratings = [0, 0, 0, 0, 0];
     console.log(content);
-    console.log(reference)
+    console.log(reference);
 
     if (title != '') {
       this.blogService.setDoc(
@@ -64,7 +64,7 @@ export class WriteNewsComponent implements OnInit {
         if (sent) {
           this.router.navigate([`/noticias/${reference}`]);
         }
-      })
+      });
     } else {
       this.blogService.deleteDoc(reference).subscribe(sent => {
         if (sent) {
