@@ -19,52 +19,52 @@ import {UserService} from '../../../core/services/user/user.service';
 export class NavbarComponent implements OnInit {
 
   user: Observable<IEEEuser>;
-  logguedIn: boolean = false;
-  journalist: boolean = false;
+  logguedIn = false;
+  journalist = false;
 
-  newsRoles: roles[] = [roles.admin, roles.contentCreator]
+  newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService, private authService: AuthService, private userService: UserService) {
-    translate.addLangs(['en','es']);
+    translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/)? browserLang:'en');
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
   }
 
-  //----------Methods----------
+  // ----------Methods----------
 
-  //Translator
+  // Translator
   useLanguage(language: string) {
     this.translate.use(language);
   }
 
-  //Set Up
+  // Set Up
   ngOnInit() {
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: '#home',
     });
 
-    //Load name
+    // Load name
     this.user = this.authService.getCurrentUser();
     this.user.subscribe( async (usuario: IEEEuser) => {
 
       if (usuario){
-        document.getElementById('account').innerText=' Welcome back, ' + usuario.fname;
+        document.getElementById('account').innerText = ' Welcome back, ' + usuario.fname;
         this.logguedIn = true;
-        let aux: number = await this.userService.getCurrentUserRole(usuario.email);
-        if(this.newsRoles.includes(aux)){
+        const aux: number = await this.userService.getCurrentUserRole(usuario.email);
+        if (this.newsRoles.includes(aux)){
           this.journalist = true;
         }
       }
       else {
-        document.getElementById('account').innerText=' Log In';
+        document.getElementById('account').innerText = ' Log In';
       }
 
-    })
+    });
   }
 
-  //Scroll
+  // Scroll
   ngAfterViewInit() {
     this.pageScrollService.scroll({
       document: this.document,
@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  //Scroll
+  // Scroll
   scrollTo(target: string){
     console.log(target);
     this.pageScrollService.scroll({

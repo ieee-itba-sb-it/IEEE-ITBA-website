@@ -29,14 +29,14 @@ export class AuthGuardService implements CanActivate{
     this.user = this.authService.getCurrentUser();
 
 
-    let p:Promise<boolean> = new Promise((resolve, reject) => {
+    const p: Promise<boolean> = new Promise((resolve, reject) => {
       setTimeout(() => {
         this.user.subscribe( async (usuario: IEEEuser) => {
 
-          if(usuario){
-            let userRole : number = await this.userService.getCurrentUserRole(usuario.email);
+          if (usuario){
+            const userRole: number = await this.userService.getCurrentUserRole(usuario.email);
 
-            if(expectedRole.includes(userRole)){
+            if (expectedRole.includes(userRole)){
               return resolve(true);
             }else{
               this.router.navigate(['error401']);

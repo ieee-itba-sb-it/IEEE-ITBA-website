@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 export class NoticiasComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   newsData: newsItem[] = [];
-  showLoadingSpinner: boolean = true;
+  showLoadingSpinner = true;
 
   constructor(private blogService: BlogService) {
     this.blogService.setCollectionName(blogCollectionName);
@@ -30,7 +30,7 @@ export class NoticiasComponent implements OnInit {
       if (data.length > 0){
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
       }
-      for (var i in data) {
+      for (const i in data) {
         if (data[i].listed) {
           this.newsData.push(data[i]);
         }

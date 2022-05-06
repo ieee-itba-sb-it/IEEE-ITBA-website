@@ -11,6 +11,7 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/mainpage/mainpage.module').then(m => m.MainpageModule) },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
+  {path: 'ras', loadChildren: () => import('./modules/ras/ras.module').then(m => m.RasModule)},
   { path: 'ieeextreme', loadChildren: () => import('./modules/ieeextreme/ieeextreme.module').then(m => m.IeeextremeModule) },
   { path: 'cursospython', loadChildren: () => import('./modules/curso-python/curso-python.module').then(m => m.CursoPythonModule) },
   { path: 'noticias', loadChildren: () => import('./modules/noticias/noticias.module').then(m => m.NoticiasModule) },

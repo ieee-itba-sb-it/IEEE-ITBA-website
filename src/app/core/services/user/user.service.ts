@@ -9,17 +9,17 @@ import { userCollectionName} from '../../../secrets';
 })
 export class UserService {
 
-  collectionName = userCollectionName
+  collectionName = userCollectionName;
 
   constructor(private afs: AngularFirestore) { }
 
-  getCurrentUserRole(email: string) : Promise<number> | number {
-    let out: Promise<number> = new Promise((resolve, reject) => {
+  getCurrentUserRole(email: string): Promise<number> | number {
+    const out: Promise<number> = new Promise((resolve, reject) => {
       this.afs.collection(this.collectionName).doc(email).get().subscribe(data => {
-        var doc = data.data();
+        const doc = data.data();
         return resolve(doc.role);
       });
-    })
+    });
 
     return out;
   }

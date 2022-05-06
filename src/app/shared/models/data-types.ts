@@ -17,7 +17,7 @@ export function createNewsItem(
     tags: string[],
     listed: boolean,
     ratings: number[]): newsItem {
-    return { title: title, content: content, imageUrl: imageUrl, date: date.toDate(), author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed, tags: tags, ratings: ratings }
+    return { title, content, imageUrl, date: date.toDate(), author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
 export function createNewsItemWithDate(
@@ -32,12 +32,12 @@ export function createNewsItemWithDate(
     tags: string[],
     listed: boolean,
     ratings: number[]): newsItem {
-    return { title: title, content: content, imageUrl: imageUrl, date: date, author: author, reference: reference, imageText: imageText, shortIntro: shortIntro, listed: listed, tags: tags, ratings: ratings }
+    return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
 export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, uID: string) {
-    var newUser: IEEEuser;
-    var role = roles.regularUser
+    let newUser: IEEEuser;
+    const role = roles.regularUser;
     newUser = { fname, lname, email, photoURL, uID, role };
     return newUser;
 }

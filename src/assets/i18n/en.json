@@ -1,239 +1,240 @@
 {
-	"HOME": {
-		"TITLE":"Student Branch",
-		"CARGO": {
-			"CD": {
-				"OPANDGENSEC": "Operational manager and General Secretary",
-				"GENERALSEC": "General Secretary",
-				"PRESIDENT": "President",
-				"TREASURER": "Treasurer",
-				"VP": "Vice president"
-			},
-			"EDUCATION": {
-				"DIRECTOR": "Education Director",
-				"ASSISTANT": "Tutor Assistant",
-				"HEADTUTOR": "Head Tutor",
-				"RRPP": "Logistics & PR",
-				"TITLE": "Education",
-				"TUTOR": "Tutor"
-			},
-			"FUNDRAISING": {
-				"DIRECTOR": "Fundraising Director",
-				"LOGISTICS": "Fundraiser & Logistics",
-				"RRPP": "HR & PR"
-			},
-			"ID": {
-				"ASSISTANT": "I+D Assistant",
-				"RESEARCHER": "I+D Researcher",
-				"CHIEFA": "I+D Director",
-				"CHIEF": "I+D Director"
-			},
-			"MEDIACOM": {
-				"DIRECTOR": "Media Director",
-				"DIRECTOR_AND_WRITER": "Media Director and Writter",
-				"CC": "Content Creator",
-				"DESIGNER": "Designer",
-				"WEBMASTER": "General Webmaster & Editor",
-				"WRITER": "Writer",
-				"REDACTOR": "Writer",
-				"ILUSTRATOR": "Illustrator",
-				"DIBUJANTE": "Ilustrator",
-				"CM": "Community Manager"
-			},
-			"VOLUNTEERS": {
-				"FUNDRAISINGMENTOR": "Fundraising Mentor",
-				"GENERALASSIST": "General Assistant",
-				"TEAMMENTOR": "Competitive Teams Mentor",
-				"VOLUNTEER": "Volunteer"
-			},
-			"IT": {
-				"DIRECTOR": "IT Director",
-				"DEV": "Developer",
-				"DATA": "Data Analyst"
-			}
-		},
-		"CARGO2021": {
-			"CD": {
-				"GENERALSEC": "General Secretary",
-				"PRESIDENT": "President",
-				"TREASURER": "Treasurer",
-				"VP": "Vice president"
-			},
-			"EDUCATION": {
-				"TITLE": "Education",
-				"CO-DIRECTOR": "Co-Director",
-				"ASSISTANT": "Educator"
-			},
-			"FUNDRAISING": {
-				"ASSISTANT": "Fundraiser",
-				"CO-DIRECTOR": "Co-Director"
-			},
-			"ID": {
-				"ASSISTANT": "Researcher",
-				"Director": "Director"
-			},
-			"MEDIACOM": {
-				"DIRECTOR": "Director",
-				"DESIGNER": "Content Creator"
-			},
-			"VOLUNTEERS": {
-				"FUNDRAISINGMENTOR": "Fundraising Mentor",
-				"GENERALASSIST": "General Assistant",
-				"TEAMMENTOR": "Competitive Teams Mentor",
-				"VOLUNTEER": "Volunteer"
-			},
-			"IT": {
-				"DIRECTOR": "Director",
-				"WEBMASTER": "Webmaster"
-			}
-		},
-		"IEEENEWS": {
-			"TITLE": "IEEE News",
-			"CONTENT": "Find out the latest technological and scientific news!"
-		},
+  "HOME": {
+    "TITLE": "Student Branch",
+    "CARGO": {
+      "CD": {
+        "OPANDGENSEC": "Operational manager and General Secretary",
+        "GENERALSEC": "General Secretary",
+        "PRESIDENT": "President",
+        "TREASURER": "Treasurer",
+        "VP": "Vice president"
+      },
+      "EDUCATION": {
+        "DIRECTOR": "Education Director",
+        "ASSISTANT": "Tutor Assistant",
+        "HEADTUTOR": "Head Tutor",
+        "RRPP": "Logistics & PR",
+        "TITLE": "Education",
+        "TUTOR": "Tutor"
+      },
+      "FUNDRAISING": {
+        "DIRECTOR": "Fundraising Director",
+        "LOGISTICS": "Fundraiser & Logistics",
+        "RRPP": "HR & PR"
+      },
+      "ID": {
+        "ASSISTANT": "I+D Assistant",
+        "RESEARCHER": "I+D Researcher",
+        "CHIEFA": "I+D Director",
+        "CHIEF": "I+D Director"
+      },
+      "MEDIACOM": {
+        "DIRECTOR": "Media Director",
+        "DIRECTOR_AND_WRITER": "Media Director and Writter",
+        "CC": "Content Creator",
+        "DESIGNER": "Designer",
+        "WEBMASTER": "General Webmaster & Editor",
+        "WRITER": "Writer",
+        "REDACTOR": "Writer",
+        "ILUSTRATOR": "Illustrator",
+        "DIBUJANTE": "Ilustrator",
+        "CM": "Community Manager"
+      },
+      "VOLUNTEERS": {
+        "FUNDRAISINGMENTOR": "Fundraising Mentor",
+        "GENERALASSIST": "General Assistant",
+        "TEAMMENTOR": "Competitive Teams Mentor",
+        "VOLUNTEER": "Volunteer"
+      },
+      "IT": {
+        "DIRECTOR": "IT Director",
+        "DEV": "Developer",
+        "DATA": "Data Analyst"
+      }
+    },
+    "CARGO2021": {
+      "CD": {
+        "GENERALSEC": "General Secretary",
+        "PRESIDENT": "President",
+        "TREASURER": "Treasurer",
+        "VP": "Vice president"
+      },
+      "EDUCATION": {
+        "TITLE": "Education",
+        "CO-DIRECTOR": "Co-Director",
+        "ASSISTANT": "Educator"
+      },
+      "FUNDRAISING": {
+        "ASSISTANT": "Fundraiser",
+        "CO-DIRECTOR": "Co-Director"
+      },
+      "ID": {
+        "ASSISTANT": "Researcher",
+        "Director": "Director"
+      },
+      "MEDIACOM": {
+        "DIRECTOR": "Director",
+        "DESIGNER": "Content Creator"
+      },
+      "VOLUNTEERS": {
+        "FUNDRAISINGMENTOR": "Fundraising Mentor",
+        "GENERALASSIST": "General Assistant",
+        "TEAMMENTOR": "Competitive Teams Mentor",
+        "VOLUNTEER": "Volunteer"
+      },
+      "IT": {
+        "DIRECTOR": "Director",
+        "WEBMASTER": "Webmaster"
+      }
+    },
+    "IEEENEWS": {
+      "TITLE": "IEEE News",
+      "CONTENT": "Find out the latest technological and scientific news!"
+    },
+    "SPONSORS": "Sponsors 2021",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
       "TITLE": "Bit Cup"
     },
-		"CLASSES": {
-			"TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
-			"TITLE": "Python Courses"
-		},
-		"COMISIONS": {
-			"DC": "DC",
-			"EDUCATION": "Education",
-			"FUNDRAISING": "Fundraising",
-			"ID": "I+D",
-			"MEDIACOM": "Mediacom"
-		},
-		"COMPETITION": {
-			"TEXT": "We truly think that competition is capable of generating a healthy and ideal environment to challenge and transcend personal limits.\n",
-			"TITLE": "Competition"
-		},
-		"CONTACTS": {
-			"TEXT": "We foster the creation of new ties because we understand how fundamental the search and permanent renovation of connection is for any type of technological advancement.",
-			"TITLE": "Contacts"
-		},
-		"CONTACTUS": {
-			"1": "For general inquiries, send an email to ",
-			"2": " If you have questions about sponsorships or you are interested in sponsoring one of our events contact any Fundraising member."
-		},
-		"DESC": "We are a student organization from ITBA. Our objective is the development of technology and its aplications for humanity's advancement.",
-		"EDUCATION": {
-			"TEXT": "We believe in the great importance of developing pedagogical and didactic techniques as an indispensable motor for knowledge diffusion.",
-			"TITLE": "Education"
-		},
-		"IEEEXTREME": {
-			"TEXT": "IEEExtreme is an international competition with the particularity of lasting 24hs and occurring at the same time all over the world. IEEE-ITBA is the most important organizer in the country.",
-			"TITLE": "IEEExtreme Competition"
-		},
+    "CLASSES": {
+      "TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
+      "TITLE": "Python Courses"
+    },
+    "COMISIONS": {
+      "DC": "DC",
+      "EDUCATION": "Education",
+      "FUNDRAISING": "Fundraising",
+      "ID": "I+D",
+      "MEDIACOM": "Mediacom"
+    },
+    "COMPETITION": {
+      "TEXT": "We truly think that competition is capable of generating a healthy and ideal environment to challenge and transcend personal limits.\n",
+      "TITLE": "Competition"
+    },
+    "CONTACTS": {
+      "TEXT": "We foster the creation of new ties because we understand how fundamental the search and permanent renovation of connection is for any type of technological advancement.",
+      "TITLE": "Contacts"
+    },
+    "CONTACTUS": {
+      "1": "For general inquiries, send an email to ",
+      "2": " If you have questions about sponsorships or you are interested in sponsoring one of our events contact any Fundraising member."
+    },
+    "DESC": "We are a student organization from ITBA. Our objective is the development of technology and its aplications for humanity's advancement.",
+    "EDUCATION": {
+      "TEXT": "We believe in the great importance of developing pedagogical and didactic techniques as an indispensable motor for knowledge diffusion.",
+      "TITLE": "Education"
+    },
+    "IEEEXTREME": {
+      "TEXT": "IEEExtreme is an international competition with the particularity of lasting 24hs and occurring at the same time all over the world. IEEE-ITBA is the most important organizer in the country.",
+      "TITLE": "IEEExtreme Competition"
+    },
     "DATAANALYSIS": {
       "TEXT": "Thanks to the pack of graphical options along with visualization tools that make data more accessible, Python is named as the most preferred language among the data analysts and data scientists. With our course you will learn how to use some of these tools, only requiring having basic Python knowledge to do so.",
       "TITLE": "Data Analysis in Python Course"
     },
-		"PROGCLUB": {
-			"TEXT": "We are working in the creation of a team that is composed by people with interest in increasing their passion for programming and develop their team, communication and technical skills. Programming is a skill that can always be further developed and the experience of competing is truly unique.",
-			"TITLE": "Programmer Club"
-		},
-		"CS": {
-			"TEXT": "IEEE Computer Society is a technical society whose objective is to inspire and educate in different technology areas related to informatics. We are one of the biggest networks that connect professionals around the globe. In ITBA we organize activities related to modern technologies aiming to make interested people such as students to learn more.",
-			"TITLE": "Computer Society"
-		},
-		"SEEMORE": "See More",
-		"WIE": {
-			"TEXT": "Our objective is to promote gender diversity in tech through education and representation.",
-			"TITLE": "Women in Engineering"
-		}
-	},
-	"TEAM": {
-		"TITLE": "Team",
-		"SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
-	},
-	"IEEEXTREME": {
-		"FACTS": {
-			"EDITIONS": "Past editions",
-			"HOURS": "long",
-			"PARTICIPANTS": "Participants in 2020",
-			"TOPTEAMS": "Teams in best 500 of 8000"
-		},
-		"NAVBAR": {
-			"SPONSOR": "Sponsor",
-			"TAKEPART": "Take Part",
-			"TOP": "Top"
-		},
-		"PARTICIPATE": {
-			"TEXT": "Contact us via ieee@itba.edu.ar for more information and we'll notify you when registration opens. In the meantime, you can get yourself a team and start training!",
-			"TITLE": "Want to participate?"
-		},
-		"SPONSORSHIP": {
-			"TEXT": "In order to take part in the competition we require founding, that is why we are in the looking for new sponsors for our event. For more information please contact any member of our fundraising team:",
-			"TITLE": "Sponsors who have supported us"
-		},
-		"TEAM": {
-			"TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
-			"TITLE": "Tackle problems as a team!"
-		}
-	},
-	"BITCUP":{
-		"BITCUP-TITLE": "Bit cup!",
-		"BITCUP-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
-		"FORMAT": "Format",
-		"FORMAT-TEXT": "This competition consists of solving a series of challenges released as the competition develops. It is graded from a set of test cases so that your score increases as you pass more test cases. Memory limits and processing time will need to be taken into account.",
-		"LEVEL": "¿Level?",
-		"LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
-	},
-	"NAVBAR": {
-		"CONTACT": "Contact",
-		"EVENTS": "Events",
-		"HOME": "Home",
-		"INITIATIVES": "Initiatives",
-		"TEAM": "Team",
-		"NEWS": "News",
-		"SPONSORS": "Sponsors",
-		"WRITENEWS" : "Create News"
-	},
-	"PYTHONCOURSES": {
-		"CLASSES": {
-			"C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
-			"C2": "Data Types:(int, float, string, boolean), Data type operations, Lists, List operations, Text file manipulation",
-			"C3": "Data structures(Dictionary, Set, Tuple), Data structure operations, Introduction to libraries and examples, Application cases",
-			"TITLE": "Class "
-		},
-		"DESC_TITLE": "Description",
-		"DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming, without the need to become an expert in the topic. The contents of this introductory course are oriented towards people with no Python experience. We will go over the basics and fundamentals of programming and the Python language, putting into practice what we learn through interactive challenges and practical exercises.",
-		"FORMAT_SUBTITLE":"Course format",
-		"FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
-		"ENROLLBUTTON": "Enroll now!",
-		"QUESTIONS": {
-			"TEXT": "We opened a SubReddit to answer questions: ",
-			"TEXT_VIDEOS": "Check our live videos with more info about our classes !",
-			"TITLE": "Questions"
-		},
-		"TITLE": "Introductory Python Course",
-		"FAQ": {
-			"TITLE": "Frequently asked questions",
-			"1": {
-				"QUESTION": "Do I need to have experience programming?",
-				"ANSWER": "No! We will explain everything from scratch, with a nice pace."
-			},
-			"2": {
-				"QUESTION": "Will I receive a certificate after finishing the course?",
-				"ANSWER": "Yes! You will get a certificate after completing the mandatory programming challenges before their respective due date."
-			},
-			"3": {
-				"QUESTION": "Who can enter this course?",
-				"ANSWER": "This course is free and open to everyone. Since it’s oriented towards a professional environment, it’s advisable, though not mandatory, to have finished high school."
-			},
-			"4": {
-				"QUESTION": "How can I ask questions or ask for help?",
-				"ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
-			},
-			"5": {
-				"QUESTION": "Can I interact with the rest of the participants?",
-				"ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
-			}
-		}
-	},
+    "PROGCLUB": {
+      "TEXT": "We are working in the creation of a team that is composed by people with interest in increasing their passion for programming and develop their team, communication and technical skills. Programming is a skill that can always be further developed and the experience of competing is truly unique.",
+      "TITLE": "Programmer Club"
+    },
+    "CS": {
+      "TEXT": "IEEE Computer Society is a technical society whose objective is to inspire and educate in different technology areas related to informatics. We are one of the biggest networks that connect professionals around the globe. In ITBA we organize activities related to modern technologies aiming to make interested people such as students to learn more.",
+      "TITLE": "Computer Society"
+    },
+    "SEEMORE": "See More",
+    "WIE": {
+      "TEXT": "Our objective is to promote gender diversity in tech through education and representation.",
+      "TITLE": "Women in Engineering"
+    }
+  },
+  "TEAM": {
+    "TITLE": "Team",
+    "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
+  },
+  "IEEEXTREME": {
+    "FACTS": {
+      "EDITIONS": "Past editions",
+      "HOURS": "long",
+      "PARTICIPANTS": "Participants in 2020",
+      "TOPTEAMS": "Teams in best 500 of 8000"
+    },
+    "NAVBAR": {
+      "SPONSOR": "Sponsor",
+      "TAKEPART": "Take Part",
+      "TOP": "Top"
+    },
+    "PARTICIPATE": {
+      "TEXT": "Contact us via ieee@itba.edu.ar for more information and we'll notify you when registration opens. In the meantime, you can get yourself a team and start training!",
+      "TITLE": "Want to participate?"
+    },
+    "SPONSORSHIP": {
+      "TEXT": "In order to take part in the competition we require founding, that is why we are in the looking for new sponsors for our event. For more information please contact any member of our fundraising team:",
+      "TITLE": "Sponsors who have supported us"
+    },
+    "TEAM": {
+      "TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
+      "TITLE": "Tackle problems as a team!"
+    }
+  },
+  "BITCUP": {
+    "BITCUP-TITLE": "Bit cup!",
+    "BITCUP-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
+    "FORMAT": "Format",
+    "FORMAT-TEXT": "This competition consists of solving a series of challenges released as the competition develops. It is graded from a set of test cases so that your score increases as you pass more test cases. Memory limits and processing time will need to be taken into account.",
+    "LEVEL": "¿Level?",
+    "LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
+  },
+  "NAVBAR": {
+    "CONTACT": "Contact",
+    "EVENTS": "Events",
+    "HOME": "Home",
+    "INITIATIVES": "Initiatives",
+    "TEAM": "Team",
+    "NEWS": "News",
+    "SPONSORS": "Sponsors",
+    "WRITENEWS": "Create News"
+  },
+  "PYTHONCOURSES": {
+    "CLASSES": {
+      "C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
+      "C2": "Data Types:(int, float, string, boolean), Data type operations, Lists, List operations, Text file manipulation",
+      "C3": "Data structures(Dictionary, Set, Tuple), Data structure operations, Introduction to libraries and examples, Application cases",
+      "TITLE": "Class "
+    },
+    "DESC_TITLE": "Description",
+    "DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming, without the need to become an expert in the topic. The contents of this introductory course are oriented towards people with no Python experience. We will go over the basics and fundamentals of programming and the Python language, putting into practice what we learn through interactive challenges and practical exercises.",
+    "FORMAT_SUBTITLE": "Course format",
+    "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
+    "ENROLLBUTTON": "Enroll now!",
+    "QUESTIONS": {
+      "TEXT": "We opened a SubReddit to answer questions: ",
+      "TEXT_VIDEOS": "Check our live videos with more info about our classes !",
+      "TITLE": "Questions"
+    },
+    "TITLE": "Introductory Python Course",
+    "FAQ": {
+      "TITLE": "Frequently asked questions",
+      "1": {
+        "QUESTION": "Do I need to have experience programming?",
+        "ANSWER": "No! We will explain everything from scratch, with a nice pace."
+      },
+      "2": {
+        "QUESTION": "Will I receive a certificate after finishing the course?",
+        "ANSWER": "Yes! You will get a certificate after completing the mandatory programming challenges before their respective due date."
+      },
+      "3": {
+        "QUESTION": "Who can enter this course?",
+        "ANSWER": "This course is free and open to everyone. Since it’s oriented towards a professional environment, it’s advisable, though not mandatory, to have finished high school."
+      },
+      "4": {
+        "QUESTION": "How can I ask questions or ask for help?",
+        "ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
+      },
+      "5": {
+        "QUESTION": "Can I interact with the rest of the participants?",
+        "ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
+      }
+    }
+  },
   "DATAANALYSIS": {
     "CLASSES": {
       "C1": {
@@ -250,14 +251,14 @@
       "TITLE": "Class ",
       "BUTTON": "GO TO CLASS"
     },
-	"SOLUTION": "Solutionary",
+    "SOLUTION": "Solutionary",
     "DESC_TITLE": "Description",
     "DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming without the need to become an expert in the topic.\n\nThe contents of this course are oriented towards people who are already familiar with the basics of Python programming (such as data types, functions and data structures). We will go over the basics and fundamentals of libraries, file reading and data analysis and representation, putting into practice what we learn through interactive challenges and practical exercises.",
-    "FORMAT_SUBTITLE":"Course format",
+    "FORMAT_SUBTITLE": "Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
     "SOLUTIONBUTTON": "GO TO SOLUTIONS",
-	"TESTBUTTON": "Start Test",
+    "TESTBUTTON": "Start Test",
     "CONTENT_TITLE": "Course contents",
     "CONTENT_DESC": "The course consists of 2 classes covering the following topics, to access the contents of the classes and the solutions you can click on the corresponding button.",
     "TITLE": "Data Analysis in Python Course",
@@ -285,55 +286,55 @@
       }
     }
   },
-	"IEEEMEETUP": {
-		"TITLE": "IEEE - 2nd Meet Up",
-		"CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
-	},
-	"IEEENEWS": {
-		"TITLE": "IEEE News",
-		"CONTENT": "¡Accede a la página de noticias de IEEE ITBA!"
-	},
-	"GENERAL": {
-		"ALL": "PREVIOUS",
-		"ACTUAL": "ACTUAL"
-	},
-	"CONTACT": {
-		"TITLE": "Contact",
-		"SUBTITLE": "Complete the following information, we will contact you shortly.",
+  "IEEEMEETUP": {
+    "TITLE": "IEEE - 2nd Meet Up",
+    "CONTENT": "In this IEEE Meeting, the complete IEEE Team will discuss according and what it has and has not accomplished, the actual situation and the proposed ideas how to continue the rest of the year. It this the perfect moment to make the kickoff for new activites! You can share topics you want to be discussed in the form! "
+  },
+  "IEEENEWS": {
+    "TITLE": "IEEE News",
+    "CONTENT": "¡Accede a la página de noticias de IEEE ITBA!"
+  },
+  "GENERAL": {
+    "ALL": "PREVIOUS",
+    "ACTUAL": "ACTUAL"
+  },
+  "CONTACT": {
+    "TITLE": "Contact",
+    "SUBTITLE": "Complete the following information, we will contact you shortly.",
     "DESTINATION": "Send to",
     "ADMINISTRATION": "Administration",
     "COURSES": "Courses",
-		"NAME": "Name",
-		"NAME_ERROR": "Please enter your name",
-		"EMAIL": "Email",
-		"EMAIL_ERROR": "Please enter a valid email",
-		"MESSAGE": "Message",
-		"MESSAGE_ERROR": "Please enter a message",
-		"SEND": "Send"
-	},
-	"WRITE-NEW": {
-		"TITLE": "Write News",
-		"TITLE2": "Title",
-		"POMPADOUR": "Pompadour",
-		"AUTHOR": "Author",
-		"COVERIMG": "Cover Image",
-		"EPIGRAPH": "Epigraph",
-		"BODY": "Body",
-		"CHECKBUTTON": "show on the news page",
-		"UPLOAD": "UPLOAD NEWS"
-	},
-	"LOGIN": {
-		"TITLE": "Log In",
+    "NAME": "Name",
+    "NAME_ERROR": "Please enter your name",
+    "EMAIL": "Email",
+    "EMAIL_ERROR": "Please enter a valid email",
+    "MESSAGE": "Message",
+    "MESSAGE_ERROR": "Please enter a message",
+    "SEND": "Send"
+  },
+  "WRITE-NEW": {
+    "TITLE": "Write News",
+    "TITLE2": "Title",
+    "POMPADOUR": "Pompadour",
+    "AUTHOR": "Author",
+    "COVERIMG": "Cover Image",
+    "EPIGRAPH": "Epigraph",
+    "BODY": "Body",
+    "CHECKBUTTON": "show on the news page",
+    "UPLOAD": "UPLOAD NEWS"
+  },
+  "LOGIN": {
+    "TITLE": "Log In",
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "BUTTON": "Log In",
     "NO_ACCOUNT": "Don't have an account?",
     "SIGN_UP": "Sign Up",
-		"FORGOT_PASSWORD": "Forgot your password?",
-		"CLICK": "Recover Password"
-	},
-	"REGISTER": {
-		"TITLE": "Register",
+    "FORGOT_PASSWORD": "Forgot your password?",
+    "CLICK": "Recover Password"
+  },
+  "REGISTER": {
+    "TITLE": "Register",
     "FIRST_NAME": "First Name",
     "LAST_NAME": "Last Name",
     "EMAIL": "Email",
@@ -342,15 +343,21 @@
     "BUTTON": "Sign Up",
     "ALREADY_SIGNED_UP": "Already signed up?",
     "LOGIN": "Log In"
-	},
-	"LOGOUT": {
-		"TITLE": "Log Out"
-	},
-	"WELCOME": {
-		"TEXT": " Welcome back, "
-	},
-	"ERROR": {
-		"ROLE": "You don't have the required credentials to access this page",
-		"GOBACK": "Go back to the homepage"
-	}
+  },
+  "LOGOUT": {
+    "TITLE": "Log Out"
+  },
+  "WELCOME": {
+    "TEXT": " Welcome back, "
+  },
+  "ERROR": {
+    "ROLE": "You don't have the required credentials to access this page",
+    "GOBACK": "Go back to the homepage"
+  },
+  "RAS": {
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "RAS Student Branch Chapter",
+    "UPCOMING": "Upcoming Events: Robotics Competition"
+  },
+  "WIP": "Site under construction"
 }

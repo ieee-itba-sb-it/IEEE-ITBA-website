@@ -1,0 +1,88 @@
+html {
+  min-height: 100%;
+  height: auto;
+}
+
+body {
+  padding: 10%;
+  padding-top: 5%;
+  padding-bottom: 0%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  --ras-red: #862633;
+  --ras-purple: #5f2167;
+}
+
+.bottomLine {
+  padding-top: 10vmin;
+  padding-bottom: 10vmin;
+  border-bottom: rgb(10, 27, 103) 2px solid;
+  vertical-align: middle;
+  align-content: center;
+}
+.topLine {
+  padding-top: 5vmin;
+  padding-bottom: 5vmin;
+  border-top: whitesmoke 2px solid;
+  vertical-align: middle;
+  align-content: center;
+}
+
+.noLine {
+  padding-top: 5vmin;
+  padding-bottom: 5vmin;
+  vertical-align: middle;
+  align-content: center;
+}
+
+#home {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin-bottom: 5rem;
+}
+
+.rasLogo {
+  width: 20rem;
+  object-fit: contain;
+}
+
+.titleRow {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ras-red);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.title {
+  margin: auto 0 auto 0;
+  font-weight: 600;
+  font-size: 3rem;
+}
+.subtitle {
+  margin: 0.5rem 0 auto 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+.wip-subtitle {
+  color: var(--ras-purple);
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 770px) {
+  .rasLogo {
+    width: 50vw;
+  }
+  .container {
+    align-items: center;
+    flex-direction: column;
+  }
+}
