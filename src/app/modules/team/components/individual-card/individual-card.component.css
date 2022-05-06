@@ -2,6 +2,7 @@ mdb-card {
     border-bottom-left-radius: 5vmin;
     border-bottom-right-radius: 5vmin;
     margin: 1.5vmin;
+    margin-top: 3em;
     color: black;
     padding-bottom: 1.5vmin;
     min-height: 300px;
@@ -10,7 +11,9 @@ mdb-card {
 }
 
 mdb-card-img {
-    padding: 2.5px;
+    width: 20em;
+    padding: 0.5em;
+    object-fit: fill;
 }
 
 mdb-card-text {
