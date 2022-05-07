@@ -359,5 +359,11 @@
     "SUBTITLE": "RAS Student Branch Chapter",
     "UPCOMING": "Upcoming Events: Robotics Competition"
   },
+  "ERROR404": {
+    "TITLE": "Page not found",
+    "APOLOGY": "We're sorry, the page you requested doesn't exist or some other error occurred",
+    "INDICATION": "Please go back to the home page",
+    "GOBACK": "Go back"
+  },
   "WIP": "Site under construction"
 }

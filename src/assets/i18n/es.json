@@ -364,5 +364,11 @@
     "SUBTITLE": "RAS Student Branch Chapter",
     "UPCOMING": "Proximos Eventos: Competencia de Robótica"
   },
+  "ERROR404": {
+    "TITLE": "Página no encontrada",
+    "APOLOGY": "Lo sentimos, la página que estaba buscando no existe u ocurrió algún otro error",
+    "INDICATION": "Por favor regrese a la página de inicio",
+    "GOBACK": "Regresar"
+  },
   "WIP": "Sitio en construcción"
 }
