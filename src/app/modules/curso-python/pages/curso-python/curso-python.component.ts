@@ -51,9 +51,9 @@ export class CursoPythonComponent implements OnInit {
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/es|en/)? browserLang:'en');
     this.class1Open = this.isOldDate('31 Apr 2022 14:00:00 UTC');
-    this.class2Open = this.isOldDate('07 May 2022 14:00:00 UTC');
-    this.class3Open = this.isOldDate('14 May 2022 15:00:00 UTC');
-    this.solution3Open = this.isOldDate('21 May 2022 15:00:00 UTC');
+    this.class2Open = this.isOldDate('08 May 2022 03:00:00 UTC');
+    this.class3Open = this.isOldDate('15 May 2022 03:00:00 UTC');
+    this.solution3Open = this.isOldDate('22 May 2022 03:00:00 UTC');
   }
   useLanguage(language: string) {
     this.translate.use(language);
