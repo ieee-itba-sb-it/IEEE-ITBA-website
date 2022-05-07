@@ -42,7 +42,7 @@
 
     <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-        <mat-card class="example-card" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class1Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
             fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -62,9 +62,20 @@
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
             </mat-card-content>
+            <!-- Boton del solucionario -->
+            <mat-card-actions align="center">
+                <ng-template [ngIf]="class2Open" [ngIfElse]="solutions1Closed">
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_1_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    </a>
+                </ng-template>
+                <ng-template #solutions1Closed>
+                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                </ng-template>
+            </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card not-available-background-color" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class2Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
             fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -84,9 +95,20 @@
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
             </mat-card-content>
+            <!-- Boton del solucionario -->
+            <mat-card-actions align="center">
+                <ng-template [ngIf]="class3Open" [ngIfElse]="solutions2Closed">
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    </a>
+                </ng-template>
+                <ng-template #solutions2Closed>
+                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                </ng-template>
+            </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card not-available-background-color" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class3Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
             fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -106,6 +128,17 @@
             <mat-card-content>
                 {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
             </mat-card-content>
+            <!-- Boton del solucionario -->
+            <mat-card-actions align="center">
+                <ng-template [ngIf]="solution3Open" [ngIfElse]="solutions3Closed">
+                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    </a>
+                </ng-template>
+                <ng-template #solutions3Closed>
+                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                </ng-template>
+            </mat-card-actions>
         </mat-card>
 
     </div>

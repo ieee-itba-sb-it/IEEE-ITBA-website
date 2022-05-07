@@ -15,6 +15,7 @@ export class CursoPythonComponent implements OnInit {
   class1Open: boolean = false;
   class2Open: boolean = false;
   class3Open: boolean = false;
+  solution3Open: boolean = false;
 
   //ojala no tuviera que hardcodear asi, pero no encontre una forma de pasarle el string y concatenarlo con otros en el translate
   faq = [
@@ -43,7 +44,6 @@ export class CursoPythonComponent implements OnInit {
     return now > oldDate ;
   }
 
-
   constructor(public translate: TranslateService) {
     scroll(0, 0);
     translate.addLangs(['en', 'es']);
@@ -53,6 +53,7 @@ export class CursoPythonComponent implements OnInit {
     this.class1Open = this.isOldDate('31 Apr 2022 14:00:00 UTC');
     this.class2Open = this.isOldDate('07 May 2022 14:00:00 UTC');
     this.class3Open = this.isOldDate('14 May 2022 15:00:00 UTC');
+    this.solution3Open = this.isOldDate('21 May 2022 15:00:00 UTC');
   }
   useLanguage(language: string) {
     this.translate.use(language);
