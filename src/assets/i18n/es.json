@@ -209,6 +209,7 @@
     "FORMAT_SUBTITLE": "Formato del curso",
     "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "SOLUTIONBUTTON": "Ir al solucionario",
     "QUESTIONS": {
       "TEXT": "Tenemos un SubReddit para contestar dudas: ",
       "TEXT_VIDEOS": "Tenemos videos en vivo con consultas sobre las clases:",
