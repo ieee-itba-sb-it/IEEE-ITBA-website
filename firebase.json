@@ -4,7 +4,15 @@
   },
   "hosting": {
     "headers": [
-      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+      {
+        "source": "/service-worker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
     ],
     "public": "dist/ITBA-IEEE-Website-A9",
     "ignore": [
@@ -30,8 +38,8 @@
         "destination": "/index.html"
       },
       {
-          "source": "/public/**",
-          "destination": "/public.html"
+        "source": "/public/**",
+        "destination": "/public.html"
       }
     ]
   },
@@ -41,5 +49,25 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
+    }
   }
 }
