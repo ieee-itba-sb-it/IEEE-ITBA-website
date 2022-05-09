@@ -168,7 +168,7 @@
     },
     "SPONSORSHIP": {
       "TEXT": "In order to take part in the competition we require founding, that is why we are in the looking for new sponsors for our event. For more information please contact any member of our fundraising team:",
-      "TITLE": "Sponsors who have supported us"
+      "TITLE": "Sponsors who support us"
     },
     "TEAM": {
       "TEXT": "The IEEExtreme programming competition lasts 24hs, where competitors of different universities and studies dedicate a great effort and motivation with the sole purpose of incrementing their problem solving abilities as a team have a great time in the process.",
@@ -205,6 +205,7 @@
     "FORMAT_SUBTITLE": "Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
+    "SOLUTIONBUTTON": "Go to solutions",
     "QUESTIONS": {
       "TEXT": "We opened a SubReddit to answer questions: ",
       "TEXT_VIDEOS": "Check our live videos with more info about our classes !",
@@ -358,6 +359,12 @@
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "UPCOMING": "Upcoming Events: Robotics Competition"
+  },
+  "ERROR404": {
+    "TITLE": "Page not found",
+    "APOLOGY": "We're sorry, the page you requested doesn't exist or some other error occurred",
+    "INDICATION": "Please go back to the home page",
+    "GOBACK": "Go back"
   },
   "WIP": "Site under construction"
 }

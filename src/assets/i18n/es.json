@@ -172,7 +172,7 @@
     },
     "SPONSORSHIP": {
       "TEXT": "Para el desarrollo de la competencia requerimos fondos, por lo que estamos en la búsqueda de nuevos auspiciantes para nuestro evento. Para más información contactar a cualquier miembro de nuestro equipo de fundraising:",
-      "TITLE": "Sponsors que nos han acompañado"
+      "TITLE": "Sponsors que nos acompañan"
     },
     "TEAM": {
       "TEXT": "La IEEExtreme programming competition es una competencia de programación de 24 hs donde competidores de distintas universidades y carreras dedican gran esfuerzo y motivación en pos de incrementar su habilidad de resolver problemas en equipo y pasar un gran momento.",
@@ -209,6 +209,7 @@
     "FORMAT_SUBTITLE": "Formato del curso",
     "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "SOLUTIONBUTTON": "Ir al solucionario",
     "QUESTIONS": {
       "TEXT": "Tenemos un SubReddit para contestar dudas: ",
       "TEXT_VIDEOS": "Tenemos videos en vivo con consultas sobre las clases:",
@@ -363,6 +364,12 @@
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "UPCOMING": "Proximos Eventos: Competencia de Robótica"
+  },
+  "ERROR404": {
+    "TITLE": "Página no encontrada",
+    "APOLOGY": "Lo sentimos, la página que estaba buscando no existe u ocurrió algún otro error",
+    "INDICATION": "Por favor regrese a la página de inicio",
+    "GOBACK": "Regresar"
   },
   "WIP": "Sitio en construcción"
 }

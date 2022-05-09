@@ -45,7 +45,8 @@ const routes: Routes = [
     // data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   { path: 'login', loadChildren: () => import('./core/authentication/login/login.module').then(m => m.LoginModule) },
-  { path: 'register', loadChildren: () => import('./core/authentication/register/register.module').then(m => m.RegisterModule) }
+  { path: 'register', loadChildren: () => import('./core/authentication/register/register.module').then(m => m.RegisterModule) },
+  { path: '**', loadChildren: () => import('./modules/error404/error404.module').then(m => m.Error404Module)}
 ];
 
 @NgModule({

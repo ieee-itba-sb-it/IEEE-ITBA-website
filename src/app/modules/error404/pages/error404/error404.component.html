@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found</title>
+</head>
+
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<body>
+  <div class="container">
+    <div class="content-container">
+      <h1 class="error-code"><b>404</b></h1>
+      <h2 class="page-title mt-3">{{ 'ERROR404.TITLE' | translate }}</h2>
+      <p class="page-content mt-2">{{ 'ERROR404.APOLOGY' | translate}}</p>
+      <p class="page-content">{{ 'ERROR404.INDICATION' | translate }}</p>
+      <div>
+        <button class="go-back-button mt-3" [routerLink]="['']">{{ 'ERROR404.GOBACK' | translate }}</button>
+      </div>
+    </div>
+    <img class="page-not-found-image" src="../../../../../assets/image/content/page-not-found.png" alt="page_not_found_img"/>
+  </div>
+  <app-footer></app-footer>
+</body>
+
+</html>

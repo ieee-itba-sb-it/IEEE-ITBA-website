@@ -258,6 +258,28 @@ img {
     margin-top: 0.5rem;
 }
 
+.ieeecard-button {
+    font-weight: 600;
+    margin-top: 0.25rem;
+    border: solid rgb(23, 46, 148);
+    color: rgb(23, 46, 148) !important;
+    border-radius: 5px;
+    background-color: inherit;
+    border-width: 3px;
+    transition: all 175ms ease-in-out;
+  }
+.ieeecard-button:hover {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white !important;
+    background-color: #0d47a1;
+    border-color: white;
+  }
+.button-disabled{
+    background-color: lightgrey;
+    border: solid gray;
+    color: gray !important;
+}
+
 .no-shadow {
     box-shadow: none !important;
 }
