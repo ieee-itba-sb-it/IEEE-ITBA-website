@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "ieeeitba"
+  },
+  "targets": {
+    "ieeeitba": {
+      "hosting": {
+        "ITBA-IEEE-Website-A9": [
+          "ieeeitba"
+        ]
+      }
+    }
   }
 }

@@ -22,11 +22,7 @@
               "@firebase/functions",
               "@firebase/performance",
               "@firebase/remote-config",
-              "@firebase/component",
-              "angularfire2",
-              "angularfire2/auth",
-              "angularfire2/firestore"
-
+              "@firebase/component"
             ],
             "outputPath": "dist/ITBA-IEEE-Website-A9",
             "index": "src/index.html",
@@ -53,7 +49,6 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
@@ -135,7 +130,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js",
               "./node_modules/quill/dist/quill.js"
             ]
@@ -168,7 +162,13 @@
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
-          "options": {}
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ITBA-IEEE-Website-A9:build:production",
+            "firebaseProject": "ieeeitba",
+            "firebaseHostingSite": "ieeeitba"
+          }
         }
       }
     }
