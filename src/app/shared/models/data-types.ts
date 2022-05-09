@@ -1,9 +1,10 @@
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
-
 import { IEEEuser } from './ieee-user/ieee-user';
 import { roles } from './roles/roles.enum';
 import { newsItem } from './news-item/news-item';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import Timestamp = firebase.firestore.Timestamp;
 
 export function createNewsItem(
     title: string,

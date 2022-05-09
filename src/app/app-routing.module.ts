@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Error401Component } from './shared/components/error401/error401.component';
 
 import {AuthGuardService} from './core/services/authorization-guard/auth-guard.service';
-import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import { redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);

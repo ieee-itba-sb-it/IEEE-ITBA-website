@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { newsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -41,7 +41,7 @@ export class BlogService {
       const ans: newsItem[] = [];
 
       for (const blogEntry in data.docs) {
-        const doc = data.docs[blogEntry].data();
+        const doc: any = data.docs[blogEntry].data();
         // Add the next blog item
         ans.push(
           createNewsItem(
@@ -89,7 +89,7 @@ export class BlogService {
     const ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
-      const doc = data.data();
+      const doc: any = data.data();
 
       ans.next(
         createNewsItem(
@@ -118,7 +118,7 @@ export class BlogService {
     const ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
     this.blogData.subscribe(data => {
-      const doc = data[0];
+      const doc: any = data[0];
 
       ans.next(
         createNewsItemWithDate(

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 
@@ -17,26 +16,18 @@ import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 export class AuthService {
 
   // Vars
-  user: firebase.User;
+  user: Observable<firebase.User | null >;
   accountObs: Observable<IEEEuser>;
   account: IEEEuser;
 
   // Constructor
   constructor(private firebaseAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
 
-    this.user = firebaseAuth.auth.currentUser;
+    this.user = firebaseAuth.authState;
 
     // Seteamos observer
-    firebaseAuth.auth.onAuthStateChanged(function(usuario) {
+    firebaseAuth.onAuthStateChanged(function(usuario) {
       if (usuario) {
-        // User is signed in.
-        const displayName = usuario.displayName;
-        const email = usuario.email;
-        const emailVerified = usuario.emailVerified;
-        const photoURL = usuario.photoURL;
-        const uid = usuario.uid;
-        // var role = usuario.role;
-        // console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
 
         // Get user info from database
         {
@@ -45,12 +36,13 @@ export class AuthService {
             console.log('Logged in user found.');
             const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
 
-            afs.collection('users').doc(usuario.email).get().subscribe( data => {
+            afs.collection('users').doc(usuario.email).get().subscribe(
+              data => {
               // Save the updated data to our local var
-              const doc = data.data();
-              ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
-              this.accountObs = ans.asObservable;
-            });
+                const doc: any = data.data();
+                ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
+                this.accountObs = ans.asObservable;
+              });
           }
           else {
             console.log('No logged in user found. (Shouldnt get here)');
@@ -66,20 +58,29 @@ export class AuthService {
 
   }
 
+  getAuthUser() {
+    return this.firebaseAuth.authState.pipe(
+      map( (user) => user.uid )
+    );
+  }
+
   // ---------------Methods---------------
 
   // Signup with email and password
   signup(email: string, password: string, fname: string, lname: string, element: HTMLElement) {
 
-    this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
+    this.firebaseAuth.createUserWithEmailAndPassword(email, password)
       .then(value => {
-        this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.auth.currentUser.uid);
-        // console.log('Success!', value);
-        element.textContent = 'Signed Up!';
-        element.style.color = 'green';
 
-        this.afs.collection('users').doc(email).set(this.account).then(data => {
-          // console.log('News item with reference '+email +' added.');
+        this.getAuthUser().subscribe( (userId) => {
+          this.account = createRegularUser(fname, lname, email, '', userId);
+          // console.log('Success!', value);
+          element.textContent = 'Signed Up!';
+          element.style.color = 'green';
+
+          this.afs.collection('users').doc(email).set(this.account).then(data => {
+            // console.log('News item with reference '+email +' added.');
+          });
         });
 
       })
@@ -117,7 +118,7 @@ export class AuthService {
   // Login with email and password
   login(email: string, password: string, element: HTMLElement) {
 
-    this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
+    this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then(value => {
      // console.log('Success!');
       element.textContent = 'Logged In!';
@@ -166,12 +167,12 @@ export class AuthService {
 
   // Logout
   logout() {
-    this.firebaseAuth.auth.signOut();
+    this.firebaseAuth.signOut();
   }
 
   // Check user state
   isUserLogued(){
-    this.user = this.firebaseAuth.auth.currentUser;
+    this.user = this.firebaseAuth.authState;
     if (this.user) {
       return true;
     }
@@ -182,7 +183,7 @@ export class AuthService {
 
   // Change password
   changePass(email: string, element: HTMLElement) {
-    this.firebaseAuth.auth.sendPasswordResetEmail(email)
+    this.firebaseAuth.sendPasswordResetEmail(email)
     .then(value => {
      // console.log('Success!', value);
       element.textContent = 'Email Sent!';
@@ -220,10 +221,10 @@ export class AuthService {
   getCurrentUser(): Observable<IEEEuser> {
     const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
 
-    this.firebaseAuth.auth.onAuthStateChanged(function(usuario) {
+    this.firebaseAuth.onAuthStateChanged((usuario) => {
       if (usuario){ // There is an user
-        firebase.firestore().collection('users').doc(usuario.email).get().then(function(data) {
-          const doc = data.data();
+        firebase.firestore().collection('users').doc(usuario.email).get().then((data) => {
+          const doc: any = data.data();
           ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
         });
       }

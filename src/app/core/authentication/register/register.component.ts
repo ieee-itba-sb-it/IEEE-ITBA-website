@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { auth } from 'firebase';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
