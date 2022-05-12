@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'ras', loadChildren: () => import('./modules/ras/ras.module').then(m => m.RasModule)},
   { path: 'ieeextreme', loadChildren: () => import('./modules/ieeextreme/ieeextreme.module').then(m => m.IeeextremeModule) },
   { path: 'cursospython', loadChildren: () => import('./modules/curso-python/curso-python.module').then(m => m.CursoPythonModule) },
+  { path: 'asimovcup', loadChildren: () => import('./modules/asimov-cup/asimov-cup.module').then(m => m.AsimovCupModule) },
   { path: 'noticias', loadChildren: () => import('./modules/noticias/noticias.module').then(m => m.NoticiasModule) },
   { path: 'noticias/:id', loadChildren: () => import('./modules/noticias/noticias.module').then(m => m.NoticiasModule) },
   { path: 'sponsors', loadChildren: () => import('./modules/sponsors/sponsors.module').then(m => m.SponsorsModule) },
