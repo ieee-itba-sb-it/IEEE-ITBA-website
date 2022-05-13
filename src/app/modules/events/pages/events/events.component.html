@@ -1,134 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events</title>
-</head>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
 
-<header>
-  <app-navbar></app-navbar>
-
-</header>
-
-<body>
-
-  <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
-    <div class="container">
+  <body>
+    <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+      <div class="container">
         <div class="row">
-            <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
-              <img src="../../../../../assets/image/IEEEEventos2.png" alt="Events" class="IEEEEventsImage">
-            </div>
-            <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
-              <h1 class="page-title">{{ 'NAVBAR.EVENTS' | translate }}</h1>
-            </div>
+          <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
+            <img
+              src="../../../../../assets/image/IEEEEventos2.png"
+              alt="Events"
+              class="IEEEEventsImage"
+            />
+          </div>
+          <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
+            <h1 class="page-title">{{ "NAVBAR.EVENTS" | translate }}</h1>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
     <div class="row mr-5 ml-5 d-flex justify-content-center row-eq-height">
+      <!-- Eventos (material angular) -->
 
-        <!-- Eventos (material angular) -->
-
-
-
-
-    <div class="card-group-row">
-      <div class="card-group-col">
+      <!-- new card grid -->
+      <ul class="card-listing">
         <!--IEEExtreme-->
-        <a  [routerLink]="['/ieeextreme']">
-          <mat-card class="event-card">
-            <div class="image-with-text">
-              <img mat-card-img src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg" alt="Foto de competicion IEEExtreme" class="event-card-img ieeextreme-filter"/>
-              <p class="text-on-image ieeextreme-text">{{ 'HOME.IEEEXTREME.TITLE' | translate }}</p>
-            </div>
-            <mat-card-content class="mt-2">
-              <mat-card-title>{{ 'HOME.IEEEXTREME.TITLE' | translate }}</mat-card-title>
-              <p class="lead">{{ 'HOME.IEEEXTREME.TEXT' | translate }}</p>
-              <a class="link-text" [routerLink]="['/ieeextreme']">
-                <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-                  <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-                </h5>
-              </a>
-            </mat-card-content>
-          </mat-card>
-        </a>
+        <li>
+          <a [routerLink]="['/ieeextreme']">
+            <mat-card class="event-card">
+              <div class="image-with-text">
+                <img
+                  mat-card-img
+                  src="https://i.ibb.co/YNBZxNs/ieee-extreme.jpg"
+                  alt="Foto de competicion IEEExtreme"
+                  class="event-card-img ieeextreme-filter"
+                />
+                <p class="text-on-image ieeextreme-text">
+                  {{ "HOME.IEEEXTREME.TITLE" | translate }}
+                </p>
+              </div>
+              <mat-card-content class="mt-2">
+                <mat-card-title>{{
+                  "HOME.IEEEXTREME.TITLE" | translate
+                }}</mat-card-title>
+                <p class="lead">{{ "HOME.IEEEXTREME.TEXT" | translate }}</p>
+                <a class="link-text" [routerLink]="['/ieeextreme']">
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
+                  </h5>
+                </a>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </li>
 
-      </div>
-
-      <div class="card-group-col">
         <!--Clases de Pyhton-->
-        <a [routerLink]="['/cursospython']">
-          <mat-card class="event-card">
-            <div class="image-with-text">
-              <img mat-card-img src="https://i.ibb.co/q1QyW01/cursopython.jpg" alt="Foto de los cursos de Python" class="event-card-img cursopython-filter"/>
-              <p class="text-on-image cursopython-text">{{ 'HOME.CLASSES.TITLE' | translate }}</p>
-            </div>
-            <mat-card-content class="mt-2">
-              <mat-card-title>{{ 'HOME.CLASSES.TITLE' | translate }}</mat-card-title>
-              <p class="lead">{{ 'HOME.CLASSES.TEXT' | translate }}</p>
-              <a class="link-text" [routerLink]="['/cursospython']">
-                <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-                  <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-                </h5>
-              </a>
-            </mat-card-content>
-          </mat-card>
-        </a>
-      </div>
-    </div>
+        <li>
+          <a [routerLink]="['/cursospython']">
+            <mat-card class="event-card">
+              <div class="image-with-text">
+                <img
+                  mat-card-img
+                  src="https://i.ibb.co/q1QyW01/cursopython.jpg"
+                  alt="Foto de los cursos de Python"
+                  class="event-card-img cursopython-filter"
+                />
+                <p class="text-on-image cursopython-text">
+                  {{ "HOME.CLASSES.TITLE" | translate }}
+                </p>
+              </div>
+              <mat-card-content class="mt-2">
+                <mat-card-title>{{
+                  "HOME.CLASSES.TITLE" | translate
+                }}</mat-card-title>
+                <p class="lead">{{ "HOME.CLASSES.TEXT" | translate }}</p>
+                <a class="link-text" [routerLink]="['/cursospython']">
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
+                  </h5>
+                </a>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </li>
 
-      <div class="card-group-row">
-
-        <div class="card-group-col">
-          <!--Bitcup-->
+        <!--Bitcup-->
+        <li>
           <a [routerLink]="['/bitcup']">
             <mat-card class="event-card">
               <div class="image-with-text">
-                <img mat-card-img src="../../../../../assets/image/courses/bitcup-logo.jpeg" alt="Foto de los cursos de Python" class="event-card-img bitcup-filter"/>
-                <p class="text-on-image bitcup-text">{{ 'HOME.BITCUP.TITLE' | translate }}</p>
+                <img
+                  mat-card-img
+                  src="../../../../../assets/image/courses/bitcup-logo.jpeg"
+                  alt="Foto de los cursos de Python"
+                  class="event-card-img bitcup-filter"
+                />
+                <p class="text-on-image bitcup-text">
+                  {{ "HOME.BITCUP.TITLE" | translate }}
+                </p>
               </div>
               <mat-card-content class="mt-2">
-                <mat-card-title>{{ 'HOME.BITCUP.TITLE' | translate }}</mat-card-title>
-                <p class="lead">{{ 'HOME.BITCUP.TEXT' | translate }}</p>
+                <mat-card-title>{{
+                  "HOME.BITCUP.TITLE" | translate
+                }}</mat-card-title>
+                <p class="lead">{{ "HOME.BITCUP.TEXT" | translate }}</p>
                 <a class="link-text" [routerLink]="['/error401']">
-                  <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-                    <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
                   </h5>
                 </a>
               </mat-card-content>
             </mat-card>
           </a>
+        </li>
 
-        </div>
-        <div class="card-group-col">
-          <!--Curso de análisis de datos-->
-          <a  [routerLink]="['/data-analysis']">
+        <!--Curso de análisis de datos-->
+        <li>
+          <a [routerLink]="['/data-analysis']">
             <mat-card class="event-card">
               <div class="image-with-text">
-                <img mat-card-img src="../../../../../assets/image/courses/data-analysis-event.png" alt="Foto de curso analisis de datos" class="event-card-img cursoanalisis-filter"/>
-                <p class="text-on-image cursoanalisis-text">{{ 'HOME.DATAANALYSIS.TITLE' | translate }}</p>
+                <img
+                  mat-card-img
+                  src="../../../../../assets/image/courses/data-analysis-event.png"
+                  alt="Foto de curso analisis de datos"
+                  class="event-card-img cursoanalisis-filter"
+                />
+                <p class="text-on-image cursoanalisis-text">
+                  {{ "HOME.DATAANALYSIS.TITLE" | translate }}
+                </p>
               </div>
               <mat-card-content class="mt-2">
-                <mat-card-title>{{ 'HOME.DATAANALYSIS.TITLE' | translate }}</mat-card-title>
-                <p class="lead">{{ 'HOME.DATAANALYSIS.TEXT' | translate }}</p>
+                <mat-card-title>{{
+                  "HOME.DATAANALYSIS.TITLE" | translate
+                }}</mat-card-title>
+                <p class="lead">{{ "HOME.DATAANALYSIS.TEXT" | translate }}</p>
                 <a class="link-text" [routerLink]="['/data-analysis']">
-                  <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-                    <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
                   </h5>
                 </a>
               </mat-card-content>
             </mat-card>
           </a>
+        </li>
 
-        </div>
-
-      </div>
-
+        <!--Asimov Cup-->
+        <li>
+          <a [routerLink]="['/asimovcup']">
+            <mat-card class="event-card">
+              <div class="image-with-text">
+                <img
+                  mat-card-img
+                  src="../../../../../assets/image/courses/asimov-cup-logo.png"
+                  alt="Logo de la Asimov Cup"
+                  class="event-card-img asimovcup-filter"
+                />
+                <p class="text-on-image asimovcup-text">
+                  {{ "HOME.ASIMOVCUP.TITLE" | translate }}
+                </p>
+              </div>
+              <mat-card-content class="mt-2">
+                <mat-card-title>{{
+                  "HOME.ASIMOVCUP.TITLE" | translate
+                }}</mat-card-title>
+                <p class="lead">{{ "HOME.ASIMOVCUP.TEXT" | translate }}</p>
+                <a class="link-text" [routerLink]="['/asimovcup']">
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
+                  </h5>
+                </a>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </li>
+      </ul>
     </div>
 
     <app-footer></app-footer>
-
-</body>
-
+  </body>
 </html>

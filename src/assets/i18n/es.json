@@ -104,6 +104,10 @@
       "TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA. Su dificultad es variada, por lo que sirve como una introducción al mundo de la programación competitiva.",
       "TITLE": "Bit Cup"
     },
+    "ASIMOVCUP": {
+      "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
+      "TITLE": "Asimov Cup"
+    },
     "COMISIONS": {
       "DC": "CD",
       "EDUCATION": "Educación",

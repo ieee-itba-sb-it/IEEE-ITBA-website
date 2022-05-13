@@ -93,8 +93,12 @@
     },
     "SPONSORS": "Sponsors 2021",
     "BITCUP": {
-      "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
+      "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at ITBA. Competitors from any high school, university, or private team build their robots to compete with each other and find the winner in one of the three categories: Racing, Sumo and Minisumo.",
       "TITLE": "Bit Cup"
+    },
+    "ASIMOVCUP": {
+      "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
+      "TITLE": "Asimov Cup"
     },
     "CLASSES": {
       "TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
