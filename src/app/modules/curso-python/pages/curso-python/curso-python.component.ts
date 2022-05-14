@@ -1,9 +1,11 @@
 /*IMPORTS*/
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import firebase from 'firebase';
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import Timestamp = firebase.firestore.Timestamp;
+
 @Component({
   selector: 'app-curso-python',
   templateUrl: './curso-python.component.html',
