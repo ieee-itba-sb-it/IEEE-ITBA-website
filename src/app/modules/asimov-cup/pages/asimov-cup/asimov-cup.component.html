@@ -43,16 +43,18 @@
           <li>{{ "ASIMOVCUP.DESC.SECTION.1.BULLET_PTS.3" | translate }}</li>
         </ul>
         <p>{{ "ASIMOVCUP.DESC.SECTION.2.TEXT" | translate }}</p>
-        <ul>
+        <ul class="list-section">
           <li>
-            <a href="https://itbaieee.org.ar">{{
-              "ASIMOVCUP.DESC.SECTION.2.LINKS.1" | translate
-            }}</a>
+            <a
+              href="https://raw.githubusercontent.com/IEEESBITBA/AsimovCup/main/Reglamentos/Reglamento_Sumo_Minisumo_RAS_ITBA_Rev_1.pdf"
+              >{{ "ASIMOVCUP.DESC.SECTION.2.LINKS.1" | translate }}</a
+            >
           </li>
           <li>
-            <a href="https://itbaieee.org.ar">{{
-              "ASIMOVCUP.DESC.SECTION.2.LINKS.2" | translate
-            }}</a>
+            <a
+              href="https://raw.githubusercontent.com/IEEESBITBA/AsimovCup/main/Reglamentos/Reglamento_Carreras_RAS_ITBA_Rev_1.pdf"
+              >{{ "ASIMOVCUP.DESC.SECTION.2.LINKS.2" | translate }}</a
+            >
           </li>
         </ul>
         <p>{{ "ASIMOVCUP.DESC.SECTION.3.TEXT" | translate }}</p>
@@ -81,7 +83,7 @@
         {{ "ASIMOVCUP.SCHEDULE_TITLE" | translate }}
       </h2>
       <div class="text-section">
-        <ol>
+        <ol class="list-section">
           <li *ngFor="let sc of schedule">{{ sc | translate }}</li>
         </ol>
       </div>

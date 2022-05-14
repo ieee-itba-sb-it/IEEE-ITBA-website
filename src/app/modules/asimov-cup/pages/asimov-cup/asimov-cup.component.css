@@ -283,6 +283,26 @@ img {
 }
 .faq-answer {
   font-size: larger;
+  margin-top: 0.5rem;
+}
+
+/*
+.list-section {
+  counter-reset: item;
+}
+.list-section li {
+  display: block;
+}
+.list-section li::before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  color: #0d47a1 !important;
+  font-weight: bolder;
+}
+*/
+.list-section li::marker {
+  color: #0d47a1;
+  font-weight: bolder;
 }
 
 /** tomado de team component css */
