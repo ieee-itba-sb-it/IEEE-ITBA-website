@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  padding: 10%;
+  padding: 0 10%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
@@ -62,6 +62,22 @@ h1 {
 .example-header-image {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png");
   background-size: cover;
+}
+
+.banner {
+  position: relative;
+  text-align: center;
+}
+.max-width {
+  margin-top: calc(7.5em);
+  width: 100%;
+  transform: translateY(0);
+  /*height: 20em; */
+}
+@media (max-width: 990px) {
+  .max-width {
+    margin-top: calc(6.5em);
+  }
 }
 
 .topbottomLine {
@@ -224,10 +240,10 @@ img {
   }
 }
 
-.goback-button {
-  font-size: calc(0.5vw + 0.5rem);
+.enroll-button {
+  font-size: calc(0.5vw + 1rem);
   font-weight: 600;
-  margin-top: 0.25rem;
+  margin-top: 1rem;
   padding: 0.7rem 1rem 0.7rem 1rem;
   border: solid rgb(23, 46, 148);
   color: rgb(23, 46, 148) !important;
@@ -236,17 +252,17 @@ img {
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
-.goback-button:hover {
+.enroll-button:hover {
   box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0.2);
   color: white !important;
   background-color: #0d47a1;
   border-color: white;
 }
 
-.goback-button > .button-text {
+.enroll-button > .button-text {
   color: rgb(23, 46, 148) !important;
 }
-.goback-button:hover > .button-text {
+.enroll-button:hover > .button-text {
   color: white !important;
 }
 
