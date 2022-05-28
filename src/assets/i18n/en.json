@@ -96,6 +96,10 @@
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
       "TITLE": "Bit Cup"
     },
+    "ASIMOVCUP": {
+      "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at ITBA. Competitors from any high school, university, or private team build their robots to compete with each other and find the winner in one of the three categories: Racing, Sumo and Minisumo.",
+      "TITLE": "Asimov Cup"
+    },
     "CLASSES": {
       "TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
       "TITLE": "Python Courses"
@@ -366,5 +370,78 @@
     "INDICATION": "Please go back to the home page",
     "GOBACK": "Go back"
   },
-  "WIP": "Site under construction"
+  "WIP": "Site under construction",
+  "ASIMOVCUP": {
+    "TITLE": "Asimov Cup",
+    "ENROLLBUTTON": "Enroll now!",
+    "DESC": {
+      "TITLE": "Description",
+      "SECTION": {
+        "1": {
+          "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at the Buenos Aires Institute of Technology (ITBA). Competitors must develop their robots in advance, in accordance with the established regulations, in order to participate with them on the day of the event. There are 3 different categories, which are:",
+          "BULLET_PTS": {
+            "1": "Sumo",
+            "2": "Minisumo",
+            "3": "Racing"
+          }
+        },
+        "2": {
+          "TEXT": "Each category is developed independently of the others, all running simultaneously on the day of the event. The regulations are adapted from the Argentine National Robotics League (LNR), and can be downloaded below:",
+          "LINKS": {
+            "1": "Download the regulations for the Sumo/Minisumo competition",
+            "2": "Download the regulations for the Racing competition"
+          }
+        },
+        "3": {
+          "TEXT": "In addition to participating in the competition, the event is also open to spectators. In both cases it is necessary to complete a registration form in advance."
+        }
+      }
+    },
+    "D_AND_L_TITLE": "Date and location",
+    "D_AND_L": {
+      "TEXT_1": "The competition will take place at the ",
+      "LOCATION": "ITBA Sede Distrito Tecnológico",
+      "TEXT_2": " (Lavardén 315, CABA, Argentina) on Saturday, July 30, 2022."
+    },
+    "SCHEDULE_TITLE": "Estimated schedule",
+    "SCHEDULE": {
+      "1": "8:00 - 9:00: Welcome and participant check-in",
+      "2": "9:00 - 10:00: Homologation",
+      "3": "10:00 - 10:30: Coffee Break",
+      "4": "10:30 - 12:30: Competition: Group Stage",
+      "5": "12:30 - 13:30: Lunch",
+      "6": "13:30 - 15:00: Competition: Group Stage",
+      "7": "15:00 - 17:00: Competition: Direct Elimination Phase",
+      "8": "17:00 - 17:30: Coffee Break",
+      "9": "17:30 - 18:00: Competition: Finals",
+      "10": "18:00 - 18:30: Awards Ceremony"
+    },
+    "FAQ": {
+      "TITLE": "Frequently asked questions",
+      "1": {
+        "QUESTION": "Do I need to bring food and drinks to the event?",
+        "ANSWER": "All meals are the responsibility of each participant and should bring food or buy it in the shops surrounding the university."
+      },
+      "2": {
+        "QUESTION": "If I want to attend as a spectator, do I have to register?",
+        "ANSWER": "Yes, it is very important to complete the spectator registration form before the deadline in order to attend the event."
+      },
+      "3": {
+        "QUESTION": "What does the Homologation consist of?",
+        "ANSWER": "The Homologation is a verification that is carried out on each robot to ensure that it meets the requirements of size, weight, etc. determined by the regulations. In addition, a robot test is performed on the track/tatami without any opponents to help determine the distribution of groups for the group stage."
+      },
+      "4": {
+        "QUESTION": "If my robot follows the LNR regulations, can it participate in the Asimov Cup?",
+        "ANSWER": "Probably yes! However, we recommend you make sure by reading the corresponding regulations."
+      },
+      "5": {
+        "QUESTION": "Who can participate in the competition?",
+        "ANSWER": "The event is free and open to the public. Participants from any high school, college, or private team may participate in the competition. In all cases, the corresponding registration form must be completed."
+      },
+      "6": {
+        "QUESTION": "How can I make inquiries about the competition?",
+        "ANSWER": "For any questions you can contact us at ieee@itba.edu.ar"
+      }
+    }
+  }
 }
