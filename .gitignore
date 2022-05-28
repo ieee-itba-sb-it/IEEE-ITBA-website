@@ -50,3 +50,7 @@ src/app/secrets.ts
 
 # Firebase
 .firebase/
+.angular/
+dump/
+
+*.log
