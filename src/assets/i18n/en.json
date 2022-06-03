@@ -489,7 +489,20 @@
         "QUESTION": "How can I make inquiries about the competition?",
         "ANSWER": "For any questions you can contact us at ieee@itba.edu.ar"
       }
+    }
+  },
+  "IOT": {
+    "TITLE":"Taller de IOT",
+    "DESC":{
+      "TITLE":"Description",
+      "TEXT":{
+        "1":"Learn to control a robot arm using Internet of Things (IoT)! In this course you will learn about the concept of Internet of Things, and some of the most versatile protocols and tools to apply it. During the course we will explain and work with MQTT and Node-RED to operate a robot arm, starting with its lights,and ending with all of its joints.",
+        "2":"During this workshop, the students will be divided into groups which will work with one robot arm. We will start completing simple tasks, and then we will increase the level of integration.",
+        "3":"At the end of the workshop, the robot arm will be fully working!",
+        "4":"Note: it’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning.",
+        "5":"The workshop will be held in person, and given that the amount of robot arms is limited, the amount of students per class will be reduced."
+      }
     },
-    "SPONSORS": "Sponsor"
+    "GALLERY_TITLE":"Galería"
   }
 }

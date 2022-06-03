@@ -493,7 +493,20 @@
         "QUESTION": "¿Cómo puedo hacer consultas acerca de la competencia?",
         "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ieee@itba.edu.ar"
       }
+    }
+  },
+  "IOT": {
+    "TITLE":"Taller de IOT",
+    "DESC":{
+      "TITLE":"Descripción",
+      "TEXT":{
+        "1":"¡Aprendé a controlar un brazo robótico con Internet of Things (IoT)! En este curso vas a aprender sobre la idea de Internet de las Cosas, y algunos de los protocolos y herramientas más versátiles para aplicarlo. Durante el curso vamos a explicar y trabajar con MQTT y Node-RED para operar un brazo robótico, desde sus luces hasta todas sus articulaciones.",
+        "2":"Durante el taller, los alumnos se dividirán en grupos que trabajarán con un brazo. Comenzaremos realizando tareas básicas, y luego iremos subiendo el nivel de integración.",
+        "3":"¡Al final del taller el brazo estará funcionando en su totalidad!",
+        "4":"Aclaración: no es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio.",
+        "5":"El taller es de modalidad presencial, y ya que la cantidad de brazos robot es limitada, la cantidad de alumnos por cada turno es reducida."
+      }
     },
-    "SPONSORS": "Sponsor"
+    "GALLERY_TITLE":"Galería"
   }
 }
