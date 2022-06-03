@@ -211,11 +211,28 @@
             <mat-expansion-panel-header>
                 <mat-panel-title class="course-subtitle">{{'TYC.TITLE' | translate}}</mat-panel-title>
             </mat-expansion-panel-header >
-            <div *ngFor="let section of tyc" class="mt-4">
-                <span class="tyc-subtitle mb-2">{{section.title | translate}}</span>
-                <br/>
-                <span style="font-size: larger">{{section.text | translate}}</span>
-            </div>
+                <h3 class="tyc-subtitle">{{'TYC.INTRO.TITLE' | translate}}</h3>
+                    <p class="tyc-text">{{'TYC.INTRO.TEXT' | translate}}</p>
+                <h3 class="tyc-subtitle">{{'TYC.IEEE.TITLE' | translate}}</h3>
+                    <p class="tyc-text">
+                        {{'TYC.IEEE.INTRO.START' | translate}}
+                        <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">{{'TYC.IEEE.INTRO.LINKTEXT' | translate}}</a>
+                        {{'TYC.IEEE.INTRO.END' | translate}}
+                    </p>
+                    <h4 class="tyc-item">{{'TYC.IEEE.1.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.IEEE.1.TEXT' | translate}}</p>
+                    <h4 class="tyc-item">{{'TYC.IEEE.2.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.IEEE.2.TEXT' | translate}}</p>
+                    <h4 class="tyc-item">{{'TYC.IEEE.3.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.IEEE.3.TEXT' | translate}}</p>
+                <h3 class="tyc-subtitle">{{'TYC.ITBA.TITLE' | translate}}</h3>
+                    <p class="tyc-text">{{'TYC.ITBA.INTRO' | translate}}</p>
+                    <h4 class="tyc-item">{{'TYC.ITBA.1.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.ITBA.1.TEXT' | translate}}</p>
+                    <h4 class="tyc-item">{{'TYC.ITBA.2.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.ITBA.2.TEXT' | translate}}</p>
+                    <h4 class="tyc-item">{{'TYC.ITBA.3.TITLE' | translate}}</h4>
+                        <p class="tyc-text">{{'TYC.ITBA.3.TEXT' | translate}}</p>
         </mat-expansion-panel>    
     </div>
 

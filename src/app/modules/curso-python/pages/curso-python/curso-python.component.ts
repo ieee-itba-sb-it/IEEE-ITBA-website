@@ -24,13 +24,6 @@ export class CursoPythonComponent implements OnInit {
     { q: "PYTHONCOURSES.FAQ.5.QUESTION", a: "PYTHONCOURSES.FAQ.5.ANSWER" },
   ];
 
-  tyc = [
-    { title: "TYC.SUBTITLES.1.TITLE", text: "TYC.SUBTITLES.1.TEXT" },
-    { title: "TYC.SUBTITLES.2.TITLE", text: "TYC.SUBTITLES.2.TEXT" },
-    { title: "TYC.SUBTITLES.3.TITLE", text: "TYC.SUBTITLES.3.TEXT" },
-    { title: "TYC.SUBTITLES.4.TITLE", text: "TYC.SUBTITLES.4.TEXT" },
-  ];
-
   getDate() {}
 
   isOldDate(date: string) {

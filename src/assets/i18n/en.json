@@ -242,30 +242,48 @@
     }
   },
   "TYC":{
-    "TITLE":"Términos y Condiciones",
-    "SUBTITLES":{
+    "TITLE":"Terms and Conditions",
+    "INTRO":{
+      "TITLE":"Acceptance of Policies and Registration Conditions and Event Participation",
+      "TEXT":"The following terms and conditions apply to all events organized by the IEEE ITBA Student Chapter. Before signing up you recognize and agree to the Terms and Conditions in this document. If you do not agree to the Terms and Conditions you should not sign up.\nIEEE ITBA as an organization belonging to IEEE and ITBA, adhere to the terms and conditions of the organization and institution, respectively. In addition, all illegal activity or behavior in respect to the Argentina law will be considered an infraction of these Terms and Conditions."
+    },
+    "IEEE":{
+      "TITLE":"Terms and Conditions of IEEE Events",
+      "INTRO":{
+        "START":"As an organization belonging to the IEEE, you are reminded that by agreeing to and accepting the Terms and Conditions of IEEE ITBA events, you are simultaneously agreeing to and accepting the Terms and Conditions of IEEE Events Singups. A complete list of these Terms and Conditions is available in ",
+        "LINKTEXT":"IEEE Events Terms and Conditions.",
+        "END":"The following sections are especially mentioned:"
+      },
       "1":{
-        "TITLE":"Políticas de no Discriminación",
-        "TEXT":"Se prohíbe toda conducta que presente discriminación o acoso hacia cualquier persona por cualquier razón. Ejemplos se encuentran más detallados en la política de IEEE." 
+        "TITLE":"Nondiscrimination policy",
+        "TEXT":"“IEEE prohibits discrimination, harassment, and bullying against any person for any reason—for example, because of age, ancestry, color, disability or handicap, national origin, race, religion, gender, sexual or affectional orientation, gender identity, appearance, matriculation, political affiliation, marital status, veteran status, or any other characteristic protected by law.” Examples can be found in the IEEE policy." 
       },
       "2":{
-        "TITLE":"Conducta durante el Evento y Seguridad",
-        "TEXT":"IEEE ITBA está comprometido a brindar un ambiente seguro y productivo a todos sus participantes. IEEE ITBA no tolerará conductas de discriminación y acoso en cualquiera de sus eventos relacionados. Se espera que todos los participantes se adhieran a estos principios y respeten los derechos de otros.\nSi usted es víctima o testigo de cualquier comportamiento no acorde a estos Términos y Condiciones debe reportarlo durante la duración del evento. Personal del Evento atenderá sus preocupaciones durante la duración del evento." 
+        "TITLE":"Event conduct and safety",
+        "TEXT":"“IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events. IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. Participants are expected to adhere to these principles and respect the rights of others.\nWhat To Do If You Witness or are Subjected to Unacceptable Behavior:  Participants should report any behavior inconsistent with these principles to onsite event staff. Event staff will be happy to help participants contact venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event. We value your attendance.”" 
       },
       "3":{
-        "TITLE":"Uso de material de Video y Fotográfico tomado durante un evento IEEE",
-        "TEXT":"Tal como se describe en la respectiva sección de los Términos y Condiciones de Eventos de IEEE." 
-      },
-      "4":{
-        "TITLE":"Uso de Información de Participantes",
-        "TEXT":"IEEE ITBA se reserva el derecho de usar la información de contacto provista por los participantes al momento de inscripción con empresas que han colaborado para la realización de las actividades organizadas por el capítulo estudiantil IEEE ITBA." 
-      },
-      "5":{
-        "TITLE":"IEEExtreme",
-        "TEXT":"Aplican todas las Reglas, Términos y Condiciones de la correspondiente edición del IEEExtreme al que se inscriba. Se recuerda utilizar nombres de equipos sensibles que no violen los términos y condiciones establecidos por IEEE.\nDurante la duración de la IEEExtreme no se autorizará la comunicación privada directa entre participantes de diferentes equipos sin autorización explícita en la sala de conversación pública entre las partes involucradas.\nToda comunicación entre individuos o equipos durante la duración del evento debe respetar los Términos y Condiciones previamente dispuestos.\nEl uso de cualquier herramienta que viole los Términos y Condiciones del evento está expresamente prohibido.\nSi un miembro del personal del evento considera que hay una violación de estos Términos y Condiciones, el/la infractor/a será advertido. Si el comportamiento persiste, IEEE ITBA se reserva el derecho de expulsar a tal participante del evento." 
+        "TITLE":"Usage of photographic and video material taken at IEEE events",
+        "TEXT":"As found in its respective section in the IEEE Events Terms and Conditions." 
       }
-  }
-},
+    },
+    "ITBA":{
+      "TITLE":"IEEE ITBA Terms and Conditions",
+      "INTRO":"The Terms and Conditions proposed by the IEEE ITBA student chapter for event registration and participation are detailed as follows.",
+      "1":{
+        "TITLE":"Age restrictions",
+        "TEXT":"By signing up to this event you declare that you are a legal adult at the time of registration." 
+      },
+      "2":{
+        "TITLE":"Use of participants information",
+        "TEXT":"IEEE ITBA reserves the right to use the contact information provided by participants during registration, with enterprises that have collaborated towards the realization of the event organized by the IEEE ITBA student chapter." 
+      },
+      "3":{
+        "TITLE":"IEEExtreme",
+        "TEXT":"All Rules, Terms and Conditions of the corresponding IEEExtreme edition apply at the time of inscription. You are reminded to use sensible team names that do not violate the terms and conditions established by IEEE.\nDuring the IEEExtreme direct private communication between participants of different teams are not allowed without previous explicit authorization in the public conversation hall between the involved parties.\nAll communication between individuals or teams during the event have to adhere to the Terms and Conditions previously mentioned.\nThe use of any tool violating the Terms and Conditions of the event is prohibited.\nIf a member of the event staff considers that there has been a violation of these Terms and Conditions, the infractor will be warned. If such behavior persists, IEEE ITBA reserves the right to expel the participant from the event." 
+      } 
+    }  
+  },
   "DATAANALYSIS": {
     "CLASSES": {
       "C1": {
