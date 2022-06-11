@@ -22,10 +22,56 @@
           alt="Logo ITBA-IEEE"
         />
       </div>
-      <div>
-        <p class="wip-subtitle">{{ "RAS.UPCOMING" | translate }}</p>
-        <br />
-        <p class="wip-subtitle">{{ "WIP" | translate }}</p>
+      <div class="text-container">
+        <p class="subtitle">{{ "RAS.EVENTS" | translate }}</p>
+        <!--Asimov Cup-->
+        <div class="card-listing">
+          <a [routerLink]="['/asimovcup']">
+            <mat-card class="event-card">
+              <div class="image-with-text">
+                <img
+                  mat-card-img
+                  src="../../../../../assets/image/courses/asimov-cup-logo.png"
+                  alt="Logo de la Asimov Cup"
+                  class="event-card-img asimovcup-filter"
+                />
+                <p class="text-on-image asimovcup-text">
+                  {{ "HOME.ASIMOVCUP.TITLE" | translate }}
+                </p>
+              </div>
+              <mat-card-content class="mt-2">
+                <mat-card-title>{{
+                  "HOME.ASIMOVCUP.TITLE" | translate
+                  }}</mat-card-title>
+                <p class="lead">{{ "HOME.ASIMOVCUP.TEXT" | translate }}</p>
+                <a class="link-text" [routerLink]="['/asimovcup']">
+                  <h5 class="waves-light" mdbWavesEffect>
+                    {{ "HOME.SEEMORE" | translate }}
+                    <mdb-icon
+                      fas
+                      icon="chevron-right"
+                      class="waves-light"
+                      mdbWavesEffect
+                    ></mdb-icon>
+                  </h5>
+                </a>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </div>
+        <hr>
+        <h2 class="section-title">{{ "RAS.OBJECTIVES.TITLE" | translate}}</h2>
+        <p class="page-paragraph">{{ "RAS.OBJECTIVES.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "RAS.MISSION.TITLE" | translate }}</h2>
+        <p class="page-paragraph">{{ "RAS.MISSION.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "RAS.VISION.TITLE" | translate}}</h2>
+        <p class="page-paragraph">{{ "RAS.VISION.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "RAS.ABOUTRAS.TITLE" | translate }}</h2>
+        <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT1" | translate }}</p>
+        <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT2" | translate }}</p>
       </div>
     </div>
   </body>

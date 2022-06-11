@@ -411,7 +411,24 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
-    "UPCOMING": "Proximos Eventos: Competencia de Robótica"
+    "EVENTS": "Eventos",
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": "La Sociedad de Robótica y Automatización del IEEE (RAS por sus siglas en inglés), tiene objetivos de carácter científico, literario y educativo. La Sociedad se esfuerza por el avance de la teoría y la práctica de la ingeniería, ciencia, robótica y automatización, y de las artes y ciencias afines, y por el mantenimiento de altos estándares profesionales entre sus miembros, todo en consonancia con la Constitución y los Reglamentos del IEEE y con especial atención a tales fines dentro del Campo de Interés de la Sociedad."
+    },
+    "MISSION": {
+      "TITLE": "Misión",
+      "CONTENT": "Nuestra Misión es fomentar el desarrollo y facilitar el intercambio de conocimientos científicos y tecnológicos en Robótica y Automatización que beneficien a los miembros, la profesión y la humanidad."
+    },
+    "VISION": {
+      "TITLE": "Visión",
+      "CONTENT": "Nuestra Visión es ser la organización global más reconocida y respetada en Robótica y Automatización."
+    },
+    "ABOUTRAS": {
+      "TITLE": "Acerca de RAS",
+      "CONTENT1": "RAS se esfuerza por promover la innovación, la educación y la investigación fundamental y aplicada en robótica y automatización. La robótica se centra en sistemas que incorporan sensores y actuadores que funcionan de forma autónoma o semi-autónoma en cooperación con los humanos. La investigación en robótica enfatiza la inteligencia y la adaptabilidad para hacer frente a entornos no estructurados. La investigación en automatización enfatiza la eficiencia, la productividad, la calidad y la confiabilidad, centrándose en los sistemas que operan de forma autónoma, a menudo en entornos estructurados durante períodos prolongados, y en la estructuración explícita de dichos entornos.",
+      "CONTENT2": "La Sociedad brinda ayuda para promover la cooperación y el intercambio de información técnica entre sus Miembros y Afiliados, y con este fin celebra reuniones para la presentación de trabajos y su discusión, patrocina publicaciones periódicas apropiadas y publicaciones técnicas especiales, y a través de sus comités estudia y provee para las necesidades de sus miembros y afiliados."
+    }
   },
   "ERROR404": {
     "TITLE": "Página no encontrada",
