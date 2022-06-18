@@ -32,8 +32,6 @@ export class EditarAnuncioComponent implements OnInit {
 
       this.newsData.subscribe((data: newsItem) => {
         if (data) {
-          console.log(data);
-
           document.getElementById('titulo').setAttribute('value', data.title);
           document.getElementById('nombreUrl').setAttribute('value', data.reference);
           document.getElementById('autor').setAttribute('value', data.author);
@@ -49,9 +47,7 @@ export class EditarAnuncioComponent implements OnInit {
 
   }
   sendAnuncio() {
-    console.log('sending...');
     const title = (document.getElementById('titulo') as HTMLInputElement).value;
-    console.log(title);
 
     const content = (document.getElementById('content') as HTMLInputElement).value;
     const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
@@ -62,8 +58,6 @@ export class EditarAnuncioComponent implements OnInit {
     const listed = (document.getElementById('listed') as HTMLInputElement).checked;
     const tags = ['hola', 'chau'];
     const ratings = [0, 0, 0, 0, 0];
-
-    console.log(reference);
 
     if (title !== '') {
       this.blogService.setDoc(

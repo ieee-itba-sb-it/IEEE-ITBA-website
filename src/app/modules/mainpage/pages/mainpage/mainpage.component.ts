@@ -57,9 +57,6 @@ export class MainpageComponent implements OnInit {
 
       this.latestNews = aux;
       this.showLoadingSpinner = false;
-
-      console.log('aca estan las latest news', this.latestNews);
-
     });
   }
   useLanguage(language: string) {

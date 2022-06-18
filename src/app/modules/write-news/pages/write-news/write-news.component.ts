@@ -42,8 +42,6 @@ export class WriteNewsComponent implements OnInit {
     const tags = ['tecnología'];
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
     const ratings = [0, 0, 0, 0, 0];
-    console.log(content);
-    console.log(reference);
 
     if (title != '') {
       this.blogService.setDoc(
