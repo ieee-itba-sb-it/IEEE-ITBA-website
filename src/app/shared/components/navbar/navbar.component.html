@@ -31,8 +31,8 @@
       </li>
       <mat-menu #institutionalMenu="matMenu" xPosition="before" yPosition="below">
         <button mat-menu-item [routerLink]="['/team']">{{ 'NAVBAR.TEAM' | translate }}</button>
-        <button mat-menu-item href= 'https://csitba.web.app/'>CS</button>
-        <button mat-menu-item href= 'https://linktr.ee/wie_itba'>WIE</button>
+        <button mat-menu-item onclick="window.location.href = 'https://csitba.web.app/'">CS</button>
+        <button mat-menu-item onclick="window.location.href = 'https://linktr.ee/wie_itba'">WIE</button>
       </mat-menu>
       <li class="nav-item">
         <button onclick="window.location.href = '/contact'" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
