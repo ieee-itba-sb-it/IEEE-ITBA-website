@@ -195,7 +195,8 @@
     "TEAM": "Team",
     "NEWS": "News",
     "SPONSORS": "Sponsors",
-    "WRITENEWS": "Create News"
+    "WRITENEWS": "Create News",
+    "INSTITUTIONAL": "Institucional"
   },
   "PYTHONCOURSES": {
     "CLASSES": {

@@ -27,8 +27,7 @@
           }}</button>
       </li>
       <li class="nav-item">
-        <button onclick="window.location.href = '/team'" class="buttonNavbar" type="button">{{ 'NAVBAR.TEAM' | translate
-          }}</button>
+        <button class="buttonNavbar" type="button" [matMenuTriggerFor]="institutionalMenu">{{ 'NAVBAR.INSTITUTIONAL' | translate }}</button>
       </li>
       <mat-menu #institutionalMenu="matMenu" xPosition="before" yPosition="below">
         <button mat-menu-item [routerLink]="['/team']">{{ 'NAVBAR.TEAM' | translate }}</button>
