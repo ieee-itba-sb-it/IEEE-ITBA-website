@@ -36,13 +36,10 @@ export class AuthService {
         const photoURL = usuario.photoURL;
         const uid = usuario.uid;
         // var role = usuario.role;
-        // console.log('User info: ',displayName,email,emailVerified,photoURL,uid);
 
         // Get user info from database
         {
-          console.log('Getting user data from db...');
           if (usuario){
-            console.log('Logged in user found.');
             const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
 
             afs.collection('users').doc(usuario.email).get().subscribe( data => {
@@ -52,15 +49,8 @@ export class AuthService {
               this.accountObs = ans.asObservable;
             });
           }
-          else {
-            console.log('No logged in user found. (Shouldnt get here)');
-          }
         }
 
-      }
-      else {
-        // User is signed out.
-        console.log('User logged out.');
       }
     });
 
@@ -74,18 +64,13 @@ export class AuthService {
     this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => {
         this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.auth.currentUser.uid);
-        // console.log('Success!', value);
         element.textContent = 'Signed Up!';
         element.style.color = 'green';
 
-        this.afs.collection('users').doc(email).set(this.account).then(data => {
-          // console.log('News item with reference '+email +' added.');
-        });
+        this.afs.collection('users').doc(email).set(this.account).then(data => {});
 
       })
       .catch(err => {
-        // console.log('Something went wrong:',err.message);
-
         // Switch error
         switch (err.code){
           case 'authentication/email-already-in-use': { // Email used
@@ -119,7 +104,6 @@ export class AuthService {
 
     this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
     .then(value => {
-     // console.log('Success!');
       element.textContent = 'Logged In!';
       element.style.color = 'green';
       // Get his info
@@ -130,8 +114,6 @@ export class AuthService {
       }, 2000);  // 2s
     })
     .catch(err => {
-     // console.log('Something went wrong:',err.message);
-
       // Message the user
       switch (err.code) {
         case 'authentication/invalid-email': {
@@ -184,13 +166,10 @@ export class AuthService {
   changePass(email: string, element: HTMLElement) {
     this.firebaseAuth.auth.sendPasswordResetEmail(email)
     .then(value => {
-     // console.log('Success!', value);
       element.textContent = 'Email Sent!';
       element.style.color = 'green';
     })
     .catch(err => {
-      // console.log('Something went wrong:',err.message);
-
       // Message the user
       switch (err.code) {
         case 'authentication/invalid-email': {

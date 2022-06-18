@@ -35,8 +35,6 @@ export class BlogService {
 
   // Gets all docs from setted collection
   getDocs() {
-    console.log('Getting Docs...');
-
     this.afs.collection(this.collectionName).get().subscribe(data => {
       const ans: newsItem[] = [];
 
@@ -60,8 +58,6 @@ export class BlogService {
         );
 
       }
-      console.log('Received docs:');
-      console.log(ans);
       // update observer
       this.blogData.next(ans);
 
@@ -113,8 +109,6 @@ export class BlogService {
 
   // N in array
   getNDoc(n: number): Observable<newsItem> {
-    console.log('Getting ' + n + ' doc...');
-
     const ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
 
     this.blogData.subscribe(data => {
@@ -144,16 +138,12 @@ export class BlogService {
 
   // Adds doc to setted collection
   addDoc(news: newsItem) {
-    this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
-      console.log(`News item with reference ${news.reference} added`);
-    });
+    this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {});
   }
 
   // Deletes doc from given instance
   deleteDocObj(news: newsItem) {
-    this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {
-      console.log(`News with reference ${news.reference} deleted`);
-    });
+    this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {});
   }
 
   // Gets a collection observable

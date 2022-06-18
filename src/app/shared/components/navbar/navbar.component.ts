@@ -74,7 +74,6 @@ export class NavbarComponent implements OnInit {
 
   // Scroll
   scrollTo(target: string){
-    console.log(target);
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: target,

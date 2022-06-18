@@ -34,7 +34,7 @@ export class CursoPythonComponent implements OnInit {
   ]
 
   getDate () {
-  console.log()
+
   }
 
   isOldDate(date: string){

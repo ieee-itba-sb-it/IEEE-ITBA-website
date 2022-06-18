@@ -68,14 +68,12 @@ export class ContactPageComponent implements OnInit {
           this.form.enable(); // re enable the form after a success
           this.submitted = true; // show the response message
           this.isLoading = false; // re enable the submit button
-          console.log(response);
         },
         (error) => {
           this.responseMessage = 'Oops! An error occurred... Reload the page and try again.';
           this.form.enable(); // re enable the form after a success
           this.submitted = true; // show the response message
           this.isLoading = false; // re enable the submit button
-          console.log(error);
         }
       );
     }

@@ -25,7 +25,6 @@ export class NoticiasComponent implements OnInit {
     this.newsDataObs = this.blogService.docsObs();
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
-      console.log(data);
       this.newsData = [];
       if (data.length > 0){
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
