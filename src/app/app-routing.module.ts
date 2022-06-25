@@ -11,7 +11,7 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/mainpage/mainpage.module').then(m => m.MainpageModule) },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
-  {path: 'ras', loadChildren: () => import('./modules/ras/ras.module').then(m => m.RasModule)},
+  { path: 'ras', loadChildren: () => import('./modules/ras/ras.module').then(m => m.RasModule) },
   { path: 'ieeextreme', loadChildren: () => import('./modules/ieeextreme/ieeextreme.module').then(m => m.IeeextremeModule) },
   { path: 'cursospython', loadChildren: () => import('./modules/curso-python/curso-python.module').then(m => m.CursoPythonModule) },
   { path: 'asimovcup', loadChildren: () => import('./modules/asimov-cup/asimov-cup.module').then(m => m.AsimovCupModule) },
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'bitcup', loadChildren: () => import('./modules/bitcup/bitcup.module').then(m => m.BitcupModule) },
   { path: 'data-analysis', loadChildren: () => import('./modules/data-analysis/data-analysis.module').then(m => m.DataAnalysisModule) },
   { path: 'error401', component: Error401Component},
+  { path: 'pdf-test', loadChildren: () => import('./modules/pdf-test/pdf-test.module').then(m => m.PdfTestModule) },
   {
     path: 'write-news',
     loadChildren: () => import('./modules/write-news/write-news.module').then(m => m.WriteNewsModule),
