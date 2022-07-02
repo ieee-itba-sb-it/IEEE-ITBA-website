@@ -105,3 +105,9 @@ body {
     align-items: center;
   }
 }
+
+@media (max-width: 400px) {
+  .card-listing {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}

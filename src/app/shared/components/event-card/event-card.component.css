@@ -13,7 +13,7 @@
   color: rgba(255, 255, 255, 1);
   letter-spacing: 1px;
   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-  -1px -1px 0 #000;
+    -1px -1px 0 #000;
 }
 
 /* Card filters */
@@ -77,5 +77,11 @@
 @media (min-width: 1500px) {
   .text-on-image {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .text-on-image {
+    font-size: 1.5rem;
   }
 }
