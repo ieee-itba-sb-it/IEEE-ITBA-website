@@ -40,6 +40,7 @@ body {
   color: #0d47a1;
   font-size: 2.5em;
 }
+
 .image-size {
   max-width: 100%;
   max-height: 20em;
@@ -55,35 +56,23 @@ body {
 .card-group-row {
   display: flex;
 }
+
 .card-group-col {
   flex: 1;
 
   padding: 1em;
   /*border:solid;*/
 }
+
 @media screen and (max-width: 700px) {
   .card-group-row {
     display: inline-block;
   }
+
   .card-group-col {
     width: 90%;
     margin-bottom: 25px;
   }
-}
-.event-card {
-  margin: auto;
-  height: 100%;
-}
-
-.event-card-img {
-  width: 100%;
-  object-fit: cover;
-  height: 16em;
-  object-position: center center;
-}
-
-.event-card:hover .event-card-img {
-  animation: event-move 40s infinite;
 }
 
 @keyframes event-move {
@@ -98,75 +87,9 @@ body {
   }
 }
 
-.ieeextreme-filter {
-  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
-  transition: all ease-in 125ms;
-}
-
-.ieeextreme-text {
-  top: 30%;
-}
-
-.cursopython-filter {
-  filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
-  transition: all ease-in 125ms;
-}
-
-.cursopython-text {
-  top: 20%;
-}
-
-.cursoanalisis-filter {
-  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
-  transition: all ease-in 125ms;
-}
-
-.cursoanalisis-text {
-  top: 5%;
-}
-
-.bitcup-filter {
-  filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(70%);
-  transition: all ease-in 125ms;
-}
-
-.bitcup-text {
-  top: 35%;
-}
-
-.asimovcup-filter {
-  filter: sepia(10%) hue-rotate(18deg) saturate(120%) brightness(80%);
-  transition: all ease-in 125ms;
-}
-
-.asimovcup-text {
-  top: 35%;
-}
-
-.image-with-text {
-  position: relative;
-  width: 100%;
-}
-
-.text-on-image {
-  position: absolute;
-  text-align: center;
-  /*top: 50%;*/
-  width: 100%;
-  /*font-size: min(4rem, 5vw);*/
-  font-size: 2rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 1);
-  letter-spacing: 1px;
-  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
-}
-
 .card-listing {
   list-style: none;
-  margin: 0 0 1em 0;
   padding: 0;
-
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   /*grid-template-columns: repeat(2, 400px);*/
@@ -183,26 +106,8 @@ body {
   }
 }
 
-@media (min-width: 1000px) {
-  .text-on-image {
-    font-size: 2rem;
-  }
-  .ieeextreme-text {
-    top: 10%;
-  }
-  .cursoanalisis-text {
-    top: 5%;
-  }
-}
-
-@media (min-width: 1500px) {
-  .text-on-image {
-    font-size: 2rem;
-  }
-  .ieeextreme-text {
-    top: 10%;
-  }
-  .cursoanalisis-text {
-    top: 5%;
+@media (max-width: 400px) {
+  .card-listing {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }

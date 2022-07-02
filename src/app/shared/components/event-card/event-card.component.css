@@ -1,0 +1,87 @@
+.image-with-text {
+  position: relative;
+  width: 100%;
+}
+
+.text-on-image {
+  position: absolute;
+  top: 40%;
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 1px;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+/* Card filters */
+
+.primary-filter {
+  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+  transition: all ease-in 125ms;
+}
+
+.secondary-filter {
+  filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
+  transition: all ease-in 125ms;
+}
+
+/* Event card move */
+
+.event-card {
+  margin: auto;
+  height: 100%;
+}
+
+.event-card-img {
+  width: 100%;
+  object-fit: cover;
+  height: 16em;
+  object-position: center center;
+}
+
+.event-card:hover .event-card-img {
+  animation: event-move 40s infinite;
+}
+
+@keyframes event-move {
+  from {
+    object-position: top left;
+  }
+  50% {
+    object-position: bottom right;
+  }
+  to {
+    object-position: top left;
+  }
+}
+
+/* Extra styles */
+
+@media (min-width: 768px) {
+  .flexText {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .text-on-image {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .text-on-image {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .text-on-image {
+    font-size: 1.5rem;
+  }
+}
