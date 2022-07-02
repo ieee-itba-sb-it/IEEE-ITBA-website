@@ -302,6 +302,28 @@ img {
     font-size: larger;
 }
 
+.tyc-section {
+    margin-top:4rem;
+    margin-bottom:4rem;
+}
+.tyc-subtitle{
+    color:rgb(23, 46, 148);
+    font-size:1.6rem;
+    margin:1.5rem 20px 5px;
+}
+.tyc-item{
+    color:rgb(23, 46, 148);
+    font-size:1.3rem;
+    margin:0.5rem 0 0.5rem 20px;
+}
+.tyc-text{
+    font-size: larger;
+    margin:0;
+    padding:0 20px;
+    word-wrap: break-word;
+    white-space: pre-line;
+    word-break: break-word;
+}
 /** tomado de team component css */
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
