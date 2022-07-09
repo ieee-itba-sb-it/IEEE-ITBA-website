@@ -17,6 +17,7 @@ import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spin
 import {Error401Component} from './components/error401/error401.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { EventCardComponent } from './components/event-card/event-card.component';
+import { NewsCardComponent } from './components/news-card/news-card.component';
 import {MatCardModule} from '@angular/material/card';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
@@ -25,7 +26,7 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent ],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent ],
   imports: [
     routing,
     CommonModule,
@@ -42,6 +43,6 @@ export const routing = RouterModule.forChild(routes);
     MatButtonToggleModule,
     MatCardModule
   ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent]
+  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent]
 })
 export class SharedModule { }

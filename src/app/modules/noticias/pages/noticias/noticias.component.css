@@ -40,6 +40,12 @@ body {
 	align-items: center;
 }
 
+.news-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 0.5rem;
+}
+
 .flexText{
 	display: flex;
 	/* centrado horizontal */
@@ -263,7 +269,6 @@ img {
 }
 
 .topbottomLine {
-    max-width: 1000px;
     width:100%;
     padding-top: 5vmin;
     border-top:#0d47a1 2px solid;

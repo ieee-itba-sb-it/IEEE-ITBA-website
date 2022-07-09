@@ -54,18 +54,7 @@
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let noticia of latestNews">
             <ng-template carouselSlide >
-              <a href="noticias/{{noticia.reference}}">
-                <mat-card class="news-card">
-                    <mat-card-header class="height500" fxLayoutAlign="center center">
-                        <mat-card-title>{{ noticia.title }}</mat-card-title>
-                        <mat-card-subtitle>{{ noticia.author }}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img
-                      class="news-card-img" mat-card-image
-                      src="{{noticia.imageUrl}}" alt="Foto de Noticia"
-                    >
-                </mat-card>
-              </a>
+                <app-news-card [noticia]="noticia"></app-news-card>
             </ng-template>
           </ng-container>
         </owl-carousel-o>
