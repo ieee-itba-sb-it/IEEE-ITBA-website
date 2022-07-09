@@ -6,6 +6,8 @@ import { BlogService } from '../../../../core/services/blog/blog.service';
 import { newsItem } from '../../../../shared/models/news-item/news-item';
 import { blogCollectionName } from '../../../../secrets';
 
+import { NewsCardComponent } from 'src/app/shared/components/news-card/news-card.component';
+
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({

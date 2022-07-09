@@ -81,17 +81,6 @@ body {
     float: right;
 }
 
-.news-card {
-    height: 25rem;
-    justify-content: center;
-}
-.news-card-img {
-    align-self: center;
-    margin: auto;
-    height: 15rem;
-    object-fit: contain;
-}
-
 .section-title {
     color: #181818;
 }
@@ -156,8 +145,6 @@ body {
     letter-spacing: 1px;
 }
 
-
-
 mdb-card {
     border-bottom-left-radius: 5vmin;
     border-bottom-right-radius: 5vmin;
@@ -216,7 +203,7 @@ h2{
 }
 
 .max-width{
-     width: 100%;
+    width: 100%;
     height: 20em;
 }
 
@@ -229,15 +216,15 @@ h2{
     font-family: 'Roboto';
     font-weight: 700;
     letter-spacing: 2px;
-  }
+}
 
-  .subtitle {
+.subtitle {
     position: absolute;
     bottom: 1em;
     left: 3em;
     font-size: 2em;
     font-family: 'Roboto'
-  }
+}
 
 .banner {
     position: relative;
