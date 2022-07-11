@@ -256,15 +256,15 @@
       },
       "1":{
         "TITLE":"Nondiscrimination policy",
-        "TEXT":"“IEEE prohibits discrimination, harassment, and bullying against any person for any reason—for example, because of age, ancestry, color, disability or handicap, national origin, race, religion, gender, sexual or affectional orientation, gender identity, appearance, matriculation, political affiliation, marital status, veteran status, or any other characteristic protected by law.” Examples can be found in the IEEE policy." 
+        "TEXT":"“IEEE prohibits discrimination, harassment, and bullying against any person for any reason—for example, because of age, ancestry, color, disability or handicap, national origin, race, religion, gender, sexual or affectional orientation, gender identity, appearance, matriculation, political affiliation, marital status, veteran status, or any other characteristic protected by law.” Examples can be found in the IEEE policy."
       },
       "2":{
         "TITLE":"Event conduct and safety",
-        "TEXT":"“IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events. IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. Participants are expected to adhere to these principles and respect the rights of others.\nWhat To Do If You Witness or are Subjected to Unacceptable Behavior:  Participants should report any behavior inconsistent with these principles to onsite event staff. Event staff will be happy to help participants contact venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event. We value your attendance.”" 
+        "TEXT":"“IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events. IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. Participants are expected to adhere to these principles and respect the rights of others.\nWhat To Do If You Witness or are Subjected to Unacceptable Behavior:  Participants should report any behavior inconsistent with these principles to onsite event staff. Event staff will be happy to help participants contact venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event. We value your attendance.”"
       },
       "3":{
         "TITLE":"Usage of photographic and video material taken at IEEE events",
-        "TEXT":"As found in its respective section in the IEEE Events Terms and Conditions." 
+        "TEXT":"As found in its respective section in the IEEE Events Terms and Conditions."
       }
     },
     "ITBA":{
@@ -272,17 +272,17 @@
       "INTRO":"The Terms and Conditions proposed by the IEEE ITBA student chapter for event registration and participation are detailed as follows.",
       "1":{
         "TITLE":"Age restrictions",
-        "TEXT":"By signing up to this event you declare that you are a legal adult at the time of registration." 
+        "TEXT":"By signing up to this event you declare that you are a legal adult at the time of registration."
       },
       "2":{
         "TITLE":"Use of participants information",
-        "TEXT":"IEEE ITBA reserves the right to use the contact information provided by participants during registration, with enterprises that have collaborated towards the realization of the event organized by the IEEE ITBA student chapter." 
+        "TEXT":"IEEE ITBA reserves the right to use the contact information provided by participants during registration, with enterprises that have collaborated towards the realization of the event organized by the IEEE ITBA student chapter."
       },
       "3":{
         "TITLE":"IEEExtreme",
-        "TEXT":"All Rules, Terms and Conditions of the corresponding IEEExtreme edition apply at the time of inscription. You are reminded to use sensible team names that do not violate the terms and conditions established by IEEE.\nDuring the IEEExtreme direct private communication between participants of different teams are not allowed without previous explicit authorization in the public conversation hall between the involved parties.\nAll communication between individuals or teams during the event have to adhere to the Terms and Conditions previously mentioned.\nThe use of any tool violating the Terms and Conditions of the event is prohibited.\nIf a member of the event staff considers that there has been a violation of these Terms and Conditions, the infractor will be warned. If such behavior persists, IEEE ITBA reserves the right to expel the participant from the event." 
-      } 
-    }  
+        "TEXT":"All Rules, Terms and Conditions of the corresponding IEEExtreme edition apply at the time of inscription. You are reminded to use sensible team names that do not violate the terms and conditions established by IEEE.\nDuring the IEEExtreme direct private communication between participants of different teams are not allowed without previous explicit authorization in the public conversation hall between the involved parties.\nAll communication between individuals or teams during the event have to adhere to the Terms and Conditions previously mentioned.\nThe use of any tool violating the Terms and Conditions of the event is prohibited.\nIf a member of the event staff considers that there has been a violation of these Terms and Conditions, the infractor will be warned. If such behavior persists, IEEE ITBA reserves the right to expel the participant from the event."
+      }
+    }
   },
   "DATAANALYSIS": {
     "CLASSES": {
@@ -406,7 +406,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
-    "EVENTS": "EVENTS",
+    "EVENTS": "Events",
     "OBJECTIVES": {
       "TITLE": "Objectives",
       "CONTENT": "The IEEE Robotics and Automation Society's objectives are scientific, literary, and educational. The Society strives for the advancement of the theory and practice of robotics and automation engineering and science and the allied arts and sciences, and for the maintenance of high professional standards among its members, all in consonance with the Constitution and Bylaws of the IEEE and with particular attention to such aims within the Field of Interest of the Society."

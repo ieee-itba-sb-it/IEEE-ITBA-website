@@ -46,20 +46,16 @@ body {
   text-align: left;
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .section-title {
   font-size: 1.6rem;
   color: var(--ras-red);
-}
-
-.card-listing {
-  list-style: none;
-  margin: 0 0 1em 0;
-  padding: 0;
-
-  width: 4rem;
-  /*
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-template-columns: repeat(2, 400px);*/
 }
 
 .event-card {
@@ -143,6 +139,14 @@ body {
   font-size: 1.5rem;
 }
 
+.card-listing {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 2rem;
+}
+
 @media (max-width: 770px) {
   .rasLogo {
     width: 50vw;
@@ -150,5 +154,11 @@ body {
   .container {
     align-items: center;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-listing {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
