@@ -406,7 +406,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
-    "EVENTS": "EVENTS",
+    "EVENTS": "Events",
     "OBJECTIVES": {
       "TITLE": "Objectives",
       "CONTENT": "The IEEE Robotics and Automation Society's objectives are scientific, literary, and educational. The Society strives for the advancement of the theory and practice of robotics and automation engineering and science and the allied arts and sciences, and for the maintenance of high professional standards among its members, all in consonance with the Constitution and Bylaws of the IEEE and with particular attention to such aims within the Field of Interest of the Society."
@@ -478,7 +478,7 @@
       "9": "15:00 - 17:00: Competition: Direct Elimination Phase",
       "10":"17:00 - 17:30: Coffee Break" ,
       "11":"17:30 - 18:00: Competition: Finals" ,
-      "12":"18:00 - 18:30: Awards Ceremony" 
+      "12":"18:00 - 18:30: Awards Ceremony"
     },
     "FAQ": {
       "TITLE": "Frequently asked questions",
