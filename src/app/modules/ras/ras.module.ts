@@ -8,7 +8,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes: Routes = [{ path: '', component: RasComponent }];
@@ -29,7 +28,6 @@ export const routing = RouterModule.forChild(routes);
       },
     }),
     MDBBootstrapModule.forRoot(),
-    CarouselModule,
     FlexLayoutModule,
   ],
   declarations: [RasComponent],

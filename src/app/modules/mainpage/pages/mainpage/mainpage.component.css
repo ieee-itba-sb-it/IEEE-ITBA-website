@@ -1,3 +1,6 @@
+@import '~swiper/swiper-bundle.css';
+@import '~swiper/swiper.min.css';
+
 html {
     min-height: 100%;
     height: auto;
@@ -73,10 +76,8 @@ body {
     float:left;
 }
 
-
-
 .news-content-flavor {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-top: 1.6rem;
     float: right;
 }
@@ -237,6 +238,44 @@ h2{
     /*    top left bottom right*/
 }
 
+/* Carousel styles */
 
-/* Flex */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
+.pagination-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 0.25rem;
+  transform: scale(1.5);    /* Enlarge bullets */
+  gap: 0.25rem;             /* Gap between bullets */
+}
+
+.pagination-prev-wrapper {
+  margin-right: 1.5rem;
+}
+
+.pagination-next-wrapper {
+  margin-left: 1.5rem;
+}
+
+.pagination-prev {
+  height: 4rem;
+  width: 4rem;
+  background-color: #007aff;
+  --swiper-navigation-color: #f0f0f0;
+  border-radius: 45% 25% 25% 45%;
+}
+
+.pagination-next {
+  height: 4rem;
+  width: 4rem;
+  background-color: #007aff;
+  --swiper-navigation-color: #f0f0f0;
+  border-radius: 25% 45% 45% 25%;
+}
