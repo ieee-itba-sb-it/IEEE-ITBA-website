@@ -12,17 +12,17 @@
     <!-- Menu -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <button onclick="window.location.href = '/noticias'" class="buttonNavbar" type="button">{{ 'NAVBAR.NEWS' |
+        <button [routerLink]="['/noticias']" class="buttonNavbar" type="button">{{ 'NAVBAR.NEWS' |
           translate
           }}</button>
       </li>
       <li class="nav-item">
-        <button onclick="window.location.href = '/events'" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' |
+        <button [routerLink]="['/events']" class="buttonNavbar" type="button">{{ 'NAVBAR.EVENTS' |
           translate
           }}</button>
       </li>
       <li class="nav-item">
-        <button onclick="window.location.href = '/sponsors'" class="buttonNavbar" type="button">{{ 'NAVBAR.SPONSORS' |
+        <button [routerLink]="['/sponsors']" class="buttonNavbar" type="button">{{ 'NAVBAR.SPONSORS' |
           translate
           }}</button>
       </li>
@@ -35,12 +35,12 @@
         <button mat-menu-item onclick="window.location.href = 'https://linktr.ee/wie_itba'">WIE</button>
       </mat-menu>
       <li class="nav-item">
-        <button onclick="window.location.href = '/contact'" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
+        <button [routerLink]="['/contact']" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
           translate
           }}</button>
       </li>
       <li class="nav-item" *ngIf="journalist">
-        <button onclick="window.location.href = '/write-news'" class="buttonNavbar" type="button">{{ 'WRITE-NEW.TITLE' | translate }}</button>
+        <button [routerLink]="['/write-news']" class="buttonNavbar" type="button">{{ 'WRITE-NEW.TITLE' | translate }}</button>
       </li>
     </ul>
 

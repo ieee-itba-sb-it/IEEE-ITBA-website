@@ -1,38 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Observable} from 'rxjs';
 
-import { BlogService } from '../../../../core/services/blog/blog.service';
-import { newsItem } from '../../../../shared/models/news-item/news-item';
-import { blogCollectionName } from '../../../../secrets';
+import {BlogService} from '../../../../core/services/blog/blog.service';
+import {newsItem} from '../../../../shared/models/news-item/news-item';
+import {blogCollectionName} from '../../../../secrets';
+import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper/core';
 
-import { NewsCardComponent } from 'src/app/shared/components/news-card/news-card.component';
-
-import { OwlOptions } from 'ngx-owl-carousel-o';
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.css']
 })
+
 export class MainpageComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   latestNews: newsItem[];
   latestLimit = 12;
   showLoadingSpinner = true;
 
-  customOptions: any = {
-    loop: true,
-    margin: 10,
-    autoplay: true,
-    responsiveClass: true,
-    navText: ['<', '>'],
-    responsive: {
-      0: { items: 1 },
-      480: { items: 2 },
-      940: { items: 3 }
+  swiperConfig: SwiperOptions = {
+    pagination: {
+      el: '.pagination-wrapper',
+      clickable: true
     },
-    nav: true
+    navigation: {
+      nextEl: '.pagination-next',
+      prevEl: '.pagination-prev'
+    },
+    preloadImages: false,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    breakpoints: {
+      940: {
+        slidesPerView: 2,
+        spaceBetween: 10
+      },
+      1340: {
+        slidesPerView: 3,
+        spaceBetween: 15
+      },
+      1680: {
+        slidesPerView: 4,
+        spaceBetween: 20
+      }
+    }
   };
 
   constructor(public translate: TranslateService, private blogService: BlogService) {
@@ -65,7 +82,6 @@ export class MainpageComponent implements OnInit {
     this.translate.use(language);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
