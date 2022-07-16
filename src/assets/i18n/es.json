@@ -251,6 +251,7 @@
       "TITLE": "Aceptación de Políticas y Condiciones de Registro y Participación en Eventos",
       "TEXT": "Los siguientes términos y condiciones aplican a todos los eventos organizados por el capítulo estudiantil de IEEE ITBA. Previo a la inscripción reconoce y acepta los Términos y Condiciones contenidos en este documento. Si no desea aceptar los Términos y Condiciones no debe registrarse.\nIEEE ITBA siendo una organización perteneciente a la IEEE y al ITBA, se adhieren y respetan los términos y condiciones de las respectivas organizaciones e instituciones. Además toda actividad o conducta ilegal frente a la ley Argentina se considerará como una infracción a estos Términos y Condiciones."
     },
+<<<<<<< HEAD
     "IEEE": {
       "TITLE": "Términos y Condiciones de Eventos IEEE",
       "INTRO": {
@@ -285,6 +286,42 @@
       "3": {
         "TITLE": "IEEExtreme",
         "TEXT": "Aplican todas las Reglas, Términos y Condiciones de la correspondiente edición del IEEExtreme al que se inscriba. Se recuerda utilizar nombres de equipos sensibles que no violen los términos y condiciones establecidos por IEEE.\nDurante la duración de la IEEExtreme no se autorizará la comunicación privada directa entre participantes de diferentes equipos sin autorización explícita en la sala de conversación pública entre las partes involucradas.\nToda comunicación entre individuos o equipos durante la duración del evento debe respetar los Términos y Condiciones previamente dispuestos.\nEl uso de cualquier herramienta que viole los Términos y Condiciones del evento está expresamente prohibido.\nSi un miembro del personal del evento considera que hay una violación de estos Términos y Condiciones, el/la infractor/a será advertido. Si el comportamiento persiste, IEEE ITBA se reserva el derecho de expulsar a tal participante del evento."
+=======
+    "IEEE":{
+      "TITLE":"Términos y Condiciones de Eventos IEEE",
+      "INTRO":{
+        "START":"Siendo una organización perteneciente a la IEEE, se recuerda que al reconocer y aceptar los Términos y Condiciones de eventos de IEEE ITBA, simultáneamente se reconocen y aceptan los Términos y Condiciones de Inscripción a Eventos de IEEE. La descripción completa de estos Términos y Condiciones se encuentran en ",
+        "LINKTEXT":"Términos y Condiciones de Eventos IEEE.",
+        "END":"Se resaltan de estos las siguientes secciones:"
+      },
+      "1":{
+        "TITLE":"Políticas de no Discriminación",
+        "TEXT":"Se prohíbe toda conducta que presente discriminación o acoso hacia cualquier persona por cualquier razón. Ejemplos se encuentran más detallados en la política de IEEE."
+      },
+      "2":{
+        "TITLE":"Conducta durante el Evento y Seguridad",
+        "TEXT":"IEEE ITBA está comprometido a brindar un ambiente seguro y productivo a todos sus participantes. IEEE ITBA no tolerará conductas de discriminación y acoso en cualquiera de sus eventos relacionados. Se espera que todos los participantes se adhieran a estos principios y respeten los derechos de otros.\nSi usted es víctima o testigo de cualquier comportamiento no acorde a estos Términos y Condiciones debe reportarlo durante la duración del evento. Personal del Evento atenderá sus preocupaciones durante la duración del evento."
+      },
+      "3":{
+        "TITLE":"Uso de material de Video y Fotográfico tomado durante un evento IEEE",
+        "TEXT":"Tal como se describe en la respectiva sección de los Términos y Condiciones de Eventos de IEEE."
+      }
+    },
+    "ITBA":{
+      "TITLE":"Términos y Condiciones de IEEE ITBA",
+      "INTRO":"A continuación se detallan los Términos y Condiciones propuestos por el capítulo estudiantil IEEE ITBA para la inscripción y participación en sus eventos.",
+      "1":{
+        "TITLE":"Restricciones de Edad",
+        "TEXT":"Al inscribirse a este evento usted afirma que es mayor de edad al momento de la inscripción."
+      },
+      "2":{
+        "TITLE":"Uso de Información de Participantes",
+        "TEXT":"IEEE ITBA se reserva el derecho de usar la información de contacto provista por los participantes al momento de inscripción con empresas que han colaborado para la realización de las actividades organizadas por el capítulo estudiantil IEEE ITBA."
+      },
+      "3":{
+        "TITLE":"IEEExtreme",
+        "TEXT":"Aplican todas las Reglas, Términos y Condiciones de la correspondiente edición del IEEExtreme al que se inscriba. Se recuerda utilizar nombres de equipos sensibles que no violen los términos y condiciones establecidos por IEEE.\nDurante la duración de la IEEExtreme no se autorizará la comunicación privada directa entre participantes de diferentes equipos sin autorización explícita en la sala de conversación pública entre las partes involucradas.\nToda comunicación entre individuos o equipos durante la duración del evento debe respetar los Términos y Condiciones previamente dispuestos.\nEl uso de cualquier herramienta que viole los Términos y Condiciones del evento está expresamente prohibido.\nSi un miembro del personal del evento considera que hay una violación de estos Términos y Condiciones, el/la infractor/a será advertido. Si el comportamiento persiste, IEEE ITBA se reserva el derecho de expulsar a tal participante del evento."
+>>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
       }
     }
   },
