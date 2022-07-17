@@ -241,48 +241,48 @@
       }
     }
   },
-  "TYC":{
-    "TITLE":"Terms and Conditions",
-    "INTRO":{
-      "TITLE":"Acceptance of Policies and Registration Conditions and Event Participation",
-      "TEXT":"The following terms and conditions apply to all events organized by the IEEE ITBA Student Chapter. Before signing up you recognize and agree to the Terms and Conditions in this document. If you do not agree to the Terms and Conditions you should not sign up.\nIEEE ITBA as an organization belonging to IEEE and ITBA, adhere to the terms and conditions of the organization and institution, respectively. In addition, all illegal activity or behavior in respect to the Argentina law will be considered an infraction of these Terms and Conditions."
+  "TYC": {
+    "TITLE": "Terms and Conditions",
+    "INTRO": {
+      "TITLE": "Acceptance of Policies and Registration Conditions and Event Participation",
+      "TEXT": "The following terms and conditions apply to all events organized by the IEEE ITBA Student Chapter. Before signing up you recognize and agree to the Terms and Conditions in this document. If you do not agree to the Terms and Conditions you should not sign up.\nIEEE ITBA as an organization belonging to IEEE and ITBA, adhere to the terms and conditions of the organization and institution, respectively. In addition, all illegal activity or behavior in respect to the Argentina law will be considered an infraction of these Terms and Conditions."
     },
-    "IEEE":{
-      "TITLE":"Terms and Conditions of IEEE Events",
-      "INTRO":{
-        "START":"As an organization belonging to the IEEE, you are reminded that by agreeing to and accepting the Terms and Conditions of IEEE ITBA events, you are simultaneously agreeing to and accepting the Terms and Conditions of IEEE Events Singups. A complete list of these Terms and Conditions is available in ",
-        "LINKTEXT":"IEEE Events Terms and Conditions.",
-        "END":"The following sections are especially mentioned:"
+    "IEEE": {
+      "TITLE": "Terms and Conditions of IEEE Events",
+      "INTRO": {
+        "START": "As an organization belonging to the IEEE, you are reminded that by agreeing to and accepting the Terms and Conditions of IEEE ITBA events, you are simultaneously agreeing to and accepting the Terms and Conditions of IEEE Events Singups. A complete list of these Terms and Conditions is available in ",
+        "LINKTEXT": "IEEE Events Terms and Conditions.",
+        "END": "The following sections are especially mentioned:"
       },
-      "1":{
-        "TITLE":"Nondiscrimination policy",
-        "TEXT":"“IEEE prohibits discrimination, harassment, and bullying against any person for any reason—for example, because of age, ancestry, color, disability or handicap, national origin, race, religion, gender, sexual or affectional orientation, gender identity, appearance, matriculation, political affiliation, marital status, veteran status, or any other characteristic protected by law.” Examples can be found in the IEEE policy." 
+      "1": {
+        "TITLE": "Nondiscrimination policy",
+        "TEXT": "“IEEE prohibits discrimination, harassment, and bullying against any person for any reason—for example, because of age, ancestry, color, disability or handicap, national origin, race, religion, gender, sexual or affectional orientation, gender identity, appearance, matriculation, political affiliation, marital status, veteran status, or any other characteristic protected by law.” Examples can be found in the IEEE policy."
       },
-      "2":{
-        "TITLE":"Event conduct and safety",
-        "TEXT":"“IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events. IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. Participants are expected to adhere to these principles and respect the rights of others.\nWhat To Do If You Witness or are Subjected to Unacceptable Behavior:  Participants should report any behavior inconsistent with these principles to onsite event staff. Event staff will be happy to help participants contact venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event. We value your attendance.”" 
+      "2": {
+        "TITLE": "Event conduct and safety",
+        "TEXT": "“IEEE is committed to providing a safe, productive, and welcoming environment to all participants, including staff and vendors, at IEEE-related events. IEEE has no tolerance for discrimination, harassment, or bullying in any form at IEEE-related events. Participants are expected to adhere to these principles and respect the rights of others.\nWhat To Do If You Witness or are Subjected to Unacceptable Behavior:  Participants should report any behavior inconsistent with these principles to onsite event staff. Event staff will be happy to help participants contact venue security or local law enforcement, provide escorts, or otherwise assist those experiencing harassment to feel safe for the duration of the event. We value your attendance.”"
       },
-      "3":{
-        "TITLE":"Usage of photographic and video material taken at IEEE events",
-        "TEXT":"As found in its respective section in the IEEE Events Terms and Conditions." 
+      "3": {
+        "TITLE": "Usage of photographic and video material taken at IEEE events",
+        "TEXT": "As found in its respective section in the IEEE Events Terms and Conditions."
       }
     },
-    "ITBA":{
-      "TITLE":"IEEE ITBA Terms and Conditions",
-      "INTRO":"The Terms and Conditions proposed by the IEEE ITBA student chapter for event registration and participation are detailed as follows.",
-      "1":{
-        "TITLE":"Age restrictions",
-        "TEXT":"By signing up to this event you declare that you are a legal adult at the time of registration." 
+    "ITBA": {
+      "TITLE": "IEEE ITBA Terms and Conditions",
+      "INTRO": "The Terms and Conditions proposed by the IEEE ITBA student chapter for event registration and participation are detailed as follows.",
+      "1": {
+        "TITLE": "Age restrictions",
+        "TEXT": "By signing up to this event you declare that you are a legal adult at the time of registration."
       },
-      "2":{
-        "TITLE":"Use of participants information",
-        "TEXT":"IEEE ITBA reserves the right to use the contact information provided by participants during registration, with enterprises that have collaborated towards the realization of the event organized by the IEEE ITBA student chapter." 
+      "2": {
+        "TITLE": "Use of participants information",
+        "TEXT": "IEEE ITBA reserves the right to use the contact information provided by participants during registration, with enterprises that have collaborated towards the realization of the event organized by the IEEE ITBA student chapter."
       },
-      "3":{
-        "TITLE":"IEEExtreme",
-        "TEXT":"All Rules, Terms and Conditions of the corresponding IEEExtreme edition apply at the time of inscription. You are reminded to use sensible team names that do not violate the terms and conditions established by IEEE.\nDuring the IEEExtreme direct private communication between participants of different teams are not allowed without previous explicit authorization in the public conversation hall between the involved parties.\nAll communication between individuals or teams during the event have to adhere to the Terms and Conditions previously mentioned.\nThe use of any tool violating the Terms and Conditions of the event is prohibited.\nIf a member of the event staff considers that there has been a violation of these Terms and Conditions, the infractor will be warned. If such behavior persists, IEEE ITBA reserves the right to expel the participant from the event." 
-      } 
-    }  
+      "3": {
+        "TITLE": "IEEExtreme",
+        "TEXT": "All Rules, Terms and Conditions of the corresponding IEEExtreme edition apply at the time of inscription. You are reminded to use sensible team names that do not violate the terms and conditions established by IEEE.\nDuring the IEEExtreme direct private communication between participants of different teams are not allowed without previous explicit authorization in the public conversation hall between the involved parties.\nAll communication between individuals or teams during the event have to adhere to the Terms and Conditions previously mentioned.\nThe use of any tool violating the Terms and Conditions of the event is prohibited.\nIf a member of the event staff considers that there has been a violation of these Terms and Conditions, the infractor will be warned. If such behavior persists, IEEE ITBA reserves the right to expel the participant from the event."
+      }
+    }
   },
   "DATAANALYSIS": {
     "CLASSES": {
@@ -437,7 +437,8 @@
           }
         },
         "3": {
-          "TEXT": "In addition to participating in the competition, the event is also open to spectators. In both cases it is necessary to complete a registration form in advance."
+          "TEXT": "In addition to participating in the competition, the event is also open to spectators. In both cases it is necessary to complete a registration form in advance.",
+          "SPECTATEENROLL": "Spectator registration"
         }
       }
     },

@@ -279,6 +279,10 @@ img {
   margin-top: 0.5rem;
 }
 
+.spectator-button {
+  font-size: 1rem !important;
+}
+
 .no-shadow {
   box-shadow: none !important;
 }
