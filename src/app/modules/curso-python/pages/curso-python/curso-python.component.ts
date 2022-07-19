@@ -10,6 +10,8 @@ import Timestamp = firestore.Timestamp;
   styleUrls: ["./curso-python.component.css"],
 })
 export class CursoPythonComponent implements OnInit {
+
+  enrollLink: string = 'https://docs.google.com/forms/d/e/1FAIpQLSdBN80HmfWRXwRUHgSVcdqkpvOylsvF46AHMyP6Vtq0G2MDeg/viewform?usp=sf_link';
   class1Open: boolean = false;
   class2Open: boolean = false;
   class3Open: boolean = false;
@@ -39,11 +41,12 @@ export class CursoPythonComponent implements OnInit {
     translate.setDefaultLang("es");
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/es|en/) ? browserLang : "en");
-    this.class1Open = this.isOldDate("31 Apr 2022 14:00:00 UTC");
-    this.class2Open = this.isOldDate("08 May 2022 03:00:00 UTC");
-    this.class3Open = this.isOldDate("15 May 2022 03:00:00 UTC");
-    this.solution3Open = this.isOldDate("22 May 2022 03:00:00 UTC");
+    this.class1Open = this.isOldDate("07 Aug 2022 03:00:00 UTC");
+    this.class2Open = this.isOldDate("14 Aug 2022 03:00:00 UTC");
+    this.class3Open = this.isOldDate("21 Aug 2022 03:00:00 UTC");
+    this.solution3Open = this.isOldDate("28 Aug 2022 03:00:00 UTC");
   }
+
   useLanguage(language: string) {
     this.translate.use(language);
   }
