@@ -1,57 +1,90 @@
-
 .buttonNavbar {
-    padding: 1.5vmin;
-    text-align: center;
-    margin: 1vmin;
-    border: whitesmoke 2px solid;
-    border-radius: 5vmin;
-    color: whitesmoke;
-    background-color: transparent;
-    transition: all ease 0.5s;
+  padding: 1.5vmin;
+  text-align: center;
+  border: whitesmoke 2px solid;
+  border-radius: 5vmin;
+  color: whitesmoke;
+  background-color: transparent;
+  transition: all ease 0.5s;
+}
+.altButtonNavbar {
+  padding: 1.5vmin;
+}
+@media (max-width: 992px) {
+  .buttonNavbar {
+    padding: 1rem;
+    border-radius: 2rem;
+  }
+  .altButtonNavbar {
+    padding: 1rem;
+  }
+  .navbar-nav {
+    margin-right: 0.5rem !important;
+  }
+  .nav-last {
+    margin-top: 2rem;
+  }
+  ::ng-deep.mat-menu-panel {
+    margin-top: 0.5rem !important;
+    margin-right: 1rem !important;
+  }
+}
+@media (min-width: 992px) {
+  .nav-last {
+    display: flex;
+    align-items: center;
+  }
+}
+.nav-last-content {
+  align-self: center;
+}
+.navbar-nav {
+  gap: 1rem;
 }
 
 .buttonNavbar:hover {
-    color: black;
-    background-color: whitesmoke;
-}
-
-.nav-item{
-    text-align: right;
-}
-
-.row{
-    border: solid 1px red;
-    width: 100%;
-}
-
-.es-en-button{
-  color: white;
-  transition: all ease 0.5s;
-}
-
-.es-en-button:hover{
   color: black;
   background-color: whitesmoke;
 }
 
-.mat-button-toggle-checked{
+.nav-item {
+  text-align: right;
+}
+
+.row {
+  border: solid 1px red;
+  width: 100%;
+}
+
+.es-en-button {
+  color: white;
+  transition: all ease 0.5s;
+}
+
+.es-en-button:hover {
+  color: black;
+  background-color: whitesmoke;
+}
+
+.mat-button-toggle-checked {
   background-color: whitesmoke;
   color: black;
 }
 
 #nav {
-    background: #0d47a1;
-    color: whitesmoke;
+  background: #0d47a1;
+  color: whitesmoke;
 }
 
-#accountButton{
-    background-color: transparent;
-    border: 0px;
-    color: whitesmoke;
-    margin: 0;
-    padding: 0;
+#accountButton {
+  background-color: transparent;
+  border: 0px;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
 }
 
 ::ng-deep.mat-menu-panel {
-    transform: translate(0px, 20%);
+  /*transform: translate(0px, 20%); */
+  margin-top: 1rem;
 }
