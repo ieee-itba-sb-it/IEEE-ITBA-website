@@ -91,7 +91,7 @@
       "TITLE": "Noticias IEEE",
       "CONTENT": "¡Enterate de las últimas noticias científicas y tecnológicas!"
     },
-    "SPONSORS": "Sponsors 2021",
+    "SPONSORS": "Sponsors 2022",
     "CLASSES": {
       "TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientados a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
       "TITLE": "Curso Introductorio de Python"
@@ -492,6 +492,7 @@
         "QUESTION": "¿Cómo puedo hacer consultas acerca de la competencia?",
         "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ieee@itba.edu.ar"
       }
-    }
+    },
+    "SPONSORS": "Sponsor"
   }
 }

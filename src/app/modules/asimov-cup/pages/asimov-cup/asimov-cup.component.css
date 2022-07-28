@@ -201,20 +201,6 @@ h3 {
   vertical-align: middle;
 }
 
-img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Flex */
-/*
-@media (max-width: 1000px) {
-    html {
-        min-height:300%;
-    }
-}
-*/
 @media (max-width: 600px) {
   #homeText {
     display: none;
@@ -356,4 +342,38 @@ mat-expansion-panel-header {
 
 mat-panel-title {
   color: rgb(23, 46, 148);
+}
+
+.sponsor-section {
+  display: flex;
+  flex-direction: column;
+}
+.sponsor-section img {
+  object-fit: contain;
+}
+.sponsor-section .subtitle {
+  position: relative;
+}
+@media (min-width: 650px) {
+  .sponsor-section {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+  }
+  .sponsor-section .subtitle {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.image-section {
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+}
+.image-section img {
+  object-fit: contain;
+  height: inherit;
 }

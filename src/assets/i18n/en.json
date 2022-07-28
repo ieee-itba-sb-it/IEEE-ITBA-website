@@ -91,7 +91,7 @@
       "TITLE": "IEEE News",
       "CONTENT": "Find out the latest technological and scientific news!"
     },
-    "SPONSORS": "Sponsors 2021",
+    "SPONSORS": "Sponsors 2022",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
       "TITLE": "Bit Cup"
@@ -487,6 +487,7 @@
         "QUESTION": "How can I make inquiries about the competition?",
         "ANSWER": "For any questions you can contact us at ieee@itba.edu.ar"
       }
-    }
+    },
+    "SPONSORS": "Sponsor"
   }
 }
