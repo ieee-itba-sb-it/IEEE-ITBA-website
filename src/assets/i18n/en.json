@@ -450,16 +450,18 @@
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
-      "1": "8:00 - 9:00: Welcome and participant check-in",
-      "2": "9:00 - 10:00: Homologation",
-      "3": "10:00 - 10:30: Coffee Break",
-      "4": "10:30 - 12:30: Competition: Group Stage",
-      "5": "12:30 - 13:30: Lunch",
-      "6": "13:30 - 15:00: Competition: Group Stage",
-      "7": "15:00 - 17:00: Competition: Direct Elimination Phase",
-      "8": "17:00 - 17:30: Coffee Break",
-      "9": "17:30 - 18:00: Competition: Finals",
-      "10": "18:00 - 18:30: Awards Ceremony"
+      "1": "8:00 - 9:00: Participant check-in",
+      "2": "9:00 - 10:00: Spectator check-in",
+      "3": "9:00 - 10:00: Homologation",
+      "4": "10:00 - 10:20: Coffee Break",
+      "5": "10:20 - 10:30: Welcome speech",
+      "6": "10:30 - 12:30: Competition: Group Stage",
+      "7": "12:30 - 13:30: Lunch",
+      "8": "13:30 - 15:00: Competition: Group Stage",
+      "9": "15:00 - 17:00: Competition: Direct Elimination Phase",
+      "10":"17:00 - 17:30: Coffee Break" ,
+      "11":"17:30 - 18:00: Competition: Finals" ,
+      "12":"18:00 - 18:30: Awards Ceremony" 
     },
     "FAQ": {
       "TITLE": "Frequently asked questions",
