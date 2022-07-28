@@ -27,6 +27,8 @@ export class AsimovCupComponent implements OnInit {
     "ASIMOVCUP.SCHEDULE.8",
     "ASIMOVCUP.SCHEDULE.9",
     "ASIMOVCUP.SCHEDULE.10",
+    "ASIMOVCUP.SCHEDULE.11",
+    "ASIMOVCUP.SCHEDULE.12",
   ];
 
   constructor(public translate: TranslateService) {
