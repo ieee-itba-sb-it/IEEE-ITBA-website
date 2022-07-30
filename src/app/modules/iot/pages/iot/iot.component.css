@@ -6,12 +6,12 @@ html {
 }
 
 body {
-    padding: 10%;
+    padding: 0% 10% ;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-}
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+  }
 
 .col-sm {
     margin-top: 1vmin;
@@ -51,4 +51,16 @@ body {
 
 .desc-text{
     margin-left: 20px;
+}
+
+.banner {
+    position: relative;
+    text-align: center;
+}
+
+.max-width {
+    margin-top: calc(7.5em);
+    width: 100%;
+    transform: translateY(0);
+    /*height: 20em; */
 }
