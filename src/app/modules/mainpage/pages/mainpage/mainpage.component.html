@@ -20,7 +20,6 @@
     </div>
   </header>
 
-<<<<<<< HEAD
   <!-- Inicio -->
 
   <body>
@@ -30,41 +29,6 @@
         <mat-card-header>
           <div class="row news-header">
             <div class="col news-logo">
-=======
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-</head>
-
-<header>
-  <app-navbar></app-navbar>
-  <div class="banner">
-    <img src="../../../../../assets/image/banner6.jpg" alt="IEEE ITBA" class="max-width">
-    <div class="main-title">ITBA IEEE</div>
-    <div class="subtitle">Student Branch</div>
-  </div>
-</header>
-
-<!-- Inicio -->
-
-<body>
-  <!-- IEEENews -->
-  <div *ngIf="true">
-    <mat-card class="news-container">
-      <mat-card-header>
-        <div class="row news-header">
-          <div class="col news-logo">
-            <a class="link-text" [routerLink]="['/noticias']">
-              <img src="../../../../../assets/image/IEEENews_sin_fondo.png" class="news-logo">
-              <h3 class="news-container-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h3>
-            </a>
-          </div>
-          <div class="col">
-            <p class="news-content-flavor">
-              {{ 'HOME.IEEENEWS.CONTENT' | translate }}
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
               <a class="link-text" [routerLink]="['/noticias']">
                 <img
                   src="../../../../../assets/image/IEEENews_sin_fondo.png"
@@ -115,41 +79,8 @@
           </div>
           <div class="pagination-wrapper"></div>
         </div>
-<<<<<<< HEAD
       </mat-card>
     </div>
-=======
-      </mat-card-header>
-
-      <div *ngIf="showLoadingSpinner">
-        <app-loading-spinner></app-loading-spinner>
-      </div>
-      <div *ngIf="latestNews">
-        <div class="carousel-wrapper">
-          <div class="pagination-prev-wrapper">
-            <span class="swiper-button-prev pagination-prev"></span>
-          </div>
-          <swiper [config]="swiperConfig">
-            <ng-container *ngFor="let noticia of latestNews">
-              <ng-template swiperSlide>
-                <app-news-card [noticia]="noticia"></app-news-card>
-              </ng-template>
-            </ng-container>
-          </swiper>
-          <div class="pagination-next-wrapper">
-            <span class="swiper-button-next pagination-next"></span>
-          </div>
-        </div>
-        <div class="pagination-wrapper"></div>
-      </div>
-    </mat-card>
-  </div>
-
-  <!-- Educacion, Competencia, Contacto -->
-  <div *ngIf="false">
-    <div class="bottomLine">
-      <div class="card-group">
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
 
     <!-- Educacion, Competencia, Contacto -->
     <div *ngIf="false">
@@ -200,42 +131,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-=======
-  </div>
-
-  <div *ngIf="false">
-    <!-- Iniciativas -->
-    <div class="bottomLine">
-      <h1 id="iniciativas">{{ 'NAVBAR.INITIATIVES' | translate }}</h1>
-      <div class="card-group">
-
-        <!-- WIE -->
-        <mdb-card>
-          <div class="view overlay waves-light" mdbWavesEffect>
-            <mdb-card-img src="./../../assets/image/logos/wie.jpg"></mdb-card-img>
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-
-          <mdb-card-body>
-
-            <mdb-card-title>
-              <h4>{{ 'HOME.WIE.TITLE' | translate }}</h4>
-            </mdb-card-title>
-
-            <hr>
-
-            <mdb-card-text>{{ 'HOME.WIE.TEXT' | translate }}</mdb-card-text>
-
-            <!-- <a class="link-text">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a> -->
-          </mdb-card-body>
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
 
     <div *ngIf="false">
       <!-- Iniciativas -->
@@ -283,7 +178,6 @@
 
               <hr />
 
-<<<<<<< HEAD
               <mdb-card-text>{{
                 "HOME.PROGCLUB.TEXT" | translate
               }}</mdb-card-text>
@@ -314,25 +208,9 @@
             </mdb-card-body>
           </mdb-card>
         </div>
-=======
-          <mdb-card-body>
-            <mdb-card-title>
-              <h4>{{ 'HOME.CS.TITLE' | translate }}</h4>
-            </mdb-card-title>
-            <hr>
-            <mdb-card-text>{{ 'HOME.CS.TEXT' | translate }}</mdb-card-text>
-            <!-- <a class="link-text">
-            <h5 class="waves-light" mdbWavesEffect>{{ 'HOME.SEEMORE' | translate }}
-              <mdb-icon fas icon="chevron-right" class="waves-light" mdbWavesEffect></mdb-icon>
-            </h5>
-          </a> -->
-          </mdb-card-body>
-        </mdb-card>
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
       </div>
     </div>
 
-<<<<<<< HEAD
     <!-- Sponsors Actuales -->
     <div class="bottomLine mt-4">
       <div class="row">
@@ -342,15 +220,6 @@
 
         <div class="container">
           <div class="row" style="margin-top: 2vmin">
-=======
-  <!-- Sponsors Actuales -->
-  <div class="bottomLine mt-4">
-    <div class="row">
-      <h1 class="section-title">{{ "HOME.SPONSORS" | translate }}</h1>
-      <br>
-      <div class="container">
-        <div class="row" style="margin-top: 2vmin;">
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
             <div class="col-sm mt-5 mt-md-2">
               <img
                 src="../../../../../assets/image/content/jpmorgan.png"
@@ -400,7 +269,6 @@
               style="position: relative; top: 50%; transform: translateY(-50%);">
             </div>
             <div class="col-sm mt-5 mt-md-4">
-<<<<<<< HEAD
               <img src="../../../../../assets/image/content/flowics_logo-horizontal-full-color.png" height="70vmin" alt="Logo flowics"
               style="position: relative; top: 50%; transform: translateY(-50%); ">
             </div>
@@ -411,17 +279,4 @@
     </div>
   </body>
   <app-footer></app-footer>
-=======
-                <img src="../../../../../assets/image/content/flowics_logo-horizontal-full-color.png" height="70vmin" alt="Logo flowics"
-                     style="position: relative; top: 50%; transform: translateY(-50%); ">
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-<app-footer></app-footer>
-
-
->>>>>>> 9dbeee5 (feat: add new carousel + hrefs to page links are now routerLinks)
 </html>
