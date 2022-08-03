@@ -1,6 +1,6 @@
-<a href="noticias/{{noticia.reference}}">
+<a [routerLink]="['noticias/' + noticia.reference]">
 <mat-card class="news-card">
-    <img class="news-card-img"mat-card-image
+    <img class="news-card-img" mat-card-image
     src="{{noticia.imageUrl}}" alt="Foto de Noticia"
     >
     <mat-card-content class="news-card-content">
