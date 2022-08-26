@@ -406,7 +406,24 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
-    "UPCOMING": "Upcoming Events: Robotics Competition"
+    "EVENTS": "Events",
+    "OBJECTIVES": {
+      "TITLE": "Objectives",
+      "CONTENT": "The IEEE Robotics and Automation Society's objectives are scientific, literary, and educational. The Society strives for the advancement of the theory and practice of robotics and automation engineering and science and the allied arts and sciences, and for the maintenance of high professional standards among its members, all in consonance with the Constitution and Bylaws of the IEEE and with particular attention to such aims within the Field of Interest of the Society."
+    },
+    "MISSION": {
+      "TITLE": "Mission",
+      "CONTENT": "Our Mission is to foster the development and facilitate the exchange of scientific and technological knowledge in Robotics and Automation that benefits members, professionals, and humanity."
+    },
+    "VISION": {
+      "TITLE": "Vision",
+      "CONTENT": "Our Vision is to be the most recognized and respected global organization in Robotics and Automation."
+    },
+    "ABOUTRAS": {
+      "TITLE": "About RAS",
+      "CONTENT1": "RAS strives to advance innovation, education, and fundamental and applied research in robotics and automation. Robotics focuses on systems incorporating sensors and actuators that operate autonomously or semi-autonomously in cooperation with humans. Robotics research emphasizes intelligence and adaptability to cope with unstructured environments. Automation research emphasizes efficiency, productivity, quality, and reliability, focusing on systems that operate autonomously, often in structured environments over extended periods, and on the explicit structuring of such environments.",
+      "CONTENT2": "The Society provides aid in promoting close cooperation and exchange of technical information among its Members and Affiliates, and to this end holds meetings for the presentation of papers and their discussion, sponsors appropriate periodicals and special technical publications, and through its committee's studies and provides for the needs of its members and affiliates."
+    }
   },
   "ERROR404": {
     "TITLE": "Page not found",
@@ -461,7 +478,7 @@
       "9": "15:00 - 17:00: Competition: Direct Elimination Phase",
       "10":"17:00 - 17:30: Coffee Break" ,
       "11":"17:30 - 18:00: Competition: Finals" ,
-      "12":"18:00 - 18:30: Awards Ceremony" 
+      "12":"18:00 - 18:30: Awards Ceremony"
     },
     "FAQ": {
       "TITLE": "Frequently asked questions",
