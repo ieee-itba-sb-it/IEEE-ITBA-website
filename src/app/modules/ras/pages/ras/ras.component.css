@@ -145,25 +145,13 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-
   gap: 2rem;
-  grid-auto-flow: column;
-
   padding: 0;
   list-style: none;
-  /*
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 2rem;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
-  list-style: none;
-  */
 }
 
 .event-container {
-  width: 600px;
+  max-width: 600px;
 }
 
 @media (max-width: 770px) {
