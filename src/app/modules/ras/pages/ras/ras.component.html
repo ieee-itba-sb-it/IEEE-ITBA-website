@@ -22,11 +22,14 @@
           alt="Logo ITBA-IEEE"
         />
       </div>
-      <p class="subtitle">{{ "RAS.EVENTS" | translate }}</p>
+      <hr>
+      <div class="text-container">
+        <h2 class="section-title">{{ "RAS.EVENTS" | translate }}</h2>
+      </div>
       <!-- Asimov Cup -->
-      <div class="row mr-5 ml-5 d-flex justify-content-center row-eq-height">
+      <div class="row d-flex row-eq-height">
         <ul class="card-listing">
-          <li *ngFor="let event of events; index as i">
+          <li *ngFor="let event of events; index as i" class="event-container">
             <app-event-card [event]="event" [index]="i">
             </app-event-card>
           </li>
