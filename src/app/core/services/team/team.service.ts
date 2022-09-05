@@ -1,5 +1,5 @@
-import { IEEEMember, TeamMember } from './../../shared/models/team-member';
-import { Team } from './../../shared/models/team';
+import { IEEEMember, TeamMember } from '../../../shared/models/team-member';
+import { Team } from '../../../shared/models/team';
 import { Injectable } from '@angular/core';
 import { Commission } from 'src/app/shared/models/commission';
 
@@ -8,14 +8,86 @@ import { Commission } from 'src/app/shared/models/commission';
 })
 export class TeamService {
 
-  CD = 'CD';
-  MEDIACOM = 'MediaCom';
-  ID = 'ID';
-  EDUCATION = 'Educación';
-  FUNDRAISING = 'Fundraising';
-  IT = 'IT';
+  CD = 'HOME.CARGO.CD.TITLE';
+  MEDIACOM = 'HOME.CARGO.MEDIACOM.TITLE';
+  ID = 'HOME.CARGO.ID.TITLE';
+  EDUCATION = 'HOME.CARGO.EDUCATION.TITLE';
+  FUNDRAISING = 'HOME.CARGO.FUNDRAISING.TITLE';
+  IT = 'HOME.CARGO.IT.TITLE';
 
   private teamCurrent = [
+    {
+      name: this.CD,
+      team: [
+        new IEEEMember('Pedro Hernán García', 'https://i.ibb.co/x2DzF9h/Pedro-Hern-n-Garc-a.jpg', 'https://www.linkedin.com/in/pedro-hernán-garcía-8b8b201b4', 'pegarcia@itba.edu.ar', 'HOME.CARGO.CD.PRESIDENT'),
+        new IEEEMember('Francisco Basili', 'https://i.ibb.co/2FZVd9b/FRANCISCO-BASILI.jpg', 'https://www.linkedin.com/in/francisco-basili-0a38821b4/', 'fbasili@itba.edu.ar', 'HOME.CARGO.CD.VP'),
+        new IEEEMember('Olivia de Vincenti', 'https://i.ibb.co/C13Ky49/OLIVIA-DE-VINCENTI.jpg', 'https://www.linkedin.com/in/olivia-de-vincenti/', 'odevincenti@itba.edu.ar', 'HOME.CARGO.CD.OPANDGENSEC'),
+        new IEEEMember('Nicolás Bustelo', 'https://i.ibb.co/MG4Kkcx/Nicol-s-Bustelo.jpg', 'https://www.linkedin.com/in/nicol%C3%A1s-bustelo/', 'nbustelo@itba.edu.ar', 'HOME.CARGO.CD.TREASURER')
+      ]
+    } as Commission,
+    {
+      name: this.MEDIACOM,
+      team: [
+        new IEEEMember('Lucas Catolino', 'https://i.ibb.co/6Fy24rg/Lucas-Catolino.jpg', 'https://www.linkedin.com/in/lucas-catolino-431b52167/', 'lcatolino@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DIRECTOR_AND_WRITER'),
+        new IEEEMember('Martina Mattias Raposo', 'https://i.ibb.co/Ph3SKBq/MARTINA-MATTIAS-RAPOSO.jpg', 'https://www.linkedin.com/in/martinamattiasraposo/', 'cmattias@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DIRECTOR'),
+        new IEEEMember('Clara Muruzábal', 'https://i.ibb.co/KjRhCJq/Clara-Muruz-bal.jpg', 'https://www.linkedin.com/mwlite/in/claramuruzabal', 'cmuruzabal@itba.edu.ar', 'HOME.CARGO.MEDIACOM.CM'),
+        new IEEEMember('Paula Ariana Gonzalez', 'https://i.ibb.co/hK0bgxS/PAULA-ARIANA-GONZALEZ.jpg', 'https://www.linkedin.com/in/paula-gonzalez-33a835208', 'paulgonzalez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.CM'),
+        new IEEEMember('Agustín Cabantous Soler',  'https://i.ibb.co/pJqgdPN/AGUSTIN-CABANTOUS-SOLER.jpg', 'https://www.linkedin.com/in/agustin-cabantous-soler-349908190', 'acabantous@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DESIGNERANDILLUSTRATOR'),
+        new IEEEMember('Juan Bautista Capristo', 'https://i.ibb.co/ZmVMww0/Juan-Bautista-Capristo.png', 'https://www.linkedin.com/in/juanbautistacapristo/', 'jcapristo@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DESIGNERANDILLUSTRATOR'),
+        new IEEEMember('Alexander Stephan Moldovan Loayza', 'https://i.ibb.co/LP4GRQp/alexmoldovan.jpg', 'linkedin.com/in/alexander-moldovan-a22842145', 'amoldovan@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
+        new IEEEMember('Nicole Bartellini Huapala', 'https://i.ibb.co/cD0NHyj/nicolebartellini.jpg', 'https://www.linkedin.com/in/nicole-bartellini-huapalla-a370ab1a7/', 'nbartellini@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
+        new IEEEMember('Zahira Abril Jiménez', 'https://i.ibb.co/DbFNzKC/Zahira-Gimenez.jpg', '', 'zjimenez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
+        new IEEEMember('Nicolás Matías Margenat', 'https://i.ibb.co/rH10c0r/NICOL-S-MAT-AS-MARGENAT.png', 'https://www.linkedin.com/in/nicol%C3%A1s-margenat-018291208', 'nmargenat@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
+        new IEEEMember('Victor Christian Oh', 'https://i.ibb.co/gdghPf3/Victor-Christian-Oh.jpg', 'https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar', 'voh@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
+      ]
+    } as Commission,
+    {
+      name: this.ID,
+      team: [
+        new IEEEMember('Facundo Ezequiel Di Toro', 'https://i.ibb.co/h8VKrnh/FACUNDO-EZEQUIEL-DI-TORO.jpg', 'https://www.linkedin.com/in/facundoditoro', 'fditoro@itba.edu.ar', 'HOME.CARGO.ID.CHIEF'),
+        new IEEEMember('Kevin Amiel Wahle', 'https://i.ibb.co/6YsSrt0/KEVIN-AMIEL-WAHLE.jpg', 'https://www.linkedin.com/in/kevin-amiel-wahle-a81054235/', 'kwhale@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Agustín Solari Raigoso', 'https://i.ibb.co/mJhvKzC/Agust-n-Solari-Raigoso.jpg', 'https://www.linkedin.com/in/agustin-solari-raigoso-1362a3142', 'asolariraigoso@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Alejandro Heir', 'https://i.ibb.co/MRQgSqQ/Alejandro-Heir.jpg', 'https://www.linkedin.com/in/aheir/', 'aheir@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Francisco Mendizabal', 'https://i.ibb.co/vXwdxcZ/Francisco-Mendizabal.jpg', 'https://www.linkedin.com/in/francisco-mendizabal-a422281b4/', 'frmendizabal@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Franco Ezequiel Dorfman', 'https://i.ibb.co/ZWj12Gb/FRANCO-EZEQUIEL-DORFMAN.jpg', 'https://www.linkedin.com/in/franco-ezequiel-dorfman-03612524a', 'fdorfman@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Lucciano Elian Mannelli', 'https://i.ibb.co/xSt2Bmp/LUCCIANO-ELIAN-MANNELLI.jpg', 'https://www.linkedin.com/in/lucciano-elian-mannelli-0436aalb2/', 'lmannelli@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Rafael Dalzotto', 'https://i.ibb.co/dbJFVZ5/Rafael-Dalzotto.jpg', 'https://www.linkedin.com/in/rafael-dalzotto', 'rdalzotto@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+        new IEEEMember('Santiago López Franceschini', 'https://i.ibb.co/7kQs4hL/SANTIAGO-L-PEZ-FRANCESCHINI.jpg', 'https://www.linkedin.com/in/santiago-l%C3%B3pez-franceschini-61761021b/', 'slopezfranceschini@itba.edu.ar', 'HOME.CARGO.ID.RESEARCHER'),
+      ]
+    } as Commission,
+    {
+      name: this.FUNDRAISING,
+      team: [
+        new IEEEMember('Brisa Rojas Silva', 'https://i.ibb.co/hMpYNTg/Brisa-Rojas-Silva.jpg', 'https://www.linkedin.com/in/rojas-brisa/', 'brojas@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.CHIEFA'),
+        new IEEEMember('Andrés Paolina', 'https://i.ibb.co/YhRDDMf/ANDRES-PAOLINA.jpg', 'https://linkedin.com/in/andres-paolina-gaston', 'apaolina@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
+        new IEEEMember('Julieta Dapelo', 'https://i.ibb.co/0V5BqD1/JULIETA-DAPELO.jpg', 'https://www.linkedin.com/in/julietadapelo/', 'jdapelo@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
+        new IEEEMember('Lautaro Robatto', 'https://i.ibb.co/zQ3RpfR/LAUTARO-ROBATTO.jpg', 'https://www.linkedin.com/in/lautaro-robatto/', 'lrobatto@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
+        new IEEEMember('Miranda Ormaechea Graiver', 'https://i.ibb.co/M1MtMmq/MIRANDA-ORMAECHEA-GRAIVER.jpg', 'https://www.linkedin.com/in/miranda-ormaechea-graiver-a54a21198/', 'mormaecheagraiver@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
+        new IEEEMember('Nicolas Agustín Beade', 'https://i.ibb.co/qBTjqd4/NICOLAS-AGUST-N-BEADE.jpg', 'https://www.linkedin.com/in/nicolas-agustín-beade-671bb2235/', 'nbeade@itba.edu.ar', 'Fundraiser')
+      ]
+    } as Commission,
+    {
+      name: this.EDUCATION,
+      team: [
+        new IEEEMember('Alejo Agustín Figueroa', 'https://i.ibb.co/Jy7Frry/ALEJO-AGUSTIN-FIGUEROA.jpg', 'https://www.linkedin.com/in/alejo-agustin-figueroa-204589147/', 'alfigueroa@itba.edu.ar', 'HOME.CARGO.EDUCATION.DIRECTOR'),
+        new IEEEMember('Ignacio Cutignola', 'https://i.ibb.co/TrMT0Hz/Ignacio-Cutignola.jpg', 'https://www.linkedin.com/in/ignacio-cutignola-4a6865201', 'icutignola@itba.edu.ar', 'HOME.CARGO.EDUCATION.DIRECTOR'),
+        new IEEEMember('Camila Sanchez', 'https://i.ibb.co/wgB32s1/CAMILA-SANCHEZ.jpg', 'https://www.linkedin.com/in/camila-sanchez-237421217', 'casanchez@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
+        new IEEEMember('Ignacio Gabriel Sampedro Delgado', 'https://i.ibb.co/svHGXH8/Ignacio-Gabriel-Sampedro-Delgado.jpg', 'https://www.linkedin.com/in/ignacio-gabriel-sampedro-delgado-4a0293133/', 'isampedro@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
+        new IEEEMember('Josue Francisco Laszeski', 'https://i.ibb.co/jbdn3WT/JOSUE-FRANCISCO-LASZESKI.jpg', 'https://www.linkedin.com/in/jlaszeski', 'jlaszeski@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
+        new IEEEMember('Santiago Megias Spinozza', 'https://i.ibb.co/JqnfNXk/Santiago-Megias-Spinozza.jpg', 'https://linkedin.com/in/santiago-megias-spinozza/', 'smegias@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR')
+      ]
+    } as Commission,
+    {
+      name: this.IT,
+      team: [
+        new IEEEMember('Nicolas Ezequiel Birsa', 'https://i.ibb.co/wc0vsMK/NICOLAS-EZEQUIEL-BIRSA.jpg', 'https://www.linkedin.com/in/nicol%C3%A1s-ezequiel-birsa-63631a1a1/', 'nbirsa@itba.edu.ar', 'HOME.CARGO.IT.DIRECTOR'),
+        new IEEEMember('Guillermo Dejo', 'https://i.ibb.co/f2KkwJd/Guillermo-Dejo.jpg', 'https://www.linkedin.com/in/guillermodejo/', 'gdejo@itba.edu.ar', 'HOME.CARGO.IT.DEV'),
+        new IEEEMember('Nicolás Matías Rooney', 'https://i.ibb.co/4gqMbMs/NICOL-S-MAT-AS-ROONEY.jpg', 'https://www.linkedin.com/in/nicol%C3%A1s-rooney-803b4815b/', 'nrooney@itba.edu.ar', 'HOME.CARGO.IT.DEV')
+      ]
+    } as Commission
+  ];
+
+  private team2022 = [
     {
       name: this.CD,
       team: [
@@ -230,5 +302,9 @@ export class TeamService {
         commissions: this.team2020,
       } as Team
     ];
+  }
+
+  getCurrentTeam(): Commission[] {
+    return this.teamCurrent;
   }
 }

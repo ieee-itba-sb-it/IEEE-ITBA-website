@@ -6,13 +6,12 @@ mdb-card {
     color: black;
     padding-bottom: 1.5vmin;
     min-height: 300px;
-    max-width: 400px;
+    max-width: 20em;
     min-width: 100px;
 }
 
 mdb-card-img {
-    width: 20em;
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0 0.5em;
     object-fit: fill;
 }
 
@@ -31,15 +30,38 @@ h5 {
     font-size: 15px;
 }
 
-.cardIcon {
-    font-size: 35px;
-    padding: 1vmin;
-    margin-top: 2vmin;
-    margin-bottom: 2vmin;
+.textContainer {
+    padding: 0.5em 0;
 }
 
-.white-box { 
+.nameTextContainer {
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.25em 0;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-size: 2em;
+    margin: 0;
+}
+
+.roleTextContainer{
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+}
+
+.white-box {
     min-height: 300px;
     margin: 1.5vmin;
     padding-bottom: 1.5vmin;
-    }
+}

@@ -3,32 +3,34 @@
     "TITLE": "Student Branch",
     "CARGO": {
       "CD": {
-        "OPANDGENSEC": "Operational manager and General Secretary",
-        "GENERALSEC": "General Secretary",
+        "TITLE": "CD",
         "PRESIDENT": "President",
-        "TREASURER": "Treasurer",
-        "VP": "Vice president"
+        "VP": "Vice president",
+        "OPANDGENSEC": "Operational manager and General Secretary",
+        "TREASURER": "Treasurer"
       },
       "EDUCATION": {
+        "TITLE": "Education",
         "DIRECTOR": "Education Director",
         "ASSISTANT": "Tutor Assistant",
         "HEADTUTOR": "Head Tutor",
         "RRPP": "Logistics & PR",
-        "TITLE": "Education",
         "TUTOR": "Tutor"
       },
       "FUNDRAISING": {
-        "DIRECTOR": "Fundraising Director",
-        "LOGISTICS": "Fundraiser & Logistics",
+        "TITLE": "Fundraising & Logistics",
+        "CHIEFA": "Fundraising & Logistics Director",
+        "FUNDRAISER": "Fundraiser",
         "RRPP": "HR & PR"
       },
       "ID": {
-        "ASSISTANT": "I+D Assistant",
-        "RESEARCHER": "I+D Researcher",
-        "CHIEFA": "I+D Director",
+        "TITLE": "I+D",
+        "ASSISTANT": "Assistant",
+        "RESEARCHER": "Researcher",
         "CHIEF": "I+D Director"
       },
       "MEDIACOM": {
+        "TITLE": "Media & Com",
         "DIRECTOR": "Media Director",
         "DIRECTOR_AND_WRITER": "Media Director and Writter",
         "CC": "Content Creator",
@@ -36,20 +38,21 @@
         "WEBMASTER": "General Webmaster & Editor",
         "WRITER": "Writer",
         "REDACTOR": "Writer",
-        "ILUSTRATOR": "Illustrator",
-        "DIBUJANTE": "Ilustrator",
+        "ILLUSTRATOR": "Illustrator",
+        "DESIGNERANDILLUSTRATOR": "Designer and Illustrator",
         "CM": "Community Manager"
+      },
+      "IT": {
+        "TITLE": "IT",
+        "DIRECTOR": "Webmaster",
+        "DEV": "Developer",
+        "DATA": "Data Analyst"
       },
       "VOLUNTEERS": {
         "FUNDRAISINGMENTOR": "Fundraising Mentor",
         "GENERALASSIST": "General Assistant",
         "TEAMMENTOR": "Competitive Teams Mentor",
         "VOLUNTEER": "Volunteer"
-      },
-      "IT": {
-        "DIRECTOR": "IT Director",
-        "DEV": "Developer",
-        "DATA": "Data Analyst"
       }
     },
     "CARGO2021": {
@@ -91,7 +94,7 @@
       "TITLE": "IEEE News",
       "CONTENT": "Find out the latest technological and scientific news!"
     },
-    "SPONSORS": "Sponsors 2022",
+    "SPONSORS": "Sponsors",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
       "TITLE": "Bit Cup"
@@ -344,7 +347,7 @@
     "CONTENT": "¡Accede a la página de noticias de IEEE ITBA!"
   },
   "GENERAL": {
-    "ALL": "PREVIOUS",
+    "PREVIOUS": "PREVIOUS",
     "ACTUAL": "ACTUAL"
   },
   "CONTACT": {

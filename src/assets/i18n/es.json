@@ -3,6 +3,62 @@
     "TITLE": "Rama Estudiantil",
     "CARGO": {
       "CD": {
+        "TITLE": "CD",
+        "PRESIDENT": "Presidente",
+        "VP": "Vicepresidente",
+        "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
+        "TREASURER": "Tesorero"
+      },
+      "EDUCATION": {
+        "TITLE": "Educación",
+        "DIRECTOR": "Director de Educación",
+        "ASSISTANT": "Ayudante de tutorías",
+        "HEADTUTOR": "Tutor Encargado",
+        "RRPP": "RRPP & Logística",
+        "TUTOR": "Tutor"
+      },
+      "FUNDRAISING": {
+        "TITLE": "Fundraising & Logística",
+        "CHIEF": "Director de Fundraising & Logística",
+        "CHIEFA": "Directora de Fundraising & Logística",
+        "FUNDRAISER": "Fundraiser",
+        "RRPP": "RRHH & RRPP"
+      },
+      "ID": {
+        "TITLE": "I+D",
+        "ASSISTANT": "Asistente",
+        "RESEARCHER": "Investigador",
+        "CHIEFA": "Directora de I+D",
+        "CHIEF": "Director de I+D"
+      },
+      "MEDIACOM": {
+        "TITLE": "Media & Com",
+        "DIRECTOR": "Directora de Medios",
+        "DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
+        "CC": "Creador de Contenido",
+        "DESIGNER": "Diseñador",
+        "WEBMASTER": "Webmaster & Editor General",
+        "WRITER": "Redactor",
+        "REDACTOR": "Redactor",
+        "ILLUSTRATOR": "Dibujante",
+        "DESIGNERANDILLUSTRATOR": "Dibujante y Diseñador",
+        "CM": "Community Manager"
+      },
+      "VOLUNTEERS": {
+        "FUNDRAISINGMENTOR": "Mentor de Fundraising",
+        "GENERALASSIST": "Asistente General",
+        "TEAMMENTOR": "Mentor de Equipos Competitivos",
+        "VOLUNTEER": "Voluntario"
+      },
+      "IT": {
+        "TITLE": "TI",
+        "DIRECTOR": "Webmaster",
+        "DEV": "Desarrollador",
+        "DATA": "Analista de Datos"
+      }
+    },
+    "CARGO2022": {
+      "CD": {
         "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
         "GENERALSEC": "Secretaria General",
         "PRESIDENT": "Presidente",
@@ -91,7 +147,7 @@
       "TITLE": "Noticias IEEE",
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!"
     },
-    "SPONSORS": "Sponsors 2022",
+    "SPONSORS": "Sponsors",
     "CLASSES": {
       "TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientados a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
       "TITLE": "Curso Introductorio de Python"
@@ -345,7 +401,7 @@
   },
 
   "GENERAL": {
-    "ALL": "PREVIOS",
+    "PREVIOUS": "PREVIOS",
     "ACTUAL": "ACTUALES"
   },
   "WIERECRUITING": {

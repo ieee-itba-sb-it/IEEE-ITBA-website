@@ -56,12 +56,12 @@ hr.new {
     margin-top: 7rem !important;
 }
 
-.topbottomLine { 
+.topbottomLine {
     border-top:#0d47a1 2px solid;
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-    
+
 }
 
 
@@ -123,11 +123,11 @@ hr.new {
 	min-width: 36px;
 }
 
- 
+
 
 h1 {
     color: rgb(0, 0, 0);
-    font-size: 5vmin; 
+    font-size: 5vmin;
 }
 
 .right {
@@ -178,14 +178,14 @@ h2 {
     color: whitesmoke;
 }
 
-.mat-tab-label:active{ 
+.mat-tab-label:active{
     padding: 5px;
     background-color:white;
     color:white;
     font-weight: 700;
 }
 
-.mat-tab-label:selected{ 
+.mat-tab-label:selected{
     padding: 5px;
     background-color:white;
     color:white;
@@ -204,7 +204,7 @@ h2 {
 
 
     @media (min-width: 768px) {
-   
+
         .flexText{
             display: flex;
             /* centrado horizontal */
@@ -214,4 +214,3 @@ h2 {
         }
     }
 
- 
