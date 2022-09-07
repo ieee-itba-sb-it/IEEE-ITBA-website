@@ -26,20 +26,12 @@
     </div>
 
     <div class="mt-5 mr-5 ml-5">
-        <mat-tab-group>
-            <ng-container *ngFor="let team of teams">
-                <mat-tab label="{{team.label}}">
-                    <mat-accordion>
-                        <mat-expansion-panel *ngFor="let commission of team.commissions" class="mat-elevation-z0">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>{{commission.name}}</mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <app-team-card [team]="commission.team"></app-team-card>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </mat-tab>
-            </ng-container>
-        </mat-tab-group>
+      <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-team-card [team]="commission.team"></app-team-card>
+      </mat-expansion-panel>
     </div>
     <app-footer></app-footer>
 </body>
