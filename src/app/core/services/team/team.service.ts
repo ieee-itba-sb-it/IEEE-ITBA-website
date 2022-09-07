@@ -36,7 +36,7 @@ export class TeamService {
         new IEEEMember('Juan Bautista Capristo', 'https://i.ibb.co/ZmVMww0/Juan-Bautista-Capristo.png', 'https://www.linkedin.com/in/juanbautistacapristo/', 'jcapristo@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DESIGNERANDILLUSTRATOR'),
         new IEEEMember('Alexander Stephan Moldovan Loayza', 'https://i.ibb.co/LP4GRQp/alexmoldovan.jpg', 'linkedin.com/in/alexander-moldovan-a22842145', 'amoldovan@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
         new IEEEMember('Nicole Bartellini Huapala', 'https://i.ibb.co/cD0NHyj/nicolebartellini.jpg', 'https://www.linkedin.com/in/nicole-bartellini-huapalla-a370ab1a7/', 'nbartellini@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
-        new IEEEMember('Zahira Abril Jiménez', 'https://i.ibb.co/DbFNzKC/Zahira-Gimenez.jpg', '', 'zjimenez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
+        new IEEEMember('Zahira Abril Jiménez', 'https://i.ibb.co/DbFNzKC/Zahira-Gimenez.jpg', 'https://www.linkedin.com/in/zahira-abril-jim%C3%A9nez-87b9a224a', 'zjimenez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
         new IEEEMember('Nicolás Matías Margenat', 'https://i.ibb.co/rH10c0r/NICOL-S-MAT-AS-MARGENAT.png', 'https://www.linkedin.com/in/nicol%C3%A1s-margenat-018291208', 'nmargenat@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
         new IEEEMember('Victor Christian Oh', 'https://i.ibb.co/gdghPf3/Victor-Christian-Oh.jpg', 'https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar', 'voh@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
       ]
