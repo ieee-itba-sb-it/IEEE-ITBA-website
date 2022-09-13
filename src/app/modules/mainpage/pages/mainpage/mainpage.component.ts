@@ -21,6 +21,31 @@ export class MainpageComponent implements OnInit {
   latestLimit = 12;
   showLoadingSpinner = true;
 
+  imgSrcPrefix = '../../../../../assets/image/content/';
+
+  sponsors = [
+    {
+      name: 'JPMorgan',
+      img: this.imgSrcPrefix + 'jpmorgan.png'
+    },
+    {
+      name: 'Schneider Electric',
+      img: this.imgSrcPrefix + 'Schneider Logo.png'
+    },
+    {
+      name: 'Innovid',
+      img: this.imgSrcPrefix + 'innovid.png'
+    },
+    {
+      name: 'Inclusion',
+      img: this.imgSrcPrefix + 'inclusion.png'
+    },
+    {
+      name: 'Hitachi Energy',
+      img: this.imgSrcPrefix + 'hitachi-energy.png'
+    }
+  ];
+
   swiperConfig: SwiperOptions = {
     pagination: {
       el: '.pagination-wrapper',

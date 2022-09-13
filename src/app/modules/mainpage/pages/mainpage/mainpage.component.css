@@ -58,6 +58,21 @@ body {
     float: right;
 }
 
+.sponsor-listing {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem 10rem;
+  justify-content: center;
+  align-content: center;
+  margin: 0;
+}
+
+.sponsor-container {
+  height: 10rem;
+  width: 15rem;
+  object-fit: scale-down;
+}
+
 .section-title {
     color: #181818;
 }
