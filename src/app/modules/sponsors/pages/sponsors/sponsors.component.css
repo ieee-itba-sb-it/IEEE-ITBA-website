@@ -13,6 +13,21 @@ body {
     padding-bottom: 3%;
 }
 /* Thick red border */
+
+.sponsor-listing {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem 10rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.sponsor-container {
+  height: 10rem;
+  width: 15rem;
+  object-fit: scale-down;
+}
+
 hr.new {
     height: 6px;
   }
@@ -63,7 +78,6 @@ hr.new {
     align-content: center;
 
 }
-
 
 .bottomLine {
     padding-top: 5vmin;
