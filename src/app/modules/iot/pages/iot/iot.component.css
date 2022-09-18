@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-
+@import '~swiper/swiper-bundle.min.css';
 html {
     /*min-height: 200%;*/
     background-size: cover;
@@ -63,4 +63,63 @@ body {
     width: 100%;
     transform: translateY(0);
     /*height: 20em; */
+}
+
+.news-card {
+    height: 25rem;
+    justify-content: space-between;
+    overflow: hidden;
+    padding:0;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.news-card-img {
+    align-self: center;
+    margin: 0;
+    height:15em;
+    width: 100%;
+    object-fit: cover;
+    flex:auto;
+}
+
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pagination-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 0.25rem;
+  transform: scale(1.5);    /* Enlarge bullets */
+  gap: 0.25rem;             /* Gap between bullets */
+}
+
+.pagination-prev-wrapper {
+  margin-right: 1.5rem;
+}
+
+.pagination-next-wrapper {
+  margin-left: 1.5rem;
+}
+
+.pagination-prev {
+  height: 4rem;
+  width: 4rem;
+  background-color: #007aff;
+  --swiper-navigation-color: #f0f0f0;
+  border-radius: 45% 25% 25% 45%;
+}
+
+.pagination-next {
+  height: 4rem;
+  width: 4rem;
+  background-color: #007aff;
+  --swiper-navigation-color: #f0f0f0;
+  border-radius: 25% 45% 45% 25%;
 }

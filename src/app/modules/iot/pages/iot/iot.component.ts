@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
+import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper/core';
+SwiperCore.use([Pagination, Navigation, Autoplay]);
 @Component({
   selector: 'app-iot',
   templateUrl: './iot.component.html',
   styleUrls: ['./iot.component.css']
 })
 export class IotComponent implements OnInit {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
+  images = [1,2].map((n) => `../../../assets/image/iot/image${n}.jpg`);
   constructor() { }
 
   ngOnInit(): void {
