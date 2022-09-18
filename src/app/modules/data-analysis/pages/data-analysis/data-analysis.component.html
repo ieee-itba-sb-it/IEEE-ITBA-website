@@ -43,92 +43,74 @@
 
 <!-- Cards Temario -->
 
-<div>
-  <h2 class="course-subtitle">{{ 'DATAANALYSIS.CONTENT_TITLE' | translate }}</h2>
-  <p>{{ 'DATAANALYSIS.CONTENT_DESC' | translate }}</p>
-</div>
+<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center stretch">
-  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%" >
+  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class1Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+      fxFlex.lt-sm="100%">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          {{'DATAANALYSIS.CLASSES.TITLE' | translate }}
-          1
-        </mat-card-title>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+              <ng-template [ngIf]="class1Open" [ngIfElse]="class1Closed">
+                  <a href="https://github.com/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_1_Analisis_de_Datos.ipynb">{{
+                  'DATAANALYSIS.CLASSES.TITLE' | translate }}
+                  1
+                  </a>
+              </ng-template>
+              <ng-template #class1Closed>
+                  {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 1
+              </ng-template>
+          </mat-card-title>
+          <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
       <mat-card-content>
-        <mat-list>
-          <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M1' | translate }}</mat-list-item>
-          <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M2' | translate }}</mat-list-item>
-          <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C1.M3' | translate }}</mat-list-item>
-        </mat-list>
+          {{ 'DATAANALYSIS.CLASSES.C1' | translate }}
       </mat-card-content>
-
+      <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-        <a>
-          <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.CLASSES.BUTTON' | translate }}</button>
-        </a>
+          <ng-template [ngIf]="class2Open" [ngIfElse]="solutions1Closed">
+              <a href="https://github.com/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_1.ipynb">
+                  <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+              </a>
+          </ng-template>
+          <ng-template #solutions1Closed>
+              <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+          </ng-template>
       </mat-card-actions>
-    </mat-card>
-
-  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image">  </div>
-      <mat-card-title>
-        {{'DATAANALYSIS.CLASSES.TITLE' | translate }}
-        2
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M1' | translate }}</mat-list-item>
-        <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M2' | translate }}</mat-list-item>
-        <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M3' | translate }}</mat-list-item>
-        <mat-list-item><mat-icon matListIcon>check_circle_outline</mat-icon>{{ 'DATAANALYSIS.CLASSES.C2.M4' | translate }}</mat-list-item>
-      </mat-list>
-    </mat-card-content>
-    <mat-card-actions align="center">
-      <a>
-        <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.CLASSES.BUTTON' | translate }}</button>
-      </a>
-    </mat-card-actions>
   </mat-card>
 
-</div>
-
-<div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center">
-<!-- Solucionario 1 -->
-  <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%" fxFill>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>
-        {{'DATAANALYSIS.SOLUTION' | translate }}
-        1
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-actions align="center">
-      <a>
-        <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
-      </a>
-    </mat-card-actions>
-  </mat-card>
-
-<!-- Solucionario 2 -->
-    <mat-card class="example-card mat-elevation-z8" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class2Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+      fxFlex.lt-sm="100%">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          {{'DATAANALYSIS.SOLUTION' | translate }}
-          2
-        </mat-card-title>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+              <ng-template [ngIf]="class2Open" [ngIfElse]="class2Closed">
+                  <a href="https://github.com/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_2_Analisis_de_Datos.ipynb">{{
+                      'DATAANALYSIS.CLASSES.TITLE' | translate }}
+                      2
+                      </a>
+              </ng-template>
+              <ng-template #class2Closed>
+                  {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 2
+              </ng-template>
+          </mat-card-title>
+          <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
+      <mat-card-content>
+          {{ 'DATAANALYSIS.CLASSES.C2' | translate }}
+      </mat-card-content>
+      <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-        <a>
-          <button disabled mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
-        </a>
+          <ng-template [ngIf]="class3Open" [ngIfElse]="solutions2Closed">
+              <a href="https://github.com/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_2.ipynb">
+                  <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+              </a>
+          </ng-template>
+          <ng-template #solutions2Closed>
+              <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
+          </ng-template>
       </mat-card-actions>
-    </mat-card>
+  </mat-card>
+
 </div>
 
 <div class="faq-section">

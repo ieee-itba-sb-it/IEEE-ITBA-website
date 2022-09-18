@@ -289,19 +289,9 @@
   },
   "DATAANALYSIS": {
     "CLASSES": {
-      "C1": {
-        "M1": "Introduction to libraries (review)",
-        "M2": "Writing and reading of Excel and CSV files",
-        "M3": "Data manipulation with Pandas"
-      },
-      "C2": {
-        "M1": "Introduction to matplotlib",
-        "M2": "Data visualization",
-        "M3": "Customization of plots and graphs",
-        "M4": "Application cases"
-      },
-      "TITLE": "Class ",
-      "BUTTON": "GO TO CLASS"
+      "C1": "Introduction to libraries (review), Writing and reading of Excel and CSV files and Data manipulation with Pandas",
+      "C2": "Introduction to matplotlib, Data visualization, Customization of plots and graphs and Application cases",
+      "TITLE": "Class "
     },
     "SOLUTION": "Solutionary",
     "DESC_TITLE": "Description",
