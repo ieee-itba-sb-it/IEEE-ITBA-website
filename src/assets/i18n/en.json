@@ -153,6 +153,20 @@
       "TITLE": "Women in Engineering"
     }
   },
+  "ABOUTUS": {
+    "US": {
+      "TITLE": "Who we are",
+      "TEXT": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires."
+    },
+    "OBJECTIVE": {
+      "TITLE": "Objective",
+      "TEXT": "We seek to spread technical knowledge to the community, promoting open access to technological tools and organizing activities focused on electronics and programming."
+    },
+    "MISSION": {
+      "TITLE": "Mission",
+      "TEXT": "As students, we aspire to strengthen professional skills and generate contacts from the student cycle."
+    }
+  },
   "TEAM": {
     "TITLE": "Team",
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
@@ -348,7 +362,7 @@
   },
   "GENERAL": {
     "PREVIOUS": "PREVIOUS",
-    "ACTUAL": "ACTUAL"
+    "ACTUAL": "CURRENT"
   },
   "CONTACT": {
     "TITLE": "Contact",

@@ -21,73 +21,96 @@
   </header>
 
   <!-- Inicio -->
-
   <body>
-    <!-- IEEENews -->
-    <div *ngIf="true">
-      <mat-card class="news-container">
-        <mat-card-header>
-          <div class="row news-header">
-            <div class="col news-logo">
-              <a class="link-text" [routerLink]="['/noticias']">
-                <img
-                  src="../../../../../assets/image/IEEENews_sin_fondo.png"
-                  class="news-logo"
-                />
-                <h3 class="news-container-title">
-                  {{ "HOME.IEEENEWS.TITLE" | translate }}
-                </h3>
-              </a>
-            </div>
-            <div class="col">
-              <p class="news-content-flavor">
-                {{ "HOME.IEEENEWS.CONTENT" | translate }}
-                <a class="link-text" [routerLink]="['/noticias']">
-                  <h4 class="h4 waves-light" mdbWavesEffect>
-                    {{ "HOME.SEEMORE" | translate }}
-                    <mdb-icon
-                      fas
-                      icon="chevron-right"
-                      class="waves-light"
-                      mdbWavesEffect
-                    ></mdb-icon>
-                  </h4>
-                </a>
-              </p>
-            </div>
-          </div>
-        </mat-card-header>
-
-        <div *ngIf="showLoadingSpinner">
-          <app-loading-spinner></app-loading-spinner>
-        </div>
-        <div *ngIf="latestNews">
-          <div class="carousel-wrapper">
-            <div class="pagination-prev-wrapper">
-              <span class="swiper-button-prev pagination-prev"></span>
-            </div>
-            <swiper [config]="swiperConfig">
-              <ng-container *ngFor="let noticia of latestNews">
-                <ng-template swiperSlide>
-                  <app-news-card [noticia]="noticia"></app-news-card>
-                </ng-template>
-              </ng-container>
-            </swiper>
-            <div class="pagination-next-wrapper">
-              <span class="swiper-button-next pagination-next"></span>
-            </div>
-          </div>
-          <div class="pagination-wrapper"></div>
-        </div>
-      </mat-card>
+  <h1 class="section-title">Sobre nosotros</h1>
+    <div class="aboutus-container">
+      <div class="aboutus-section">
+        <img class="aboutus-image" src="../../../../../assets/image/logos/people.svg" alt="Logo nosotros"/>
+        <h2 class="aboutus-section-header">{{ 'ABOUTUS.US.TITLE' | translate }}</h2>
+        <p>{{ 'ABOUTUS.US.TEXT' | translate }}</p>
+      </div>
+      <div class="aboutus-section">
+        <img class="aboutus-image" src="../../../../../assets/image/logos/target.svg" alt="Logo objetivos"/>
+        <h2 class="aboutus-section-header">{{ 'ABOUTUS.OBJECTIVE.TITLE' | translate }}</h2>
+        <p>{{ 'ABOUTUS.OBJECTIVE.TEXT' | translate }}</p>
+      </div>
+      <div class="aboutus-section">
+        <img class="aboutus-image" src="../../../../../assets/image/logos/book-outline.svg" alt="Logo misión"/>
+        <h2 class="aboutus-section-header">{{ 'ABOUTUS.MISSION.TITLE' | translate }}</h2>
+        <p>{{ 'ABOUTUS.MISSION.TEXT' | translate }}</p>
+      </div>
     </div>
+  <div class="end-button-container">
+    <button class="learn-more-button" [routerLink]="['/aboutus']">Ver más <mdb-icon
+      fas
+      icon="chevron-right"
+      class="waves-light"
+      mdbWavesEffect></mdb-icon>
+    </button>
+  </div>
+    <!-- IEEENews -->
+  <h1 class="section-title">Noticias</h1>
+    <mat-card class="news-container">
+      <mat-card-header>
+        <div class="row news-header">
+          <div class="col news-logo">
+            <a class="link-text" [routerLink]="['/noticias']">
+              <img
+                src="../../../../../assets/image/IEEENews_sin_fondo.png"
+                class="news-logo"
+              />
+              <h3 class="news-container-title">
+                {{ "HOME.IEEENEWS.TITLE" | translate }}
+              </h3>
+            </a>
+          </div>
+          <div class="col">
+            <p class="news-content-flavor">
+              {{ "HOME.IEEENEWS.CONTENT" | translate }}
+              <a class="link-text" [routerLink]="['/noticias']">
+                <h4 class="h4 waves-light" mdbWavesEffect>
+                  {{ "HOME.SEEMORE" | translate }}
+                  <mdb-icon
+                    fas
+                    icon="chevron-right"
+                    class="waves-light"
+                    mdbWavesEffect></mdb-icon>
+                </h4>
+              </a>
+            </p>
+          </div>
+        </div>
+      </mat-card-header>
+      <div *ngIf="showLoadingSpinner">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <div *ngIf="latestNews">
+        <div class="carousel-wrapper">
+          <div class="pagination-prev-wrapper">
+            <span class="swiper-button-prev pagination-prev"></span>
+          </div>
+          <swiper [config]="swiperConfig">
+            <ng-container *ngFor="let noticia of latestNews">
+              <ng-template swiperSlide>
+                <app-news-card [noticia]="noticia"></app-news-card>
+              </ng-template>
+            </ng-container>
+          </swiper>
+          <div class="pagination-next-wrapper">
+            <span class="swiper-button-next pagination-next"></span>
+          </div>
+        </div>
+        <div class="pagination-wrapper"></div>
+      </div>
+    </mat-card>
 
-    <!-- Educacion, Competencia, Contacto -->
+    <!--
+    <!-- Educacion, Competencia, Contacto
     <div *ngIf="false">
       <div class="bottomLine">
         <div class="card-group">
 
-          <!-- Educacion -->
+          <!-- Educacion
           <mdb-card>
             <mdb-card-img src="https://i.ibb.co/6mLnt2t/education.jpg" alt="Foto de Curso de Python"></mdb-card-img>
             <mdb-card-body>
@@ -101,7 +124,7 @@
             </mdb-card-body>
           </mdb-card>
 
-          <!-- Competencia -->
+          <!-- Competencia
           <mdb-card>
             <mdb-card-img src="https://i.ibb.co/YX53J4W/competition.jpg" alt="Foto de Competencia de programacion">
             </mdb-card-img>
@@ -116,7 +139,7 @@
             </mdb-card-body>
           </mdb-card>
 
-          <!-- Contacto -->
+          <!-- Contacto
           <mdb-card>
             <mdb-card-img src="https://i.ibb.co/2hsYPdQ/contacts.jpg" alt="Foto durante ICIT2020"></mdb-card-img>
             <mdb-card-body>
@@ -133,11 +156,11 @@
     </div>
 
     <div *ngIf="false">
-      <!-- Iniciativas -->
+      <!-- Iniciativas
       <div class="bottomLine">
         <h1 id="iniciativas">{{ "NAVBAR.INITIATIVES" | translate }}</h1>
         <div class="card-group">
-          <!-- WIE -->
+          <!-- WIE
           <mdb-card>
             <div class="view overlay waves-light" mdbWavesEffect>
               <mdb-card-img
@@ -160,7 +183,7 @@
             </mdb-card-body>
           </mdb-card>
 
-          <!--Club de Programadores-->
+          <!--Club de Programadores
           <mdb-card>
             <div class="view overlay waves-light" mdbWavesEffect>
               <mdb-card-img
@@ -185,7 +208,7 @@
             </mdb-card-body>
           </mdb-card>
 
-          <!--Computer Society-->
+          <!--Computer Society
           <mdb-card>
             <div class="view overlay waves-light" mdbWavesEffect>
               <mdb-card-img
@@ -210,6 +233,7 @@
         </div>
       </div>
     </div>
+    -->
 
     <!-- Sponsors Actuales -->
     <div class="bottomLine mt-4">
