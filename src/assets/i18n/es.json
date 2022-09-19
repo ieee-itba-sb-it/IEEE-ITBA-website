@@ -346,19 +346,9 @@
   },
   "DATAANALYSIS": {
     "CLASSES": {
-      "C1": {
-        "M1": "Introducción a librerías (repaso)",
-        "M2": "Lectura y escritura de archivos formato Excel y CSV",
-        "M3": "Manipulación de datos con Pandas"
-      },
-      "C2": {
-        "M1": "Introducción a matplotlib",
-        "M2": "Visualización de datos",
-        "M3": "Personalización de los gráficos",
-        "M4": "Casos de aplicación"
-      },
-      "TITLE": "Clase ",
-      "BUTTON": "IR A LA CLASE"
+      "C1": "Introducción a librerías (repaso), Lectura y escritura de archivos formato Excel y CSV y Manipulación de datos con Pandas",
+      "C2": "Introducción a matplotlib, Visualización de datos, Personalización de los gráficos y Casos de aplicación",
+      "TITLE": "Clase "
     },
     "SOLUTION": "Solucionario",
     "DESC_TITLE": "Descripción",
