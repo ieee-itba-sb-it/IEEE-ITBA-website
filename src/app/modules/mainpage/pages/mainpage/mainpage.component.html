@@ -22,34 +22,35 @@
 
   <!-- Inicio -->
   <body>
-  <h1 class="section-title">Sobre nosotros</h1>
-    <div class="aboutus-container">
-      <div class="aboutus-section">
-        <img class="aboutus-image" src="../../../../../assets/image/logos/people.svg" alt="Logo nosotros"/>
-        <h2 class="aboutus-section-header">{{ 'ABOUTUS.US.TITLE' | translate }}</h2>
-        <p>{{ 'ABOUTUS.US.TEXT' | translate }}</p>
+  <div class="section">
+    <h1 class="section-title">Sobre nosotros</h1>
+      <div class="aboutus-container">
+        <div class="aboutus-section">
+          <img class="aboutus-image" src="../../../../../assets/image/logos/people.svg" alt="Logo nosotros"/>
+          <h2 class="aboutus-section-header">{{ 'ABOUTUS.US.TITLE' | translate }}</h2>
+          <p>{{ 'ABOUTUS.US.TEXT' | translate }}</p>
+        </div>
+        <div class="aboutus-section">
+          <img class="aboutus-image" src="../../../../../assets/image/logos/target.svg" alt="Logo objetivos"/>
+          <h2 class="aboutus-section-header">{{ 'ABOUTUS.OBJECTIVE.TITLE' | translate }}</h2>
+          <p>{{ 'ABOUTUS.OBJECTIVE.TEXT' | translate }}</p>
+        </div>
+        <div class="aboutus-section">
+          <img class="aboutus-image" src="../../../../../assets/image/logos/book-outline.svg" alt="Logo misión"/>
+          <h2 class="aboutus-section-header">{{ 'ABOUTUS.MISSION.TITLE' | translate }}</h2>
+          <p>{{ 'ABOUTUS.MISSION.TEXT' | translate }}</p>
+        </div>
       </div>
-      <div class="aboutus-section">
-        <img class="aboutus-image" src="../../../../../assets/image/logos/target.svg" alt="Logo objetivos"/>
-        <h2 class="aboutus-section-header">{{ 'ABOUTUS.OBJECTIVE.TITLE' | translate }}</h2>
-        <p>{{ 'ABOUTUS.OBJECTIVE.TEXT' | translate }}</p>
-      </div>
-      <div class="aboutus-section">
-        <img class="aboutus-image" src="../../../../../assets/image/logos/book-outline.svg" alt="Logo misión"/>
-        <h2 class="aboutus-section-header">{{ 'ABOUTUS.MISSION.TITLE' | translate }}</h2>
-        <p>{{ 'ABOUTUS.MISSION.TEXT' | translate }}</p>
-      </div>
+    <div class="end-button-container">
+      <button class="learn-more-button" [routerLink]="['/aboutus']">Ver más <mdb-icon
+        fas
+        icon="chevron-right"
+        class="waves-light"
+        mdbWavesEffect></mdb-icon>
+      </button>
     </div>
-  <div class="end-button-container">
-    <button class="learn-more-button" [routerLink]="['/aboutus']">Ver más <mdb-icon
-      fas
-      icon="chevron-right"
-      class="waves-light"
-      mdbWavesEffect></mdb-icon>
-    </button>
   </div>
-    <!-- IEEENews -->
-  <h1 class="section-title">Noticias</h1>
+  <!--
     <mat-card class="news-container">
       <mat-card-header>
         <div class="row news-header">
@@ -103,8 +104,46 @@
         <div class="pagination-wrapper"></div>
       </div>
     </mat-card>
+    -->
+  <!-- IEEENews -->
+  <div class="section gray-background">
+    <div class="news-container">
+      <div class="section-header">
+        <h1 class="section-title">Noticias</h1>
+        <p class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</p>
+      </div>
+      <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
+        <div class="carousel-wrapper">
+          <div class="pagination-prev-wrapper">
+            <span class="swiper-button-prev pagination-prev"></span>
+          </div>
+          <swiper [config]="swiperConfig">
+            <ng-container *ngFor="let noticia of latestNews">
+              <ng-template swiperSlide>
+                <app-news-card [noticia]="noticia"></app-news-card>
+              </ng-template>
+            </ng-container>
+          </swiper>
+          <div class="pagination-next-wrapper">
+            <span class="swiper-button-next pagination-next"></span>
+          </div>
+        </div>
+        <div class="pagination-wrapper"></div>
+      </div>
+      <ng-template #loadingSpinnerBlock>
+        <app-loading-spinner></app-loading-spinner>
+      </ng-template>
+    </div>
+    <div class="end-button-container">
+      <button class="learn-more-button" [routerLink]="['/noticias']">Ver más noticias <mdb-icon
+        fas
+        icon="chevron-right"
+        class="waves-light"
+        mdbWavesEffect></mdb-icon>
+      </button>
+    </div>
+  </div>
 
-    <!--
     <!-- Educacion, Competencia, Contacto
     <div *ngIf="false">
       <div class="bottomLine">
@@ -236,7 +275,8 @@
     -->
 
     <!-- Sponsors Actuales -->
-    <div class="bottomLine mt-4">
+  <div class="section">
+    <div class="bottomLine">
       <div class="row">
         <h1 class="section-title">{{ "HOME.SPONSORS" | translate }}</h1>
       </div>
@@ -246,6 +286,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   </body>
   <app-footer></app-footer>
