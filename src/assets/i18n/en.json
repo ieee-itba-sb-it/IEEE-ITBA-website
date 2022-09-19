@@ -90,9 +90,14 @@
         "WEBMASTER": "Webmaster"
       }
     },
+    "ABOUTUS": {
+      "TITLE": "About us",
+      "LEARNMORE": "Learn more"
+    },
     "IEEENEWS": {
-      "TITLE": "IEEE News",
-      "CONTENT": "Find out the latest technological and scientific news!"
+      "TITLE": "News",
+      "CONTENT": "Find out the latest technological and scientific news!",
+      "MORENEWS": "View more news"
     },
     "SPONSORS": "Sponsors",
     "BITCUP": {

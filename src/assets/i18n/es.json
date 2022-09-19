@@ -143,11 +143,16 @@
         "WEBMASTER": "Webmaster"
       }
     },
-    "IEEENEWS": {
-      "TITLE": "Noticias IEEE",
-      "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!"
+    "ABOUTUS": {
+      "TITLE": "Sobre nosotros",
+      "LEARNMORE": "Ver más"
     },
-    "SPONSORS": "Sponsors",
+    "IEEENEWS": {
+      "TITLE": "Noticias",
+      "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
+      "MORENEWS": "Ver más noticias"
+    },
+    "SPONSORS": "Auspiciantes",
     "CLASSES": {
       "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
       "TITLE": "Curso Introductorio de Python"

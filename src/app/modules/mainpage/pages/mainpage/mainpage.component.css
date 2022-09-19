@@ -76,7 +76,7 @@ body {
 }
 
 .section {
-    padding: 1.5% 5% 1.5% 5%;
+    padding: 1.5% 3% 1.5% 3%;
 }
 
 .section-header {
@@ -84,7 +84,54 @@ body {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.section-header-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-header-logo {
+    object-fit: scale-down;
+    height: 4rem;
+}
+
+.section-header-start-line {
+  height: 2px;
+  width: 3rem;
+  background: #8191b2;
+}
+
+.section-header-end-line {
+    height: 2px;
+    width: 100%;
+    background: #8191b2;
+}
+
+.section-title {
+    color: #3d6bb3;
+    height: 100%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-variant: no-common-ligatures proportional-nums;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.section-subtitle {
+    font-size: large;
+    font-style: oblique;
+    white-space: nowrap;
+}
+
+.section-divider {
+    width: 2px;
+    margin: 6px 0;
+    background: #ebebeb;
 }
 
 .gray-background {
@@ -121,18 +168,6 @@ body {
 .aboutus-section-header {
     color: #0d47a1;
     font-size: x-large;
-}
-
-.section-title {
-    color: #181818;
-    font-size: xx-large;
-    font-weight: 600;
-    font-variant: no-common-ligatures proportional-nums;
-}
-
-.section-subtitle {
-    font-size: large;
-    font-style: oblique;
 }
 
 .end-button-container {

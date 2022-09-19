@@ -23,18 +23,27 @@
   <!-- Inicio -->
   <body>
   <div class="section">
-    <h1 class="section-title">Sobre nosotros</h1>
+    <div class="section-header">
+      <div class="section-header-start-line"></div>
+      <div class="section-header-content">
+        <img class="section-header-logo" src="../../../../../assets/image/IEEETeams.png" alt="Logo"/>
+        <h1 class="section-title">{{ 'HOME.ABOUTUS.TITLE' | translate }}</h1>
+      </div>
+      <div class="section-header-end-line"></div>
+    </div>
       <div class="aboutus-container">
         <div class="aboutus-section">
           <img class="aboutus-image" src="../../../../../assets/image/logos/people.svg" alt="Logo nosotros"/>
           <h2 class="aboutus-section-header">{{ 'ABOUTUS.US.TITLE' | translate }}</h2>
           <p>{{ 'ABOUTUS.US.TEXT' | translate }}</p>
         </div>
+        <div class="section-divider"></div>
         <div class="aboutus-section">
           <img class="aboutus-image" src="../../../../../assets/image/logos/target.svg" alt="Logo objetivos"/>
           <h2 class="aboutus-section-header">{{ 'ABOUTUS.OBJECTIVE.TITLE' | translate }}</h2>
           <p>{{ 'ABOUTUS.OBJECTIVE.TEXT' | translate }}</p>
         </div>
+        <div class="section-divider"></div>
         <div class="aboutus-section">
           <img class="aboutus-image" src="../../../../../assets/image/logos/book-outline.svg" alt="Logo misión"/>
           <h2 class="aboutus-section-header">{{ 'ABOUTUS.MISSION.TITLE' | translate }}</h2>
@@ -42,7 +51,7 @@
         </div>
       </div>
     <div class="end-button-container">
-      <button class="learn-more-button" [routerLink]="['/aboutus']">Ver más <mdb-icon
+      <button class="learn-more-button" [routerLink]="['/aboutus']">{{ 'HOME.ABOUTUS.LEARNMORE' | translate }} <mdb-icon
         fas
         icon="chevron-right"
         class="waves-light"
@@ -109,8 +118,13 @@
   <div class="section gray-background">
     <div class="news-container">
       <div class="section-header">
-        <h1 class="section-title">Noticias</h1>
-        <p class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</p>
+        <div class="section-header-start-line"></div>
+        <div class="section-header-content">
+          <img class="section-header-logo" src="../../../../../assets/image/IEEENews_sin_fondo.png" alt="Logo"/>
+          <h1 class="section-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h1>
+        </div>
+        <div class="section-header-end-line"></div>
+        <span class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
       </div>
       <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
         <div class="carousel-wrapper">
@@ -135,7 +149,7 @@
       </ng-template>
     </div>
     <div class="end-button-container">
-      <button class="learn-more-button" [routerLink]="['/noticias']">Ver más noticias <mdb-icon
+      <button class="learn-more-button" [routerLink]="['/noticias']">{{ 'HOME.IEEENEWS.MORENEWS' | translate }} <mdb-icon
         fas
         icon="chevron-right"
         class="waves-light"
@@ -277,12 +291,17 @@
     <!-- Sponsors Actuales -->
   <div class="section">
     <div class="bottomLine">
-      <div class="row">
-        <h1 class="section-title">{{ "HOME.SPONSORS" | translate }}</h1>
+      <div class="section-header">
+        <div class="section-header-start-line"></div>
+        <div class="section-header-content">
+          <img class="section-header-logo" src="../../../../../assets/image/IEEESponsors.png" alt="Logo"/>
+          <h1 class="section-title">{{ "HOME.SPONSORS" | translate }}</h1>
+        </div>
+        <div class="section-header-end-line"></div>
       </div>
       <div class="sponsor-listing">
         <div *ngFor="let sponsor of sponsors">
-          <img class="sponsor-container" src="{{sponsor.img}}" alt="Logo + {{sponsor.name}}"/>
+          <img class="sponsor-container" src="{{sponsor.img}}" alt="Logo {{sponsor.name}}"/>
         </div>
       </div>
     </div>
