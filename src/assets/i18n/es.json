@@ -436,6 +436,21 @@
     "MESSAGE_ERROR": "Por favor, ingresá un mensaje",
     "SEND": "Enviar"
   },
+  "ABOUT-US": {
+    "TITLE": "Sobre Nosotros",
+    "WHO-WE-ARE": {
+      "TITLE": "¿Quienes somos?",
+      "DESC": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.\nBuscamos difundir el conocimiento técnico a la comunidad, promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación.\nComo estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+    },
+    "WHAT-IS-IEEE": {
+      "TITLE": "¿Qué es IEEE?",
+      "DESC": "El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) es la sociedad técnica profesional más grande del mundo, con más de 400.000 miembros en 160 países distintos. Su propósito principal es fomentar la innovación tecnológica y la excelencia en beneficio de la humanidad.\nIEEE y sus miembros inspiran a la comunidad global a través de publicaciones, conferencias y estándares tecnológicos junto con actividades profesionales y educativas."
+    },
+    "WHAT-IS-ITBA": {
+      "TITLE": "¿Qué es el ITBA?",
+      "DESC": "El Instituto Tecnológico de Buenos Aires (ITBA) es la única universidad privada de la Argentina especializada en Tecnología, Ingeniería y Gestión.\nDesde hace 60 años contribuye a la resolución de los desafíos de la humanidad a través de la formación universitaria de reconocida excelencia, la producción de conocimiento científico y la colaboración internacional."
+    }
+  },
   "WRITE-NEW": {
     "TITLE": "Escribir Noticia",
     "TITLE2": "Título",
