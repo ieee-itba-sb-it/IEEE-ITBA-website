@@ -267,6 +267,7 @@
     "LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
   },
   "NAVBAR": {
+    "ABOUTUS": "Acerca de",
     "CONTACT": "Contacto",
     "EVENTS": "Eventos",
     "HOME": "Home",
@@ -444,7 +445,7 @@
   "ABOUT-US": {
     "TITLE": "Sobre Nosotros",
     "WHO-WE-ARE": {
-      "TITLE": "¿Quienes somos?",
+      "TITLE": "Quiénes somos",
       "DESC": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.\nBuscamos difundir el conocimiento técnico a la comunidad, promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación.\nComo estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
     },
     "WHAT-IS-IEEE": {

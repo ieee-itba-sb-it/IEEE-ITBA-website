@@ -210,6 +210,7 @@
     "LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
   },
   "NAVBAR": {
+    "ABOUTUS": "About us",
     "CONTACT": "Contact",
     "EVENTS": "Events",
     "HOME": "Home",
@@ -386,16 +387,16 @@
   "ABOUT-US": {
     "TITLE": "About Us",
     "WHO-WE-ARE": {
-      "TITLE": "Who are we?",
-      "DESC": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.\nBuscamos difundir el conocimiento técnico a la comunidad, promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación.\nComo estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+      "TITLE": "Who we are",
+      "DESC": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires.\nWe seek to spread technical knowledge to the community, promoting open access to technological tools and organizing activities focused on electronics and programming.\nAs students, we aspire to strengthen professional skills and generate contacts from the student cycle.\n"
     },
     "WHAT-IS-IEEE": {
       "TITLE": "What is IEEE?",
-      "DESC": "El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) es la sociedad técnica profesional más grande del mundo, con más de 400.000 miembros en 160 países distintos. Su propósito principal es fomentar la innovación tecnológica y la excelencia en beneficio de la humanidad.\nIEEE y sus miembros inspiran a la comunidad global a través de publicaciones, conferencias y estándares tecnológicos junto con actividades profesionales y educativas."
+      "DESC": "The Institute of Electrical and Electronics Engineers (IEEE) is the world's largest professional technical society, with more than 400,000 members in 160 different countries. Its main purpose is to promote technological innovation and excellence for the benefit of humanity.\nIEEE and its members inspire the global community through publications, conferences, and technology standards along with professional and educational activities.\n"
     },
     "WHAT-IS-ITBA": {
       "TITLE": "What is the ITBA?",
-      "DESC": "El Instituto Tecnológico de Buenos Aires (ITBA) es la única universidad privada de la Argentina especializada en Tecnología, Ingeniería y Gestión.\nDesde hace 60 años contribuye a la resolución de los desafíos de la humanidad a través de la formación universitaria de reconocida excelencia, la producción de conocimiento científico y la colaboración internacional."
+      "DESC": "The Technological Institute of Buenos Aires (ITBA) is the only private university in Argentina that specializes in Technology, Engineering, and Management.\nFor 60 years, it has contributed to solving the challenges of humanity through university education of recognized excellence, the production of scientific knowledge, and international collaboration.\n"
     }
   },
   "WRITE-NEW": {

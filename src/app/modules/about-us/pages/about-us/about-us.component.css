@@ -14,9 +14,32 @@ body {
   align-content: center;
 }
 
+.mat-tab {
+    margin: auto;
+}
+
+.section-image {
+    object-fit: scale-down;
+    height: 12rem;
+    width: 16rem;
+}
+
+.section-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 3em 0;
+}
+
+.description-text-container {
+    position: relative;
+    width: 60%;
+}
+
 .title-container {
   text-align: center;
 }
+
 .page-title {
   color: #0d47a1;
   font-size: 2.5em;
@@ -58,7 +81,7 @@ body {
   line-height: 50px;
   */
   font-size: 3em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   width: inherit;
 }
 
@@ -72,5 +95,61 @@ body {
   /*font-size: 20px;*/
   font-size: 1.25em;
   color: rgb(90, 90, 90);
-  margin-bottom: 1em;
+  font-weight: lighter;
+}
+
+.description-text-title {
+    font-weight: bold;
+}
+
+.white-background {
+    background-color: white;
+    border: 1px solid #eeeeee;
+    border-radius: 0.5em;
+    padding: 2em 2em;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.learn-more-button {
+  font-size: calc(0.5vw + 0.5rem);
+  font-weight: 600;
+  padding:  0.5rem 1.2rem;
+  border: solid rgb(23, 46, 148);
+  color: rgb(23, 46, 148) !important;
+  border-radius: 5px;
+  background-color: inherit;
+  border-width: 3px;
+  transition: all 175ms ease-in-out;
+}
+
+.learn-more-button:hover {
+  box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+  color: white !important;
+  background-color: #0d47a1;
+  border-color: white;
+}
+
+.learn-more-button >.button-text {
+  color: rgb(23, 46, 148) !important;
+}
+.learn-more-button:hover > .button-text{
+  color: white !important;
+}
+
+
+@media(max-width: 991px) {
+  .section-container {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2em;
+  }
+
+  .description-text-container {
+      width: 90%;
+  }
+
+  .description-text-title {
+      font-weight: bold;
+      text-align: center;
+  }
+
 }
