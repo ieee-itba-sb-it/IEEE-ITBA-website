@@ -55,10 +55,11 @@
           </div>
         </mat-tab>
       </mat-tab-group>
-      <button class="learn-more-button" [routerLink]="['/contact']">Contact us</button>
-      <button class="learn-more-button" [routerLink]="['/team']">Our team</button>
     </section>
-
+    <div class="cta-buttons-container">
+      <button class="our-team-button" [routerLink]="['/team']">{{ 'ABOUT-US.OURTEAM' | translate }}</button>
+      <button class="contact-us-button" [routerLink]="['/contact']">{{ 'ABOUT-US.CONTACTUS' | translate }}</button>
+    </div>
     <app-footer></app-footer>
   </body>
 </html>

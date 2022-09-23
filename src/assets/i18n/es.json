@@ -455,7 +455,9 @@
     "WHAT-IS-ITBA": {
       "TITLE": "¿Qué es el ITBA?",
       "DESC": "El Instituto Tecnológico de Buenos Aires (ITBA) es la única universidad privada de la Argentina especializada en Tecnología, Ingeniería y Gestión.\nDesde hace 60 años contribuye a la resolución de los desafíos de la humanidad a través de la formación universitaria de reconocida excelencia, la producción de conocimiento científico y la colaboración internacional."
-    }
+    },
+    "OURTEAM": "Nuestro equipo",
+    "CONTACTUS": "Contáctanos"
   },
   "WRITE-NEW": {
     "TITLE": "Escribir Noticia",

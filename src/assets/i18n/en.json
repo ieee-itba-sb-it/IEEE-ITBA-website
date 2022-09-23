@@ -397,7 +397,9 @@
     "WHAT-IS-ITBA": {
       "TITLE": "What is the ITBA?",
       "DESC": "The Technological Institute of Buenos Aires (ITBA) is the only private university in Argentina that specializes in Technology, Engineering, and Management.\nFor 60 years, it has contributed to solving the challenges of humanity through university education of recognized excellence, the production of scientific knowledge, and international collaboration.\n"
-    }
+    },
+    "OURTEAM": "Our team",
+    "CONTACTUS": "Contact us"
   },
   "WRITE-NEW": {
     "TITLE": "Write News",
