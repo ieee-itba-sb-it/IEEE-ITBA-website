@@ -143,11 +143,16 @@
         "WEBMASTER": "Webmaster"
       }
     },
-    "IEEENEWS": {
-      "TITLE": "Noticias IEEE",
-      "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!"
+    "ABOUTUS": {
+      "TITLE": "Sobre nosotros",
+      "LEARNMORE": "Ver más"
     },
-    "SPONSORS": "Sponsors",
+    "IEEENEWS": {
+      "TITLE": "Noticias",
+      "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
+      "MORENEWS": "Ver más noticias"
+    },
+    "SPONSORS": "Auspiciantes",
     "CLASSES": {
       "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
       "TITLE": "Curso Introductorio de Python"
@@ -210,6 +215,20 @@
       "TITLE": "Women In Engineering"
     }
   },
+  "ABOUTUS": {
+    "US": {
+      "TITLE": "Quiénes somos",
+      "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
+    },
+    "OBJECTIVE": {
+      "TITLE": "Objetivo",
+      "TEXT": "Buscamos difundir el conocimiento técnico a la comunidad,  promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación."
+    },
+    "MISSION": {
+      "TITLE": "Misión",
+      "TEXT": "Como estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+    }
+  },
   "TEAM": {
     "TITLE": "Equipo",
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
@@ -248,6 +267,7 @@
     "LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
   },
   "NAVBAR": {
+    "ABOUTUS": "Acerca de",
     "CONTACT": "Contacto",
     "EVENTS": "Eventos",
     "HOME": "Home",
@@ -411,6 +431,23 @@
     "MESSAGE": "Mensaje",
     "MESSAGE_ERROR": "Por favor, ingresá un mensaje",
     "SEND": "Enviar"
+  },
+  "ABOUT-US": {
+    "TITLE": "Sobre Nosotros",
+    "WHO-WE-ARE": {
+      "TITLE": "Quiénes somos",
+      "DESC": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.\nBuscamos difundir el conocimiento técnico a la comunidad, promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación.\nComo estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+    },
+    "WHAT-IS-IEEE": {
+      "TITLE": "¿Qué es IEEE?",
+      "DESC": "El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) es la sociedad técnica profesional más grande del mundo, con más de 400.000 miembros en 160 países distintos. Su propósito principal es fomentar la innovación tecnológica y la excelencia en beneficio de la humanidad.\nIEEE y sus miembros inspiran a la comunidad global a través de publicaciones, conferencias y estándares tecnológicos junto con actividades profesionales y educativas."
+    },
+    "WHAT-IS-ITBA": {
+      "TITLE": "¿Qué es el ITBA?",
+      "DESC": "El Instituto Tecnológico de Buenos Aires (ITBA) es la única universidad privada de la Argentina especializada en Tecnología, Ingeniería y Gestión.\nDesde hace 60 años contribuye a la resolución de los desafíos de la humanidad a través de la formación universitaria de reconocida excelencia, la producción de conocimiento científico y la colaboración internacional."
+    },
+    "OURTEAM": "Nuestro equipo",
+    "CONTACTUS": "Contáctanos"
   },
   "WRITE-NEW": {
     "TITLE": "Escribir Noticia",

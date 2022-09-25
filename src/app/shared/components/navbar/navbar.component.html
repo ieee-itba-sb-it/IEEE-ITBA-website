@@ -36,6 +36,11 @@
         <button mat-menu-item onclick="window.location.href = 'https://wie-itba.github.io/'">WIE</button>
       </mat-menu>
       <li class="nav-item">
+        <button [routerLink]="['/about-us']" class="buttonNavbar" type="button">{{ 'NAVBAR.ABOUTUS' |
+          translate
+          }}</button>
+      </li>
+      <li class="nav-item">
         <button [routerLink]="['/contact']" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
           translate
           }}</button>
@@ -60,8 +65,8 @@
       <!-- Language toggle button -->
       <li class="nav-item">
         <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle class="es-en-button" value="es" checked=true (click)="useLanguage('es')">es</mat-button-toggle>
-          <mat-button-toggle class="es-en-button" value="en" (click)="useLanguage('en')">en</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="es" checked="{{ hasSpanishLanguage() }}" (click)="useLanguage('es')">es</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="en" checked="{{ hasEnglishLanguage() }}" (click)="useLanguage('en')">en</mat-button-toggle>
         </mat-button-toggle-group>
       </li>
       <!-- Dropdown -->
