@@ -23,16 +23,8 @@ body {
     align-content: center;
 }
 
-.col-sm {
-    text-align: center;
-}
-
 .news-container {
     position: relative;
-}
-
-.news-header{
-    width: 100%;
 }
 
 .news-container-title{
@@ -43,22 +35,6 @@ body {
     margin-top: 2rem;
     margin-right: 1rem;
     float:left;
-}
-
-.news-logo{
-    text-align: center;
-    margin: 0.5rem;
-}
-
-.news-logo img{
-    height: 5rem;
-    float:left;
-}
-
-.news-content-flavor {
-    font-size: 1.5rem;
-    margin-top: 1.6rem;
-    float: right;
 }
 
 .sponsor-listing {
@@ -254,11 +230,6 @@ h2{
     position: relative;
     text-align: center;
     color: white;
-}
-
-.sponsors {
-    margin:5rem 2rem 5rem 2rem;
-    /*    top left bottom right*/
 }
 
 /* Carousel styles */
