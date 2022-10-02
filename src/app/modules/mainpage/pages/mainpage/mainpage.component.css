@@ -73,7 +73,8 @@ body {
 
 .section-header-logo {
     object-fit: scale-down;
-    height: 4rem;
+    height: 64px;
+    width: 64px;
 }
 
 .section-header-start-line {
