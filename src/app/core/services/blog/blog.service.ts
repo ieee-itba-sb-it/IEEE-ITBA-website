@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { newsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { metadataCollectionName } from '../../../secrets';
+import firebase from 'firebase';
 
 /* This file make interface with databe to get blog data */
 
@@ -13,7 +15,11 @@ export class BlogService {
 
   // ----------Variables----------
   blogData: BehaviorSubject<newsItem[]> = new BehaviorSubject([]);
+  docData: BehaviorSubject<{}> = new BehaviorSubject({});
   collectionName: string;
+
+  docsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  listedDocsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   docsPageSize = 10;
 
   constructor(private afs: AngularFirestore) { }
@@ -29,11 +35,18 @@ export class BlogService {
     this.docsPageSize = docsPageSize;
   }
 
-  // Delete doc from setted collecion
+  // Delete doc from setted collection
   deleteDoc(name: string) {
     const call = new BehaviorSubject<boolean>(false);
     this.afs.collection(this.collectionName).doc(name).delete().then(data => {
       call.next(true);
+      // TODO: Test this
+      this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
+        count: firebase.firestore.FieldValue.increment(-1),
+        extra: {
+          listedCount: firebase.firestore.FieldValue.increment(-1)
+        }
+      });
     });
     return call.asObservable();
   }
@@ -65,6 +78,18 @@ export class BlogService {
 
       // update observer
       this.blogData.next(ans);
+    });
+  }
+
+  retrieveDocsSize() {
+    this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      this.docsSize.next(doc.data().count);
+    });
+  }
+
+  retrieveListedDocsSize() {
+    this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      this.listedDocsSize.next(doc.data().extra.listedCount);
     });
   }
 
@@ -101,7 +126,7 @@ export class BlogService {
   getNextDocsPage() {
     const collection = this.afs.collection(this.collectionName, ref => ref
       .orderBy('date', 'desc')
-      .startAfter(this.blogData.getValue().pop().date)
+      .startAt(this.blogData.getValue().pop().date)
       .limit(this.docsPageSize));
     this.getDocsPage(collection);
   }
@@ -109,7 +134,7 @@ export class BlogService {
   getPrevDocsPage() {
     const collection = this.afs.collection(this.collectionName, ref => ref
       .orderBy('date', 'desc')
-      .endBefore(this.blogData.getValue().reverse().pop().date)
+      .endAt(this.blogData.getValue().reverse().pop().date)
       .limitToLast(this.docsPageSize));
     this.getDocsPage(collection);
   }
@@ -193,17 +218,35 @@ export class BlogService {
 
   // Adds doc to setted collection
   addDoc(news: newsItem) {
-    this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {});
+    this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
+      this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
+        count: firebase.firestore.FieldValue.increment(1),
+        extra: {
+          listedCount: firebase.firestore.FieldValue.increment(1)
+        }
+      });
+    });
   }
 
   // Deletes doc from given instance
   deleteDocObj(news: newsItem) {
-    this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {});
+    this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {
+      this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
+        count: firebase.firestore.FieldValue.increment(-1),
+        extra: {
+          listedCount: firebase.firestore.FieldValue.increment(-1)
+        }
+      });
+    });
   }
 
   // Gets a collection observable
   docsObs(): Observable<newsItem[]> {
     return this.blogData.asObservable();
+  }
+
+  listedDocsSizeObs(): Observable<number> {
+    return this.listedDocsSize.asObservable();
   }
 
   incrementRating(news: newsItem, rating: number) {

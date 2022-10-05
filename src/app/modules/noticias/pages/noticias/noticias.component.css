@@ -381,33 +381,26 @@ background-size: cover;
     font-weight: lighter;
 }
 
-.page-button {
-    text-align: center;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    background-color: white;
-    color: #04629a;
-    border: 0;
-}
-
-.page-button:disabled {
-    text-align: center;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    background-color: #04629a;
-    color: white;
-    border: 0;
-}
-
 .page-change-button {
-    background-color: white;
+    background-color: #007aff;
     border: 0;
+}
+
+.page-change-button-left {
+    border-radius: 40% 20% 20% 40%;
+}
+
+.page-change-button-right {
+    border-radius: 20% 40% 40% 20%;
+}
+
+.page-change-button:disabled {
+    opacity: 0.2;
 }
 
 .page-change-button:hover {
-    opacity: 150%;
+    background-color: #0065d4;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .page-change-button-image {
