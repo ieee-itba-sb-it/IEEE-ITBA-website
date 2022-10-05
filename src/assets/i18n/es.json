@@ -233,6 +233,9 @@
     "TITLE": "Equipo",
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
   },
+  "NEWS": {
+    "OF": "de"
+  },
   "IEEEXTREME": {
     "FACTS": {
       "EDITIONS": "Ediciones realizadas",
