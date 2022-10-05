@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
 
@@ -18,7 +18,7 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
 export class MainpageComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
   latestNews: newsItem[];
-  latestLimit = 12;
+  latestLimit = 9;
   showLoadingSpinner = true;
 
   imgSrcPrefix = '../../../../../assets/image/content/';

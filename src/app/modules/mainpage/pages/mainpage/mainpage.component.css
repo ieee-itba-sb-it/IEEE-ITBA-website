@@ -73,7 +73,8 @@ body {
 
 .section-header-logo {
     object-fit: scale-down;
-    height: 4rem;
+    height: 64px;
+    width: 64px;
 }
 
 .section-header-start-line {
@@ -94,7 +95,6 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     font-variant: no-common-ligatures proportional-nums;
-    overflow: hidden;
     white-space: nowrap;
     margin: 0;
 }
@@ -195,6 +195,7 @@ mdb-card-img {
 h1 {
     color: whitesmoke;
     font-size: 5vmin;
+
 }
 
 h2{
