@@ -12,24 +12,28 @@ import { newsItem } from '../../../../shared/models/news-item/news-item';
 
 export class NoticiasComponent implements OnInit {
   newsDataObs: Observable<newsItem[]>;
+  newsCountObs: Observable<number>;        // TODO: Connect with db
+
   newsData: newsItem[] = [];
   showLoadingSpinner = true;
 
   pageSize = 9;
-  pageCount = 4;        // TODO: Connect with db
+  pageCount: number;
+  pagesOnPaginator: Array<number>;
   currentPage = 1;
-
-  isNextPage = false;
 
   constructor(private blogService: BlogService) {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.setDocsPageSize(this.pageSize + 1);
-    this.blogService.getFirstDocsPage();
+    this.newsCountObs = this.blogService.listedDocsSizeObs();
     this.newsDataObs = this.blogService.docsObs();
+    this.newsCountObs.subscribe(listedCount => {
+      this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1;
+      console.log(this.pageCount);
+    });
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.newsData = [];
-      this.isNextPage = false;
       if (data.length > 0){
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
       }
@@ -38,12 +42,11 @@ export class NoticiasComponent implements OnInit {
           if (this.newsData.length < this.pageSize) {
             this.newsData.push(data[i]);
           }
-          if (this.newsData.length === this.pageSize){
-            this.isNextPage = true;
-          }
         }
       }
     });
+    this.blogService.getFirstDocsPage();
+    this.blogService.retrieveListedDocsSize();
   }
 
   ngOnInit(): void {
@@ -55,11 +58,11 @@ export class NoticiasComponent implements OnInit {
   }
 
   hasNextPage() {
-      return this.isNextPage;
+      return this.currentPage < this.pageCount;
   }
 
   nextPage(){
-    if (this.isNextPage) {
+    if (this.hasNextPage()) {
       this.blogService.getNextDocsPage();
       this.currentPage++;
     }
