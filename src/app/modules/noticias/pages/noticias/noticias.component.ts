@@ -29,7 +29,6 @@ export class NoticiasComponent implements OnInit {
     this.newsDataObs = this.blogService.docsObs();
     this.newsCountObs.subscribe(listedCount => {
       this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1;
-      console.log(this.pageCount);
     });
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
