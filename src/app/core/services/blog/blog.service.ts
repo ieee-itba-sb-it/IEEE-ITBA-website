@@ -4,7 +4,7 @@ import { newsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 /* This file make interface with databe to get blog data */
 
