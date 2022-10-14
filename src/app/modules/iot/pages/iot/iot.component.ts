@@ -7,7 +7,7 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
   styleUrls: ['./iot.component.css']
 })
 export class IotComponent implements OnInit {
-  images = [1,2].map((n) => `../../../assets/image/iot/image${n}.jpg`);
+  images = [1,2,3,4,5,6,7].map((n) => `../../../assets/image/iot/image${n}.jpg`);
   constructor() { }
 
   ngOnInit(): void {
