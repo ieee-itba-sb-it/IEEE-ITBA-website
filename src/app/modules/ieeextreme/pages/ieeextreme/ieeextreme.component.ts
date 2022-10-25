@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IeeextremeComponent implements OnInit {
 
-  imgSrcPrefix = '../../../../../assets/image/content/';
+  imgSrcPrefix = '../../../../../assets/image/sponsors/';
 
   contacts = [
     {

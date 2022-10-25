@@ -15,7 +15,7 @@
         event.titleCode | translate
         }}</mat-card-title>
       <p class="lead">{{ event.descriptionCode | translate }}</p>
-      <a class="link-text" [routerLink]="[event.titleCode]">
+      <a class="link-text" [routerLink]="[event.routerLink]">
         <h5 class="waves-light" mdbWavesEffect>
           {{ "HOME.SEEMORE" | translate }}
           <mdb-icon

@@ -42,12 +42,12 @@
 
     <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class1Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+                  fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
-                    <ng-template [ngIf]="class1Open" [ngIfElse]="class1Closed">
+                    <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
                         <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_1_Introducción_a_la_Programación_con_Python.ipynb">{{
                         'PYTHONCOURSES.CLASSES.TITLE' | translate }}
                         1
@@ -64,7 +64,7 @@
             </mat-card-content>
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
-                <ng-template [ngIf]="class2Open" [ngIfElse]="solutions1Closed">
+                <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="solutions1Closed">
                     <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_1_Curso_Introductorio_de_Python.ipynb">
                         <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                     </a>
@@ -75,12 +75,12 @@
             </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class2Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+                  fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
-                    <ng-template [ngIf]="class2Open" [ngIfElse]="class2Closed">
+                    <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
                         <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_2_Introducción_a_la_Programación_con_Python.ipynb">{{
                             'PYTHONCOURSES.CLASSES.TITLE' | translate }}
                             2
@@ -97,7 +97,7 @@
             </mat-card-content>
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
-                <ng-template [ngIf]="class3Open" [ngIfElse]="solutions2Closed">
+                <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="solutions2Closed">
                     <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb">
                         <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                     </a>
@@ -108,12 +108,12 @@
             </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class3Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-            fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week3ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+                  fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
-                    <ng-template [ngIf]="class3Open" [ngIfElse]="class3Closed">
+                    <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="class3Closed">
                         <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_3_Introducción_a_la_Programación_con_Python.ipynb">{{
                             'PYTHONCOURSES.CLASSES.TITLE' | translate }}
                             3
@@ -130,7 +130,7 @@
             </mat-card-content>
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
-                <ng-template [ngIf]="solution3Open" [ngIfElse]="solutions3Closed">
+                <ng-template [ngIf]="week4ContentOpen" [ngIfElse]="solutions3Closed">
                     <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb">
                         <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                     </a>
