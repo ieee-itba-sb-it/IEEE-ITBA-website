@@ -7,7 +7,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SponsorsComponent implements OnInit {
 
-  imgSrcPrefix = '../../../../../assets/image/content/';
+  imgSrcPrefix = '../../../../../assets/image/sponsors/';
 
   currentSponsors = [
     {

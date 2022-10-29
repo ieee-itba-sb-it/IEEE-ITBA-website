@@ -21,7 +21,7 @@ export class MainpageComponent implements OnInit {
   latestLimit = 9;
   showLoadingSpinner = true;
 
-  imgSrcPrefix = '../../../../../assets/image/content/';
+  imgSrcPrefix = '../../../../../assets/image/sponsors/';
 
   sponsors = [
     {
