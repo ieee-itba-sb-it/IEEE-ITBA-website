@@ -73,11 +73,7 @@
     <div class="bottomLine">
       <h1>{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h1>
       <br>
-        <div class="sponsor-listing">
-          <div *ngFor="let sponsor of sponsors">
-            <img class="sponsor-container" src="{{sponsor.img}}" alt="Logo {{sponsor.name}}"/>
-          </div>
-        </div>
+      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getIeextremeSponsors()"></app-sponsor-component>
     </div>
 
     <!-- Sponsor team -->

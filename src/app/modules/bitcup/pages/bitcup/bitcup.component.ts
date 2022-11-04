@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
   selector: 'app-bitcup',
@@ -8,8 +9,11 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class BitcupComponent implements OnInit {
 
-  constructor(public translate: TranslateService)
+  sponsorsServiceVar: SponsorsService;
+
+  constructor(public translate: TranslateService, private sponsorsService: SponsorsService)
   {
+    this.sponsorsServiceVar = sponsorsService;
     scroll(0, 0);
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');

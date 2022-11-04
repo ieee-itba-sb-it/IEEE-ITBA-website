@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
 import { Team } from 'src/app/shared/models/team';
 import {Sponsor} from 'src/app/shared/models/sponsors';
@@ -10,14 +10,13 @@ import {Sponsor} from 'src/app/shared/models/sponsors';
 })
 export class SponsorComponentComponent implements OnInit {
 
-  currentsponsors: Sponsor[]  = null;
-  previoussponsors: Sponsor[] = null;
-  constructor(private SponsorsService: SponsorsService) {
+  @Input() currentsponsor: Sponsor[];
+
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.currentsponsors = this.SponsorsService.getCurrentSponsors();
-    this.previoussponsors = this.SponsorsService.getPreviousSponsors();
+    
   }
 
 }

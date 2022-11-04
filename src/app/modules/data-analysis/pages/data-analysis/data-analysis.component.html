@@ -150,35 +150,9 @@
 
     <br>
 
-    <div class="container">
-      <div class="row" style="margin-top: 2vmin;">
-          <div class="col-sm mt-5 mt-md-2">
-              <img src="../../../../../assets/image/sponsors/jpmorgan.png" height="90vmin" alt="Logo jpmorgan"
-                   style="position: relative; top: 50%; transform: translateY(-50%);">
-          </div>
-          <div class="col-sm mt-5 mt-md-2">
-              <img src="../../../../../assets/image/sponsors/innovid.png" height="35vmin" alt="Logo Innovid"
-                   style="position: relative; top: 50%; transform: translateY(-50%);">
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-sm mt-5 mt-md-4">
-              <img src="../../../../../assets/image/sponsors/pan-american-energy.png" height="100vmin" alt="Logo Axion Energy"
-                   style="position: relative; top: 50%; transform: translateY(-50%);">
-          </div>
-          <div class="col-sm mt-5 mt-md-4">
-              <img src="../../../../../assets/image/sponsors/axion-energy.png" height="100vmin" alt="Logo Axion Energy"
-                   style="position: relative; top: 50%; transform: translateY(-50%);">
-          </div>
-          <div class="col-sm mt-5 mt-md-4">
-              <img src="../../../../../assets/image/original-logos/sponsors/flowics_logo-horizontal-full-color.png" height="70vmin" alt="Logo flowics"
-                   style="position: relative; top: 50%; transform: translateY(-50%); ">
-          </div>
-      </div>
+    <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getAnalisisSponsors()"></app-sponsor-component>
   </div>
 
-
-  </div>
 </div>
 <app-footer></app-footer>
 

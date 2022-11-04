@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
   selector: 'app-ieeextreme',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IeeextremeComponent implements OnInit {
 
-  imgSrcPrefix = '../../../../../assets/image/sponsors/';
+  sponsorsServiceVar: SponsorsService;
 
   contacts = [
     {
@@ -20,27 +21,9 @@ export class IeeextremeComponent implements OnInit {
     }
   ];
 
-  sponsors = [
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Innovid',
-      img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'Inclusion',
-      img: this.imgSrcPrefix + 'inclusion.png'
-    },
-    {
-      name: 'Hitachi Energy',
-      img: this.imgSrcPrefix + 'hitachi-energy.png'
-    }
-  ];
-
-  constructor() {
+  constructor(private sponsorsService: SponsorsService) {
     scroll(0, 0);
+    this.sponsorsServiceVar = sponsorsService;
   }
 
   ngOnInit(): void {

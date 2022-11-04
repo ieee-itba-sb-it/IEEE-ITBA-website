@@ -117,11 +117,8 @@
 
     <div class="sponsor-section" id="sponsorship">
       <h2 class="subtitle">{{ "ASIMOVCUP.SPONSORS" | translate }}</h2>
-      <img
-        src="../../../../../assets/image/sponsors/Schneider%20Logo.png"
-        height="65vmin"
-        alt="Logo Schneider Electric"
-      />
+      <br>
+      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getAsimovSponsors()"></app-sponsor-component>
     </div>
 
     <app-footer></app-footer>
