@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
-
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {BlogService} from '../../../../core/services/blog/blog.service';
 import {newsItem} from '../../../../shared/models/news-item/news-item';
 import {blogCollectionName} from '../../../../secrets';
@@ -20,31 +20,7 @@ export class MainpageComponent implements OnInit {
   latestNews: newsItem[];
   latestLimit = 9;
   showLoadingSpinner = true;
-
-  imgSrcPrefix = '../../../../../assets/image/content/';
-
-  sponsors = [
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Schneider Electric',
-      img: this.imgSrcPrefix + 'Schneider Logo.png'
-    },
-    {
-      name: 'Innovid',
-      img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'Inclusion',
-      img: this.imgSrcPrefix + 'inclusion.png'
-    },
-    {
-      name: 'Hitachi Energy',
-      img: this.imgSrcPrefix + 'hitachi-energy.png'
-    }
-  ];
+  sponsorsServiceVar: SponsorsService;
 
   swiperConfig: SwiperOptions = {
     pagination: {
@@ -77,7 +53,7 @@ export class MainpageComponent implements OnInit {
     }
   };
 
-  constructor(public translate: TranslateService, private blogService: BlogService) {
+  constructor(public translate: TranslateService, private blogService: BlogService, private sponsorsService: SponsorsService) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
@@ -86,7 +62,7 @@ export class MainpageComponent implements OnInit {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
     this.newsDataObs = this.blogService.docsObs();
-
+    this.sponsorsServiceVar = sponsorsService;
     this.newsDataObs.subscribe((data: newsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.latestNews = data;

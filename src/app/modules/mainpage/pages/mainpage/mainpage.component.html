@@ -115,11 +115,12 @@
         </div>
         <div class="section-header-end-line"></div>
       </div>
-      <div class="sponsor-listing">
+      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
+      <!-- <div class="sponsor-listing">
         <div *ngFor="let sponsor of sponsors">
           <img class="sponsor-container" src="{{sponsor.img}}" alt="Logo {{sponsor.name}}"/>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
