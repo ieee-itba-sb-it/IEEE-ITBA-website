@@ -108,6 +108,10 @@
       "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
       "TITLE": "Asimov Cup"
     },
+    "IOT": {
+      "TEXT": "En este taller, los participantes aprenderán las bases del Internet de las Cosas (IoT) usando Mqtt y NodeRED, empezando por la motivación de su creación y terminando con ejemplos de aplicaciones en la actualidad. Además de esto, también trabajarán con un brazo robótico para implementar los conceptos aprendidos.",
+      "TITLE": "Taller de IOT"
+    },
     "COMISIONS": {
       "DC": "CD",
       "EDUCATION": "Educación",

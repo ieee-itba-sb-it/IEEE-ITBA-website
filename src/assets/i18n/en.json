@@ -100,6 +100,10 @@
       "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at ITBA. Competitors from any high school, university, or private team build their robots to compete with each other and find the winner in one of the three categories: Racing, Sumo and Minisumo.",
       "TITLE": "Asimov Cup"
     },
+    "IOT": {
+      "TEXT": "In this workshop, the attendants will learn about the basis of Internet of Things (IoT) using Mqtt and NodeRED, starting with the motivation of its creation and ending with examples of modern applications. In addition, the students will work with a robotic arm to implement the concepts of the workshop.",
+      "TITLE": "IoT Workshop"
+    },
     "CLASSES": {
       "TEXT": "Programming is an ability that doesn't discriminate professions and dominating them can be enriching for anyone. Our Python courses, both introductory and advanced, are oriented to students, professionals and anybody that is interested no matter which specialization they come from.",
       "TITLE": "Introductory Python Course"
@@ -492,7 +496,7 @@
     }
   },
   "IOT": {
-    "TITLE":"Taller de IOT",
+    "TITLE":"IoT Workshop",
     "DESC":{
       "TITLE":"Description",
       "TEXT":{
@@ -503,6 +507,6 @@
         "5":"The workshop will be held in person, and given that the amount of robot arms is limited, the amount of students per class will be reduced."
       }
     },
-    "GALLERY_TITLE":"Galería"
+    "GALLERY_TITLE":"Gallery"
   }
 }

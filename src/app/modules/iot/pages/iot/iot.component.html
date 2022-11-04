@@ -58,6 +58,12 @@
         <swiper
       [slidesPerView]="2"
       [spaceBetween]="10"
+      [navigation]="true"
+      [autoplay]="{
+        delay: 2500,
+        disableOnInteraction: false
+      }"
+      class="mySwiper"
     >
   <ng-template swiperSlide *ngFor="let image of images"><mat-card class="news-card" >
       <img class="news-card-img" mat-card-image
