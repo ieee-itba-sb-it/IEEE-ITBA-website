@@ -16,6 +16,7 @@ export class DataAnalysisComponent implements OnInit {
   week2ContentOpen = false;
   week3ContentOpen = false;
   contentClosed = false;
+  solution3Open: boolean = false;
   faq = [
     {q: 'DATAANALYSIS.FAQ.1.QUESTION', a: 'DATAANALYSIS.FAQ.1.ANSWER'},
     {q: 'DATAANALYSIS.FAQ.2.QUESTION', a: 'DATAANALYSIS.FAQ.2.ANSWER'},
