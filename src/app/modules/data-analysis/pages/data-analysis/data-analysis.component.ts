@@ -3,6 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import firebase from "firebase";
 import { firestore } from "firebase/app";
 import Timestamp = firestore.Timestamp;
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
   selector: 'app-data-analysis',
@@ -10,10 +11,12 @@ import Timestamp = firestore.Timestamp;
   styleUrls: ['./data-analysis.component.css']
 })
 export class DataAnalysisComponent implements OnInit {
+  sponsorsServiceVar: SponsorsService;
   week1ContentOpen = false;
   week2ContentOpen = false;
   week3ContentOpen = false;
   contentClosed = false;
+  solution3Open: boolean = false;
   faq = [
     {q: 'DATAANALYSIS.FAQ.1.QUESTION', a: 'DATAANALYSIS.FAQ.1.ANSWER'},
     {q: 'DATAANALYSIS.FAQ.2.QUESTION', a: 'DATAANALYSIS.FAQ.2.ANSWER'},
@@ -22,7 +25,8 @@ export class DataAnalysisComponent implements OnInit {
     {q: 'DATAANALYSIS.FAQ.5.QUESTION', a: 'DATAANALYSIS.FAQ.5.ANSWER'},
   ];
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private sponsorsService: SponsorsService) {
+  this.sponsorsServiceVar = sponsorsService;
   scroll(0, 0);
   translate.addLangs(['en', 'es']);
   translate.setDefaultLang('es');

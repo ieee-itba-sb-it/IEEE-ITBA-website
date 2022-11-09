@@ -19,6 +19,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { EventCardComponent } from './components/event-card/event-card.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import {MatCardModule} from '@angular/material/card';
+import { SponsorComponentComponent } from './components/sponsor-component/sponsor-component.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -26,7 +28,7 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent ],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
   imports: [
     routing,
     CommonModule,
@@ -41,8 +43,9 @@ export const routing = RouterModule.forChild(routes);
     MDBBootstrapModule.forRoot(),
     MatMenuModule,
     MatButtonToggleModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent]
+  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent]
 })
 export class SharedModule { }

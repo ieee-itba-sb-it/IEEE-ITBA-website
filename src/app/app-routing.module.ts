@@ -148,6 +148,13 @@ const routes: Routes = [
         (m) => m.Error404Module
       ),
   },
+  {
+    path: "Sponsors",
+    loadChildren: () =>
+      import("./modules/sponsors/sponsors.module").then(
+        (m) => m.SponsorsModule
+      ),
+  }
 ];
 
 @NgModule({

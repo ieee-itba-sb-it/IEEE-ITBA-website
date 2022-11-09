@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
   selector: 'app-sponsors',
@@ -7,32 +8,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SponsorsComponent implements OnInit {
 
-  imgSrcPrefix = '../../../../../assets/image/sponsors/';
+  sponsorsServiceVar: SponsorsService;
 
-  currentSponsors = [
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Schneider Electric',
-      img: this.imgSrcPrefix + 'Schneider Logo.png'
-    },
-    {
-      name: 'Innovid',
-      img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'Inclusion',
-      img: this.imgSrcPrefix + 'inclusion.png'
-    },
-    {
-      name: 'Hitachi Energy',
-      img: this.imgSrcPrefix + 'hitachi-energy.png'
-    }
-  ];
-
-  constructor() { }
+  constructor(private sponsorsService: SponsorsService) {
+    this.sponsorsServiceVar = sponsorsService;
+   }
 
   ngOnInit(): void {
   }
