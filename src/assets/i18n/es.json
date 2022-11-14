@@ -108,10 +108,6 @@
       "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
       "TITLE": "Asimov Cup"
     },
-    "IOT": {
-      "TEXT": "En este taller, los participantes aprenderán las bases del Internet de las Cosas (IoT) usando Mqtt y NodeRED, empezando por la motivación de su creación y terminando con ejemplos de aplicaciones en la actualidad. Además de esto, también trabajarán con un brazo robótico para implementar los conceptos aprendidos.",
-      "TITLE": "Taller de IOT"
-    },
     "COMISIONS": {
       "DC": "CD",
       "EDUCATION": "Educación",
@@ -500,17 +496,28 @@
     }
   },
   "IOT": {
-    "TITLE":"Taller de IOT",
+    "TITLE":"Taller de IoT",
+    "CARD_TEXT": "En este taller, los participantes aprenderán las bases del Internet de las Cosas (IoT) usando Mqtt y NodeRED, empezando por la motivación de su creación y terminando con ejemplos de aplicaciones en la actualidad. Además de esto, también trabajarán con un brazo robótico para implementar los conceptos aprendidos.",
     "DESC":{
       "TITLE":"Descripción",
       "TEXT":{
         "1":"¡Aprendé a controlar un brazo robótico con Internet of Things (IoT)! En este curso vas a aprender sobre la idea de Internet de las Cosas, y algunos de los protocolos y herramientas más versátiles para aplicarlo. Durante el curso vamos a explicar y trabajar con MQTT y Node-RED para operar un brazo robótico, desde sus luces hasta todas sus articulaciones.",
         "2":"Durante el taller, los alumnos se dividirán en grupos que trabajarán con un brazo. Comenzaremos realizando tareas básicas, y luego iremos subiendo el nivel de integración.",
         "3":"¡Al final del taller el brazo estará funcionando en su totalidad!",
-        "4":"Aclaración: no es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio.",
-        "5":"El taller es de modalidad presencial, y ya que la cantidad de brazos robot es limitada, la cantidad de alumnos por cada turno es reducida."
+        "4":"El taller es de modalidad presencial, y ya que la cantidad de brazos robot es limitada, la cantidad de alumnos por cada turno es reducida."
       }
     },
-    "GALLERY_TITLE":"Galería"
+    "GALLERY_TITLE": "Galería",
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "1": {
+        "QUESTION": "¿Necesito algún conocimiento previo?",
+        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+      },
+      "2": {
+        "QUESTION": "¿Quiénes pueden participar?",
+        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+      }
+    }
   }
 }

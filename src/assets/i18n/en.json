@@ -101,7 +101,7 @@
       "TITLE": "Asimov Cup"
     },
     "IOT": {
-      "TEXT": "In this workshop, the attendants will learn about the basis of Internet of Things (IoT) using Mqtt and NodeRED, starting with the motivation of its creation and ending with examples of modern applications. In addition, the students will work with a robotic arm to implement the concepts of the workshop.",
+
       "TITLE": "IoT Workshop"
     },
     "CLASSES": {
@@ -465,7 +465,7 @@
       "9": "15:00 - 17:00: Competition: Direct Elimination Phase",
       "10":"17:00 - 17:30: Coffee Break" ,
       "11":"17:30 - 18:00: Competition: Finals" ,
-      "12":"18:00 - 18:30: Awards Ceremony" 
+      "12":"18:00 - 18:30: Awards Ceremony"
     },
     "FAQ": {
       "TITLE": "Frequently asked questions",
@@ -496,17 +496,28 @@
     }
   },
   "IOT": {
-    "TITLE":"IoT Workshop",
+    "TITLE": "IoT Workshop",
+    "CARD_TEXT": "In this workshop, the attendants will learn about the basis of Internet of Things (IoT) using Mqtt and NodeRED, starting with the motivation of its creation and ending with examples of modern applications. In addition, the students will work with a robotic arm to implement the concepts of the workshop.",,
     "DESC":{
-      "TITLE":"Description",
+      "TITLE": "Description",
       "TEXT":{
-        "1":"Learn to control a robot arm using Internet of Things (IoT)! In this course you will learn about the concept of Internet of Things, and some of the most versatile protocols and tools to apply it. During the course we will explain and work with MQTT and Node-RED to operate a robot arm, starting with its lights,and ending with all of its joints.",
-        "2":"During this workshop, the students will be divided into groups which will work with one robot arm. We will start completing simple tasks, and then we will increase the level of integration.",
-        "3":"At the end of the workshop, the robot arm will be fully working!",
-        "4":"Note: it’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning.",
-        "5":"The workshop will be held in person, and given that the amount of robot arms is limited, the amount of students per class will be reduced."
+        "1": "Learn to control a robot arm using Internet of Things (IoT)! In this course you will learn about the concept of Internet of Things, and some of the most versatile protocols and tools to apply it. During the course we will explain and work with MQTT and Node-RED to operate a robot arm, starting with its lights,and ending with all of its joints.",
+        "2": "During this workshop, the students will be divided into groups which will work with one robot arm. We will start completing simple tasks, and then we will increase the level of integration.",
+        "3": "At the end of the workshop, the robot arm will be fully working!",
+        "4": "The workshop will be held in person, and given that the amount of robot arms is limited, the amount of students per class will be reduced."
       }
     },
-    "GALLERY_TITLE":"Gallery"
+    "GALLERY_TITLE": "Gallery",
+    "FAQ": {
+      "TITLE": "Frequently asked questions",
+      "1": {
+        "QUESTION": "Do I need to have prior knowledge?",
+        "ANSWER": "It’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning."
+      },
+      "2": {
+        "QUESTION": "Who can enter?",
+        "ANSWER": "The workshop is free and open to everyone, but the amount of students is reduced due to the limited number of robot arms."
+      }
+    }
   }
 }

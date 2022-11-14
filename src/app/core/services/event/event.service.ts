@@ -23,7 +23,7 @@ export class EventService {
     imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.ASIMOVCUP.TITLE', descriptionCode: 'HOME.ASIMOVCUP.TEXT'};
 
   private IOTCourse: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/courses/iot-banner.jpeg',
-  imageAlt: 'Banner de IOT', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
+  imageAlt: 'Banner de IOT', titleCode: 'IOT.TITLE', descriptionCode: 'IOT.CARD_TEXT'};
   constructor() { }
 
   getAllEvents(): EventCardData[] {
