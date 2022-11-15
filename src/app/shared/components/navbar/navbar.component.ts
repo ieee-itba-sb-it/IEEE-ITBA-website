@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   user: Observable<IEEEuser>;
   logguedIn = false;
   journalist = false;
+  language: string;
 
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
@@ -28,7 +29,8 @@ export class NavbarComponent implements OnInit {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
+    this.language = browserLang.match(/es|en/) ? browserLang : 'en';
+    translate.use(this.language);
   }
 
   // ----------Methods----------
@@ -36,6 +38,7 @@ export class NavbarComponent implements OnInit {
   // Translator
   useLanguage(language: string) {
     this.translate.use(language);
+    this.language = language;
   }
 
   // Set Up
@@ -70,6 +73,14 @@ export class NavbarComponent implements OnInit {
       document: this.document,
       scrollTarget: '#home',
     });
+  }
+
+  hasEnglishLanguage(){
+    return this.language === 'en';
+  }
+
+  hasSpanishLanguage(){
+    return this.language === 'es';
   }
 
   // Scroll

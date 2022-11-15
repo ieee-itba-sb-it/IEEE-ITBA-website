@@ -3,7 +3,7 @@
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['']"><img
-        src="https://i.ibb.co/qRDPTRx/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a>
+          src="../../../../assets/image/general-icons/IEEE-Logo-No-Text-Darkest.png" height="60vmin" alt="Icon IEEE-ITBA"></a>
   </mdb-navbar-brand>
 
   <!-- All Items -->
@@ -11,6 +11,11 @@
 
     <!-- Menu -->
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <button [routerLink]="['/about-us']" class="buttonNavbar" type="button">{{ 'NAVBAR.ABOUTUS' |
+          translate
+          }}</button>
+      </li>
       <li class="nav-item">
         <button [routerLink]="['/noticias']" class="buttonNavbar" type="button">{{ 'NAVBAR.NEWS' |
           translate
@@ -31,8 +36,9 @@
       </li>
       <mat-menu #institutionalMenu="matMenu" xPosition="before" yPosition="below">
         <button mat-menu-item [routerLink]="['/team']">{{ 'NAVBAR.TEAM' | translate }}</button>
+        <button mat-menu-item [routerLink]="['/ras']">RAS</button>
         <button mat-menu-item onclick="window.location.href = 'https://csitba.web.app/'">CS</button>
-        <button mat-menu-item onclick="window.location.href = 'https://linktr.ee/wie_itba'">WIE</button>
+        <button mat-menu-item onclick="window.location.href = 'https://wie-itba.github.io/'">WIE</button>
       </mat-menu>
       <li class="nav-item">
         <button [routerLink]="['/contact']" class="buttonNavbar" type="button">{{ 'NAVBAR.CONTACT' |
@@ -59,8 +65,8 @@
       <!-- Language toggle button -->
       <li class="nav-item">
         <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle class="es-en-button" value="es" checked=true (click)="useLanguage('es')">es</mat-button-toggle>
-          <mat-button-toggle class="es-en-button" value="en" (click)="useLanguage('en')">en</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="es" checked="{{ hasSpanishLanguage() }}" (click)="useLanguage('es')">es</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="en" checked="{{ hasEnglishLanguage() }}" (click)="useLanguage('en')">en</mat-button-toggle>
         </mat-button-toggle-group>
       </li>
       <!-- Dropdown -->

@@ -12,11 +12,13 @@ import Timestamp = firestore.Timestamp;
 })
 export class CursoPythonComponent implements OnInit {
 
-  enrollLink: string = 'https://docs.google.com/forms/d/e/1FAIpQLSdBN80HmfWRXwRUHgSVcdqkpvOylsvF46AHMyP6Vtq0G2MDeg/viewform?usp=sf_link';
-  class1Open: boolean = false;
-  class2Open: boolean = false;
-  class3Open: boolean = false;
-  solution3Open: boolean = false;
+  enrollLink = 'https://docs.google.com/forms/d/e/1FAIpQLSdBN80HmfWRXwRUHgSVcdqkpvOylsvF46AHMyP6Vtq0G2MDeg/viewform?usp=sf_link';
+
+  week1ContentOpen = false;
+  week2ContentOpen = false;
+  week3ContentOpen = false;
+  week4ContentOpen = false;
+  contentClosed = false;
 
   //ojala no tuviera que hardcodear asi, pero no encontre una forma de pasarle el string y concatenarlo con otros en el translate
   faq = [
@@ -42,10 +44,11 @@ export class CursoPythonComponent implements OnInit {
     translate.setDefaultLang("es");
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/es|en/) ? browserLang : "en");
-    this.class1Open = this.isOldDate("07 Aug 2022 03:00:00 UTC");
-    this.class2Open = this.isOldDate("14 Aug 2022 03:00:00 UTC");
-    this.class3Open = this.isOldDate("21 Aug 2022 03:00:00 UTC");
-    this.solution3Open = this.isOldDate("28 Aug 2022 03:00:00 UTC");
+    this.contentClosed = this.isOldDate("25 Sep 2022 03:00:00 UTC");
+    this.week1ContentOpen = this.isOldDate("07 Aug 2022 03:00:00 UTC") && !this.contentClosed;
+    this.week2ContentOpen = this.isOldDate("14 Aug 2022 03:00:00 UTC") && !this.contentClosed;
+    this.week3ContentOpen = this.isOldDate("21 Aug 2022 03:00:00 UTC") && !this.contentClosed;
+    this.week4ContentOpen = this.isOldDate("28 Aug 2022 03:00:00 UTC") && !this.contentClosed;
   }
 
   useLanguage(language: string) {
