@@ -26,6 +26,16 @@
             </div>
         </div>
     </div>
+    <div *ngIf="isEnrollingAvailable()">
+      <div class="d-flex flex-row-reverse">
+        <!-- Button is inside <a> tag because it allows a greater hitmark -->
+        <a href="{{ enrollLink }}" target="_blank" class="button-text">
+          <button class="goback-button">
+            {{ 'IOT.ENROLL' | translate }}
+          </button>
+        </a>
+      </div>
+    </div>
 
     <!-- Introductory text -->
     <div class="section">

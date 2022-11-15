@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import SwiperCore, {Pagination, Navigation, Autoplay, Thumbs, SwiperOptions} from 'swiper/core';
+import firebase from 'firebase';
+import { firestore } from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+
 SwiperCore.use([Pagination, Navigation, Autoplay, Thumbs]);
 @Component({
   selector: 'app-iot',
@@ -8,6 +12,8 @@ SwiperCore.use([Pagination, Navigation, Autoplay, Thumbs]);
 })
 export class IotComponent implements OnInit {
   images = [1, 2, 4, 7, 3, 6].map((n) => `../../../assets/image/iot/image${n}.jpg`);
+  enrollLink = 'https://forms.gle/mUWavTU2wcRY1xqJ6';
+  enrollEndDate = '22 Nov 2022 03:00:00 UTC';
 
   faq = [
     { q: "IOT.FAQ.1.QUESTION", a: "IOT.FAQ.1.ANSWER" },
@@ -35,6 +41,12 @@ export class IotComponent implements OnInit {
       }
     }
   };
+
+  isEnrollingAvailable() {
+    let now = firebase.firestore.Timestamp.now();
+    console.log(now);
+    return now < Timestamp.fromDate(new Date(this.enrollEndDate));
+  }
 
   constructor() { }
 
