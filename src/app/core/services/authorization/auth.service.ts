@@ -73,7 +73,7 @@ export class AuthService {
       .catch(err => {
         // Switch error
         switch (err.code){
-          case 'authe/email-already-in-use': { // Email used
+          case 'auth/email-already-in-use': { // Email used
             element.textContent = 'Email already in use.';
             element.style.color = 'red';
             break;
@@ -126,7 +126,7 @@ export class AuthService {
           element.style.color = 'red';
           break;
         }
-        case 'aut/wrong-password': {
+        case 'auth/wrong-password': {
           element.textContent = 'Wrong Password.';
           element.style.color = 'red';
           break;
