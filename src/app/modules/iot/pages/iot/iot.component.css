@@ -1,0 +1,171 @@
+@import '~swiper/swiper-bundle.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+html {
+  /*min-height: 200%;*/
+  background-size: cover;
+}
+
+body {
+  padding: 0% 10% ;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  font-size: 1.2em;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.col-sm {
+  margin-top: 1vmin;
+  margin-bottom: 1vmin;
+  text-align: center;
+}
+
+.topbottomLine {
+  padding-top: 2vmin;
+  padding-bottom: 2vmin;
+  border-top: whitesmoke 2px solid;
+  border-bottom: whitesmoke 2px solid;
+  vertical-align: middle;
+  align-content: center;
+}
+
+@media (max-width: 700px) {
+  .topbottomLine {
+    padding-top: 30%;
+  }
+}
+
+.course-title {
+  font-size: calc(1.5vw + 1.2rem);
+  font-weight: 400;
+  color: #0d47a1;
+  letter-spacing: 1px;
+}
+.course-subtitle {
+  font-size: calc(0.7vw + 1rem);
+  color: rgba(13, 71, 161, 0.8);
+  font-weight: 600;
+  margin: 1rem 20px;
+}
+
+.desc-text{
+  margin-left: 20px;
+}
+
+.banner {
+  position: relative;
+  text-align: center;
+}
+
+.max-width {
+  margin-top: calc(7.5em);
+  width: 100%;
+  transform: translateY(0);
+  /*height: 20em; */
+}
+
+.news-card {
+  height: 25rem;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card-img {
+  margin: 0;
+  height: 25em;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 90%;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.faq-section {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.faq-accordion {
+  margin-top: 1.5rem;
+}
+.faq-panel {
+  height:max-content;
+}
+.faq-question {
+  font-size: 1rem;
+}
+.faq-answer {
+  font-size: larger;
+  margin: 1rem 0 0 0;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color:rgb(23, 46, 148);
+  background-color: transparent;
+}
+
+::ng-deep .mat-ink-bar {
+  background-color: var(--primary-color,whitesmoke) !important;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color:rgb(23, 46, 148);
+}
+
+mat-panel-description {
+  text-align: right;
+}
+
+mat-expansion-panel {
+  background-color: transparent;
+  margin-top: 1.5vmin;
+}
+
+mat-expansion-panel-header {
+  border: rgb(23, 46, 148) 1px solid;
+  border-radius: 5vmin;
+}
+
+mat-panel-title {
+  color:rgb(23, 46, 148);
+}
+
+.goback-button {
+  font-size: calc(0.5vw + 0.5rem);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  padding:  0.7rem 1rem 0.7rem 1rem;
+  border: solid rgb(23, 46, 148);
+  color: rgb(23, 46, 148) !important;
+  border-radius: 5px;
+  background-color: inherit;
+  border-width: 3px;
+  transition: all 175ms ease-in-out;
+}
+.goback-button:hover {
+  box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+  color: white !important;
+  background-color: #0d47a1;
+  border-color: white;
+}
+
+.goback-button >.button-text {
+  color: rgb(23, 46, 148) !important;
+}
+.goback-button:hover > .button-text{
+  color: white !important;
+}

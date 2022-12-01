@@ -6,7 +6,7 @@ import { Sponsor } from 'src/app/shared/models/sponsors';
 })
 
 export class SponsorsService {
-  imgSrcPrefix = '../../../assets/image/content/';
+  imgSrcPrefix = '../../../assets/image/sponsors/';
 
   currentSponsors: Sponsor[] = [
     {
@@ -136,7 +136,7 @@ export class SponsorsService {
 
 
   constructor() { }
-  
+
   getCurrentSponsors() {
     return this.currentSponsors;
   }

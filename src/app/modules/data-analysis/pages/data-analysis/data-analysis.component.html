@@ -35,7 +35,7 @@
 
 <div>
   <div class="d-flex flex-row-reverse">
-    <div *ngIf="hasTestsAvailable()">
+    <div *ngIf="hasTestsAvailable() && !contentClosed">
       <a href="{{ getCurrentTest() }}" target="_blank" class="button-text">
         <button class="goback-button">
           {{ 'DATAANALYSIS.TESTBUTTON' | translate }}
@@ -58,12 +58,12 @@
 
 <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class1Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-      fxFlex.lt-sm="100%">
+  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
       <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>
-              <ng-template [ngIf]="class1Open" [ngIfElse]="class1Closed">
+              <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
                   <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_1_Analisis_de_Datos.ipynb">{{
                   'DATAANALYSIS.CLASSES.TITLE' | translate }}
                   1
@@ -80,7 +80,7 @@
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-          <ng-template [ngIf]="class2Open" [ngIfElse]="solutions1Closed">
+          <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="solutions1Closed">
               <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_1.ipynb">
                   <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
               </a>
@@ -91,12 +91,12 @@
       </mat-card-actions>
   </mat-card>
 
-  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!class2Open}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-      fxFlex.lt-sm="100%">
+  <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
+            fxFlex.lt-sm="100%">
       <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>
-              <ng-template [ngIf]="class2Open" [ngIfElse]="class2Closed">
+              <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
                   <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_2_Analisis_de_Datos.ipynb">{{
                       'DATAANALYSIS.CLASSES.TITLE' | translate }}
                       2
@@ -113,7 +113,7 @@
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-          <ng-template [ngIf]="class3Open" [ngIfElse]="solutions2Closed">
+          <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="solutions2Closed">
               <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_2.ipynb">
                   <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
               </a>
