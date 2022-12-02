@@ -104,6 +104,10 @@
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
       "TITLE": "Bit Cup"
     },
+    "IOT": {
+      "TITLE": "IoT Workshop",
+      "TEXT": "In this workshop, the attendants will learn about the basis of Internet of Things (IoT) using Mqtt and NodeRED, starting with the motivation of its creation and ending with examples of modern applications. In addition, the students will work with a robotic arm to implement the concepts of the workshop."
+    },
     "ASIMOVCUP": {
       "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at ITBA. Competitors from any high school, university, or private team build their robots to compete with each other and find the winner in one of the three categories: Racing, Sumo and Minisumo.",
       "TITLE": "Asimov Cup"
@@ -465,6 +469,31 @@
     "GOBACK": "Go back"
   },
   "WIP": "Site under construction",
+  "IOT": {
+    "TITLE": "IoT Workshop",
+    "ENROLL": "Enroll now!",
+    "DESC": {
+      "TITLE": "Description",
+      "TEXT": {
+        "1": "Learn to control a robot arm using Internet of Things (IoT)! In this course you will learn about the concept of Internet of Things, and some of the most versatile protocols and tools to apply it. During the course we will explain and work with MQTT and Node-RED to operate a robot arm, starting with its lights,and ending with all of its joints.",
+        "2": "During this workshop, the students will be divided into groups which will work with one robot arm. We will start completing simple tasks, and then we will increase the level of integration.",
+        "3": "At the end of the workshop, the robot arm will be fully working!",
+        "4": "The workshop will be held in person, and given that the amount of robot arms is limited, the amount of students per class will be reduced."
+      }
+    },
+    "GALLERY_TITLE": "Gallery",
+    "FAQ": {
+      "TITLE": "Frequently asked questions",
+      "1": {
+        "QUESTION": "Do I need to have prior knowledge?",
+        "ANSWER": "It’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning."
+      },
+      "2": {
+        "QUESTION": "Who can enter?",
+        "ANSWER": "The workshop is free and open to everyone, but the amount of students is reduced due to the limited number of robot arms."
+      }
+    }
+  },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "ENROLLBUTTON": "Enroll now!",
@@ -482,8 +511,8 @@
         "2": {
           "TEXT": "Each category is developed independently of the others, all running simultaneously on the day of the event. The regulations are adapted from the Argentine National Robotics League (LNR), and can be downloaded below:",
           "LINKS": {
-            "1": "Download the regulations for the Sumo/Minisumo competition",
-            "2": "Download the regulations for the Racing competition"
+            "1": "Sumo/Minisumo regulations",
+            "2": "Racing regulations"
           }
         },
         "3": {
@@ -540,6 +569,6 @@
         "ANSWER": "For any questions you can contact us at ieee@itba.edu.ar"
       }
     },
-    "SPONSORS": "Sponsor"
+    "SPONSORS": "Sponsors"
   }
 }

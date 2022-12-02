@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div>
+<div *ngIf="isEnrollAvailable()">
   <div class="d-flex flex-row-reverse">
     <!-- Button is inside <a> tag because it allows a greater hitmark -->
     <a href="https://forms.gle/zdYmj6QgzH9iLuJF9" target="_blank" class="button-text">
@@ -146,7 +146,7 @@
 <!-- Sponsors Actuales -->
 <div class="bottomLine mt-4">
   <div class="row">
-    <h1 class="section-title">Sponsors</h1>
+    <h1 class="course-subtitle">Sponsors</h1>
 
     <br>
 

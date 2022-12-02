@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div>
+    <div *ngIf="enrollAvailable()">
         <div class="d-flex flex-row-reverse">
             <button class="goback-button">
                 <a href="{{ enrollLink }}" class="button-text">

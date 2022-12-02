@@ -22,10 +22,13 @@ export class EventService {
   private asimovCup: EventCardData = { routerLink: '/asimovcup', imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
     imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.ASIMOVCUP.TITLE', descriptionCode: 'HOME.ASIMOVCUP.TEXT'};
 
+  private iotWorkshop: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
+    imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
+
   constructor() { }
 
   getAllEvents(): EventCardData[] {
-    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup];
+    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop];
   }
 
   getRasEvents(): EventCardData[] {

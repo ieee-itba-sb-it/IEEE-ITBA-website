@@ -54,5 +54,9 @@ export class CursoPythonComponent implements OnInit {
     this.translate.use(language);
   }
 
+  enrollAvailable() {
+    return false;             // Actualizar con fecha de publicación en la página
+  }
+
   ngOnInit(): void {}
 }

@@ -41,8 +41,13 @@ export class AsimovCupComponent implements OnInit {
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/es|en/) ? browserLang : "en");
   }
+
   useLanguage(language: string) {
     this.translate.use(language);
+  }
+
+  enrollAvailable() {
+    return false;       // When event is coming, enable it with programmed date
   }
 
   ngOnInit(): void {}

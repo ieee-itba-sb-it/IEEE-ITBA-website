@@ -81,6 +81,10 @@ useLanguage(language: string) {
   this.translate.use(language);
 }
 
+isEnrollAvailable() {
+    return false;
+}
+
 ngOnInit(): void {
   }
 
