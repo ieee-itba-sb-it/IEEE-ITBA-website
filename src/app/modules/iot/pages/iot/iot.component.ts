@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import SwiperCore, {Navigation, Autoplay, Lazy, SwiperOptions} from 'swiper/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 
@@ -54,7 +54,6 @@ export class IotComponent implements OnInit {
 
   isEnrollingAvailable() {
     let now = firebase.firestore.Timestamp.now();
-    console.log(now);
     return now < Timestamp.fromDate(new Date(this.enrollEndDate));
   }
 
