@@ -8,6 +8,7 @@ import {
   redirectUnauthorizedTo,
 } from "@angular/fire/auth-guard";
 import { roles } from "./shared/models/roles/roles.enum";
+import {IotModule} from './modules/iot/iot.module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["login"]);
 
@@ -59,6 +60,13 @@ const routes: Routes = [
       import("./modules/noticias/noticias.module").then(
         (m) => m.NoticiasModule
       ),
+  },
+  {
+    path: "iot",
+    loadChildren: () =>
+      import("./modules/iot/iot.module").then(
+        (m) => m.IotModule
+      )
   },
   {
     path: "sponsors",

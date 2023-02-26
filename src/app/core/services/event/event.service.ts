@@ -7,25 +7,28 @@ import { EventCardData } from '../../../shared/models/event/event-card-data';
 
 export class EventService {
 
-  private ieeextreme: EventCardData = { routerLink: '/ieeextreme', imageSrc: 'https://i.ibb.co/YNBZxNs/ieee-extreme.jpg',
+  private ieeextreme: EventCardData = { routerLink: '/ieeextreme', imageSrc: '../../../../../assets/image/events/ieeextreme/ieee-extreme.jpg',
     imageAlt: 'Foto de competicion IEEExtreme', titleCode: 'HOME.IEEEXTREME.TITLE', descriptionCode: 'HOME.IEEEXTREME.TEXT'};
 
-  private cursosPython: EventCardData = { routerLink: '/cursospython', imageSrc: 'https://i.ibb.co/q1QyW01/cursopython.jpg',
+  private cursosPython: EventCardData = { routerLink: '/cursospython', imageSrc: '../../../../../assets/image/events/python-introductory/cursopython.jpg',
     imageAlt: 'Foto de los cursos de Python', titleCode: 'HOME.CLASSES.TITLE', descriptionCode: 'HOME.CLASSES.TEXT'};
 
-  private bitcup: EventCardData = { routerLink: '/bitcup', imageSrc: '../../../../../assets/image/courses/bitcup-logo.jpeg',
+  private bitcup: EventCardData = { routerLink: '/bitcup', imageSrc: '../../../../../assets/image/events/bitcup/bitcup-logo.jpeg',
     imageAlt: 'Foto de los cursos de Python', titleCode: 'HOME.BITCUP.TITLE', descriptionCode: 'HOME.BITCUP.TEXT'};
 
-  private dataAnalysis: EventCardData = { routerLink: '/data-analysis', imageSrc: '../../../../../assets/image/courses/data-analysis-event.png',
+  private dataAnalysis: EventCardData = { routerLink: '/data-analysis', imageSrc: '../../../../../assets/image/events/data-analysis/data-analysis-event.png',
     imageAlt: 'Foto de curso analisis de datos', titleCode: 'HOME.DATAANALYSIS.TITLE', descriptionCode: 'HOME.DATAANALYSIS.TEXT'};
 
-  private asimovCup: EventCardData = { routerLink: '/asimovcup', imageSrc: '../../../../../assets/image/courses/asimov-cup-logo.png',
+  private asimovCup: EventCardData = { routerLink: '/asimovcup', imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
     imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.ASIMOVCUP.TITLE', descriptionCode: 'HOME.ASIMOVCUP.TEXT'};
+
+  private iotWorkshop: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
+    imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
 
   constructor() { }
 
   getAllEvents(): EventCardData[] {
-    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup];
+    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop];
   }
 
   getRasEvents(): EventCardData[] {

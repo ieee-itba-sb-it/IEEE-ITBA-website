@@ -21,6 +21,7 @@ body {
     border-bottom: whitesmoke 2px solid;
     vertical-align: middle;
     align-content: center;
+    margin: auto;
 }
 
 .news-container {

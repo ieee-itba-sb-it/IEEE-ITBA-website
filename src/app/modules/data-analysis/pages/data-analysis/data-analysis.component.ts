@@ -12,9 +12,10 @@ import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 })
 export class DataAnalysisComponent implements OnInit {
   sponsorsServiceVar: SponsorsService;
-  class1Open: boolean = false;
-  class2Open: boolean = false;
-  class3Open: boolean = false;
+  week1ContentOpen = false;
+  week2ContentOpen = false;
+  week3ContentOpen = false;
+  contentClosed = false;
   solution3Open: boolean = false;
   faq = [
     {q: 'DATAANALYSIS.FAQ.1.QUESTION', a: 'DATAANALYSIS.FAQ.1.ANSWER'},
@@ -31,9 +32,10 @@ export class DataAnalysisComponent implements OnInit {
   translate.setDefaultLang('es');
   const browserLang = translate.getBrowserLang();
   translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
-  this.class1Open = this.isOldDate("19 Sep 2022 03:00:00 UTC");
-  this.class2Open = this.isOldDate("26 Sep 2022 03:00:00 UTC");
-  this.class3Open = this.isOldDate("03 Oct 2022 03:00:00 UTC");
+  this.contentClosed = this.isOldDate("31 Oct 2022 03:00:00 UTC");
+  this.week1ContentOpen = this.isOldDate("19 Sep 2022 03:00:00 UTC") && !this.contentClosed;
+  this.week2ContentOpen = this.isOldDate("26 Sep 2022 03:00:00 UTC") && !this.contentClosed;
+  this.week3ContentOpen = this.isOldDate("03 Oct 2022 03:00:00 UTC") && !this.contentClosed;
 }
 
 isOldDate(date: string) {
@@ -77,6 +79,10 @@ hasTestsAvailable() {
 
 useLanguage(language: string) {
   this.translate.use(language);
+}
+
+isEnrollAvailable() {
+    return false;
 }
 
 ngOnInit(): void {
