@@ -7,37 +7,59 @@
   background-color: transparent;
   transition: all ease 0.5s;
 }
-.altButtonNavbar {
-  padding: 1.5vmin;
+
+.navItems {
+  display: flex;
+  justify-content: space-around;
 }
-@media (max-width: 992px) {
+
+.profile-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.custom-nav-icon {
+  font-size: large;
+}
+
+/* 1200px = bootstrap lg breakpoint (1px more needed) */
+@media (max-width: 1199px) {
   .buttonNavbar {
-    padding: 1rem;
+    font-size: 1rem;
     border-radius: 2rem;
+    padding: 0.75rem 2rem;
   }
-  .altButtonNavbar {
-    padding: 1rem;
-  }
-  .navbar-nav {
-    margin-right: 0.5rem !important;
-  }
+
   .nav-last {
-    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
+
+  .navItems {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
   ::ng-deep.mat-menu-panel {
     margin-top: 0.5rem !important;
     margin-right: 1rem !important;
   }
 }
-@media (min-width: 992px) {
+
+/* 1200px = bootstrap lg breakpoint (1px more needed) */
+@media (min-width: 1199px) {
   .nav-last {
     display: flex;
     align-items: center;
   }
 }
+
 .nav-last-content {
   align-self: center;
 }
+
 .navbar-nav {
   gap: 1rem;
 }

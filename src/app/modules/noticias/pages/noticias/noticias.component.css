@@ -59,7 +59,6 @@ body {
     border-bottom: #0d47a1 2px solid;
     vertical-align: middle;
     align-content: center;
-
 }
 
 #icons {
@@ -368,6 +367,46 @@ background-size: cover;
     position: relative;
     top: 50%;
 }
+
+.pagination-controller {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: lighter;
+}
+
+.page-change-button {
+    background-color: #007aff;
+    border: 0;
+}
+
+.page-change-button-left {
+    border-radius: 40% 20% 20% 40%;
+}
+
+.page-change-button-right {
+    border-radius: 20% 40% 40% 20%;
+}
+
+.page-change-button:disabled {
+    opacity: 0.2;
+}
+
+.page-change-button:hover {
+    background-color: #0065d4;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.page-change-button-image {
+    height: 45px;
+    width: 45px;
+}
+
 @media (min-width: 768px) {
 
 	.flexText{

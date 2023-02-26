@@ -10,6 +10,7 @@ body {
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
+  font-size: 1.2em;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
@@ -35,11 +36,8 @@ body {
 
 .text-section {
   color: rgb(0, 0, 0);
-  margin-top: 3vmin;
-  margin-bottom: 3vmin;
   background: rgba(245, 245, 245, 0.2);
-  padding: 3vmin;
-  border-radius: 5vmin;
+  margin: 2rem 0;
   text-align: justify;
 }
 
@@ -154,8 +152,7 @@ mdb-card {
 
 h2 {
   font-size: 3vmin;
-  margin-left: 20px;
-  text-align: left;
+  text-align: start;
   color: black;
 }
 
@@ -201,20 +198,6 @@ h3 {
   vertical-align: middle;
 }
 
-img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Flex */
-/*
-@media (max-width: 1000px) {
-    html {
-        min-height:300%;
-    }
-}
-*/
 @media (max-width: 600px) {
   #homeText {
     display: none;
@@ -241,7 +224,7 @@ img {
 }
 
 .enroll-button {
-  font-size: calc(0.5vw + 1rem);
+  font-size: calc(0.3vw + 1rem);
   font-weight: 600;
   margin-top: 1rem;
   padding: 0.7rem 1rem 0.7rem 1rem;
@@ -252,6 +235,7 @@ img {
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
+
 .enroll-button:hover {
   box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0.2);
   color: white !important;
@@ -262,8 +246,54 @@ img {
 .enroll-button > .button-text {
   color: rgb(23, 46, 148) !important;
 }
+
 .enroll-button:hover > .button-text {
   color: white !important;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: calc(0.3vw + 0.7rem);
+  font-weight: 500;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  color: whitesmoke !important;
+  border-radius: 5px;
+  background-color: #3d6bb3;
+  border: 0;
+  transition: all 175ms ease-in-out;
+}
+
+.download-button:hover {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+  color: whitesmoke !important;
+  background-color: #0d47a1;
+  border-color: whitesmoke;
+}
+
+.download-icon {
+  height: 2rem;
+}
+
+.download-buttons-container {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 10rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.section {
+  margin: 2rem 0;
+}
+
+.course-title {
+  font-size: calc(1.5vw + 1.2rem);
+  font-weight: 400;
+  color: #0d47a1;
+  letter-spacing: 1px;
 }
 
 .title {
@@ -306,26 +336,19 @@ img {
   margin-top: 0.5rem;
 }
 
-/*
-.list-section {
-  counter-reset: item;
+.section-title {
+  color: rgba(13, 71, 161, 0.8);
+  font-weight: 600;
 }
-.list-section li {
-  display: block;
+
+.p {
+  margin: 0;
 }
-.list-section li::before {
-  content: counter(item) ". ";
-  counter-increment: item;
-  color: #0d47a1 !important;
-  font-weight: bolder;
-}
-*/
+
 .list-section li::marker {
   color: #0d47a1;
   font-weight: bolder;
 }
-
-/** tomado de team component css */
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
   color: rgb(23, 46, 148);
@@ -356,4 +379,38 @@ mat-expansion-panel-header {
 
 mat-panel-title {
   color: rgb(23, 46, 148);
+}
+
+.sponsor-section {
+  display: flex;
+  flex-direction: column;
+}
+.sponsor-section img {
+  object-fit: contain;
+}
+.sponsor-section .subtitle {
+  position: relative;
+}
+@media (min-width: 650px) {
+  .sponsor-section {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+  }
+  .sponsor-section .subtitle {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.image-section {
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+}
+.image-section img {
+  object-fit: contain;
+  height: inherit;
 }

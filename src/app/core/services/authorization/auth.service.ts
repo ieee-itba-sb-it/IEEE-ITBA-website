@@ -73,17 +73,17 @@ export class AuthService {
       .catch(err => {
         // Switch error
         switch (err.code){
-          case 'authentication/email-already-in-use': { // Email used
+          case 'auth/email-already-in-use': { // Email used
             element.textContent = 'Email already in use.';
             element.style.color = 'red';
             break;
           }
-          case 'authentication/invalid-email': { // Invalid email
+          case 'auth/invalid-email': { // Invalid email
             element.textContent = 'Invalid email.';
             element.style.color = 'red';
             break;
           }
-          case 'authentication/weak-password': { // Weak pass
+          case 'auth/weak-password': { // Weak pass
             element.textContent = 'Pass too weak.';
             element.style.color = 'red';
             break;
@@ -116,22 +116,22 @@ export class AuthService {
     .catch(err => {
       // Message the user
       switch (err.code) {
-        case 'authentication/invalid-email': {
+        case 'auth/invalid-email': {
           element.textContent = 'Invalid email address.';
           element.style.color = 'red';
           break;
         }
-        case 'authentication/user-not-found': {
+        case 'auth/user-not-found': {
           element.textContent = 'No user corresponding to provided email.';
           element.style.color = 'red';
           break;
         }
-        case 'authentication/wrong-password': {
+        case 'auth/wrong-password': {
           element.textContent = 'Wrong Password.';
           element.style.color = 'red';
           break;
         }
-        case 'authentication/user-disabled': {
+        case 'auth/user-disabled': {
           element.textContent = 'User disabled.';
           element.style.color = 'red';
           break;
@@ -172,12 +172,12 @@ export class AuthService {
     .catch(err => {
       // Message the user
       switch (err.code) {
-        case 'authentication/invalid-email': {
+        case 'auth/invalid-email': {
           element.textContent = 'Invalid email address.';
           element.style.color = 'red';
           break;
         }
-        case 'authentication/user-not-found': {
+        case 'auth/user-not-found': {
           element.textContent = 'No user corresponding to provided email.';
           element.style.color = 'red';
           break;

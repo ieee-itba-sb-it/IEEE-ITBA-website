@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
   selector: 'app-sponsors',
@@ -7,7 +8,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SponsorsComponent implements OnInit {
 
-  constructor() { }
+  sponsorsServiceVar: SponsorsService;
+
+  constructor(private sponsorsService: SponsorsService) {
+    this.sponsorsServiceVar = sponsorsService;
+   }
 
   ngOnInit(): void {
   }

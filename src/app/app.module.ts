@@ -9,8 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
 
-import { CarouselModule } from 'ngx-owl-carousel-o';
-
 // contact
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 // Translations

@@ -28,7 +28,6 @@ body {
     align-content: center;
 }
 
-
 .bottomLine {
     padding-top: 10vmin;
     padding-bottom: 10vmin;
@@ -64,6 +63,11 @@ body {
     margin-top: 1vmin;
     margin-bottom: 1vmin;
     text-align: center;
+}
+
+.sponsors-needed-text {
+  margin-top: 2rem;
+  font-size: large;
 }
 
 .transparent {
@@ -134,14 +138,18 @@ h2 {
     border-radius: 5vmin;
 }
 
+.sponsor-listing {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem 10rem;
+  justify-content: center;
+  align-content: center;
+}
 
-.sponsor {
-    color: whitesmoke;
-    background-color: lightgray;
-    text-align: center;
-    font-weight: lighter;
-    padding: 3vmin;
-    border-radius: 5vmin;
+.sponsor-container {
+  height: 10rem;
+  width: 15rem;
+  object-fit: scale-down;
 }
 
 .whiteLink {

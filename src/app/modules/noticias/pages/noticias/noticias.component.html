@@ -13,12 +13,11 @@
 <body>
 
     <div class="body" >
-
         <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
-                        <img src="../../../../../assets/image/IEEENews_sin_fondo.png" alt="News" class="IEEENoticiasImage">
+                        <img src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="News" class="IEEENoticiasImage">
                     </div>
                     <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
                         <h1 class="page-title">{{ 'NAVBAR.NEWS' | translate }}</h1>
@@ -31,9 +30,6 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
 
-        <div class="spacenav">
-        </div>
-
         <div class="row news-grid">
             <div *ngFor="let noticia of newsData">
                 <div class="col-sm margin-top">
@@ -41,9 +37,19 @@
                 </div>
             </div>
         </div>
-        <div class="addMargin">
 
+        <div *ngIf="!showLoadingSpinner">
+          <div class="pagination-controller">
+            <button class="page-change-button page-change-button-left" (click)="prevPage()" [disabled]="!hasPrevPage()">
+              <img class="page-change-button-image" src="../../../../../assets/image/logos/left-arrow.svg" alt="Previous page icon"/>
+            </button>
+            <span>{{this.currentPage}} {{ 'NEWS.OF' | translate }} {{this.pageCount}}</span>
+            <button class="page-change-button page-change-button-right" (click)="nextPage()" [disabled]="!hasNextPage()">
+              <img class="page-change-button-image" src="../../../../../assets/image/logos/right-arrow.svg" alt="Previous page icon"/>
+            </button>
+          </div>
         </div>
+
         <app-footer></app-footer>
     </div>
 </body>

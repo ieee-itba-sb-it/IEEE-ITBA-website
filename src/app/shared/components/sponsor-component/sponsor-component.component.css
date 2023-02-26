@@ -1,0 +1,229 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    padding: 10%;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+    background-size: cover;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    padding-top: 160px;
+    padding-bottom: 3%;
+}
+/* Thick red border */
+
+.sponsor-listing {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem 10rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.sponsor-container {
+  height: 10rem;
+  width: 15rem;
+  object-fit: scale-down;
+}
+
+hr.new {
+    height: 6px;
+  }
+
+.page-title {
+    color: #0d47a1;
+	font-size: 2.5em;
+}
+
+.flexImage{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.center{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.flexText{
+	display: flex;
+	/* centrado horizontal */
+	justify-content: center;
+	/* centrado vertical */
+	align-items: center;
+}
+
+.whiteRoundedBlock{
+    background-color: whitesmoke;
+    padding: 3%;
+    border-radius: 5vmin;
+}
+
+.group-margin{
+    margin-top: 7rem !important;
+}
+
+.topbottomLine {
+    border-top:#0d47a1 2px solid;
+    border-bottom: #0d47a1 2px solid;
+    vertical-align: middle;
+    align-content: center;
+
+}
+
+.bottomLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-bottom: whitesmoke 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.topLine {
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    border-top: rgb(92, 91, 91) 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.noLine{
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    vertical-align: middle;
+    align-content: center;
+}
+
+#home {
+    text-align: center;
+}
+
+.col-sm {
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+.top_margin{
+    margin-top: 3vmin;
+}
+
+.subtitle{
+    color: #0d47a1;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+
+.transparent {
+    background-color: rgba(245, 245, 245, 0.3);
+    padding: 3vmin;
+    border-radius: 5vmin;
+    color: whitesmoke;
+    text-align: justify;
+}
+
+.IEEESponsorsImage{
+	width: 20%;
+	max-width: 72px;
+	min-width: 36px;
+}
+
+
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 5vmin;
+}
+
+.right {
+    text-align: right;
+}
+
+#mailus {
+    color: whitesmoke;
+    font-size: 15vmin;
+}
+
+.whitebckg {
+    background-color: transparent;
+    color: black;
+    background-color: whitesmoke;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+.facts {
+    color: whitesmoke;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.dottedlineright {
+    border-right: whitesmoke dashed 1px;
+}
+
+h2 {
+    color: whitesmoke;
+}
+
+.padding{
+    padding-left: 40px;
+}
+
+.sponsorContact {
+    color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.3);
+    text-align: center;
+    font-weight: lighter;
+    padding: 3vmin;
+    border-radius: 5vmin;
+}
+
+.whiteLink {
+    color: whitesmoke;
+}
+
+.mat-tab-label:active{
+    padding: 5px;
+    background-color:white;
+    color:white;
+    font-weight: 700;
+}
+
+.mat-tab-label:selected{
+    padding: 5px;
+    background-color:white;
+    color:white;
+    font-weight: 700;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:  rgb(23, 46, 148);
+  }
+
+  /* ink bar */
+::ng-deep .mat-ink-bar {
+    background-color:  rgb(23, 46, 148) !important;
+    }
+
+
+
+    @media (min-width: 768px) {
+
+        .flexText{
+            display: flex;
+            /* centrado horizontal */
+            justify-content: left;
+            /* centrado vertical */
+            align-items: center;
+        }
+    }

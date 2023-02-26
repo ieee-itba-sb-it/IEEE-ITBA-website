@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
-                    <img src="../../../../../assets/image/IEEETeams.png" alt="Team" class="IEEETeamImage">
+                    <img src="../../../../../assets/image/section-icons/IEEETeams-small.png" alt="Team" class="IEEETeamImage">
                 </div>
                 <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
                     <h1 class="page-title">{{ 'NAVBAR.TEAM' | translate }}</h1>
@@ -26,20 +26,12 @@
     </div>
 
     <div class="mt-5 mr-5 ml-5">
-        <mat-tab-group>
-            <ng-container *ngFor="let team of teams">
-                <mat-tab label="{{team.label}}">
-                    <mat-accordion>
-                        <mat-expansion-panel *ngFor="let commission of team.commissions" class="mat-elevation-z0">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>{{commission.name}}</mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <app-team-card [team]="commission.team"></app-team-card>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </mat-tab>
-            </ng-container>
-        </mat-tab-group>
+      <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-team-card [team]="commission.team"></app-team-card>
+      </mat-expansion-panel>
     </div>
     <app-footer></app-footer>
 </body>

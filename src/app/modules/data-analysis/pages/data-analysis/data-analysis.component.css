@@ -236,6 +236,19 @@ img {
 
 }
 
+.disabled-goback-button {
+  font-size: calc(0.5vw + 0.5rem);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  padding:  0.7rem 1rem 0.7rem 1rem;
+  border: solid #d9d9d9;
+  color: #d9d9d9 !important;
+  border-radius: 5px;
+  background-color: inherit;
+  border-width: 3px;
+  transition: all 175ms ease-in-out;
+}
+
 
 .goback-button {
   font-size: calc(0.5vw + 0.5rem);
@@ -249,6 +262,7 @@ img {
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
+
 .goback-button:hover {
   box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
   color: white !important;
@@ -356,7 +370,6 @@ mat-panel-title {
   background-color: #0d47a1;
   border-color: white;
 }
-
 .ieeecard-button >.button-text {
   color: rgb(23, 46, 148) !important;
 }

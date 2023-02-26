@@ -3,6 +3,62 @@
     "TITLE": "Rama Estudiantil",
     "CARGO": {
       "CD": {
+        "TITLE": "CD",
+        "PRESIDENT": "Presidente",
+        "VP": "Vicepresidente",
+        "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
+        "TREASURER": "Tesorero"
+      },
+      "EDUCATION": {
+        "TITLE": "Educación",
+        "DIRECTOR": "Director de Educación",
+        "ASSISTANT": "Ayudante de tutorías",
+        "HEADTUTOR": "Tutor Encargado",
+        "RRPP": "RRPP & Logística",
+        "TUTOR": "Tutor"
+      },
+      "FUNDRAISING": {
+        "TITLE": "Fundraising & Logística",
+        "CHIEF": "Director de Fundraising & Logística",
+        "CHIEFA": "Directora de Fundraising & Logística",
+        "FUNDRAISER": "Fundraiser",
+        "RRPP": "RRHH & RRPP"
+      },
+      "ID": {
+        "TITLE": "I+D",
+        "ASSISTANT": "Asistente",
+        "RESEARCHER": "Investigador",
+        "CHIEFA": "Directora de I+D",
+        "CHIEF": "Director de I+D"
+      },
+      "MEDIACOM": {
+        "TITLE": "Media & Com",
+        "DIRECTOR": "Directora de Medios",
+        "DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
+        "CC": "Creador de Contenido",
+        "DESIGNER": "Diseñador",
+        "WEBMASTER": "Webmaster & Editor General",
+        "WRITER": "Redactor",
+        "REDACTOR": "Redactor",
+        "ILLUSTRATOR": "Dibujante",
+        "DESIGNERANDILLUSTRATOR": "Dibujante y Diseñador",
+        "CM": "Community Manager"
+      },
+      "VOLUNTEERS": {
+        "FUNDRAISINGMENTOR": "Mentor de Fundraising",
+        "GENERALASSIST": "Asistente General",
+        "TEAMMENTOR": "Mentor de Equipos Competitivos",
+        "VOLUNTEER": "Voluntario"
+      },
+      "IT": {
+        "TITLE": "TI",
+        "DIRECTOR": "Webmaster",
+        "DEV": "Desarrollador",
+        "DATA": "Analista de Datos"
+      }
+    },
+    "CARGO2022": {
+      "CD": {
         "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
         "GENERALSEC": "Secretaria General",
         "PRESIDENT": "Presidente",
@@ -87,13 +143,18 @@
         "WEBMASTER": "Webmaster"
       }
     },
-    "IEEENEWS": {
-      "TITLE": "Noticias IEEE",
-      "CONTENT": "¡Enterate de las últimas noticias científicas y tecnológicas!"
+    "ABOUTUS": {
+      "TITLE": "Sobre nosotros",
+      "LEARNMORE": "Ver más"
     },
-    "SPONSORS": "Sponsors 2021",
+    "IEEENEWS": {
+      "TITLE": "Noticias",
+      "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
+      "MORENEWS": "Ver más noticias"
+    },
+    "SPONSORS": "Auspiciantes",
     "CLASSES": {
-      "TEXT": "La programación es una habilidad que no discrimina profesiones y su dominio puede enriquecer a cualquier persona. Nuestros cursos de Python, ya sean introductorios o no, están orientados a estudiantes, profesionales e interesados de distintas especialidades y a todo aquel que lo necesite o le encuentre valor.",
+      "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
       "TITLE": "Curso Introductorio de Python"
     },
     "DATAANALYSIS": {
@@ -103,6 +164,10 @@
     "BITCUP": {
       "TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA. Su dificultad es variada, por lo que sirve como una introducción al mundo de la programación competitiva.",
       "TITLE": "Bit Cup"
+    },
+    "IOT": {
+      "TITLE": "Taller de IoT",
+      "TEXT": "En este taller, los participantes aprenderán las bases del Internet de las Cosas (IoT) usando Mqtt y NodeRED, empezando por la motivación de su creación y terminando con ejemplos de aplicaciones en la actualidad. Además de esto, también trabajarán con un brazo robótico para implementar los conceptos aprendidos."
     },
     "ASIMOVCUP": {
       "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
@@ -154,9 +219,26 @@
       "TITLE": "Women In Engineering"
     }
   },
+  "ABOUTUS": {
+    "US": {
+      "TITLE": "Quiénes somos",
+      "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
+    },
+    "OBJECTIVE": {
+      "TITLE": "Objetivo",
+      "TEXT": "Buscamos difundir el conocimiento técnico a la comunidad,  promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación."
+    },
+    "MISSION": {
+      "TITLE": "Misión",
+      "TEXT": "Como estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+    }
+  },
   "TEAM": {
     "TITLE": "Equipo",
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
+  },
+  "NEWS": {
+    "OF": "de"
   },
   "IEEEXTREME": {
     "FACTS": {
@@ -192,6 +274,7 @@
     "LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
   },
   "NAVBAR": {
+    "ABOUTUS": "Acerca de",
     "CONTACT": "Contacto",
     "EVENTS": "Eventos",
     "HOME": "Home",
@@ -290,19 +373,9 @@
   },
   "DATAANALYSIS": {
     "CLASSES": {
-      "C1": {
-        "M1": "Introducción a librerías (repaso)",
-        "M2": "Lectura y escritura de archivos formato Excel y CSV",
-        "M3": "Manipulación de datos con Pandas"
-      },
-      "C2": {
-        "M1": "Introducción a matplotlib",
-        "M2": "Visualización de datos",
-        "M3": "Personalización de los gráficos",
-        "M4": "Casos de aplicación"
-      },
-      "TITLE": "Clase ",
-      "BUTTON": "IR A LA CLASE"
+      "C1": "Introducción a librerías (repaso), Lectura y escritura de archivos formato Excel y CSV y Manipulación de datos con Pandas",
+      "C2": "Introducción a matplotlib, Visualización de datos, Personalización de los gráficos y Casos de aplicación",
+      "TITLE": "Clase "
     },
     "SOLUTION": "Solucionario",
     "DESC_TITLE": "Descripción",
@@ -345,7 +418,7 @@
   },
 
   "GENERAL": {
-    "ALL": "PREVIOS",
+    "PREVIOUS": "PREVIOS",
     "ACTUAL": "ACTUALES"
   },
   "WIERECRUITING": {
@@ -365,6 +438,23 @@
     "MESSAGE": "Mensaje",
     "MESSAGE_ERROR": "Por favor, ingresá un mensaje",
     "SEND": "Enviar"
+  },
+  "ABOUT-US": {
+    "TITLE": "Sobre Nosotros",
+    "WHO-WE-ARE": {
+      "TITLE": "Quiénes somos",
+      "DESC": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.\nBuscamos difundir el conocimiento técnico a la comunidad, promoviendo el acceso abierto a herramientas tecnológicas y organizando actividades orientadas a la electrónica y programación.\nComo estudiantes, aspiramos al fortalecimiento de habilidades profesionales y a la generación de contactos desde el ciclo estudiantil."
+    },
+    "WHAT-IS-IEEE": {
+      "TITLE": "¿Qué es IEEE?",
+      "DESC": "El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) es la sociedad técnica profesional más grande del mundo, con más de 400.000 miembros en 160 países distintos. Su propósito principal es fomentar la innovación tecnológica y la excelencia en beneficio de la humanidad.\nIEEE y sus miembros inspiran a la comunidad global a través de publicaciones, conferencias y estándares tecnológicos junto con actividades profesionales y educativas."
+    },
+    "WHAT-IS-ITBA": {
+      "TITLE": "¿Qué es el ITBA?",
+      "DESC": "El Instituto Tecnológico de Buenos Aires (ITBA) es la única universidad privada de la Argentina especializada en Tecnología, Ingeniería y Gestión.\nDesde hace 60 años contribuye a la resolución de los desafíos de la humanidad a través de la formación universitaria de reconocida excelencia, la producción de conocimiento científico y la colaboración internacional."
+    },
+    "OURTEAM": "Nuestro equipo",
+    "CONTACTUS": "Contáctanos"
   },
   "WRITE-NEW": {
     "TITLE": "Escribir Noticia",
@@ -411,7 +501,24 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
-    "UPCOMING": "Proximos Eventos: Competencia de Robótica"
+    "EVENTS": "Eventos",
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": "La Sociedad de Robótica y Automatización del IEEE (RAS por sus siglas en inglés), tiene objetivos de carácter científico, literario y educativo. La Sociedad se esfuerza por el avance de la teoría y la práctica de la ingeniería, ciencia, robótica y automatización, y de las artes y ciencias afines, y por el mantenimiento de altos estándares profesionales entre sus miembros, todo en consonancia con la Constitución y los Reglamentos del IEEE y con especial atención a tales fines dentro del Campo de Interés de la Sociedad."
+    },
+    "MISSION": {
+      "TITLE": "Misión",
+      "CONTENT": "Nuestra Misión es fomentar el desarrollo y facilitar el intercambio de conocimientos científicos y tecnológicos en Robótica y Automatización que beneficien a los miembros, la profesión y la humanidad."
+    },
+    "VISION": {
+      "TITLE": "Visión",
+      "CONTENT": "Nuestra Visión es ser la organización global más reconocida y respetada en Robótica y Automatización."
+    },
+    "ABOUTRAS": {
+      "TITLE": "Acerca de RAS",
+      "CONTENT1": "RAS se esfuerza por promover la innovación, la educación y la investigación fundamental y aplicada en robótica y automatización. La robótica se centra en sistemas que incorporan sensores y actuadores que funcionan de forma autónoma o semi-autónoma en cooperación con los humanos. La investigación en robótica enfatiza la inteligencia y la adaptabilidad para hacer frente a entornos no estructurados. La investigación en automatización enfatiza la eficiencia, la productividad, la calidad y la confiabilidad, centrándose en los sistemas que operan de forma autónoma, a menudo en entornos estructurados durante períodos prolongados, y en la estructuración explícita de dichos entornos.",
+      "CONTENT2": "La Sociedad brinda ayuda para promover la cooperación y el intercambio de información técnica entre sus Miembros y Afiliados, y con este fin celebra reuniones para la presentación de trabajos y su discusión, patrocina publicaciones periódicas apropiadas y publicaciones técnicas especiales, y a través de sus comités estudia y provee para las necesidades de sus miembros y afiliados."
+    }
   },
   "ERROR404": {
     "TITLE": "Página no encontrada",
@@ -420,6 +527,31 @@
     "GOBACK": "Regresar"
   },
   "WIP": "Sitio en construcción",
+  "IOT": {
+    "TITLE": "Taller de IoT",
+    "ENROLL": "¡Anotate ahora!",
+    "DESC": {
+      "TITLE": "Descripción",
+      "TEXT": {
+        "1": "¡Aprendé a controlar un brazo robótico con Internet of Things (IoT)! En este curso vas a aprender sobre la idea de Internet de las Cosas, y algunos de los protocolos y herramientas más versátiles para aplicarlo. Durante el curso vamos a explicar y trabajar con MQTT y Node-RED para operar un brazo robótico, desde sus luces hasta todas sus articulaciones.",
+        "2": "Durante el taller, los alumnos se dividirán en grupos que trabajarán con un brazo. Comenzaremos realizando tareas básicas, y luego iremos subiendo el nivel de integración.",
+        "3": "¡Al final del taller el brazo estará funcionando en su totalidad!",
+        "4": "El taller es de modalidad presencial, y ya que la cantidad de brazos robot es limitada, la cantidad de alumnos por cada turno es reducida."
+      }
+    },
+    "GALLERY_TITLE": "Galería",
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "1": {
+        "QUESTION": "¿Necesito algún conocimiento previo?",
+        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+      },
+      "2": {
+        "QUESTION": "¿Quiénes pueden participar?",
+        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+      }
+    }
+  },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "ENROLLBUTTON": "¡Anotate ahora!",
@@ -437,8 +569,8 @@
         "2": {
           "TEXT": "Cada categoría se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados a continuación:",
           "LINKS": {
-            "1": "Descargar el reglamento de la modalidad Sumo/Minisumo",
-            "2": "Descargar el reglamento de la modalidad Carreras"
+            "1": "Reglamento de Sumo/Minisumo",
+            "2": "Reglamento de Carreras"
           }
         },
         "3": {
@@ -455,17 +587,18 @@
     },
     "SCHEDULE_TITLE": "Cronograma estimado",
     "SCHEDULE": {
-      "1": "8:00 - 9:00: Bienvenida y acreditación",
-      "2": "9:00 - 10:00: Homologación",
-      "3": "10:00 - 10:30: Coffee Break",
-      "4": "10:30 - 12:30: Competición: Fase de Grupos",
-      "5": "12:30 - 13:30: Almuerzo",
-      "6": "13:30 - 15:00: Competición: Fase de Grupos",
-      "7": "15:00 - 17:00: Competición: Fase de Eliminación Directa",
-      "8": "17:00 - 17:30: Coffee Break",
-      "9": "17:30 - 18:00: Competición: Final",
-      "10": "18:00 - 18:30: Ceremonia de premiación"
-    },
+      "1": "8:00 - 9:00: Acreditación Competidores",
+      "2": "9:00 - 10:00: Acreditación Espectadores",
+      "3": "9:00 - 10:00: Homologación",
+      "4": "10:00 - 10:20: Coffee Break",
+      "5": "10:20 - 10:30: Bienvenida",
+      "6": "10:30 - 12:30: Competición: Fase de Grupos",
+      "7": "12:30 - 13:30: Almuerzo",
+      "8": "13:30 - 15:00: Competición: Fase de Grupos",
+      "9": "15:00 - 17:00: Competición: Fase de Eliminación Directa",
+      "10": "17:00 - 17:30: Coffee Break",
+      "11": "17:30 - 18:00: Competición: Final",
+      "12": "18:00 - 18:30: Ceremonia de premiación"},
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
       "1": {
@@ -492,6 +625,7 @@
         "QUESTION": "¿Cómo puedo hacer consultas acerca de la competencia?",
         "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ieee@itba.edu.ar"
       }
-    }
+    },
+    "SPONSORS": "Sponsors"
   }
 }

@@ -11,17 +11,29 @@
             <div class="mask rgba-white-slight"></div>
         </a>
 
-        <mdb-card-body cascade="true" class="text-center pb-0 px-0">
+        <mdb-card-body cascade="true" class="textContainer text-center pb-0 px-0">
             <!-- Nombre -->
-            <h4><strong>{{person.name}}</strong></h4>
+            <mdb-card-title>
+              <h4 class="nameTextContainer">
+                <strong>{{person.name}}</strong>
+              </h4>
+            </mdb-card-title>
 
             <!-- Cargo de la persona -->
-            <h5>{{ person.role | translate }}</h5>
-    
+            <mdb-card-text>
+              <h5 class="roleTextContainer">{{ person.role | translate }}</h5>
+            </mdb-card-text>
+
+          <div class="iconContainer">
             <!-- Linkedin -->
-            <a class="cardIcon" href="{{person.linkedin}}"><i class="fab fa-lg fa-linkedin"></i></a>
+            <a class="cardIcon" href="{{person.linkedin}}">
+              <i class="fab fa-lg fa-linkedin"></i>
+            </a>
             <!-- Mail -->
-            <a class="cardIcon" href="mailto:{{person.mail}}"><i class="fas fa-lg fa-envelope"></i></a>
+            <a class="cardIcon" href="mailto:{{person.mail}}">
+              <i class="fas fa-lg fa-envelope"></i>
+            </a>
+          </div>
         </mdb-card-body>
     </ng-template>
 </mdb-card>
