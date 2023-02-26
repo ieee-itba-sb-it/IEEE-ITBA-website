@@ -42,6 +42,7 @@ body {
 
 .news-grid{
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(400px, 507.81px));
     grid-gap: 0.5rem;
 }
