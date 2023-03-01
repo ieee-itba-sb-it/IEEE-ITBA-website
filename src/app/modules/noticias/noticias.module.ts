@@ -5,7 +5,7 @@ import {MainpageComponent} from '../mainpage/pages/mainpage/mainpage.component';
 import {NoticiasComponent} from './pages/noticias/noticias.component';
 import {NoticiaComponent} from './pages/noticia/noticia.component';
 import {SharedModule} from '../../shared/shared.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -15,6 +15,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import {CookieService} from 'ngx-cookie-service';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 
 const routes: Routes = [
   { path: '',  component: NoticiasComponent },
@@ -35,6 +36,7 @@ export const routing = RouterModule.forChild(routes);
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       extend: true
     }),
     FlexLayoutModule,

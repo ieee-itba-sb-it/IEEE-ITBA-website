@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {WriteNewsComponent} from './pages/write-news/write-news.component';
 import {EditarAnuncioComponent} from './pages/editar-anuncio/editar-anuncio.component';
 import {SharedModule} from '../../shared/shared.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },
@@ -36,6 +37,7 @@ export const routing = RouterModule.forChild(routes);
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       extend: true
     }),
     MatCardModule,

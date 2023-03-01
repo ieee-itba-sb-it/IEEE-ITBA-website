@@ -6,11 +6,12 @@ import {SharedModule} from '../../shared/shared.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpLoaderFactory} from '../../app.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 
 const routes: Routes = [
   { path: '',  component: ContactPageComponent }
@@ -32,6 +33,7 @@ export const routing = RouterModule.forChild(routes);
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
             extend: true
         }),
         MatRadioModule
