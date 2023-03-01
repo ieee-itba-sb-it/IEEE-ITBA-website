@@ -3,7 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {BlogService} from '../../../../core/services/blog/blog.service';
-import {newsItem} from '../../../../shared/models/news-item/news-item';
+import {NewsItem} from '../../../../shared/models/news-item/news-item';
 import {blogCollectionName} from '../../../../secrets';
 import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper/core';
 
@@ -16,8 +16,8 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
 })
 
 export class MainpageComponent implements OnInit {
-  newsDataObs: Observable<newsItem[]>;
-  latestNews: newsItem[];
+  newsDataObs: Observable<NewsItem[]>;
+  latestNews: NewsItem[];
   latestLimit = 9;
   showLoadingSpinner = true;
   sponsorsServiceVar: SponsorsService;
@@ -53,22 +53,17 @@ export class MainpageComponent implements OnInit {
     }
   };
 
-  constructor(public translate: TranslateService, private blogService: BlogService, private sponsorsService: SponsorsService) {
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
-
+  constructor(private blogService: BlogService, private sponsorsService: SponsorsService) {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
     this.newsDataObs = this.blogService.docsObs();
     this.sponsorsServiceVar = sponsorsService;
-    this.newsDataObs.subscribe((data: newsItem[]) => {
+    this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.latestNews = data;
-      this.latestNews.sort((a: newsItem, b: newsItem) => (a.date.getTime() > b.date.getTime() ? -1 : 1));
+      this.latestNews.sort((a: NewsItem, b: NewsItem) => (a.date.getTime() > b.date.getTime() ? -1 : 1));
 
-      const aux: newsItem[] = [];
+      const aux: NewsItem[] = [];
       for (let i = 0; i < this.latestNews.length; i++){
         if (i < this.latestLimit){
           aux.push(this.latestNews[i]);
@@ -78,9 +73,6 @@ export class MainpageComponent implements OnInit {
       this.latestNews = aux;
       this.showLoadingSpinner = false;
     });
-  }
-  useLanguage(language: string) {
-    this.translate.use(language);
   }
 
   ngOnInit(): void {}

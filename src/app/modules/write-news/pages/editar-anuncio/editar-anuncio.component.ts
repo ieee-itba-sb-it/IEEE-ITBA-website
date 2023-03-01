@@ -4,7 +4,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
-import { newsItem } from '../../../../shared/models/news-item/news-item';
+import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
@@ -21,7 +21,7 @@ import Timestamp = firestore.Timestamp;
   styleUrls: ['./editar-anuncio.component.css']
 })
 export class EditarAnuncioComponent implements OnInit {
-  newsData: Observable<newsItem>;
+  newsData: Observable<NewsItem>;
 
   constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService) { }
 
@@ -30,7 +30,7 @@ export class EditarAnuncioComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id') != null) {
       this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
-      this.newsData.subscribe((data: newsItem) => {
+      this.newsData.subscribe((data: NewsItem) => {
         if (data) {
           document.getElementById('titulo').setAttribute('value', data.title);
           document.getElementById('nombreUrl').setAttribute('value', data.reference);

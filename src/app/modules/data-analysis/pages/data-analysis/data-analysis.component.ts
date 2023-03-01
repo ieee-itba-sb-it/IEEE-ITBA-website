@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import firebase from "firebase";
-import { firestore } from "firebase/app";
+import firebase from 'firebase';
+import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 
@@ -16,7 +16,7 @@ export class DataAnalysisComponent implements OnInit {
   week2ContentOpen = false;
   week3ContentOpen = false;
   contentClosed = false;
-  solution3Open: boolean = false;
+  solution3Open = false;
   faq = [
     {q: 'DATAANALYSIS.FAQ.1.QUESTION', a: 'DATAANALYSIS.FAQ.1.ANSWER'},
     {q: 'DATAANALYSIS.FAQ.2.QUESTION', a: 'DATAANALYSIS.FAQ.2.ANSWER'},
@@ -25,27 +25,23 @@ export class DataAnalysisComponent implements OnInit {
     {q: 'DATAANALYSIS.FAQ.5.QUESTION', a: 'DATAANALYSIS.FAQ.5.ANSWER'},
   ];
 
-  constructor(public translate: TranslateService, private sponsorsService: SponsorsService) {
+  constructor(private sponsorsService: SponsorsService) {
   this.sponsorsServiceVar = sponsorsService;
   scroll(0, 0);
-  translate.addLangs(['en', 'es']);
-  translate.setDefaultLang('es');
-  const browserLang = translate.getBrowserLang();
-  translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
-  this.contentClosed = this.isOldDate("31 Oct 2022 03:00:00 UTC");
-  this.week1ContentOpen = this.isOldDate("19 Sep 2022 03:00:00 UTC") && !this.contentClosed;
-  this.week2ContentOpen = this.isOldDate("26 Sep 2022 03:00:00 UTC") && !this.contentClosed;
-  this.week3ContentOpen = this.isOldDate("03 Oct 2022 03:00:00 UTC") && !this.contentClosed;
+  this.contentClosed = this.isOldDate('31 Oct 2022 03:00:00 UTC');
+  this.week1ContentOpen = this.isOldDate('19 Sep 2022 03:00:00 UTC') && !this.contentClosed;
+  this.week2ContentOpen = this.isOldDate('26 Sep 2022 03:00:00 UTC') && !this.contentClosed;
+  this.week3ContentOpen = this.isOldDate('03 Oct 2022 03:00:00 UTC') && !this.contentClosed;
 }
 
 isOldDate(date: string) {
-    let oldDate = Timestamp.fromDate(new Date(date));
-    let now = firebase.firestore.Timestamp.now();
+    const oldDate = Timestamp.fromDate(new Date(date));
+    const now = firebase.firestore.Timestamp.now();
     return now > oldDate;
   }
 
 getCurrentTest() {
-  let now = firebase.firestore.Timestamp.now();
+  const now = firebase.firestore.Timestamp.now();
   if (now > Timestamp.fromDate(new Date('09 Oct 2022 03:00:00 UTC'))) {
     return 'https://forms.gle/vd3ado6TurViy67b9';
   }
@@ -68,17 +64,13 @@ getCurrentTest() {
 }
 
 hasTestsAvailable() {
-    let now = firebase.firestore.Timestamp.now();
-    let startDate = Timestamp.fromDate(new Date('03 Oct 2022 03:00:00 UTC'));
-    let endDate = Timestamp.fromDate(new Date('10 Oct 2022 03:00:00 UTC'));
+    const now = firebase.firestore.Timestamp.now();
+    const startDate = Timestamp.fromDate(new Date('03 Oct 2022 03:00:00 UTC'));
+    const endDate = Timestamp.fromDate(new Date('10 Oct 2022 03:00:00 UTC'));
     if (startDate < now && now < endDate) {
       return true;
     }
     return false;
-}
-
-useLanguage(language: string) {
-  this.translate.use(language);
 }
 
 isEnrollAvailable() {

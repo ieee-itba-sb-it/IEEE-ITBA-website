@@ -23,14 +23,13 @@ export class NavbarComponent implements OnInit {
   journalist = false;
   language: string;
 
+  languageService: TranslateService;
+
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
-  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,private authService: AuthService, private userService: UserService) {
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    this.language = browserLang.match(/es|en/) ? browserLang : 'en';
-    translate.use(this.language);
+  constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,
+              private authService: AuthService, private userService: UserService) {
+    this.language = translate.currentLang;
   }
 
   // ----------Methods----------

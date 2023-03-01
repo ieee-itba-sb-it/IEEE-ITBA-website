@@ -1,4 +1,4 @@
-export interface newsItem {
+export interface NewsItem {
   title: string;
   shortIntro: string;
   content: string;

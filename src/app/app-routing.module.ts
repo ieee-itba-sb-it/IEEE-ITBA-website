@@ -1,117 +1,117 @@
-import { NgModule, Component } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { Error401Component } from "./shared/components/error401/error401.component";
+import { NgModule, Component } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { Error401Component } from './shared/components/error401/error401.component';
 
-import { AuthGuardService } from "./core/services/authorization-guard/auth-guard.service";
+import { AuthGuardService } from './core/services/authorization-guard/auth-guard.service';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
-} from "@angular/fire/auth-guard";
-import { roles } from "./shared/models/roles/roles.enum";
+} from '@angular/fire/auth-guard';
+import { roles } from './shared/models/roles/roles.enum';
 import {IotModule} from './modules/iot/iot.module';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["login"]);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     loadChildren: () =>
-      import("./modules/mainpage/mainpage.module").then(
+      import('./modules/mainpage/mainpage.module').then(
         (m) => m.MainpageModule
       ),
   },
-  { path: "home", redirectTo: "", pathMatch: "full" },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
   {
-    path: "ras",
+    path: 'ras',
     loadChildren: () =>
-      import("./modules/ras/ras.module").then((m) => m.RasModule),
+      import('./modules/ras/ras.module').then((m) => m.RasModule),
   },
   {
-    path: "ieeextreme",
+    path: 'ieeextreme',
     loadChildren: () =>
-      import("./modules/ieeextreme/ieeextreme.module").then(
+      import('./modules/ieeextreme/ieeextreme.module').then(
         (m) => m.IeeextremeModule
       ),
   },
   {
-    path: "cursospython",
+    path: 'cursospython',
     loadChildren: () =>
-      import("./modules/curso-python/curso-python.module").then(
+      import('./modules/curso-python/curso-python.module').then(
         (m) => m.CursoPythonModule
       ),
   },
   {
-    path: "asimovcup",
+    path: 'asimovcup',
     loadChildren: () =>
-      import("./modules/asimov-cup/asimov-cup.module").then(
+      import('./modules/asimov-cup/asimov-cup.module').then(
         (m) => m.AsimovCupModule
       ),
   },
   {
-    path: "noticias",
+    path: 'noticias',
     loadChildren: () =>
-      import("./modules/noticias/noticias.module").then(
+      import('./modules/noticias/noticias.module').then(
         (m) => m.NoticiasModule
       ),
   },
   {
-    path: "noticias/:id",
+    path: 'noticias/:id',
     loadChildren: () =>
-      import("./modules/noticias/noticias.module").then(
+      import('./modules/noticias/noticias.module').then(
         (m) => m.NoticiasModule
       ),
   },
   {
-    path: "iot",
+    path: 'iot',
     loadChildren: () =>
-      import("./modules/iot/iot.module").then(
+      import('./modules/iot/iot.module').then(
         (m) => m.IotModule
       )
   },
   {
-    path: "sponsors",
+    path: 'sponsors',
     loadChildren: () =>
-      import("./modules/sponsors/sponsors.module").then(
+      import('./modules/sponsors/sponsors.module').then(
         (m) => m.SponsorsModule
       ),
   },
   {
-    path: "team",
+    path: 'team',
     loadChildren: () =>
-      import("./modules/team/team.module").then((m) => m.TeamModule),
+      import('./modules/team/team.module').then((m) => m.TeamModule),
   },
   {
-    path: "about-us",
+    path: 'about-us',
     loadChildren: () =>
-      import("./modules/about-us/about-us.module").then((m) => m.AboutUsModule),
+      import('./modules/about-us/about-us.module').then((m) => m.AboutUsModule),
   },
   {
-    path: "contact",
+    path: 'contact',
     loadChildren: () =>
-      import("./modules/contact/contact.module").then((m) => m.ContactModule),
+      import('./modules/contact/contact.module').then((m) => m.ContactModule),
   },
   {
-    path: "events",
+    path: 'events',
     loadChildren: () =>
-      import("./modules/events/events.module").then((m) => m.EventsModule),
+      import('./modules/events/events.module').then((m) => m.EventsModule),
   },
   {
-    path: "bitcup",
+    path: 'bitcup',
     loadChildren: () =>
-      import("./modules/bitcup/bitcup.module").then((m) => m.BitcupModule),
+      import('./modules/bitcup/bitcup.module').then((m) => m.BitcupModule),
   },
   {
-    path: "data-analysis",
+    path: 'data-analysis',
     loadChildren: () =>
-      import("./modules/data-analysis/data-analysis.module").then(
+      import('./modules/data-analysis/data-analysis.module').then(
         (m) => m.DataAnalysisModule
       ),
   },
-  { path: "error401", component: Error401Component },
+  { path: 'error401', component: Error401Component },
   {
-    path: "write-news",
+    path: 'write-news',
     loadChildren: () =>
-      import("./modules/write-news/write-news.module").then(
+      import('./modules/write-news/write-news.module').then(
         (m) => m.WriteNewsModule
       ),
     canActivate: [AuthGuardService],
@@ -123,9 +123,9 @@ const routes: Routes = [
   },
   {
     // TODO: Change this, it should refer to a single new
-    path: "write-news/:id",
+    path: 'write-news/:id',
     loadChildren: () =>
-      import("./modules/write-news/write-news.module").then(
+      import('./modules/write-news/write-news.module').then(
         (m) => m.WriteNewsModule
       ),
     canActivate: [AuthGuardService],
@@ -136,30 +136,30 @@ const routes: Routes = [
     // data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: "login",
+    path: 'login',
     loadChildren: () =>
-      import("./core/authentication/login/login.module").then(
+      import('./core/authentication/login/login.module').then(
         (m) => m.LoginModule
       ),
   },
   {
-    path: "register",
+    path: 'register',
     loadChildren: () =>
-      import("./core/authentication/register/register.module").then(
+      import('./core/authentication/register/register.module').then(
         (m) => m.RegisterModule
       ),
   },
   {
-    path: "**",
+    path: '**',
     loadChildren: () =>
-      import("./modules/error404/error404.module").then(
+      import('./modules/error404/error404.module').then(
         (m) => m.Error404Module
       ),
   },
   {
-    path: "Sponsors",
+    path: 'Sponsors',
     loadChildren: () =>
-      import("./modules/sponsors/sponsors.module").then(
+      import('./modules/sponsors/sponsors.module').then(
         (m) => m.SponsorsModule
       ),
   }

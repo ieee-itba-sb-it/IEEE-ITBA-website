@@ -29,12 +29,13 @@ export const routing = RouterModule.forChild(routes);
     routing,
     CommonModule,
     SharedModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
+      extend: true
     }),
     FlexLayoutModule,
     MatCardModule,

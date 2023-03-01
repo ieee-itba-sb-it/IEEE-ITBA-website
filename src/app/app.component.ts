@@ -11,14 +11,19 @@ import { browser } from 'protractor';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService) {
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
+    if (translate.getLangs().length === 0) {
+      translate.addLangs(['en', 'es']);
+      translate.setDefaultLang('en');
+      const browserLang = translate.getBrowserLang();
+      translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
+    }
   }
+
   title = 'ITBA-IEEE-Website-A9';
+
   useLanguage(language: string) {
     this.translate.use(language);
   }

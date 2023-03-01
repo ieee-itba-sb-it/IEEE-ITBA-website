@@ -4,7 +4,7 @@ import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';
-import { newsItem } from '../../../../shared/models/news-item/news-item';
+import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
 import Timestamp = firestore.Timestamp;
 import { blogCollectionName } from '../../../../secrets';
@@ -43,7 +43,7 @@ export class WriteNewsComponent implements OnInit {
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
     const ratings = [0, 0, 0, 0, 0];
 
-    if (title != '') {
+    if (title !== '') {
       this.blogService.setDoc(
         createNewsItem(
           title,

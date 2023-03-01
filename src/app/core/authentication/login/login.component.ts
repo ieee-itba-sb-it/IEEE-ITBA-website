@@ -20,7 +20,7 @@ export class LoginComponent  implements OnInit {
   }
 
   // Data
-  signupForm: HTMLElement;
+  signupForm: HTMLElement | any;
   alertText: HTMLElement;
 
   // Visual vars
@@ -49,8 +49,8 @@ export class LoginComponent  implements OnInit {
       e.preventDefault(); // dont refresh
 
       // Get data
-      this.email = this.signupForm['email'].value;
-      this.pass = this.signupForm['pass'].value;
+      this.email = this.signupForm.email.value;
+      this.pass = this.signupForm.pass.value;
 
       // Login
       this.isHidden = false;

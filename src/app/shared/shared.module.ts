@@ -28,16 +28,18 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
   imports: [
     routing,
     CommonModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
+      extend: true
     }),
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
@@ -46,6 +48,7 @@ export const routing = RouterModule.forChild(routes);
     MatCardModule,
     MatTabsModule
   ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent]
+  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent]
 })
 export class SharedModule { }

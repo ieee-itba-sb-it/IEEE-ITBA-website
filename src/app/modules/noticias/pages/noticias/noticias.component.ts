@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { Observable} from 'rxjs';
-import { newsItem } from '../../../../shared/models/news-item/news-item';
+import { NewsItem } from '../../../../shared/models/news-item/news-item';
 
 @Component({
   selector: 'app-noticias',
@@ -11,10 +11,10 @@ import { newsItem } from '../../../../shared/models/news-item/news-item';
 })
 
 export class NoticiasComponent implements OnInit {
-  newsDataObs: Observable<newsItem[]>;
+  newsDataObs: Observable<NewsItem[]>;
   newsCountObs: Observable<number>;        // TODO: Connect with db
 
-  newsData: newsItem[] = [];
+  newsData: NewsItem[] = [];
   showLoadingSpinner = true;
 
   pageSize = 9;
@@ -30,7 +30,7 @@ export class NoticiasComponent implements OnInit {
     this.newsCountObs.subscribe(listedCount => {
       this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1;
     });
-    this.newsDataObs.subscribe((data: newsItem[]) => {
+    this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.newsData = [];
       if (data.length > 0){

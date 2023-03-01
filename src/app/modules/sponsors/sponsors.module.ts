@@ -22,13 +22,14 @@ export const routing = RouterModule.forChild(routes);
     CommonModule,
     SharedModule,
     MatTabsModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
-    })
+      },
+      extend: true
+    }),
   ]
 })
 export class SponsorsModule { }

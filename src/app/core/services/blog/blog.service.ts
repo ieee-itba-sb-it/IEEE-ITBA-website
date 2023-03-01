@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { newsItem } from '../../../shared/models/news-item/news-item';
+import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
@@ -14,7 +14,7 @@ import firebase from 'firebase/app';
 export class BlogService {
 
   // ----------Variables----------
-  blogData: BehaviorSubject<newsItem[]> = new BehaviorSubject([]);
+  blogData: BehaviorSubject<NewsItem[]> = new BehaviorSubject([]);
   docData: BehaviorSubject<{}> = new BehaviorSubject({});
   collectionName: string;
 
@@ -54,9 +54,9 @@ export class BlogService {
   // Gets all docs from setted collection
   getDocs() {
     this.afs.collection(this.collectionName).get().subscribe(data => {
-      const ans: newsItem[] = [];
+      const ans: NewsItem[] = [];
 
-      for (const blogEntry in data.docs) {
+      for (const blogEntry in Object.keys(data.docs)) {
         const doc = data.docs[blogEntry].data();
         // Add the next blog item
         ans.push(
@@ -95,9 +95,9 @@ export class BlogService {
 
   private getDocsPage(collection: AngularFirestoreCollection){
     collection.get().subscribe(data => {
-      const ans: newsItem[] = [];
+      const ans: NewsItem[] = [];
 
-      for (const blogEntry in data.docs) {
+      for (const blogEntry in Object.keys(data.docs)) {
         const doc = data.docs[blogEntry].data();
         // Add the next blog item
         ans.push(
@@ -148,7 +148,7 @@ export class BlogService {
   }
 
   // Sets a doc inside a collection
-  setDoc(content: newsItem) {
+  setDoc(content: NewsItem) {
     const call = new BehaviorSubject<boolean>(false);
 
     this.afs.collection(this.collectionName).doc(content.reference).set(content).then(data => {
@@ -161,8 +161,8 @@ export class BlogService {
   }
 
   // Get a single doc from a collection
-  getDoc(name: string): Observable<newsItem> {
-    const ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
+  getDoc(name: string): Observable<NewsItem> {
+    const ans: BehaviorSubject<NewsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
       const doc = data.data();
@@ -188,8 +188,8 @@ export class BlogService {
   }
 
   // N in array
-  getNDoc(n: number): Observable<newsItem> {
-    const ans: BehaviorSubject<newsItem> = new BehaviorSubject(null);
+  getNDoc(n: number): Observable<NewsItem> {
+    const ans: BehaviorSubject<NewsItem> = new BehaviorSubject(null);
 
     this.blogData.subscribe(data => {
       const doc = data[0];
@@ -217,7 +217,7 @@ export class BlogService {
   }
 
   // Adds doc to setted collection
-  addDoc(news: newsItem) {
+  addDoc(news: NewsItem) {
     this.afs.collection(this.collectionName).doc(news.reference).update(news).then(data => {
       this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
         count: firebase.firestore.FieldValue.increment(1),
@@ -229,7 +229,7 @@ export class BlogService {
   }
 
   // Deletes doc from given instance
-  deleteDocObj(news: newsItem) {
+  deleteDocObj(news: NewsItem) {
     this.afs.collection(this.collectionName).doc(news.reference).delete().then(data => {
       this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
         count: firebase.firestore.FieldValue.increment(-1),
@@ -241,7 +241,7 @@ export class BlogService {
   }
 
   // Gets a collection observable
-  docsObs(): Observable<newsItem[]> {
+  docsObs(): Observable<NewsItem[]> {
     return this.blogData.asObservable();
   }
 
@@ -249,7 +249,7 @@ export class BlogService {
     return this.listedDocsSize.asObservable();
   }
 
-  incrementRating(news: newsItem, rating: number) {
+  incrementRating(news: NewsItem, rating: number) {
     const aux: number[] = news.ratings;
     aux[rating]++;
     this.afs.collection(this.collectionName).doc(news.reference).update({

@@ -3,7 +3,7 @@ import Timestamp = firestore.Timestamp;
 
 import { IEEEuser } from './ieee-user/ieee-user';
 import { roles } from './roles/roles.enum';
-import { newsItem } from './news-item/news-item';
+import { NewsItem } from './news-item/news-item';
 
 export function createNewsItem(
     title: string,
@@ -16,7 +16,7 @@ export function createNewsItem(
     reference: string,
     tags: string[],
     listed: boolean,
-    ratings: number[]): newsItem {
+    ratings: number[]): NewsItem {
     return { title, content, imageUrl, date: date.toDate(), author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
@@ -31,7 +31,7 @@ export function createNewsItemWithDate(
     reference: string,
     tags: string[],
     listed: boolean,
-    ratings: number[]): newsItem {
+    ratings: number[]): NewsItem {
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 

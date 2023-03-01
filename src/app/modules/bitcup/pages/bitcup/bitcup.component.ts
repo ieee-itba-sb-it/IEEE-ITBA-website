@@ -11,18 +11,9 @@ export class BitcupComponent implements OnInit {
 
   sponsorsServiceVar: SponsorsService;
 
-  constructor(public translate: TranslateService, private sponsorsService: SponsorsService)
-  {
+  constructor(private sponsorsService: SponsorsService) {
     this.sponsorsServiceVar = sponsorsService;
     scroll(0, 0);
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
-  }
-
-  useLanguage(language: string) {
-    this.translate.use(language);
   }
 
   ngOnInit(): void {

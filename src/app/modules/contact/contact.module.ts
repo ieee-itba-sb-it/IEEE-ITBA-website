@@ -26,12 +26,13 @@ export const routing = RouterModule.forChild(routes);
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot({
+        TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
-            }
+            },
+            extend: true
         }),
         MatRadioModule
     ],

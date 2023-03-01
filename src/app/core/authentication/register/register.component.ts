@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   }
 
   // Data
-  signupForm: HTMLElement;
+  signupForm: HTMLElement | any;
   alertText: HTMLElement;
 
   // Visual vars
@@ -56,12 +56,12 @@ export class RegisterComponent implements OnInit {
       e.preventDefault(); // dont refresh
 
       // Get data
-      this.email = this.signupForm['email'].value;
-      this.pass = this.signupForm['pass'].value;
-      this.passConf = this.signupForm['passConf'].value
+      this.email = this.signupForm.email.value;
+      this.pass = this.signupForm.pass.value;
+      this.passConf = this.signupForm.passConf.value;
       // Save in database
-      this.fname = this.signupForm['fname'].value;
-      this.lname = this.signupForm['lname'].value;
+      this.fname = this.signupForm.fname.value;
+      this.lname = this.signupForm.lname.value;
 
       this.isHidden3 = false;
 
@@ -85,7 +85,8 @@ export class RegisterComponent implements OnInit {
     }
     else {
       this.isHidden2 = false;
-      this.authService.changePass(document.getElementById('changepass')['emailchange'].value, document.getElementById('passChgConf'));
+      const changePassElem: any = document.getElementById('changepass');
+      this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
     }
 
   }
