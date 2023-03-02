@@ -56,24 +56,26 @@ export class BlogService {
     this.afs.collection(this.collectionName).get().subscribe(data => {
       const ans: NewsItem[] = [];
 
-      for (const blogEntry in Object.keys(data.docs)) {
-        const doc = data.docs[blogEntry].data();
-        // Add the next blog item
-        ans.push(
-          createNewsItem(
-            doc.title,
-            doc.content,
-            doc.shortIntro,
-            doc.imageUrl,
-            doc.date,
-            doc.author,
-            doc.imageText,
-            doc.reference,
-            doc.tags,
-            doc.listed,
-            doc.ratings
-          )
-        );
+      for (const blogEntry in data.docs) {
+        if (data.docs.hasOwnProperty(blogEntry)) {
+          const doc = data.docs[blogEntry].data();
+          // Add the next blog item
+          ans.push(
+            createNewsItem(
+              doc.title,
+              doc.content,
+              doc.shortIntro,
+              doc.imageUrl,
+              doc.date,
+              doc.author,
+              doc.imageText,
+              doc.reference,
+              doc.tags,
+              doc.listed,
+              doc.ratings
+            )
+          );
+        }
       }
 
       // update observer
@@ -97,25 +99,28 @@ export class BlogService {
     collection.get().subscribe(data => {
       const ans: NewsItem[] = [];
 
-      for (const blogEntry in Object.keys(data.docs)) {
-        const doc = data.docs[blogEntry].data();
-        // Add the next blog item
-        ans.push(
-          createNewsItem(
-            doc.title,
-            doc.content,
-            doc.shortIntro,
-            doc.imageUrl,
-            doc.date,
-            doc.author,
-            doc.imageText,
-            doc.reference,
-            doc.tags,
-            doc.listed,
-            doc.ratings
-          )
-        );
-
+      for (const blogEntry in data.docs) {
+        // If used because of linter error, else it's 'useless':
+        // https://stackoverflow.com/questions/40770425/tslint-codelyzer-ng-lint-error-for-in-statements-must-be-filtere
+        if (data.docs.hasOwnProperty(blogEntry)) {
+          const doc = data.docs[blogEntry].data();
+          // Add the next blog item
+          ans.push(
+            createNewsItem(
+              doc.title,
+              doc.content,
+              doc.shortIntro,
+              doc.imageUrl,
+              doc.date,
+              doc.author,
+              doc.imageText,
+              doc.reference,
+              doc.tags,
+              doc.listed,
+              doc.ratings
+            )
+          );
+        }
       }
       // update observer
       this.blogData.next(ans);

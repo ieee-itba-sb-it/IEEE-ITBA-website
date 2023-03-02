@@ -8,7 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {SharedModule} from '../../../shared/shared.module';
-import {TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpLoaderFactory} from '../../../app.module';
+import {HttpClient} from '@angular/common/http';
+import {CustomMissingTranslationHandler} from '../../../shared/CustomMissingTranslationHandler';
 
 
 @NgModule({
@@ -20,7 +23,16 @@ import {TranslateModule} from '@ngx-translate/core';
     LoginRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+      extend: true
+    }),
   ]
 })
 export class LoginModule { }

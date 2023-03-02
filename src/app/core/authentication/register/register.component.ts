@@ -11,12 +11,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, public translate: TranslateService) {
+  constructor(private authService: AuthService) {
     scroll(0, 0);
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
   }
 
   // Data
@@ -34,10 +30,6 @@ export class RegisterComponent implements OnInit {
   email: string;
   pass: string;
   passConf: string;
-
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
 
   // On Init
   ngOnInit(): void {
