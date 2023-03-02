@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { newsItem } from '../../models/news-item/news-item';
+import { NewsItem } from '../../models/news-item/news-item';
 
 @Component({
   selector: 'app-news-card',
@@ -7,7 +7,7 @@ import { newsItem } from '../../models/news-item/news-item';
   styleUrls: ['./news-card.component.css']
 })
 export class NewsCardComponent implements OnInit {
-  @Input() noticia?: newsItem ;
+  @Input() noticia?: NewsItem ;
   constructor() { }
 
   ngOnInit(): void {

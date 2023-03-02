@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {IeeextremeComponent} from './pages/ieeextreme/ieeextreme.component';
 import {SharedModule} from '../../shared/shared.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
+import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 
 const routes: Routes = [
   { path: '',  component: IeeextremeComponent }
@@ -18,12 +19,14 @@ export const routing = RouterModule.forChild(routes);
     routing,
     CommonModule,
     SharedModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+      extend: true
     })
   ],
   declarations: [ IeeextremeComponent ]

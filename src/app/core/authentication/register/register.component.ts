@@ -11,16 +11,12 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, public translate: TranslateService) {
+  constructor(private authService: AuthService) {
     scroll(0, 0);
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
   }
 
   // Data
-  signupForm: HTMLElement;
+  signupForm: HTMLElement | any;
   alertText: HTMLElement;
 
   // Visual vars
@@ -34,10 +30,6 @@ export class RegisterComponent implements OnInit {
   email: string;
   pass: string;
   passConf: string;
-
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
 
   // On Init
   ngOnInit(): void {
@@ -56,12 +48,12 @@ export class RegisterComponent implements OnInit {
       e.preventDefault(); // dont refresh
 
       // Get data
-      this.email = this.signupForm['email'].value;
-      this.pass = this.signupForm['pass'].value;
-      this.passConf = this.signupForm['passConf'].value
+      this.email = this.signupForm.email.value;
+      this.pass = this.signupForm.pass.value;
+      this.passConf = this.signupForm.passConf.value;
       // Save in database
-      this.fname = this.signupForm['fname'].value;
-      this.lname = this.signupForm['lname'].value;
+      this.fname = this.signupForm.fname.value;
+      this.lname = this.signupForm.lname.value;
 
       this.isHidden3 = false;
 
@@ -85,7 +77,8 @@ export class RegisterComponent implements OnInit {
     }
     else {
       this.isHidden2 = false;
-      this.authService.changePass(document.getElementById('changepass')['emailchange'].value, document.getElementById('passChgConf'));
+      const changePassElem: any = document.getElementById('changepass');
+      this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
     }
 
   }

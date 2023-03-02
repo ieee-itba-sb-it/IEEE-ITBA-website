@@ -4,7 +4,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
-import { newsItem } from '../../../../shared/models/news-item/news-item';
+import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -15,9 +15,9 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./noticia.component.css']
 })
 export class NoticiaComponent implements OnInit {
-  newsData: Observable<newsItem>;
+  newsData: Observable<NewsItem>;
   content = '';
-  data: newsItem;
+  data: NewsItem;
   isVisbile = false;
   emojisVisible: boolean = !this.isVisbile;
   showLoadingSpinner = true;
@@ -39,7 +39,7 @@ export class NoticiaComponent implements OnInit {
     this.blogService.getDocs();
     this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
-    this.newsData.subscribe((data: newsItem) => {
+    this.newsData.subscribe((data: NewsItem) => {
       if (data != null) {
         this.content = data.content;
         this.data = data;
@@ -47,6 +47,7 @@ export class NoticiaComponent implements OnInit {
       }
     });
   }
+
   useLanguage(language: string) {
     this.translate.use(language);
   }

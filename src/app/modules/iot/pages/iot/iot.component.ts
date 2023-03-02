@@ -27,8 +27,8 @@ export class IotComponent implements OnInit {
   enrollEndDate = '22 Nov 2022 03:00:00 UTC';
 
   faq = [
-    { q: "IOT.FAQ.1.QUESTION", a: "IOT.FAQ.1.ANSWER" },
-    { q: "IOT.FAQ.2.QUESTION", a: "IOT.FAQ.2.ANSWER" }
+    { q: 'IOT.FAQ.1.QUESTION', a: 'IOT.FAQ.1.ANSWER' },
+    { q: 'IOT.FAQ.2.QUESTION', a: 'IOT.FAQ.2.ANSWER' }
   ];
 
   swiperConfig: SwiperOptions = {
@@ -53,7 +53,7 @@ export class IotComponent implements OnInit {
   };
 
   isEnrollingAvailable() {
-    let now = firebase.firestore.Timestamp.now();
+    const now = firebase.firestore.Timestamp.now();
     return now < Timestamp.fromDate(new Date(this.enrollEndDate));
   }
 

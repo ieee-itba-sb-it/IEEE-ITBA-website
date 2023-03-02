@@ -5,7 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {FooterComponent} from './components/footer/footer.component';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpLoaderFactory} from '../app.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -21,6 +21,7 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { SponsorComponentComponent } from './components/sponsor-component/sponsor-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {CustomMissingTranslationHandler} from './CustomMissingTranslationHandler';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -28,16 +29,19 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
+  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
   imports: [
     routing,
     CommonModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+      extend: true
     }),
     FlexLayoutModule,
     MDBBootstrapModule.forRoot(),
@@ -46,6 +50,7 @@ export const routing = RouterModule.forChild(routes);
     MatCardModule,
     MatTabsModule
   ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component, EventCardComponent, NewsCardComponent, SponsorComponentComponent]
+  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent]
 })
 export class SharedModule { }

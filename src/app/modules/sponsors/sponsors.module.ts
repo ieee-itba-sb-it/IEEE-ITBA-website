@@ -5,9 +5,10 @@ import {SponsorsComponent} from './pages/sponsors/sponsors.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
+import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 
 const routes: Routes = [
   { path: '',  component: SponsorsComponent}
@@ -22,13 +23,15 @@ export const routing = RouterModule.forChild(routes);
     CommonModule,
     SharedModule,
     MatTabsModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
-    })
+      },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+      extend: true
+    }),
   ]
 })
 export class SponsorsModule { }

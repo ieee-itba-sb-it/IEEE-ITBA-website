@@ -11,16 +11,12 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent  implements OnInit {
 
-  constructor(private authService: AuthService, public translate: TranslateService) {
+  constructor(private authService: AuthService) {
     scroll(0, 0);
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
   }
 
   // Data
-  signupForm: HTMLElement;
+  signupForm: HTMLElement | any;
   alertText: HTMLElement;
 
   // Visual vars
@@ -29,10 +25,6 @@ export class LoginComponent  implements OnInit {
   // Form data
   email: string;
   pass: string;
-
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
 
   // On Init
   ngOnInit(): void {
@@ -49,8 +41,8 @@ export class LoginComponent  implements OnInit {
       e.preventDefault(); // dont refresh
 
       // Get data
-      this.email = this.signupForm['email'].value;
-      this.pass = this.signupForm['pass'].value;
+      this.email = this.signupForm.email.value;
+      this.pass = this.signupForm.pass.value;
 
       // Login
       this.isHidden = false;

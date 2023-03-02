@@ -11,24 +11,11 @@
 </header>
 
 <body>
-    <!--<div *ngIf="showLoadingSpinner">
-        <app-loading-spinner>
-
-        </app-loading-spinner>
-    </div>-->
-
     <div class="body" fxLayoutAlign="center center" fxLayout="column">
         <div class="spacenav">
         </div>
 
-        <div *ngIf="!(newsData | async)">
-            <div class="screen-height">
-                <app-loading-spinner>
-                </app-loading-spinner>
-            </div>
-        </div>
-
-        <div *ngIf="(newsData | async)" fxLayoutAlign="center center" fxLayout="column">
+        <div *ngIf="(newsData | async); else loadingSpinner" fxLayoutAlign="center center" fxLayout="column">
             <div fxLayoutAlign="center center" fxLayout="column">
                 <div fxLayoutAlign="center center" fxLayout="column">
                     <p class="author-text word-break">{{(newsData | async).author}}</p>
@@ -112,6 +99,12 @@
                 </div>
             </div>-->
         </div>
+
+        <ng-template #loadingSpinner class="screen-height">
+          <app-loading-spinner>
+          </app-loading-spinner>
+        </ng-template>
+
         <div class="add-margin">
             <app-footer></app-footer>
         </div>

@@ -20,12 +20,8 @@ export class ContactPageComponent implements OnInit {
   isLoading = false; // disable the submit button if we're loading
   responseMessage: string; // the response message to show to the user
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, public translate: TranslateService) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     scroll(0, 0);
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('es');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/es|en/) ? browserLang : 'en');
 
     this.form = this.formBuilder.group({
       name: this.name,
@@ -36,16 +32,8 @@ export class ContactPageComponent implements OnInit {
     });
   }
 
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
+  ngOnInit(): void { }
 
-
-
-
-
-  ngOnInit(): void {
-  }
   onSubmit() {
     if (this.form.status === 'VALID' && this.honeypot.value === '') {
       this.form.disable(); // disable the form if it's valid to disable multiple submissions
@@ -58,9 +46,9 @@ export class ContactPageComponent implements OnInit {
       this.submitted = false; // hide the response message on multiple submits
       this.http.post('https://script.google.com/macros/s/AKfycbx_ubNpBWnhHrziPB_tUYH7WrqzA4TaQmKKgjfFEKFeuR9YT35X9a1Ok0B3hGCyqTAPjA/exec',
         formData).subscribe(
-        ( response) => {
+        (response: any) => {
           // choose the response message
-          if (response['result'] === 'success') {
+          if (response.result === 'success') {
             this.responseMessage = 'Thanks for the message! I\'ll get back to you soon!';
           } else {
             this.responseMessage = 'Oops! Something went wrong... Reload the page and try again.';

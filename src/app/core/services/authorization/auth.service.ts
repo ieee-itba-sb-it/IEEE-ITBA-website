@@ -199,9 +199,9 @@ export class AuthService {
   getCurrentUser(): Observable<IEEEuser> {
     const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
 
-    this.firebaseAuth.auth.onAuthStateChanged(function(usuario) {
+    this.firebaseAuth.auth.onAuthStateChanged((usuario) => {
       if (usuario){ // There is an user
-        firebase.firestore().collection('users').doc(usuario.email).get().then(function(data) {
+        firebase.firestore().collection('users').doc(usuario.email).get().then((data) => {
           const doc = data.data();
           ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
         });
