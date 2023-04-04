@@ -11,13 +11,16 @@ import Timestamp = firestore.Timestamp;
 })
 export class CursoPythonComponent implements OnInit {
 
-  enrollLink = 'https://docs.google.com/forms/d/e/1FAIpQLSdBN80HmfWRXwRUHgSVcdqkpvOylsvF46AHMyP6Vtq0G2MDeg/viewform?usp=sf_link';
+  enrollLink = 'https://forms.gle/hjEJoZT1iCDAfNW27';
 
   week1ContentOpen = false;
   week2ContentOpen = false;
   week3ContentOpen = false;
   week4ContentOpen = false;
   contentClosed = false;
+
+  enrollOpen = false;
+  enrollClosed = false;
 
   // ojala no tuviera que hardcodear asi, pero no encontre una forma de pasarle el string y concatenarlo con otros en el translate
   faq = [
@@ -39,15 +42,18 @@ export class CursoPythonComponent implements OnInit {
 
   constructor() {
     scroll(0, 0);
-    this.contentClosed = this.isOldDate('25 Sep 2022 03:00:00 UTC');
-    this.week1ContentOpen = this.isOldDate('07 Aug 2022 03:00:00 UTC') && !this.contentClosed;
-    this.week2ContentOpen = this.isOldDate('14 Aug 2022 03:00:00 UTC') && !this.contentClosed;
-    this.week3ContentOpen = this.isOldDate('21 Aug 2022 03:00:00 UTC') && !this.contentClosed;
-    this.week4ContentOpen = this.isOldDate('28 Aug 2022 03:00:00 UTC') && !this.contentClosed;
+    this.enrollOpen = this.isOldDate('27 Mar 2023 03:00:00 UTC');
+    this.enrollClosed = this.isOldDate('24 Apr 2023 03:00:00 UTC');
+
+    this.contentClosed = this.isOldDate('19 Jun 2023 03:00:00 UTC');
+    this.week1ContentOpen = this.isOldDate('01 May 2023 03:00:00 UTC') && !this.contentClosed;
+    this.week2ContentOpen = this.isOldDate('08 May 2023 03:00:00 UTC') && !this.contentClosed;
+    this.week3ContentOpen = this.isOldDate('15 May 2023 03:00:00 UTC') && !this.contentClosed;
+    this.week4ContentOpen = this.isOldDate('22 May 2023 03:00:00 UTC') && !this.contentClosed;
   }
 
   enrollAvailable() {
-    return false;             // Actualizar con fecha de publicación en la página
+    return this.enrollOpen && !this.enrollClosed;
   }
 
   ngOnInit(): void {}
