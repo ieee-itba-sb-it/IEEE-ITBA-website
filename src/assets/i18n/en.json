@@ -4,6 +4,7 @@
     "CARGO": {
       "CD": {
         "TITLE": "CD",
+        "OFFICER": "Officer",
         "PRESIDENT": "President",
         "VP": "Vice president",
         "OPANDGENSEC": "Operational manager and General Secretary",
@@ -19,6 +20,7 @@
       },
       "FUNDRAISING": {
         "TITLE": "Fundraising & Logistics",
+        "CHIEF": "Fundraising & Logistics Director",
         "CHIEFA": "Fundraising & Logistics Director",
         "FUNDRAISER": "Fundraiser",
         "RRPP": "HR & PR"
@@ -34,6 +36,7 @@
         "DIRECTOR": "Media Director",
         "DIRECTOR_AND_WRITER": "Media Director and Writter",
         "CC": "Content Creator",
+        "CCA": "Content Creator",
         "DESIGNER": "Designer",
         "WEBMASTER": "General Webmaster & Editor",
         "WRITER": "Writer",
@@ -47,6 +50,12 @@
         "DIRECTOR": "Webmaster",
         "DEV": "Developer",
         "DATA": "Data Analyst"
+      },
+      "RAS": {
+        "TITLE": "RAS",
+        "DIRECTOR": "RAS Director",
+        "DEV": "Developer",
+        "RESEARCHER": "Researcher"
       },
       "VOLUNTEERS": {
         "FUNDRAISINGMENTOR": "Fundraising Mentor",
@@ -444,6 +453,9 @@
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Events",
+    "TEAM": {
+      "TITLE": "Team"
+    },
     "OBJECTIVES": {
       "TITLE": "Objectives",
       "CONTENT": "The IEEE Robotics and Automation Society's objectives are scientific, literary, and educational. The Society strives for the advancement of the theory and practice of robotics and automation engineering and science and the allied arts and sciences, and for the maintenance of high professional standards among its members, all in consonance with the Constitution and Bylaws of the IEEE and with particular attention to such aims within the Field of Interest of the Society."

@@ -22,6 +22,8 @@ import {MatCardModule} from '@angular/material/card';
 import { SponsorComponentComponent } from './components/sponsor-component/sponsor-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {CustomMissingTranslationHandler} from './CustomMissingTranslationHandler';
+import {IndividualCardComponent} from './components/individual-card/individual-card.component';
+import {TeamCardComponent} from './components/team-card/team-card.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -30,7 +32,7 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent ],
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent ],
   imports: [
     routing,
     CommonModule,
@@ -51,6 +53,6 @@ export const routing = RouterModule.forChild(routes);
     MatTabsModule
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent]
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent]
 })
 export class SharedModule { }

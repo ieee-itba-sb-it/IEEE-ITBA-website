@@ -1,4 +1,4 @@
-import { TeamMember } from './../../../../shared/models/team-member';
+import { TeamMember } from '../../models/team-member';
 import { Component, Input } from '@angular/core';
 
 @Component({
