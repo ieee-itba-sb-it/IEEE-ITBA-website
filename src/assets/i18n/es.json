@@ -4,6 +4,7 @@
     "CARGO": {
       "CD": {
         "TITLE": "CD",
+        "OFFICER": "Officer",
         "PRESIDENT": "Presidente",
         "VP": "Vicepresidente",
         "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
@@ -36,6 +37,7 @@
         "DIRECTOR": "Directora de Medios",
         "DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
         "CC": "Creador de Contenido",
+        "CCA": "Creadora de Contenido",
         "DESIGNER": "Diseñador",
         "WEBMASTER": "Webmaster & Editor General",
         "WRITER": "Redactor",
@@ -55,6 +57,12 @@
         "DIRECTOR": "Webmaster",
         "DEV": "Desarrollador",
         "DATA": "Analista de Datos"
+      },
+      "RAS": {
+        "TITLE": "RAS",
+        "DIRECTOR": "Director de RAS",
+        "DEV": "Desarrollador",
+        "RESEARCHER": "Investigador"
       }
     },
     "CARGO2022": {
@@ -502,6 +510,9 @@
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
+    "TEAM": {
+      "TITLE": "Equipo"
+    },
     "OBJECTIVES": {
       "TITLE": "Objetivos",
       "CONTENT": "La Sociedad de Robótica y Automatización del IEEE (RAS por sus siglas en inglés), tiene objetivos de carácter científico, literario y educativo. La Sociedad se esfuerza por el avance de la teoría y la práctica de la ingeniería, ciencia, robótica y automatización, y de las artes y ciencias afines, y por el mantenimiento de altos estándares profesionales entre sus miembros, todo en consonancia con la Constitución y los Reglamentos del IEEE y con especial atención a tales fines dentro del Campo de Interés de la Sociedad."

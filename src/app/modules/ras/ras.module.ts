@@ -16,23 +16,23 @@ const routes: Routes = [{ path: '', component: RasComponent }];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatCardModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MDBBootstrapModule.forRoot(),
-    FlexLayoutModule,
-  ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatCardModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MDBBootstrapModule.forRoot(),
+        FlexLayoutModule
+    ],
   declarations: [RasComponent],
 })
 export class RasModule {}

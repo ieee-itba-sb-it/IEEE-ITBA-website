@@ -1,4 +1,4 @@
-import { TeamMember } from './../../../../shared/models/team-member';
+import { TeamMember } from '../../models/team-member';
 import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-individual-card',
