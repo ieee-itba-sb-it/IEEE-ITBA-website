@@ -37,9 +37,7 @@ export class TeamService {
         new IEEEMember('Zahira Abril Jiménez', 'https://i.ibb.co/DbFNzKC/Zahira-Gimenez.jpg', 'https://www.linkedin.com/in/zahira-abril-jim%C3%A9nez-87b9a224a', 'zjimenez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
         new IEEEMember('Julia Sexe', 'https://i.ibb.co/ZdK5PfT/julia-sexe.jpg', 'https://www.linkedin.com/in/julia-sexe-48a294269', 'jusexe@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
         new IEEEMember('Lucas Catolino', 'https://i.ibb.co/6Fy24rg/Lucas-Catolino.jpg', 'https://www.linkedin.com/in/lucas-catolino-431b52167/', 'lcatolino@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
-        /* TODO: Ver si la data de zahi y victor sigue siendo la misma */
         new IEEEMember('Victor Christian Oh', 'https://i.ibb.co/gdghPf3/Victor-Christian-Oh.jpg', 'https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar', 'voh@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
-        /************************************/
       ]
     },
     {
