@@ -16,7 +16,8 @@
         "ASSISTANT": "Ayudante de tutorías",
         "HEADTUTOR": "Tutor Encargado",
         "RRPP": "RRPP & Logística",
-        "TUTOR": "Tutor"
+        "TUTOR": "Tutor",
+        "TUTORA": "Tutora"
       },
       "FUNDRAISING": {
         "TITLE": "Fundraising & Logística",
@@ -34,13 +35,14 @@
       },
       "MEDIACOM": {
         "TITLE": "Media & Com",
-        "DIRECTOR": "Directora de Medios",
+        "DIRECTOR": "Director de Medios",
         "DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
         "CC": "Creador de Contenido",
         "CCA": "Creadora de Contenido",
         "DESIGNER": "Diseñador",
         "WEBMASTER": "Webmaster & Editor General",
         "WRITER": "Redactor",
+        "WRITERA": "Redactora",
         "REDACTOR": "Redactor",
         "ILLUSTRATOR": "Dibujante",
         "DESIGNERANDILLUSTRATOR": "Dibujante y Diseñador",

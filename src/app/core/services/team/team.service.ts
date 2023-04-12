@@ -35,7 +35,7 @@ export class TeamService {
         new IEEEMember('Paula Ariana Gonzalez', 'https://i.ibb.co/zN08Yby/paula-ariana-gonzalez.jpg', 'https://www.linkedin.com/in/paula-gonzalez-33a835208', 'paulgonzalez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.CCA'),
         new IEEEMember('Alexander Stephan Moldovan Loayza', 'https://i.ibb.co/LP4GRQp/alexmoldovan.jpg', 'linkedin.com/in/alexander-moldovan-a22842145', 'amoldovan@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
         new IEEEMember('Zahira Abril Jiménez', 'https://i.ibb.co/DbFNzKC/Zahira-Gimenez.jpg', 'https://www.linkedin.com/in/zahira-abril-jim%C3%A9nez-87b9a224a', 'zjimenez@itba.edu.ar', 'HOME.CARGO.MEDIACOM.ILLUSTRATOR'),
-        new IEEEMember('Julia Sexe', 'https://i.ibb.co/ZdK5PfT/julia-sexe.jpg', 'https://www.linkedin.com/in/julia-sexe-48a294269', 'jusexe@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
+        new IEEEMember('Julia Sexe', 'https://i.ibb.co/ZdK5PfT/julia-sexe.jpg', 'https://www.linkedin.com/in/julia-sexe-48a294269', 'jusexe@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITERA'),
         new IEEEMember('Lucas Catolino', 'https://i.ibb.co/6Fy24rg/Lucas-Catolino.jpg', 'https://www.linkedin.com/in/lucas-catolino-431b52167/', 'lcatolino@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
         new IEEEMember('Victor Christian Oh', 'https://i.ibb.co/gdghPf3/Victor-Christian-Oh.jpg', 'https://www.linkedin.com/in/victor-oh-947369163/?originalSubdomain=ar', 'voh@itba.edu.ar', 'HOME.CARGO.MEDIACOM.WRITER'),
       ]
@@ -69,10 +69,10 @@ export class TeamService {
         new IEEEMember('Alejo Agustín Figueroa', 'https://i.ibb.co/Jy7Frry/ALEJO-AGUSTIN-FIGUEROA.jpg', 'https://www.linkedin.com/in/alejo-agustin-figueroa-204589147/', 'alfigueroa@itba.edu.ar', 'HOME.CARGO.EDUCATION.DIRECTOR'),
         new IEEEMember('Ignacio Cutignola', 'https://i.ibb.co/TrMT0Hz/Ignacio-Cutignola.jpg', 'https://www.linkedin.com/in/ignacio-cutignola-4a6865201', 'icutignola@itba.edu.ar', 'HOME.CARGO.EDUCATION.DIRECTOR'),
         new IEEEMember('Agustín Chaud Olivieri', 'https://i.ibb.co/7gy8dZP/agustin-chaud-olivieri.jpg', 'https://www.linkedin.com/in/agus-chaud-8394521b5', 'achaudolivieri@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
-        new IEEEMember('Camila Sanchez', 'https://i.ibb.co/wgB32s1/CAMILA-SANCHEZ.jpg', 'https://www.linkedin.com/in/camila-sanchez-237421217', 'casanchez@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
+        new IEEEMember('Camila Sanchez', 'https://i.ibb.co/wgB32s1/CAMILA-SANCHEZ.jpg', 'https://www.linkedin.com/in/camila-sanchez-237421217', 'casanchez@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTORA'),
         new IEEEMember('Ignacio Gabriel Sampedro Delgado', 'https://i.ibb.co/svHGXH8/Ignacio-Gabriel-Sampedro-Delgado.jpg', 'https://www.linkedin.com/in/ignacio-gabriel-sampedro-delgado-4a0293133/', 'isampedro@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
         new IEEEMember('Mariano Agustín Dolhare', 'https://i.ibb.co/Z6hLFLd/mariano-agustin-dolhare.jpg', 'https://www.linkedin.com/in/mariano-agustin-dolhare-36426a232/', 'mdolhare@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
-        new IEEEMember('Sofia Hanna Feilbogen', 'https://i.ibb.co/pLxzs60/sofia-hanna-feilbogen.jpg', 'https://www.linkedin.com/in/sof%C3%ADa-feilbogen-8042991b4', 'sfeilbogen@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTOR'),
+        new IEEEMember('Sofia Hanna Feilbogen', 'https://i.ibb.co/pLxzs60/sofia-hanna-feilbogen.jpg', 'https://www.linkedin.com/in/sof%C3%ADa-feilbogen-8042991b4', 'sfeilbogen@itba.edu.ar', 'HOME.CARGO.EDUCATION.TUTORA'),
       ]
     },
     {

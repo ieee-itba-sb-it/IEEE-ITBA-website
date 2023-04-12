@@ -16,7 +16,8 @@
         "ASSISTANT": "Tutor Assistant",
         "HEADTUTOR": "Head Tutor",
         "RRPP": "Logistics & PR",
-        "TUTOR": "Tutor"
+        "TUTOR": "Tutor",
+        "TUTORA": "Tutor"
       },
       "FUNDRAISING": {
         "TITLE": "Fundraising & Logistics",
@@ -40,6 +41,7 @@
         "DESIGNER": "Designer",
         "WEBMASTER": "General Webmaster & Editor",
         "WRITER": "Writer",
+        "WRITERA": "Writer",
         "REDACTOR": "Writer",
         "ILLUSTRATOR": "Illustrator",
         "DESIGNERANDILLUSTRATOR": "Designer and Illustrator",
