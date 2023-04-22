@@ -476,6 +476,32 @@
       "CONTENT2": "The Society provides aid in promoting close cooperation and exchange of technical information among its Members and Affiliates, and to this end holds meetings for the presentation of papers and their discussion, sponsors appropriate periodicals and special technical publications, and through its committee's studies and provides for the needs of its members and affiliates."
     }
   },
+
+  "EMB": {
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "EMB Student Branch Chapter",
+    "EVENTS": "Events",
+    "TEAM": {
+      "TITLE": "Team"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objectives",
+      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!."
+    },
+    "MISSION": {
+      "TITLE": "Mission",
+      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!."
+    },
+    "VISION": {
+      "TITLE": "Vision",
+      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit."
+    },
+    "ABOUTEMB": {
+      "TITLE": "About EMB",
+      "CONTENT1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus !.",
+      "CONTENT2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit."
+    }
+  },
   "ERROR404": {
     "TITLE": "Page not found",
     "APOLOGY": "We're sorry, the page you requested doesn't exist or some other error occurred",
