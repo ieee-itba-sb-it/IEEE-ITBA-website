@@ -110,6 +110,11 @@
       "CONTENT": "Find out the latest technological and scientific news!",
       "MORENEWS": "View more news"
     },
+    "EVENTS": {
+      "TITLE": "Events",
+      "CONTENT": "Find out about our newest events!",
+      "MORE": "View more events"
+    },
     "SPONSORS": "Sponsors",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
@@ -584,5 +589,11 @@
       }
     },
     "SPONSORS": "Sponsors"
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "To be defined"
+    },
+    "DATESTRING": "Date: "
   }
 }

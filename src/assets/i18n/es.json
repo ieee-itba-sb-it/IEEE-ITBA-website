@@ -162,6 +162,11 @@
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
       "MORENEWS": "Ver más noticias"
     },
+    "EVENTS": {
+      "TITLE": "Eventos",
+      "CONTENT": "¡Entérate de los próximos eventos!",
+      "MORE": "View more events"
+    },
     "SPONSORS": "Auspiciantes",
     "CLASSES": {
       "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
@@ -640,5 +645,11 @@
       }
     },
     "SPONSORS": "Sponsors"
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "A definir"
+    },
+    "DATESTRING": "Fecha: "
   }
 }

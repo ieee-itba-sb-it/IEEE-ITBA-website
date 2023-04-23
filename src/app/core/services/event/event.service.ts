@@ -7,23 +7,95 @@ import { EventCardData } from '../../../shared/models/event/event-card-data';
 
 export class EventService {
 
-  private ieeextreme: EventCardData = { routerLink: '/ieeextreme', imageSrc: '../../../../../assets/image/events/ieeextreme/ieee-extreme.jpg',
-    imageAlt: 'Foto de competicion IEEExtreme', titleCode: 'HOME.IEEEXTREME.TITLE', descriptionCode: 'HOME.IEEEXTREME.TEXT'};
+  private ieeextreme: EventCardData = {
+    routerLink: '/ieeextreme',
+    imageSrc: '../../../../../assets/image/events/ieeextreme/ieee-extreme.jpg',
+    imageAlt: 'Foto de competicion IEEExtreme',
+    titleCode: 'HOME.IEEEXTREME.TITLE',
+    descriptionCode: 'HOME.IEEEXTREME.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: false,
+      }
+    ]
+  };
 
-  private cursosPython: EventCardData = { routerLink: '/cursospython', imageSrc: '../../../../../assets/image/events/python-introductory/cursopython.jpg',
-    imageAlt: 'Foto de los cursos de Python', titleCode: 'HOME.CLASSES.TITLE', descriptionCode: 'HOME.CLASSES.TEXT'};
+  private cursosPython: EventCardData = {
+    routerLink: '/cursospython',
+    imageSrc: '../../../../../assets/image/events/python-introductory/cursopython.jpg',
+    imageAlt: 'Foto de los cursos de Python',
+    titleCode: 'HOME.CLASSES.TITLE',
+    descriptionCode: 'HOME.CLASSES.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: false,
+      }
+    ]
+  };
 
-  private bitcup: EventCardData = { routerLink: '/bitcup', imageSrc: '../../../../../assets/image/events/bitcup/bitcup-logo.jpeg',
-    imageAlt: 'Foto de los cursos de Python', titleCode: 'HOME.BITCUP.TITLE', descriptionCode: 'HOME.BITCUP.TEXT'};
+  private bitcup: EventCardData = {
+    routerLink: '/bitcup',
+    imageSrc: '../../../../../assets/image/events/bitcup/bitcup-logo.jpeg',
+    imageAlt: 'Foto de los cursos de Python',
+    titleCode: 'HOME.BITCUP.TITLE',
+    descriptionCode: 'HOME.BITCUP.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: false,
+      }
+    ]
+  };
 
-  private dataAnalysis: EventCardData = { routerLink: '/data-analysis', imageSrc: '../../../../../assets/image/events/data-analysis/data-analysis-event.png',
-    imageAlt: 'Foto de curso analisis de datos', titleCode: 'HOME.DATAANALYSIS.TITLE', descriptionCode: 'HOME.DATAANALYSIS.TEXT'};
+  private dataAnalysis: EventCardData = {
+    routerLink: '/data-analysis',
+    imageSrc: '../../../../../assets/image/events/data-analysis/data-analysis-event.png',
+    imageAlt: 'Foto de curso analisis de datos',
+    titleCode: 'HOME.DATAANALYSIS.TITLE',
+    descriptionCode: 'HOME.DATAANALYSIS.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: false,
+      }
+    ]
+  };
 
-  private asimovCup: EventCardData = { routerLink: '/asimovcup', imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
-    imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.ASIMOVCUP.TITLE', descriptionCode: 'HOME.ASIMOVCUP.TEXT'};
+  private asimovCup: EventCardData = {
+    routerLink: '/asimovcup',
+    imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
+    imageAlt: 'Logo de la Asimov Cup',
+    titleCode: 'HOME.ASIMOVCUP.TITLE',
+    descriptionCode: 'HOME.ASIMOVCUP.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: false,
+      }
+    ]
+  };
 
-  private iotWorkshop: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
-    imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
+  private iotWorkshop: EventCardData = {
+    routerLink: '/iot',
+    imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
+    imageAlt: 'Logo de la Asimov Cup',
+    titleCode: 'HOME.IOT.TITLE',
+    descriptionCode: 'HOME.IOT.TEXT',
+    dates: [
+      {
+        date: 'TBD',
+        descriptionCode: 'EVENTCARD.DATE.TBD',
+        highlighted: true,
+      }
+    ]
+  };
 
   constructor() { }
 
