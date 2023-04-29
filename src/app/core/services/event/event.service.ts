@@ -15,9 +15,8 @@ export class EventService {
     descriptionCode: 'HOME.IEEEXTREME.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: false,
       }
     ]
   };
@@ -30,9 +29,8 @@ export class EventService {
     descriptionCode: 'HOME.CLASSES.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: false,
       }
     ]
   };
@@ -45,9 +43,8 @@ export class EventService {
     descriptionCode: 'HOME.BITCUP.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: false,
       }
     ]
   };
@@ -60,9 +57,8 @@ export class EventService {
     descriptionCode: 'HOME.DATAANALYSIS.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: false,
       }
     ]
   };
@@ -75,9 +71,8 @@ export class EventService {
     descriptionCode: 'HOME.ASIMOVCUP.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: false,
       }
     ]
   };
@@ -90,9 +85,8 @@ export class EventService {
     descriptionCode: 'HOME.IOT.TEXT',
     dates: [
       {
-        date: 'TBD',
+        date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
-        highlighted: true,
       }
     ]
   };

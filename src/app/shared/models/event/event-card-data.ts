@@ -8,7 +8,6 @@ export interface EventCardData {
 }
 
 export interface EventDate {
-  date: string;
+  date: Date;
   descriptionCode: string;
-  highlighted: boolean;
 }
