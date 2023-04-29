@@ -27,6 +27,7 @@ import {TeamCardComponent} from './components/team-card/team-card.component';
 import {EventCardShortComponent} from './components/event-card-short/event-card-shortcomponent';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import {ResizeDirective} from './directives/resize.directive';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -35,7 +36,7 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, EventCardShortComponent ],
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective, EventCardShortComponent ],
   imports: [
     routing,
     CommonModule,
@@ -58,6 +59,6 @@ export const routing = RouterModule.forChild(routes);
     MatIconModule
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, EventCardShortComponent]
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective, EventCardShortComponent]
 })
 export class SharedModule { }

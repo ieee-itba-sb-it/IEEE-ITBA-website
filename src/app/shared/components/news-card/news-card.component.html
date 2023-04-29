@@ -1,7 +1,7 @@
 <a [routerLink]="['noticias/' + noticia.reference]">
 <mat-card class="news-card">
-    <img class="news-card-img" mat-card-image
-    src="{{noticia.imageUrl}}" alt="Foto de Noticia"
+    <img appResize [ngWidth]="400" class="news-card-img" mat-card-image
+    ngSrc="{{noticia.imageUrl}}" alt="Foto de Noticia"
     >
     <mat-card-content class="news-card-content">
         <mat-card-title class="clamp">{{ noticia.title }}</mat-card-title>
