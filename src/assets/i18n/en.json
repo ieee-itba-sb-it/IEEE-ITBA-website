@@ -486,20 +486,19 @@
     },
     "OBJECTIVES": {
       "TITLE": "Objectives",
-      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!."
+      "CONTENT": "The Engineering in Medicine and Biology Society (EMBS) aims to promote the profession of bioengineering as well as the advancement of medicine and biology through the application of science and engineering. EMBS ITBA, for its part, and consistent with the aforementioned objectives, seeks to disseminate bioengineering applications both in industry and academia, through talks, seminars and practical activities."
     },
     "MISSION": {
       "TITLE": "Mission",
-      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!."
+      "CONTENT": "Provide tools and experiences to those people interested or involved in the sphere and public knowledge of the world of bioengineering, as well as promote the personal and professional development of its members."
     },
     "VISION": {
       "TITLE": "Vision",
-      "CONTENT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit."
+      "CONTENT": "To be a fundamental pillar in the dissemination and realization of research projects, student congresses and transcendental issues today"
     },
     "ABOUTEMB": {
       "TITLE": "About EMB",
-      "CONTENT1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus !.",
-      "CONTENT2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit, aliquid minus odit obcaecati asperiores est reiciendis consequatur placeat molestias! Rem, ipsa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque et soluta ratione cum provident laboriosam, illum dicta, suscipit."
+      "CONTENT1": "EMBS ITBA is a student chapter belonging to the IEEE ITBA branch and made up of students dedicated to promoting and disseminating bioengineering applications, both inside and outside the educational institution."
     }
   },
   "ERROR404": {
