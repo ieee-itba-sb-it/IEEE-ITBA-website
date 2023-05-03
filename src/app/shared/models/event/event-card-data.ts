@@ -10,4 +10,5 @@ export interface EventCardData {
 export interface EventDate {
   date: Date;
   descriptionCode: string;
+  showMonth?: boolean;
 }

@@ -114,7 +114,7 @@ export class MainpageComponent implements OnInit {
       this.showLoadingSpinner = false;
     });
 
-    this.latestEvents = eventService.getAllEvents();
+    this.latestEvents = eventService.getUpcomingEvents();
   }
 
   ngOnInit(): void {}

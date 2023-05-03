@@ -17,6 +17,7 @@ export class EventService {
       {
         date: null,
         descriptionCode: 'EVENTCARD.DATE.TBD',
+        showMonth: true
       }
     ]
   };
@@ -29,7 +30,7 @@ export class EventService {
     descriptionCode: 'HOME.CLASSES.TEXT',
     dates: [
       {
-        date: null,
+        date: new Date(2023, 5, 1),
         descriptionCode: 'EVENTCARD.DATE.TBD',
       }
     ]
@@ -41,12 +42,7 @@ export class EventService {
     imageAlt: 'Foto de los cursos de Python',
     titleCode: 'HOME.BITCUP.TITLE',
     descriptionCode: 'HOME.BITCUP.TEXT',
-    dates: [
-      {
-        date: null,
-        descriptionCode: 'EVENTCARD.DATE.TBD',
-      }
-    ]
+    dates: []
   };
 
   private dataAnalysis: EventCardData = {
@@ -57,8 +53,9 @@ export class EventService {
     descriptionCode: 'HOME.DATAANALYSIS.TEXT',
     dates: [
       {
-        date: null,
+        date: new Date(2023, 9, 4),
         descriptionCode: 'EVENTCARD.DATE.TBD',
+        showMonth: true
       }
     ]
   };
@@ -71,8 +68,9 @@ export class EventService {
     descriptionCode: 'HOME.ASIMOVCUP.TEXT',
     dates: [
       {
-        date: null,
+        date: new Date(2023, 7, 29),
         descriptionCode: 'EVENTCARD.DATE.TBD',
+        showMonth: true
       }
     ]
   };
@@ -83,18 +81,37 @@ export class EventService {
     imageAlt: 'Logo de la Asimov Cup',
     titleCode: 'HOME.IOT.TITLE',
     descriptionCode: 'HOME.IOT.TEXT',
-    dates: [
-      {
-        date: null,
-        descriptionCode: 'EVENTCARD.DATE.TBD',
-      }
-    ]
+    dates: []
   };
 
   constructor() { }
 
   getAllEvents(): EventCardData[] {
-    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop];
+    return [this.ieeextreme,
+      this.cursosPython,
+      this.bitcup,
+      this.dataAnalysis,
+      this.asimovCup,
+      this.iotWorkshop];
+  }
+
+  getUpcomingEvents(): EventCardData[] {
+    return this.getAllEvents()
+      .filter((event) => event.dates.length > 0)
+      .sort((event1, event2) => {
+      if (event1.dates.length !== event2.dates.length) {
+        return event2.dates.length - event1.dates.length;
+      }
+      const eventDate1 = event1.dates[0];
+      const eventDate2 = event2.dates[0];
+      if (eventDate1.date && eventDate2.date) {
+        if (eventDate1.showMonth && eventDate2.showMonth || !eventDate1.showMonth && !eventDate2.showMonth) {
+          return eventDate1.date.getTime() - eventDate2.date.getTime();
+        }
+        return eventDate1.showMonth ? 1 : -1;
+      }
+      return event1.dates[0].date ? -1 : 1;
+    });
   }
 
   getRasEvents(): EventCardData[] {
