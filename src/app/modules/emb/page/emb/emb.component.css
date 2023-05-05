@@ -41,63 +41,13 @@ html {
     text-align: left;
   }
   
-  .row-eq-height {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-  }
+
   
   .section-title {
     font-size: 1.8rem;
     color: var(--ras-red);
   }
-  
-  .event-card {
-    margin: auto;
-    height: 100%;
-  }
-  
-  .event-card-img {
-    width: 100%;
-    object-fit: cover;
-    height: 16em;
-    object-position: center center;
-  }
-  
-  .event-card:hover .event-card-img {
-    animation: event-move 40s infinite;
-  }
-  
-  .asimovcup-filter {
-    filter: sepia(10%) hue-rotate(18deg) saturate(120%) brightness(80%);
-    transition: all ease-in 125ms;
-  }
-  
-  .asimovcup-text {
-    top: 35%;
-  }
-  
-  .image-with-text {
-    position: relative;
-    width: 100%;
-  }
-  
-  .text-on-image {
-    position: absolute;
-    text-align: center;
-    /*top: 50%;*/
-    width: 100%;
-    /*font-size: min(4rem, 5vw);*/
-    font-size: 2rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 1);
-    letter-spacing: 1px;
-    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-    -1px -1px 0 #000;
-  }
-  
+
   .container {
     display: flex;
     justify-content: space-evenly;
@@ -132,18 +82,8 @@ html {
     font-size: 1.5rem;
   }
   
-  .card-listing {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    gap: 2rem;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .event-container {
-    max-width: 600px;
-  }
+
+ 
   
   @media (max-width: 770px) {
     .rasLogo {
@@ -155,9 +95,5 @@ html {
     }
   }
   
-  @media (max-width: 400px) {
-    .card-listing {
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-  }
+
   
