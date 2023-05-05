@@ -58,6 +58,7 @@ export class TeamService {
       name: this.FUNDRAISING,
       team: [
         new IEEEMember('Nicolas Agustín Beade', 'https://i.ibb.co/QC3tWPV/nicolas-agustin-beade.jpg', 'https://www.linkedin.com/in/nicolas-agustín-beade-671bb2235/', 'nbeade@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.CHIEF'),
+        new IEEEMember('Andrés Paolina', 'https://i.ibb.co/YhRDDMf/ANDRES-PAOLINA.jpg', 'https://linkedin.com/in/andres-paolina-gaston', 'apaolina@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
         new IEEEMember('Juan Ignacio Noms', 'https://i.ibb.co/QDTwMhB/juan-ignacio-noms.jpg', 'https://www.linkedin.com/in/juannoms/', 'jnoms@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
         new IEEEMember('Julieta Dapelo', 'https://i.ibb.co/0V5BqD1/JULIETA-DAPELO.jpg', 'https://www.linkedin.com/in/julietadapelo/', 'jdapelo@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
         new IEEEMember('Miranda Ormaechea Graiver', 'https://i.ibb.co/M1MtMmq/MIRANDA-ORMAECHEA-GRAIVER.jpg', 'https://www.linkedin.com/in/miranda-ormaechea-graiver-a54a21198/', 'mormaecheagraiver@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
