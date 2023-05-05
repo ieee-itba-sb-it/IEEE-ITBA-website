@@ -1,0 +1,38 @@
+<a [routerLink]="[event.routerLink]">
+  <mat-card class="event-card">
+    <div class="image-with-text">
+      <img
+        src="{{ event.imageSrc }}"
+        alt="{{ event.imageAlt }}"
+        class="event-card-img"
+        [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}"
+      />
+      <p class="text-on-image ieeextreme-text">
+        {{ event.titleCode | translate }}
+      </p>
+      <div class="date-container">
+        <div *ngIf="event.dates[0].date == null; else date" class="date-inner-container">
+          <i class="fa fa-calendar no-date-inner " style=""></i>
+        </div>
+        <ng-template #date>
+          <div class="date-inner-container" >
+            <div *ngIf="!event.dates[0].showMonth; else showMonth" class="day-month-container">
+              <i class="fa fa-calendar exact-date-inner "></i>
+              <div class="month-container">
+                {{ event.dates[0].date.getDate() }}
+                {{ event.dates[0].date.toLocaleString(locale, { month: 'short' })}}
+              </div>
+            </div>
+            <ng-template #showMonth>
+              <i class="fa fa-calendar exact-date-inner "></i>
+              <div class="only-month-container" style="font-size: 20px">
+                {{ event.dates[0].date.toLocaleString(locale, { month: 'short' })}}
+              </div>
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+  </mat-card>
+</a>
