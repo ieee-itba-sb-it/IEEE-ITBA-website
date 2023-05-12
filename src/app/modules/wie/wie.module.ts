@@ -6,6 +6,7 @@ import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ng
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { CustomMissingTranslationHandler } from 'src/app/shared/CustomMissingTranslationHandler';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes = [
   { path: '', component: WieComponent }
@@ -18,6 +19,7 @@ export const routing = RouterModule.forChild(routes)
   imports: [
     routing,
     CommonModule,
+    SharedModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
