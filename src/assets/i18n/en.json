@@ -584,5 +584,142 @@
       }
     },
     "SPONSORS": "Sponsors"
+  },
+  "TYPESCRIPT": {
+    "TITLE": "Typescript Course",
+    "DESCRIPTION": {
+      "TITLE": "Description",
+      "TEXT": "Intensive programming course of 4 classes of 3 hours, where you will learn how to program with the TypeScript programming language. It will also cover best practices, and things related to the Object Oriented paradigm, and an introduction of Functional Programming. The course will cover the basics of Internet communication through protocols such as HTTP. Simple programs will be made, where the mentioned characteristics will be observed and, finally, a file query program will be completed."
+    },
+    "SYLLABUS": {
+      "TITLE": "Syllabus",
+      "1": {
+        "TEXT" : "First class - Introduction",
+        "BULLET_PTS": {
+          "1": "Advantages and Disadvantages of TypeScript",
+          "2": "Tools to use",
+          "3": "Our first program",
+          "4": "Variables and data types",
+          "5": "Loops and Conditionals"
+        }
+      },
+      "2": {
+        "TEXT": "Second class - Objects",
+        "BULLET_PTS": {
+          "1": "Arrays",
+          "2": "Our first function",
+          "3": "What is an Object?",
+          "4": "Special types of data",
+          "5": "Types of comparison",
+          "6": "Enums",
+          "7": "JSON",
+          "8": "Interfaces",
+          "9": "Classes",
+          "10": "Organization and separation of files"
+        }
+      },
+      "3": {
+        "TEXT": "Third Class - Generics, Exceptions and Files",
+        "BULLET_PTS": {
+          "1": "Extension of classes",
+          "2": "Generics",
+          "3": "Recursion",
+          "4": "Exceptions",
+          "5": "File Reading"
+        }
+      },
+      "4": {
+      "TEXT": "Fourth Class - Consultation Programs",
+        "BULLET_PTS": {
+          "1": "A look at Functional Programming",
+          "2": "HTTP Methods and HTTP Status Codes",
+          "3": "Development of a basic API"
+        }
+      }
+    },
+    "INSCRIPTION_FORM": "Inscription",
+    "SCHEDULE": {
+      "TITLE": "Dates",
+      "1": "Inscription:  15/05/23 - 28/05/23",
+      "2": "Enable Class I:  31/05/23",
+      "3": "Livestream 1: 03/06/23",
+      "4": "Enable Practice I: 03/06/23",
+      "5": "Enable Class II: 07/06/23",
+      "6": "Livestream 2: 10/06/23",
+      "7": "Enable Practice II:  10/06/23",
+      "8": "Enable Class III:  14/06/23",
+      "9": "Livestream 3: 17/06/23",
+      "10": "Enable Practice III:  17/06/23",
+      "11": "Enable Class IV:  21/06/23",
+      "12": "Livestream 4:  24/06/23",
+      "13": "Enable Practice IV: 24/06/23"
+    },
+    "FORMS": {
+      "1": "Inscription Form",
+      "2": "A quiz to evaluate each class (4 in total)",
+      "3": "Course completion survey"
+    },
+    "REQUIREMENTS": {
+      "TITLE": "Requirements",
+      "1": "There are no requirements in terms of knowledge, except the desire to learn and perseverance, since it is an intensive course, especially for beginners. However, it is recommended to have a minimum level in programming any language so that it is not so intensive.",
+      "2": "Regarding physical requirements, we need the participants to have access to a computer with any operating system, with enough capacity to be able to see the classes that will be taught virtually, and do the exercises.",
+      "3": "Also, prior to the beginning of the classes, you would have to have all the programs (and the disk space) that are going to be used, installed on the computers.",
+      "4": {
+        "TEXT": "The following are:",
+        "BULLET_PTS": {
+          "1": "A text editor or IDE (Visual Studio Code, Visual Studio, WebStorm, Atom, etc)",
+          "2": "Node.js",
+          "3": "Node.js dependencies that will be used to compile TypeScript code (typescript and ts-node) and other extra dependencies that will be installed over the course of the classes."
+        }
+      },
+      "5": "In order to install them, an",
+      "LINK": "installation guide has already been created"
+    },
+    "SUGGESTIONS": {
+      "TITLE": "Suggestions",
+      "TEXT": "Throughout the course: ",
+      "BULLET_PTS": {
+        "1": "Use the additional bibliography.",
+        "2": "In case of problems, use the preferred search engine to search on StackOverflow.",
+        "3": "StackOverflow as a page to consult the developer community.",
+        "4": "Send inquiries via emails/Discord server.",
+        "5": "Participate in the class, through chat or by \"raising your hand\" to ask questions or clarify the topics.",
+        "6": "Do not leave everything to the last minute, since the content of the course is incremental in terms of what is seen from one class to the other.",
+        "7": "Use the Discord channel, created as a community of IEEE ITBA TypeScript programmers, to upload information, job offers, make clarifications, make inquiries."
+      }
+    },
+    "FORMAT": {
+      "TITLE": "Format",
+      "1": "100% Online",
+      "2": "Classes could be held on YouTube in real time. They will be recorded on YouTube, to access when necessary.",
+      "3": "There will be a GitHub repository with what is given in the course (classes in ppt and pdf format, .ts files with what was given in each class, separated into folders, installation guides, requirements, files that will be used throughout throughout the course, such as the Excel file that will be used for reference in the last class)",
+      "4": "There will be a Discord server, to ask questions about the course and to generate a community of TypeScript programmers."
+    },
+    "FAQ": {
+      "1": {
+        "QUESTION": "What do I have to do to access the classes?",
+        "ANSWER": "In order to access the classes, once they are recorded, one way is to go to the IEEE ITBA YouTube channel, and access the playlists with \"TypeScript Course\" in them. In order to access the classes in real time, they will be provided, through emails from the organization, the access links to it. The link would work at the specified time for the class you want to see."
+      },
+      "2": {
+        "QUESTION": "How can I get the course certificate?",
+        "ANSWER": "You will need to successfully complete and pass the weekly challenges that will be posted after each class. You will have to do it before the end of the course. Remember to complete each form with the same email address that you used on the registration form."
+      },
+      "3": {
+        "QUESTION": "At what time and on what day will the classes be held?",
+        "ANSWER": " The schedule of the classes will be announced in the introductory email. In any case, 24 hours before the start of each class, the link, time and day of the class will be announced again."
+      }, 
+      "4": {
+        "QUESTION": "Where can I see more information about what is seen in the course?",
+        "ANSWER": "Throughout the course, additional bibliography will be added with the official pages of the tools to be used, along with extra pages, such as pages with dissemination material, queries made on StackOverflow. In any case, you can always consult the developer community on the Internet, which welcomes you with open arms. In addition, a Discord channel will be created to see more information about the programming language, along with job offers, a consultation section, etc."
+      },
+      "5": {
+        "QUESTION": "How do I download/install the tools required for the course?",
+        "ANSWER": "In the introductory email, you will find a link that leads to the Installation Guide. If you cannot find it, the following is the link to it: https://docs.google.com/document/d/1HyHV5kBX0ia3aU5gIloLdLiZJfYUeycF/edit?usp=share_link&ouid=112211854992995186127&rtpof=true&sd=true"
+      },
+      "6": {
+        "QUESTION": "My computer has problems with the programs while I do things related to the course",
+        "ANSWER": "The problems found can be diverse.\nIn the case of finding problems with any tool, we recommend looking at the tool's page to see if they have a Troubleshooting section. In the event that this is not the case, you could send us an email commenting on the problem, along with all the additional information possible, such as photos, videos, error messages.\nIf you encounter the problem that your computer freezes a lot when you are programming what is seen in the course, or solving exercises or watching the classes, you probably have a computer memory problem. This may be because there are many programs running on the computer at the same time, and they can slow down some program, or the computer itself. In that case, we recommend closing any extra programs that are open, including those that are running in the background. \n It may also happen that the computer you are using does not meet the minimum requirements for the programming course. In that case we regret the same, but we won't be able to help you 😢."
+      }      
+    }
   }
 }
