@@ -12,9 +12,22 @@
 <body>
   <!-- BANNER -->
   <section class="banner">
-    <h1 class="course-title">{{ 'TYPESCRIPT.TITLE' | translate}}</h1>
+    <img
+      src="../../../../../assets/image/events/typescript-course/big-banner.jpg"
+      class="cover-background"
+      alt="Asimov Cup - Competencia de Robótica"
+    />
   </section>
+  <h1 class="course-title">{{ 'TYPESCRIPT.TITLE' | translate}}</h1>
   <!-- DESCRIPTION -->
+  <div *ngIf="enrollAvailable()">
+    <div class="d-flex flex-row-reverse">
+      <button class="goback-button">
+        <a href="{{ enrollLink }}" class="button-text">
+          {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
+      </button>
+    </div>
+  </div>
   <section>
     <h2 class="course-subtitle">{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}} </h2>
     <p>{{ 'TYPESCRIPT.DESCRIPTION.TEXT' | translate}}</p>
@@ -89,12 +102,14 @@
   </section>
   -->
   <!-- SCHEDULE -->
+  <!--
   <section>
     <h2 class="course-subtitle">{{ 'TYPESCRIPT.SCHEDULE.TITLE' | translate}} </h2>
     <ul *ngFor="let date of schedule">
       <li><p>{{date | translate}}</p></li>
     </ul>
   </section>
+  -->
   <!-- REQUIREMENTS -->
   <section>
     <h2 class="course-subtitle">{{ 'TYPESCRIPT.REQUIREMENTS.TITLE' | translate}} </h2>
@@ -107,8 +122,8 @@
       <li><p>{{ 'TYPESCRIPT.REQUIREMENTS.4.BULLET_PTS.2' | translate}}</p></li>
       <li><p>{{ 'TYPESCRIPT.REQUIREMENTS.4.BULLET_PTS.3' | translate}}</p></li>
     </ul>
-    <p> {{ 'TYPESCRIPT.REQUIREMENTS.5' | translate}} 
-      <a href="https://docs.google.com/document/d/1HyHV5kBX0ia3aU5gIloLdLiZJfYUeycF/edit?usp=sharing&ouid=111820763393616530326&rtpof=true&sd=true">
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.5' | translate}}
+      <a href="{{requirementsLink}}">
         {{ 'TYPESCRIPT.REQUIREMENTS.LINK' | translate}}
       </a>
     </p>

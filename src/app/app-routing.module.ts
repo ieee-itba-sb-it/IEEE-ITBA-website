@@ -108,7 +108,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'typescript',
+    path: 'curso-typescript',
     loadChildren: () =>
       import('./modules/typescript/typescript.module').then(
         (m) => m.TypescriptModule

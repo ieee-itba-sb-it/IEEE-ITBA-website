@@ -1,11 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import firebase, { firestore } from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+
 @Component({
   selector: 'app-typescript',
   templateUrl: './typescript.component.html',
   styleUrls: ['./typescript.component.css']
 })
 export class TypescriptComponent implements OnInit {
+
+  requirementsLink = 'https://raw.githubusercontent.com/IEEESBITBA/curso-typescript/main/Anexo/Gu%C3%ADa%20de%20Instalaci%C3%B3n%20de%20Herramientas.pdf';
+
+  enrollLink = 'https://forms.gle/v4HjXEWRJMB1E9b39';
+
+  enrollOpen = false;
+  enrollClosed = false;
 
   faq = [
     { q: 'TYPESCRIPT.FAQ.1.QUESTION', a: 'TYPESCRIPT.FAQ.1.ANSWER' },
@@ -24,9 +34,22 @@ export class TypescriptComponent implements OnInit {
     'TYPESCRIPT.SCHEDULE.13'
   ];
 
-  constructor() { }
+  isOldDate(date: string) {
+    const oldDate = Timestamp.fromDate(new Date(date));
+    const now = firebase.firestore.Timestamp.now();
+    return now > oldDate;
+  }
+
+  constructor() {
+    this.enrollOpen = this.isOldDate('15 May 2023 03:00:00 UTC');
+    this.enrollClosed = this.isOldDate('29 May 2023 03:00:00 UTC');
+  }
 
   ngOnInit(): void {
+  }
+
+  enrollAvailable(): boolean {
+    return this.enrollOpen && !this.enrollClosed;
   }
 
 }

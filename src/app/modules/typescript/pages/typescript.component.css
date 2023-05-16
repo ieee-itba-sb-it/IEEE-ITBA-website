@@ -39,11 +39,44 @@ p{
     transition: all 175ms ease-in-out;
 }
 
+.goback-button {
+  font-size: calc(0.5vw + 0.5rem);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  padding:  0.7rem 1rem 0.7rem 1rem;
+  border: solid rgb(0, 98, 155);
+  color: rgb(0, 98, 155) !important;
+  border-radius: 5px;
+  background-color: inherit;
+  border-width: 3px;
+  transition: all 175ms ease-in-out;
+}
+
+.goback-button:hover {
+  box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+  color: white !important;
+  background-color: #0d47a1;
+  border-color: white;
+}
+
+.goback-button >.button-text {
+  color: rgb(0, 98, 155) !important;
+}
+
+.goback-button:hover > .button-text{
+  color: white !important;
+}
+
+.cover-background {
+  flex-grow: inherit;
+  max-width: 100%;
+}
+
 /* Cards */
 mat-card-header{
     left: 0rem;
 }
-/* Title of the course*/ 
+/* Title of the course*/
 
 .banner{
     display: flex;
@@ -56,16 +89,7 @@ mat-card-header{
     font-weight: 400;
     color: #0d47a1;
     letter-spacing: 1px;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
-    vertical-align: middle;
-    align-content: center;
-}
-
-@media (max-width: 700px) {
-    .course-title{
-        padding-top: 30%;
-    }
+    text-align: center;
 }
 
 .course-subtitle {
@@ -79,7 +103,7 @@ mat-card-header{
     margin: 1rem 0;
     display: flex;
     justify-content: space-between;
-    
+
 }
 
 .syllabus > mat-card {

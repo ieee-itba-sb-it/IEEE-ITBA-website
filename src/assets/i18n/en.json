@@ -707,19 +707,19 @@
       "3": {
         "QUESTION": "At what time and on what day will the classes be held?",
         "ANSWER": " The schedule of the classes will be announced in the introductory email. In any case, 24 hours before the start of each class, the link, time and day of the class will be announced again."
-      }, 
+      },
       "4": {
         "QUESTION": "Where can I see more information about what is seen in the course?",
         "ANSWER": "Throughout the course, additional bibliography will be added with the official pages of the tools to be used, along with extra pages, such as pages with dissemination material, queries made on StackOverflow. In any case, you can always consult the developer community on the Internet, which welcomes you with open arms. In addition, a Discord channel will be created to see more information about the programming language, along with job offers, a consultation section, etc."
       },
       "5": {
         "QUESTION": "How do I download/install the tools required for the course?",
-        "ANSWER": "In the introductory email, you will find a link that leads to the Installation Guide. If you cannot find it, the following is the link to it: https://docs.google.com/document/d/1HyHV5kBX0ia3aU5gIloLdLiZJfYUeycF/edit?usp=share_link&ouid=112211854992995186127&rtpof=true&sd=true"
+        "ANSWER": "In the introductory email, you will find a link that leads to the Installation Guide. If you cannot find it, it is also included at the end of the Requirements section on this page."
       },
       "6": {
         "QUESTION": "My computer has problems with the programs while I do things related to the course",
         "ANSWER": "The problems found can be diverse.\nIn the case of finding problems with any tool, we recommend looking at the tool's page to see if they have a Troubleshooting section. In the event that this is not the case, you could send us an email commenting on the problem, along with all the additional information possible, such as photos, videos, error messages.\nIf you encounter the problem that your computer freezes a lot when you are programming what is seen in the course, or solving exercises or watching the classes, you probably have a computer memory problem. This may be because there are many programs running on the computer at the same time, and they can slow down some program, or the computer itself. In that case, we recommend closing any extra programs that are open, including those that are running in the background. \n It may also happen that the computer you are using does not meet the minimum requirements for the programming course. In that case we regret the same, but we won't be able to help you 😢."
-      }      
+      }
     }
   }
 }

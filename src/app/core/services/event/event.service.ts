@@ -25,7 +25,7 @@ export class EventService {
   private iotWorkshop: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
     imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
 
-  private typescript: EventCardData = { routerLink: '/typescript', imageSrc: '',
+  private typescript: EventCardData = { routerLink: '/curso-typescript', imageSrc: '../../../../../assets/image/events/typescript-course/banner.jpg',
     imageAlt: 'Foto de curso de Typescript', titleCode: 'TYPESCRIPT.TITLE', descriptionCode: 'TYPESCRIPT.DESCRIPTION.TEXT'};
 
   constructor() { }

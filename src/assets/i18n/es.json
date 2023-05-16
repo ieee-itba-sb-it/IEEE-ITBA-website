@@ -675,7 +675,7 @@
         }
       },
       "3": {
-        "TEXT": "Generics, Excepciones y Archivos",
+        "TEXT": "Tercera Clase - Generics, Excepciones y Archivos",
         "BULLET_PTS": {
           "1": "Extensión de clases",
           "2": "Generics",
@@ -763,19 +763,19 @@
       "3": {
         "QUESTION": "¿A qué hora y qué día son las clases?",
         "ANSWER": "En el mail introductorio se darán a conocer los días y las horas de las clases. De todas formas, 24 horas antes del inicio de cada clase, se darán a conocer el link, la hora y el día de la clase nuevamente."
-      }, 
+      },
       "4": {
         "QUESTION": "¿Dónde puedo ver más información acerca de lo que se vea en el curso?",
         "ANSWER": "A lo largo del curso, se adicionará bibliografía adicional con las páginas oficiales de las herramientas a utilizar, junto con páginas extra, tal como páginas con material de difusión, consultas realizadas en StackOverflow. De todas formas, siempre se puede consultar a través de Internet, a la comunidad de desarrolladores, que lo recibe a uno con los brazos abiertos. Además, se creará un canal de Discord para ver más información del lenguaje de programación, junto a ofertas de trabajo, sección de consultas, etc."
       },
       "5": {
         "QUESTION": "¿Cómo descargo/instalo las herramientas que se requieren para el curso?",
-        "ANSWER": "En el mail introductorio, se hallará un link que dirige a la Guía de Instalación. De no encontrarlo, el siguiente es el link a la misma: https://docs.google.com/document/d/1HyHV5kBX0ia3aU5gIloLdLiZJfYUeycF/edit?usp=share_link&ouid=112211854992995186127&rtpof=true&sd=true"
+        "ANSWER": "En el mail introductorio, se hallará un link que dirige a la Guía de Instalación. De no encontrarlo, también se encuentra en esta página, al final de la sección de Requerimientos."
       },
       "6": {
         "QUESTION": "Mi computadora tiene problemas con los programas mientras hago cosas relacionadas al curso",
         "ANSWER": "Los problemas encontrados pueden ser diversos.\n En el caso de encontrar problemas con alguna herramienta, recomendamos buscar en la página de la herramienta para ver si tienen un sector de Solucionador de Problemas. En el caso de que no sea así, podrían enviarnos un mail comentando el problema, junto a toda la información adicional posible, como fotos, videos, mensajes de error.\nSi se encuentran con el problema de que se les traba mucho la computadora cuando están programando lo que se ve en el curso, o resolviendo ejercicios o viendo las clases, probablemente tengas un problema de memoria de la computadora. Esto puede deberse a que hay muchos programas corriendo en la computadora en simultáneo, y pueden ralentizar algún programa, o a la computadora en sí. En ese caso, recomendamos cerrar todo programa extra que esté abierto, incluyendo los que están corriendo en segundo plano. \n Puede llegar a pasar, también, que la computadora que estén utilizando no cumpla con los requisitos mínimos para el curso de programación. En ese caso lamentamos lo mismo, pero no podremos ayudarte😢."
-      }      
+      }
     }
   }
 }
