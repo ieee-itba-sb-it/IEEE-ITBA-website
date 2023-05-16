@@ -23,79 +23,113 @@
         </div>
     </div>
 
-    <div>
-        <mat-card>
-
-            <mat-grid-list cols="4" rowHeight="4:1">
-                <!-- Title -->
-                <mat-grid-tile colspan="4">
-                    <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>{{ 'WRITE-NEW.TITLE2' | translate }}</mat-label>
-                        <input id="title" matInput>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-                <!-- Short Intro -->
-                <mat-grid-tile colspan="2">
-                    <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>{{ 'WRITE-NEW.POMPADOUR' | translate }}</mat-label>
-                        <input id="shortIntro" matInput>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-                <!-- Author -->
-                <mat-grid-tile colspan="2">
-                    <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>{{ 'WRITE-NEW.AUTHOR' | translate }}</mat-label>
-                        <input id="author" matInput>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-                <!-- Image -->
-                <mat-grid-tile colspan="2">
-                    <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>{{ 'WRITE-NEW.COVERIMG' | translate }}</mat-label>
-                        <input id="imageUrl" matInput>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-                <!-- Epigrafe -->
-                <mat-grid-tile colspan="2">
-                    <mat-form-field class="example-full-width" style="width:50vw">
-                        <mat-label>{{ 'WRITE-NEW.EPIGRAPH' | translate }}</mat-label>
-                        <input id="imageText" matInput>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-                <!-- Body -->
-                <mat-grid-tile colspan="4" rowspan="9">
-                    <form [formGroup]="editorForm">
-                        <div class="form-group">
-                            <label for="editor">{{ 'WRITE-NEW.BODY' | translate }}</label>
-                            <quill-editor formControlName="editor"></quill-editor>
-                        </div>
-                    </form>
-                </mat-grid-tile>
-
-
-
-                <!-- Submit Buttons -->
-                <mat-grid-tile colspan="4">
-                    <!-- Listed -->
-                    <div class="custom-control custom-checkbox" style="margin-right: 20px">
-                        <input type="checkbox" class="custom-control-input" id="listed">
-                        <label class="custom-control-label" for="listed">{{ 'WRITE-NEW.CHECKBUTTON' | translate }}</label>
-                    </div><br><br>
-                    <button mat-raised-button color="primary" id="submitNews" (click)="submitNews()"
-                        style="margin-right: 20px">{{ 'WRITE-NEW.UPLOAD' | translate }}</button>
-
-
-                </mat-grid-tile>
-            </mat-grid-list>
-
-
+    <div class="editor-container">
+        <mat-card style="max-width: 60%">
+            <mat-list-item>
+              <!-- Title -->
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label>{{ 'WRITE-NEW.TITLE2' | translate }}</mat-label>
+                <input id="title" matInput [(ngModel)]="newsContent.title">
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <!-- Image -->
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label>{{ 'WRITE-NEW.COVERIMG' | translate }}</mat-label>
+                <input id="imageUrl" matInput [(ngModel)]="newsContent.imageUrl">
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <!-- Epigrafe -->
+              <mat-form-field class="example-full-width" style="width:50vw">
+                <mat-label>{{ 'WRITE-NEW.EPIGRAPH' | translate }}</mat-label>
+                <input id="imageText" matInput [(ngModel)]="newsContent.imageText">
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <!-- Body -->
+              <form [formGroup]="editorForm">
+                <div class="form-group">
+                  <label for="editor">{{ 'WRITE-NEW.BODY' | translate }}</label>
+                  <quill-editor formControlName="editor" (onContentChanged)="updateNewsText()"></quill-editor>
+                </div>
+              </form>
+            </mat-list-item>
+            <mat-list-item>
+              <!-- Submit Buttons -->
+              <!-- Listed -->
+              <div class="custom-control custom-checkbox" style="margin-right: 20px">
+                <input type="checkbox" class="custom-control-input" id="listed">
+                <label class="custom-control-label" for="listed">{{ 'WRITE-NEW.CHECKBUTTON' | translate }}</label>
+              </div><br><br>
+              <button mat-raised-button color="primary" id="submitNews" (click)="submitNews()"
+                      style="margin-right: 20px">{{ 'WRITE-NEW.UPLOAD' | translate }}</button>
+            </mat-list-item>
         </mat-card>
+        <mat-card style="flex-grow: 1">
+          <div style="display: flex; flex-direction: column; justify-content: center">
+            <h1 class="word-break preview-title">{{newsContent.title || "Title"}}</h1>
+            <span class="word-break" [innerHTML]="newsContent.shortIntro"></span>
+            <div style="display: inline-flex; gap: 1em; align-items: center; padding: 1em 0;">
+              <div style="display: inline-flex; gap: 0.5em">
+                <i style="line-height: inherit" class="fas fa-user"></i>
+                <span class="word-break">{{user.fname + ' ' + user.lname || "Author"}}</span>
+              </div>
+              <div style="display: inline-flex; gap: 0.5em;">
+                <i style="line-height: inherit" class="fas fa-clock"></i>
+                <span class="word-break">{{newsContent.date || "26 Jul 2022"}}</span>
+              </div>
+            </div>
+            <img style="border: 1px solid" src="{{newsContent.imageUrl}}" alt="Imagen de noticia" [width]="600">
+            <span>{{newsContent.imageText || "Epigraph"}}</span>
+            <div [innerHTML]="newsContent.content" class="whitetext word-break"></div>
+          </div>
+          <!--
+          <div>
+            <p class="author-text word-break">
+              {{user.fname + ' ' + user.lname}}
+            </p>
+          </div>
 
+          <div>
+            <div>
+              <div>
+                <div>
+                  <h1 class="word-break preview-title">{{newsContent.title}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayoutAlign="center center" fxLayout="column">
+            <div fxLayoutAlign="center center" fxLayout="column">
+              <p class="add-margin author-text word-break" [innerHTML]="newsContent.shortIntro"></p>
+            </div>
+          </div>
+
+          <div class="bottomLine">
+
+            <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
+              <div class="add-margin">
+                <img src="{{newsContent.imageUrl}}" [width]="600">
+
+                <p class="whitetext-photo-text">{{newsContent.imageText}}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="topbottomLine">
+            <div class="container" fxLayoutAlign="center center" fxLayout="column">
+              <div class="row">
+                <div class="col-sm">
+                  <div [innerHTML]="newsContent.content" class="add-margin whitetext word-break"> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+        </mat-card>
     </div>
 
     <div class="container">

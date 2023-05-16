@@ -10,13 +10,15 @@ import {HttpClient} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {QuillModule} from 'ngx-quill';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {MatListModule} from '@angular/material/list';
+import {CardsModule} from 'angular-bootstrap-md';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },
@@ -27,29 +29,32 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [ WriteNewsComponent, EditarAnuncioComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MatCardModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    QuillModule,
-    MatButtonModule,
-    MatInputModule,
-    FlexLayoutModule,
-    MatSnackBarModule,
-    QuillModule.forRoot()
-  ]
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MatCardModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        QuillModule,
+        MatButtonModule,
+        MatInputModule,
+        FlexLayoutModule,
+        MatSnackBarModule,
+        QuillModule.forRoot(),
+        MatListModule,
+        CardsModule,
+        FormsModule
+    ]
 })
 export class WriteNewsModule { }
