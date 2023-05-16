@@ -25,10 +25,13 @@ export class EventService {
   private iotWorkshop: EventCardData = { routerLink: '/iot', imageSrc: '../../../../../assets/image/events/iot/iot-banner.jpeg',
     imageAlt: 'Logo de la Asimov Cup', titleCode: 'HOME.IOT.TITLE', descriptionCode: 'HOME.IOT.TEXT'};
 
+  private typescript: EventCardData = { routerLink: '/typescript', imageSrc: '',
+    imageAlt: 'Foto de curso de Typescript', titleCode: 'TYPESCRIPT.TITLE', descriptionCode: 'TYPESCRIPT.DESCRIPTION.TEXT'};
+
   constructor() { }
 
   getAllEvents(): EventCardData[] {
-    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop];
+    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop, this.typescript];
   }
 
   getRasEvents(): EventCardData[] {
