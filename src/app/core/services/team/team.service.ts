@@ -101,6 +101,29 @@ export class TeamService {
     ]
   };
 
+  private embTeam = {
+    name: 'EMB',
+    team: [
+      new IEEEMember('Gonzalo Andrés Grau', 'https://i.ibb.co/SxJfHxb/Gonzalo-Andres-Grau.jpg', 'https://www.linkedin.com/in/tomás-wickham-21b7b2185/', 'twickham@itba.edu.ar', 'NULL'),
+      new IEEEMember('Lautaro Andrés Gomez', 'https://i.ibb.co/WWpLWqm/Lautaro-Andres-Gomez.jpg', 'https://www.linkedin.com/in/agust%C3%ADn-casas-7306a6262', 'agcasas@itba.edu.ar', 'NULL'),
+      new IEEEMember('Irina de Paz Puratich', 'https://i.ibb.co/gw2ZprC/Irina-Paz-Puratich.jpg', 'https://www.linkedin.com/in/mfigueroaa/', 'mfigueroa@itba.edu.ar', 'NULL'),
+      new IEEEMember('Agustín Kiwi Miguel', 'https://i.ibb.co/XXTr3tm/Agustin-Kiwi-Miguel.jpg', 'https://www.linkedin.com/in/rafael-dalzotto', 'rdalzotto@itba.edu.ar', 'NULL'),
+      new IEEEMember('Juan Bautista Gonzalez', 'https://i.ibb.co/W2B0DxN/Juan-Bautista-Gonzales.jpg', 'https://www.linkedin.com/in/santiago-f-3886491b7/', 'sfeldman@itba.edu.ar', 'NULL'),
+      new IEEEMember('Lucas Franzi', 'https://i.ibb.co/2ncFxgp/Lucas-Franzi.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Dino Alberti', 'https://i.ibb.co/MGFYgQJ/Dino-Alberti.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Ivo Bajlec', 'https://i.ibb.co/pnn7ytj/Ivo-Bajlec.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Felipe Olivera Rial', 'https://i.ibb.co/wwZS9pb/Felipe-Olivera-Rial.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('FacundoBosch', 'https://i.ibb.co/G227gHP/Facundo-Bosch.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Josefina Brau', 'https://i.ibb.co/N71cmRv/Josefina-Brau.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Bianca Soto', 'https://i.ibb.co/9pBwPGb/Bianca-Soto.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Emiliano Gonzales Paez', 'https://i.ibb.co/vkV06Hz/Emiliano-Gonzales-Paez.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Francisco Barca', 'https://i.ibb.co/xFdFgCk/Francisco-Barca.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Tomas De La Valle', 'https://i.ibb.co/QKpb54F/Tomas-De-La-Valle.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Juan Manuel Peirano', 'https://i.ibb.co/Fn0cXRn/Juan-Manuel-Peirano.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+      new IEEEMember('Karolina Tenca', 'https://i.ibb.co/G0x842M/Karolina-Tenca.jpg', 'https://www.linkedin.com/in/santiago-michelotti-5b94291b6', 'smichelotti@itba.edu.ar', 'NULL'),
+    ]
+  };
+
   private teamCurrent2022 = [
     {
       name: this.CD,
@@ -376,6 +399,10 @@ export class TeamService {
 
   getRasTeam(): Commission {
     return this.rasTeam;
+  }
+  
+  getEmbTeam(): Commission {
+    return this.embTeam;
   }
 
   getTeams(): Team[] {
