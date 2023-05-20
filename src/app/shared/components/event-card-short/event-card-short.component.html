@@ -12,27 +12,21 @@
       </p>
       <div class="date-container">
         <div *ngIf="event.dates[0].date == null; else date" class="date-inner-container">
-          <i class="fa fa-calendar no-date-inner " style=""></i>
         </div>
         <ng-template #date>
-          <div class="date-inner-container" >
-            <div *ngIf="!event.dates[0].showMonth; else showMonth" class="day-month-container">
-              <i class="fa fa-calendar exact-date-inner "></i>
-              <div class="month-container">
-                {{ event.dates[0].date.getDate() }}
-                {{ event.dates[0].date.toLocaleString(locale, { month: 'short' })}}
-              </div>
-            </div>
-            <ng-template #showMonth>
-              <i class="fa fa-calendar exact-date-inner "></i>
-              <div class="only-month-container" style="font-size: 20px">
-                {{ event.dates[0].date.toLocaleString(locale, { month: 'short' })}}
-              </div>
-            </ng-template>
+          <div class="date-inner-container">
+            <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
+            {{ event.dates[0].date.toLocaleString(locale(), { month: 'long' })}}
           </div>
         </ng-template>
       </div>
     </div>
-
   </mat-card>
 </a>
+
+<!--
+
+      <p class="text-on-image">
+
+      </p>
+-->

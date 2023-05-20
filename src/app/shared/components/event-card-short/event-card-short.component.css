@@ -5,10 +5,10 @@
 
 .text-on-image {
   position: absolute;
-  top: 40%;
-  text-align: center;
-  width: 100%;
-  font-size: 2rem;
+  bottom: 25px;
+  right: 40px;
+  text-align: right;
+  font-size: 1.2rem;
   font-weight: 900;
   color: rgba(255, 255, 255, 1);
   letter-spacing: 1px;
@@ -19,14 +19,10 @@
 /* Card filters */
 
 .primary-filter {
-  filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(60%);
+  filter: brightness(25%);
   transition: all ease-in 125ms;
 }
 
-.secondary-filter {
-  filter: sepia(100%) hue-rotate(308deg) saturate(500%) brightness(60%);
-  transition: all ease-in 125ms;
-}
 
 /* Event card move */
 
@@ -63,6 +59,29 @@
 
 /* Extra styles */
 
+.date-inner-container {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #0D47A1;
+  font-weight: lighter;
+  font-size: 0.9em;
+  padding: 0 10px 0 20px;
+  text-align: right;
+  gap: 5px;
+}
+
+.date-container {
+  position: absolute;
+  font-size: 1.2em;
+  border-radius: 15px;
+  bottom: 75px;
+  right: 40px;
+}
+
+
 @media (min-width: 768px) {
   .flexText {
     display: flex;
@@ -73,19 +92,26 @@
 
 @media (min-width: 1000px) {
   .text-on-image {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
+
 }
 
 @media (min-width: 1500px) {
   .text-on-image {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 400px) {
   .text-on-image {
-    font-size: 1.5rem;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .date-container {
+    top: 50px;
   }
 }
 
@@ -100,26 +126,7 @@
 }
 
 
-.date-container {
-  position: absolute;
-  font-size: 1.2em;
-  bottom: 0;
-  right: 0;
-  border-radius: 15px;
-}
 
-.date-inner-container {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 8px;
-  border-radius: 15px;
-  width: 50px;
-  height: 70px;
-  position: relative;
-}
 
 .no-date-inner {
   color: #75787B;
@@ -132,8 +139,10 @@
 }
 
 .exact-date-inner {
-  color: #FFA300;
   font-size: 60px;
+}
+
+.calendar-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -154,13 +163,39 @@
 }
 
 .only-month-container {
-  font-size: 24px;
+  position: absolute;
+  top: 18px;
+  font-size: 14px;
   z-index: 10;
-  margin-top: 10px;
+  text-transform: uppercase;
 }
 
 .day-month-container {
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+.top-calendar {
+  position: absolute;
+  color: #FFA300;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 0, 0 40%, 100% 40%, 100% 0);
+}
+
+.middle-calendar {
+  position: absolute;
+  color: #FFA300;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 30%, 100% 30%,  100% 75%, 0 75%);
+}
+
+.bottom-calendar {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 75%, 100% 75%,  100% 100%, 0 100%);
 }

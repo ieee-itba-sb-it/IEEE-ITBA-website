@@ -1,5 +1,6 @@
 import {Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
 import { EventCardData } from '../../models/event/event-card-data';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-event-card-short',
@@ -15,7 +16,7 @@ export class EventCardShortComponent implements OnInit {
   hasPrimaryColorIndex: boolean;
 
   constructor(
-    @Inject(LOCALE_ID) public locale: string
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -26,4 +27,7 @@ export class EventCardShortComponent implements OnInit {
     return index % 2 === 0;
   }
 
+  locale(): string {
+    return this.translate.currentLang;
+  }
 }
