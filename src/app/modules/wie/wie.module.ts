@@ -7,6 +7,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { CustomMissingTranslationHandler } from 'src/app/shared/CustomMissingTranslationHandler';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const routes = [
   { path: '', component: WieComponent }
@@ -20,6 +21,7 @@ export const routing = RouterModule.forChild(routes)
     routing,
     CommonModule,
     SharedModule,
+    MatExpansionModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
