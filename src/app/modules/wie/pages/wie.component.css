@@ -183,8 +183,8 @@ mat-panel-title {
     line-height: 50px;
     font-size: 24px;
     transition: background-color 0.3s ease;
-  }
-  
-  .contact-link:hover {
-    background-color: var(--wie-dark-purple);
-  }
+}
+
+.contact-link:hover {
+background-color: var(--wie-dark-purple);
+}
