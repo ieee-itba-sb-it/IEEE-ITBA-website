@@ -552,9 +552,9 @@
       "7": "12:30 - 13:30: Lunch",
       "8": "13:30 - 15:00: Competition: Group Stage",
       "9": "15:00 - 17:00: Competition: Direct Elimination Phase",
-      "10":"17:00 - 17:30: Coffee Break" ,
-      "11":"17:30 - 18:00: Competition: Finals" ,
-      "12":"18:00 - 18:30: Awards Ceremony"
+      "10": "17:00 - 17:30: Coffee Break",
+      "11": "17:30 - 18:00: Competition: Finals",
+      "12": "18:00 - 18:30: Awards Ceremony"
     },
     "FAQ": {
       "TITLE": "Frequently asked questions",
@@ -584,5 +584,65 @@
       }
     },
     "SPONSORS": "Sponsors"
+  },
+  "WIE": {
+    "WHATIS": {
+      "TITLE": "What is IEEE WIE ITBA?",
+      "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objectives",
+      "CONTENT": {
+        "TEXT": "Our primary goals are:",
+        "BULLET1": "To encourage girls and women to get involved in STEM field careers",
+        "BULLET2": "To empower women who have studied or are studying STEM careers to be leaders and entrepreneurs"
+      }
+    },
+    "JOIN": {
+      "TITLE": "Join WIE!",
+      "MEMBERSHIP": "Get your membership",
+      "JOIN": "I want to join!",
+      "SPONSOR": "Sponsor us"
+    },
+    "FAQ": {
+      "TITLE": "FAQ",
+      "QUESTIONS": [
+        {
+          "QUESTION": "Who can join IEEE WIE ITBA?",
+          "ANSWER": "Any student currently enrolled in any course at ITBA. The only requisite is to want to participate!"
+        },
+        {
+          "QUESTION": "Can someone that isn't majoring in Electrical or Electronic engineering join?",
+          "ANSWER": "Yes. We have volunteers from every major in our university. Diversity isn't bound to a single career"
+        },
+        {
+          "QUESTION": "What does IEEE mean?",
+          "ANSWER": "IEEE is the Institute of Electrical and Electronic Engineers. It's the largest technical organization and its motto is \"Technology for the Advancement of Humanity\". IEEE WIE is an IEEE Affinity Group"
+        },
+        {
+          "QUESTION": "What is an Affinity Group?",
+          "ANSWER": "It's a subunit of IEEE that touches on broad, non technical, issues which do not belong to just a single engineering major, such as diversity in STEM fields, as in WIE's case"
+        },
+        {
+          "QUESTION": "What can I do in IEEE WIE ITBA?",
+          "ANSWER": "It's up to you! As long as it is in tune with WIE's goals. You can join any current project or even propose new activities. IEEE WIE ITBA is what our volunteers want it to be"
+        },
+        {
+          "QUESTION": "How much time will participating in IEEE WIE ITBA demand me?",
+          "ANSWER": "As much as you desire. You only need to express what you wish to participate in and report the advancements. All of us are students, so we completely understand that sometimes we don't have much time in our hands. Just proactively inform us when you won't be available and everything will be fine!"
+        },
+        {
+          "QUESTION": "What are IEEE WIE ITBA's goals?",
+          "ANSWER": "IEEE WIE ITBA goals are: to inspire women to follow STEM majors and to empower those women already enrolled in STEM majors to be leaders. In order to accomplish these goals we: put into the spotlight the work done by women in STEM fields, provide them the tools to develop on those fields and also demystify and teach about STEM"
+        },
+        {
+          "QUESTION": "What is IEEE WIE ITBA's organizational structure?",
+          "ANSWER": "IEEE WIE ITBA consists of 7 departments or sections. As the projects are the ones who belong to the departments, and the volunteers do not, each volunteer can participate in as many departments as they desire. Those departments are: Board of Directors, Media & Communication, Treasury & Fundraising, Logistics & Planning, Education, IT+D, HR"
+        }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Contact"
+    }
   }
 }
