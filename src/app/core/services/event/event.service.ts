@@ -84,6 +84,9 @@ export class EventService {
     dates: []
   };
 
+  private typescript: EventCardData = { routerLink: '/curso-typescript', imageSrc: '../../../../../assets/image/events/typescript-course/banner.jpg',
+    imageAlt: 'Foto de curso de Typescript', titleCode: 'TYPESCRIPT.TITLE', descriptionCode: 'TYPESCRIPT.DESCRIPTION.TEXT'};
+
   constructor() { }
 
   getAllEvents(): EventCardData[] {
@@ -92,7 +95,8 @@ export class EventService {
       this.bitcup,
       this.dataAnalysis,
       this.asimovCup,
-      this.iotWorkshop];
+      this.iotWorkshop,
+      this.typescript];
   }
 
   getUpcomingEvents(): EventCardData[] {
@@ -112,6 +116,7 @@ export class EventService {
       }
       return event1.dates[0].date ? -1 : 1;
     });
+    return [ this.ieeextreme, this.cursosPython, this.bitcup, this.dataAnalysis, this.asimovCup, this.iotWorkshop, this.typescript];
   }
 
   getRasEvents(): EventCardData[] {
