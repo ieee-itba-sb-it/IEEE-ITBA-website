@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {EventCardData} from '../../../../shared/models/event/event-card-data';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Commission} from '../../../../shared/models/commission';
