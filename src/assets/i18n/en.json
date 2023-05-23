@@ -346,26 +346,28 @@
     "TITLE": "Data Analysis in Python Course",
     "FAQ": {
       "TITLE": "Frequently asked questions",
-      "1": {
-        "QUESTION": "Do I need to have experience programming?",
-        "ANSWER": "For this course, some basic experience with Python will be necessary (flow control, data structures, etc.). If you completed our introductory course, then you are ready for this one!"
-      },
-      "2": {
-        "QUESTION": "Will I receive a certificate after finishing the course?",
-        "ANSWER": "Yes! You will get a certificate after completing a quiz before the end of the course."
-      },
-      "3": {
-        "QUESTION": "Who can enter this course?",
-        "ANSWER": "This course is free and open to everyone. Since it’s oriented towards a professional environment, it’s advisable, though not mandatory, to have finished high school. We strongly recommend to have finished primary school."
-      },
-      "4": {
-        "QUESTION": "How can I ask questions or ask for help?",
-        "ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
-      },
-      "5": {
-        "QUESTION": "Can I interact with the rest of the participants?",
-        "ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "Do I need to have experience programming?",
+          "ANSWER": "For this course, some basic experience with Python will be necessary (flow control, data structures, etc.). If you completed our introductory course, then you are ready for this one!"
+        },
+        {
+          "QUESTION": "Will I receive a certificate after finishing the course?",
+          "ANSWER": "Yes! You will get a certificate after completing a quiz before the end of the course."
+        },
+        {
+          "QUESTION": "Who can enter this course?",
+          "ANSWER": "This course is free and open to everyone. Since it’s oriented towards a professional environment, it’s advisable, though not mandatory, to have finished high school. We strongly recommend to have finished primary school."
+        },
+        {
+          "QUESTION": "How can I ask questions or ask for help?",
+          "ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
+        },
+        {
+          "QUESTION": "Can I interact with the rest of the participants?",
+          "ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
+        }
+      ]
     }
   },
   "IEEEMEETUP": {

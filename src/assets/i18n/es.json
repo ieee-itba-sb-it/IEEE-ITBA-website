@@ -402,26 +402,28 @@
     "TITLE": "Curso de Análisis de Datos en Python",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "IEEEMEETUP": {
