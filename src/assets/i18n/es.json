@@ -558,14 +558,16 @@
     "GALLERY_TITLE": "Galería",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Necesito algún conocimiento previo?",
-        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
-      },
-      "2": {
-        "QUESTION": "¿Quiénes pueden participar?",
-        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Necesito algún conocimiento previo?",
+          "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar?",
+          "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+        }
+      ]
     }
   },
   "ASIMOVCUP": {

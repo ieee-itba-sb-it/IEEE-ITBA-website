@@ -502,14 +502,16 @@
     "GALLERY_TITLE": "Gallery",
     "FAQ": {
       "TITLE": "Frequently asked questions",
-      "1": {
-        "QUESTION": "Do I need to have prior knowledge?",
-        "ANSWER": "It’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning."
-      },
-      "2": {
-        "QUESTION": "Who can enter?",
-        "ANSWER": "The workshop is free and open to everyone, but the amount of students is reduced due to the limited number of robot arms."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "Do I need to have prior knowledge?",
+          "ANSWER": "It’s not mandatory to have previous knowledge on programming or electronics to join the workshop, all the tools to understand and create the programs used will be given during class, and the robot arms are already tested and built from the beginning."
+        },
+        {
+          "QUESTION": "Who can enter?",
+          "ANSWER": "The workshop is free and open to everyone, but the amount of students is reduced due to the limited number of robot arms."
+        }
+      ]
     }
   },
   "ASIMOVCUP": {
