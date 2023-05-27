@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   logguedIn = false;
   journalist = false;
   language: string;
-
+  color: string;
   languageService: TranslateService;
 
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Set Up
   ngOnInit() {
+    
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: '#home',
