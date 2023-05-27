@@ -65,10 +65,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #0D47A1;
+  background-color: #00629B;
   font-weight: lighter;
   font-size: 0.9em;
-  padding: 0 10px 0 20px;
+  padding: 3px 10px 0 20px;
   text-align: right;
   gap: 5px;
 }
@@ -115,87 +115,7 @@
   }
 }
 
-
-.chip-highlighted {
-  background-color: #0D47A1;
-  color: white;
-}
-
 .chip {
   color: white;
 }
 
-
-
-
-.no-date-inner {
-  color: #75787B;
-  font-size: 48px;
-  bottom: 0;
-  right: 0;
-  z-index: 0;
-  position: absolute;
-  margin: 8px 0;
-}
-
-.exact-date-inner {
-  font-size: 60px;
-}
-
-.calendar-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-.month-container {
-  font-size: 14px;
-  text-align: center;
-  z-index: 10;
-  margin-top: 5px;
-}
-
-.day-container {
-  position: relative;
-  font-size: 24px;
-  z-index: 10;
-}
-
-.only-month-container {
-  position: absolute;
-  top: 18px;
-  font-size: 14px;
-  z-index: 10;
-  text-transform: uppercase;
-}
-
-.day-month-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.top-calendar {
-  position: absolute;
-  color: #FFA300;
-  top: 0;
-  left: 0;
-  clip-path: polygon(0 0, 0 40%, 100% 40%, 100% 0);
-}
-
-.middle-calendar {
-  position: absolute;
-  color: #FFA300;
-  top: 0;
-  left: 0;
-  clip-path: polygon(0 30%, 100% 30%,  100% 75%, 0 75%);
-}
-
-.bottom-calendar {
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: polygon(0 75%, 100% 75%,  100% 100%, 0 100%);
-}
