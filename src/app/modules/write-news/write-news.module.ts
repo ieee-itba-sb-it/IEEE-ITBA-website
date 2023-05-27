@@ -19,6 +19,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {MatListModule} from '@angular/material/list';
 import {CardsModule} from 'angular-bootstrap-md';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },
@@ -29,32 +36,39 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [ WriteNewsComponent, EditarAnuncioComponent ],
-    imports: [
-        routing,
-        CommonModule,
-        SharedModule,
-        TranslateModule.forChild({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            },
-            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-            extend: true
-        }),
-        MatCardModule,
-        MatGridListModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        QuillModule,
-        MatButtonModule,
-        MatInputModule,
-        FlexLayoutModule,
-        MatSnackBarModule,
-        QuillModule.forRoot(),
-        MatListModule,
-        CardsModule,
-        FormsModule
-    ]
+  imports: [
+    routing,
+    CommonModule,
+    SharedModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+      extend: true
+    }),
+    MatCardModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    QuillModule,
+    MatButtonModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatSnackBarModule,
+    QuillModule.forRoot(),
+    MatListModule,
+    CardsModule,
+    FormsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
+  ]
 })
 export class WriteNewsModule { }
