@@ -162,6 +162,11 @@
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
       "MORENEWS": "Ver más noticias"
     },
+    "EVENTS": {
+      "TITLE": "Eventos",
+      "CONTENT": "¡Entérate de nuestros próximos eventos!",
+      "MORE": "Ver más eventos"
+    },
     "SPONSORS": "Auspiciantes",
     "CLASSES": {
       "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
@@ -777,5 +782,11 @@
         "ANSWER": "Los problemas encontrados pueden ser diversos.\n En el caso de encontrar problemas con alguna herramienta, recomendamos buscar en la página de la herramienta para ver si tienen un sector de Solucionador de Problemas. En el caso de que no sea así, podrían enviarnos un mail comentando el problema, junto a toda la información adicional posible, como fotos, videos, mensajes de error.\nSi se encuentran con el problema de que se les traba mucho la computadora cuando están programando lo que se ve en el curso, o resolviendo ejercicios o viendo las clases, probablemente tengas un problema de memoria de la computadora. Esto puede deberse a que hay muchos programas corriendo en la computadora en simultáneo, y pueden ralentizar algún programa, o a la computadora en sí. En ese caso, recomendamos cerrar todo programa extra que esté abierto, incluyendo los que están corriendo en segundo plano. \n Puede llegar a pasar, también, que la computadora que estén utilizando no cumpla con los requisitos mínimos para el curso de programación. En ese caso lamentamos lo mismo, pero no podremos ayudarte😢."
       }
     }
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "TBD"
+    },
+    "DATESTRING": "Fecha: "
   }
 }

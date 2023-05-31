@@ -43,9 +43,12 @@
 
                 <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
                     <div class="add-margin">
-                        <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}"
-                            alt="Foto de noticia">
-                        </mdb-card-img>
+                      <mdb-card-img appResize
+                                    class="roundedBlock"
+                                    ngSrc="{{(newsData | async).imageUrl}}"
+                                    [ngWidth]="600"
+                                    alt="Foto de noticia">
+                      </mdb-card-img>
 
                         <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
                     </div>

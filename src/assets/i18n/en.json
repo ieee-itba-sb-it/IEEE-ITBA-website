@@ -110,6 +110,11 @@
       "CONTENT": "Find out the latest technological and scientific news!",
       "MORENEWS": "View more news"
     },
+    "EVENTS": {
+      "TITLE": "Events",
+      "CONTENT": "Find out about our newest events!",
+      "MORE": "View more events"
+    },
     "SPONSORS": "Sponsors",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
@@ -721,5 +726,11 @@
         "ANSWER": "The problems found can be diverse.\nIn the case of finding problems with any tool, we recommend looking at the tool's page to see if they have a Troubleshooting section. In the event that this is not the case, you could send us an email commenting on the problem, along with all the additional information possible, such as photos, videos, error messages.\nIf you encounter the problem that your computer freezes a lot when you are programming what is seen in the course, or solving exercises or watching the classes, you probably have a computer memory problem. This may be because there are many programs running on the computer at the same time, and they can slow down some program, or the computer itself. In that case, we recommend closing any extra programs that are open, including those that are running in the background. \n It may also happen that the computer you are using does not meet the minimum requirements for the programming course. In that case we regret the same, but we won't be able to help you 😢."
       }
     }
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "TBD"
+    },
+    "DATESTRING": "Date: "
   }
 }
