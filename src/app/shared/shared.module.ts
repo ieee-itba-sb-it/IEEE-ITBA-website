@@ -24,7 +24,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {CustomMissingTranslationHandler} from './CustomMissingTranslationHandler';
 import {IndividualCardComponent} from './components/individual-card/individual-card.component';
 import {TeamCardComponent} from './components/team-card/team-card.component';
-import {EventCardShortComponent} from './components/event-card-short/event-card-shortcomponent';
+import {EventCardShortComponent} from './components/event-card-short/event-card-short.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {ResizeDirective} from './directives/resize.directive';

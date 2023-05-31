@@ -61,51 +61,8 @@
     </div>
   </div>
 
-  <!-- IEEENews -->
-  <div class="section gray-background">
-    <div class="news-container">
-      <div class="section-header">
-        <div class="section-header-start-line"></div>
-        <div class="section-header-content">
-          <img class="section-header-logo" src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="Logo"/>
-          <h1 class="section-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h1>
-        </div>
-        <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
-      </div>
-      <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
-        <div class="carousel-wrapper">
-          <div class="pagination-prev-wrapper">
-            <span class=" swiper-button-prev swiper-news pagination-prev" id="news-pagination-prev"></span>
-          </div>
-          <swiper [config]="swiperConfig">
-            <ng-container *ngFor="let noticia of latestNews">
-              <ng-template swiperSlide>
-                <app-news-card [noticia]="noticia"></app-news-card>
-              </ng-template>
-            </ng-container>
-          </swiper>
-          <div class="pagination-next-wrapper">
-            <span class="swiper-button-next swiper-news pagination-next" id="news-pagination-next"></span>
-          </div>
-        </div>
-        <div class="pagination-wrapper swiper-news" id="news-pagination-wrapper"></div>
-      </div>
-      <ng-template #loadingSpinnerBlock>
-        <app-loading-spinner></app-loading-spinner>
-      </ng-template>
-    </div>
-    <div class="end-button-container">
-      <button class="learn-more-button" [routerLink]="['/noticias']">{{ 'HOME.IEEENEWS.MORENEWS' | translate }} <mdb-icon
-        fas
-        icon="chevron-right"
-        class="waves-light"
-        mdbWavesEffect></mdb-icon>
-      </button>
-    </div>
-  </div>
   <!-- Eventos -->
-  <div class="section">
+  <div class="section gray-background">
     <div class="news-container">
       <div class="section-header">
         <div class="section-header-start-line"></div>
@@ -152,9 +109,53 @@
     </div>
   </div>
 
+  <!-- IEEENews -->
+  <div class="section">
+    <div class="news-container">
+      <div class="section-header">
+        <div class="section-header-start-line"></div>
+        <div class="section-header-content">
+          <img class="section-header-logo" src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="Logo"/>
+          <h1 class="section-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h1>
+        </div>
+        <div class="section-header-end-line"></div>
+        <span class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
+      </div>
+      <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
+        <div class="carousel-wrapper">
+          <div class="pagination-prev-wrapper">
+            <span class=" swiper-button-prev swiper-news pagination-prev" id="news-pagination-prev"></span>
+          </div>
+          <swiper [config]="swiperConfig">
+            <ng-container *ngFor="let noticia of latestNews">
+              <ng-template swiperSlide>
+                <app-news-card [noticia]="noticia"></app-news-card>
+              </ng-template>
+            </ng-container>
+          </swiper>
+          <div class="pagination-next-wrapper">
+            <span class="swiper-button-next swiper-news pagination-next" id="news-pagination-next"></span>
+          </div>
+        </div>
+        <div class="pagination-wrapper swiper-news" id="news-pagination-wrapper"></div>
+      </div>
+      <ng-template #loadingSpinnerBlock>
+        <app-loading-spinner></app-loading-spinner>
+      </ng-template>
+    </div>
+    <div class="end-button-container">
+      <button class="learn-more-button" [routerLink]="['/noticias']">{{ 'HOME.IEEENEWS.MORENEWS' | translate }} <mdb-icon
+        fas
+        icon="chevron-right"
+        class="waves-light"
+        mdbWavesEffect></mdb-icon>
+      </button>
+    </div>
+  </div>
+
   <!-- Sponsors Actuales -->
   <div class="section gray-background">
-    <div class="bottomLine">
+    <div>
       <div class="section-header">
         <div class="section-header-start-line"></div>
         <div class="section-header-content">

@@ -30,4 +30,8 @@ export class EventCardShortComponent implements OnInit {
   locale(): string {
     return this.translate.currentLang;
   }
+
+  capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 }

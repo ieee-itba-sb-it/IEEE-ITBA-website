@@ -89,8 +89,6 @@ export class MainpageComponent implements OnInit {
     }
   };
 
-
-
   constructor(private blogService: BlogService,
               private sponsorsService: SponsorsService,
               private eventService: EventService) {
