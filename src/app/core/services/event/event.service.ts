@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventCardData } from '../../../shared/models/event/event-card-data';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,8 @@ export class EventService {
     descriptionCode: 'HOME.IEEEXTREME.TEXT',
     dates: [
       {
-        date: null,
-        descriptionCode: 'EVENTCARD.DATE.TBD',
-        showMonth: true
+        date: new Date(2023, 9, 28),
+        descriptionCode: 'EVENTCARD.DATE.TBD'
       }
     ]
   };
@@ -30,7 +30,7 @@ export class EventService {
     descriptionCode: 'HOME.CLASSES.TEXT',
     dates: [
       {
-        date: new Date(2023, 5, 1),
+        date: new Date(2023, 7, 7),
         descriptionCode: 'EVENTCARD.DATE.TBD',
       }
     ]
@@ -53,9 +53,8 @@ export class EventService {
     descriptionCode: 'HOME.DATAANALYSIS.TEXT',
     dates: [
       {
-        date: new Date(2023, 9, 4),
-        descriptionCode: 'EVENTCARD.DATE.TBD',
-        showMonth: true
+        date: new Date(2023, 8, 18),
+        descriptionCode: '',
       }
     ]
   };
@@ -68,9 +67,8 @@ export class EventService {
     descriptionCode: 'HOME.ASIMOVCUP.TEXT',
     dates: [
       {
-        date: new Date(2023, 7, 29),
-        descriptionCode: 'EVENTCARD.DATE.TBD',
-        showMonth: true
+        date: new Date(2023, 6, 29),
+        descriptionCode: ''
       }
     ]
   };
@@ -84,6 +82,18 @@ export class EventService {
     dates: []
   };
 
+  private typescript: EventCardData = {
+    routerLink: '/curso-typescript',
+    imageSrc: '../../../../../assets/image/events/typescript-course/banner.jpg',
+    imageAlt: 'Foto de curso de Typescript',
+    titleCode: 'TYPESCRIPT.TITLE',
+    descriptionCode: 'TYPESCRIPT.DESCRIPTION.TEXT',
+    dates: [{
+      date: new Date(2023, 4, 31),
+      descriptionCode: '',
+    }]
+  };
+
   constructor() { }
 
   getAllEvents(): EventCardData[] {
@@ -92,12 +102,13 @@ export class EventService {
       this.bitcup,
       this.dataAnalysis,
       this.asimovCup,
-      this.iotWorkshop];
+      this.iotWorkshop,
+      this.typescript];
   }
 
   getUpcomingEvents(): EventCardData[] {
     return this.getAllEvents()
-      .filter((event) => event.dates.length > 0)
+      .filter((event) => event.dates.length > 0 && (event.dates[0].date == null || event.dates[0].date.getTime() >= firebase.firestore.Timestamp.now().toDate().getTime()))
       .sort((event1, event2) => {
       if (event1.dates.length !== event2.dates.length) {
         return event2.dates.length - event1.dates.length;

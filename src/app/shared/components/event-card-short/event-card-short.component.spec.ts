@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventCardShortComponent } from './event-card-shortcomponent';
+import { EventCardShortComponent } from './event-card-short.component';
 
 describe('EventCardComponent', () => {
   let component: EventCardShortComponent;
