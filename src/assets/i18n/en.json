@@ -423,7 +423,11 @@
     "EPIGRAPH": "Epigraph",
     "BODY": "Body",
     "CHECKBUTTON": "show on the news page",
-    "UPLOAD": "UPLOAD NEWS"
+    "UPLOAD": "UPLOAD NEWS",
+    "TAGS": "Tags (up to 3)",
+    "FIRST_PARAGRAPH": "First paragraph over image",
+    "PUBLISH_NOW": "Publish now",
+    "PROGRAM_DATE": "Program publish date"
   },
   "LOGIN": {
     "TITLE": "Log In",

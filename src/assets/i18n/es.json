@@ -480,7 +480,11 @@
     "EPIGRAPH": "Epígrafe",
     "BODY": "Cuerpo",
     "CHECKBUTTON": "Mostrar en la página de noticias",
-    "UPLOAD": "SUBIR NOTICIA"
+    "UPLOAD": "SUBIR NOTICIA",
+    "TAGS": "Tags (hasta 3)",
+    "FIRST_PARAGRAPH": "Primer párrafo encima de la imagen",
+    "PUBLISH_NOW": "Publicar ahora",
+    "PROGRAM_DATE": "Programar fecha de publicación"
   },
   "LOGIN": {
     "TITLE": "Iniciar Sesión",
