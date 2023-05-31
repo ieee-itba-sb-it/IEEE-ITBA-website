@@ -17,7 +17,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-write-news',
@@ -33,8 +33,9 @@ export class WriteNewsComponent implements OnInit {
   textContent = '';
   today = firebase.firestore.Timestamp.now().toDate();
   minDate = firebase.firestore.Timestamp.now().toDate();
-  formControlDate = new FormControl(this.minDate);
+  publishDate = new Date(this.minDate);
   publishNow = true;
+  maxTags = 3;
 
   visible = true;
   selectable = true;
@@ -70,11 +71,11 @@ export class WriteNewsComponent implements OnInit {
       imageUrl: '',
       author: '',
       reference: '',
-      date: this.minDate,
+      date: this.today,
       imageText: '',
       listed: true,
       tags: [],
-      ratings: [],
+      ratings: [0, 0, 0, 0, 0],
     };
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocsTagsAsObservable().subscribe((tags: string[]) => {
@@ -90,14 +91,22 @@ export class WriteNewsComponent implements OnInit {
     });
     // Programmed date must be at least tomorrow
     this.minDate.setDate(this.minDate.getDate() + 1);
+    this.publishDate = new Date(this.minDate);
+    this.blogService.retrieveDocsSize();
   }
 
   dateFormatted() {
     return this.newsContent.date.toLocaleDateString();
   }
 
-  changedDate($event) {
-   this.newsContent.date = $event.value;
+  changePublishDate() {
+    if (this.publishNow) {
+      this.newsContent.date = this.today;
+    } else {
+      this.newsContent.date = this.publishDate;
+    }
+    this.newsContent.listed = this.publishNow;
+    // Si el radio button es false, con el ngModel se setea solo this.newsContent.date
   }
 
   add(event: MatChipInputEvent): void {
@@ -155,7 +164,6 @@ export class WriteNewsComponent implements OnInit {
         skippedCharacters = breakCharacter.length;
       }
       this.newsContent.content = this.textContent.substring(breakCharacterIdx + skippedCharacters);
-      console.log(this.newsContent.content);
     } else {
       this.newsContent.shortIntro = '';
       this.newsContent.content = this.textContent;
@@ -163,71 +171,48 @@ export class WriteNewsComponent implements OnInit {
   }
 
   updateNewsText($event) {
-    console.log($event.html);
-    // this.textContent = $event.text;
     this.textContent = $event.html;
     this.splitContent();
   }
 
   submitNews() {
-    /*
-    // Values read from inputs
-    const title = (document.getElementById('title') as HTMLInputElement).value;
-    const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
-    const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
+    this.newsContent.author = this.user.fname + ' ' + this.user.lname;
+    this.newsContent.reference = encodeURIComponent(sanitizeString(this.newsContent.title) + '-' + this.blogService.docsSize.getValue());
+    this.newsContent.tags = this.currentTags();
 
-    // Parse text and split into pampadour (text before image) and content (after image)
-    const text = document.getElementsByClassName('ql-editor')[0].innerHTML;
-    const [shortIntro, content] = this.parseContentText(text);
-
-    // Taken from current user
-    const author = this.user.fname + ' ' + this.user.lname;
-
-    const listed = (document.getElementById('listed') as HTMLInputElement).checked;
-    const reference =  encodeURIComponent( sanitizeString( title ) );
-    const tags = ['tecnología'];
-
-    const ratings = [0, 0, 0, 0, 0];
-
-    if (title !== '') {
+    if (this.newsContent.title !== '') {
       this.blogService.setDoc(
         createNewsItem(
-          title,
-          content,
-          shortIntro,
-          imageUrl,
-          Timestamp.fromDate(new Date()),
-          author,
-          imageText,
-          reference,
-          tags,
-          listed,
-          ratings
+          this.newsContent.title,
+          this.newsContent.content,
+          this.newsContent.shortIntro,
+          this.newsContent.imageUrl,
+          Timestamp.fromDate(this.newsContent.date),
+          this.newsContent.author,
+          this.newsContent.imageText,
+          this.newsContent.reference,
+          this.newsContent.tags,
+          this.newsContent.listed,
+          this.newsContent.ratings
         )
       ).subscribe(sent => {
         if (sent) {
-          this.router.navigate([`/noticias/${reference}`]);
+          this.router.navigate([`/noticias/${this.newsContent.reference}`]);
         }
       });
     } else {
-      this.blogService.deleteDoc(reference).subscribe(sent => {
+      this.blogService.deleteDoc(this.newsContent.reference).subscribe(sent => {
         if (sent) {
           this.router.navigate([`/noticias`]);
         }
       });
     }
-
-     */
   }
 
   openSnackBar() {
     this.snackBar.open('No se pudo subir la noticia', 'Cerrar', {
       duration: this.durationInSeconds * 1000,
     });
-  }
-
-  printEvent($event) {
-    console.log($event);
   }
 
 }

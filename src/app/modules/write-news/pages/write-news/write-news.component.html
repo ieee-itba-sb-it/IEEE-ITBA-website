@@ -24,7 +24,7 @@
     </div>
 
     <div class="editor-container">
-        <mat-card style="max-width: 45%">
+        <mat-card style="max-width: 45%; height: fit-content">
             <mat-list-item>
               <!-- Title -->
               <mat-form-field class="full-width">
@@ -41,11 +41,12 @@
                     [selectable]="selectable"
                     [removable]="removable"
                     (removed)="remove(tag)">
-                    {{tag}}
+                    {{ tag }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
                   <input
-                    placeholder="Tags"
+                    *ngIf="currentTags().length < maxTags"
+                    placeholder="{{ 'WRITE-NEW.TAGS' | translate }}"
                     #tagInput
                     [formControl]="tagControl"
                     [matAutocomplete]="auto"
@@ -55,7 +56,7 @@
                 </mat-chip-list>
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                   <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-                    {{tag}}
+                    {{ tag }}
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
@@ -76,7 +77,7 @@
             </mat-list-item>
             <mat-list-item>
               <mat-checkbox class="has-paragraph-checkbox" [(ngModel)]="hasShortIntro" (ngModelChange)="splitContent()">
-                Primer párrafo encima de imagen
+                {{ 'WRITE-NEW.FIRST_PARAGRAPH' | translate }}
               </mat-checkbox>
             </mat-list-item>
             <mat-list-item>
@@ -89,15 +90,19 @@
               </form>
             </mat-list-item>
             <mat-list-item>
-              <mat-radio-group aria-label="Select an option" [(ngModel)]="publishNow">
-                <mat-radio-button [value]="true" style="margin-right: 1.5rem;">Publicar ahora</mat-radio-button>
-                <mat-radio-button [value]="false">Programar fecha de publicación</mat-radio-button>
+              <mat-radio-group aria-label="Select an option" [(ngModel)]="publishNow" (change)="changePublishDate()">
+                <mat-radio-button [value]="true" style="margin-right: 1.5rem;">
+                  {{ 'WRITE-NEW.PUBLISH_NOW' | translate }}
+                </mat-radio-button>
+                <mat-radio-button [value]="false" disabled>
+                  {{ 'WRITE-NEW.PROGRAM_DATE' | translate }}
+                </mat-radio-button>
               </mat-radio-group>
             </mat-list-item>
             <mat-list-item>
               <mat-form-field class="half-width">
                 <mat-label>MM/DD/YYYY</mat-label>
-                <input matInput [min]="minDate" [matDatepicker]="datePicker" [disabled]="publishNow" [formControl]="formControlDate" (dateChange)="changedDate($event)">
+                <input matInput [min]="minDate" [matDatepicker]="datePicker" [disabled]="publishNow" [(ngModel)]="publishDate" (dateChange)="changePublishDate()">
                 <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
                 <mat-datepicker #datePicker></mat-datepicker>
               </mat-form-field>
@@ -111,16 +116,20 @@
 
         <mat-card class="preview-card">
           <div class="preview-container">
+            <h2 class="word-break short-intro-text" style="margin-bottom: 1rem">{{ user.fname + ' ' + user.lname || "Author" }}</h2>
+            <!--
             <mat-chip-list class="news-tags">
               <div *ngFor="let tag of currentTags()">
                 <mat-chip class="news-tag" selected>{{ tag }}</mat-chip>
               </div>
             </mat-chip-list>
-            <h1 class="word-break preview-title">{{ newsContent.title || "Title" }}</h1>
+            -->
+            <h1 class="word-break preview-title">{{ newsContent.title || "Título" }}</h1>
             <span class="word-break short-intro-text" [innerHTML]="newsContent.shortIntro"></span>
-            <img class="preview-image" src="{{ newsContent.imageUrl }}" alt="Imagen de noticia" [width]="600">
-            <span class="preview-epigraph">{{ newsContent.imageText || "Epigraph" }}</span>
+            <img class="preview-image" src="{{ newsContent.imageUrl }}" alt="Imagen de portada" [width]="600">
+            <span class="preview-epigraph">{{ newsContent.imageText || "Epígrafe" }}</span>
             <div class="content-text word-break">
+              <!--
               <div class="preview-author-date-container">
                 By
                 <span class="word-break">{{ user.fname + ' ' + user.lname || "Author" }},</span>
@@ -128,6 +137,7 @@
                   <span class="word-break">{{ dateFormatted() }}</span>
                 </div>
               </div>
+              -->
               <br>
               <span [innerHTML]="newsContent.content"></span>
             </div>
