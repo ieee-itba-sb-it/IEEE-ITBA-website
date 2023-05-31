@@ -8,7 +8,6 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';
-import {IotModule} from './modules/iot/iot.module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -66,6 +65,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/iot/iot.module').then(
         (m) => m.IotModule
+      )
+  },
+  {
+    path: 'wie',
+    loadChildren: () =>
+      import('./modules/wie/wie.module').then(
+        (m) => m.WieModule
       )
   },
   {
@@ -169,11 +175,11 @@ const routes: Routes = [
       import('./modules/sponsors/sponsors.module').then(
         (m) => m.SponsorsModule
       ),
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

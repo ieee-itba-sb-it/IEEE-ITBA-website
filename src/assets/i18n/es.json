@@ -321,26 +321,28 @@
     "TITLE": "Curso Introductorio de Python",
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "TYC": {
@@ -405,33 +407,34 @@
     "TITLE": "Curso de Análisis de Datos en Python",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "IEEEMEETUP": {
     "TITLE": "IEEE - 2do Meet Up",
     "CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publicá los temas que quieras que se discutan en el form!"
   },
-
   "GENERAL": {
     "PREVIOUS": "PREVIOS",
     "ACTUAL": "ACTUALES"
@@ -564,14 +567,16 @@
     "GALLERY_TITLE": "Galería",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Necesito algún conocimiento previo?",
-        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
-      },
-      "2": {
-        "QUESTION": "¿Quiénes pueden participar?",
-        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Necesito algún conocimiento previo?",
+          "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar?",
+          "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+        }
+      ]
     }
   },
   "ASIMOVCUP": {
@@ -620,7 +625,8 @@
       "9": "15:00 - 17:00: Competición: Fase de Eliminación Directa",
       "10": "17:00 - 17:30: Coffee Break",
       "11": "17:30 - 18:00: Competición: Final",
-      "12": "18:00 - 18:30: Ceremonia de premiación"},
+      "12": "18:00 - 18:30: Ceremonia de premiación"
+    },
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
       "1": {
@@ -792,5 +798,65 @@
       "TBD": "TBD"
     },
     "DATESTRING": "Fecha: "
+  },
+  "WIE": {
+    "WHATIS": {
+      "TITLE": "What is IEEE WIE ITBA?",
+      "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": {
+        "TEXT": "Dentro de nuestros objetivos, podemos encontrar:",
+        "BULLET1": "Inspirar a mujeres y niñas para que se animen a estudiar carreras de STEM",
+        "BULLET2": "Empoderar a aquellas que se encuentren en las mismas para que sean líderes"
+      }
+    },
+    "JOIN": {
+      "TITLE": "¡Unite a WIE!",
+      "MEMBERSHIP": "Obtener membresía",
+      "JOIN": "¡Me quiero unir!",
+      "SPONSOR": "Ser sponsor"
+    },
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Quiénes pueden participar de IEEE WIE ITBA?",
+          "ANSWER": "Cualquier persona alumna del ITBA. ¡El único requisito es querer participar!"
+        },
+        {
+          "QUESTION": "¿Puede unirse alguien que no es de Electrónica ni Informática?",
+          "ANSWER": "Sí. Tenemos voluntarios de todas las carreras, tanto Ingenierías como Licenciaturas. La diversidad no es algo acotado a una carrera"
+        },
+        {
+          "QUESTION": "¿Qué es IEEE?",
+          "ANSWER": "IEEE es el Instituto de Ingenieros Eléctricos y Electronicos por sus siglas en Inglés. Es la organización técnica más grande del mundo y su lema es \"Tecnología para el Avance de la Humanidad\". IEEE WIE es un Grupo de Afinidad dentro de IEEE"
+        },
+        {
+          "QUESTION": "¿Qué es un Grupo de Afinidad?",
+          "ANSWER": "Es una sub unidad de IEEE que toca temas transversales, no técnicos, a todas las ingenierías como lo es la diversidad en carreras de STEM en el caso de WIE"
+        },
+        {
+          "QUESTION": "¿Qué puedo hacer en IEEE WIE ITBA?",
+          "ANSWER": "¡Lo que quieras! Siempre que vaya con nuestros objetivos. Podes unirte a cualquier proye que ya realicemos o proponer una actividad nueva. La organización se construye a partir de lo que los voluntarios deseen"
+        },
+        {
+          "QUESTION": "¿Cuánto me demanda participar en IEEE WIE ITBA?",
+          "ANSWER": "Lo que vos quieras que te demande. Solo tenés que avisar en que cosas querés participar e informar de los avances. Somos todos alumnos por lo que entendemos perfectamente que a veces se nos compctolica mucho, en esos casos, solo es cuestión de comunicar que no vas a estar disponible y no va a haber ningún problema"
+        },
+        {
+          "QUESTION": "¿Cuáles son los objetivos de IEEE WIE ITBA?",
+          "ANSWER": "Los objetivos de IEEE WIE ITBA son: inspirar a más mujeres a seguir carreras en STEM y empoderar a aquellas mujeres que ya se encuentran en campos de STEM para que sean líderes. Con el motivo de lograr los mismos buscamos: bisibilizar el trabajo desarrollado por mujeres en áreas de STEM, proveerles herramientas para que puedan desarrollarse en dichos campos y desmistificar e informar sobre STEM"
+        },
+        {
+          "QUESTION": "¿Cómo se organizan en IEEE WIE ITBA?",
+          "ANSWER": "En IEEE WIE ITBA constamos de 7 departamentos o secciones. Las personas voluntarias pueden participar en todos los que deseen siendo que los proyectos pertenecen a los departamentos y no las personas voluntarias. Dichos departamentos son: Junta Directiva, Media y Comunicación, Fundraising y Tesorería, Logística y Planificación, Educación, Tecnología de la Información y Desarrollo, y Recursos Humanos"
+        }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Contacto"
+    }
   }
 }

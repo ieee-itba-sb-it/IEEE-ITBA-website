@@ -22,16 +22,7 @@ export class CursoPythonComponent implements OnInit {
   enrollOpen = false;
   enrollClosed = false;
 
-  // ojala no tuviera que hardcodear asi, pero no encontre una forma de pasarle el string y concatenarlo con otros en el translate
-  faq = [
-    { q: 'PYTHONCOURSES.FAQ.1.QUESTION', a: 'PYTHONCOURSES.FAQ.1.ANSWER' },
-    { q: 'PYTHONCOURSES.FAQ.2.QUESTION', a: 'PYTHONCOURSES.FAQ.2.ANSWER' },
-    { q: 'PYTHONCOURSES.FAQ.3.QUESTION', a: 'PYTHONCOURSES.FAQ.3.ANSWER' },
-    { q: 'PYTHONCOURSES.FAQ.4.QUESTION', a: 'PYTHONCOURSES.FAQ.4.ANSWER' },
-    { q: 'PYTHONCOURSES.FAQ.5.QUESTION', a: 'PYTHONCOURSES.FAQ.5.ANSWER' },
-  ];
-
-  getDate() {}
+  getDate() { }
 
   isOldDate(date: string) {
     this.getDate();
@@ -56,5 +47,5 @@ export class CursoPythonComponent implements OnInit {
     return this.enrollOpen && !this.enrollClosed;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
