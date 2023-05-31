@@ -1,0 +1,121 @@
+.image-with-text {
+  position: relative;
+  width: 100%;
+}
+
+.text-on-image {
+  position: absolute;
+  top: 170px;
+  right: 40px;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 1px;
+  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+/* Card filters */
+
+.primary-filter {
+  filter: brightness(25%);
+  transition: all ease-in 125ms;
+}
+
+
+/* Event card move */
+
+.event-card {
+  margin: auto;
+  height: 100%;
+  padding: 0 !important;
+}
+
+
+
+.event-card-img {
+  width: 100%;
+  object-fit: cover;
+  height: 16em;
+  object-position: center center;
+}
+
+.event-card:hover .event-card-img {
+  animation: event-move 40s infinite;
+}
+
+@keyframes event-move {
+  from {
+    object-position: top left;
+  }
+  50% {
+    object-position: bottom right;
+  }
+  to {
+    object-position: top left;
+  }
+}
+
+/* Extra styles */
+
+.date-inner-container {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #00629B;
+  font-weight: lighter;
+  font-size: 0.9em;
+  padding: 3px 10px 0 20px;
+  text-align: right;
+  gap: 5px;
+}
+
+.date-container {
+  position: absolute;
+  font-size: 1.2em;
+  border-radius: 15px;
+  bottom: 75px;
+  right: 40px;
+}
+
+
+@media (min-width: 768px) {
+  .flexText {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .text-on-image {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (min-width: 1500px) {
+  .text-on-image {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .text-on-image {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .date-container {
+    top: 50px;
+  }
+}
+
+.chip {
+  color: white;
+}
+

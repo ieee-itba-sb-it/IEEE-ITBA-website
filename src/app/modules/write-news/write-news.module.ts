@@ -10,13 +10,22 @@ import {HttpClient} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {QuillModule} from 'ngx-quill';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {MatListModule} from '@angular/material/list';
+import {CardsModule} from 'angular-bootstrap-md';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },
@@ -49,7 +58,17 @@ export const routing = RouterModule.forChild(routes);
     MatInputModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    MatListModule,
+    CardsModule,
+    FormsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
   ]
 })
 export class WriteNewsModule { }

@@ -113,6 +113,13 @@ const routes: Routes = [
         (m) => m.DataAnalysisModule
       ),
   },
+  {
+    path: 'curso-typescript',
+    loadChildren: () =>
+      import('./modules/typescript/typescript.module').then(
+        (m) => m.TypescriptModule
+      ),
+  },
   { path: 'error401', component: Error401Component },
   {
     path: 'write-news',

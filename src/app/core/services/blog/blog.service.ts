@@ -16,6 +16,7 @@ export class BlogService {
   // ----------Variables----------
   blogData: BehaviorSubject<NewsItem[]> = new BehaviorSubject([]);
   docData: BehaviorSubject<{}> = new BehaviorSubject({});
+  docsTags: BehaviorSubject<[]> = new BehaviorSubject([]);
   collectionName: string;
 
   docsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -93,6 +94,13 @@ export class BlogService {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
       this.listedDocsSize.next(doc.data().extra.listedCount);
     });
+  }
+
+  getDocsTagsAsObservable() {
+    this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      this.docsTags.next(doc.data().extra.tags);
+    });
+    return this.docsTags.asObservable();
   }
 
   private getDocsPage(collection: AngularFirestoreCollection){
