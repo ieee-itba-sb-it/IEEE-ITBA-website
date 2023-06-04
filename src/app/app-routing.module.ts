@@ -26,6 +26,11 @@ const routes: Routes = [
       import('./modules/ras/ras.module').then((m) => m.RasModule),
   },
   {
+    path: 'emb',
+    loadChildren: () =>
+      import('./modules/emb/emb.module').then((m) => m.EmbModule),
+  },
+  {
     path: 'ieeextreme',
     loadChildren: () =>
       import('./modules/ieeextreme/ieeextreme.module').then(

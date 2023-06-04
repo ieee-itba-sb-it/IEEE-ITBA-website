@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITBA IEEE EMB Student Branch Chapter</title>
+  </head>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <body>
+    <div class="bottomLine" id="home">
+      <div class="container" id="wip">
+        <div class="titleRow">
+          <h1 class="title">{{ "EMB.TITLE" | translate }}</h1>
+          <h3 class="subtitle">{{ "EMB.SUBTITLE" | translate }}</h3>
+        </div>
+        <img
+          src="../../../../../assets/image/emb/IEEE_EMBS_logo.png"
+          class="rasLogo"
+          alt="Logo ITBA-IEEE"
+        />
+      </div>
+      <hr>
+
+      <div class="text-container">
+        <h2 class="section-title">{{ "EMB.OBJECTIVES.TITLE" | translate}}</h2>
+        <p class="page-paragraph">{{ "EMB.OBJECTIVES.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "EMB.MISSION.TITLE" | translate }}</h2>
+        <p class="page-paragraph">{{ "EMB.MISSION.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "EMB.VISION.TITLE" | translate}}</h2>
+        <p class="page-paragraph">{{ "EMB.VISION.CONTENT" | translate }}</p>
+        <hr>
+        <h2 class="section-title">{{ "EMB.ABOUTEMB.TITLE" | translate }}</h2>
+        <p class="page-paragraph">{{ "EMB.ABOUTEMB.CONTENT1" | translate }}</p>
+
+        <p class="page-paragraph">{{ "EMB.ABOUTEMB.CONTENT2" | translate }}</p>
+        <hr>
+
+        <h2 class="section-title">{{ "EMB.TEAM.TITLE" | translate}}</h2>
+        <app-team-card [team]="team.team"></app-team-card>
+      </div>
+    
+    </div>
+  </body>
+  <app-footer></app-footer>
+</html>

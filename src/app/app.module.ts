@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
 import { ResizeDirective } from './shared/directives/resize.directive';
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -40,7 +41,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,

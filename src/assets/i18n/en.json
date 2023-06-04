@@ -1,4 +1,5 @@
 {
+  "NULL":"NULL",
   "HOME": {
     "TITLE": "Student Branch",
     "CARGO": {
@@ -55,6 +56,12 @@
       },
       "RAS": {
         "TITLE": "RAS",
+        "DIRECTOR": "RAS Director",
+        "DEV": "Developer",
+        "RESEARCHER": "Researcher"
+      },
+      "EMB": {
+        "TITLE": "EMB",
         "DIRECTOR": "RAS Director",
         "DEV": "Developer",
         "RESEARCHER": "Researcher"
@@ -487,6 +494,31 @@
       "TITLE": "About RAS",
       "CONTENT1": "RAS strives to advance innovation, education, and fundamental and applied research in robotics and automation. Robotics focuses on systems incorporating sensors and actuators that operate autonomously or semi-autonomously in cooperation with humans. Robotics research emphasizes intelligence and adaptability to cope with unstructured environments. Automation research emphasizes efficiency, productivity, quality, and reliability, focusing on systems that operate autonomously, often in structured environments over extended periods, and on the explicit structuring of such environments.",
       "CONTENT2": "The Society provides aid in promoting close cooperation and exchange of technical information among its Members and Affiliates, and to this end holds meetings for the presentation of papers and their discussion, sponsors appropriate periodicals and special technical publications, and through its committee's studies and provides for the needs of its members and affiliates."
+    }
+  },
+
+  "EMB": {
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "EMB Student Branch Chapter",
+    "EVENTS": "Events",
+    "TEAM": {
+      "TITLE": "Team"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objectives",
+      "CONTENT": "The Engineering in Medicine and Biology Society (EMBS) aims to promote the profession of bioengineering as well as the advancement of medicine and biology through the application of science and engineering. EMBS ITBA, for its part, and consistent with the aforementioned objectives, seeks to disseminate bioengineering applications both in industry and academia, through talks, seminars and practical activities."
+    },
+    "MISSION": {
+      "TITLE": "Mission",
+      "CONTENT": "Provide tools and experiences to those people interested or involved in the sphere and public knowledge of the world of bioengineering, as well as promote the personal and professional development of its members."
+    },
+    "VISION": {
+      "TITLE": "Vision",
+      "CONTENT": "To be a fundamental pillar in the dissemination and realization of research projects, student congresses and transcendental issues today"
+    },
+    "ABOUTEMB": {
+      "TITLE": "About EMB",
+      "CONTENT1": "EMBS ITBA is a student chapter belonging to the IEEE ITBA branch and made up of students dedicated to promoting and disseminating bioengineering applications, both inside and outside the educational institution."
     }
   },
   "ERROR404": {

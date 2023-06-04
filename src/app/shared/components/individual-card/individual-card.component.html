@@ -20,7 +20,7 @@
             </mdb-card-title>
 
             <!-- Cargo de la persona -->
-            <mdb-card-text>
+            <mdb-card-text *ngIf="person.role!='NULL'" id="roleTextContainer">
               <h5 class="roleTextContainer">{{ person.role | translate }}</h5>
             </mdb-card-text>
 
