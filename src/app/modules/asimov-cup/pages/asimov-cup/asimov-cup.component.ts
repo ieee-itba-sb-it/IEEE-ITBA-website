@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
+import {Sponsor} from '../../../../shared/models/sponsors';
 
 @Component({
   selector: 'app-asimov-cup',
@@ -8,7 +9,7 @@ import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service
   styleUrls: ['./asimov-cup.component.css'],
 })
 export class AsimovCupComponent implements OnInit {
-  sponsorsServiceVar: SponsorsService;
+  sponsors: Sponsor[] = [];
   faq = [
     { q: 'ASIMOVCUP.FAQ.1.QUESTION', a: 'ASIMOVCUP.FAQ.1.ANSWER' },
     { q: 'ASIMOVCUP.FAQ.2.QUESTION', a: 'ASIMOVCUP.FAQ.2.ANSWER' },
@@ -34,7 +35,7 @@ export class AsimovCupComponent implements OnInit {
   ];
 
   constructor(private sponsorsService: SponsorsService) {
-    this.sponsorsServiceVar = sponsorsService;
+    this.sponsors = sponsorsService.getAsimovSponsors();
     scroll(0, 0);
   }
 
