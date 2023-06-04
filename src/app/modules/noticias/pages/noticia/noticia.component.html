@@ -35,7 +35,7 @@
 
             <div fxLayoutAlign="center center" fxLayout="column">
                 <div fxLayoutAlign="center center" fxLayout="column">
-                    <p class="add-margin author-text word-break">{{(newsData | async).shortIntro}}</p>
+                    <p class="add-margin author-text word-break" [innerHtml]="(newsData | async).shortIntro"></p>
                 </div>
             </div>
 
