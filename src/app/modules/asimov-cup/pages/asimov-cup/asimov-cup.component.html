@@ -131,7 +131,7 @@
       </mat-accordion>
     </div>
 
-    <div class="sponsor-section" id="sponsorship">
+    <div *ngIf="sponsorsServiceVar.getAsimovSponsors().length > 0" class="sponsor-section" id="sponsorship">
       <h2 class="section-title">{{ "ASIMOVCUP.SPONSORS" | translate }}</h2>
       <br>
       <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getAsimovSponsors()"></app-sponsor-component>

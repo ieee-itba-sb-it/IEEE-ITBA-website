@@ -127,12 +127,14 @@ export class SponsorsService {
     }
   ];
 
-  asimovSponsors: Sponsor[] = [
+  asimovSponsors: Sponsor[] = [];
+  /*
     {
       name: 'Schneider Electric',
       img: this.imgSrcPrefix + 'Schneider Logo.png'
     }
   ];
+   */
 
 
   constructor() { }
