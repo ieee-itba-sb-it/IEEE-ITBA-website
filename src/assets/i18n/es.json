@@ -164,6 +164,11 @@
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
       "MORENEWS": "Ver más noticias"
     },
+    "EVENTS": {
+      "TITLE": "Eventos",
+      "CONTENT": "¡Entérate de nuestros próximos eventos!",
+      "MORE": "Ver más eventos"
+    },
     "SPONSORS": "Auspiciantes",
     "CLASSES": {
       "TEXT": "En este curso enseñamos a los alumnos los conceptos básicos de la programación,y como dar los primeros pasos usando el lenguaje de programación Python. El mismo está apuntado a estudiantes, con o sin experiencia en la programación, y a todos los interesados en aprender uno de los lenguajes de programación más populares en la actualidad.",
@@ -318,26 +323,28 @@
     "TITLE": "Curso Introductorio de Python",
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "TYC": {
@@ -402,33 +409,34 @@
     "TITLE": "Curso de Análisis de Datos en Python",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "IEEEMEETUP": {
     "TITLE": "IEEE - 2do Meet Up",
     "CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publicá los temas que quieras que se discutan en el form!"
   },
-
   "GENERAL": {
     "PREVIOUS": "PREVIOS",
     "ACTUAL": "ACTUALES"
@@ -477,7 +485,11 @@
     "EPIGRAPH": "Epígrafe",
     "BODY": "Cuerpo",
     "CHECKBUTTON": "Mostrar en la página de noticias",
-    "UPLOAD": "SUBIR NOTICIA"
+    "UPLOAD": "SUBIR NOTICIA",
+    "TAGS": "Tags (hasta 3)",
+    "FIRST_PARAGRAPH": "Primer párrafo encima de la imagen",
+    "PUBLISH_NOW": "Publicar ahora",
+    "PROGRAM_DATE": "Programar fecha de publicación"
   },
   "LOGIN": {
     "TITLE": "Iniciar Sesión",
@@ -582,14 +594,16 @@
     "GALLERY_TITLE": "Galería",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Necesito algún conocimiento previo?",
-        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
-      },
-      "2": {
-        "QUESTION": "¿Quiénes pueden participar?",
-        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Necesito algún conocimiento previo?",
+          "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar?",
+          "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+        }
+      ]
     }
   },
   "ASIMOVCUP": {
@@ -638,7 +652,8 @@
       "9": "15:00 - 17:00: Competición: Fase de Eliminación Directa",
       "10": "17:00 - 17:30: Coffee Break",
       "11": "17:30 - 18:00: Competición: Final",
-      "12": "18:00 - 18:30: Ceremonia de premiación"},
+      "12": "18:00 - 18:30: Ceremonia de premiación"
+    },
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
       "1": {
@@ -667,5 +682,208 @@
       }
     },
     "SPONSORS": "Sponsors"
+  },
+  "TYPESCRIPT": {
+    "TITLE": "Curso de Typescript",
+    "DESCRIPTION": {
+      "TITLE": "Descripción",
+      "TEXT": "Curso intensivo de programación de 4 clases de 3hs, donde se verá cómo programar con el lenguaje de programación de TypeScript. En el mismo también se verán las buenas prácticas, y cosas relacionadas al paradigma Orientado a Objetos, y un inicio de Programación Funcional. Se verá también, de forma básica, cómo se efectúa la comunicación en Internet a través de protocolos, como el HTTP. Se realizarán programas simples, donde se observarán las características mencionadas y, finalmente, se terminará realizando un programa de consultas a un archivo."
+    },
+    "SYLLABUS": {
+      "TITLE": "Temario",
+      "1": {
+        "TEXT" : "Primera Clase - Introducción",
+        "BULLET_PTS": {
+          "1": "Ventajas y desventajas de TypeScript",
+          "2": "Herramientas a utilizar",
+          "3": "Nuestro primer programa",
+          "4": "Variables y tipos",
+          "5": "Ciclos y Condicionales"
+        }
+      },
+      "2": {
+        "TEXT": "Segunda Clase - Objetos",
+        "BULLET_PTS": {
+          "1": "Arreglos",
+          "2": "Nuestra primera función",
+          "3": "¿Qué es un objeto?",
+          "4": "Tipos especiales de datos",
+          "5": "Tipos de comparación",
+          "6": "Enums",
+          "7": "JSON",
+          "8": "Interfaces",
+          "9": "Clases",
+          "10": "Organización y separación de archivos"
+        }
+      },
+      "3": {
+        "TEXT": "Tercera Clase - Generics, Excepciones y Archivos",
+        "BULLET_PTS": {
+          "1": "Extensión de clases",
+          "2": "Generics",
+          "3": "Recursividad",
+          "4": "Excepciones",
+          "5": "Lectura de Archivos"
+        }
+      },
+      "4": {
+      "TEXT": "Cuarta Clase - Programas de Consulta",
+        "BULLET_PTS": {
+          "1": "Una ojeada a la Programación Funcional",
+          "2": "Métodos HTTP y Códigos de estado de HTTP",
+          "3": "Desarrollo de una API básica"
+        }
+      }
+    },
+    "INSCRIPTION_FORM": "Inscripción",
+    "SCHEDULE": {
+      "TITLE": "Fechas",
+      "1": "Inscripción:  15/05/23 - 28/05/23",
+      "2": "Habilitar Clase I:  31/05/23",
+      "3": "Livestream 1: 03/06/23",
+      "4": "Habilitar Práctica I: 03/06/23",
+      "5": "Habilitar Clase II: 07/06/23",
+      "6": "Livestream 2: 10/06/23",
+      "7": "Habilitar Práctica II:  10/06/23",
+      "8": "Habilitar Clase III:  14/06/23",
+      "9": "Livestream 3: 17/06/23",
+      "10": "Habilitar Práctica III:  17/06/23",
+      "11": "Habilitar Clase IV:  21/06/23",
+      "12": "Livestream 4:  24/06/23",
+      "13": "Habilitar Práctica IV: 24/06/23"
+    },
+    "FORMS": {
+      "1": "Formulario de inscripción",
+      "2": "Un quiz para evaluar cada clase (4 en total)",
+      "3": "Encuesta de finalización del curso"
+    },
+    "REQUIREMENTS": {
+      "TITLE": "Requerimientos",
+      "1": "No hay requerimientos en cuanto a conocimientos, salvo las ganas de aprender y la constancia, debido a que es un curso intensivo, especialmente para principiantes.  Sin embargo, se recomienda tener un nivel mínimo en la programación de cualquier lenguaje para que no sea tan intensivo.",
+      "2": "En cuanto a requerimientos físicos, necesitamos que los participantes cuenten con acceso a una computadora de cualquier sistema operativo, con suficiente capacidad para poder ver las clases que serán dictadas de manera virtual, y hacer los ejercicios.",
+      "3": "También, paso previo al comienzo de las clases tendrían que tener todos los programas (y el espacio en disco) que se van a utilizar, instalados en las computadoras.",
+      "4": {
+        "TEXT": "Los mismos son:",
+        "BULLET_PTS": {
+          "1": "Un editor de texto o IDE (Visual Studio Code, Visual Studio, WebStorm, Atom, etc)",
+          "2": "Node.js",
+          "3": "Dependencias de Node.js que se van a utilizar para compilar código TypeScript (typescript y ts-node) y otras dependencias extra que se instalarán en el transcurso de las clases."
+        }
+      },
+      "5": "Para poder instalarlos, ya se encuentra creada una",
+      "LINK": "guía de instalación de los mismos."
+    },
+    "SUGGESTIONS": {
+      "TITLE": "Sugerencias",
+      "TEXT": "A lo largo del curso:",
+      "BULLET_PTS": {
+        "1": "Utilizar la bibliografía adicional.",
+        "2": "Ante problemas, utilizar el buscador de preferencia, para buscar en StackOverflow.",
+        "3": "StackOverflow como página para consultar a la comunidad de developers.",
+        "4": "Enviar consultas a través de mails/servidor de Discord.",
+        "5": "Participar de la clase, a través del chat o “levantando la mano” para realizar consultas o aclaraciones en cuanto a los temas. ",
+        "6": "No dejar todo a último momento, ya que el contenido del curso es incremental en cuanto a lo que se ve de una clase a la otra.",
+        "7": "Utilizar el canal de Discord, creado como comunidad de programadores de TypeScript de IEEE ITBA, para subir información, ofertas de trabajo, hacer aclaraciones, realizar consultas."
+      }
+    },
+    "FORMAT": {
+      "TITLE": "Formato",
+      "1": "100% Virtual",
+      "2": "Las clases se podrían realizar en YouTube en tiempo real. Quedarán grabadas en YouTube, para acceder cuando sea necesario.",
+      "3": "Habrá un repositorio de GitHub con lo que se da en el curso (clases en formato ppt y pdf, archivos .ts con lo que se fue dando en cada clase, separado en carpetas, guías de instalación, requerimientos, archivos que se utilizarán a lo largo del curso (como el archivo de Excel que se utilizará para consultar en la última clase)",
+      "4": "Habrá un servidor de Discord, para hacer consultas sobre el curso y para generar una comunidad de programadores de TypeScript."
+    },
+    "FAQ": {
+      "1": {
+        "QUESTION": "¿Qué tengo que hacer para acceder a las clases?",
+        "ANSWER": "Para poder acceder a las clases, una vez que estén grabadas, una forma es dirigirse al canal de YouTube de IEEE ITBA, y acceder a las listas de reproducción con “Curso de TypeScript” en las mismas. Para poder acceder a las clases en tiempo real, se les provisionará, a través de mails de la organización, los links de acceso al mismo. El link funcionaría al momento especificado para la clase que se quiera ver."
+      },
+      "2": {
+        "QUESTION": "¿Cómo puedo obtener el certificado del curso?",
+        "ANSWER": "Deberás completar y pasar exitosamente los desafíos semanales que se publicarán luego de cada clase. Tendrás que hacerlo antes de la finalización del curso. Recordá completar cada formulario con la misma dirección de correo electrónico que usaste en el formulario de inscripción."
+      },
+      "3": {
+        "QUESTION": "¿A qué hora y qué día son las clases?",
+        "ANSWER": "En el mail introductorio se darán a conocer los días y las horas de las clases. De todas formas, 24 horas antes del inicio de cada clase, se darán a conocer el link, la hora y el día de la clase nuevamente."
+      },
+      "4": {
+        "QUESTION": "¿Dónde puedo ver más información acerca de lo que se vea en el curso?",
+        "ANSWER": "A lo largo del curso, se adicionará bibliografía adicional con las páginas oficiales de las herramientas a utilizar, junto con páginas extra, tal como páginas con material de difusión, consultas realizadas en StackOverflow. De todas formas, siempre se puede consultar a través de Internet, a la comunidad de desarrolladores, que lo recibe a uno con los brazos abiertos. Además, se creará un canal de Discord para ver más información del lenguaje de programación, junto a ofertas de trabajo, sección de consultas, etc."
+      },
+      "5": {
+        "QUESTION": "¿Cómo descargo/instalo las herramientas que se requieren para el curso?",
+        "ANSWER": "En el mail introductorio, se hallará un link que dirige a la Guía de Instalación. De no encontrarlo, también se encuentra en esta página, al final de la sección de Requerimientos."
+      },
+      "6": {
+        "QUESTION": "Mi computadora tiene problemas con los programas mientras hago cosas relacionadas al curso",
+        "ANSWER": "Los problemas encontrados pueden ser diversos.\n En el caso de encontrar problemas con alguna herramienta, recomendamos buscar en la página de la herramienta para ver si tienen un sector de Solucionador de Problemas. En el caso de que no sea así, podrían enviarnos un mail comentando el problema, junto a toda la información adicional posible, como fotos, videos, mensajes de error.\nSi se encuentran con el problema de que se les traba mucho la computadora cuando están programando lo que se ve en el curso, o resolviendo ejercicios o viendo las clases, probablemente tengas un problema de memoria de la computadora. Esto puede deberse a que hay muchos programas corriendo en la computadora en simultáneo, y pueden ralentizar algún programa, o a la computadora en sí. En ese caso, recomendamos cerrar todo programa extra que esté abierto, incluyendo los que están corriendo en segundo plano. \n Puede llegar a pasar, también, que la computadora que estén utilizando no cumpla con los requisitos mínimos para el curso de programación. En ese caso lamentamos lo mismo, pero no podremos ayudarte😢."
+      }
+    }
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "TBD"
+    },
+    "DATESTRING": "Fecha: "
+  },
+  "WIE": {
+    "WHATIS": {
+      "TITLE": "What is IEEE WIE ITBA?",
+      "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": {
+        "TEXT": "Dentro de nuestros objetivos, podemos encontrar:",
+        "BULLET1": "Inspirar a mujeres y niñas para que se animen a estudiar carreras de STEM",
+        "BULLET2": "Empoderar a aquellas que se encuentren en las mismas para que sean líderes"
+      }
+    },
+    "JOIN": {
+      "TITLE": "¡Unite a WIE!",
+      "MEMBERSHIP": "Obtener membresía",
+      "JOIN": "¡Me quiero unir!",
+      "SPONSOR": "Ser sponsor"
+    },
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Quiénes pueden participar de IEEE WIE ITBA?",
+          "ANSWER": "Cualquier persona alumna del ITBA. ¡El único requisito es querer participar!"
+        },
+        {
+          "QUESTION": "¿Puede unirse alguien que no es de Electrónica ni Informática?",
+          "ANSWER": "Sí. Tenemos voluntarios de todas las carreras, tanto Ingenierías como Licenciaturas. La diversidad no es algo acotado a una carrera"
+        },
+        {
+          "QUESTION": "¿Qué es IEEE?",
+          "ANSWER": "IEEE es el Instituto de Ingenieros Eléctricos y Electronicos por sus siglas en Inglés. Es la organización técnica más grande del mundo y su lema es \"Tecnología para el Avance de la Humanidad\". IEEE WIE es un Grupo de Afinidad dentro de IEEE"
+        },
+        {
+          "QUESTION": "¿Qué es un Grupo de Afinidad?",
+          "ANSWER": "Es una sub unidad de IEEE que toca temas transversales, no técnicos, a todas las ingenierías como lo es la diversidad en carreras de STEM en el caso de WIE"
+        },
+        {
+          "QUESTION": "¿Qué puedo hacer en IEEE WIE ITBA?",
+          "ANSWER": "¡Lo que quieras! Siempre que vaya con nuestros objetivos. Podes unirte a cualquier proye que ya realicemos o proponer una actividad nueva. La organización se construye a partir de lo que los voluntarios deseen"
+        },
+        {
+          "QUESTION": "¿Cuánto me demanda participar en IEEE WIE ITBA?",
+          "ANSWER": "Lo que vos quieras que te demande. Solo tenés que avisar en que cosas querés participar e informar de los avances. Somos todos alumnos por lo que entendemos perfectamente que a veces se nos compctolica mucho, en esos casos, solo es cuestión de comunicar que no vas a estar disponible y no va a haber ningún problema"
+        },
+        {
+          "QUESTION": "¿Cuáles son los objetivos de IEEE WIE ITBA?",
+          "ANSWER": "Los objetivos de IEEE WIE ITBA son: inspirar a más mujeres a seguir carreras en STEM y empoderar a aquellas mujeres que ya se encuentran en campos de STEM para que sean líderes. Con el motivo de lograr los mismos buscamos: bisibilizar el trabajo desarrollado por mujeres en áreas de STEM, proveerles herramientas para que puedan desarrollarse en dichos campos y desmistificar e informar sobre STEM"
+        },
+        {
+          "QUESTION": "¿Cómo se organizan en IEEE WIE ITBA?",
+          "ANSWER": "En IEEE WIE ITBA constamos de 7 departamentos o secciones. Las personas voluntarias pueden participar en todos los que deseen siendo que los proyectos pertenecen a los departamentos y no las personas voluntarias. Dichos departamentos son: Junta Directiva, Media y Comunicación, Fundraising y Tesorería, Logística y Planificación, Educación, Tecnología de la Información y Desarrollo, y Recursos Humanos"
+        }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Contacto"
+    }
   }
 }

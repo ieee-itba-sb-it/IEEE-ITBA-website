@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import SwiperCore, {Navigation, Autoplay, Lazy, SwiperOptions} from 'swiper/core';
+import SwiperCore, { Navigation, Autoplay, Lazy, SwiperOptions } from 'swiper/core';
 import firebase from 'firebase/app';
 import { firestore } from 'firebase/app';
 import Timestamp = firestore.Timestamp;
@@ -25,11 +25,6 @@ export class IotComponent implements OnInit {
 
   enrollLink = 'https://forms.gle/mUWavTU2wcRY1xqJ6';
   enrollEndDate = '22 Nov 2022 03:00:00 UTC';
-
-  faq = [
-    { q: 'IOT.FAQ.1.QUESTION', a: 'IOT.FAQ.1.ANSWER' },
-    { q: 'IOT.FAQ.2.QUESTION', a: 'IOT.FAQ.2.ANSWER' }
-  ];
 
   swiperConfig: SwiperOptions = {
     navigation: true,

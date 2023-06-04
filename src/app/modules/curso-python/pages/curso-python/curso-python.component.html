@@ -42,15 +42,16 @@
 
     <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-                  fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}"
+            fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
                     <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
-                        <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_1_Introducción_a_la_Programación_con_Python.ipynb">{{
-                        'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-                        1
+                        <a
+                            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_1_Introducción_a_la_Programación_con_Python.ipynb">{{
+                            'PYTHONCOURSES.CLASSES.TITLE' | translate }}
+                            1
                         </a>
                     </ng-template>
                     <ng-template #class1Closed>
@@ -65,26 +66,30 @@
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
                 <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="solutions1Closed">
-                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_1_Curso_Introductorio_de_Python.ipynb">
-                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_1_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
+                            }}</button>
                     </a>
                 </ng-template>
                 <ng-template #solutions1Closed>
-                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
+                        'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                 </ng-template>
             </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-                  fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}"
+            fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
                     <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
-                        <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_2_Introducción_a_la_Programación_con_Python.ipynb">{{
+                        <a
+                            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_2_Introducción_a_la_Programación_con_Python.ipynb">{{
                             'PYTHONCOURSES.CLASSES.TITLE' | translate }}
                             2
-                            </a>
+                        </a>
                     </ng-template>
                     <ng-template #class2Closed>
                         {{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2
@@ -98,26 +103,30 @@
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
                 <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="solutions2Closed">
-                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb">
-                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
+                            }}</button>
                     </a>
                 </ng-template>
                 <ng-template #solutions2Closed>
-                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
+                        'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                 </ng-template>
             </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week3ContentOpen}" fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)"
-                  fxFlex.lt-sm="100%">
+        <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week3ContentOpen}"
+            fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>
                     <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="class3Closed">
-                        <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_3_Introducción_a_la_Programación_con_Python.ipynb">{{
+                        <a
+                            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_3_Introducción_a_la_Programación_con_Python.ipynb">{{
                             'PYTHONCOURSES.CLASSES.TITLE' | translate }}
                             3
-                            </a>
+                        </a>
                     </ng-template>
                     <ng-template #class3Closed>
                         {{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3
@@ -131,12 +140,15 @@
             <!-- Boton del solucionario -->
             <mat-card-actions align="center">
                 <ng-template [ngIf]="week4ContentOpen" [ngIfElse]="solutions3Closed">
-                    <a href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb">
-                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <a
+                        href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb">
+                        <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
+                            }}</button>
                     </a>
                 </ng-template>
                 <ng-template #solutions3Closed>
-                    <button  mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
+                    <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
+                        'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
                 </ng-template>
             </mat-card-actions>
         </mat-card>
@@ -144,7 +156,7 @@
     </div>
 
     <!-- Consultas -->
-   <!-- <div>
+    <!-- <div>
 
         <mat-card style="margin-top: 15px">
             <mat-card-header>
@@ -192,14 +204,15 @@
         <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}</h2>
         <mat-accordion class="faq-accordion">
 
-            <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
+            <mat-expansion-panel class="mat-elevation-z0"
+                *ngFor="let question of ('PYTHONCOURSES.FAQ.QUESTIONS' | translate)">
                 <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
                     <mat-panel-title class="faq-question mt-1 mb-1">
-                        {{ qa.q | translate}}
+                        {{ question.QUESTION }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 
-                <p class="faq-answer">{{ qa.a | translate}}</p>
+                <p class="faq-answer">{{ question.ANSWER }}</p>
             </mat-expansion-panel>
 
         </mat-accordion>
@@ -210,34 +223,35 @@
         <mat-expansion-panel class="mat-elevation-z0">
             <mat-expansion-panel-header>
                 <mat-panel-title class="course-subtitle">{{'TYC.TITLE' | translate}}</mat-panel-title>
-            </mat-expansion-panel-header >
-                <h3 class="tyc-subtitle">{{'TYC.INTRO.TITLE' | translate}}</h3>
-                    <p class="tyc-text">{{'TYC.INTRO.TEXT' | translate}}</p>
-                <h3 class="tyc-subtitle">{{'TYC.IEEE.TITLE' | translate}}</h3>
-                    <p class="tyc-text">
-                        {{'TYC.IEEE.INTRO.START' | translate}}
-                        <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">{{'TYC.IEEE.INTRO.LINKTEXT' | translate}}</a>
-                        {{'TYC.IEEE.INTRO.END' | translate}}
-                    </p>
-                    <h4 class="tyc-item">{{'TYC.IEEE.1.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.IEEE.1.TEXT' | translate}}</p>
-                    <h4 class="tyc-item">{{'TYC.IEEE.2.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.IEEE.2.TEXT' | translate}}</p>
-                    <h4 class="tyc-item">{{'TYC.IEEE.3.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.IEEE.3.TEXT' | translate}}</p>
-                <h3 class="tyc-subtitle">{{'TYC.ITBA.TITLE' | translate}}</h3>
-                    <p class="tyc-text">{{'TYC.ITBA.INTRO' | translate}}</p>
-                    <h4 class="tyc-item">{{'TYC.ITBA.1.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.ITBA.1.TEXT' | translate}}</p>
-                    <h4 class="tyc-item">{{'TYC.ITBA.2.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.ITBA.2.TEXT' | translate}}</p>
-                    <h4 class="tyc-item">{{'TYC.ITBA.3.TITLE' | translate}}</h4>
-                        <p class="tyc-text">{{'TYC.ITBA.3.TEXT' | translate}}</p>
+            </mat-expansion-panel-header>
+            <h3 class="tyc-subtitle">{{'TYC.INTRO.TITLE' | translate}}</h3>
+            <p class="tyc-text">{{'TYC.INTRO.TEXT' | translate}}</p>
+            <h3 class="tyc-subtitle">{{'TYC.IEEE.TITLE' | translate}}</h3>
+            <p class="tyc-text">
+                {{'TYC.IEEE.INTRO.START' | translate}}
+                <a href="https://www.ieee.org/conferences/event-terms-and-conditions.html">{{'TYC.IEEE.INTRO.LINKTEXT' |
+                    translate}}</a>
+                {{'TYC.IEEE.INTRO.END' | translate}}
+            </p>
+            <h4 class="tyc-item">{{'TYC.IEEE.1.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.IEEE.1.TEXT' | translate}}</p>
+            <h4 class="tyc-item">{{'TYC.IEEE.2.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.IEEE.2.TEXT' | translate}}</p>
+            <h4 class="tyc-item">{{'TYC.IEEE.3.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.IEEE.3.TEXT' | translate}}</p>
+            <h3 class="tyc-subtitle">{{'TYC.ITBA.TITLE' | translate}}</h3>
+            <p class="tyc-text">{{'TYC.ITBA.INTRO' | translate}}</p>
+            <h4 class="tyc-item">{{'TYC.ITBA.1.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.ITBA.1.TEXT' | translate}}</p>
+            <h4 class="tyc-item">{{'TYC.ITBA.2.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.ITBA.2.TEXT' | translate}}</p>
+            <h4 class="tyc-item">{{'TYC.ITBA.3.TITLE' | translate}}</h4>
+            <p class="tyc-text">{{'TYC.ITBA.3.TEXT' | translate}}</p>
         </mat-expansion-panel>
     </div>
 
     <!-- Sponsors Actuales -->
-  <!-- <div class="bottomLine mt-4">
+    <!-- <div class="bottomLine mt-4">
     <div class="row">
       <h1 class="section-title">Sponsors</h1>
 

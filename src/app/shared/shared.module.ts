@@ -24,6 +24,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {CustomMissingTranslationHandler} from './CustomMissingTranslationHandler';
 import {IndividualCardComponent} from './components/individual-card/individual-card.component';
 import {TeamCardComponent} from './components/team-card/team-card.component';
+import {EventCardShortComponent} from './components/event-card-short/event-card-short.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 import {ResizeDirective} from './directives/resize.directive';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
@@ -33,7 +36,8 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective ],
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+    TeamCardComponent, ResizeDirective, EventCardShortComponent ],
   imports: [
     routing,
     CommonModule,
@@ -51,9 +55,12 @@ export const routing = RouterModule.forChild(routes);
     MatMenuModule,
     MatButtonToggleModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatChipsModule,
+    MatIconModule
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective]
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+    TeamCardComponent, ResizeDirective, EventCardShortComponent]
 })
 export class SharedModule { }

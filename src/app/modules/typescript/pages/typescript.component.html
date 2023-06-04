@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript</title>
+</head>
+<header>
+  <app-navbar></app-navbar>
+</header>
+<body>
+  <!-- BANNER -->
+  <section class="banner">
+    <img
+      src="../../../../../assets/image/events/typescript-course/big-banner.jpg"
+      class="cover-background"
+      alt="Asimov Cup - Competencia de Robótica"
+    />
+  </section>
+  <h1 class="course-title">{{ 'TYPESCRIPT.TITLE' | translate}}</h1>
+  <!-- DESCRIPTION -->
+  <div *ngIf="enrollAvailable()">
+    <div class="d-flex flex-row-reverse">
+      <button class="goback-button">
+        <a href="{{ enrollLink }}" class="button-text">
+          {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
+      </button>
+    </div>
+  </div>
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}} </h2>
+    <p>{{ 'TYPESCRIPT.DESCRIPTION.TEXT' | translate}}</p>
+  </section>
+  <!-- SYLLABUS -->
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.SYLLABUS.TITLE' | translate}} </h2>
+    <div class="syllabus">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.1' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.3' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.4' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}}</p>
+            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ 'TYPESCRIPT.SYLLABUS.3.TEXT' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.1' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.3' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.4' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.5' | translate}}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{ 'TYPESCRIPT.SYLLABUS.4.TEXT' | translate}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.1' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.3' | translate}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+  <!-- FORMS (no esta habilitado por ahora)-->
+  <!--
+     <section class="forms">
+    <a>
+      <button class="button">
+        <span>{{ "TYPESCRIPT.INSCRIPTION_FORM" | translate }}</span>
+      </button>
+    </a>
+  </section>
+  -->
+  <!-- SCHEDULE -->
+  <!--
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.SCHEDULE.TITLE' | translate}} </h2>
+    <ul *ngFor="let date of schedule">
+      <li><p>{{date | translate}}</p></li>
+    </ul>
+  </section>
+  -->
+  <!-- REQUIREMENTS -->
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.REQUIREMENTS.TITLE' | translate}} </h2>
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.1' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.2' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.3' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.4.TEXT' | translate}}</p>
+    <ul>
+      <li><p>{{ 'TYPESCRIPT.REQUIREMENTS.4.BULLET_PTS.1' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.REQUIREMENTS.4.BULLET_PTS.2' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.REQUIREMENTS.4.BULLET_PTS.3' | translate}}</p></li>
+    </ul>
+    <p> {{ 'TYPESCRIPT.REQUIREMENTS.5' | translate}}
+      <a href="{{requirementsLink}}">
+        {{ 'TYPESCRIPT.REQUIREMENTS.LINK' | translate}}
+      </a>
+    </p>
+  </section>
+  <!-- SUGGESTIONS -->
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.SUGGESTIONS.TITLE' | translate}} </h2>
+    <p>{{ 'TYPESCRIPT.SUGGESTIONS.TEXT' | translate}}</p>
+    <ul>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.1' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.2' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.3' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.4' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.5' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.6' | translate}}</p></li>
+      <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.7' | translate}}</p></li>
+    </ul>
+  </section>
+  <!-- FORMAT -->
+  <section>
+    <h2 class="course-subtitle">{{ 'TYPESCRIPT.FORMAT.TITLE' | translate}} </h2>
+    <p> {{ 'TYPESCRIPT.FORMAT.1' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.FORMAT.2' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.FORMAT.3' | translate}}</p>
+    <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
+  </section>
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2 class="course-subtitle">Preguntas frecuentes</h2>
+    <mat-accordion class="faq-accordion">
+        <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
+            <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
+                <mat-panel-title class="faq-question mt-1 mb-1">
+                    {{ qa.q | translate}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="faq-answer">{{ qa.a | translate}}</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </section>
+  <app-footer></app-footer>
+</body>
+
+</html>
