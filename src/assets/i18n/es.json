@@ -3,7 +3,7 @@
   "HOME": {
     "TITLE": "Rama Estudiantil",
     "CARGO": {
-      
+
       "CD": {
         "TITLE": "CD",
         "OFFICER": "Officer",
@@ -609,19 +609,43 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "DOWNLOAD_RULEBOOK": "Descargar reglamento",
+    "CATEGORIES": {
+      "SUMO": {
+        "NAME": "Sumo",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Sumo",
+        "DESC": "Dos robots de equipos distintos luchan de acuerdo a un conjunto de reglas. Quien obtenga más puntos gana."
+      },
+      "MINISUMO": {
+        "NAME": "Mini sumo",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Mini Sumo",
+        "DESC": "Las reglas básicas son las mismas que la categoría Sumo, pero con limitaciones en aspectos como ancho y peso de los robots."
+      },
+      "RACING": {
+        "NAME": "Carreras",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Carreras",
+        "DESC": "Dos robots recorren dos circuitos de iguales características al mismo tiempo, siguiendo una línea blanca sobre un fondo negro. Quien logre llegar primero a la meta gana."
+      },
+      "FOOTBALL": {
+        "NAME": "Fútbol",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Fútbol",
+        "DESC": "Dos equipos de robots juegan un partido de fútbol, ganando el que logre marcar más goles en un tiempo determinado."
+      }
+    },
     "DESC": {
       "TITLE": "Descripción",
       "SECTION": {
         "1": {
-          "TEXT": "La Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en el Instituto Tecnológico de Buenos Aires. Los competidores deberán desarrollar con anterioridad sus robots de acuerdo con los reglamentos establecidos, para participar con ellos el día del evento. Hay 3 categorías diferentes, las cuales son:",
+          "TEXT": "La Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en el Instituto Tecnológico de Buenos Aires. Los competidores deberán desarrollar con anterioridad sus robots de acuerdo con los reglamentos establecidos, para participar con ellos el día del evento.",
           "BULLET_PTS": {
             "1": "Sumo",
             "2": "Minisumo",
-            "3": "Carreras"
+            "3": "Carreras",
+            "4": "Fútbol"
           }
         },
         "2": {
-          "TEXT": "Cada categoría se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados a continuación:",
+          "TEXT": "Hay 4 categorías diferentes y cada una se desarrolla se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados de su sección correspondiente.",
           "LINKS": {
             "1": "Reglamento de Sumo/Minisumo",
             "2": "Reglamento de Carreras"
@@ -636,8 +660,11 @@
     "D_AND_L_TITLE": "Fecha y lugar",
     "D_AND_L": {
       "TEXT_1": "La competencia se desarrollará en la ",
-      "LOCATION": "Sede Distrito Tecnológico del ITBA",
-      "TEXT_2": " (Lavardén 315, CABA, Argentina) el día sábado 30 de Julio de 2022."
+      "TEXT_2": " (Lavardén 315, CABA, Argentina) el día Sábado 29 de Julio.",
+      "DATE": "Sábado 29 de Julio",
+      "LOCATION": "ITBA Sede Distrito Tecnológico",
+      "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
+      "TIME": "8:00hs - 19:00hs"
     },
     "SCHEDULE_TITLE": "Cronograma estimado",
     "SCHEDULE": {
@@ -669,16 +696,12 @@
         "ANSWER": "La Homologación es una verificación que se realiza sobre cada robot para asegurarse de que cumpla con los requisitos de tamaño, peso, etc. que determina el reglamento. Además se realiza una prueba del robot sobre la pista/tatami sin ningún contrincante para ayudar a determinar la distribución de grupos para la fase de grupos."
       },
       "4": {
-        "QUESTION": "¿Si mi robot respeta el reglamento de la LNR, puede participar de la Asimov Cup?",
-        "ANSWER": "¡Probablemente sí! De todas formas, recomendamos verificar leyendo el reglamento correspondiente."
-      },
-      "5": {
         "QUESTION": "¿Quiénes pueden participar de la competencia?",
         "ANSWER": "El evento es gratuito y abierto a todo público. Los participantes de cualquier secundario, universidad, o equipo particular pueden participar de la competencia. En todos los casos se debe completar el formulario de inscripción correspondiente."
       },
-      "6": {
+      "5": {
         "QUESTION": "¿Cómo puedo hacer consultas acerca de la competencia?",
-        "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ieee@itba.edu.ar"
+        "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ras.ieee@itba.edu.ar"
       }
     },
     "SPONSORS": "Sponsors"

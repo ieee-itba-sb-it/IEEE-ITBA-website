@@ -129,4 +129,8 @@ export class EventService {
     return [ this.asimovCup ];
   }
 
+  getAsimovCupEvent(): EventCardData {
+    return this.asimovCup;
+  }
+
 }

@@ -6,7 +6,7 @@
     <title>Asimov Cup</title>
   </head>
   <header>
-    <app-navbar></app-navbar>
+    <app-navbar bgColor="#862633"></app-navbar>
   </header>
 
   <body>
@@ -19,7 +19,7 @@
       />
     </div>
 
-    <div class="topbottomLine" id="home" style="margin-bottom:2%">
+    <div class="topbottomLine" id="home">
       <div class="container">
         <div class="row">
           <div class="col-sm">
@@ -29,14 +29,13 @@
       </div>
     </div>
 
-
     <div *ngIf="enrollAvailable()">
-      <div class="d-flex flex-row-reverse">
-        <button class="enroll-button">
-          <a href="https://forms.gle/QNv8ukJC59VHEiPEA" class="button-text">
+      <div class="d-flex justify-content-center">
+        <a href="{{enrollLink}}" class="button-text">
+          <button class="enroll-button">
             {{ "ASIMOVCUP.ENROLLBUTTON" | translate }}
-          </a>
-        </button>
+          </button>
+        </a>
       </div>
     </div>
 
@@ -45,43 +44,74 @@
       <h2 class="section-title">{{ "ASIMOVCUP.DESC.TITLE" | translate }}</h2>
       <div class="text-section">
         <p>{{ "ASIMOVCUP.DESC.SECTION.1.TEXT" | translate }}</p>
-        <ul>
-          <li>{{ "ASIMOVCUP.DESC.SECTION.1.BULLET_PTS.1" | translate }}</li>
-          <li>{{ "ASIMOVCUP.DESC.SECTION.1.BULLET_PTS.2" | translate }}</li>
-          <li>{{ "ASIMOVCUP.DESC.SECTION.1.BULLET_PTS.3" | translate }}</li>
-        </ul>
         <p>{{ "ASIMOVCUP.DESC.SECTION.2.TEXT" | translate }}</p>
-        <div class="download-buttons-container">
-          <a href="https://raw.githubusercontent.com/IEEESBITBA/AsimovCup/main/Reglamentos/Reglamento_Sumo_Minisumo_RAS_ITBA_Rev_1.pdf">
-            <button class="download-button">
-              <img class="download-icon" src="../../../../../assets/image/logos/download.svg" alt="Download icon">
-              <span>{{ "ASIMOVCUP.DESC.SECTION.2.LINKS.1" | translate }}</span>
-            </button>
-          </a>
-          <a href="https://raw.githubusercontent.com/IEEESBITBA/AsimovCup/main/Reglamentos/Reglamento_Carreras_RAS_ITBA_Rev_1.pdf">
-            <button class="download-button">
-              <img class="download-icon" src="../../../../../assets/image/logos/download.svg" alt="Download icon">
-              <span>{{ "ASIMOVCUP.DESC.SECTION.2.LINKS.2" | translate }}</span>
-            </button>
-          </a>
-        </div>
+        <ul class="category-cards-container">
+          <li class="category-grid-item" *ngFor="let category of categories">
+            <mat-card [class.mat-elevation-z8]="true" class="category-card">
+              <div class="category-header">
+                <img class="category-card-icon" src="{{category.imgLink}}" alt="{{category.altTextCode | translate}}"/>
+                <div class="category-card-title">{{category.textCode | translate}}</div>
+              </div>
+              <mat-card-content class="expanded-content">
+                <p class="category-card-description">
+                  {{ category.descriptionTextCode | translate }}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="download-button">
+                  <a href="{{category.rulesLink}}" class="download-content-container">
+                    <img class="download-icon" src="../../../../../assets/image/logos/download.svg" alt="Download icon">
+                    <span class="download-text">
+                      {{ "ASIMOVCUP.DOWNLOAD_RULEBOOK" | translate }}
+                    </span>
+                  </a>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </li>
+        </ul>
         <p>{{ "ASIMOVCUP.DESC.SECTION.3.TEXT" | translate }}</p>
-        <div *ngIf="enrollAvailable()">
-          <button class="enroll-button spectator-button">
-            <a href="https://forms.gle/mNCnbf4A5TCftVn38" class="button-text">
+        <div *ngIf="spectatorEnrollAvailable()">
+          <a href="{{spectatorEnrollLink}}" class="button-text">
+            <button class="enroll-button spectator-button">
               {{ "ASIMOVCUP.DESC.SECTION.3.SPECTATEENROLL" | translate }}
-            </a>
-          </button>
+            </button>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- DATE AND LOCATION section -->
-    <!--
-    <div>
-      <h2 class="subtitle">
+
+    <div class="section">
+      <h2 class="section-title">
         {{ "ASIMOVCUP.D_AND_L_TITLE" | translate }}
       </h2>
+      <div class="centered-section">
+        <div class="columned-section">
+          <div class="aboutus-container">
+            <div class="aboutus-section">
+              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/calendar.svg" alt="Calendar icon"/>
+              <span>{{ 'ASIMOVCUP.D_AND_L.DATE' | translate }}</span>
+            </div>
+            <div class="aboutus-section">
+              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/location.svg" alt="Location icon"/>
+              <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
+            </div>
+            <div class="aboutus-section">
+              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/time.svg" alt="Time icon"/>
+              <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
+            </div>
+          </div>
+          <div class="image-section">
+            <img
+              src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
+              alt="PlanoITBA2"
+            />
+          </div>
+        </div>
+      </div>
+      <!--
       <div class="text-section">
         <p>
           {{ "ASIMOVCUP.D_AND_L.TEXT_1" | translate }}
@@ -97,20 +127,21 @@
           alt="PlanoITBA2"
         />
       </div>
+      -->
     </div>
-
-    SCHEDULE section
-    <div>
-      <h2 class="subtitle">
-        {{ "ASIMOVCUP.SCHEDULE_TITLE" | translate }}
-      </h2>
-      <div class="text-section">
-        <ol class="list-section">
-          <li *ngFor="let sc of schedule">{{ sc | translate }}</li>
-        </ol>
+    <!--
+      SCHEDULE section
+      <div>
+        <h2 class="subtitle">
+          {{ "ASIMOVCUP.SCHEDULE_TITLE" | translate }}
+        </h2>
+        <div class="text-section">
+          <ol class="list-section">
+            <li *ngFor="let sc of schedule">{{ sc | translate }}</li>
+          </ol>
+        </div>
       </div>
-    </div>
-    -->
+      -->
 
     <!-- FAQ section -->
     <div class="faq-section">

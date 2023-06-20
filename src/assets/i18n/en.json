@@ -558,19 +558,43 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "ENROLLBUTTON": "Enroll now!",
+    "DOWNLOAD_RULEBOOK": "Download rulebook",
+    "CATEGORIES": {
+      "SUMO": {
+        "NAME": "Sumo",
+        "IMAGE_ALT_TEXT": "Sumo category icon",
+        "DESC": "Two robots from two different teams fight according to a set of rules. Whoever gets more points wins."
+      },
+      "MINISUMO": {
+        "NAME": "Mini sumo",
+        "IMAGE_ALT_TEXT": "Mini Sumo category icon",
+        "DESC": "The basic rules are the same as the Sumo category, but with limitations such as robot width and weight."
+      },
+      "RACING": {
+        "NAME": "Racing",
+        "IMAGE_ALT_TEXT": "Racing category icon",
+        "DESC": "Two robots race around two tracks of equal dimensions at the same time, following a white line over a black surface. Whoever gets to the line first wins."
+      },
+      "FOOTBALL": {
+        "NAME": "Football",
+        "IMAGE_ALT_TEXT": "Football category icon",
+        "DESC": "Two teams of robots play a football match, winning whoever scores more goals in a set amount of time."
+      }
+    },
     "DESC": {
       "TITLE": "Description",
       "SECTION": {
         "1": {
-          "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at the Buenos Aires Institute of Technology (ITBA). Competitors must develop their robots in advance, in accordance with the established regulations, in order to participate with them on the day of the event. There are 3 different categories, which are:",
+          "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at the Instituto Tecnológico de Buenos Aires (ITBA). Competitors must develop their robots in advance, in accordance with the established regulations, in order to participate with them on the day of the event.",
           "BULLET_PTS": {
             "1": "Sumo",
             "2": "Minisumo",
-            "3": "Racing"
+            "3": "Racing",
+            "4": "Fútbol"
           }
         },
         "2": {
-          "TEXT": "Each category is developed independently of the others, all running simultaneously on the day of the event. The regulations are adapted from the Argentine National Robotics League (LNR), and can be downloaded below:",
+          "TEXT": "There are 4 different categories, each one developed independently of the others, all running simultaneously on the day of the event. The regulations are adapted from the Argentine National Robotics League (LNR), and can be downloaded from its corresponding section.",
           "LINKS": {
             "1": "Sumo/Minisumo regulations",
             "2": "Racing regulations"
@@ -585,8 +609,11 @@
     "D_AND_L_TITLE": "Date and location",
     "D_AND_L": {
       "TEXT_1": "The competition will take place at the ",
+      "TEXT_2": " (Lavardén 315, CABA, Argentina) on Saturday, July 29.",
+      "DATE": "Saturday, July 29",
       "LOCATION": "ITBA Sede Distrito Tecnológico",
-      "TEXT_2": " (Lavardén 315, CABA, Argentina) on Saturday, July 30, 2022."
+      "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
+      "TIME": "8:00hs - 19:00hs"
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
@@ -618,16 +645,12 @@
         "ANSWER": "The Homologation is a verification that is carried out on each robot to ensure that it meets the requirements of size, weight, etc. determined by the regulations. In addition, a robot test is performed on the track/tatami without any opponents to help determine the distribution of groups for the group stage."
       },
       "4": {
-        "QUESTION": "If my robot follows the LNR regulations, can it participate in the Asimov Cup?",
-        "ANSWER": "Probably yes! However, we recommend you make sure by reading the corresponding regulations."
-      },
-      "5": {
         "QUESTION": "Who can participate in the competition?",
         "ANSWER": "The event is free and open to the public. Participants from any high school, college, or private team may participate in the competition. In all cases, the corresponding registration form must be completed."
       },
-      "6": {
+      "5": {
         "QUESTION": "How can I make inquiries about the competition?",
-        "ANSWER": "For any questions you can contact us at ieee@itba.edu.ar"
+        "ANSWER": "For any questions you can contact us at ras.ieee@itba.edu.ar"
       }
     },
     "SPONSORS": "Sponsors"
