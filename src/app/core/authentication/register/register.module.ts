@@ -12,27 +12,31 @@ import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-
 import {HttpLoaderFactory} from '../../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {CustomMissingTranslationHandler} from '../../../shared/CustomMissingTranslationHandler';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [RegisterComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    TranslateModule,
-    RegisterRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        TranslateModule,
+        RegisterRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatGridListModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MatButtonModule,
+        MatCardModule,
+    ]
 })
 export class RegisterModule {
 
