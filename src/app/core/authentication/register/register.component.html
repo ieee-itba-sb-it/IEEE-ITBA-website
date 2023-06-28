@@ -12,14 +12,14 @@
 
 
 <div class="row" style="height: 100%">
-  <div class="col-lg-4 col-md-0 col-sm-0 h-100 w-100 d-sm-none d-md-none d-lg-flex align-items-center justify-content-center mt-4 "
+  <div class="col-lg-4 col-md-6 col-sm-0 h-100 w-100 d-none d-md-flex d-lg-flex align-items-center justify-content-center mt-4 "
        style="background-color: #00629B"
   >
     <img alt="itbot" src="./assets/image/login/itbot.png" class="h-50"/>
   </div>
-  <div class="mainFrame col-lg-8 col-md-12" style="padding-top: 160px">
+  <div class="mainFrame col-lg-8 col-md-6 col-12" style="padding-top: 160px">
     <div class="row d-flex flex-column align-items-center justify-content-center">
-      <mat-card class="d-flex flex-column align-items-center" style="width: 500px">
+      <mat-card class="d-flex flex-column align-items-center" style="width: 80%; max-width: 500px;">
         <mat-card-header>
           <mat-card-title>
             {{ 'REGISTER.TITLE' | translate }}
@@ -27,18 +27,20 @@
         </mat-card-header>
         <mat-card-content class="login-card-content">
           <form id="singup-form">
-              <div class="row w-100">
-                <div class="col-6">
-                  <mat-form-field class="w-100">
-                    <mat-label for="fname">{{ 'REGISTER.FIRST_NAME' | translate }}:</mat-label>
-                    <input type="text" id="fname" required matInput>
-                  </mat-form-field>
-                </div>
-                <div class="col-6">
-                  <mat-form-field class="w-100">
-                    <mat-label for="lname">{{ 'REGISTER.LAST_NAME' | translate }}:</mat-label>
-                    <input type="text" id="lname" required matInput>
-                  </mat-form-field>
+              <div class="w-100">
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field class="w-100">
+                      <mat-label for="fname">{{ 'REGISTER.FIRST_NAME' | translate }}:</mat-label>
+                      <input type="text" id="fname" required matInput>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field class="w-100">
+                      <mat-label for="lname">{{ 'REGISTER.LAST_NAME' | translate }}:</mat-label>
+                      <input type="text" id="lname" required matInput>
+                    </mat-form-field>
+                  </div>
                 </div>
               </div>
               <mat-form-field class="w-100">
@@ -53,28 +55,30 @@
                 <mat-label for="passConf">{{ 'REGISTER.REPEAT_PASSWORD' | translate }}:</mat-label>
                 <input type="password" id="passConf" required matInput>
               </mat-form-field>
-            <div class="row d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
               <button mat-raised-button class="login-button" color="primary" type="submit">{{ 'REGISTER.BUTTON' | translate }}</button>
             </div>
 
             <div class="row d-flex justify-content-center">
-              <h4 id="passerr" [hidden]="isHidden3"></h4>
+              <h4 *ngIf="registerResponse != null" [class]="{ 'success': registerResponse.success, 'error': !registerResponse.success}">
+                {{ registerResponse.message | translate }}
+              </h4>
             </div>
-            <div class="row d-flex justify-content-center mt-4">
-              <!--<div class="mr-2 blue-font">Forgot Password?</div>
+<!--            <div class="row d-flex justify-content-center mt-4">-->
+<!--              &lt;!&ndash;<div class="mr-2 blue-font">Forgot Password?</div>-->
 
-              <button class="smallbutton" (click)="chgpass()">Change Password</button>
+<!--              <button class="smallbutton" (click)="chgpass()">Change Password</button>-->
 
-              <mat-form-field id="changepass" class="w-100">
-                <mat-label for="emailchange">New Password</mat-label>
-                <input type="email"  [hidden]="isHidden" placeholder="e-mail" id="emailchange" required matInput>
-              </mat-form-field>
+<!--              <mat-form-field id="changepass" class="w-100">-->
+<!--                <mat-label for="emailchange">New Password</mat-label>-->
+<!--                <input type="email"  [hidden]="isHidden" placeholder="e-mail" id="emailchange" required matInput>-->
+<!--              </mat-form-field>-->
 
-              <form id="changepass">
-                <input type="email" [hidden]="isHidden" placeholder="e-mail" id="emailchange">
-              </form>
-              <h4 id="passChgConf" [hidden]="isHidden2"></h4>-->
-            </div>
+<!--              <form id="changepass">-->
+<!--                <input type="email" [hidden]="isHidden" placeholder="e-mail" id="emailchange">-->
+<!--              </form>-->
+<!--              <h4 id="passChgConf" [hidden]="isHidden2"></h4>&ndash;&gt;-->
+<!--            </div>-->
 
 
             <div class="row d-flex justify-content-center mt-3">

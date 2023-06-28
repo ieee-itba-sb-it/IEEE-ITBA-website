@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { auth } from 'firebase';
-import {TranslateService} from '@ngx-translate/core';
+import {ApiResponse} from '../../../shared/models/data-types';
+import {Router} from '@angular/router';
+
+const ERROR_MESSAGES = {
+  'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
+  'auth/invalid-email': 'REGISTER.ERROR.INVALID_EMAIL',
+  'auth/weak-password': 'REGISTER.ERROR.WEAK_PASSWORD',
+  default: 'REGISTER.ERROR.UNKNOWN_ERROR',
+};
 
 @Component({
   selector: 'app-register',
@@ -11,7 +17,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private readonly router: Router) {
     scroll(0, 0);
   }
 
@@ -30,6 +36,7 @@ export class RegisterComponent implements OnInit {
   email: string;
   pass: string;
   passConf: string;
+  registerResponse: ApiResponse = null;
 
   // On Init
   ngOnInit(): void {
@@ -44,9 +51,7 @@ export class RegisterComponent implements OnInit {
 
     // Listener submit
     this.signupForm.addEventListener('submit', (e) => {
-
       e.preventDefault(); // dont refresh
-
       // Get data
       this.email = this.signupForm.email.value;
       this.pass = this.signupForm.pass.value;
@@ -56,13 +61,35 @@ export class RegisterComponent implements OnInit {
       this.lname = this.signupForm.lname.value;
 
       this.isHidden3 = false;
-
       if (this.pass === this.passConf){
-        this.authService.signup(this.email, this.pass, this.fname, this.lname, this.alertText);
+        this.registerResponse = null;
+        this.authService
+          .signup(this.email, this.pass, this.fname, this.lname)
+          .subscribe({
+            next: (value) => {
+              this.registerResponse = {
+                message: 'REGISTER.SUCCESS',
+                success: true,
+              };
+              setTimeout(() => {
+                this.router.navigate(['home']);
+              }, 1000);
+            },
+            error: (err) => {
+              const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
+              this.registerResponse = {
+                message,
+                success: false,
+              };
+            }
+          });
       }
       else {
-        this.alertText.textContent = 'Passwords dont match.';
-        this.alertText.style.color = 'red';
+        this.registerResponse = {
+          message: 'REGISTER.ERROR.PASS_DONT_MATCH',
+          success: false,
+        };
+        console.log(this);
       }
 
     });

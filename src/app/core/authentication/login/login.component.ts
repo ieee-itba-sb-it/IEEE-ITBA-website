@@ -1,8 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { auth } from 'firebase';
-import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
+import {ApiResponse} from '../../../shared/models/data-types';
+
+function getErrorMessage(code) {
+  switch (code) {
+    case 'auth/invalid-email':
+    case 'auth/user-not-found':
+    case 'auth/wrong-password':
+      return 'LOGIN.ERROR.INCORRECT_USER_PASS';
+    case 'auth/user-disabled': {
+      return 'LOGIN.ERROR.DISABLED_USER';
+    }
+    default: {
+      return 'LOGIN.ERROR.UNKNOWN';
+    }
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -11,29 +25,23 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent  implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     scroll(0, 0);
   }
 
   // Data
   signupForm: HTMLElement | any;
-  alertText: HTMLElement;
-
-  // Visual vars
-  isHidden: boolean;
 
   // Form data
   email: string;
   pass: string;
 
+  loginResponse: ApiResponse;
+
   // On Init
   ngOnInit(): void {
-
-    this.isHidden = true;
-
     // Consts
     this.signupForm = document.getElementById('account-form');
-    this.alertText = document.getElementById('passerr');
 
     // Listener submit
     this.signupForm.addEventListener('submit', (e) => {
@@ -45,11 +53,25 @@ export class LoginComponent  implements OnInit {
       this.pass = this.signupForm.pass.value;
 
       // Login
-      this.isHidden = false;
-      this.authService.login(this.email, this.pass, this.alertText);
-
+      this.loginResponse = null;
+      this.authService.login(this.email, this.pass).subscribe({
+        next: (_) => {
+          this.loginResponse = {
+            success: true,
+            message: 'LOGIN.SUCCESS',
+          };
+          setTimeout(() => {
+            this.router.navigate(['home']);
+          }, 1000);
+        },
+        error: (err) => {
+          this.loginResponse = {
+            success: false,
+            message: getErrorMessage(err.code),
+          };
+        }
+      });
     });
 
   }
-
 }

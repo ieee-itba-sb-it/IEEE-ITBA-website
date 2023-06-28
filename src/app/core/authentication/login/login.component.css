@@ -38,6 +38,16 @@ a:hover{
     color: rgb(98, 136, 238);
 }
 
+.error {
+  color: red;
+  text-align: start;
+}
+
+.success {
+  color: green;
+  text-align: start;
+}
+
 .mainFrame {
 }
 
@@ -51,14 +61,11 @@ input {
   font-size: 1.4em;
 }
 
-#passerr{
-    font-size: 13pt;
-    font-weight: 100;
-    text-align: right;
-}
-
 .login-card-content {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .topbottomLine {

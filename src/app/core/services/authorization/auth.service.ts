@@ -6,9 +6,10 @@ import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import {Observable, BehaviorSubject, throwError} from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
   providedIn: 'root',
@@ -59,91 +60,38 @@ export class AuthService {
   // ---------------Methods---------------
 
   // Signup with email and password
-  signup(email: string, password: string, fname: string, lname: string, element: HTMLElement) {
-
-    this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.auth.currentUser.uid);
-        element.textContent = 'Signed Up!';
-        element.style.color = 'green';
-
-        this.afs.collection('users').doc(email).set(this.account).then(data => {});
-
-      })
-      .catch(err => {
-        // Switch error
-        switch (err.code){
-          case 'auth/email-already-in-use': { // Email used
-            element.textContent = 'Email already in use.';
-            element.style.color = 'red';
-            break;
-          }
-          case 'auth/invalid-email': { // Invalid email
-            element.textContent = 'Invalid email.';
-            element.style.color = 'red';
-            break;
-          }
-          case 'auth/weak-password': { // Weak pass
-            element.textContent = 'Pass too weak.';
-            element.style.color = 'red';
-            break;
-          }
-          default: { // Default
-            element.textContent = 'Error.';
-            element.style.color = 'red';
-            break;
-          }
-        }
-
-      });
-
+  signup(email: string, password: string, fname: string, lname: string): Observable<UserCredential> {
+    return new Observable((subscriber) => {
+      this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(value => {
+          this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.auth.currentUser.uid);
+          this.afs.collection('users').doc(email).set(this.account).then(data => {});
+          subscriber.next(value);
+        })
+        .catch(err => {
+          subscriber.error(err);
+        })
+        .finally(subscriber.complete);
+    });
   }
 
   // Login with email and password
-  login(email: string, password: string, element: HTMLElement) {
-
-    this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-    .then(value => {
-      element.textContent = 'Logged In!';
-      element.style.color = 'green';
-      // Get his info
-
-      // Redirect home
-      setTimeout(() => {
-        this.router.navigate(['home']);
-      }, 2000);  // 2s
-    })
-    .catch(err => {
-      // Message the user
-      switch (err.code) {
-        case 'auth/invalid-email': {
-          element.textContent = 'Invalid email address.';
-          element.style.color = 'red';
-          break;
-        }
-        case 'auth/user-not-found': {
-          element.textContent = 'No user corresponding to provided email.';
-          element.style.color = 'red';
-          break;
-        }
-        case 'auth/wrong-password': {
-          element.textContent = 'Wrong Password.';
-          element.style.color = 'red';
-          break;
-        }
-        case 'auth/user-disabled': {
-          element.textContent = 'User disabled.';
-          element.style.color = 'red';
-          break;
-        }
-        default: {
-          element.textContent = 'Error.';
-          element.style.color = 'red';
-          break;
-        }
+  login(email: string, password: string): Observable<firebase.auth.UserCredential> {
+    return new Observable<firebase.auth.UserCredential>(
+      (subscriber) => {
+        this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
+          .then(value => {
+            subscriber.next(value);
+          })
+          .catch(err => {
+            subscriber.error(err);
+          }).finally(
+          () => {
+            subscriber.complete();
+          }
+        );
       }
-
-    });
+    );
   }
 
   // Logout

@@ -41,6 +41,14 @@ a:hover{
 .mainFrame {
 }
 
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 input {
   font-size: 1.3em;
 }

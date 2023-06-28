@@ -41,3 +41,8 @@ export function createRegularUser(fname: string, lname: string, email: string, p
     newUser = { fname, lname, email, photoURL, uID, role };
     return newUser;
 }
+
+export type ApiResponse = {
+  success: boolean;
+  message: string;
+};
