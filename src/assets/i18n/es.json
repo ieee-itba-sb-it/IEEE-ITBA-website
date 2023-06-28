@@ -492,14 +492,20 @@
     "PROGRAM_DATE": "Programar fecha de publicación"
   },
   "LOGIN": {
-    "TITLE": "Iniciar Sesión",
+    "TITLE": "Iniciá sesión",
     "EMAIL": "Email",
     "PASSWORD": "Contraseña",
     "BUTTON": "Iniciar Sesión",
     "NO_ACCOUNT": "¿No tenés una cuenta?",
     "SIGN_UP": "Registrarse",
     "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
-    "CLICK": "Recuperar Contraseña"
+    "CLICK": "Recuperar Contraseña",
+    "ERROR": {
+      "INCORRECT_USER_PASS": "Incorrecto email o contraseña",
+      "UNKNOWN": "Error desconocido",
+      "DISABLED_USER": "Usuario ha sido deshabilitado"
+    },
+    "SUCCESS": "Bienvenido a IEEE!"
   },
   "REGISTER": {
     "TITLE": "Registrarse",
@@ -510,7 +516,15 @@
     "REPEAT_PASSWORD": "Repetir Contraseña",
     "BUTTON": "Registrarse",
     "ALREADY_SIGNED_UP": "¿Ya estás registrado?",
-    "LOGIN": "Iniciar Sesión"
+    "LOGIN": "Iniciar Sesión",
+    "SUCCESS": "Se registró correctamente.",
+    "ERROR": {
+      "PASS_DONT_MATCH": "Las contraseñas son diferentes",
+      "EMAIL_IN_USE": "Correo electrónico ya está en uso",
+      "INVALID_EMAIL": "Correo electrónico no es válido",
+      "WEAK_PASSWORD": "Contraseña débil",
+      "UNKNOWN_ERROR": "Error desconocido"
+    }
   },
   "LOGOUT": {
     "TITLE": "Cerrar Sesión"

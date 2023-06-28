@@ -441,14 +441,20 @@
     "PROGRAM_DATE": "Program publish date"
   },
   "LOGIN": {
-    "TITLE": "Log In",
+    "TITLE": "Log in to your account",
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "BUTTON": "Log In",
     "NO_ACCOUNT": "Don't have an account?",
     "SIGN_UP": "Sign Up",
     "FORGOT_PASSWORD": "Forgot your password?",
-    "CLICK": "Recover Password"
+    "CLICK": "Recover Password",
+    "ERROR": {
+      "INCORRECT_USER_PASS": "Incorrect user or password",
+      "UNKNOWN": "Unknown error",
+      "DISABLED_USER": "User has been disabled"
+    },
+    "SUCCESS": "Welcome to IEEE!"
   },
   "REGISTER": {
     "TITLE": "Register",
@@ -459,7 +465,15 @@
     "REPEAT_PASSWORD": "Repeat Password",
     "BUTTON": "Sign Up",
     "ALREADY_SIGNED_UP": "Already signed up?",
-    "LOGIN": "Log In"
+    "LOGIN": "Log In",
+    "SUCCESS": "Sign up successful.",
+    "ERROR": {
+      "PASS_DONT_MATCH": "Passwords don't match.",
+      "EMAIL_IN_USE": "Email is already in use.",
+      "INVALID_EMAIL": "Invalid email.",
+      "WEAK_PASSWORD": "Weak password.",
+      "UNKNOWN_ERROR": "Unknown error."
+    }
   },
   "LOGOUT": {
     "TITLE": "Log Out"

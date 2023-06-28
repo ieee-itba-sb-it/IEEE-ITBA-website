@@ -7,19 +7,16 @@
         class="event-card-img"
         [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}"
       />
-      <div class="date-container">
-        <div *ngIf="event.dates[0].date == null; else date" class="date-inner-container">
+      <div class="text-position">
+        <div *ngIf="event.dates[0].date != null" class="date-inner-container">
+          <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
+          {{ capitalizeFirstLetter(event.dates[0].date.toLocaleString(locale(), { month: 'long' })) }}
         </div>
-        <ng-template #date>
-          <div class="date-inner-container">
-            <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
-            {{ capitalizeFirstLetter(event.dates[0].date.toLocaleString(locale(), { month: 'long' })) }}
-          </div>
-        </ng-template>
+        <p class="text-on-image">
+          {{ event.titleCode | translate }}
+        </p>
       </div>
-      <p class="text-on-image">
-        {{ event.titleCode | translate }}
-      </p>
+
     </div>
   </mat-card>
 </a>

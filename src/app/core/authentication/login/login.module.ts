@@ -12,6 +12,8 @@ import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-
 import {HttpLoaderFactory} from '../../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {CustomMissingTranslationHandler} from '../../../shared/CustomMissingTranslationHandler';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import {CustomMissingTranslationHandler} from '../../../shared/CustomMissingTran
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       extend: true
     }),
+    MatCardModule,
+    MatButtonModule,
   ]
 })
 export class LoginModule { }
