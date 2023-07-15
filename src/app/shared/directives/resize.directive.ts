@@ -18,7 +18,7 @@ export class ResizeDirective implements AfterViewInit {
 
 
   get resizedSrc() {
-    let resultSource = `${ResizeDirective.RESIZER_CDN}/${this.ngSrc}?format=webp`;
+    let resultSource = `${ResizeDirective.RESIZER_CDN}/${encodeURIComponent(this.ngSrc)}?format=webp`;
     if (this.ngWidth) {
       resultSource += `&width=${this.ngWidth}`;
     }
