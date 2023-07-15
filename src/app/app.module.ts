@@ -15,6 +15,11 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
+import { CardsModule } from 'angular-bootstrap-md';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { FlexModule } from '@angular/flex-layout';
+import { MatChipsModule } from '@angular/material/chips';
+import { SharedModule } from './shared/shared.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +49,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
   ],
   imports: [
     AppRoutingModule,
-    NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
+    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
@@ -59,6 +64,11 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
+    CardsModule,
+    EmojiModule,
+    FlexModule,
+    MatChipsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

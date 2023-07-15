@@ -1,65 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre Nosotros</title>
-  </head>
-  <header>
-    <app-navbar></app-navbar>
-  </header>
+<div class="main-container">
+  <section id="contact">
+    <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+      <div class="container">
+        <div class="title-container">
+          <!--
 
-  <body>
-    <section id="contact">
-      <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
-        <div class="container">
-          <div class="title-container">
-            <!--
-
-                    <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
-                        <img src="../../../../../assets/image/IEEEContactos.png" alt="Contact" class="IEEEContactImage">
-                    </div>
-                -->
-            <div>
-              <h1 class="page-title">{{ "ABOUT-US.TITLE" | translate }}</h1>
-            </div>
+                  <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
+                      <img src="../../../../../assets/image/IEEEContactos.png" alt="Contact" class="IEEEContactImage">
+                  </div>
+              -->
+          <div>
+            <h1 class="page-title">{{ "ABOUT-US.TITLE" | translate }}</h1>
           </div>
         </div>
       </div>
-      <mat-tab-group mat-align-tabs="center">
-        <mat-tab label='{{ "ABOUT-US.WHO-WE-ARE.TITLE" | translate }}'>
-          <div class="section-container white-background">
-            <div class="word-break description-text description-text-container">
-              <h1 class="description-text-title">{{ "ABOUT-US.WHO-WE-ARE.TITLE" | translate }}</h1>
-              <div>{{ "ABOUT-US.WHO-WE-ARE.DESC" | translate }}</div>
-            </div>
-            <img class="section-image" src="../../../../../assets/image/general-icons/ieee-itba.png" alt="Imagen nosotros"/>
-          </div>
-        </mat-tab>
-        <mat-tab label='{{ "ABOUT-US.WHAT-IS-IEEE.TITLE" | translate }}'>
-          <div class="section-container white-background">
-            <div class="word-break description-text description-text-container">
-              <h1 class="description-text-title">{{ "ABOUT-US.WHAT-IS-IEEE.TITLE" | translate }}</h1>
-              <div>{{ "ABOUT-US.WHAT-IS-IEEE.DESC" | translate }}</div>
-            </div>
-            <img class="section-image" src="../../../../../assets/image/general-icons/ieee.png" alt="Imagen IEEE"/>
-          </div>
-        </mat-tab>
-        <mat-tab class="section-container" label='{{ "ABOUT-US.WHAT-IS-ITBA.TITLE" | translate }}'>
-          <div class="section-container white-background">
-            <div class="word-break description-text description-text-container">
-              <h1 class="description-text-title">{{ "ABOUT-US.WHAT-IS-ITBA.TITLE" | translate }}</h1>
-              <div>{{ "ABOUT-US.WHAT-IS-ITBA.DESC" | translate }}</div>
-            </div>
-            <img class="section-image" src="../../../../../assets/image/general-icons/itba.png" alt="Imagen ITBA"/>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </section>
-    <div class="cta-buttons-container">
-      <button class="our-team-button" [routerLink]="['/team']">{{ 'ABOUT-US.OURTEAM' | translate }}</button>
-      <button class="contact-us-button" [routerLink]="['/contact']">{{ 'ABOUT-US.CONTACTUS' | translate }}</button>
     </div>
-    <app-footer></app-footer>
-  </body>
-</html>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label='{{ "ABOUT-US.WHO-WE-ARE.TITLE" | translate }}'>
+        <div class="section-container white-background">
+          <div class="word-break description-text description-text-container">
+            <h1 class="description-text-title">{{ "ABOUT-US.WHO-WE-ARE.TITLE" | translate }}</h1>
+            <div>{{ "ABOUT-US.WHO-WE-ARE.DESC" | translate }}</div>
+          </div>
+          <img class="section-image" src="../../../../../assets/image/general-icons/ieee-itba.png" alt="Imagen nosotros"/>
+        </div>
+      </mat-tab>
+      <mat-tab label='{{ "ABOUT-US.WHAT-IS-IEEE.TITLE" | translate }}'>
+        <div class="section-container white-background">
+          <div class="word-break description-text description-text-container">
+            <h1 class="description-text-title">{{ "ABOUT-US.WHAT-IS-IEEE.TITLE" | translate }}</h1>
+            <div>{{ "ABOUT-US.WHAT-IS-IEEE.DESC" | translate }}</div>
+          </div>
+          <img class="section-image" src="../../../../../assets/image/general-icons/ieee.png" alt="Imagen IEEE"/>
+        </div>
+      </mat-tab>
+      <mat-tab class="section-container" label='{{ "ABOUT-US.WHAT-IS-ITBA.TITLE" | translate }}'>
+        <div class="section-container white-background">
+          <div class="word-break description-text description-text-container">
+            <h1 class="description-text-title">{{ "ABOUT-US.WHAT-IS-ITBA.TITLE" | translate }}</h1>
+            <div>{{ "ABOUT-US.WHAT-IS-ITBA.DESC" | translate }}</div>
+          </div>
+          <img class="section-image" src="../../../../../assets/image/general-icons/itba.png" alt="Imagen ITBA"/>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+  <div class="cta-buttons-container">
+    <button class="our-team-button" [routerLink]="['/team']">{{ 'ABOUT-US.OURTEAM' | translate }}</button>
+    <button class="contact-us-button" [routerLink]="['/contact']">{{ 'ABOUT-US.CONTACTUS' | translate }}</button>
+  </div>
+</div>

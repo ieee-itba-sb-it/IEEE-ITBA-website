@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Analysis Courses</title>
-</head>
-<header>
-  <app-navbar></app-navbar>
-</header>
-
-<body>
-
+<div class="main-container">
   <div class="topbottomLine" id="home" style="margin-bottom:2%">
     <div class="container">
       <div class="row">
@@ -59,7 +46,7 @@
   <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
 
     <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}"
-      fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -95,7 +82,7 @@
     </mat-card>
 
     <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}"
-      fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
@@ -160,8 +147,4 @@
     </div>
 
   </div>
-  <app-footer></app-footer>
-
-</body>
-
-</html>
+</div>

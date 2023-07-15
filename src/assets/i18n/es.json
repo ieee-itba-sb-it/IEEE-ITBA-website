@@ -1,9 +1,11 @@
 {
   "NULL":"NULL",
+  "DEFAULT": {
+    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil"
+  },
   "HOME": {
     "TITLE": "Rama Estudiantil",
     "CARGO": {
-
       "CD": {
         "TITLE": "CD",
         "OFFICER": "Officer",
@@ -538,6 +540,7 @@
   },
   "RAS": {
     "TITLE": "IEEE ITBA",
+    "PAGETITLE": "ITBA IEEE | RAS Capítulo Estudiantil",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
     "TEAM": {
@@ -864,6 +867,7 @@
     "DATESTRING": "Fecha: "
   },
   "WIE": {
+    "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"

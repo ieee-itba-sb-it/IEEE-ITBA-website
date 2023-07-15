@@ -1,10 +1,4 @@
-html {
-  min-height: 100%;
-  height: auto;
-}
-
-
-body {
+.main-container {
   padding: 10%;
   padding-top: 5%;
   padding-bottom: 0%;

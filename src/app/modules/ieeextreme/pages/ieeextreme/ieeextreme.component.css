@@ -1,12 +1,5 @@
-html {
-    min-height: 100%;
-    height: auto;
-}
-
-body {
-    padding: 10%;
-    padding-top: 5%;
-    padding-bottom: 0%;
+.main-container {
+    padding: 5% 10% 0;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;

@@ -1,4 +1,4 @@
-@import '~swiper/swiper-bundle.min.css';
+@import url("https://unpkg.com/swiper/swiper-bundle.min.css");
 
 html {
     min-height: 100%;

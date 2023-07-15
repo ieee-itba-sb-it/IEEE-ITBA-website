@@ -1,173 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asimov Cup</title>
-  </head>
-  <header>
-    <app-navbar bgColor="#862633"></app-navbar>
-  </header>
+<div class="main-container">
+  <div class="banner">
+    <img
+      src="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.png"
+      class="max-width"
+      alt="Asimov Cup - Competencia de Robótica"
+    />
+  </div>
 
-  <body>
-    <!-- BANNER -->
-    <div class="banner">
-      <img
-        src="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.png"
-        class="max-width"
-        alt="Asimov Cup - Competencia de Robótica"
-      />
-    </div>
-
-    <div class="topbottomLine" id="home">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h1 id="logotext" class="course-title">{{ 'ASIMOVCUP.TITLE' | translate }}</h1>
-          </div>
+  <div class="topbottomLine" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h1 id="logotext" class="course-title">{{ 'ASIMOVCUP.TITLE' | translate }}</h1>
         </div>
       </div>
     </div>
+  </div>
 
-    <div *ngIf="enrollAvailable()">
-      <div class="d-flex justify-content-center">
-        <a href="{{enrollLink}}" class="button-text">
-          <button class="enroll-button">
-            {{ "ASIMOVCUP.ENROLLBUTTON" | translate }}
+  <div *ngIf="enrollAvailable()">
+    <div class="d-flex justify-content-center">
+      <a href="{{enrollLink}}" class="button-text">
+        <button class="enroll-button">
+          {{ "ASIMOVCUP.ENROLLBUTTON" | translate }}
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION section -->
+  <div class="section">
+    <h2 class="section-title">{{ "ASIMOVCUP.DESC.TITLE" | translate }}</h2>
+    <div class="text-section">
+      <p>{{ "ASIMOVCUP.DESC.SECTION.1.TEXT" | translate }}</p>
+      <p>{{ "ASIMOVCUP.DESC.SECTION.2.TEXT" | translate }}</p>
+      <ul class="category-cards-container">
+        <li class="category-grid-item" *ngFor="let category of categories">
+          <mat-card [class.mat-elevation-z8]="true" class="category-card">
+            <div class="category-header">
+              <img class="category-card-icon" src="{{category.imgLink}}" alt="{{category.altTextCode | translate}}"/>
+              <div class="category-card-title">{{category.textCode | translate}}</div>
+            </div>
+            <mat-card-content class="expanded-content">
+              <p class="category-card-description">
+                {{ category.descriptionTextCode | translate }}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button class="download-button">
+                <a href="{{category.rulesLink}}" class="download-content-container">
+                  <img class="download-icon" src="../../../../../assets/image/logos/download.svg" alt="Download icon">
+                  <span class="download-text">
+                      {{ "ASIMOVCUP.DOWNLOAD_RULEBOOK" | translate }}
+                    </span>
+                </a>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </li>
+      </ul>
+      <p>{{ "ASIMOVCUP.DESC.SECTION.3.TEXT" | translate }}</p>
+      <div *ngIf="spectatorEnrollAvailable()">
+        <a href="{{spectatorEnrollLink}}" class="button-text">
+          <button class="enroll-button spectator-button">
+            {{ "ASIMOVCUP.DESC.SECTION.3.SPECTATEENROLL" | translate }}
           </button>
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- DESCRIPTION section -->
-    <div class="section">
-      <h2 class="section-title">{{ "ASIMOVCUP.DESC.TITLE" | translate }}</h2>
-      <div class="text-section">
-        <p>{{ "ASIMOVCUP.DESC.SECTION.1.TEXT" | translate }}</p>
-        <p>{{ "ASIMOVCUP.DESC.SECTION.2.TEXT" | translate }}</p>
-        <ul class="category-cards-container">
-          <li class="category-grid-item" *ngFor="let category of categories">
-            <mat-card [class.mat-elevation-z8]="true" class="category-card">
-              <div class="category-header">
-                <img class="category-card-icon" src="{{category.imgLink}}" alt="{{category.altTextCode | translate}}"/>
-                <div class="category-card-title">{{category.textCode | translate}}</div>
-              </div>
-              <mat-card-content class="expanded-content">
-                <p class="category-card-description">
-                  {{ category.descriptionTextCode | translate }}
-                </p>
-              </mat-card-content>
-              <mat-card-actions>
-                <button class="download-button">
-                  <a href="{{category.rulesLink}}" class="download-content-container">
-                    <img class="download-icon" src="../../../../../assets/image/logos/download.svg" alt="Download icon">
-                    <span class="download-text">
-                      {{ "ASIMOVCUP.DOWNLOAD_RULEBOOK" | translate }}
-                    </span>
-                  </a>
-                </button>
-              </mat-card-actions>
-            </mat-card>
-          </li>
-        </ul>
-        <p>{{ "ASIMOVCUP.DESC.SECTION.3.TEXT" | translate }}</p>
-        <div *ngIf="spectatorEnrollAvailable()">
-          <a href="{{spectatorEnrollLink}}" class="button-text">
-            <button class="enroll-button spectator-button">
-              {{ "ASIMOVCUP.DESC.SECTION.3.SPECTATEENROLL" | translate }}
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
+  <!-- DATE AND LOCATION section -->
 
-    <!-- DATE AND LOCATION section -->
-
-    <div class="section">
-      <h2 class="section-title">
-        {{ "ASIMOVCUP.D_AND_L_TITLE" | translate }}
-      </h2>
-      <div class="centered-section">
-        <div class="columned-section">
-          <div class="aboutus-container">
-            <div class="aboutus-section">
-              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/calendar.svg" alt="Calendar icon"/>
-              <span>{{ 'ASIMOVCUP.D_AND_L.DATE' | translate }}</span>
-            </div>
-            <div class="aboutus-section">
-              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/location.svg" alt="Location icon"/>
-              <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
-            </div>
-            <div class="aboutus-section">
-              <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/time.svg" alt="Time icon"/>
-              <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
-            </div>
+  <div class="section">
+    <h2 class="section-title">
+      {{ "ASIMOVCUP.D_AND_L_TITLE" | translate }}
+    </h2>
+    <div class="centered-section">
+      <div class="columned-section">
+        <div class="aboutus-container">
+          <div class="aboutus-section">
+            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/calendar.svg" alt="Calendar icon"/>
+            <span>{{ 'ASIMOVCUP.D_AND_L.DATE' | translate }}</span>
           </div>
-          <div class="image-section">
-            <img
-              src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
-              alt="PlanoITBA2"
-            />
+          <div class="aboutus-section">
+            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/location.svg" alt="Location icon"/>
+            <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
+          </div>
+          <div class="aboutus-section">
+            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/time.svg" alt="Time icon"/>
+            <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
           </div>
         </div>
+        <div class="image-section">
+          <img
+            src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
+            alt="PlanoITBA2"
+          />
+        </div>
       </div>
-      <!--
-      <div class="text-section">
-        <p>
-          {{ "ASIMOVCUP.D_AND_L.TEXT_1" | translate }}
-          <a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{
-            "ASIMOVCUP.D_AND_L.LOCATION" | translate
-          }}</a>
-          {{ "ASIMOVCUP.D_AND_L.TEXT_2" | translate }}
-        </p>
-      </div>
-      <div class="image-section">
-        <img
-          src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
-          alt="PlanoITBA2"
-        />
-      </div>
-      -->
     </div>
     <!--
-      SCHEDULE section
-      <div>
-        <h2 class="subtitle">
-          {{ "ASIMOVCUP.SCHEDULE_TITLE" | translate }}
-        </h2>
-        <div class="text-section">
-          <ol class="list-section">
-            <li *ngFor="let sc of schedule">{{ sc | translate }}</li>
-          </ol>
-        </div>
+    <div class="text-section">
+      <p>
+        {{ "ASIMOVCUP.D_AND_L.TEXT_1" | translate }}
+        <a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{
+          "ASIMOVCUP.D_AND_L.LOCATION" | translate
+        }}</a>
+        {{ "ASIMOVCUP.D_AND_L.TEXT_2" | translate }}
+      </p>
+    </div>
+    <div class="image-section">
+      <img
+        src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
+        alt="PlanoITBA2"
+      />
+    </div>
+    -->
+  </div>
+  <!--
+    SCHEDULE section
+    <div>
+      <h2 class="subtitle">
+        {{ "ASIMOVCUP.SCHEDULE_TITLE" | translate }}
+      </h2>
+      <div class="text-section">
+        <ol class="list-section">
+          <li *ngFor="let sc of schedule">{{ sc | translate }}</li>
+        </ol>
       </div>
-      -->
-
-    <!-- FAQ section -->
-    <div class="faq-section">
-      <h2 class="section-title">{{ "ASIMOVCUP.FAQ.TITLE" | translate }}</h2>
-      <mat-accordion class="faq-accordion">
-        <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
-          <mat-expansion-panel-header
-            [collapsedHeight]="'max-content'"
-            [expandedHeight]="'max-content'"
-          >
-            <mat-panel-title class="faq-question mt-1 mb-1">
-              {{ qa.q | translate }}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <p class="faq-answer">{{ qa.a | translate }}</p>
-        </mat-expansion-panel>
-      </mat-accordion>
     </div>
+    -->
 
-    <div *ngIf="sponsors.length > 0" class="sponsor-section" id="sponsorship">
-      <h2 class="section-title">{{ "ASIMOVCUP.SPONSORS" | translate }}</h2>
-      <br>
-      <app-sponsor-component [currentsponsor]="sponsors"></app-sponsor-component>
-    </div>
+  <!-- FAQ section -->
+  <div class="faq-section">
+    <h2 class="section-title">{{ "ASIMOVCUP.FAQ.TITLE" | translate }}</h2>
+    <mat-accordion class="faq-accordion">
+      <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
+        <mat-expansion-panel-header
+          [collapsedHeight]="'max-content'"
+          [expandedHeight]="'max-content'"
+        >
+          <mat-panel-title class="faq-question mt-1 mb-1">
+            {{ qa.q | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <app-footer></app-footer>
-  </body>
-</html>
+        <p class="faq-answer">{{ qa.a | translate }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div *ngIf="sponsors.length > 0" class="sponsor-section" id="sponsorship">
+    <h2 class="section-title">{{ "ASIMOVCUP.SPONSORS" | translate }}</h2>
+    <br>
+    <app-sponsor-component [currentsponsor]="sponsors"></app-sponsor-component>
+  </div>
+
+</div>

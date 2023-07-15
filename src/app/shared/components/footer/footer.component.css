@@ -1,9 +1,9 @@
 footer {
     padding-bottom: 5vmin;
     position: relative;
-    top: 100%;
+    bottom: 0;
     align-content: center;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif; 
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background: linear-gradient(75deg, rgb(172, 183, 235) 0%, rgb(196, 217, 241) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
     max-width: 100%;

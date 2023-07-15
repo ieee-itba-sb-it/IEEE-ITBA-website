@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
-html {
-  /*min-height: 200%;*/
-  background-size: cover;
-}
 
-body {
+.main-container {
   padding: 10%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
