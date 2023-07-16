@@ -10,6 +10,7 @@ import { IEEEuser } from '../../models/ieee-user/ieee-user';
 import { roles } from '../../models/roles/roles.enum';
 
 import { UserService } from '../../../core/services/user/user.service';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -19,10 +20,11 @@ import { UserService } from '../../../core/services/user/user.service';
 export class NavbarComponent implements OnInit, AfterViewInit {
   @Input() bgColor: string;
   user: Observable<IEEEuser>;
-  logguedIn = false;
+  loggedIn = false;
   journalist = false;
   language: string;
   color: string;
+  loadingUser = true;
   languageService: TranslateService;
 
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
@@ -42,7 +44,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   // Set Up
   ngOnInit() {
-    
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: '#home',
@@ -50,20 +51,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     // Load name
     this.user = this.authService.getCurrentUser();
-    this.user.subscribe(async (usuario: IEEEuser) => {
-
+    this.user.pipe(skip(1)).subscribe(async (usuario: IEEEuser) => {
+      console.log(this.loadingUser);
       if (usuario) {
-        document.getElementById('account').innerText = ' Welcome back, ' + usuario.fname;
-        this.logguedIn = true;
+        this.loggedIn = true;
         const aux: number = await this.userService.getCurrentUserRole(usuario.email);
         if (this.newsRoles.includes(aux)) {
           this.journalist = true;
         }
       }
       else {
-        document.getElementById('account').innerText = ' Log In';
+        this.loggedIn = false;
       }
-
+      this.loadingUser = false;
     });
   }
 

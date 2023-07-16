@@ -155,14 +155,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./core/authentication/login/login.module').then(
+      import('./modules/authentication/login/login.module').then(
         (m) => m.LoginModule
       ),
   },
   {
     path: 'register',
     loadChildren: () =>
-      import('./core/authentication/register/register.module').then(
+      import('./modules/authentication/register/register.module').then(
         (m) => m.RegisterModule
       ),
   },

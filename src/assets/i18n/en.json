@@ -189,6 +189,7 @@
     }
   },
   "ABOUTUS": {
+    "PAGETITLE": "ITBA IEEE | About us",
     "US": {
       "TITLE": "Who we are",
       "TEXT": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires."
@@ -243,6 +244,8 @@
     "LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
   },
   "NAVBAR": {
+    "LOGIN": "Log in",
+    "WELCOME": "Welcome  ",
     "ABOUTUS": "About us",
     "CONTACT": "Contact",
     "EVENTS": "Events",
@@ -575,6 +578,7 @@
   },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
+    "PAGETITLE": "ITBA IEEE | Asimov CUP",
     "ENROLLBUTTON": "Enroll now!",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {

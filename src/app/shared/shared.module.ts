@@ -28,6 +28,7 @@ import {EventCardShortComponent} from './components/event-card-short/event-card-
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {ResizeDirective} from './directives/resize.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -57,7 +58,8 @@ export const routing = RouterModule.forChild(routes);
     MatCardModule,
     MatTabsModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
     EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,

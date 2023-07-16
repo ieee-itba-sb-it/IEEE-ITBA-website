@@ -1,9 +1,4 @@
-html {
-    min-height: 100%;
-    height: auto;
-}
-
-.login-container {
+.main-container {
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;

@@ -90,6 +90,7 @@ export class AsimovCupComponent implements OnInit {
 
     // Set navbar color
     this.appConfigService.setNavbarColor('#862633');
+    this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
   }
 
   enrollAvailable() {

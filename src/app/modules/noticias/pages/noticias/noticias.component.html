@@ -1,57 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
-</head>
-<header>
-    <app-navbar></app-navbar>
-</header>
-
-<body>
-
-    <div class="body" >
-        <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
-                        <img src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="News" class="IEEENoticiasImage">
-                    </div>
-                    <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
-                        <h1 class="page-title">{{ 'NAVBAR.NEWS' | translate }}</h1>
-                    </div>
-                </div>
-            </div>
+<div class="main-container" >
+  <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
+          <img src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="News" class="IEEENoticiasImage">
         </div>
-
-        <div *ngIf="showLoadingSpinner">
-            <app-loading-spinner></app-loading-spinner>
+        <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
+          <h1 class="page-title">{{ 'NAVBAR.NEWS' | translate }}</h1>
         </div>
-
-        <div class="row news-grid">
-            <div *ngFor="let noticia of newsData">
-                <div class="col-sm margin-top">
-                    <app-news-card [noticia]="noticia"></app-news-card>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="!showLoadingSpinner">
-          <div class="pagination-controller">
-            <button class="page-change-button page-change-button-left" (click)="prevPage()" [disabled]="!hasPrevPage()">
-              <img class="page-change-button-image" src="../../../../../assets/image/logos/left-arrow.svg" alt="Previous page icon"/>
-            </button>
-            <span>{{this.currentPage}} {{ 'NEWS.OF' | translate }} {{this.pageCount}}</span>
-            <button class="page-change-button page-change-button-right" (click)="nextPage()" [disabled]="!hasNextPage()">
-              <img class="page-change-button-image" src="../../../../../assets/image/logos/right-arrow.svg" alt="Previous page icon"/>
-            </button>
-          </div>
-        </div>
-
-        <app-footer></app-footer>
+      </div>
     </div>
-</body>
+  </div>
 
-</html>
+  <div *ngIf="showLoadingSpinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div class="row news-grid">
+    <div *ngFor="let noticia of newsData">
+      <div class="col-sm margin-top">
+        <app-news-card [noticia]="noticia"></app-news-card>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!showLoadingSpinner">
+    <div class="pagination-controller">
+      <button class="page-change-button page-change-button-left" (click)="prevPage()" [disabled]="!hasPrevPage()">
+        <img class="page-change-button-image" src="../../../../../assets/image/logos/left-arrow.svg" alt="Previous page icon"/>
+      </button>
+      <span>{{this.currentPage}} {{ 'NEWS.OF' | translate }} {{this.pageCount}}</span>
+      <button class="page-change-button page-change-button-right" (click)="nextPage()" [disabled]="!hasNextPage()">
+        <img class="page-change-button-image" src="../../../../../assets/image/logos/right-arrow.svg" alt="Previous page icon"/>
+      </button>
+    </div>
+  </div>
+</div>

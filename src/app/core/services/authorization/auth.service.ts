@@ -153,6 +153,8 @@ export class AuthService {
           const doc = data.data();
           ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
         });
+      } else {
+        ans.next(null);
       }
     });
 
