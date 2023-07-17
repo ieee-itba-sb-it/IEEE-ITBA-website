@@ -69,14 +69,14 @@
 
                 <div style="margin-bottom:20px" class="whitetext-left word-break" *ngIf="isVisbile">Gracias por votar ! </div>
 
-              <mat-chip-list aria-label="Emoji selection">
+              <mat-chip-listbox aria-label="Emoji selection">
                 <div *ngFor="let emoji of emojisList; index as i">
-                  <mat-chip [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
+                  <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
                     {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
-                  </mat-chip>
+                  </mat-chip-option>
                 </div>
 
-                </mat-chip-list>
+                </mat-chip-listbox>
 
                 <!-- Date -->
                 <p class="whitetext-right">{{ ((newsData | async).date ) | date:'medium'}} </p>

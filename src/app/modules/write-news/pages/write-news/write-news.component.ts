@@ -2,11 +2,10 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
-import { firestore } from 'firebase/app';
 import { Router } from '@angular/router';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
-import Timestamp = firestore.Timestamp;
+import Timestamp = firebase.firestore.Timestamp;
 import { blogCollectionName } from '../../../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sanitizeString } from '../../utils';
@@ -17,7 +16,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-write-news',

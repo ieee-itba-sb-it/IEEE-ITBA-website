@@ -1,0 +1,75 @@
+@import "../node_modules/@angular/material/theming";
+
+// Include on mat-config
+$custom-typography: mat-typography-config(
+  $font-family: 'Open sans',
+  $title: mat-typography-level(24px, 32px, bolder)
+);
+
+@include mat-core();
+
+$ieee-blue: (
+  50: rgb(204, 224, 235),
+  100: rgb(204, 224, 235),
+  200: rgb(153, 192, 215),
+  300: rgb(153, 192, 215),
+  400: rgb(102, 161, 195),
+  500: rgb(102, 161, 195),
+  600: rgb(51, 129, 175),
+  700: rgb(51, 129, 175),
+  800: rgb(0, 98, 155),
+  900: rgb(0, 98, 155),
+  contrast : (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+  )
+);
+
+$ieee-orange: (
+  50: rgb(249, 237, 204),
+  100: rgb(249, 237, 204),
+  200: rgb(243, 218, 153),
+  300: rgb(243, 218, 153),
+  400: rgb(237, 200, 102),
+  500: rgb(237, 200, 102),
+  600: rgb(231, 181, 51),
+  700: rgb(231, 181, 51),
+  800: rgb(225, 163, 0),
+  900: rgb(225, 163, 0),
+  contrast : (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+  )
+);
+
+$my-primary: mat-palette($ieee-blue, 700);
+$my-accent: mat-palette($ieee-orange, 900);
+$my-warn: mat-palette($ieee-blue, 900);
+
+$my-theme: mat-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: mat-typography-config(),
+  density: 0,
+));
+
+@include angular-material-theme($my-theme);

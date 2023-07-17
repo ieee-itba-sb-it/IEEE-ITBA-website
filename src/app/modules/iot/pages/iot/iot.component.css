@@ -1,5 +1,5 @@
-@import '~swiper/swiper-bundle.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import '~swiper/swiper-bundle.min.css';
 
 html {
   /*min-height: 200%;*/

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="mainpage.component.css">
   </head>
 
   <header>
@@ -214,11 +213,6 @@
         <div class="section-header-end-line"></div>
       </div>
       <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
-      <!-- <div class="sponsor-listing">
-        <div *ngFor="let sponsor of sponsors">
-          <img class="sponsor-container" src="{{sponsor.img}}" alt="Logo {{sponsor.name}}"/>
-        </div>
-      </div> -->
     </div>
   </div>
 

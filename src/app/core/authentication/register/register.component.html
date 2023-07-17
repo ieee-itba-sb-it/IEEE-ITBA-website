@@ -60,9 +60,9 @@
             </div>
 
             <div class="row d-flex justify-content-center">
-              <h4 *ngIf="registerResponse != null" [class]="{ 'success': registerResponse.success, 'error': !registerResponse.success}">
+              <h6 *ngIf="registerResponse != null" [class]="{ 'success': registerResponse.success, 'error': !registerResponse.success}">
                 {{ registerResponse.message | translate }}
-              </h4>
+              </h6>
             </div>
 <!--            <div class="row d-flex justify-content-center mt-4">-->
 <!--              &lt;!&ndash;<div class="mr-2 blue-font">Forgot Password?</div>-->
@@ -81,9 +81,9 @@
 <!--            </div>-->
 
 
-            <div class="row d-flex justify-content-center mt-3">
-              <div class="mr-2 blue-font">{{ 'REGISTER.ALREADY_SIGNED_UP' | translate }}</div>
-              <a [routerLink]="['/login']">{{ 'REGISTER.LOGIN' | translate }}</a>
+            <div class="col d-flex justify-content-center align-items-center mt-3">
+              <span class="mr-2 blue-font">{{ 'REGISTER.ALREADY_SIGNED_UP' | translate }}</span>
+              <a class="fw-medium" [routerLink]="['/login']">{{ 'REGISTER.LOGIN' | translate }}</a>
             </div>
           </form>
         </mat-card-content>

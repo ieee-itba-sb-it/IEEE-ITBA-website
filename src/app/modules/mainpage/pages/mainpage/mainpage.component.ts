@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { Observable } from 'rxjs';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {BlogService} from '../../../../core/services/blog/blog.service';
 import {NewsItem} from '../../../../shared/models/news-item/news-item';
 import {blogCollectionName} from '../../../../secrets';
-import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper/core';
+import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper';
 import {EventService} from '../../../../core/services/event/event.service';
 import {EventCardData} from '../../../../shared/models/event/event-card-data';
-import Timeout = NodeJS.Timeout;
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 

@@ -33,7 +33,7 @@ body {
     margin-right: auto;
 }
 
-p{
+p {
     color: rgb(0, 0, 0);
     margin-top: 3vmin;
     margin-bottom: 3vmin;
@@ -41,6 +41,7 @@ p{
     padding: 3vmin;
     border-radius: 5vmin;
     text-align: justify;
+    font-size: 1.1rem;
 }
 
 h1 {
@@ -57,13 +58,12 @@ h1 {
 
 .example-card {
     margin-bottom: 15px;
-  }
+}
 
-
-  .example-header-image {
+.example-header-image {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
     background-size: cover;
-  }
+}
 
 
 .topbottomLine {

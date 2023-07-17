@@ -32,14 +32,6 @@ body {
   align-content: center;
 }
 
-.full-width {
-  width: 100%;
-}
-
-.half-width {
-  width: 50%;
-}
-
 .preview-card {
   flex-grow: 1;
   padding: 2rem 0;
@@ -107,22 +99,9 @@ body {
   gap: 0.5rem;
 }
 
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: rgb(0, 98, 155) !important;
-}
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
-  background-color: rgb(0, 98, 155) !important;
-}
-
-::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: rgb(0, 98, 155) !important;
-}
-
 .upload-button {
   text-align: center;
-  color: white;
-  background-color: rgb(0, 98, 155);
+  color: white !important;
 }
 
 .content-text {

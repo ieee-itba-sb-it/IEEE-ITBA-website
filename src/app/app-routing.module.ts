@@ -4,7 +4,6 @@ import { Error401Component } from './shared/components/error401/error401.compone
 
 import { AuthGuardService } from './core/services/authorization-guard/auth-guard.service';
 import {
-  AngularFireAuthGuard,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';

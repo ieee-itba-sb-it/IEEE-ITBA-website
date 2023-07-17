@@ -38,10 +38,6 @@ body {
   align-content: center;
 }
 
-#home {
-  text-align: center;
-}
-
 .text-container {
   font-size: 1.1rem;
   text-align: left;
@@ -57,6 +53,7 @@ body {
 
 .section-title {
   font-size: 1.8rem;
+  font-weight: 500;
   color: var(--ras-red);
 }
 
@@ -88,20 +85,6 @@ body {
 .image-with-text {
   position: relative;
   width: 100%;
-}
-
-.text-on-image {
-  position: absolute;
-  text-align: center;
-  /*top: 50%;*/
-  width: 100%;
-  /*font-size: min(4rem, 5vw);*/
-  font-size: 2rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 1);
-  letter-spacing: 1px;
-  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-  -1px -1px 0 #000;
 }
 
 .container {

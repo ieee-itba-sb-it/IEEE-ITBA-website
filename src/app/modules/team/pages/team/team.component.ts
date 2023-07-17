@@ -2,6 +2,7 @@ import { TeamService } from '../../../../core/services/team/team.service';
 import { Component, OnInit } from '@angular/core';
 import { Team } from 'src/app/shared/models/team';
 import {Commission} from '../../../../shared/models/commission';
+
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',

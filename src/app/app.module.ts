@@ -11,10 +11,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { firebaseConfig } from './secrets';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
 
 export function HttpLoaderFactory(http: HttpClient) {

@@ -48,10 +48,10 @@
         <ul class="category-cards-container">
           <li class="category-grid-item" *ngFor="let category of categories">
             <mat-card [class.mat-elevation-z8]="true" class="category-card">
-              <div class="category-header">
+              <mat-card-header class="category-header">
                 <img class="category-card-icon" src="{{category.imgLink}}" alt="{{category.altTextCode | translate}}"/>
                 <div class="category-card-title">{{category.textCode | translate}}</div>
-              </div>
+              </mat-card-header>
               <mat-card-content class="expanded-content">
                 <p class="category-card-description">
                   {{ category.descriptionTextCode | translate }}
