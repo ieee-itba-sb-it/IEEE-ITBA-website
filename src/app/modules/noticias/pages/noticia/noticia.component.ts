@@ -24,6 +24,9 @@ export class NoticiaComponent implements OnInit {
   cookieValue: string;
   cookieName: string;
   emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
+  newsObs: Observable<NewsItem[]>;
+  recommendedNews: NewsItem[] = [];
+  recommendedCount = 3;
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService,
               @Inject(DOCUMENT) private document: any, public translate: TranslateService,
@@ -36,7 +39,10 @@ export class NoticiaComponent implements OnInit {
     this.useLanguage('en');
 
     this.blogService.setCollectionName(blogCollectionName);
-    this.blogService.getDocs();
+
+    this.blogService.getFirstDocsPage();
+    this.blogService.retrieveListedDocsSize();
+
     this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
     this.newsData.subscribe((data: NewsItem) => {
@@ -45,6 +51,11 @@ export class NoticiaComponent implements OnInit {
         this.data = data;
         this.showLoadingSpinner = false;
       }
+    });
+
+    this.newsObs = this.blogService.getLastNDocs(this.recommendedCount);
+    this.newsObs.subscribe((newsData: NewsItem[]) => {
+      this.recommendedNews = [...newsData];
     });
   }
 
@@ -64,7 +75,6 @@ export class NoticiaComponent implements OnInit {
       this.isVisbile = true;
       this.emojisVisible = false;
     }
-
   }
 
   rateNews(emoji: string, rating: number) {

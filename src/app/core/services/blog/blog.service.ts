@@ -5,6 +5,8 @@ import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/d
 import { BehaviorSubject, Observable } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
 import firebase from 'firebase/app';
+import {map} from 'rxjs/operators';
+import Timestamp = firebase.firestore.Timestamp;
 
 /* This file make interface with databe to get blog data */
 
@@ -83,7 +85,42 @@ export class BlogService {
     });
   }
 
-  retrieveDocsSize() {
+
+
+  getLastNDocs(n: number): Observable<NewsItem[]> {
+    return this.afs.collection<NewsItem>(this.collectionName, ref => ref
+      .orderBy('date', 'desc')
+      .limit(n)
+    ).valueChanges().pipe(
+      map(data => {
+        const ans: NewsItem[] = [];
+
+        for (const blogEntry in data) {
+          if (data.hasOwnProperty(blogEntry)) {
+            const doc = data[blogEntry];
+            ans.push(createNewsItem(
+              doc.title,
+              doc.content,
+              doc.shortIntro,
+              doc.imageUrl,
+              doc.date,
+              doc.author,
+              doc.imageText,
+              doc.reference,
+              doc.listed,
+              doc.tags,
+              doc.ratings
+            ));
+          }
+        }
+
+        return ans;
+      })
+    );
+  }
+
+
+retrieveDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
       this.docsSize.next(doc.data().count);
     });

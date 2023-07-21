@@ -1,35 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 html {
     background-size: cover;
 }
 
 body {
+    padding: 10%;
     background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
-  padding-top: 8rem;
-  font-family: 'Open Sans', sans-serif;
-  font-size: larger;
-}
-
-.news-header{
-  width: 100%;
-  font-size: smaller;
-}
-
-.news-image{
-  max-width: 768px;
-}
-
-@media (max-width: 768px) {
-  .news-image{
-    max-width: 100%;
-  }
-}
-
-
-.news-image p{
-  font-size: smaller;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 #icons {
@@ -115,6 +95,12 @@ mdb-card {
     margin-bottom: 1vmin;
 }
 
+h2{
+    font-size: 5vmin;
+    text-align: center;
+    color: whitesmoke;
+}
+
 #anotate {
     margin-top: 4vmin;
     border-radius: 5vmin;
@@ -184,9 +170,7 @@ img {
     }
 
 }
-  .news-body{
-    max-width: 80%;
-  }
+
 .topbottomLine {
 
     padding-top: 5vmin;
@@ -255,7 +239,7 @@ img {
     border-radius: 5vmin;
 }
 .blog-image{
-  max-width: border-box;
+    max-width: 700px;
 }
 .blog-img{
 
@@ -287,59 +271,4 @@ img {
     word-wrap:break-word;
 
     word-break: break-word;
-}
-
-.news-tags{
-  background-color: #00629B;
-  color: white;
-  font-weight: lighter;
-  font-size: smaller;
-}
-
-.header-divider{
-  background-color: #00629B;
-  width: 100%;
-  scale: 1 2;
-}
-
-h1{
-  font-weight: bold;
-  color: black;
-}
-
-.recomended-news-area{
-  display: flex;
-  justify-content: left;
-  width: 80%;
-}
-
-.recomended-news{
-  padding: 4rem 4rem 4rem 0;
-  width: 100%;
-  background-color: #002855;
-}
-
-.recomended-news-header{
-  margin-bottom: 4rem;
-  width: fit-content;
-}
-
-.recomended-news-header h1{
-  color: white;
-  display: contents;
-}
-
-.title-divider {
-  width: border-box;
-  height: 2px;
-  margin: 0;
-  background-color: #00629B;
-}
-
-.news-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 357.81px));
-  margin: auto 0;
-  grid-row-gap: 2rem;
-  justify-content: space-around;
 }
