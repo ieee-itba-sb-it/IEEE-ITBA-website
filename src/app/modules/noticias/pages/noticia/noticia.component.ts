@@ -26,7 +26,7 @@ export class NoticiaComponent implements OnInit {
   emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
   newsObs: Observable<NewsItem[]>;
   recommendedNews: NewsItem[] = [];
-  recommendedCount = 3;
+  recommendedCount = 2;
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService,
               @Inject(DOCUMENT) private document: any, public translate: TranslateService,
@@ -43,7 +43,10 @@ export class NoticiaComponent implements OnInit {
     this.blogService.getFirstDocsPage();
     this.blogService.retrieveListedDocsSize();
 
-    this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.newsData = this.blogService.getDoc(id);
+    });
 
     this.newsData.subscribe((data: NewsItem) => {
       if (data != null) {

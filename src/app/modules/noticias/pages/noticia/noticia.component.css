@@ -338,7 +338,7 @@ h1{
 
 .news-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 357.81px));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 407.81px));
   margin: auto 0;
   grid-row-gap: 2rem;
   justify-content: space-around;
