@@ -35,26 +35,24 @@
             <mat-list-item>
               <!-- Tags -->
               <mat-form-field class="w-100">
-                <mat-chip-listbox #chipList aria-label="Tag selection">
-                  <mat-chip-option
+                <mat-chip-grid #chipGrid aria-label="Tag selection">
+                  <mat-chip-row
                     *ngFor="let tag of currentTags()"
-                    [selectable]="selectable"
                     [removable]="removable"
                     (removed)="remove(tag)">
                     {{ tag }}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip-option>
+                  </mat-chip-row>
                   <input
                     *ngIf="currentTags().length < maxTags"
                     placeholder="{{ 'WRITE-NEW.TAGS' | translate }}"
                     #tagInput
-                    matInput
                     [formControl]="tagControl"
                     [matAutocomplete]="auto"
-                    [matChipInputFor]="chipList"
+                    [matChipInputFor]="chipGrid"
                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                     (matChipInputTokenEnd)="add($event)">
-                </mat-chip-listbox>
+                </mat-chip-grid>
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                   <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
                     {{ tag }}
@@ -77,22 +75,25 @@
               </mat-form-field>
             </mat-list-item>
             <mat-list-item>
-              <mat-checkbox class="has-paragraph-checkbox" [(ngModel)]="hasShortIntro" (ngModelChange)="splitContent()">
-                {{ 'WRITE-NEW.FIRST_PARAGRAPH' | translate }}
+              <mat-checkbox class="has-paragraph-checkbox" [(ngModel)]="hasShortIntro" (ngModelChange)="splitContent()" aria-labelledby="firstParagraphCheckboxLabel">
               </mat-checkbox>
+              <label id="firstParagraphCheckboxLabel" class="mb-0">
+                {{ 'WRITE-NEW.FIRST_PARAGRAPH' | translate }}
+              </label>
             </mat-list-item>
             <mat-list-item>
               <!-- Body -->
               <form [formGroup]="editorForm">
-                <div class="form-group">
-                  <label for="text-editor">{{ 'WRITE-NEW.BODY' | translate }}</label>
-                  <quill-editor formControlName="text-editor" (onContentChanged)="updateNewsText($event)"></quill-editor>
+                <div class="form-group mt-3">
+                  <h4><label for="text-editor">{{ 'WRITE-NEW.BODY' | translate }}</label></h4>
+                  <quill-editor id="text-editor" (onContentChanged)="updateNewsText($event)"></quill-editor>
                 </div>
               </form>
             </mat-list-item>
+            <!--
             <mat-list-item>
               <mat-radio-group aria-label="Select an option" [(ngModel)]="publishNow" (change)="changePublishDate()">
-                <mat-radio-button [value]="true" style="margin-right: 1.5rem;">
+                <mat-radio-button [value]="true" class="me-2">
                   {{ 'WRITE-NEW.PUBLISH_NOW' | translate }}
                 </mat-radio-button>
                 <mat-radio-button [value]="false" disabled>
@@ -108,6 +109,7 @@
                 <mat-datepicker #datePicker></mat-datepicker>
               </mat-form-field>
             </mat-list-item>
+            -->
             <mat-list-item>
               <button mat-raised-button class="upload-button" id="submitNews" color="primary" (click)="submitNews()">
                 {{ 'WRITE-NEW.UPLOAD' | translate }}

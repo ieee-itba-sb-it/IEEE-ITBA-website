@@ -35,6 +35,13 @@
   height: 100%;
 }
 
+.event-card:hover {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+  background-color: rgba(0, 0, 0, .02);
+  border: 1px solid rgba(0, 0, 0, .2);
+  font-weight: bold;
+}
+
 .event-card-img {
   width: 100%;
   object-fit: cover;
@@ -44,6 +51,10 @@
 
 .event-card:hover .event-card-img {
   animation: event-move 40s infinite;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 @keyframes event-move {

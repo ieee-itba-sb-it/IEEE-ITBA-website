@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "dev": "concurrently \"firebase emulators:start --import mock_data --export-on-exit\" \"ng serve\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -64,6 +64,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^20.4.2",
     "codelyzer": "^6.0.0",
+    "concurrently": "^8.2.0",
     "firebase-tools": "^12.4.4",
     "fuzzy": "^0.1.3",
     "inquirer": "^9.2.8",

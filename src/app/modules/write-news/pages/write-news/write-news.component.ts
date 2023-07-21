@@ -114,7 +114,9 @@ export class WriteNewsComponent implements OnInit {
 
     // Add our tag
     if ((value || '').trim()) {
-      this.newsTagMap[this.sanitizeTag(value)] = true;
+      if (this.allTags.includes(this.sanitizeTag(value.trim()))) {
+        this.newsTagMap[this.sanitizeTag(value)] = true;
+      }
     }
 
     // Reset the input value

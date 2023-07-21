@@ -40,6 +40,7 @@ export class MainpageComponent implements OnInit {
       disableOnInteraction: false,
       pauseOnMouseEnter: true
     },
+    slidesPerView: 1,
     breakpoints: {
       940: {
         slidesPerView: 2,

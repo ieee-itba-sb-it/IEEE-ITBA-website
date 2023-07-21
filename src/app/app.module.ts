@@ -10,13 +10,17 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { firebaseConfig } from './secrets';
+import { firebaseProdConfig } from './secrets';
+import { environment } from '../environments/environment';
 
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
+import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,12 +60,16 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       defaultLanguage: 'es'
     }),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseProdConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
+    { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

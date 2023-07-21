@@ -13,9 +13,9 @@
     <mat-card-header>
       <mat-card-title>{{ event.titleCode | translate }}</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="mt-2">
+    <mat-card-content class="mt-2 card-content-container">
       <p class="lead">{{ event.descriptionCode | translate }}</p>
-      <span style="color: var(--warning)">
+      <span class="see-more-link" style="color: var(--warning)">
         {{ "HOME.SEEMORE" | translate }}
         <mdb-icon
           fas

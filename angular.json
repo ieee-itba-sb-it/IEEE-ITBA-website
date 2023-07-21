@@ -22,7 +22,8 @@
               "@firebase/functions",
               "@firebase/performance",
               "@firebase/remote-config",
-              "@firebase/component"
+              "@firebase/component",
+              "quill"
             ],
             "outputPath": "dist/ITBA-IEEE-Website-A9",
             "index": "src/index.html",
