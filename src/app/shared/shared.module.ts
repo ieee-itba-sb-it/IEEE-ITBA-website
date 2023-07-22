@@ -7,7 +7,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {FooterComponent} from './components/footer/footer.component';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpLoaderFactory} from '../app.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
@@ -29,6 +28,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {ResizeDirective} from './directives/resize.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {HttpLoaderFactory} from './translation-helpers';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];

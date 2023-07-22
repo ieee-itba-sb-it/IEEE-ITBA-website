@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { WieComponent } from './pages/wie.component';
 import { RouterModule } from '@angular/router';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { CustomMissingTranslationHandler } from 'src/app/shared/CustomMissingTranslationHandler';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes = [
   { path: '', component: WieComponent }

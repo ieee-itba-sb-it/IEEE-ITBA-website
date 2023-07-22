@@ -6,11 +6,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {MatCardModule} from '@angular/material/card';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {SwiperModule} from 'swiper/angular';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: MainpageComponent }

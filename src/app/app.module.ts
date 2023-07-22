@@ -20,11 +20,7 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { FlexModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
 import { SharedModule } from './shared/shared.module';
-
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+import { HttpLoaderFactory } from './shared/translation-helpers';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
   // easeInOutExpo easing
