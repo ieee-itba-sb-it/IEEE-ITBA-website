@@ -69,14 +69,26 @@
         </mat-button-toggle-group>
       </li>
       <!-- Dropdown -->
-      <li class="nav-item">
+      <li *ngIf="!loadingUser; else loading" class="nav-item">
         <a [matMenuTriggerFor]="menu" class="nav-link">
           <div class="profile-button-container">
             <i class="fas fa-user-circle" style="font-size: x-large"></i>
-            <div id="account" style="display: inline"></div>
+            <div *ngIf="loggedIn; else notLogged">
+              <div class="account">{{'NAVBAR.WELCOME' | translate}} {{(user | async).fname}}</div>
+            </div>
+            <ng-template #notLogged>
+              <div class="account">{{ 'NAVBAR.LOGIN' | translate }}</div>
+            </ng-template>
           </div>
         </a>
       </li>
+      <ng-template #loading>
+        <div class="h-100">
+          <mat-progress-spinner [diameter]="30"
+                                mode="indeterminate"
+                                color="primary"></mat-progress-spinner>
+        </div>
+      </ng-template>
     </ul>
   </links>
 </mdb-navbar>
@@ -90,7 +102,7 @@
 </mat-menu>
 
 <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
-  <button mat-menu-item *ngIf="logguedIn" (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</button>
-  <button mat-menu-item *ngIf="!logguedIn" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</button>
-  <button mat-menu-item *ngIf="!logguedIn" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="loggedIn" (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="!loggedIn" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="!loggedIn" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</button>
 </mat-menu>

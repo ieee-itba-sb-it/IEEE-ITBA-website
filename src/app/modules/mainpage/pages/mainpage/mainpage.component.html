@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  </head>
-
-  <header>
-    <app-navbar></app-navbar>
-    <div class="banner">
-      <img
-        src="../../../../../assets/image/general-icons/banner6.jpg"
-        alt="IEEE ITBA"
-        class="max-width"
-      />
-      <div class="main-title">ITBA IEEE</div>
-      <div class="subtitle">{{ 'HOME.TITLE' | translate }}</div>
-    </div>
-  </header>
-
-  <!-- Inicio -->
-  <body>
+  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <div class="banner">
+    <img
+      src="../../../../../assets/image/general-icons/banner6.jpg"
+      alt="IEEE ITBA"
+      class="max-width"
+    />
+    <div class="main-title">ITBA IEEE</div>
+    <div class="subtitle">{{ 'HOME.TITLE' | translate }}</div>
+  </div>
   <div class="section">
     <div class="section-header">
       <div class="section-header-start-line"></div>
@@ -81,21 +67,18 @@
           <div class="pagination-prev-wrapper">
             <span class="swiper-button-prev swiper-events pagination-prev" id="events-pagination-prev"></span>
           </div>
-          <swiper [config]="swiperConfigEvents" style="width: 100%">
-            <ng-container *ngFor="let event of latestEvents">
-              <ng-template swiperSlide>
-                <app-event-card-short [event]="event" index="{{0}}"></app-event-card-short>
-              </ng-template>
-            </ng-container>
-          </swiper>
+            <swiper [config]="swiperConfigEvents" style="overflow: hidden; width: 100%;">
+              <ng-container *ngFor="let event of latestEvents" >
+                <ng-template swiperSlide>
+                  <app-event-card-short [event]="event" index="{{0}}"></app-event-card-short>
+                </ng-template>
+              </ng-container>
+            </swiper>
           <div class="pagination-next-wrapper">
             <span class="events-swiper-button-next swiper-button-next swiper-events pagination-next" id="events-pagination-next"></span>
           </div>
         </div>
       </div>
-      <ng-template #loadingSpinnerBlock>
-        <app-loading-spinner></app-loading-spinner>
-      </ng-template>
       <div class="pagination-wrapper swiper-events" id="events-pagination-wrapper"></div>
     </div>
     <div class="end-button-container">
@@ -123,9 +106,9 @@
       <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
         <div class="carousel-wrapper">
           <div class="pagination-prev-wrapper">
-            <span class=" swiper-button-prev swiper-news pagination-prev" id="news-pagination-prev"></span>
+            <span class="swiper-button-prev swiper-news pagination-prev" id="news-pagination-prev"></span>
           </div>
-          <swiper [config]="swiperConfig">
+          <swiper [config]="swiperConfig" style="overflow-x: hidden">
             <ng-container *ngFor="let noticia of latestNews">
               <ng-template swiperSlide>
                 <app-news-card [noticia]="noticia"></app-news-card>
@@ -215,7 +198,3 @@
       <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
     </div>
   </div>
-
-  </body>
-  <app-footer></app-footer>
-</html>

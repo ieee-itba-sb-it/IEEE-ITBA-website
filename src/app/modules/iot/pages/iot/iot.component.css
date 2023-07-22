@@ -1,12 +1,8 @@
+@import url('https://unpkg.com/swiper/swiper-bundle.css');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 @import '~swiper/swiper-bundle.min.css';
 
-html {
-  /*min-height: 200%;*/
-  background-size: cover;
-}
-
-body {
+.main-container {
   padding: 0% 10% ;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);

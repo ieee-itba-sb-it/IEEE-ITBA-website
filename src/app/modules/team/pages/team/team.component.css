@@ -97,18 +97,17 @@ mat-panel-title {
 	font-variant: normal;
 }
 
-body {
-    padding: 10%;
-    background: rgb(255, 255, 255);
+.main-container {
+  background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-	padding-top: 160px;
+  padding: 160px 10% 10%;
 }
 
 
 @media (min-width: 768px) {
-   
+
 	.flexText{
 		display: flex;
 		/* centrado horizontal */

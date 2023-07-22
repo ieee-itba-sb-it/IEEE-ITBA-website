@@ -1,110 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="main-container" fxLayoutAlign="center center" fxLayout="column">
+  <div class="spacenav">
+  </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
-</head>
-<header>
-    <app-navbar></app-navbar>
-</header>
+  <div *ngIf="(newsData | async); else loadingSpinner" fxLayoutAlign="center center" fxLayout="column">
+    <div fxLayoutAlign="center center" fxLayout="column">
+      <div fxLayoutAlign="center center" fxLayout="column">
+        <p class="author-text word-break">{{(newsData | async).author}}</p>
 
-<body>
-    <div class="body" fxLayoutAlign="center center" fxLayout="column">
-        <div class="spacenav">
-        </div>
-
-        <div *ngIf="(newsData | async); else loadingSpinner" fxLayoutAlign="center center" fxLayout="column">
-            <div fxLayoutAlign="center center" fxLayout="column">
-                <div fxLayoutAlign="center center" fxLayout="column">
-                    <p class="author-text word-break">{{(newsData | async).author}}</p>
-
-                </div>
-            </div>
-
-            <div class="notopbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                            <h1 id="logotext" class="word-break">{{(newsData | async).title}} </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div fxLayoutAlign="center center" fxLayout="column">
-                <div fxLayoutAlign="center center" fxLayout="column">
-                    <p class="add-margin author-text word-break" [innerHtml]="(newsData | async).shortIntro"></p>
-                </div>
-            </div>
-
-            <div class="bottomLine">
-
-                <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
-                    <div class="add-margin">
-                      <mdb-card-img appResize
-                                    class="roundedBlock"
-                                    ngSrc="{{(newsData | async).imageUrl}}"
-                                    [ngWidth]="600"
-                                    alt="Foto de noticia">
-                      </mdb-card-img>
-
-                        <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="topbottomLine">
-                <div class="container" fxLayoutAlign="center center" fxLayout="column">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div [innerHTML]="content" class="add-margin whitetext word-break"> </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Emoji Rating-->
-                <div style="margin-bottom:20px" class="whitetext-left word-break">¿Qué te pareció la noticia?</div>
-
-                <div style="margin-bottom:20px" class="whitetext-left word-break" *ngIf="isVisbile">Gracias por votar ! </div>
-
-              <mat-chip-listbox aria-label="Emoji selection">
-                <div *ngFor="let emoji of emojisList; index as i">
-                  <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
-                    {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
-                  </mat-chip-option>
-                </div>
-
-                </mat-chip-listbox>
-
-                <!-- Date -->
-                <p class="whitetext-right">{{ ((newsData | async).date ) | date:'medium'}} </p>
-            </div>
-
-
-            <div class="bottomLine">
-            </div>
-            <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm" >
-                            <h1 id="whitetext">{{(newsData | async).author}}</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-        </div>
-
-        <ng-template #loadingSpinner class="screen-height">
-          <app-loading-spinner>
-          </app-loading-spinner>
-        </ng-template>
-
-        <div class="add-margin">
-            <app-footer></app-footer>
-        </div>
+      </div>
     </div>
-</body>
 
-</html>
+    <div class="notopbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h1 id="logotext" class="word-break">{{(newsData | async).title}} </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayoutAlign="center center" fxLayout="column">
+      <div fxLayoutAlign="center center" fxLayout="column">
+        <p class="add-margin author-text word-break" [innerHtml]="(newsData | async).shortIntro"></p>
+      </div>
+    </div>
+
+    <div class="bottomLine">
+
+      <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
+        <div class="add-margin">
+          <mdb-card-img appResize
+                        class="roundedBlock"
+                        ngSrc="{{(newsData | async).imageUrl}}"
+                        [ngWidth]="600"
+                        alt="Foto de noticia">
+          </mdb-card-img>
+
+          <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="topbottomLine">
+      <div class="container" fxLayoutAlign="center center" fxLayout="column">
+        <div class="row">
+          <div class="col-sm">
+            <div [innerHTML]="content" class="add-margin whitetext word-break"> </div>
+          </div>
+        </div>
+      </div>
+      <!--Emoji Rating-->
+      <div style="margin-bottom:20px" class="whitetext-left word-break">¿Qué te pareció la noticia?</div>
+
+      <div style="margin-bottom:20px" class="whitetext-left word-break" *ngIf="isVisbile">Gracias por votar ! </div>
+
+      <mat-chip-listbox aria-label="Emoji selection">
+        <div *ngFor="let emoji of emojisList; index as i">
+          <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
+            {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
+          </mat-chip-option>
+        </div>
+
+      </mat-chip-listbox>
+
+      <!-- Date -->
+      <p class="whitetext-right">{{ ((newsData | async).date ) | date:'medium'}} </p>
+    </div>
+
+
+    <div class="bottomLine">
+    </div>
+    <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" >
+                    <h1 id="whitetext">{{(newsData | async).author}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>-->
+  </div>
+
+  <ng-template #loadingSpinner class="screen-height">
+    <app-loading-spinner>
+    </app-loading-spinner>
+  </ng-template>
+
+</div>

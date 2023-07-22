@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WritersForm</title>
-</head>
-
-<header>
-    <app-navbar></app-navbar>
-</header>
-
-<body>
-
-    <div class="topbottomLine" id="home" style="margin-bottom:2%">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <h1 id="logotext" class="page-title">{{ 'WRITE-NEW.TITLE' | translate }}</h1>
-                </div>
-            </div>
+<div class="main-container">
+  <div class="topbottomLine" id="home" style="margin-bottom:2%">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h1 id="logotext" class="page-title">{{ 'WRITE-NEW.TITLE' | translate }}</h1>
         </div>
+      </div>
     </div>
+  </div>
 
     <div class="editor-container">
         <mat-card style="max-width: 45%; height: fit-content; padding: 1rem;">
@@ -117,44 +103,34 @@
             </mat-list-item>
         </mat-card>
 
-        <mat-card class="preview-card">
-          <div class="preview-container">
-            <h2 class="word-break short-intro-text" style="margin-bottom: 1rem">{{ user.fname + ' ' + user.lname || "Author" }}</h2>
-            <!--
-            <mat-chip-list class="news-tags">
-              <div *ngFor="let tag of currentTags()">
-                <mat-chip class="news-tag" selected>{{ tag }}</mat-chip>
-              </div>
-            </mat-chip-list>
-            -->
-            <h1 class="word-break preview-title">{{ newsContent.title || "Título" }}</h1>
-            <span class="word-break short-intro-text" [innerHTML]="newsContent.shortIntro"></span>
-            <img class="preview-image" src="{{ newsContent.imageUrl }}" alt="Imagen de portada" [width]="600">
-            <span class="preview-epigraph">{{ newsContent.imageText || "Epígrafe" }}</span>
-            <div class="content-text word-break">
-              <!--
-              <div class="preview-author-date-container">
-                By
-                <span class="word-break">{{ user.fname + ' ' + user.lname || "Author" }},</span>
-                <div class="preview-date-container">
-                  <span class="word-break">{{ dateFormatted() }}</span>
-                </div>
-              </div>
-              -->
-              <br>
-              <span [innerHTML]="newsContent.content"></span>
+    <mat-card class="preview-card">
+      <div class="preview-container">
+        <h2 class="word-break short-intro-text" style="margin-bottom: 1rem">{{ user.fname + ' ' + user.lname || "Author" }}</h2>
+        <!--
+        <mat-chip-list class="news-tags">
+          <div *ngFor="let tag of currentTags()">
+            <mat-chip class="news-tag" selected>{{ tag }}</mat-chip>
+          </div>
+        </mat-chip-list>
+        -->
+        <h1 class="word-break preview-title">{{ newsContent.title || "Título" }}</h1>
+        <span class="word-break short-intro-text" [innerHTML]="newsContent.shortIntro"></span>
+        <img class="preview-image" src="{{ newsContent.imageUrl }}" alt="Imagen de portada" [width]="600">
+        <span class="preview-epigraph">{{ newsContent.imageText || "Epígrafe" }}</span>
+        <div class="content-text word-break">
+          <!--
+          <div class="preview-author-date-container">
+            By
+            <span class="word-break">{{ user.fname + ' ' + user.lname || "Author" }},</span>
+            <div class="preview-date-container">
+              <span class="word-break">{{ dateFormatted() }}</span>
             </div>
           </div>
-        </mat-card>
-    </div>
-
-    <div class="container">
-
-    </div>
-
-
-</body>
-
-<app-footer></app-footer>
-
-</html>
+          -->
+          <br>
+          <span [innerHTML]="newsContent.content"></span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

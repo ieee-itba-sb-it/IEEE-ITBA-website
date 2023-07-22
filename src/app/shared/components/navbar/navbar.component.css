@@ -2,7 +2,7 @@
   padding: 1.5vmin;
   text-align: center;
   border: whitesmoke 2px solid;
-  border-radius: 5vmin;
+  border-radius: 3vmin;
   color: whitesmoke;
   background-color: transparent;
   transition: all ease 0.5s;
@@ -71,6 +71,7 @@
 
 .nav-item {
   text-align: right;
+  white-space: nowrap;
 }
 
 .row {

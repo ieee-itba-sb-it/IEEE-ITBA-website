@@ -22,9 +22,12 @@ import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+import { CardsModule } from 'angular-bootstrap-md';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { FlexModule } from '@angular/flex-layout';
+import { MatChipsModule } from '@angular/material/chips';
+import { SharedModule } from './shared/shared.module';
+import { HttpLoaderFactory } from './shared/translation-helpers';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
   // easeInOutExpo easing
@@ -49,7 +52,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
   ],
   imports: [
     AppRoutingModule,
-    NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
+    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
@@ -64,6 +67,11 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
+    CardsModule,
+    EmojiModule,
+    FlexModule,
+    MatChipsModule,
+    SharedModule,
   ],
   providers: [
     { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },

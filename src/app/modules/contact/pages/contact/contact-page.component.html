@@ -1,76 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-</head>
-<header>
-    <app-navbar></app-navbar>
-</header>
-
-<body>
-    <section id="contact">
-
-      <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
-                  <img src="../../../../../assets/image/section-icons/IEEEContactos.png" alt="Contact" class="IEEEContactImage">
-                </div>
-                <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
-                  <h1 class="page-title">{{ 'NAVBAR.CONTACT' | translate }}</h1>
-                </div>
-            </div>
+<div class="main-container">
+  <section id="contact">
+    <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage" >
+            <img src="../../../../../assets/image/section-icons/IEEEContactos.png" alt="Contact" class="IEEEContactImage">
+          </div>
+          <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText" >
+            <h1 class="page-title">{{ 'NAVBAR.CONTACT' | translate }}</h1>
+          </div>
         </div>
       </div>
-       <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h4>{{ 'CONTACT.SUBTITLE' | translate }}</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
-                      <mat-form-field>
-                          <mat-label>{{ 'CONTACT.NAME' | translate }}</mat-label>
-                          <input matInput [formControl]="name" required>
-                          <mat-error *ngIf="name.invalid">{{ 'CONTACT.NAME_ERROR' | translate }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field>
-                          <mat-label>{{ 'CONTACT.EMAIL' | translate }}</mat-label>
-                          <input matInput [formControl]="email" placeholder="email@example.com" required>
-                          <mat-error *ngIf="email.invalid">{{ 'CONTACT.EMAIL_ERROR' | translate }}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field>
-                          <mat-label>{{ 'CONTACT.MESSAGE' | translate }}</mat-label>
-                          <textarea matInput [formControl]="message" maxlength="256" placeholder="I'm interested in..." required></textarea>
-                          <mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
-                          <mat-error *ngIf="message.invalid">{{ 'CONTACT.MESSAGE_ERROR' | translate }}</mat-error>
-                        </mat-form-field>
-
-                        <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
-                        <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
-                          <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
-                          <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
-                        </mat-radio-group>
-
-                        <button [ngClass]="!submitted? 'visible': 'hidden' " [disabled]="isLoading" class="submit" type="submit">{{ 'CONTACT.SEND' | translate }}</button>
-                        <input [formControl]="honeypot" class="hidden" type="text" />
-                        <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
-                          <span>{{responseMessage}}</span>
-                        </div>
-                      </form>
-                </div>
-            </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h4>{{ 'CONTACT.SUBTITLE' | translate }}</h4>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="contact" [formGroup]="form" method="post" (ngSubmit)="onSubmit()">
 
-    </section>
+            <mat-form-field>
+              <mat-label>{{ 'CONTACT.NAME' | translate }}</mat-label>
+              <input matInput [formControl]="name" required>
+              <mat-error *ngIf="name.invalid">{{ 'CONTACT.NAME_ERROR' | translate }}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ 'CONTACT.EMAIL' | translate }}</mat-label>
+              <input matInput [formControl]="email" placeholder="email@example.com" required>
+              <mat-error *ngIf="email.invalid">{{ 'CONTACT.EMAIL_ERROR' | translate }}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{ 'CONTACT.MESSAGE' | translate }}</mat-label>
+              <textarea matInput [formControl]="message" maxlength="256" placeholder="I'm interested in..." required></textarea>
+              <mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
+              <mat-error *ngIf="message.invalid">{{ 'CONTACT.MESSAGE_ERROR' | translate }}</mat-error>
+            </mat-form-field>
 
-    <app-footer></app-footer>
+            <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
+            <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
+              <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
+              <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
+            </mat-radio-group>
 
-</body>
+            <button [ngClass]="!submitted? 'visible': 'hidden' " [disabled]="isLoading" class="submit" type="submit">{{ 'CONTACT.SEND' | translate }}</button>
+            <input [formControl]="honeypot" class="hidden" type="text" />
+            <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
+              <span>{{responseMessage}}</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-</html>
+  </section>
+</div>

@@ -8,10 +8,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpLoaderFactory} from '../../app.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: ContactPageComponent }

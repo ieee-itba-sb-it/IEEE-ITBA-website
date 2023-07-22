@@ -1,5 +1,8 @@
 {
   "NULL":"NULL",
+  "DEFAULT": {
+    "PAGETITLE": "ITBA IEEE Stud. Branch"
+  },
   "HOME": {
     "TITLE": "Student Branch",
     "CARGO": {
@@ -186,6 +189,7 @@
     }
   },
   "ABOUTUS": {
+    "PAGETITLE": "ITBA IEEE | About us",
     "US": {
       "TITLE": "Who we are",
       "TEXT": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires."
@@ -240,6 +244,8 @@
     "LEVEL-TEXT": "The difficulty of each challenge is varied so make sure that those less experienced will also be able to participate."
   },
   "NAVBAR": {
+    "LOGIN": "Log in",
+    "WELCOME": "Welcome  ",
     "ABOUTUS": "About us",
     "CONTACT": "Contact",
     "EVENTS": "Events",
@@ -487,6 +493,7 @@
   },
   "RAS": {
     "TITLE": "IEEE ITBA",
+    "PAGETITLE": "ITBA IEEE | RAS Student Branch Chapter",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Events",
     "TEAM": {
@@ -571,6 +578,7 @@
   },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
+    "PAGETITLE": "ITBA IEEE | Asimov CUP",
     "ENROLLBUTTON": "Enroll now!",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {
@@ -813,6 +821,7 @@
     "DATESTRING": "Date: "
   },
   "WIE": {
+    "PAGETITLE": "ITBA IEEE | WIE Branch Student Chapter",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group"
@@ -871,5 +880,8 @@
     "CONTACT": {
       "TITLE": "Contact"
     }
+  },
+  "TITLE": {
+
   }
 }

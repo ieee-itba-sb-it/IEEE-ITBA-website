@@ -151,6 +151,8 @@ export class AuthService {
           const doc = data.data() as IEEEuser;
           ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
         });
+      } else {
+        ans.next(null);
       }
     });
 

@@ -4,11 +4,11 @@ import {EventsComponent} from './pages/events/events.component';
 import {SharedModule} from '../../shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatCardImage, MatCardModule} from '@angular/material/card';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: EventsComponent }

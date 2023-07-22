@@ -1,44 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events</title>
-  </head>
-
-  <header>
-    <app-navbar></app-navbar>
-  </header>
-
-  <body>
-    <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
-            <img
-              src="../../../../../assets/image/section-icons/IEEEEventos.png"
-              alt="Events"
-              class="IEEEEventsImage"
-            />
-          </div>
-          <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
-            <h1 class="page-title">{{ "NAVBAR.EVENTS" | translate }}</h1>
-          </div>
+<div class="main-container">
+  <div class="topbottomLine pt-2 pb-2 mb-4" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
+          <img
+            src="../../../../../assets/image/section-icons/IEEEEventos.png"
+            alt="Events"
+            class="IEEEEventsImage"
+          />
+        </div>
+        <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
+          <h1 class="page-title">{{ "NAVBAR.EVENTS" | translate }}</h1>
         </div>
       </div>
     </div>
-    <div class="row mr-5 ml-5 d-flex justify-content-center row-eq-height">
-      <!-- Eventos (material angular) -->
+  </div>
+  <div class="row mr-5 ml-5 d-flex justify-content-center row-eq-height">
+    <!-- Eventos (material angular) -->
 
-      <!-- new card grid -->
-      <ul class="card-listing">
-        <li *ngFor="let event of events; index as i">
-          <app-event-card [event]="event" [index]="i">
-          </app-event-card>
-        </li>
-      </ul>
-    </div>
+    <!-- new card grid -->
+    <ul class="card-listing">
+      <li *ngFor="let event of events; index as i">
+        <app-event-card [event]="event" [index]="i">
+        </app-event-card>
+      </li>
+    </ul>
+  </div>
 
-    <app-footer></app-footer>
-  </body>
-</html>
+</div>

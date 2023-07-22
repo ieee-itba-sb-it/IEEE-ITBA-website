@@ -1,15 +1,9 @@
-html {
-    min-height: 100%;
-    height: auto;
-}
-
-body {
-  padding: 10% 5%;
+.main-container {
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
-	padding-top: 160px;
+  padding: 160px 5% 10%;
 }
 
 /* Extra styles for preview */

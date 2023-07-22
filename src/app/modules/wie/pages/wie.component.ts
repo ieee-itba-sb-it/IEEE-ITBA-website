@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfigService } from '../../../core/services/configuration/app-config.service';
 
 @Component({
   selector: 'app-wie',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WieComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appConfigService: AppConfigService) { }
 
   ngOnInit(): void {
+    this.appConfigService.setNavbarColor('#702f8a');
+    this.appConfigService.setTitle('WIE.PAGETITLE');
   }
 
 }

@@ -5,7 +5,6 @@ import {WriteNewsComponent} from './pages/write-news/write-news.component';
 import {EditarAnuncioComponent} from './pages/editar-anuncio/editar-anuncio.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -26,6 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: WriteNewsComponent },

@@ -1,9 +1,11 @@
 {
   "NULL":"NULL",
+  "DEFAULT": {
+    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil"
+  },
   "HOME": {
     "TITLE": "Rama Estudiantil",
     "CARGO": {
-
       "CD": {
         "TITLE": "CD",
         "OFFICER": "Officer",
@@ -157,7 +159,8 @@
     },
     "ABOUTUS": {
       "TITLE": "Sobre nosotros",
-      "LEARNMORE": "Ver más"
+      "LEARNMORE": "Ver más",
+      "PAGETITLE": "ITBA IEEE | About us"
     },
     "IEEENEWS": {
       "TITLE": "Noticias",
@@ -237,6 +240,7 @@
     }
   },
   "ABOUTUS": {
+    "PAGETITLE": "ITBA IEEE | About us",
     "US": {
       "TITLE": "Quiénes somos",
       "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
@@ -291,6 +295,8 @@
     "LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
   },
   "NAVBAR": {
+    "LOGIN": "Iniciar sesión",
+    "WELCOME": "Bienvenido ",
     "ABOUTUS": "Acerca de",
     "CONTACT": "Contacto",
     "EVENTS": "Eventos",
@@ -538,6 +544,7 @@
   },
   "RAS": {
     "TITLE": "IEEE ITBA",
+    "PAGETITLE": "ITBA IEEE | RAS Capítulo Estudiantil",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
     "TEAM": {
@@ -622,6 +629,7 @@
   },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
+    "PAGETITLE": "ITBA IEEE | Asimov CUP",
     "ENROLLBUTTON": "¡Anotate ahora!",
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "CATEGORIES": {
@@ -864,6 +872,7 @@
     "DATESTRING": "Fecha: "
   },
   "WIE": {
+    "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"
