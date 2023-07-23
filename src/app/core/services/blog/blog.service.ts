@@ -9,6 +9,7 @@ import firebase from 'firebase/compat/app';
 
 /* This file make interface with databe to get blog data */
 
+// TODO: refactor
 @Injectable({
   providedIn: 'root'
 })
@@ -40,15 +41,18 @@ export class BlogService {
   // Delete doc from setted collection
   deleteDoc(name: string) {
     const call = new BehaviorSubject<boolean>(false);
-    this.afs.collection(this.collectionName).doc(name).delete().then(data => {
-      call.next(true);
-      // TODO: Test this
-      this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
-        count: firebase.firestore.FieldValue.increment(-1),
-        extra: {
-          listedCount: firebase.firestore.FieldValue.increment(-1)
-        }
-      });
+    const toDeleteDoc = this.afs.collection(this.collectionName).doc(name);
+    toDeleteDoc.get().subscribe(snapshot => {
+      if (snapshot.exists) {
+        toDeleteDoc.delete().then(async () => {
+          await this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
+            count: firebase.firestore.FieldValue.increment(-1),
+            'extra.listedCount': (snapshot.data() as NewsItem).listed ?
+              firebase.firestore.FieldValue.increment(-1) : firebase.firestore.FieldValue.increment(0),
+          });
+          call.next(true);
+        });
+      }
     });
     return call.asObservable();
   }
@@ -165,15 +169,26 @@ export class BlogService {
     this.getDocsPage(collection);
   }
 
-  // Sets a doc inside a collection
+  // Sets a doc inside a collection and updates metadata
   setDoc(content: NewsItem) {
     const call = new BehaviorSubject<boolean>(false);
-
-    this.afs.collection(this.collectionName).doc(content.reference).set(content).then(data => {
+    const document = this.afs.collection(this.collectionName).doc(content.reference);
+    document.get().subscribe(async (snapshot) => {
+      const metadataDoc = this.afs.collection(metadataCollectionName).doc(this.collectionName);
+      const parallelPromises = [document.set(content)];
+      if (!snapshot.exists) {
+        parallelPromises.push(metadataDoc.update({
+          count: firebase.firestore.FieldValue.increment(1),
+          'extra.listedCount': firebase.firestore.FieldValue.increment(content.listed ? 1 : 0)
+        }));
+      } else {
+        parallelPromises.push(metadataDoc.update({
+          'extra.listedCount': firebase.firestore.FieldValue.increment(content.listed ? 1 : -1)
+        }));
+      }
+      await Promise.all(parallelPromises);
       call.next(true);
-    }
-    );
-
+    });
 
     return call.asObservable();
   }

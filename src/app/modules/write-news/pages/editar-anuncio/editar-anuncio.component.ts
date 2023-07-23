@@ -1,7 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { PageScrollService } from 'ngx-page-scroll-core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
@@ -53,7 +50,7 @@ export class EditarAnuncioComponent implements OnInit {
     const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
     const autor = (document.getElementById('autor') as HTMLInputElement).value;
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
-    const reference = encodeURIComponent( sanitizeString( (document.getElementById('nombreUrl') as HTMLInputElement).value )  );
+    const reference = (document.getElementById('nombreUrl') as HTMLInputElement).value;
     const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
     const listed = (document.getElementById('listed') as HTMLInputElement).checked;
     const tags = ['hola', 'chau'];

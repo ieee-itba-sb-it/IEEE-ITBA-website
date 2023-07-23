@@ -52,9 +52,34 @@ $ieee-orange: (
   )
 );
 
+$ieee-red: (
+  50: rgb(241, 206, 213),
+  100: rgb(241, 206, 213),
+  200: rgb(227, 158, 172),
+  300: rgb(227, 158, 172),
+  400: rgb(214, 109, 130),
+  500: rgb(214, 109, 130),
+  600: rgb(200, 61, 89),
+  700: rgb(200, 61, 89),
+  800: rgb(186, 12, 47),
+  900: rgb(186, 12, 47),
+  contrast : (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+  )
+);
+
 $my-primary: mat-palette($ieee-blue, 700);
 $my-accent: mat-palette($ieee-orange, 900);
-$my-warn: mat-palette($ieee-blue, 900);
+$my-warn: mat-palette($ieee-red, 900);
 
 $my-theme: mat-light-theme((
   color: (
