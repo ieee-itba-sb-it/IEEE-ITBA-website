@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import firebase from 'firebase';
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
+import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-data-analysis',
@@ -29,7 +28,7 @@ export class DataAnalysisComponent implements OnInit {
 
   isOldDate(date: string) {
     const oldDate = Timestamp.fromDate(new Date(date));
-    const now = firebase.firestore.Timestamp.now();
+    const now = Timestamp.now();
     return now > oldDate;
   }
 
@@ -57,7 +56,7 @@ export class DataAnalysisComponent implements OnInit {
   }
 
   hasTestsAvailable() {
-    const now = firebase.firestore.Timestamp.now();
+    const now = Timestamp.now();
     const startDate = Timestamp.fromDate(new Date('03 Oct 2022 03:00:00 UTC'));
     const endDate = Timestamp.fromDate(new Date('10 Oct 2022 03:00:00 UTC'));
     if (startDate < now && now < endDate) {

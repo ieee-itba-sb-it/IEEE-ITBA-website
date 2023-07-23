@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import firebase, { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-typescript',
@@ -36,7 +36,7 @@ export class TypescriptComponent implements OnInit {
 
   isOldDate(date: string) {
     const oldDate = Timestamp.fromDate(new Date(date));
-    const now = firebase.firestore.Timestamp.now();
+    const now = Timestamp.now();
     return now > oldDate;
   }
 

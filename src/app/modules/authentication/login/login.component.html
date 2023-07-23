@@ -1,0 +1,49 @@
+<div class="main-container overflow-hidden">
+<div class="row" style="height: 100%">
+  <div class="mainFrame col-lg-8 col-md-6 col-12 h-100" style="padding-top: 160px">
+    <div class="row d-flex flex-column h-75 align-items-center justify-content-center">
+      <mat-card class="d-flex flex-column align-items-center custom-width">
+        <mat-card-header>
+          <mat-card-title>
+            {{ 'LOGIN.TITLE' | translate }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="login-card-content">
+          <form id="account-form">
+            <mat-form-field class="w-100">
+              <mat-label for="email">{{ 'LOGIN.EMAIL' | translate }}</mat-label>
+              <input type="email" id="email" placeholder="mail@itba.edu.ar" required matInput>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label for="pass">{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+              <input type="password" id="pass" placeholder="*********" required matInput>
+            </mat-form-field>
+            <div class="d-flex justify-content-center">
+              <button mat-raised-button class="login-button" color="primary" id="login">
+                {{ 'LOGIN.BUTTON' | translate }}
+              </button>
+            </div>
+
+            <h4 *ngIf="loginResponse != null"
+                id="passerr"
+                [class]="{ 'success': loginResponse.success, 'error': !loginResponse.success}"
+            >
+              {{ loginResponse.message | translate }}
+            </h4>
+            <div class="d-flex justify-content-center mt-3 gap-2">
+              <span class="mb-0">{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
+              <a class="font-weight-bolder" [routerLink]="['/register']">{{ 'LOGIN.SIGN_UP' | translate }}</a>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 h-100 d-none d-md-flex align-items-center justify-content-center mt-4 "
+       style="background-color: var(--bs-ieee-bright-blue)"
+  >
+    <img alt="itbot" src="../../../../assets/image/login/itbot.png" class="h-50" style="transform: scaleX(-1)"/>
+  </div>
+</div>
+</div>

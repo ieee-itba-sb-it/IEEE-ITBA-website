@@ -10,16 +10,24 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { firebaseConfig } from './secrets';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { firebaseProdConfig } from './secrets';
+import { environment } from '../environments/environment';
+
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
+import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+import { CardsModule } from 'angular-bootstrap-md';
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { FlexModule } from '@angular/flex-layout';
+import { MatChipsModule } from '@angular/material/chips';
+import { SharedModule } from './shared/shared.module';
+import { HttpLoaderFactory } from './shared/translation-helpers';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
   // easeInOutExpo easing
@@ -44,7 +52,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
   ],
   imports: [
     AppRoutingModule,
-    NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
+    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
@@ -55,12 +63,21 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       defaultLanguage: 'es'
     }),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseProdConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
+    CardsModule,
+    EmojiModule,
+    FlexModule,
+    MatChipsModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
+    { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

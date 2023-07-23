@@ -1,99 +1,94 @@
-html {
-    min-height: 100%;
-    height: auto;
-  }
-  
-  
-  body {
-    padding: 10%;
-    padding-top: 5%;
-    padding-bottom: 0%;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-    background-size: cover;
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
-    --ras-red: #00629B;
-    --ras-purple: #009CA6;
-  }
-  
-  
-  .topLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
-    border-top: whitesmoke 2px solid;
-    vertical-align: middle;
-    align-content: center;
-  }
-  
-  .noLine {
-    padding-top: 5vmin;
-    padding-bottom: 5vmin;
-    vertical-align: middle;
-    align-content: center;
-  }
-  
-  #home {
-    text-align: center;
-  }
-  
-  .text-container {
-    font-size: 1.1rem;
-    text-align: left;
-  }
-  
 
-  
-  .section-title {
-    font-size: 1.8rem;
-    color: var(--ras-red);
-  }
 
-  .container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    margin-bottom: 5rem;
-  }
-  
+.main-container {
+  min-height: 100%;
+
+  padding: 10%;
+  padding-top: 5%;
+  padding-bottom: 0%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  --ras-red: #00629B;
+  --ras-purple: #009CA6;
+}
+
+
+.topLine {
+  padding-top: 5vmin;
+  padding-bottom: 5vmin;
+  border-top: whitesmoke 2px solid;
+  vertical-align: middle;
+  align-content: center;
+}
+
+.noLine {
+  padding-top: 5vmin;
+  padding-bottom: 5vmin;
+  vertical-align: middle;
+  align-content: center;
+}
+
+#home {
+  text-align: center;
+}
+
+.text-container {
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--ras-red);
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  margin-bottom: 5rem;
+}
+
+.rasLogo {
+  width: 20rem;
+  object-fit: contain;
+}
+
+.titleRow {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--ras-red);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  margin: auto 0 auto 0;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.subtitle {
+  color: var(--ras-purple);
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+
+
+
+@media (max-width: 770px) {
   .rasLogo {
-    width: 20rem;
-    object-fit: contain;
+    width: 50vw;
   }
-  
-  .titleRow {
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--ras-red);
-    display: flex;
+  .container {
+    align-items: center;
     flex-direction: column;
-    align-items: flex-start;
   }
-  
-  .title {
-    margin: auto 0 auto 0;
-    font-weight: 600;
-    font-size: 3rem;
-  }
-  
-  .subtitle {
-    color: var(--ras-purple);
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.5rem;
-  }
-  
+}
 
- 
-  
-  @media (max-width: 770px) {
-    .rasLogo {
-      width: 50vw;
-    }
-    .container {
-      align-items: center;
-      flex-direction: column;
-    }
-  }
-  
 
-  

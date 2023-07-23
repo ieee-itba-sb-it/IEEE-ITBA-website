@@ -1,0 +1,80 @@
+.main-container {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+    background-size: cover;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.custom-width {
+  max-width: 75%;
+  width: fit-content;
+}
+
+h1{
+    font-size: 30pt;
+}
+
+h3{
+    font-size: 15pt;
+    text-align: center;
+    color: whitesmoke;
+}
+
+hr {
+    border-color: whitesmoke;
+}
+
+a{
+    font-weight: 100;
+}
+
+a:any-link{
+    color: var(--bs-ieee-dark-orange-80);
+}
+
+a:hover{
+    color: var(--bs-ieee-dark-orange);
+}
+
+.error {
+  color: red;
+  text-align: start;
+}
+
+.success {
+  color: green;
+  text-align: start;
+}
+
+.mainFrame {
+}
+
+input {
+    font-size: 1.3em;
+}
+
+.login-button {
+  width: 100%;
+  font-size: 1.4em;
+}
+
+.login-card-content {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1.5em;
+}
+
+.topbottomLine {
+    border-top: var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
+    vertical-align: middle;
+    align-content: center;
+}
+
+.page-title {
+    color: var(--bs-ieee-bright-blue);
+    font-size: 2.5em
+}

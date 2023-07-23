@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
 import {EventCardData} from '../../../../shared/models/event/event-card-data';
 import {EventService} from '../../../../core/services/event/event.service';
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
+import { AppConfigService } from '../../../../core/services/configuration/app-config.service';
 
 @Component({
   selector: 'app-asimov-cup',
@@ -72,20 +73,19 @@ export class AsimovCupComponent implements OnInit {
     'ASIMOVCUP.SCHEDULE.12',
   ];
 
-  isOldDate(now: firestore.Timestamp, date: Date) {
+  isOldDate(now: Timestamp, date: Date) {
     const oldDate = Timestamp.fromDate(new Date(date));
     return now > oldDate;
   }
 
-  constructor(private sponsorsService: SponsorsService, private eventService: EventService) {
+  constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService) {
     this.sponsors = sponsorsService.getAsimovSponsors();
     this.eventData = this.eventService.getAsimovCupEvent();
 
-    const now = firestore.Timestamp.now();
+    const now = Timestamp.now();
     this.enrollOpen = this.isOldDate(now, new Date('10 Jun 2023 03:00:00 UTC'));
     this.enrollClosed = this.isOldDate(now, new Date('23 Jul 2023 03:00:00 UTC'));
     this.spectatorEnrollClosed = this.isOldDate(now, new Date('27 Jul 2023 03:00:00 UTC'));
-
     scroll(0, 0);
   }
 
@@ -97,5 +97,9 @@ export class AsimovCupComponent implements OnInit {
     return this.enrollOpen && !this.spectatorEnrollClosed;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Set navbar color
+    this.appConfigService.setNavbarColor('#862633');
+    this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
+  }
 }

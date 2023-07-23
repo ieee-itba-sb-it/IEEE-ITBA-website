@@ -1,0 +1,81 @@
+html {
+  min-height: 100%;
+  height: auto;
+}
+
+.main-container {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+h1{
+  font-size: 30pt;
+}
+
+h3{
+  font-size: 15pt;
+  text-align: center;
+  color: whitesmoke;
+}
+
+hr {
+  border-color: whitesmoke;
+}
+
+a{
+  font-weight: 100;
+}
+
+a:any-link{
+  color: var(--bs-ieee-dark-orange-80);
+}
+
+a:hover{
+  color: var(--bs-ieee-dark-orange);
+}
+
+.mainFrame {
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+input {
+  font-size: 1.3em;
+}
+
+.login-button {
+  width: 100%;
+  font-size: 1.4em;
+}
+
+#passerr{
+  font-size: 13pt;
+  font-weight: 100;
+  text-align: right;
+}
+
+.login-card-content {
+  width: 80%;
+}
+
+.topbottomLine {
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
+  vertical-align: middle;
+  align-content: center;
+}
+
+.page-title {
+  color: var(--bs-ieee-bright-blue);
+  font-size: 2.5em
+}

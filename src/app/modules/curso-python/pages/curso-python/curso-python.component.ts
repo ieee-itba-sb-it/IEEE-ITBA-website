@@ -1,9 +1,8 @@
 /*IMPORTS*/
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import firebase from 'firebase';
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
+
 @Component({
   selector: 'app-curso-python',
   templateUrl: './curso-python.component.html',
@@ -27,7 +26,7 @@ export class CursoPythonComponent implements OnInit {
   isOldDate(date: string) {
     this.getDate();
     const oldDate = Timestamp.fromDate(new Date(date));
-    const now = firebase.firestore.Timestamp.now();
+    const now = Timestamp.now();
     return now > oldDate;
   }
 

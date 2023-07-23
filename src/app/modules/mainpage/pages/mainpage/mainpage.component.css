@@ -1,4 +1,4 @@
-@import '~swiper/swiper-bundle.min.css';
+@import url("https://unpkg.com/swiper/swiper-bundle.min.css");
 
 html {
     min-height: 100%;
@@ -13,7 +13,7 @@ body {
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
 }
 
 .bottomLine {
@@ -91,7 +91,7 @@ body {
 }
 
 .section-title {
-    color: #3d6bb3;
+    color: var(--bs-ieee-bright-blue);
     height: 100%;
     font-size: 2.5rem;
     font-weight: bold;
@@ -130,7 +130,7 @@ body {
     text-align: center;
     flex: 1 1 auto;
     width: 25%;
-    font-weight: lighter;
+    font-size: 1.1em;
 }
 
 .aboutus-image {
@@ -138,14 +138,15 @@ body {
     height: 5rem;
     width: 5rem;
     margin-bottom: 0.5rem;
-    background-color: #0d47a1;
+    background-color: var(--bs-ieee-bright-blue);
     padding: 0.5rem;
     border-radius: 25%;
 }
 
 .aboutus-section-header {
-    color: #0d47a1;
+    color: var(--bs-ieee-bright-blue);
     font-size: x-large;
+    font-weight: bold;
 }
 
 .end-button-container {
@@ -157,8 +158,8 @@ body {
   font-size: calc(0.5vw + 0.5rem);
   font-weight: 600;
   padding:  0.5rem 1.2rem;
-  border: solid rgb(23, 46, 148);
-  color: rgb(23, 46, 148) !important;
+  border: solid var(--bs-ieee-bright-blue);
+  color: var(--bs-ieee-bright-blue) !important;
   border-radius: 5px;
   background-color: inherit;
   border-width: 3px;
@@ -168,12 +169,12 @@ body {
 .learn-more-button:hover {
   box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
   color: white !important;
-  background-color: #0d47a1;
+  background-color: var(--bs-ieee-bright-blue);
   border-color: white;
 }
 
 .learn-more-button >.button-text {
-  color: rgb(23, 46, 148) !important;
+  color: var(--bs-ieee-bright-blue) !important;
 }
 .learn-more-button:hover > .button-text{
   color: white !important;
@@ -215,7 +216,6 @@ h2{
     bottom: 2em;
     left: 2em;
     font-size: 3em;
-    font-family: 'Roboto';
     font-weight: 700;
     letter-spacing: 2px;
 }
@@ -225,7 +225,6 @@ h2{
     bottom: 1em;
     left: 3em;
     font-size: 2em;
-    font-family: 'Roboto'
 }
 
 .banner {
@@ -249,7 +248,6 @@ h2{
   justify-content: center;
   margin: 1rem 0 0.25rem;
   transform: scale(1.5);    /* Enlarge bullets */
-  gap: 0.25rem;             /* Gap between bullets */
 }
 
 .pagination-prev-wrapper {

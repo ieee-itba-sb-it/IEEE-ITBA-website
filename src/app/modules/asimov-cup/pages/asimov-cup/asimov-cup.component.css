@@ -1,17 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
-
-html {
-  /*min-height: 200%;*/
-  background-size: cover;
-}
-
-body {
+.main-container {
   padding: 0 15%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-size: 1.3em;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
 }
 
 .not-available-background-color {
@@ -55,11 +47,6 @@ h1 {
 
 .example-card {
   margin-bottom: 15px;
-}
-
-.example-header-image {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png");
-  background-size: cover;
 }
 
 .banner {
@@ -168,7 +155,6 @@ footer {
   position: relative;
   bottom: 10%;
   align-content: center;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   background: rgb(10, 27, 103);
   background: linear-gradient(
       75deg,
@@ -285,7 +271,7 @@ h3 {
 }
 
 .category-card-description {
-  font-size: 1.2em;
+  font-size: 1.05rem;
 }
 
 .aboutus-container {
@@ -311,7 +297,7 @@ h3 {
 }
 
 .aboutus-section-header {
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue);
   font-size: x-large;
 }
 
@@ -434,7 +420,7 @@ h3 {
 
 .subtitle {
   font-size: calc(0.7vw + 0.7rem);
-  color: rgba(13, 71, 161, 0.8);
+  color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
 }

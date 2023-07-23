@@ -4,7 +4,6 @@ import { Error401Component } from './shared/components/error401/error401.compone
 
 import { AuthGuardService } from './core/services/authorization-guard/auth-guard.service';
 import {
-  AngularFireAuthGuard,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';
@@ -156,14 +155,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./core/authentication/login/login.module').then(
+      import('./modules/authentication/login/login.module').then(
         (m) => m.LoginModule
       ),
   },
   {
     path: 'register',
     loadChildren: () =>
-      import('./core/authentication/register/register.module').then(
+      import('./modules/authentication/register/register.module').then(
         (m) => m.RegisterModule
       ),
   },

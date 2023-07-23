@@ -1,4 +1,4 @@
-<a [routerLink]="[event.routerLink]">
+<a [routerLink]="[event.routerLink]" style="color: inherit; text-decoration: none;">
   <mat-card class="event-card">
     <div class="image-with-text">
       <img
@@ -6,26 +6,24 @@
         alt="{{ event.imageAlt }}"
         class="event-card-img"
         [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}" />
-      <p class="text-on-image ieeextreme-text">
+      <p class="text-on-image">
         {{ event.titleCode | translate }}
       </p>
     </div>
-    <mat-card-content class="mt-2">
-      <mat-card-title>{{
-        event.titleCode | translate
-        }}</mat-card-title>
-      <p class="lead">{{ event.descriptionCode | translate }}</p>
-      <a class="link-text" [routerLink]="[event.routerLink]">
-        <h5 class="waves-light" mdbWavesEffect>
-          {{ "HOME.SEEMORE" | translate }}
-          <mdb-icon
-            fas
-            icon="chevron-right"
-            class="waves-light"
-            mdbWavesEffect
-          ></mdb-icon>
-        </h5>
-      </a>
+    <mat-card-header>
+      <mat-card-title><b>{{ event.titleCode | translate }}</b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mt-2 card-content-container">
+      <p class="font-weight-light">{{ event.descriptionCode | translate }}</p>
+      <span class="see-more-link">
+        {{ "HOME.SEEMORE" | translate }}
+        <mdb-icon
+          fas
+          icon="chevron-right"
+          class="waves-light"
+          mdbWavesEffect
+        ></mdb-icon>
+      </span>
     </mat-card-content>
   </mat-card>
 </a>

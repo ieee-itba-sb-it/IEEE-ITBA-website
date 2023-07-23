@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typescript</title>
-</head>
-<header>
-  <app-navbar></app-navbar>
-</header>
-<body>
+<div class="main-container">
   <!-- BANNER -->
   <section class="banner">
     <img
@@ -53,16 +42,16 @@
           <mat-card-title>{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}}</p>
-            <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}}</p>
+          <p class="card-text">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}</p>
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -154,17 +143,14 @@
   <section class="faq-section">
     <h2 class="course-subtitle">Preguntas frecuentes</h2>
     <mat-accordion class="faq-accordion">
-        <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
-            <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-                <mat-panel-title class="faq-question mt-1 mb-1">
-                    {{ qa.q | translate}}
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p class="faq-answer">{{ qa.a | translate}}</p>
-        </mat-expansion-panel>
+      <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
+        <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
+          <mat-panel-title class="faq-question mt-1 mb-1">
+            {{ qa.q | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="faq-answer">{{ qa.a | translate}}</p>
+      </mat-expansion-panel>
     </mat-accordion>
   </section>
-  <app-footer></app-footer>
-</body>
-
-</html>
+</div>

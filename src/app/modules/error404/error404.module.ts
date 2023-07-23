@@ -4,9 +4,9 @@ import { Error404Component } from './pages/error404/error404.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../shared/shared.module';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '', component: Error404Component}

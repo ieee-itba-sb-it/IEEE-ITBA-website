@@ -2,23 +2,15 @@
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
-@import '~ngx-bar-rating/themes/br-stars-theme';
+
 @font-face {
-  font-family: Montserrat;
-  font-weight: normal;
-  src: url(assets/fonts/Montserrat-Regular.otf) format("opentype");
-}
-@font-face {
-  font-family: Aileron;
-  font-weight: normal;
-  src: url(assets/fonts/Aileron-Regular.otf) format("opentype");
+  font-family: "Open sans";
+  src: url('assets/fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Aileron, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Open sans", "Helvetica Neue", sans-serif; line-height: 1.5; }
+p { line-height: 1.5; }
 
 .ql-container {
   height: 450px !important;

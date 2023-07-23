@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventCardData } from '../../../shared/models/event/event-card-data';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'

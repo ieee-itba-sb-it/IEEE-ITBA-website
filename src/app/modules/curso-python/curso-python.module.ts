@@ -4,12 +4,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {CursoPythonComponent} from './pages/curso-python/curso-python.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: CursoPythonComponent }

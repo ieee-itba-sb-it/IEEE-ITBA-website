@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+// import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 /* This file make interface with databe to get blog data */
 
@@ -63,7 +64,7 @@ export class BlogService {
 
       for (const blogEntry in data.docs) {
         if (data.docs.hasOwnProperty(blogEntry)) {
-          const doc = data.docs[blogEntry].data();
+          const doc = data.docs[blogEntry].data() as NewsItem;
           // Add the next blog item
           ans.push(
             createNewsItem(
@@ -71,6 +72,7 @@ export class BlogService {
               doc.content,
               doc.shortIntro,
               doc.imageUrl,
+              // @ts-ignore
               doc.date,
               doc.author,
               doc.imageText,
@@ -90,18 +92,21 @@ export class BlogService {
 
   retrieveDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
       this.docsSize.next(doc.data().count);
     });
   }
 
   retrieveListedDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
       this.listedDocsSize.next(doc.data().extra.listedCount);
     });
   }
 
   getDocsTagsAsObservable() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
       this.docsTags.next(doc.data().extra.tags);
     });
     return this.docsTags.asObservable();
@@ -193,7 +198,7 @@ export class BlogService {
     const ans: BehaviorSubject<NewsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
-      const doc = data.data();
+      const doc = data.data() as NewsItem;
 
       ans.next(
         createNewsItem(
@@ -201,12 +206,13 @@ export class BlogService {
           doc.content,
           doc.shortIntro,
           doc.imageUrl,
+          // @ts-ignore
           doc.date,
           doc.author,
           doc.imageText,
           doc.reference,
-          doc.listed,
           doc.tags,
+          doc.listed,
           doc.ratings,
         )
       );
