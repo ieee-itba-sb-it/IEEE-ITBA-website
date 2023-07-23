@@ -1,4 +1,4 @@
-<a [routerLink]="[event.routerLink]" style="color: inherit; ">
+<a [routerLink]="[event.routerLink]" style="color: inherit; text-decoration: none;">
   <mat-card class="event-card">
     <div class="image-with-text">
       <img
@@ -6,16 +6,16 @@
         alt="{{ event.imageAlt }}"
         class="event-card-img"
         [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}" />
-      <p class="text-on-image ieeextreme-text">
+      <p class="text-on-image">
         {{ event.titleCode | translate }}
       </p>
     </div>
     <mat-card-header>
-      <mat-card-title>{{ event.titleCode | translate }}</mat-card-title>
+      <mat-card-title><b>{{ event.titleCode | translate }}</b></mat-card-title>
     </mat-card-header>
     <mat-card-content class="mt-2 card-content-container">
-      <p class="lead">{{ event.descriptionCode | translate }}</p>
-      <span class="see-more-link" style="color: var(--warning)">
+      <p class="font-weight-light">{{ event.descriptionCode | translate }}</p>
+      <span class="see-more-link">
         {{ "HOME.SEEMORE" | translate }}
         <mdb-icon
           fas

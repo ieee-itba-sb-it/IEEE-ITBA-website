@@ -9,7 +9,6 @@
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   --ras-red: #00629B;
   --ras-purple: #009CA6;
 }

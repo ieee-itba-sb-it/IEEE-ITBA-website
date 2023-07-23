@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, filter} from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppConfigService {
   private navbarColor = new BehaviorSubject('');
   constructor(private titleService: Title, private translate: TranslateService, private router: Router) {
-    router.events.subscribe(() => {
+    router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.resetTitle();
       this.resetNavbarColor();
     });
@@ -35,7 +35,7 @@ export class AppConfigService {
   }
 
   resetNavbarColor() {
-    this.navbarColor.next('');
+    this.navbarColor.next('#00629b');
   }
 
   getNavbarColor() {

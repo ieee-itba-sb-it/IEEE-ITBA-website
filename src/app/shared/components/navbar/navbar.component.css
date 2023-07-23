@@ -95,7 +95,7 @@
 }
 
 #nav {
-  background: #0d47a1;
+  background: var(--bs-ieee-bright-blue);
   color: whitesmoke;
 }
 

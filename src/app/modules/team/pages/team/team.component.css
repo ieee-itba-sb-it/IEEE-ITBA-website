@@ -22,17 +22,17 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-    border: rgb(23, 46, 148) 1px solid;
+    border: var(--bs-ieee-bright-blue) 1px solid;
     border-radius: 5vmin;
 }
 
 mat-panel-title {
-    color:rgb(23, 46, 148);
+    color:var(--bs-ieee-bright-blue);
 }
 
 .topbottomLine {
-    border-top:#0d47a1 2px solid;
-    border-bottom: #0d47a1 2px solid;
+    border-top:var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -45,7 +45,7 @@ mat-panel-title {
 }
 
 .page-title {
-    color: #0d47a1;
+    color: var(--bs-ieee-bright-blue);
 	font-size: 2.5em;
 }
 
@@ -86,11 +86,10 @@ mat-panel-title {
 }
 
 .contacto{
-	font-family: "Arial Black", Gadget, sans-serif;
 	font-size: 36px;
 	letter-spacing: -0.2px;
 	word-spacing: 2.6px;
-	color: rgb(23, 46, 148);
+	color: var(--bs-ieee-bright-blue);
 	font-weight: 700;
 	text-decoration: none solid rgb(68, 68, 68);
 	font-style: normal;
@@ -99,9 +98,8 @@ mat-panel-title {
 
 .main-container {
   background: rgb(255, 255, 255);
-    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-    background-size: cover;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
   padding: 160px 10% 10%;
 }
 

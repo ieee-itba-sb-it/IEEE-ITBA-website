@@ -5,7 +5,7 @@
 
 .text-position {
   position: absolute;
-  top: 150px;
+  top: 125px;
   right: 40px;
   display: flex;
   flex-direction: column;
@@ -13,10 +13,10 @@
 }
 
 .text-on-image {
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   text-align: right;
   font-size: 1.2rem;
-  font-weight: 900;
+  font-weight: bold;
   color: rgba(255, 255, 255, 1);
   letter-spacing: 1px;
   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
@@ -72,9 +72,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #00629B;
-  font-size: 0.95em;
-  padding: 3px 10px 0 20px;
+  background-color: var(--bs-ieee-dark-orange);
+  padding: 3px 10px 2px 20px;
   text-align: right;
   gap: 5px;
   width: auto;

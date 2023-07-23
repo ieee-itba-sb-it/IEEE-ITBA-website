@@ -2,7 +2,7 @@
 <div class="row" style="height: 100%">
   <div class="mainFrame col-lg-8 col-md-6 col-12 h-100" style="padding-top: 160px">
     <div class="row d-flex flex-column h-75 align-items-center justify-content-center">
-      <mat-card class="d-flex flex-column align-items-center">
+      <mat-card class="d-flex flex-column align-items-center custom-width">
         <mat-card-header>
           <mat-card-title>
             {{ 'LOGIN.TITLE' | translate }}
@@ -30,9 +30,9 @@
             >
               {{ loginResponse.message | translate }}
             </h4>
-            <div class="row d-flex justify-content-center mt-3">
-              <h4>{{ 'LOGIN.NO_ACCOUNT' | translate }}</h4>
-              <a class="ml-2" href="/register">{{ 'LOGIN.SIGN_UP' | translate }}</a>
+            <div class="d-flex justify-content-center mt-3 gap-2">
+              <span class="mb-0">{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
+              <a class="font-weight-bolder" [routerLink]="['/register']">{{ 'LOGIN.SIGN_UP' | translate }}</a>
             </div>
           </form>
         </mat-card-content>
@@ -40,8 +40,8 @@
 
     </div>
   </div>
-  <div class="col-lg-4 col-md-6 h-100 w-100 d-none d-md-flex align-items-center justify-content-center mt-4 "
-       style="background-color: #00629B"
+  <div class="col-lg-4 col-md-6 h-100 d-none d-md-flex align-items-center justify-content-center mt-4 "
+       style="background-color: var(--bs-ieee-bright-blue)"
   >
     <img alt="itbot" src="../../../../assets/image/login/itbot.png" class="h-50" style="transform: scaleX(-1)"/>
   </div>

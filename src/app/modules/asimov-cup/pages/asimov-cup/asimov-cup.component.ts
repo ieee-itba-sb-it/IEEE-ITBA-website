@@ -87,10 +87,6 @@ export class AsimovCupComponent implements OnInit {
     this.enrollClosed = this.isOldDate(now, new Date('23 Jul 2023 03:00:00 UTC'));
     this.spectatorEnrollClosed = this.isOldDate(now, new Date('27 Jul 2023 03:00:00 UTC'));
     scroll(0, 0);
-
-    // Set navbar color
-    this.appConfigService.setNavbarColor('#862633');
-    this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
   }
 
   enrollAvailable() {
@@ -101,5 +97,9 @@ export class AsimovCupComponent implements OnInit {
     return this.enrollOpen && !this.spectatorEnrollClosed;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Set navbar color
+    this.appConfigService.setNavbarColor('#862633');
+    this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
+  }
 }

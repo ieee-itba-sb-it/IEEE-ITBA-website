@@ -3,7 +3,6 @@
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   padding: 160px 10% 3%;
 }
 /* Thick red border */
@@ -27,7 +26,7 @@ hr.new {
   }
 
 .page-title {
-    color: #0d47a1;
+    color: var(--bs-ieee-bright-blue);
 	font-size: 2.5em;
 }
 
@@ -66,8 +65,8 @@ hr.new {
 }
 
 .topbottomLine {
-    border-top:#0d47a1 2px solid;
-    border-bottom: #0d47a1 2px solid;
+    border-top:var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 
@@ -111,7 +110,7 @@ hr.new {
 }
 
 .subtitle{
-    color: #0d47a1;
+    color: var(--bs-ieee-bright-blue);
     font-weight: 500;
     font-size: 24px;
 }

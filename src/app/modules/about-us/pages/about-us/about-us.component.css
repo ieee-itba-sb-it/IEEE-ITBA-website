@@ -3,13 +3,13 @@
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   padding-top: 160px;
+  line-height: 1.5;
 }
 
 .topbottomLine {
-  border-top: #0d47a1 2px solid;
-  border-bottom: #0d47a1 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -41,13 +41,13 @@
 }
 
 .page-title {
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue);
   font-size: 2.5em;
   margin: 0.25em;
 }
 
 .bottomLine {
-  border-bottom: #0d47a1 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
   padding-bottom: 2em;
@@ -73,7 +73,6 @@
 }
 
 .section-title-text {
-  font-family: Calibri, sans-serif;
   text-align: left;
   font-weight: 600;
   /*
@@ -113,9 +112,9 @@
 .contact-us-button {
     font-size: large;
     font-weight: bolder;
-    border: 3px solid #00629b;
+    border: 3px solid var(--bs-ieee-bright-blue-80);
     padding: 0.7rem 1.3rem;
-    color: #00629b;
+    color: var(--bs-ieee-bright-blue-80);
     border-radius: 5px;
     background-color: inherit;
     transition: all 175ms ease-in-out;
@@ -124,30 +123,30 @@
 .our-team-button {
     font-size: large;
     font-weight: bolder;
-    border: 3px solid #00629b;
+    border: 3px solid var(--bs-ieee-bright-blue-80);
     padding: 0.7rem 1.3rem;
     color: white;
     border-radius: 5px;
-    background-color: #00629b;
+    background-color: var(--bs-ieee-bright-blue-80);
     transition: all 175ms ease-in-out;
 }
 
 .contact-us-button:hover {
     box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
     color: white !important;
-    background-color: #0d47a1;
+    background-color: var(--bs-ieee-bright-blue);
     border-color: white;
 }
 
 .our-team-button:hover {
     box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
     color: #E6E6E6 !important;
-    background-color: #0d47a1;
+    background-color: var(--bs-ieee-bright-blue);
     border-color: white;
 }
 
 .contact-us-button >.button-text {
-    color: #00629b;
+    color: var(--bs-ieee-bright-blue-80);
 }
 
 .contact-us-button:hover > .button-text {

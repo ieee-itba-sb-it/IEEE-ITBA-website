@@ -5,7 +5,6 @@
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   --ras-red: #862633;
   --ras-purple: #5f2167;
 }
@@ -13,7 +12,7 @@
 .bottomLine {
   padding-top: 10vmin;
   padding-bottom: 10vmin;
-  border-bottom: rgb(10, 27, 103) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }

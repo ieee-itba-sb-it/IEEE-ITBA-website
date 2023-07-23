@@ -6,7 +6,6 @@
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 #icons {
@@ -179,7 +178,6 @@ footer {
   position: relative;
   bottom: 10%;
   align-content: center;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   background: rgb(10,27,103);
   background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
   background-size: cover;
@@ -252,8 +250,8 @@ img {
   font-weight: 600;
   margin-top: 0.25rem;
   padding:  0.7rem 1rem 0.7rem 1rem;
-  border: solid rgb(23, 46, 148);
-  color: rgb(23, 46, 148) !important;
+  border: solid var(--bs-ieee-bright-blue);
+  color: var(--bs-ieee-bright-blue) !important;
   border-radius: 5px;
   background-color: inherit;
   border-width: 3px;
@@ -263,12 +261,12 @@ img {
 .goback-button:hover {
   box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
   color: white !important;
-  background-color: #0d47a1;
+  background-color: var(--bs-ieee-bright-blue);
   border-color: white;
 }
 
 .goback-button >.button-text {
-  color: rgb(23, 46, 148) !important;
+  color: var(--bs-ieee-bright-blue) !important;
 }
 .goback-button:hover > .button-text{
   color: white !important;
@@ -281,12 +279,12 @@ img {
 .course-title {
   font-size: calc(1.5vw + 1rem);
   font-weight: 400;
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue-80);
   letter-spacing: 1px;
 }
 .course-subtitle {
   font-size: calc(0.7vw + 0.7rem);
-  color: rgba(13, 71, 161, 0.8);
+  color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
 }

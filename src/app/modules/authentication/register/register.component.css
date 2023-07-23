@@ -31,11 +31,11 @@ a{
 }
 
 a:any-link{
-  color: rgb(20, 82, 255);
+  color: var(--bs-ieee-dark-orange-80);
 }
 
 a:hover{
-  color: rgb(98, 136, 238);
+  color: var(--bs-ieee-dark-orange);
 }
 
 .mainFrame {
@@ -55,7 +55,6 @@ input {
 
 .login-button {
   width: 100%;
-  background-color: #00629B;
   font-size: 1.4em;
 }
 
@@ -70,28 +69,13 @@ input {
 }
 
 .topbottomLine {
-  border-top:#0d47a1 2px solid;
-  border-bottom: #0d47a1 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
 
 .page-title {
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue);
   font-size: 2.5em
-}
-
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color:  #0d47a1 !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  /*change color of underline*/
-  background-color:  #0d47a1 !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color:  #0d47a1 !important;;
 }

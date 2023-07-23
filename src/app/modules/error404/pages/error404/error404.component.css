@@ -21,7 +21,7 @@
 
 .error-code {
   font-size: 6em;
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue);
 }
 
 .page-title {
@@ -40,7 +40,7 @@
   border: #4B5563 2px solid;
   border-radius: 1.5em;
   color: whitesmoke;
-  background-color: #0d47a1;
+  background-color: var(--bs-ieee-bright-blue);
   transition: all ease 0.5s;
 }
 
