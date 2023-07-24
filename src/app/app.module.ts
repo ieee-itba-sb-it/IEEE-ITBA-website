@@ -10,7 +10,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { firebaseProdConfig } from './secrets';
+import { firebaseConfig } from './secrets';
 import { environment } from '../environments/environment';
 
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
@@ -63,7 +63,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       defaultLanguage: 'es'
     }),
-    AngularFireModule.initializeApp(firebaseProdConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
