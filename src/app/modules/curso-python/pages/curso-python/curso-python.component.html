@@ -12,7 +12,7 @@
   <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
       <button class="goback-button">
-        <a href="{{ enrollLink }}" class="button-text">
+        <a href="{{ enrollLink }}" class="button-text text-decoration-none">
           {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
       </button>
     </div>
@@ -34,35 +34,33 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
-          <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
-            <a
-              href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_1_Introducción_a_la_Programación_con_Python.ipynb">{{
-              'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-              1
-            </a>
-          </ng-template>
-          <ng-template #class1Closed>
-            {{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1
-          </ng-template>
+          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1</b>
         </mat-card-title>
         <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
-      <mat-card-content>
-        {{ 'PYTHONCOURSES.CLASSES.C1' | translate }}
+      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</span>
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-        <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="solutions1Closed">
-          <a
-            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_1_Curso_Introductorio_de_Python.ipynb">
-            <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
-              }}</button>
-          </a>
-        </ng-template>
-        <ng-template #solutions1Closed>
-          <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
-            'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
-        </ng-template>
+        <a
+          [href]="week1ContentOpen ? week1ContentLink : ''"
+          (click)="check($event, week1ContentOpen)"
+          [class.disabled]="!week1ContentOpen ? true : null"
+        >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week1ContentOpen">
+            {{ 'PYTHONCOURSES.CONTENTBUTTON' | translate }}
+          </button>
+        </a>
+        <a
+          [href]="week2ContentOpen ? week1SolutionsLink : ''"
+          (click)="check($event, week2ContentOpen)"
+          [class.disabled]="!week2ContentOpen ? true : null"
+        >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week2ContentOpen">
+            {{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}
+          </button>
+        </a>
       </mat-card-actions>
     </mat-card>
 
@@ -71,35 +69,33 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
-          <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
-            <a
-              href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_2_Introducción_a_la_Programación_con_Python.ipynb">{{
-              'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-              2
-            </a>
-          </ng-template>
-          <ng-template #class2Closed>
-            {{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2
-          </ng-template>
+          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2</b>
         </mat-card-title>
         <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
-      <mat-card-content>
-        {{ 'PYTHONCOURSES.CLASSES.C2' | translate }}
+      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</span>
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-        <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="solutions2Closed">
-          <a
-            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb">
-            <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
-              }}</button>
-          </a>
-        </ng-template>
-        <ng-template #solutions2Closed>
-          <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
-            'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
-        </ng-template>
+        <a
+          [href]="week2ContentOpen ? week2ContentLink : ''"
+          (click)="check($event, week2ContentOpen)"
+          [class.disabled]="!week2ContentOpen ? true : null"
+        >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week2ContentOpen">
+            {{ 'PYTHONCOURSES.CONTENTBUTTON' | translate }}
+          </button>
+        </a>
+        <a
+          [href]="week3ContentOpen ? week2SolutionsLink : ''"
+          (click)="check($event, week3ContentOpen)"
+          [class.disabled]="!week3ContentOpen ? true : null"
+        >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week3ContentOpen">
+            {{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}
+          </button>
+        </a>
       </mat-card-actions>
     </mat-card>
 
@@ -108,35 +104,33 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
-          <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="class3Closed">
-            <a
-              href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Clases/Clase_3_Introducción_a_la_Programación_con_Python.ipynb">{{
-              'PYTHONCOURSES.CLASSES.TITLE' | translate }}
-              3
-            </a>
-          </ng-template>
-          <ng-template #class3Closed>
-            {{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3
-          </ng-template>
+          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3</b>
         </mat-card-title>
         <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE3' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
-      <mat-card-content>
-        {{ 'PYTHONCOURSES.CLASSES.C3' | translate }}
+      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</span>
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
-        <ng-template [ngIf]="week4ContentOpen" [ngIfElse]="solutions3Closed">
-          <a
-            href="https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb">
-            <button mat-raised-button class="ieeecard-button">{{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate
-              }}</button>
-          </a>
-        </ng-template>
-        <ng-template #solutions3Closed>
-          <button mat-raised-button disabled class="ieeecard-button button-disabled">{{
-            'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}</button>
-        </ng-template>
+        <a
+          [href]="week3ContentOpen ? week3ContentLink : ''"
+          (click)="check($event, week3ContentOpen)"
+          [class.disabled]="!week3ContentOpen ? true : null"
+          >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week3ContentOpen">
+            {{ 'PYTHONCOURSES.CONTENTBUTTON' | translate }}
+          </button>
+        </a>
+        <a
+          [href]="week4ContentOpen ? week3SolutionsLink : ''"
+          (click)="check($event, week4ContentOpen)"
+          [class.disabled]="!week4ContentOpen ? true : null"
+        >
+          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!week4ContentOpen">
+            {{ 'PYTHONCOURSES.SOLUTIONBUTTON' | translate }}
+          </button>
+        </a>
       </mat-card-actions>
     </mat-card>
 
@@ -194,7 +188,7 @@
       <mat-expansion-panel class="mat-elevation-z0"
                            *ngFor="let question of ('PYTHONCOURSES.FAQ.QUESTIONS' | translate)">
         <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-          <mat-panel-title class="faq-question mt-1 mb-1">
+          <mat-panel-title class="faq-question my-2">
             {{ question.QUESTION }}
           </mat-panel-title>
         </mat-expansion-panel-header>

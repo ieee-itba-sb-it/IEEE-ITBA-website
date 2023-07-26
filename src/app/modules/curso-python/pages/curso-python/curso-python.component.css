@@ -30,10 +30,8 @@
 
 p {
   color: rgb(0, 0, 0);
-  margin-top: 3vmin;
-  margin-bottom: 3vmin;
   background: rgba(245, 245, 245, 0.2);
-  padding: 3vmin;
+  padding: 2vmin 3vmin;
   border-radius: 5vmin;
   text-align: justify;
   font-size: 1.1rem;
@@ -64,10 +62,15 @@ h1 {
 .topbottomLine {
     padding-top: 2vmin;
     padding-bottom: 2vmin;
-    border-top: whitesmoke 2px solid;
-    border-bottom: whitesmoke 2px solid;
+    border-top: var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
+}
+
+.card-content {
+    text-align: justify;
+    font-size: 1.2em;
 }
 
 
@@ -214,12 +217,12 @@ img {
 
 
 .goback-button {
-    font-size: calc(0.5vw + 0.5rem);
+    font-size: calc(0.5vw + 0.6rem);
     font-weight: 600;
     margin-top: 0.25rem;
     padding:  0.7rem 1rem 0.7rem 1rem;
     border: solid var(--bs-ieee-bright-blue);
-    color: rgb(23, 46, 148) !important;
+    color: var(--bs-ieee-bright-blue) !important;
     border-radius: 5px;
     background-color: inherit;
     border-width: 3px;
@@ -253,6 +256,8 @@ img {
 }
 
 .ieeecard-button {
+    font-size: 1.2em;
+    padding: 0.4em 0.7em;
     font-weight: 600;
     margin-top: 0.25rem;
     border: solid var(--bs-ieee-bright-blue);
@@ -262,16 +267,18 @@ img {
     border-width: 3px;
     transition: all 175ms ease-in-out;
   }
+
 .ieeecard-button:hover {
     box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
     color: white !important;
     background-color: var(--bs-ieee-bright-blue);
     border-color: white;
   }
-.button-disabled{
-    background-color: lightgrey;
-    border: solid gray;
-    color: gray !important;
+
+.ieeecard-button:disabled {
+  background-color: lightgrey;
+  border: solid gray;
+  color: gray !important;
 }
 
 .no-shadow {
