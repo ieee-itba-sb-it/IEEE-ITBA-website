@@ -84,7 +84,7 @@ export class AsimovCupComponent implements OnInit {
 
     const now = Timestamp.now();
     this.enrollOpen = this.isOldDate(now, new Date('10 Jun 2023 03:00:00 UTC'));
-    this.enrollClosed = this.isOldDate(now, new Date('23 Jul 2023 03:00:00 UTC'));
+    this.enrollClosed = this.isOldDate(now, new Date('27 Jul 2023 03:00:00 UTC'));
     this.spectatorEnrollClosed = this.isOldDate(now, new Date('27 Jul 2023 03:00:00 UTC'));
     scroll(0, 0);
   }
