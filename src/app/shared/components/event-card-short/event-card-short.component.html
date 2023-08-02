@@ -1,0 +1,29 @@
+<a [routerLink]="[event.routerLink]">
+  <mat-card class="event-card">
+    <div class="image-with-text">
+      <img
+        src="{{ event.imageSrc }}"
+        alt="{{ event.imageAlt }}"
+        class="event-card-img"
+        [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}"
+      />
+      <div class="text-position">
+        <div *ngIf="event.dates[0].date != null" class="date-inner-container">
+          <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
+          {{ capitalizeFirstLetter(event.dates[0].date.toLocaleString(locale(), { month: 'long' })) }}
+        </div>
+        <p class="text-on-image">
+          {{ event.titleCode | translate }}
+        </p>
+      </div>
+
+    </div>
+  </mat-card>
+</a>
+
+<!--
+
+      <p class="text-on-image">
+
+      </p>
+-->

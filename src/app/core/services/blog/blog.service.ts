@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+// import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import {map} from 'rxjs/operators';
 import Timestamp = firebase.firestore.Timestamp;
 
 /* This file make interface with databe to get blog data */
 
+// TODO: refactor
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +20,7 @@ export class BlogService {
   // ----------Variables----------
   blogData: BehaviorSubject<NewsItem[]> = new BehaviorSubject([]);
   docData: BehaviorSubject<{}> = new BehaviorSubject({});
+  docsTags: BehaviorSubject<[]> = new BehaviorSubject([]);
   collectionName: string;
 
   docsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -40,15 +43,18 @@ export class BlogService {
   // Delete doc from setted collection
   deleteDoc(name: string) {
     const call = new BehaviorSubject<boolean>(false);
-    this.afs.collection(this.collectionName).doc(name).delete().then(data => {
-      call.next(true);
-      // TODO: Test this
-      this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
-        count: firebase.firestore.FieldValue.increment(-1),
-        extra: {
-          listedCount: firebase.firestore.FieldValue.increment(-1)
-        }
-      });
+    const toDeleteDoc = this.afs.collection(this.collectionName).doc(name);
+    toDeleteDoc.get().subscribe(snapshot => {
+      if (snapshot.exists) {
+        toDeleteDoc.delete().then(async () => {
+          await this.afs.collection(metadataCollectionName).doc(this.collectionName).update({
+            count: firebase.firestore.FieldValue.increment(-1),
+            'extra.listedCount': (snapshot.data() as NewsItem).listed ?
+              firebase.firestore.FieldValue.increment(-1) : firebase.firestore.FieldValue.increment(0),
+          });
+          call.next(true);
+        });
+      }
     });
     return call.asObservable();
   }
@@ -60,7 +66,7 @@ export class BlogService {
 
       for (const blogEntry in data.docs) {
         if (data.docs.hasOwnProperty(blogEntry)) {
-          const doc = data.docs[blogEntry].data();
+          const doc = data.docs[blogEntry].data() as NewsItem;
           // Add the next blog item
           ans.push(
             createNewsItem(
@@ -68,6 +74,7 @@ export class BlogService {
               doc.content,
               doc.shortIntro,
               doc.imageUrl,
+              // @ts-ignore
               doc.date,
               doc.author,
               doc.imageText,
@@ -123,14 +130,24 @@ export class BlogService {
 
 retrieveDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
       this.docsSize.next(doc.data().count);
     });
   }
 
   retrieveListedDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
       this.listedDocsSize.next(doc.data().extra.listedCount);
     });
+  }
+
+  getDocsTagsAsObservable() {
+    this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
+      // @ts-ignore
+      this.docsTags.next(doc.data().extra.tags);
+    });
+    return this.docsTags.asObservable();
   }
 
   private getDocsPage(collection: AngularFirestoreCollection){
@@ -190,15 +207,26 @@ retrieveDocsSize() {
     this.getDocsPage(collection);
   }
 
-  // Sets a doc inside a collection
+  // Sets a doc inside a collection and updates metadata
   setDoc(content: NewsItem) {
     const call = new BehaviorSubject<boolean>(false);
-
-    this.afs.collection(this.collectionName).doc(content.reference).set(content).then(data => {
+    const document = this.afs.collection(this.collectionName).doc(content.reference);
+    document.get().subscribe(async (snapshot) => {
+      const metadataDoc = this.afs.collection(metadataCollectionName).doc(this.collectionName);
+      const parallelPromises = [document.set(content)];
+      if (!snapshot.exists) {
+        parallelPromises.push(metadataDoc.update({
+          count: firebase.firestore.FieldValue.increment(1),
+          'extra.listedCount': firebase.firestore.FieldValue.increment(content.listed ? 1 : 0)
+        }));
+      } else {
+        parallelPromises.push(metadataDoc.update({
+          'extra.listedCount': firebase.firestore.FieldValue.increment(content.listed ? 1 : -1)
+        }));
+      }
+      await Promise.all(parallelPromises);
       call.next(true);
-    }
-    );
-
+    });
 
     return call.asObservable();
   }
@@ -208,7 +236,7 @@ retrieveDocsSize() {
     const ans: BehaviorSubject<NewsItem> = new BehaviorSubject(null);
 
     this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
-      const doc = data.data();
+      const doc = data.data() as NewsItem;
 
       ans.next(
         createNewsItem(
@@ -216,6 +244,7 @@ retrieveDocsSize() {
           doc.content,
           doc.shortIntro,
           doc.imageUrl,
+          // @ts-ignore
           doc.date,
           doc.author,
           doc.imageText,

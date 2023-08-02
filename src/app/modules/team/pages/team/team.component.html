@@ -1,39 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team</title>
-</head>
-
-<header>
-    <app-navbar></app-navbar>
-</header>
-
-<body>
-    <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
-                    <img src="../../../../../assets/image/section-icons/IEEETeams-small.png" alt="Team" class="IEEETeamImage">
-                </div>
-                <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
-                    <h1 class="page-title">{{ 'NAVBAR.TEAM' | translate }}</h1>
-                </div>
-            </div>
+<div class="main-container">
+  <div class="topbottomLine pt-2 pb-2 mb-4 text-center" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 pt-1 pb-1 flexImage">
+          <img src="../../../../../assets/image/section-icons/IEEETeams-small.png" alt="Team" class="IEEETeamImage">
         </div>
+        <div class="col-md-7 col-sm-12 pt-1 pb-1 flexText">
+          <h1 class="page-title">{{ 'NAVBAR.TEAM' | translate }}</h1>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="mt-5 mr-5 ml-5">
-      <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0">
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-team-card [team]="commission.team"></app-team-card>
-      </mat-expansion-panel>
-    </div>
-    <app-footer></app-footer>
-</body>
-
-</html>
+  <div class="mt-5 mr-5 ml-5">
+    <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-team-card [team]="commission.team"></app-team-card>
+    </mat-expansion-panel>
+  </div>
+</div>

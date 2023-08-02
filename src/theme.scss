@@ -1,0 +1,228 @@
+/* Angular Material */
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+$ieee-blue: (
+  50: rgb(204, 224, 235),
+  100: rgb(204, 224, 235),
+  200: rgb(153, 192, 215),
+  300: rgb(153, 192, 215),
+  400: rgb(102, 161, 195),
+  500: rgb(102, 161, 195),
+  600: rgb(51, 129, 175),
+  700: rgb(51, 129, 175),
+  800: rgb(0, 98, 155),
+  900: rgb(0, 98, 155),
+  contrast : (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+  )
+);
+
+$ieee-orange: (
+  50: rgb(249, 237, 204),
+  100: rgb(249, 237, 204),
+  200: rgb(243, 218, 153),
+  300: rgb(243, 218, 153),
+  400: rgb(237, 200, 102),
+  500: rgb(237, 200, 102),
+  600: rgb(231, 181, 51),
+  700: rgb(231, 181, 51),
+  800: rgb(225, 163, 0),
+  900: rgb(225, 163, 0),
+  contrast : (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+  )
+);
+
+$ieee-red: (
+  50: rgb(241, 206, 213),
+  100: rgb(241, 206, 213),
+  200: rgb(227, 158, 172),
+  300: rgb(227, 158, 172),
+  400: rgb(214, 109, 130),
+  500: rgb(214, 109, 130),
+  600: rgb(200, 61, 89),
+  700: rgb(200, 61, 89),
+  800: rgb(186, 12, 47),
+  900: rgb(186, 12, 47),
+  contrast : (
+    50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+  )
+);
+
+$my-primary: mat-palette($ieee-blue, 700);
+$my-accent: mat-palette($ieee-orange, 900);
+$my-warn: mat-palette($ieee-red, 900);
+
+$my-theme: mat-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  density: 0,
+));
+
+// Include on mat-config
+$custom-typography: mat-typography-config(
+  $font-family:   'Open sans, "Helvetica Neue", sans-serif',
+);
+
+@include angular-material-typography($custom-typography);
+@include angular-material-theme($my-theme);
+
+/* Bootstrap */
+@import "../node_modules/bootstrap/scss/functions";
+
+$primary: rgb(0, 98, 155);
+$warning: rgb(232, 119, 34);
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+// Create your own map
+$custom-colors: (
+  // Bright blue
+  "ieee-bright-blue": rgb(0, 98, 155),
+  "ieee-bright-blue-80": rgb(51, 129, 175),
+  "ieee-bright-blue-60": rgb(102, 161, 195),
+  "ieee-bright-blue-40": rgb(153, 192, 215),
+  "ieee-bright-blue-20": rgb(204, 224, 235),
+  // Bright orange
+  "ieee-bright-orange": rgb(225, 163, 0),
+  "ieee-bright-orange-80": rgb(231, 181, 51),
+  "ieee-bright-orange-60": rgb(237, 200, 102),
+  "ieee-bright-orange-40": rgb(243, 218, 153),
+  "ieee-bright-orange-20": rgb(249, 237, 204),
+  // Bright yellow
+  "ieee-bright-yellow": rgb(255, 209, 0),
+  "ieee-bright-yellow-80": rgb(255, 218, 51),
+  "ieee-bright-yellow-60": rgb(255, 227, 102),
+  "ieee-bright-yellow-40": rgb(255, 237, 153),
+  "ieee-bright-yellow-20": rgb(255, 246, 204),
+  // Bright green
+  "ieee-bright-green": rgb(120, 190, 32),
+  "ieee-bright-green-80": rgb(147, 203, 77),
+  "ieee-bright-green-60": rgb(174, 216, 121),
+  "ieee-bright-green-40": rgb(201, 229, 166),
+  "ieee-bright-green-20": rgb(228, 242, 210),
+  // Bright darker green
+  "ieee-bright-darker-green": rgb(0, 132, 61),
+  "ieee-bright-darker-green-80": rgb(51, 157, 100),
+  "ieee-bright-darker-green-60": rgb(102, 181, 139),
+  "ieee-bright-darker-green-40": rgb(153, 206, 177),
+  "ieee-bright-darker-green-20": rgb(204, 230, 216),
+  // Bright red
+  "ieee-bright-red": rgb(186, 12, 47),
+  "ieee-bright-red-80": rgb(200, 61, 89),
+  "ieee-bright-red-60": rgb(214, 109, 130),
+  "ieee-bright-red-40": rgb(227, 158, 172),
+  "ieee-bright-red-20": rgb(241, 206, 213),
+  // Bright purple
+  "ieee-bright-purple": rgb(152, 29, 151),
+  "ieee-bright-purple-80": rgb(173, 74, 172),
+  "ieee-bright-purple-60": rgb(193, 119, 193),
+  "ieee-bright-purple-40": rgb(214, 165, 213),
+  "ieee-bright-purple-20": rgb(234, 210, 234),
+  // Bright darker cyan
+  "ieee-bright-darker-cyan": rgb(0, 156, 166),
+  "ieee-bright-darker-cyan-80": rgb(51, 176, 184),
+  "ieee-bright-darker-cyan-60": rgb(102, 196, 202),
+  "ieee-bright-darker-cyan-40": rgb(153, 215, 219),
+  "ieee-bright-darker-cyan-20": rgb(204, 235, 237),
+  // Bright cyan
+  "ieee-bright-cyan": rgb(0, 181, 226),
+  "ieee-bright-cyan-80": rgb(51, 196, 232),
+  "ieee-bright-cyan-60": rgb(102, 211, 238),
+  "ieee-bright-cyan-40": rgb(153, 225, 243),
+  "ieee-bright-cyan-20": rgb(204, 240, 249),
+  // Dark blue
+  "ieee-dark-blue": rgb(0, 40, 85),
+  "ieee-dark-blue-80": rgb(51, 83, 119),
+  "ieee-dark-blue-60": rgb(102, 126, 153),
+  "ieee-dark-blue-40": rgb(153, 169, 187),
+  "ieee-dark-blue-20": rgb(204, 212, 221),
+  // Dark orange
+  "ieee-dark-orange": rgb(232, 119, 34),
+  "ieee-dark-orange-80": rgb(237, 146, 78),
+  "ieee-dark-orange-60": rgb(241, 173, 122),
+  "ieee-dark-orange-40": rgb(246, 201, 167),
+  "ieee-dark-orange-20": rgb(250, 228, 211),
+  // Dark yellow
+  "ieee-dark-yellow": rgb(255, 199, 44),
+  "ieee-dark-yellow-80": rgb(255, 210, 86),
+  "ieee-dark-yellow-60": rgb(255, 221, 128),
+  "ieee-dark-yellow-40": rgb(255, 233, 171),
+  "ieee-dark-yellow-20": rgb(255, 244, 213),
+  // Dark green
+  "ieee-dark-green": rgb(101, 141, 27),
+  "ieee-dark-green-80": rgb(132, 164, 73),
+  "ieee-dark-green-60": rgb(163, 187, 118),
+  "ieee-dark-green-40": rgb(193, 209, 164),
+  "ieee-dark-green-20": rgb(224, 232, 209),
+  // Dark darker green
+  "ieee-dark-darker-green": rgb(0, 99, 65),
+  "ieee-dark-darker-green-80": rgb(51, 130, 103),
+  "ieee-dark-darker-green-60": rgb(102, 161, 141),
+  "ieee-dark-darker-green-40": rgb(153, 193, 179),
+  "ieee-dark-darker-green-20": rgb(204, 224, 217),
+  // Dark red
+  "ieee-dark-red": rgb(134, 31, 65),
+  "ieee-dark-red-80": rgb(158, 76, 103),
+  "ieee-dark-red-60": rgb(182, 121, 141),
+  "ieee-dark-red-40": rgb(207, 165, 179),
+  "ieee-dark-red-20": rgb(231, 210, 217),
+  // Dark purple
+  "ieee-dark-purple": rgb(119, 37, 131),
+  "ieee-dark-purple-80": rgb(146, 81, 156),
+  "ieee-dark-purple-60": rgb(173, 124, 181),
+  "ieee-dark-purple-40": rgb(201, 168, 205),
+  "ieee-dark-purple-20": rgb(228, 211, 230),
+  // Dark cyan
+  "ieee-dark-cyan": rgb(0, 115, 119),
+  "ieee-dark-cyan-80": rgb(51, 143, 146),
+  "ieee-dark-cyan-60": rgb(102, 171, 173),
+  "ieee-dark-cyan-40": rgb(153, 199, 201),
+  "ieee-dark-cyan-20": rgb(204, 227, 228),
+  // Dark gray
+  "ieee-dark-gray": rgb(117, 120, 123),
+  "ieee-dark-gray-80": rgb(145, 147, 149),
+  "ieee-dark-gray-60": rgb(172, 174, 176),
+  "ieee-dark-gray-40": rgb(200, 201, 202),
+  "ieee-dark-gray-20": rgb(227, 228, 229),
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+

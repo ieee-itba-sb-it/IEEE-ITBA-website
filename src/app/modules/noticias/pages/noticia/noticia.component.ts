@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
@@ -90,6 +90,7 @@ export class NoticiaComponent implements OnInit {
       this.blogService.incrementRating(this.data, rating);
       this.isVisbile = true;
       this.emojisVisible = false;
+      this.cookieValue = emoji;
     }
   }
 

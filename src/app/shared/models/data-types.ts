@@ -1,5 +1,5 @@
-import { firestore } from 'firebase/app';
-import Timestamp = firestore.Timestamp;
+import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 import { IEEEuser } from './ieee-user/ieee-user';
 import { roles } from './roles/roles.enum';
@@ -41,3 +41,8 @@ export function createRegularUser(fname: string, lname: string, email: string, p
     newUser = { fname, lname, email, photoURL, uID, role };
     return newUser;
 }
+
+export type ApiResponse = {
+  success: boolean;
+  message: string;
+};

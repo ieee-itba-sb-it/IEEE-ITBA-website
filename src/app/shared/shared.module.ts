@@ -7,7 +7,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {FooterComponent} from './components/footer/footer.component';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpLoaderFactory} from '../app.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
@@ -24,7 +23,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {CustomMissingTranslationHandler} from './CustomMissingTranslationHandler';
 import {IndividualCardComponent} from './components/individual-card/individual-card.component';
 import {TeamCardComponent} from './components/team-card/team-card.component';
+import {EventCardShortComponent} from './components/event-card-short/event-card-short.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 import {ResizeDirective} from './directives/resize.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {HttpLoaderFactory} from './translation-helpers';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -33,7 +37,8 @@ export const routing = RouterModule.forChild(routes);
 
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective ],
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+    TeamCardComponent, ResizeDirective, EventCardShortComponent ],
   imports: [
     routing,
     CommonModule,
@@ -51,9 +56,13 @@ export const routing = RouterModule.forChild(routes);
     MatMenuModule,
     MatButtonToggleModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent, TeamCardComponent, ResizeDirective]
+    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+    TeamCardComponent, ResizeDirective, EventCardShortComponent]
 })
 export class SharedModule { }

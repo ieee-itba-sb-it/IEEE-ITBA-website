@@ -1,76 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcup</title>
-</head>
-<header>
-  <app-navbar></app-navbar>
-</header>
-
-<body>
-
-    <!-- Inicio and facts -->
-    <div class="bottomLine" id="home">
-        <img src="../../../../../assets/image/events/bitcup/bitcup.png" class="extremeLogo" alt="Logo ITBA-IEEE">
-    </div>
-
-    <!-- bitcup -->
-    <div class="bottomLine">
-        <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                <h2>{{ 'BITCUP.BITCUP-TITLE' | translate }}</h2>
-                <div class="transparent">{{ 'BITCUP.BITCUP-TEXT' | translate }}</div>
-              </div>
-              <div class="col-sm">
-                <img src="../../../../../assets/image/logos/data.png" height="180vmin" alt="Logo ITBA-IEEE">
-              </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- formato -->
-    <div class="bottomLine" id="takepart">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <img src="../../../../../assets/image/events/bitcup/competencia.png" height="200vmin" alt="Logo ITBA-IEEE">
-                </div>
-              <div class="col-sm">
-                <h2>{{ 'BITCUP.FORMAT' | translate }}</h2>
-                <div class="transparent">{{ 'BITCUP.FORMAT-TEXT' | translate }}</div>
-              </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- nivel -->
-    <div class="bottomLine">
-      <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <h2>{{ 'BITCUP.LEVEL' | translate }}</h2>
-              <div class="transparent">{{ 'BITCUP.LEVEL-TEXT' | translate }}</div>
-            </div>
-            <div class="col-sm">
-              <img src="../../../../../assets/image/events/bitcup/level.png" height="200vmin" alt="Logo ITBA-IEEE">
-            </div>
-          </div>
-      </div>
+<div class="main-container">
+  <div class="bottomLine" id="home">
+    <img src="../../../../../assets/image/events/bitcup/bitcup.png" class="extremeLogo" alt="Logo ITBA-IEEE">
   </div>
 
-    <!-- Sponsors -->
-
-    <div class="noLine" id="sponsorship">
-      <h1>{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h1>
-      <br>
-      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getBitCupSponsors()"></app-sponsor-component>
+  <!-- bitcup -->
+  <div class="bottomLine">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h2>{{ 'BITCUP.BITCUP-TITLE' | translate }}</h2>
+          <div class="transparent">{{ 'BITCUP.BITCUP-TEXT' | translate }}</div>
+        </div>
+        <div class="col-sm">
+          <img src="../../../../../assets/image/logos/data.png" height="180vmin" alt="Logo ITBA-IEEE">
+        </div>
+      </div>
     </div>
+  </div>
 
+  <!-- formato -->
+  <div class="bottomLine" id="takepart">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <img src="../../../../../assets/image/events/bitcup/competencia.png" height="200vmin" alt="Logo ITBA-IEEE">
+        </div>
+        <div class="col-sm">
+          <h2>{{ 'BITCUP.FORMAT' | translate }}</h2>
+          <div class="transparent">{{ 'BITCUP.FORMAT-TEXT' | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</body>
-<app-footer></app-footer>
-</html>
+  <!-- nivel -->
+  <div class="bottomLine">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h2>{{ 'BITCUP.LEVEL' | translate }}</h2>
+          <div class="transparent">{{ 'BITCUP.LEVEL-TEXT' | translate }}</div>
+        </div>
+        <div class="col-sm">
+          <img src="../../../../../assets/image/events/bitcup/level.png" height="200vmin" alt="Logo ITBA-IEEE">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sponsors -->
+
+  <div class="noLine" id="sponsorship">
+    <h1>{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h1>
+    <br>
+    <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getBitCupSponsors()"></app-sponsor-component>
+  </div>
+
+</div>

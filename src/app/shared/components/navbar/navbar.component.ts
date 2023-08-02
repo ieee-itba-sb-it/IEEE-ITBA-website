@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, AfterViewInit} from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit, Input } from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
 import { PageScrollService } from 'ngx-page-scroll-core';
@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 import { IEEEuser } from '../../models/ieee-user/ieee-user';
 import { roles } from '../../models/roles/roles.enum';
 
-import {UserService} from '../../../core/services/user/user.service';
+import { UserService } from '../../../core/services/user/user.service';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -17,18 +18,19 @@ import {UserService} from '../../../core/services/user/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
-
+  @Input() bgColor: string;
   user: Observable<IEEEuser>;
-  logguedIn = false;
+  loggedIn = false;
   journalist = false;
   language: string;
-
+  color: string;
+  loadingUser = true;
   languageService: TranslateService;
 
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,
-              private authService: AuthService, private userService: UserService) {
+    private authService: AuthService, private userService: UserService) {
     this.language = translate.currentLang;
   }
 
@@ -49,20 +51,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     // Load name
     this.user = this.authService.getCurrentUser();
-    this.user.subscribe( async (usuario: IEEEuser) => {
-
-      if (usuario){
-        document.getElementById('account').innerText = ' Welcome back, ' + usuario.fname;
-        this.logguedIn = true;
+    this.user.pipe(skip(1)).subscribe(async (usuario: IEEEuser) => {
+      if (usuario) {
+        this.loggedIn = true;
         const aux: number = await this.userService.getCurrentUserRole(usuario.email);
-        if (this.newsRoles.includes(aux)){
+        if (this.newsRoles.includes(aux)) {
           this.journalist = true;
         }
       }
       else {
-        document.getElementById('account').innerText = ' Log In';
+        this.loggedIn = false;
       }
-
+      this.loadingUser = false;
     });
   }
 
@@ -74,23 +74,23 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  hasEnglishLanguage(){
+  hasEnglishLanguage() {
     return this.language === 'en';
   }
 
-  hasSpanishLanguage(){
+  hasSpanishLanguage() {
     return this.language === 'es';
   }
 
   // Scroll
-  scrollTo(target: string){
+  scrollTo(target: string) {
     this.pageScrollService.scroll({
       document: this.document,
       scrollTarget: target,
     });
   }
 
-  logoutUser(){
+  logoutUser() {
     this.authService.logout();
     window.location.reload();
   }

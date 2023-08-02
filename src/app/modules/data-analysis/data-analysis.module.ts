@@ -7,12 +7,12 @@ import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpLoaderFactory} from '../../app.module';
 import {HttpClient} from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
+import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
   { path: '',  component: DataAnalysisComponent }

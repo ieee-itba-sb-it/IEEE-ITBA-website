@@ -1,0 +1,182 @@
+.wie-purple-logo {
+    filter: brightness(0) saturate(100%) invert(19%) sepia(48%) saturate(2798%) hue-rotate(264deg) brightness(95%) contrast(88%);
+    width:20rem;
+    object-fit: contain;
+}
+
+.main-container {
+  padding: 5% 10% 0%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  --wie-purple: #702f8a;
+  --wie-dark-purple: #451754;
+}
+
+.bottomLine {
+padding-top: 5vmin;
+padding-bottom: 3vmin;
+border-bottom: var(--bs-ieee-bright-blue) 2px solid;
+vertical-align: middle;
+align-content: center;
+}
+.topLine {
+padding-top: 5vmin;
+padding-bottom: 5vmin;
+border-top: whitesmoke 2px solid;
+vertical-align: middle;
+align-content: center;
+}
+
+.noLine {
+padding-top: 5vmin;
+padding-bottom: 5vmin;
+vertical-align: middle;
+align-content: center;
+}
+
+.text-container {
+font-size: 1.1rem;
+text-align: left;
+}
+
+.row-eq-height {
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+justify-content: center;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--wie-purple);
+}
+
+.container {
+display: flex;
+justify-content: space-evenly;
+align-items: stretch;
+margin-bottom: 5rem;
+}
+
+.titleRow {
+margin-top: 2.5rem;
+margin-bottom: 2rem;
+color: var(--wie-purple);
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.title {
+margin: auto 0 auto 0;
+font-weight: 600;
+font-size: 3rem;
+}
+
+.subtitle {
+color: var(--wie-purple);
+text-align: center;
+font-weight: 500;
+font-size: 1.5rem;
+}
+
+.card-listing {
+display: grid;
+justify-content: center;
+align-content: center;
+gap: 2rem;
+padding: 0;
+list-style: none;
+}
+
+.faq-accordion {
+    margin-top: 1.5rem;
+}
+.faq-panel {
+    height:max-content;
+}
+.faq-question {
+    font-size: 1rem;
+}
+.faq-answer {
+    font-size: larger;
+    margin-top: 1rem;
+}
+
+@media (max-width: 770px) {
+.container {
+    align-items: center;
+    flex-direction: column;
+}
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    color:rgb(23, 46, 148);
+}
+
+mat-expansion-panel {
+    background-color: transparent;
+    margin-top: 1.5vmin;
+}
+
+mat-expansion-panel-header {
+    border: var(--wie-purple) 1px solid;
+    border-radius: 5vmin;
+}
+
+mat-panel-description {
+    text-align: right;
+}
+
+mat-panel-title {
+    color:black;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.buttons-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttons-display>div>a {
+    flex: 1 1;
+    padding: 2rem;
+    margin: 0 1rem;
+    font-size: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.buttons-display>div {
+    display: flex;
+    flex-grow: 1;
+    max-width: 48rem;
+}
+
+.buttons-display>div>a:hover {
+    background-color: var(--wie-purple);
+}
+
+.contact-link {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--wie-purple);
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-link:hover {
+background-color: var(--wie-dark-purple);
+}

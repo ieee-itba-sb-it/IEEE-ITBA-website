@@ -1,28 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-
-html {
-    background-size: cover;
-}
-
-body {
-    padding: 10%;
+.main-container {
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    padding-top: 160px;
+    padding: 160px 10% 10%;
 }
 
 .topbottomLine {
-    border-top:#0d47a1 2px solid;
-    border-bottom: #0d47a1 2px solid;
+    border-top:var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 
 }
 
 .page-title {
-    color: #0d47a1;
+    color: var(--bs-ieee-bright-blue);
     font-size: 2.5em
 }
 
@@ -56,8 +48,8 @@ body {
 }
 
 .topbottomLine {
-    border-top:#0d47a1 2px solid;
-    border-bottom: #0d47a1 2px solid;
+    border-top: var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -218,7 +210,6 @@ footer {
     position: relative;
     bottom: 10%;
     align-content: center;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background: rgb(10,27,103);
     background: linear-gradient(75deg, rgba(10,27,103,1) 0%, rgba(92,37,186,1) 50%, rgba(59,173,217,1) 100%) no-repeat center center fixed;
     background-size: cover;
@@ -271,13 +262,12 @@ img {
 .topbottomLine {
     width:100%;
     padding-top: 5vmin;
-    border-top:#0d47a1 2px solid;
-    border-bottom: #0d47a1 2px solid;
+    border-top: var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
 #logotext{
-    font-family: Calibri, sans-serif;
     text-align: left;
     position: relative;
     top: 50%;
@@ -378,11 +368,10 @@ background-size: cover;
     justify-content: center;
     align-items: center;
     font-size: x-large;
-    font-weight: lighter;
 }
 
 .page-change-button {
-    background-color: #007aff;
+    background-color: var(--bs-ieee-bright-blue-80);
     border: 0;
 }
 
@@ -399,7 +388,7 @@ background-size: cover;
 }
 
 .page-change-button:hover {
-    background-color: #0065d4;
+    background-color: var(--bs-ieee-bright-blue-80);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 

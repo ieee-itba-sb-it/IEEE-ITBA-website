@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ 'IEEEMEETUP.TITLE' | translate }}</title>
-</head>
-<header>
-    <app-navbar></app-navbar>
-</header>
-
-<body fxLayout="column" fxLayoutAlign="start center" *ngIf="(newsData | async); else showLoadingSpinner">
-<div class="news-body" fxLayout="column" fxLayoutAlign="start center">
+<div class="main-container" fxLayout="column" fxLayoutAlign="start center">
+<div class="news-body" fxLayout="column" fxLayoutAlign="start center" *ngIf="(newsData | async); else showLoadingSpinner">
   <div class="news-header mx-0 px-0">
     <div class="d-flex flex-row mx-0">
       <div class="d-flex flex-grow-1 flex-column">
@@ -59,6 +47,10 @@
 
   </div>
 </div>
-</body>
 
-</html>
+  <ng-template #loadingSpinner class="screen-height">
+    <app-loading-spinner>
+    </app-loading-spinner>
+  </ng-template>
+
+</div>

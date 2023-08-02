@@ -1,17 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
-
-html {
-  /*min-height: 200%;*/
-  background-size: cover;
-}
-
-body {
-  padding: 0 10%;
+.main-container {
+  padding: 0 15%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-size: 1.2em;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
 }
 
 .not-available-background-color {
@@ -57,11 +49,6 @@ h1 {
   margin-bottom: 15px;
 }
 
-.example-header-image {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png");
-  background-size: cover;
-}
-
 .banner {
   position: relative;
   text-align: center;
@@ -85,12 +72,6 @@ h1 {
   border-bottom: whitesmoke 2px solid;
   vertical-align: middle;
   align-content: center;
-}
-
-@media (max-width: 700px) {
-  .topbottomLine {
-    padding-top: 30%;
-  }
 }
 
 .transparentButton {
@@ -174,7 +155,6 @@ footer {
   position: relative;
   bottom: 10%;
   align-content: center;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   background: rgb(10, 27, 103);
   background: linear-gradient(
       75deg,
@@ -194,7 +174,6 @@ h3 {
 
 .col-sm {
   text-align: center;
-  padding-top: auto;
   vertical-align: middle;
 }
 
@@ -223,15 +202,120 @@ h3 {
   }
 }
 
+.category-cards-container {
+  display: inline-grid;
+  list-style-type: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 1.5rem 10%;
+}
+
+@media(max-width: 960px) {
+  body {
+    padding: 0 8%;
+  }
+
+  .category-cards-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: 1rem 5%;
+  }
+
+  .columned-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutus-section {
+    width: 100%;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+}
+
+.category-grid-item {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.category-header {
+  flex-shrink: 0;
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 3%;
+  margin-bottom: 0.5rem;
+}
+
+.category-card-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.category-card-title {
+  font-size: 1.4em;
+  height: fit-content;
+  font-weight: 550;
+  margin: auto 0;
+}
+
+.expanded-content {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.category-card-description {
+  font-size: 1.05rem;
+}
+
+.aboutus-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aboutus-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+.aboutus-image {
+  object-fit: scale-down;
+  height: 5rem;
+  width: 5rem;
+  padding: 0.5rem;
+  border-radius: 25%;
+}
+
+.aboutus-section-header {
+  color: var(--bs-ieee-bright-blue);
+  font-size: x-large;
+}
+
+.section-divider {
+  height: 2px;
+  margin: 0 6px;
+  background: #ebebeb;
+}
+
 .enroll-button {
   font-size: calc(0.3vw + 1rem);
   font-weight: 600;
   margin-top: 1rem;
   padding: 0.7rem 1rem 0.7rem 1rem;
-  border: solid rgb(23, 46, 148);
-  color: rgb(23, 46, 148) !important;
+  border: solid #862633;
+  color: white !important;
   border-radius: 5px;
-  background-color: inherit;
+  background-color: #862633;
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
@@ -239,12 +323,12 @@ h3 {
 .enroll-button:hover {
   box-shadow: 0 0 0px 3px rgba(0, 0, 0, 0.2);
   color: white !important;
-  background-color: #0d47a1;
+  background-color: #862633;
   border-color: white;
 }
 
 .enroll-button > .button-text {
-  color: rgb(23, 46, 148) !important;
+  color: white !important;
 }
 
 .enroll-button:hover > .button-text {
@@ -260,7 +344,7 @@ h3 {
   padding: 0.7rem 1rem 0.7rem 1rem;
   color: whitesmoke !important;
   border-radius: 5px;
-  background-color: #3d6bb3;
+  background-color: #C83C59;
   border: 0;
   transition: all 175ms ease-in-out;
 }
@@ -268,12 +352,27 @@ h3 {
 .download-button:hover {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
   color: whitesmoke !important;
-  background-color: #0d47a1;
+  background-color: rgb(149, 10, 38);
   border-color: whitesmoke;
+}
+
+.download-button:hover > .button-text {
+  color: whitesmoke !important;
+}
+
+.download-content-container {
+  display: inline-flex;
+  align-content: center;
+  gap: 0.5rem;
 }
 
 .download-icon {
   height: 2rem;
+}
+
+.download-text {
+  color: whitesmoke;
+  margin: auto 0;
 }
 
 .download-buttons-container {
@@ -286,25 +385,42 @@ h3 {
 }
 
 .section {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
+}
+
+.columned-section {
+  width: 80%;
+  display: inline-flex;
+  align-content: center;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.centered-section {
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin: 0.5rem 0;
 }
 
 .course-title {
   font-size: calc(1.5vw + 1.2rem);
   font-weight: 400;
-  color: #0d47a1;
+  color: #862633;
   letter-spacing: 1px;
 }
 
 .title {
   font-size: calc(1.5vw + 1rem);
   font-weight: 400;
-  color: #0d47a1;
+  color: #862633;
   letter-spacing: 1px;
 }
+
 .subtitle {
   font-size: calc(0.7vw + 0.7rem);
-  color: rgba(13, 71, 161, 0.8);
+  color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
 }
@@ -323,13 +439,13 @@ h3 {
 }
 
 .faq-accordion {
-  margin-top: 1.5rem;
+  margin-top: 1.4em;
 }
 .faq-panel {
   height: max-content;
 }
 .faq-question {
-  font-size: 1rem;
+  font-size: 1.2em;
 }
 .faq-answer {
   font-size: larger;
@@ -337,8 +453,9 @@ h3 {
 }
 
 .section-title {
-  color: rgba(13, 71, 161, 0.8);
+  color: #862633;
   font-weight: 600;
+  font-size: 1.6em;
 }
 
 .p {
@@ -346,12 +463,12 @@ h3 {
 }
 
 .list-section li::marker {
-  color: #0d47a1;
+  color: #862633;
   font-weight: bolder;
 }
 
 ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-  color: rgb(23, 46, 148);
+  color: #862633;
   background-color: transparent;
 }
 
@@ -360,7 +477,7 @@ h3 {
 }
 
 ::ng-deep .mat-expansion-indicator::after {
-  color: rgb(23, 46, 148);
+  color: #862633;
 }
 
 mat-panel-description {
@@ -373,12 +490,12 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-  border: rgb(23, 46, 148) 1px solid;
+  border: #862633 1px solid;
   border-radius: 5vmin;
 }
 
 mat-panel-title {
-  color: rgb(23, 46, 148);
+  color: #862633;
 }
 
 .sponsor-section {

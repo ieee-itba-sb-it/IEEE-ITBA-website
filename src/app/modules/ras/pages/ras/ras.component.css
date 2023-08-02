@@ -1,17 +1,10 @@
-html {
-  min-height: 100%;
-  height: auto;
-}
-
-
-body {
+.main-container {
   padding: 10%;
   padding-top: 5%;
   padding-bottom: 0%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
   --ras-red: #862633;
   --ras-purple: #5f2167;
 }
@@ -19,7 +12,7 @@ body {
 .bottomLine {
   padding-top: 10vmin;
   padding-bottom: 10vmin;
-  border-bottom: rgb(10, 27, 103) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -38,10 +31,6 @@ body {
   align-content: center;
 }
 
-#home {
-  text-align: center;
-}
-
 .text-container {
   font-size: 1.1rem;
   text-align: left;
@@ -57,6 +46,7 @@ body {
 
 .section-title {
   font-size: 1.8rem;
+  font-weight: 500;
   color: var(--ras-red);
 }
 
@@ -88,20 +78,6 @@ body {
 .image-with-text {
   position: relative;
   width: 100%;
-}
-
-.text-on-image {
-  position: absolute;
-  text-align: center;
-  /*top: 50%;*/
-  width: 100%;
-  /*font-size: min(4rem, 5vw);*/
-  font-size: 2rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 1);
-  letter-spacing: 1px;
-  text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-  -1px -1px 0 #000;
 }
 
 .container {

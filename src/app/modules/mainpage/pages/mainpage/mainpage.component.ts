@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {BlogService} from '../../../../core/services/blog/blog.service';
 import {NewsItem} from '../../../../shared/models/news-item/news-item';
 import {blogCollectionName} from '../../../../secrets';
-import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper/core';
+import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper';
+import {EventService} from '../../../../core/services/event/event.service';
+import {EventCardData} from '../../../../shared/models/event/event-card-data';
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
@@ -22,14 +23,48 @@ export class MainpageComponent implements OnInit {
   showLoadingSpinner = true;
   sponsorsServiceVar: SponsorsService;
 
+  latestEvents: EventCardData[];
+
   swiperConfig: SwiperOptions = {
     pagination: {
-      el: '.pagination-wrapper',
+      el: '#news-pagination-wrapper',
       clickable: true
     },
     navigation: {
-      nextEl: '.pagination-next',
-      prevEl: '.pagination-prev'
+      nextEl: '#news-pagination-next',
+      prevEl: '#news-pagination-prev'
+    },
+    preloadImages: false,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    slidesPerView: 1,
+    breakpoints: {
+      940: {
+        slidesPerView: 2,
+        spaceBetween: 10
+      },
+      1340: {
+        slidesPerView: 3,
+        spaceBetween: 15
+      },
+      1680: {
+        slidesPerView: 4,
+        spaceBetween: 20
+      }
+    }
+  };
+
+  swiperConfigEvents: SwiperOptions = {
+    pagination: {
+      el: '#events-pagination-wrapper',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '#events-pagination-next',
+      prevEl: '#events-pagination-prev'
     },
     preloadImages: false,
     autoplay: {
@@ -53,7 +88,9 @@ export class MainpageComponent implements OnInit {
     }
   };
 
-  constructor(private blogService: BlogService, private sponsorsService: SponsorsService) {
+  constructor(private blogService: BlogService,
+              private sponsorsService: SponsorsService,
+              private eventService: EventService) {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
     this.newsDataObs = this.blogService.docsObs();
@@ -73,6 +110,8 @@ export class MainpageComponent implements OnInit {
       this.latestNews = aux;
       this.showLoadingSpinner = false;
     });
+
+    this.latestEvents = eventService.getUpcomingEvents();
   }
 
   ngOnInit(): void {}

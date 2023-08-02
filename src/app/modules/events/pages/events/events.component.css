@@ -1,15 +1,13 @@
-body {
-  padding: 10%;
+.main-container {
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-  padding-top: 160px;
+  padding: 160px 10% 10%;
 }
 
 .topbottomLine {
-  border-top: #0d47a1 2px solid;
-  border-bottom: #0d47a1 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -37,7 +35,7 @@ body {
 }
 
 .page-title {
-  color: #0d47a1;
+  color: var(--bs-ieee-bright-blue);
   font-size: 2.5em;
 }
 

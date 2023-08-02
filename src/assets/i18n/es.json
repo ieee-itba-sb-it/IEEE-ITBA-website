@@ -1,4 +1,8 @@
 {
+  "NULL":"NULL",
+  "DEFAULT": {
+    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil"
+  },
   "HOME": {
     "TITLE": "Rama Estudiantil",
     "CARGO": {
@@ -155,12 +159,18 @@
     },
     "ABOUTUS": {
       "TITLE": "Sobre nosotros",
-      "LEARNMORE": "Ver más"
+      "LEARNMORE": "Ver más",
+      "PAGETITLE": "ITBA IEEE | About us"
     },
     "IEEENEWS": {
       "TITLE": "Noticias",
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
       "MORENEWS": "Ver más noticias"
+    },
+    "EVENTS": {
+      "TITLE": "Eventos",
+      "CONTENT": "¡Entérate de nuestros próximos eventos!",
+      "MORE": "Ver más eventos"
     },
     "SPONSORS": "Auspiciantes",
     "CLASSES": {
@@ -230,6 +240,7 @@
     }
   },
   "ABOUTUS": {
+    "PAGETITLE": "ITBA IEEE | About us",
     "US": {
       "TITLE": "Quiénes somos",
       "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
@@ -284,6 +295,8 @@
     "LEVEL-TEXT": "La dificultad de los problemas es variada para asegurar que los menos experimentados también puedan participar."
   },
   "NAVBAR": {
+    "LOGIN": "Iniciar sesión",
+    "WELCOME": "Bienvenido ",
     "ABOUTUS": "Acerca de",
     "CONTACT": "Contacto",
     "EVENTS": "Eventos",
@@ -307,6 +320,7 @@
     "FORMAT_SUBTITLE": "Formato del curso",
     "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "CONTENTBUTTON": "Ir al contenido",
     "SOLUTIONBUTTON": "Ir al solucionario",
     "QUESTIONS": {
       "TEXT": "Tenemos un SubReddit para contestar dudas: ",
@@ -316,26 +330,28 @@
     "TITLE": "Curso Introductorio de Python",
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "¡No hace falta! Vamos a explicar todo de cero, pero a un buen ritmo."
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar los desafíos de programación entregables antes del cierre de las entregas."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "TYC": {
@@ -400,33 +416,34 @@
     "TITLE": "Curso de Análisis de Datos en Python",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Tengo que tener experiencia previa en programación?",
-        "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
-      },
-      "2": {
-        "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
-        "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
-      },
-      "3": {
-        "QUESTION": "¿Quiénes pueden participar del curso?",
-        "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
-      },
-      "4": {
-        "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-        "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
-      },
-      "5": {
-        "QUESTION": "¿Voy a poder interactuar con otros participantes?",
-        "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Tengo que tener experiencia previa en programación?",
+          "ANSWER": "Para este curso es necesario tener experiencia con las bases de Python (control de flujo, estructuras de datos, etc). Si ya hiciste nuestro curso introductorio entonces estás listo para este!"
+        },
+        {
+          "QUESTION": "¿Se recibe un certificado al finalizar el curso?",
+          "ANSWER": "¡Sí! Obtendrán un certificado al completar una evaluación antes del cierre del curso."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar del curso?",
+          "ANSWER": "El curso es gratuito y abierto a todo público. Dado que se orienta hacia el ámbito profesional, haber terminado el secundario es recomendable pero no excluyente. Se recomienda ampliamente tener estudios primarios completos."
+        },
+        {
+          "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
+          "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+        },
+        {
+          "QUESTION": "¿Voy a poder interactuar con otros participantes?",
+          "ANSWER": "¡Sí! Los alentamos a pensar sus soluciones a los desafíos junto con otros compañeros, pedir ayuda si se traban y ofrecer ayuda si otro la necesita. Las mejores ideas siempre se logran en grupo. Esto también será mediante Discord."
+        }
+      ]
     }
   },
   "IEEEMEETUP": {
     "TITLE": "IEEE - 2do Meet Up",
     "CONTENT": "En esta juntada el equipo IEEE discutirá en función de lo logrado (y no logrado!) hasta el momento, la situación actual y las ideas propuestas, como continuar en lo que sigue del año. ¡Es el momento ideal para dar punto de partida a nuevas actividades! ¡Publicá los temas que quieras que se discutan en el form!"
   },
-
   "GENERAL": {
     "PREVIOUS": "PREVIOS",
     "ACTUAL": "ACTUALES"
@@ -475,17 +492,27 @@
     "EPIGRAPH": "Epígrafe",
     "BODY": "Cuerpo",
     "CHECKBUTTON": "Mostrar en la página de noticias",
-    "UPLOAD": "SUBIR NOTICIA"
+    "UPLOAD": "SUBIR NOTICIA",
+    "TAGS": "Tags (hasta 3)",
+    "FIRST_PARAGRAPH": "Primer párrafo encima de la imagen",
+    "PUBLISH_NOW": "Publicar ahora",
+    "PROGRAM_DATE": "Programar fecha de publicación"
   },
   "LOGIN": {
-    "TITLE": "Iniciar Sesión",
+    "TITLE": "Iniciá sesión",
     "EMAIL": "Email",
     "PASSWORD": "Contraseña",
     "BUTTON": "Iniciar Sesión",
     "NO_ACCOUNT": "¿No tenés una cuenta?",
     "SIGN_UP": "Registrarse",
     "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
-    "CLICK": "Recuperar Contraseña"
+    "CLICK": "Recuperar Contraseña",
+    "ERROR": {
+      "INCORRECT_USER_PASS": "Incorrecto email o contraseña",
+      "UNKNOWN": "Error desconocido",
+      "DISABLED_USER": "Usuario ha sido deshabilitado"
+    },
+    "SUCCESS": "Bienvenido a IEEE!"
   },
   "REGISTER": {
     "TITLE": "Registrarse",
@@ -496,7 +523,15 @@
     "REPEAT_PASSWORD": "Repetir Contraseña",
     "BUTTON": "Registrarse",
     "ALREADY_SIGNED_UP": "¿Ya estás registrado?",
-    "LOGIN": "Iniciar Sesión"
+    "LOGIN": "Iniciar Sesión",
+    "SUCCESS": "Se registró correctamente.",
+    "ERROR": {
+      "PASS_DONT_MATCH": "Las contraseñas son diferentes",
+      "EMAIL_IN_USE": "Correo electrónico ya está en uso",
+      "INVALID_EMAIL": "Correo electrónico no es válido",
+      "WEAK_PASSWORD": "Contraseña débil",
+      "UNKNOWN_ERROR": "Error desconocido"
+    }
   },
   "LOGOUT": {
     "TITLE": "Cerrar Sesión"
@@ -510,6 +545,7 @@
   },
   "RAS": {
     "TITLE": "IEEE ITBA",
+    "PAGETITLE": "ITBA IEEE | RAS Capítulo Estudiantil",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
     "TEAM": {
@@ -531,6 +567,31 @@
       "TITLE": "Acerca de RAS",
       "CONTENT1": "RAS se esfuerza por promover la innovación, la educación y la investigación fundamental y aplicada en robótica y automatización. La robótica se centra en sistemas que incorporan sensores y actuadores que funcionan de forma autónoma o semi-autónoma en cooperación con los humanos. La investigación en robótica enfatiza la inteligencia y la adaptabilidad para hacer frente a entornos no estructurados. La investigación en automatización enfatiza la eficiencia, la productividad, la calidad y la confiabilidad, centrándose en los sistemas que operan de forma autónoma, a menudo en entornos estructurados durante períodos prolongados, y en la estructuración explícita de dichos entornos.",
       "CONTENT2": "La Sociedad brinda ayuda para promover la cooperación y el intercambio de información técnica entre sus Miembros y Afiliados, y con este fin celebra reuniones para la presentación de trabajos y su discusión, patrocina publicaciones periódicas apropiadas y publicaciones técnicas especiales, y a través de sus comités estudia y provee para las necesidades de sus miembros y afiliados."
+    }
+  },
+
+  "EMB": {
+    "TITLE": "IEEE ITBA",
+    "SUBTITLE": "EMB Student Branch Chapter",
+    "EVENTS": "Eventos",
+    "TEAM": {
+      "TITLE": "Equipo"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": "La Sociedad de Ingeniería en Medicina y Biología (EMBS) tiene como objetivos promover la profesión de la bioingeniería así como el avance de la medicina y biología a través de la aplicación de la ciencia y la ingeniería. EMBS ITBA, por su parte, y en congruencia con los objetivos anteriormente mencionados, busca difundir las aplicaciones de la bioingeniería tanto en la industria como en la academia, mediante charlas, seminarios y actividades prácticas."
+    },
+    "MISSION": {
+      "TITLE": "Misión",
+      "CONTENT": "Brindar herramientas y experiencias a aquellas personas interesadas o involucradas en la esfera y el conocimiento público del mundo de la bioingeniería, así como fomentar el desarrollo personal y profesional de sus miembros.\n"
+    },
+    "VISION": {
+      "TITLE": "Visión",
+      "CONTENT": "Ser un pilar fundamental en la divulgación y realización de proyectos de investigación, congresos estudiantiles y temas trascendentales en la actualidad"
+    },
+    "ABOUTEMB": {
+      "TITLE": " EMB",
+      "CONTENT1": "EMBS ITBA es un capítulo estudiantil perteneciente a la rama de IEEE ITBA y conformado por alumnos dedicados a la fomentar y divulgar las aplicaciones de la bioingeniería, tanto dentro como fuera de la institución educativa"
     }
   },
   "ERROR404": {
@@ -555,32 +616,59 @@
     "GALLERY_TITLE": "Galería",
     "FAQ": {
       "TITLE": "Preguntas Frecuentes",
-      "1": {
-        "QUESTION": "¿Necesito algún conocimiento previo?",
-        "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
-      },
-      "2": {
-        "QUESTION": "¿Quiénes pueden participar?",
-        "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
-      }
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Necesito algún conocimiento previo?",
+          "ANSWER": "No es necesario ningún conocimiento de programación o de electrónica para realizar el curso, todas las herramientas para entender y crear los programas se las daremos nosotros, y los brazos ya estarán armados desde el principio."
+        },
+        {
+          "QUESTION": "¿Quiénes pueden participar?",
+          "ANSWER": "El taller es gratuito y abierto a todo público, pero los cupos son limitados por la cantidad de brazos disponibles."
+        }
+      ]
     }
   },
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
+    "PAGETITLE": "ITBA IEEE | Asimov CUP",
     "ENROLLBUTTON": "¡Anotate ahora!",
+    "DOWNLOAD_RULEBOOK": "Descargar reglamento",
+    "CATEGORIES": {
+      "SUMO": {
+        "NAME": "Sumo",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Sumo",
+        "DESC": "Dos robots de equipos distintos luchan de acuerdo a un conjunto de reglas. Quien obtenga más puntos gana."
+      },
+      "MINISUMO": {
+        "NAME": "Mini sumo",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Mini Sumo",
+        "DESC": "Las reglas básicas son las mismas que la categoría Sumo, pero con limitaciones en aspectos como ancho y peso de los robots."
+      },
+      "RACING": {
+        "NAME": "Carreras",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Carreras",
+        "DESC": "Dos robots recorren dos circuitos de iguales características al mismo tiempo, siguiendo una línea blanca sobre un fondo negro. Quien logre llegar primero a la meta gana."
+      },
+      "FOOTBALL": {
+        "NAME": "Fútbol",
+        "IMAGE_ALT_TEXT": "Ícono de la categoria de Fútbol",
+        "DESC": "Dos equipos de robots juegan un partido de fútbol, ganando el que logre marcar más goles en un tiempo determinado."
+      }
+    },
     "DESC": {
       "TITLE": "Descripción",
       "SECTION": {
         "1": {
-          "TEXT": "La Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en el Instituto Tecnológico de Buenos Aires. Los competidores deberán desarrollar con anterioridad sus robots de acuerdo con los reglamentos establecidos, para participar con ellos el día del evento. Hay 3 categorías diferentes, las cuales son:",
+          "TEXT": "La Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en el Instituto Tecnológico de Buenos Aires. Los competidores deberán desarrollar con anterioridad sus robots de acuerdo con los reglamentos establecidos, para participar con ellos el día del evento.",
           "BULLET_PTS": {
             "1": "Sumo",
             "2": "Minisumo",
-            "3": "Carreras"
+            "3": "Carreras",
+            "4": "Fútbol"
           }
         },
         "2": {
-          "TEXT": "Cada categoría se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados a continuación:",
+          "TEXT": "Hay 4 categorías diferentes y cada una se desarrolla se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados de su sección correspondiente.",
           "LINKS": {
             "1": "Reglamento de Sumo/Minisumo",
             "2": "Reglamento de Carreras"
@@ -595,8 +683,11 @@
     "D_AND_L_TITLE": "Fecha y lugar",
     "D_AND_L": {
       "TEXT_1": "La competencia se desarrollará en la ",
-      "LOCATION": "Sede Distrito Tecnológico del ITBA",
-      "TEXT_2": " (Lavardén 315, CABA, Argentina) el día sábado 30 de Julio de 2022."
+      "TEXT_2": " (Lavardén 315, CABA, Argentina) el día Sábado 29 de Julio.",
+      "DATE": "Sábado 29 de Julio",
+      "LOCATION": "ITBA Sede Distrito Tecnológico",
+      "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
+      "TIME": "9:00hs - 19:00hs"
     },
     "SCHEDULE_TITLE": "Cronograma estimado",
     "SCHEDULE": {
@@ -611,7 +702,8 @@
       "9": "15:00 - 17:00: Competición: Fase de Eliminación Directa",
       "10": "17:00 - 17:30: Coffee Break",
       "11": "17:30 - 18:00: Competición: Final",
-      "12": "18:00 - 18:30: Ceremonia de premiación"},
+      "12": "18:00 - 18:30: Ceremonia de premiación"
+    },
     "FAQ": {
       "TITLE": "Preguntas frecuentes",
       "1": {
@@ -627,16 +719,12 @@
         "ANSWER": "La Homologación es una verificación que se realiza sobre cada robot para asegurarse de que cumpla con los requisitos de tamaño, peso, etc. que determina el reglamento. Además se realiza una prueba del robot sobre la pista/tatami sin ningún contrincante para ayudar a determinar la distribución de grupos para la fase de grupos."
       },
       "4": {
-        "QUESTION": "¿Si mi robot respeta el reglamento de la LNR, puede participar de la Asimov Cup?",
-        "ANSWER": "¡Probablemente sí! De todas formas, recomendamos verificar leyendo el reglamento correspondiente."
-      },
-      "5": {
         "QUESTION": "¿Quiénes pueden participar de la competencia?",
         "ANSWER": "El evento es gratuito y abierto a todo público. Los participantes de cualquier secundario, universidad, o equipo particular pueden participar de la competencia. En todos los casos se debe completar el formulario de inscripción correspondiente."
       },
-      "6": {
+      "5": {
         "QUESTION": "¿Cómo puedo hacer consultas acerca de la competencia?",
-        "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ieee@itba.edu.ar"
+        "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ras.ieee@itba.edu.ar"
       }
     },
     "SPONSORS": "Sponsors"
@@ -776,6 +864,73 @@
         "QUESTION": "Mi computadora tiene problemas con los programas mientras hago cosas relacionadas al curso",
         "ANSWER": "Los problemas encontrados pueden ser diversos.\n En el caso de encontrar problemas con alguna herramienta, recomendamos buscar en la página de la herramienta para ver si tienen un sector de Solucionador de Problemas. En el caso de que no sea así, podrían enviarnos un mail comentando el problema, junto a toda la información adicional posible, como fotos, videos, mensajes de error.\nSi se encuentran con el problema de que se les traba mucho la computadora cuando están programando lo que se ve en el curso, o resolviendo ejercicios o viendo las clases, probablemente tengas un problema de memoria de la computadora. Esto puede deberse a que hay muchos programas corriendo en la computadora en simultáneo, y pueden ralentizar algún programa, o a la computadora en sí. En ese caso, recomendamos cerrar todo programa extra que esté abierto, incluyendo los que están corriendo en segundo plano. \n Puede llegar a pasar, también, que la computadora que estén utilizando no cumpla con los requisitos mínimos para el curso de programación. En ese caso lamentamos lo mismo, pero no podremos ayudarte😢."
       }
+    }
+  },
+  "EVENTCARD": {
+    "DATE": {
+      "TBD": "TBD"
+    },
+    "DATESTRING": "Fecha: "
+  },
+  "WIE": {
+    "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
+    "WHATIS": {
+      "TITLE": "What is IEEE WIE ITBA?",
+      "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"
+    },
+    "OBJECTIVES": {
+      "TITLE": "Objetivos",
+      "CONTENT": {
+        "TEXT": "Dentro de nuestros objetivos, podemos encontrar:",
+        "BULLET1": "Inspirar a mujeres y niñas para que se animen a estudiar carreras de STEM",
+        "BULLET2": "Empoderar a aquellas que se encuentren en las mismas para que sean líderes"
+      }
+    },
+    "JOIN": {
+      "TITLE": "¡Unite a WIE!",
+      "MEMBERSHIP": "Obtener membresía",
+      "JOIN": "¡Me quiero unir!",
+      "SPONSOR": "Ser sponsor"
+    },
+    "FAQ": {
+      "TITLE": "Preguntas Frecuentes",
+      "QUESTIONS": [
+        {
+          "QUESTION": "¿Quiénes pueden participar de IEEE WIE ITBA?",
+          "ANSWER": "Cualquier persona alumna del ITBA. ¡El único requisito es querer participar!"
+        },
+        {
+          "QUESTION": "¿Puede unirse alguien que no es de Electrónica ni Informática?",
+          "ANSWER": "Sí. Tenemos voluntarios de todas las carreras, tanto Ingenierías como Licenciaturas. La diversidad no es algo acotado a una carrera"
+        },
+        {
+          "QUESTION": "¿Qué es IEEE?",
+          "ANSWER": "IEEE es el Instituto de Ingenieros Eléctricos y Electronicos por sus siglas en Inglés. Es la organización técnica más grande del mundo y su lema es \"Tecnología para el Avance de la Humanidad\". IEEE WIE es un Grupo de Afinidad dentro de IEEE"
+        },
+        {
+          "QUESTION": "¿Qué es un Grupo de Afinidad?",
+          "ANSWER": "Es una sub unidad de IEEE que toca temas transversales, no técnicos, a todas las ingenierías como lo es la diversidad en carreras de STEM en el caso de WIE"
+        },
+        {
+          "QUESTION": "¿Qué puedo hacer en IEEE WIE ITBA?",
+          "ANSWER": "¡Lo que quieras! Siempre que vaya con nuestros objetivos. Podes unirte a cualquier proye que ya realicemos o proponer una actividad nueva. La organización se construye a partir de lo que los voluntarios deseen"
+        },
+        {
+          "QUESTION": "¿Cuánto me demanda participar en IEEE WIE ITBA?",
+          "ANSWER": "Lo que vos quieras que te demande. Solo tenés que avisar en que cosas querés participar e informar de los avances. Somos todos alumnos por lo que entendemos perfectamente que a veces se nos compctolica mucho, en esos casos, solo es cuestión de comunicar que no vas a estar disponible y no va a haber ningún problema"
+        },
+        {
+          "QUESTION": "¿Cuáles son los objetivos de IEEE WIE ITBA?",
+          "ANSWER": "Los objetivos de IEEE WIE ITBA son: inspirar a más mujeres a seguir carreras en STEM y empoderar a aquellas mujeres que ya se encuentran en campos de STEM para que sean líderes. Con el motivo de lograr los mismos buscamos: bisibilizar el trabajo desarrollado por mujeres en áreas de STEM, proveerles herramientas para que puedan desarrollarse en dichos campos y desmistificar e informar sobre STEM"
+        },
+        {
+          "QUESTION": "¿Cómo se organizan en IEEE WIE ITBA?",
+          "ANSWER": "En IEEE WIE ITBA constamos de 7 departamentos o secciones. Las personas voluntarias pueden participar en todos los que deseen siendo que los proyectos pertenecen a los departamentos y no las personas voluntarias. Dichos departamentos son: Junta Directiva, Media y Comunicación, Fundraising y Tesorería, Logística y Planificación, Educación, Tecnología de la Información y Desarrollo, y Recursos Humanos"
+        }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Contacto"
     }
   }
 }

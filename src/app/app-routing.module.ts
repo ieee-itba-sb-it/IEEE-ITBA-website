@@ -4,11 +4,9 @@ import { Error401Component } from './shared/components/error401/error401.compone
 
 import { AuthGuardService } from './core/services/authorization-guard/auth-guard.service';
 import {
-  AngularFireAuthGuard,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';
-import {IotModule} from './modules/iot/iot.module';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -25,6 +23,11 @@ const routes: Routes = [
     path: 'ras',
     loadChildren: () =>
       import('./modules/ras/ras.module').then((m) => m.RasModule),
+  },
+  {
+    path: 'emb',
+    loadChildren: () =>
+      import('./modules/emb/emb.module').then((m) => m.EmbModule),
   },
   {
     path: 'ieeextreme',
@@ -66,6 +69,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/iot/iot.module').then(
         (m) => m.IotModule
+      )
+  },
+  {
+    path: 'wie',
+    loadChildren: () =>
+      import('./modules/wie/wie.module').then(
+        (m) => m.WieModule
       )
   },
   {
@@ -145,14 +155,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./core/authentication/login/login.module').then(
+      import('./modules/authentication/login/login.module').then(
         (m) => m.LoginModule
       ),
   },
   {
     path: 'register',
     loadChildren: () =>
-      import('./core/authentication/register/register.module').then(
+      import('./modules/authentication/register/register.module').then(
         (m) => m.RegisterModule
       ),
   },
@@ -169,11 +179,11 @@ const routes: Routes = [
       import('./modules/sponsors/sponsors.module').then(
         (m) => m.SponsorsModule
       ),
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

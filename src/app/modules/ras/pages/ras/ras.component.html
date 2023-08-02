@@ -1,59 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ITBA IEEE RAS Student Branch Chapter</title>
-  </head>
-  <header>
-    <app-navbar></app-navbar>
-  </header>
-
-  <body>
-    <div class="bottomLine" id="home">
-      <div class="container" id="wip">
-        <div class="titleRow">
-          <h1 class="title">{{ "RAS.TITLE" | translate }}</h1>
-          <h3 class="subtitle">{{ "RAS.SUBTITLE" | translate }}</h3>
-        </div>
-        <img
-          src="../../../../../assets/image/ras/IEEE_RAS_logo_4C_stacked-HiRes.png"
-          class="rasLogo"
-          alt="Logo ITBA-IEEE"
-        />
+<div class="main-container">
+  <div class="bottomLine" id="home">
+    <div class="container" id="wip">
+      <div class="titleRow">
+        <h1 class="title">{{ "RAS.TITLE" | translate }}</h1>
+        <h3 class="subtitle">{{ "RAS.SUBTITLE" | translate }}</h3>
       </div>
-      <hr>
-      <div class="text-container">
-        <h2 class="section-title">{{ "RAS.EVENTS" | translate }}</h2>
-      </div>
-      <!-- Asimov Cup -->
-      <div class="row d-flex row-eq-height">
-        <ul class="card-listing">
-          <li *ngFor="let event of events; index as i" class="event-container">
-            <app-event-card [event]="event" [index]="i">
-            </app-event-card>
-          </li>
-        </ul>
-      </div>
-      <hr>
-      <div class="text-container">
-        <h2 class="section-title">{{ "RAS.OBJECTIVES.TITLE" | translate}}</h2>
-        <p class="page-paragraph">{{ "RAS.OBJECTIVES.CONTENT" | translate }}</p>
-        <hr>
-        <h2 class="section-title">{{ "RAS.MISSION.TITLE" | translate }}</h2>
-        <p class="page-paragraph">{{ "RAS.MISSION.CONTENT" | translate }}</p>
-        <hr>
-        <h2 class="section-title">{{ "RAS.VISION.TITLE" | translate}}</h2>
-        <p class="page-paragraph">{{ "RAS.VISION.CONTENT" | translate }}</p>
-        <hr>
-        <h2 class="section-title">{{ "RAS.ABOUTRAS.TITLE" | translate }}</h2>
-        <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT1" | translate }}</p>
-        <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT2" | translate }}</p>
-        <hr>
-        <h2 class="section-title">{{ "RAS.TEAM.TITLE" | translate}}</h2>
-        <app-team-card [team]="team.team"></app-team-card>
-      </div>
+      <img src="../../../../../assets/image/ras/IEEE_RAS_logo_4C_stacked-HiRes.png" class="rasLogo"
+           alt="Logo ITBA-IEEE" />
     </div>
-  </body>
-  <app-footer></app-footer>
-</html>
+    <hr>
+    <div class="text-container">
+      <h2 class="section-title">{{ "RAS.EVENTS" | translate }}</h2>
+    </div>
+    <!-- Asimov Cup -->
+    <div class="row d-flex row-eq-height">
+      <ul class="card-listing">
+        <li *ngFor="let event of events; index as i" class="event-container">
+          <app-event-card [event]="event" [index]="i">
+          </app-event-card>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="text-container">
+      <h2 class="section-title">{{ "RAS.OBJECTIVES.TITLE" | translate}}</h2>
+      <p class="page-paragraph">{{ "RAS.OBJECTIVES.CONTENT" | translate }}</p>
+      <hr>
+      <h2 class="section-title">{{ "RAS.MISSION.TITLE" | translate }}</h2>
+      <p class="page-paragraph">{{ "RAS.MISSION.CONTENT" | translate }}</p>
+      <hr>
+      <h2 class="section-title">{{ "RAS.VISION.TITLE" | translate}}</h2>
+      <p class="page-paragraph">{{ "RAS.VISION.CONTENT" | translate }}</p>
+      <hr>
+      <h2 class="section-title">{{ "RAS.ABOUTRAS.TITLE" | translate }}</h2>
+      <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT1" | translate }}</p>
+      <p class="page-paragraph">{{ "RAS.ABOUTRAS.CONTENT2" | translate }}</p>
+      <hr>
+      <h2 class="section-title">{{ "RAS.TEAM.TITLE" | translate}}</h2>
+      <app-team-card [team]="team.team"></app-team-card>
+    </div>
+  </div>
+
+</div>

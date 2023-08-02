@@ -1,19 +1,16 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { PageScrollService } from 'ngx-page-scroll-core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { Observable } from 'rxjs';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
-import { firestore } from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 
 import { sanitizeString } from '../../utils';
 
-import Timestamp = firestore.Timestamp;
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-editar-anuncio',
@@ -53,7 +50,7 @@ export class EditarAnuncioComponent implements OnInit {
     const imageUrl = (document.getElementById('imageUrl') as HTMLInputElement).value;
     const autor = (document.getElementById('autor') as HTMLInputElement).value;
     const imageText = (document.getElementById('imageText') as HTMLInputElement).value;
-    const reference = encodeURIComponent( sanitizeString( (document.getElementById('nombreUrl') as HTMLInputElement).value )  );
+    const reference = (document.getElementById('nombreUrl') as HTMLInputElement).value;
     const shortIntro = (document.getElementById('shortIntro') as HTMLInputElement).value;
     const listed = (document.getElementById('listed') as HTMLInputElement).checked;
     const tags = ['hola', 'chau'];
