@@ -46,19 +46,21 @@ export class NoticiaComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       this.newsData = this.blogService.getDoc(id);
-    });
 
-    this.newsData.subscribe((data: NewsItem) => {
-      if (data != null) {
-        this.content = data.content;
-        this.data = data;
-        this.showLoadingSpinner = false;
-      }
-    });
+      this.newsData.subscribe((data: NewsItem) => {
+        if (data != null) {
+          this.content = data.content;
+          this.data = data;
 
-    this.newsObs = this.blogService.getLastNDocs(this.recommendedCount);
-    this.newsObs.subscribe((newsData: NewsItem[]) => {
-      this.recommendedNews = [...newsData];
+          this.newsObs = this.blogService.getRecommendedNews(this.data.date);
+          this.newsObs.subscribe((newsData: NewsItem[]) => {
+            this.recommendedNews = [...newsData];
+          });
+
+          this.showLoadingSpinner = false;
+        }
+      });
+
     });
   }
 

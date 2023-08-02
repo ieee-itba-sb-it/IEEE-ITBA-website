@@ -87,10 +87,11 @@ export class BlogService {
 
 
 
-  getLastNDocs(n: number): Observable<NewsItem[]> {
+  getRecommendedNews(currentNewsDate: Date): Observable<NewsItem[]> {
     return this.afs.collection<NewsItem>(this.collectionName, ref => ref
+      .where('date', '!=', Timestamp.fromDate(currentNewsDate))
       .orderBy('date', 'desc')
-      .limit(n)
+      .limit(2)
     ).valueChanges().pipe(
       map(data => {
         const ans: NewsItem[] = [];
@@ -98,7 +99,7 @@ export class BlogService {
         for (const blogEntry in data) {
           if (data.hasOwnProperty(blogEntry)) {
             const doc = data[blogEntry];
-            ans.push(createNewsItem(
+            ans.push(createNewsItemWithDate(
               doc.title,
               doc.content,
               doc.shortIntro,
@@ -246,8 +247,8 @@ retrieveDocsSize() {
           doc.author,
           doc.imageText,
           doc.reference,
-          doc.tags,
           doc.listed,
+          doc.tags,
           doc.ratings
         )
       );

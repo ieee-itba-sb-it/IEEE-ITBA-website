@@ -54,8 +54,8 @@ export class WriteNewsComponent implements OnInit {
           author,
           imageText,
           reference,
-          tags,
           listed,
+          tags,
           ratings
         )
       ).subscribe(sent => {
