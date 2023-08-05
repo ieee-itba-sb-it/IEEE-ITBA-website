@@ -31,7 +31,7 @@
         <div [innerHTML]="content"></div>
       </div>
       <div class="news-ratings">
-        <h2>¿Que te pareció la noticia?</h2>
+        <h2>{{"NEWS.RATING" | translate}}</h2>
         <mat-chip-listbox aria-label="Emoji selection">
           <div *ngFor="let emoji of emojisList; index as i">
             <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
@@ -45,7 +45,7 @@
     <div class="recomended-news" fxLayout="column" fxLayoutAlign="start center">
       <div class="recomended-news-area" fxLayout="column" fxLayoutAlign=" start">
         <div class="recomended-news-header">
-          <h1>Noticias Recomendadas</h1>
+          <h1>{{"NEWS.RECOMMENDED" | translate}}</h1>
           <hr class="title-divider" />
         </div>
         <div class="news-grid col">
@@ -56,7 +56,9 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary rounded-1 btn-lg more-news-btn" [routerLink]="['/noticias/']" >Ver más noticias</button>
+      <button type="button" class="btn btn-primary rounded-1 btn-lg more-news-btn" [routerLink]="['/noticias/']" >
+        {{"NEWS.MORENEWS" | translate}}
+      </button>
     </div>
   </div>
   <ng-template #loadingSpinner class="screen-height">

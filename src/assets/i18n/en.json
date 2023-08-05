@@ -208,7 +208,10 @@
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
   },
   "NEWS": {
-    "OF": "of"
+    "OF": "of",
+    "MORENEWS": "View more news",
+    "RECOMMENDED": "Recommended news",
+    "RATING": "What do you think of the post?"
   },
   "IEEEXTREME": {
     "FACTS": {
