@@ -1,0 +1,18 @@
+<a [href]="[studentChapter.url]" style="color: inherit; text-decoration: none;">
+  <mat-card class="event-card">
+    <div
+      class="position-absolute top-0 w-100"
+      [style]="{
+        'background-color': studentChapter.color || '#00629B',
+        'height': '20px'
+      }"
+    >
+    </div>
+    <div class="image-with-text p-3">
+      <img
+        src="{{ studentChapter.img }}"
+        alt="{{ studentChapter.name }}"
+        class="event-card-img" />
+    </div>
+  </mat-card>
+</a>

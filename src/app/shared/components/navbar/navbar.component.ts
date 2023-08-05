@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   newsRoles: roles[] = [roles.admin, roles.contentCreator];
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,
-    private authService: AuthService, private userService: UserService) {
+              private authService: AuthService, private userService: UserService) {
     this.language = translate.currentLang;
   }
 

@@ -125,6 +125,10 @@
       "CONTENT": "Find out about our newest events!",
       "MORE": "View more events"
     },
+    "CHAPTERS": {
+      "TITLE": "Student Chapters",
+      "CONTENT": "Learn more about our student chapters!"
+    },
     "SPONSORS": "Sponsors",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
