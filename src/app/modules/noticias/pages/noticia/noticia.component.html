@@ -1,56 +1,67 @@
-<div class="main-container" fxLayout="column" fxLayoutAlign="start center">
-<div class="news-body" fxLayout="column" fxLayoutAlign="start center" *ngIf="(newsData | async); else showLoadingSpinner">
-  <div class="news-header mx-0 px-0">
-    <div class="d-flex flex-row mx-0">
-      <div class="d-flex flex-grow-1 flex-column">
-        <h1 class="my-0 px-0 my-0">{{(newsData | async).title}}</h1>
-        <p>Por {{(newsData | async).author}} {{((newsData | async).date) | date: 'mediumDate' }}</p>
-      </div>
-      <div class="d-flex flex-wrap align-self-baseline justify-content-end">
-        <div *ngFor="let tag of data.tags" class="badge news-tags mx-2 mb-1 p-2 d-none d-lg-block">{{tag}}</div>
-      </div>
-    </div>
-    <div class="d-flex flex-wrap align-self-baseline">
-      <div *ngFor="let tag of (newsData | async).tags" class="badge news-tags mr-2 mb-1 p-2 d-lg-none">{{tag}}</div>
-    </div>
 
-  </div>
-  <hr class="header-divider">
-  <div class="news-intro py-3">
-    <p class="word-break text-justify" [innerHtml]="(newsData | async).shortIntro"></p>
-  </div>
-  <div class="news-image">
-    <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}"
-                  alt="Foto de noticia">
-    </mdb-card-img>
-    <p class="pt-1">{{(newsData | async).imageText}}</p>
-  </div>
-  <div class="news-content word-break py-5">
-    <div [innerHTML]="content"></div>
-  </div>
-  <div class="news-recomendations"></div>
-</div>
+<div class="main-container" >
+  <div *ngIf="(newsData | async); else loadingSpinner" fxLayout="column" fxLayoutAlign="start center">
+    <div class="news-body" fxLayout="column" fxLayoutAlign="start center">
+      <div class="news-header mx-0 px-0">
+        <div class="d-flex flex-row mx-0">
+          <div class="d-flex flex-grow-1 flex-column">
+            <h1 class="my-0 px-0 my-0">{{(newsData | async).title}}</h1>
+            <p>Por {{(newsData | async).author}} {{((newsData | async).date) | date: 'mediumDate' }}</p>
+          </div>
+          <div class="d-flex flex-wrap align-self-baseline justify-content-end">
+            <div *ngFor="let tag of data.tags" class="badge news-tags mx-2 mb-1 p-2 d-none d-lg-block">{{tag}}</div>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap align-self-baseline">
+          <div *ngFor="let tag of (newsData | async).tags" class="badge news-tags mr-2 mb-1 p-2 d-lg-none">{{tag}}</div>
+        </div>
 
-<div class="recomended-news" fxLayout="column" fxLayoutAlign="start center">
-  <div class="recomended-news-area" fxLayout="column" fxLayoutAlign=" start">
-    <div class="recomended-news-header">
-      <h1>Noticias Recomendadas</h1>
-      <hr class="title-divider">
+      </div>
+      <hr class="header-divider">
+      <div class="news-intro py-3">
+        <p class="word-break text-justify" [innerHtml]="(newsData | async).shortIntro"></p>
+      </div>
+      <div class="news-image">
+        <mdb-card-img class="roundedBlock" src="{{(newsData | async).imageUrl}}"
+                      alt="Foto de noticia">
+        </mdb-card-img>
+        <p class="pt-1">{{(newsData | async).imageText}}</p>
+      </div>
+      <div class="news-content word-break py-5">
+        <div [innerHTML]="content"></div>
+      </div>
+      <div class="news-ratings">
+        <h2>¿Que te pareció la noticia?</h2>
+        <mat-chip-listbox aria-label="Emoji selection">
+          <div *ngFor="let emoji of emojisList; index as i">
+            <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
+              {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip-option>
+          </div>
+        </mat-chip-listbox>
+      </div>
+
     </div>
-    <div class="news-grid col">
-      <div *ngFor="let noticia of recommendedNews">
-        <div class="col-sm margin-top">
-          <app-news-card [noticia]="noticia"></app-news-card>
+    <div class="recomended-news" fxLayout="column" fxLayoutAlign="start center">
+      <div class="recomended-news-area" fxLayout="column" fxLayoutAlign=" start">
+        <div class="recomended-news-header">
+          <h1>Noticias Recomendadas</h1>
+          <hr class="title-divider" />
+        </div>
+        <div class="news-grid col">
+          <div *ngFor="let noticia of recommendedNews" class="recommended-news-card">
+            <div class="col-sm margin-top">
+              <app-news-card [noticia]="noticia"></app-news-card>
+            </div>
+          </div>
         </div>
       </div>
+      <button type="button" class="btn btn-primary rounded-1 btn-lg more-news-btn" [routerLink]="['/noticias/']" >Ver más noticias</button>
     </div>
-
   </div>
-</div>
-
   <ng-template #loadingSpinner class="screen-height">
     <app-loading-spinner>
     </app-loading-spinner>
   </ng-template>
-
 </div>
+
