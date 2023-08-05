@@ -3,4 +3,5 @@ export type StudentChapter = {
   img: string;
   url: string;
   color?: string;
+  description: string;
 };
