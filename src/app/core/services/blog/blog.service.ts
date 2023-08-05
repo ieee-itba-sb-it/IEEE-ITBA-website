@@ -98,11 +98,12 @@ export class BlogService {
     return this.afs.collection<NewsItem>(this.collectionName, ref => ref
       .where('date', '!=', Timestamp.fromDate(currentNewsDate))
       .orderBy('date', 'desc')
-      .limit(2)
+      .limit(10)
     ).valueChanges().pipe(
       map(data => {
         const ans: NewsItem[] = [];
 
+        // Convert data to array of NewsItems
         for (const blogEntry in data) {
           if (data.hasOwnProperty(blogEntry)) {
             const doc = data[blogEntry];
@@ -122,9 +123,12 @@ export class BlogService {
           }
         }
 
-        return ans;
+        // Randomly select 2 items from the 10 news
+        const shuffled = ans.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 2); // Get sub-array of first 2 elements after shuffled
       })
     );
+
   }
 
 
