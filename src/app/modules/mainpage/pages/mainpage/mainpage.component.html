@@ -171,58 +171,8 @@
     </div>
   </div>
 
-  <!-- Eventos -->
-  <!--
-  <div class="section gray-background">
-    <div class="news-container">
-      <div class="section-header">
-        <div class="section-header-start-line"></div>
-        <div class="section-header-content">
-          <img
-            src="../../../../../assets/image/section-icons/IEEEEventos.png"
-            alt="Events"
-            class="section-header-logo"
-          />
-          <h1 class="section-title">{{ 'HOME.EVENTS.TITLE' | translate }}</h1>
-        </div>
-        <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.EVENTS.CONTENT" | translate }}</span>
-      </div>
-      <div>
-        <div class="carousel-wrapper">
-          <div class="pagination-prev-wrapper">
-            <span class="swiper-button-prev swiper-events pagination-prev" id="events-pagination-prev"></span>
-          </div>
-          <swiper [config]="swiperConfigEvents" style="width: 100%">
-            <ng-container *ngFor="let event of latestEvents">
-              <ng-template swiperSlide>
-                <app-event-card-short [event]="event" index="{{0}}"></app-event-card-short>
-              </ng-template>
-            </ng-container>
-          </swiper>
-          <div class="pagination-next-wrapper">
-            <span class="events-swiper-button-next swiper-button-next swiper-events pagination-next" id="events-pagination-next"></span>
-          </div>
-        </div>
-      </div>
-      <ng-template #loadingSpinnerBlock>
-        <app-loading-spinner></app-loading-spinner>
-      </ng-template>
-      <div class="pagination-wrapper swiper-events" id="events-pagination-wrapper"></div>
-    </div>
-    <div class="end-button-container">
-      <button class="learn-more-button" [routerLink]="['/events']">{{ 'HOME.EVENTS.MORE' | translate }} <mdb-icon
-        fas
-        icon="chevron-right"
-        class="waves-light"
-        mdbWavesEffect></mdb-icon>
-      </button>
-    </div>
-  </div>
-  -->
-
   <!-- Sponsors Actuales -->
-  <div class="section gray-background">
+  <div class="section">
     <div>
       <div class="section-header">
         <div class="section-header-start-line"></div>
