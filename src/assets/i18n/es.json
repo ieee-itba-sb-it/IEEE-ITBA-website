@@ -167,6 +167,10 @@
       "CONTENT": "¡Entérate de las últimas noticias científicas y tecnológicas!",
       "MORENEWS": "Ver más noticias"
     },
+    "CHAPTERS": {
+      "TITLE": "Capítulos Estudiantiles",
+      "CONTENT": "¡Conoce nuestros capítulos estudiantiles!"
+    },
     "EVENTS": {
       "TITLE": "Eventos",
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
@@ -566,7 +570,8 @@
     "ABOUTRAS": {
       "TITLE": "Acerca de RAS",
       "CONTENT1": "RAS se esfuerza por promover la innovación, la educación y la investigación fundamental y aplicada en robótica y automatización. La robótica se centra en sistemas que incorporan sensores y actuadores que funcionan de forma autónoma o semi-autónoma en cooperación con los humanos. La investigación en robótica enfatiza la inteligencia y la adaptabilidad para hacer frente a entornos no estructurados. La investigación en automatización enfatiza la eficiencia, la productividad, la calidad y la confiabilidad, centrándose en los sistemas que operan de forma autónoma, a menudo en entornos estructurados durante períodos prolongados, y en la estructuración explícita de dichos entornos.",
-      "CONTENT2": "La Sociedad brinda ayuda para promover la cooperación y el intercambio de información técnica entre sus Miembros y Afiliados, y con este fin celebra reuniones para la presentación de trabajos y su discusión, patrocina publicaciones periódicas apropiadas y publicaciones técnicas especiales, y a través de sus comités estudia y provee para las necesidades de sus miembros y afiliados."
+      "CONTENT2": "La Sociedad brinda ayuda para promover la cooperación y el intercambio de información técnica entre sus Miembros y Afiliados, y con este fin celebra reuniones para la presentación de trabajos y su discusión, patrocina publicaciones periódicas apropiadas y publicaciones técnicas especiales, y a través de sus comités estudia y provee para las necesidades de sus miembros y afiliados.",
+      "SHORTCONTENT": "RAS se esfuerza por promover la innovación, la educación y la investigación fundamental y aplicada en robótica y automatización."
     }
   },
 
@@ -876,7 +881,8 @@
     "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
-      "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA"
+      "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA",
+      "SHORTCONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA, buscando inspirar a mujeres y niñas para que se animen a estudiar carreras de STEM"
     },
     "OBJECTIVES": {
       "TITLE": "Objetivos",
@@ -932,5 +938,8 @@
     "CONTACT": {
       "TITLE": "Contacto"
     }
+  },
+  "CS": {
+    "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
   }
 }
