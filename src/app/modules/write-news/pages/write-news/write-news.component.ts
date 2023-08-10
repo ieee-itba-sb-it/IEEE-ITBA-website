@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
-import Timestamp = firebase.firestore.Timestamp;
 import { blogCollectionName } from '../../../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sanitizeString } from '../../utils';
@@ -17,6 +16,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-write-news',
@@ -192,8 +192,8 @@ export class WriteNewsComponent implements OnInit {
           this.newsContent.author,
           this.newsContent.imageText,
           this.newsContent.reference,
-          this.newsContent.tags,
           this.newsContent.listed,
+          this.newsContent.tags,
           this.newsContent.ratings
         )
       ).subscribe(sent => {

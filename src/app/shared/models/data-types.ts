@@ -14,8 +14,8 @@ export function createNewsItem(
     author: string,
     imageText: string,
     reference: string,
-    tags: string[],
     listed: boolean,
+    tags: string[],
     ratings: number[]): NewsItem {
     return { title, content, imageUrl, date: date.toDate(), author, reference, imageText, shortIntro, listed, tags, ratings };
 }
@@ -29,8 +29,8 @@ export function createNewsItemWithDate(
     author: string,
     imageText: string,
     reference: string,
-    tags: string[],
     listed: boolean,
+    tags: string[],
     ratings: number[]): NewsItem {
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }

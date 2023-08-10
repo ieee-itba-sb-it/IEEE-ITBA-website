@@ -263,7 +263,10 @@
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
   },
   "NEWS": {
-    "OF": "de"
+    "OF": "de",
+    "MORENEWS": "Ver más noticias",
+    "RECOMMENDED": "Noticias recomendadas",
+    "RATING": "¿Que te pareció la noticia?"
   },
   "IEEEXTREME": {
     "FACTS": {

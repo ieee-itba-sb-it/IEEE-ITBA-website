@@ -67,8 +67,8 @@ export class EditarAnuncioComponent implements OnInit {
           autor,
           imageText,
           reference,
-          tags,
           listed,
+          tags,
           ratings
         )
       ).subscribe(sent => {

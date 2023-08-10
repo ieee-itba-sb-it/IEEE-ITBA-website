@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT } from '@angular/common';
 import { blogCollectionName } from '../../../../secrets';
-import { Observable } from 'rxjs';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import { filter, Observable, switchMap, tap, map, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-noticia',
@@ -15,15 +15,13 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./noticia.component.css']
 })
 export class NoticiaComponent implements OnInit {
-  newsData: Observable<NewsItem>;
-  content = '';
-  data: NewsItem;
-  isVisbile = false;
-  emojisVisible: boolean = !this.isVisbile;
-  showLoadingSpinner = true;
+  newsData$: Observable<NewsItem>;
+  isVisible = false;
+  emojisVisible: boolean = !this.isVisible;
   cookieValue: string;
   cookieName: string;
   emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
+  recommendedNews$: Observable<NewsItem[]>;
 
   constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService,
               @Inject(DOCUMENT) private document: any, public translate: TranslateService,
@@ -36,16 +34,9 @@ export class NoticiaComponent implements OnInit {
     this.useLanguage('en');
 
     this.blogService.setCollectionName(blogCollectionName);
-    this.blogService.getDocs();
-    this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));
 
-    this.newsData.subscribe((data: NewsItem) => {
-      if (data != null) {
-        this.content = data.content;
-        this.data = data;
-        this.showLoadingSpinner = false;
-      }
-    });
+    this.blogService.getFirstDocsPage();
+    this.blogService.retrieveListedDocsSize();
   }
 
   useLanguage(language: string) {
@@ -54,29 +45,42 @@ export class NoticiaComponent implements OnInit {
 
   ngOnInit(): void {
     this.useLanguage('en');
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: '#meetup',
-    });
-    this.cookieName = `${this.route.snapshot.paramMap.get('id')}-vote`;
-    this.cookieValue = this.cookieService.get(this.cookieName);
-    if (this.cookieValue !== '') {
-      this.isVisbile = true;
-      this.emojisVisible = false;
-    }
-
+    this.newsData$ = this.route.paramMap
+      .pipe(
+        tap(
+          (paramMap) => {
+            this.pageScrollService.scroll({
+              document: this.document,
+              scrollTarget: '#top',
+            });
+            this.cookieName = `${paramMap.get('id')}-vote`;
+            this.cookieValue = this.cookieService.get(this.cookieName);
+            if (this.cookieValue !== '') {
+              this.isVisible = true;
+              this.emojisVisible = false;
+            }
+          }
+        ),
+        map((param) => (param.get('id'))),
+        switchMap((id) => this.blogService.getDoc(id))
+      );
+    this.recommendedNews$ = this.newsData$.pipe(
+      switchMap(currentNews => this.blogService.getRecommendedNews(currentNews.date))
+    );
   }
 
   rateNews(emoji: string, rating: number) {
-    if (this.cookieValue === '') {
-      const expirationDate = new Date();
-      expirationDate.setDate( expirationDate.getDate() + 365);
-      this.cookieService.set(this.cookieName, emoji, expirationDate);
-      this.blogService.incrementRating(this.data, rating);
-      this.isVisbile = true;
-      this.emojisVisible = false;
-      this.cookieValue = emoji;
-    }
+    this.newsData$.subscribe(news => {
+      if (this.cookieValue === '') {
+        const expirationDate = new Date();
+        expirationDate.setDate( expirationDate.getDate() + 365);
+        this.cookieService.set(this.cookieName, emoji, expirationDate);
+        this.isVisible = true;
+        this.emojisVisible = false;
+        this.cookieValue = emoji;
+        this.newsData$ = this.blogService.incrementRating(news, rating);
+      }
+    });
   }
 
   isSelected(i: number) {

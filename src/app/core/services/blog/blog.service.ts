@@ -3,9 +3,10 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat
 // import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
 import firebase from 'firebase/compat/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 /* This file make interface with databe to get blog data */
 
@@ -90,7 +91,65 @@ export class BlogService {
     });
   }
 
-  retrieveDocsSize() {
+
+
+  getRecommendedNews(currentNewsDate: Date): Observable<NewsItem[]> {
+    return this.afs.collection<NewsItem>(this.collectionName, ref => ref
+      .where('date', '!=', Timestamp.fromDate(currentNewsDate))
+      .orderBy('date', 'desc')
+      .limit(10)
+    ).valueChanges().pipe(
+      map(data => (data.map(doc => (
+        createNewsItemWithDate(
+          doc.title,
+          doc.content,
+          doc.shortIntro,
+          doc.imageUrl,
+          doc.date,
+          doc.author,
+          doc.imageText,
+          doc.reference,
+          doc.listed,
+          doc.tags,
+          doc.ratings
+        )
+      )).sort(() => 0.5 - Math.random()).slice(0, 2)))
+    );
+
+  }
+
+  /*
+  data => {
+        const ans: NewsItem[] = [];
+
+        // Convert data to array of NewsItems
+        for (const blogEntry in data) {
+          if (data.hasOwnProperty(blogEntry)) {
+            const doc = data[blogEntry];
+            ans.push(createNewsItemWithDate(
+              doc.title,
+              doc.content,
+              doc.shortIntro,
+              doc.imageUrl,
+              doc.date,
+              doc.author,
+              doc.imageText,
+              doc.reference,
+              doc.listed,
+              doc.tags,
+              doc.ratings
+            ));
+          }
+        }
+
+        // Randomly select 2 items from the 10 news
+        const shuffled = ans.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 2); // Get sub-array of first 2 elements after shuffled
+      }
+   */
+
+
+retrieveDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
       // @ts-ignore
       this.docsSize.next(doc.data().count);
@@ -195,30 +254,27 @@ export class BlogService {
 
   // Get a single doc from a collection
   getDoc(name: string): Observable<NewsItem> {
-    const ans: BehaviorSubject<NewsItem> = new BehaviorSubject(null);
-
-    this.afs.collection(this.collectionName).doc(name).get().subscribe(data => {
-      const doc = data.data() as NewsItem;
-
-      ans.next(
-        createNewsItem(
-          doc.title,
-          doc.content,
-          doc.shortIntro,
-          doc.imageUrl,
-          // @ts-ignore
-          doc.date,
-          doc.author,
-          doc.imageText,
-          doc.reference,
-          doc.tags,
-          doc.listed,
-          doc.ratings,
-        )
-      );
-    });
-
-    return ans.asObservable();
+    return this.afs.collection(this.collectionName)
+      .doc<NewsItem>(name)
+      .get()
+      .pipe(
+        map(document => (document.data())),
+        map(newsItem => (
+          createNewsItem(
+            newsItem.title,
+            newsItem.content,
+            newsItem.shortIntro,
+            newsItem.imageUrl,
+            // @ts-ignore
+            newsItem.date,
+            newsItem.author,
+            newsItem.imageText,
+            newsItem.reference,
+            newsItem.listed,
+            newsItem.tags,
+            newsItem.ratings,
+          )
+        )));
   }
 
   // N in array
@@ -238,8 +294,8 @@ export class BlogService {
           doc.author,
           doc.imageText,
           doc.reference,
-          doc.tags,
           doc.listed,
+          doc.tags,
           doc.ratings
         )
       );
@@ -289,6 +345,7 @@ export class BlogService {
     this.afs.collection(this.collectionName).doc(news.reference).update({
       ratings: aux
     });
+    return of(news);
   }
 
 }
