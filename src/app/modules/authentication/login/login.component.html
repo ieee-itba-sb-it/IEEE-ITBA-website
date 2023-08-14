@@ -24,7 +24,7 @@
               </button>
             </div>
 
-            <h4 *ngIf="loginResponse != null"
+            <h4 *ngIf="loginResponse !== null"
                 id="passerr"
                 [class]="{ 'success': loginResponse.success, 'error': !loginResponse.success}"
             >

@@ -48,7 +48,7 @@
               </div>
 
               <div class="row d-flex justify-content-center">
-                <h4 *ngIf="registerResponse != null" [class]="{ 'success': registerResponse.success, 'error': !registerResponse.success}">
+                <h4 *ngIf="registerResponse !== null" [class]="{ 'success': registerResponse.success, 'error': !registerResponse.success}">
                   {{ registerResponse.message | translate }}
                 </h4>
               </div>

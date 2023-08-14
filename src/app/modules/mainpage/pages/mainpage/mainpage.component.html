@@ -103,7 +103,7 @@
         <div class="section-header-end-line"></div>
         <span class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
       </div>
-      <div *ngIf="(newsDataObs | async)?.length != 0; else loadingSpinnerBlock">
+      <div *ngIf="(newsDataObs | async)?.length !== 0; else loadingSpinnerBlock">
         <div class="carousel-wrapper">
           <div class="pagination-prev-wrapper">
             <span class="swiper-button-prev swiper-news pagination-prev" id="news-pagination-prev"></span>
