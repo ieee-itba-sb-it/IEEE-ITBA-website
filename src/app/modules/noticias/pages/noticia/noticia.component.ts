@@ -23,7 +23,7 @@ export class NoticiaComponent implements OnInit {
   emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
   recommendedNews$: Observable<NewsItem[]>;
 
-  constructor(private route: ActivatedRoute, private pageScrollService: PageScrollService,
+  constructor(private route: ActivatedRoute,
               @Inject(DOCUMENT) private document: any, public translate: TranslateService,
               private blogService: BlogService, private cookieService: CookieService) {
     translate.addLangs(['es']);
@@ -49,10 +49,6 @@ export class NoticiaComponent implements OnInit {
       .pipe(
         tap(
           (paramMap) => {
-            this.pageScrollService.scroll({
-              document: this.document,
-              scrollTarget: '#top',
-            });
             this.cookieName = `${paramMap.get('id')}-vote`;
             this.cookieValue = this.cookieService.get(this.cookieName);
             if (this.cookieValue !== '') {
