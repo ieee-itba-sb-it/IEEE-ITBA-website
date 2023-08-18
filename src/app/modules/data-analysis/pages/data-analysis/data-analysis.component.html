@@ -43,7 +43,7 @@
 
   <!-- Cards Temario -->
 
-  <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
+  <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="center center">
 
     <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}"
               fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
@@ -51,20 +51,22 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
           <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
-            <a
+            <b><a
               href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_1_Analisis_de_Datos.ipynb">{{
               'DATAANALYSIS.CLASSES.TITLE' | translate }}
               1
             </a>
+            </b>
           </ng-template>
           <ng-template #class1Closed>
-            {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 1
+            <b>{{'DATAANALYSIS.CLASSES.TITLE' | translate }} 1
+            </b>
           </ng-template>
         </mat-card-title>
         <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
       <mat-card-content>
-        {{ 'DATAANALYSIS.CLASSES.C1' | translate }}
+        <span class="card-content">{{ 'DATAANALYSIS.CLASSES.C1' | translate }}</span>
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
@@ -87,20 +89,21 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
           <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
-            <a
+            <b><a
               href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_2_Analisis_de_Datos.ipynb">{{
               'DATAANALYSIS.CLASSES.TITLE' | translate }}
               2
             </a>
+            </b>
           </ng-template>
           <ng-template #class2Closed>
-            {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 2
+            <b>{{'DATAANALYSIS.CLASSES.TITLE' | translate }} 2</b>
           </ng-template>
         </mat-card-title>
         <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
       </mat-card-header>
       <mat-card-content>
-        {{ 'DATAANALYSIS.CLASSES.C2' | translate }}
+        <span class="card-content">{{ 'DATAANALYSIS.CLASSES.C2' | translate }}</span>
       </mat-card-content>
       <!-- Boton del solucionario -->
       <mat-card-actions align="center">
@@ -125,7 +128,7 @@
 
       <mat-expansion-panel class="mat-elevation-z0" *ngFor="let question of ('DATAANALYSIS.FAQ.QUESTIONS' | translate)">
         <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-          <mat-panel-title class="faq-question mt-1 mb-1">
+          <mat-panel-title class="faq-question my-2">
             {{ question.QUESTION }}
           </mat-panel-title>
         </mat-expansion-panel-header>

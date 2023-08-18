@@ -1,9 +1,30 @@
 .main-container {
-  padding: 0 15%;
+  padding: 10%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
+}
+
+p {
+  color: rgb(0, 0, 0);
+  background: rgba(245, 245, 245, 0.2);
+  padding: 2vmin 3vmin;
+  border-radius: 5vmin;
+  text-align: justify;
   font-size: 1.1rem;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+h2 {
+  font-size: 3vmin;
+  margin-left: 20px;
+  text-align: left;
+  color: black;
 }
 
 .not-available-background-color {
@@ -33,12 +54,6 @@
   text-align: justify;
 }
 
-h1 {
-  color: rgb(0, 0, 0);
-  font-size: 5vmin;
-  font-weight: lighter;
-}
-
 .col-sm {
   margin-top: 1vmin;
   margin-bottom: 1vmin;
@@ -47,6 +62,11 @@ h1 {
 
 .example-card {
   margin-bottom: 15px;
+}
+
+mat-card-actions{
+  padding-left: 2rem;
+  padding-bottom: 1rem;
 }
 
 .banner {
@@ -68,8 +88,8 @@ h1 {
 .topbottomLine {
   padding-top: 2vmin;
   padding-bottom: 2vmin;
-  border-top: whitesmoke 2px solid;
-  border-bottom: whitesmoke 2px solid;
+  border-top: #862633 2px solid;
+  border-bottom: #862633 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -129,12 +149,6 @@ mdb-card {
   border-radius: 5vmin;
   margin-top: 1vmin;
   margin-bottom: 1vmin;
-}
-
-h2 {
-  font-size: 3vmin;
-  text-align: start;
-  color: black;
 }
 
 #anotate {
@@ -439,27 +453,22 @@ h3 {
 }
 
 .faq-accordion {
-  margin-top: 1.4em;
+  margin-top: 1.5rem;
 }
 .faq-panel {
-  height: max-content;
+  height:max-content;
 }
 .faq-question {
-  font-size: 1.2em;
+  font-size: 1rem;
 }
 .faq-answer {
   font-size: larger;
-  margin-top: 0.5rem;
 }
 
 .section-title {
+  font-size: calc(0.7vw + 0.7rem);
   color: #862633;
   font-weight: 600;
-  font-size: 1.6em;
-}
-
-.p {
-  margin: 0;
 }
 
 .list-section li::marker {
