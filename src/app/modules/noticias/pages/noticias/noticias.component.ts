@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { Observable} from 'rxjs';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
+import {PageScrollService} from "ngx-page-scroll-core";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-noticias',
@@ -22,7 +24,7 @@ export class NoticiasComponent implements OnInit {
   pagesOnPaginator: Array<number>;
   currentPage = 1;
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.setDocsPageSize(this.pageSize + 1);
     this.newsCountObs = this.blogService.listedDocsSizeObs();
@@ -49,7 +51,10 @@ export class NoticiasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.pageScrollService.scroll({
+      document: this.document,
+      scrollTarget: '#meetup',
+    });
   }
 
   hasPrevPage() {

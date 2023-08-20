@@ -7,6 +7,32 @@ import {blogCollectionName} from '../../../../secrets';
 import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper';
 import {EventService} from '../../../../core/services/event/event.service';
 import {EventCardData} from '../../../../shared/models/event/event-card-data';
+import { StudentChaptersService } from '../../../../core/services/student-chapters/student-chapters.service';
+import { StudentChapter } from '../../../../shared/models/student-chapters/student-chapter.types';
+import { Sponsor } from '../../../../shared/models/sponsors';
+
+const generalSwiperOptions = {
+  preloadImages: false,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true
+  },
+  breakpoints: {
+    940: {
+      slidesPerView: 2,
+      spaceBetween: 10
+    },
+    1340: {
+      slidesPerView: 3,
+      spaceBetween: 15
+    },
+    1680: {
+      slidesPerView: 4,
+      spaceBetween: 20
+    }
+  }
+};
 
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
@@ -15,13 +41,13 @@ SwiperCore.use([Pagination, Navigation, Autoplay]);
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.css']
 })
-
 export class MainpageComponent implements OnInit {
   newsDataObs: Observable<NewsItem[]>;
   latestNews: NewsItem[];
   latestLimit = 9;
   showLoadingSpinner = true;
-  sponsorsServiceVar: SponsorsService;
+  studentChapters$: Observable<StudentChapter[]>;
+  sponsors: Sponsor[];
 
   latestEvents: EventCardData[];
 
@@ -34,27 +60,7 @@ export class MainpageComponent implements OnInit {
       nextEl: '#news-pagination-next',
       prevEl: '#news-pagination-prev'
     },
-    preloadImages: false,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true
-    },
-    slidesPerView: 1,
-    breakpoints: {
-      940: {
-        slidesPerView: 2,
-        spaceBetween: 10
-      },
-      1340: {
-        slidesPerView: 3,
-        spaceBetween: 15
-      },
-      1680: {
-        slidesPerView: 4,
-        spaceBetween: 20
-      }
-    }
+    ...generalSwiperOptions
   };
 
   swiperConfigEvents: SwiperOptions = {
@@ -66,35 +72,33 @@ export class MainpageComponent implements OnInit {
       nextEl: '#events-pagination-next',
       prevEl: '#events-pagination-prev'
     },
-    preloadImages: false,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true
+    ...generalSwiperOptions
+  };
+
+  chaptersSwiperOptions: SwiperOptions = {
+    pagination: {
+      el: '#chapters-pagination-wrapper',
+      clickable: true
     },
-    breakpoints: {
-      940: {
-        slidesPerView: 2,
-        spaceBetween: 10
-      },
-      1340: {
-        slidesPerView: 3,
-        spaceBetween: 15
-      },
-      1680: {
-        slidesPerView: 4,
-        spaceBetween: 20
-      }
-    }
+    navigation: {
+      nextEl: '#chapters-pagination-next',
+      prevEl: '#chapters-pagination-prev'
+    },
+    ...generalSwiperOptions
   };
 
   constructor(private blogService: BlogService,
               private sponsorsService: SponsorsService,
-              private eventService: EventService) {
+              private eventService: EventService,
+              private studentChapterService: StudentChaptersService) {
+
+  }
+
+  ngOnInit(): void {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.getDocs();
+
     this.newsDataObs = this.blogService.docsObs();
-    this.sponsorsServiceVar = sponsorsService;
     this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.latestNews = data;
@@ -110,10 +114,9 @@ export class MainpageComponent implements OnInit {
       this.latestNews = aux;
       this.showLoadingSpinner = false;
     });
-
-    this.latestEvents = eventService.getUpcomingEvents();
+    this.studentChapters$ = this.studentChapterService.getStudentChapters();
+    this.latestEvents = this.eventService.getUpcomingEvents();
+    this.sponsors = this.sponsorsService.getCurrentSponsors();
   }
-
-  ngOnInit(): void {}
 
 }

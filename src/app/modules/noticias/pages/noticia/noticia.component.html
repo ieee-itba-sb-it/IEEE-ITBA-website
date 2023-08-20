@@ -1,91 +1,70 @@
-<div class="main-container" fxLayoutAlign="center center" fxLayout="column">
-  <div class="spacenav">
-  </div>
 
-  <div *ngIf="(newsData | async); else loadingSpinner" fxLayoutAlign="center center" fxLayout="column">
-    <div fxLayoutAlign="center center" fxLayout="column">
-      <div fxLayoutAlign="center center" fxLayout="column">
-        <p class="author-text word-break">{{(newsData | async).author}}</p>
-
-      </div>
-    </div>
-
-    <div class="notopbottomLine" id="home" fxLayoutAlign="center center" fxLayout="column">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h1 id="logotext" class="word-break">{{(newsData | async).title}} </h1>
+<div class="main-container">
+  <div class="invisible" id="top"></div>
+  <div *ngIf="(newsData$ | async) as newsData; else loadingSpinner" fxLayout="column" fxLayoutAlign="start center">
+    <div class="news-body" fxLayout="column" fxLayoutAlign="start center">
+      <div class="news-header mx-0 px-0">
+        <div class="d-flex flex-row mx-0">
+          <div class="d-flex flex-grow-1 flex-column">
+            <h1 class="my-0 px-0 my-0">{{newsData.title}}</h1>
+            <p>Por {{newsData.author}} {{(newsData.date) | date: 'mediumDate' }}</p>
+          </div>
+          <div class="d-flex flex-wrap align-self-baseline justify-content-end">
+            <div *ngFor="let tag of newsData.tags" class="badge news-tags mx-2 mb-1 p-2 d-none d-lg-block">{{tag}}</div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div fxLayoutAlign="center center" fxLayout="column">
-      <div fxLayoutAlign="center center" fxLayout="column">
-        <p class="add-margin author-text word-break" [innerHtml]="(newsData | async).shortIntro"></p>
-      </div>
-    </div>
-
-    <div class="bottomLine">
-
-      <div class="blog-image" fxLayoutAlign="center center" fxLayout="column">
-        <div class="add-margin">
-          <mdb-card-img appResize
-                        class="roundedBlock"
-                        ngSrc="{{(newsData | async).imageUrl}}"
-                        [ngWidth]="600"
-                        alt="Foto de noticia">
-          </mdb-card-img>
-
-          <p class="whitetext-photo-text">{{(newsData | async).imageText}}</p>
+        <div class="d-flex flex-wrap align-self-baseline">
+          <div *ngFor="let tag of (newsData.tags)" class="badge news-tags mr-2 mb-1 p-2 d-lg-none">{{tag}}</div>
         </div>
 
       </div>
-    </div>
-
-    <div class="topbottomLine">
-      <div class="container" fxLayoutAlign="center center" fxLayout="column">
-        <div class="row">
-          <div class="col-sm">
-            <div [innerHTML]="content" class="add-margin whitetext word-break"> </div>
+      <hr class="header-divider">
+      <div class="news-intro py-3">
+        <p class="word-break text-justify" [innerHtml]="newsData.shortIntro"></p>
+      </div>
+      <div class="news-image">
+        <mdb-card-img class="roundedBlock" src="{{newsData.imageUrl}}"
+                      alt="Foto de noticia">
+        </mdb-card-img>
+        <p class="pt-1">{{newsData.imageText}}</p>
+      </div>
+      <div class="news-content word-break py-5">
+        <div [innerHTML]="newsData.content"></div>
+      </div>
+      <div class="news-ratings">
+        <h2>{{"NEWS.RATING" | translate}}</h2>
+        <mat-chip-listbox *ngIf="newsData !== undefined"  aria-label="Emoji selection">
+          <div *ngFor="let emoji of emojisList; index as i">
+            <mat-chip-option [disabled]="!isSelected(i)" [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
+              {{newsData.ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
+            </mat-chip-option>
           </div>
-        </div>
+        </mat-chip-listbox>
       </div>
-      <!--Emoji Rating-->
-      <div style="margin-bottom:20px" class="whitetext-left word-break">¿Qué te pareció la noticia?</div>
 
-      <div style="margin-bottom:20px" class="whitetext-left word-break" *ngIf="isVisbile">Gracias por votar ! </div>
-
-      <mat-chip-listbox aria-label="Emoji selection">
-        <div *ngFor="let emoji of emojisList; index as i">
-          <mat-chip-option [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
-            {{(newsData | async).ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
-          </mat-chip-option>
+    </div>
+    <div class="recomended-news" fxLayout="column" fxLayoutAlign="start center">
+      <div class="recomended-news-area" fxLayout="column" fxLayoutAlign=" start">
+        <div class="recomended-news-header">
+          <h1>{{"NEWS.RECOMMENDED" | translate}}</h1>
+          <hr class="title-divider" />
         </div>
-
-      </mat-chip-listbox>
-
-      <!-- Date -->
-      <p class="whitetext-right">{{ ((newsData | async).date ) | date:'medium'}} </p>
-    </div>
-
-
-    <div class="bottomLine">
-    </div>
-    <!--<div class="bottomLine" fxLayoutAlign="center center" fxLayout="column">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm" >
-                    <h1 id="whitetext">{{(newsData | async).author}}</h1>
-                </div>
+        <div class="news-grid col">
+          <div *ngFor="let noticia of (recommendedNews$ | async)" class="recommended-news-card">
+            <div class="col-sm margin-top">
+              <app-news-card [noticia]="noticia"></app-news-card>
             </div>
+          </div>
         </div>
-    </div>-->
+      </div>
+      <button type="button" class="btn btn-primary rounded-1 btn-lg more-news-btn" [routerLink]="['/noticias/']" >
+        {{"NEWS.MORENEWS" | translate}}
+      </button>
+    </div>
   </div>
-
   <ng-template #loadingSpinner class="screen-height">
     <app-loading-spinner>
     </app-loading-spinner>
   </ng-template>
-
 </div>
+

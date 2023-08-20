@@ -125,6 +125,10 @@
       "CONTENT": "Find out about our newest events!",
       "MORE": "View more events"
     },
+    "CHAPTERS": {
+      "TITLE": "Student Chapters",
+      "CONTENT": "Learn more about our student chapters!"
+    },
     "SPONSORS": "Sponsors",
     "BITCUP": {
       "TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA. Due to its varied difficulty, you can use it as an introduction to the world of competitive programming.",
@@ -208,7 +212,10 @@
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
   },
   "NEWS": {
-    "OF": "of"
+    "OF": "of",
+    "MORENEWS": "View more news",
+    "RECOMMENDED": "Recommended news",
+    "RATING": "What do you think about the post?"
   },
   "IEEEXTREME": {
     "FACTS": {
@@ -269,6 +276,7 @@
     "FORMAT_SUBTITLE": "Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
+    "CONTENTBUTTON": "Go to content",
     "SOLUTIONBUTTON": "Go to solutions",
     "QUESTIONS": {
       "TEXT": "We opened a SubReddit to answer questions: ",
@@ -514,7 +522,8 @@
     "ABOUTRAS": {
       "TITLE": "About RAS",
       "CONTENT1": "RAS strives to advance innovation, education, and fundamental and applied research in robotics and automation. Robotics focuses on systems incorporating sensors and actuators that operate autonomously or semi-autonomously in cooperation with humans. Robotics research emphasizes intelligence and adaptability to cope with unstructured environments. Automation research emphasizes efficiency, productivity, quality, and reliability, focusing on systems that operate autonomously, often in structured environments over extended periods, and on the explicit structuring of such environments.",
-      "CONTENT2": "The Society provides aid in promoting close cooperation and exchange of technical information among its Members and Affiliates, and to this end holds meetings for the presentation of papers and their discussion, sponsors appropriate periodicals and special technical publications, and through its committee's studies and provides for the needs of its members and affiliates."
+      "CONTENT2": "The Society provides aid in promoting close cooperation and exchange of technical information among its Members and Affiliates, and to this end holds meetings for the presentation of papers and their discussion, sponsors appropriate periodicals and special technical publications, and through its committee's studies and provides for the needs of its members and affiliates.",
+      "SHORTCONTENT": "RAS strives to advance innovation, education, and fundamental and applied research in robotics and automation."
     }
   },
 
@@ -635,7 +644,7 @@
       "DATE": "Saturday, July 29",
       "LOCATION": "ITBA Sede Distrito Tecnológico",
       "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
-      "TIME": "8:00hs - 19:00hs"
+      "TIME": "9:00hs - 19:00hs"
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
@@ -824,7 +833,8 @@
     "PAGETITLE": "ITBA IEEE | WIE Branch Student Chapter",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
-      "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group"
+      "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group",
+      "SHORTCONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group, looking to encourage girls and women to get involved in STEM field careers"
     },
     "OBJECTIVES": {
       "TITLE": "Objectives",
@@ -883,5 +893,8 @@
   },
   "TITLE": {
 
+  },
+  "CS": {
+    "ABOUT": "A technology-focused organization made up of students and alumni of ITBA, dedicated to inspiring and educating in various areas of technology related to software engineering and technology."
   }
 }

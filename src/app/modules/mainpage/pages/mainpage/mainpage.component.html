@@ -134,8 +134,7 @@
       </button>
     </div>
   </div>
-  <!-- Eventos -->
-  <!--
+
   <div class="section gray-background">
     <div class="news-container">
       <div class="section-header">
@@ -146,46 +145,34 @@
             alt="Events"
             class="section-header-logo"
           />
-          <h1 class="section-title">{{ 'HOME.EVENTS.TITLE' | translate }}</h1>
+          <h1 class="section-title">{{ 'HOME.CHAPTERS.TITLE' | translate }}</h1>
         </div>
         <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.EVENTS.CONTENT" | translate }}</span>
+        <span class="section-subtitle">{{ "HOME.CHAPTERS.CONTENT" | translate }}</span>
       </div>
       <div>
         <div class="carousel-wrapper">
           <div class="pagination-prev-wrapper">
-            <span class="swiper-button-prev swiper-events pagination-prev" id="events-pagination-prev"></span>
+            <span class="swiper-button-prev swiper-events pagination-prev" id="chapters-pagination-prev"></span>
           </div>
-          <swiper [config]="swiperConfigEvents" style="width: 100%">
-            <ng-container *ngFor="let event of latestEvents">
+          <swiper [config]="chaptersSwiperOptions" style="overflow: hidden; width: 100%;">
+            <ng-container *ngFor="let chapter of studentChapters$ | async" >
               <ng-template swiperSlide>
-                <app-event-card-short [event]="event" index="{{0}}"></app-event-card-short>
+                <app-student-chapter-card [studentChapter]="chapter"></app-student-chapter-card>
               </ng-template>
             </ng-container>
           </swiper>
           <div class="pagination-next-wrapper">
-            <span class="events-swiper-button-next swiper-button-next swiper-events pagination-next" id="events-pagination-next"></span>
+            <span class="events-swiper-button-next swiper-button-next swiper-events pagination-next" id="chapters-pagination-next"></span>
           </div>
         </div>
       </div>
-      <ng-template #loadingSpinnerBlock>
-        <app-loading-spinner></app-loading-spinner>
-      </ng-template>
-      <div class="pagination-wrapper swiper-events" id="events-pagination-wrapper"></div>
-    </div>
-    <div class="end-button-container">
-      <button class="learn-more-button" [routerLink]="['/events']">{{ 'HOME.EVENTS.MORE' | translate }} <mdb-icon
-        fas
-        icon="chevron-right"
-        class="waves-light"
-        mdbWavesEffect></mdb-icon>
-      </button>
+      <div class="pagination-wrapper swiper-events" id="chapters-pagination-wrapper"></div>
     </div>
   </div>
-  -->
 
   <!-- Sponsors Actuales -->
-  <div class="section gray-background">
+  <div class="section">
     <div>
       <div class="section-header">
         <div class="section-header-start-line"></div>
@@ -195,6 +182,6 @@
         </div>
         <div class="section-header-end-line"></div>
       </div>
-      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
+      <app-sponsor-component [currentsponsor]="sponsors"></app-sponsor-component>
     </div>
   </div>
