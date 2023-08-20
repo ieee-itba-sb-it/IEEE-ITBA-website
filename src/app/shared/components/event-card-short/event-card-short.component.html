@@ -5,10 +5,11 @@
         src="{{ event.imageSrc }}"
         alt="{{ event.imageAlt }}"
         class="event-card-img"
+        loading="lazy"
         [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}"
       />
       <div class="text-position">
-        <div *ngIf="event.dates[0].date != null" class="date-inner-container">
+        <div *ngIf="event.dates[0].date !== null" class="date-inner-container">
           <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
           {{ capitalizeFirstLetter(event.dates[0].date.toLocaleString(locale(), { month: 'long' })) }}
         </div>

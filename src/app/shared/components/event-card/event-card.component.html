@@ -5,6 +5,7 @@
         src="{{ event.imageSrc }}"
         alt="{{ event.imageAlt }}"
         class="event-card-img"
+        loading="lazy"
         [ngClass]="{'primary-filter': hasPrimaryColorIndex, 'secondary-filter': !hasPrimaryColorIndex}" />
       <p class="text-on-image">
         {{ event.titleCode | translate }}
