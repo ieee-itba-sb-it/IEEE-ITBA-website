@@ -55,3 +55,8 @@ dump/
 mock_data/
 
 *.log
+
+.env.*
+.env
+
+!.env.template
