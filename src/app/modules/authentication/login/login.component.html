@@ -26,9 +26,9 @@
 
             <h4 *ngIf="loginResponse !== null"
                 id="passerr"
-                [class]="{ 'success': loginResponse.success, 'error': !loginResponse.success}"
+                [class]="{ 'success': loginResponse?.success, 'error': !loginResponse?.success}"
             >
-              {{ loginResponse.message | translate }}
+              {{ loginResponse?.message | translate }}
             </h4>
             <div class="d-flex justify-content-center mt-3 gap-2">
               <span class="mb-0">{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
