@@ -5,19 +5,76 @@
     background-size: cover;
 }
 
+p {
+    color: rgb(0, 0, 0);
+    background: rgba(245, 245, 245, 0.2);
+    padding: 2vmin 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+h2{
+    font-size: 3vmin;
+    margin-left: 20px;
+    text-align: left;
+    color: black;
+}
+
 h3 {
     font-size: 20px;
     font-weight: 500;
 }
 
-p{
-    color: rgb(0, 0, 0);
-    border-radius: 5vmin;
-    text-align: justify;
-    font-size: 16px;
+li > p{ 
+    margin: 0;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
 
+.banner{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.title-container {
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
+    border-top: var(--bs-ieee-bright-blue) 2px solid;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    margin-bottom:2%
+}
+
+.course-title {
+    font-size: calc(1.5vw + 1rem);
+    font-weight: 400;
+    color: var(--bs-ieee-bright-blue-80);
+    letter-spacing: 1px;
+}
+
+.course-subtitle {
+    font-size: calc(0.7vw + 0.7rem);
+    color: var(--bs-ieee-bright-blue);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.information{
+    margin-bottom: 4rem;
+}
+  
 /* Buttons */
+
 .button {
     display: inline-flex;
     align-items: center;
@@ -67,51 +124,43 @@ p{
 
 /* Cards */
 mat-card-header{
+    height: 5.5rem;
     left: 0rem;
 }
-/* Title of the course*/
 
-.banner{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
+.card{
+    margin: 0 1rem;
+    padding: 0 1rem;
 }
 
-.course-title {
-    font-size: calc(1.5vw + 1rem);
-    font-weight: 400;
-    color: var(--bs-ieee-bright-blue-80);
-    letter-spacing: 1px;
-    text-align: center;
+.card-content {
+    text-align: justify;
+    font-size: 1.2em;
 }
 
-.course-subtitle {
-    font-size: calc(0.7vw + 0.7rem);
-    color: var(--bs-ieee-bright-blue);
-    font-weight: 600;
-    margin: 1.5rem 0;
+.header-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png');
+    background-size: cover;
 }
 
+/* Syllabus section*/
 .syllabus{
     margin: 1rem 0;
     display: flex;
-    justify-content: space-between;
-
+    justify-content: center;
 }
 
 .syllabus > mat-card {
-    width: 24%;
+    width: 40%;
 }
 
 /* Form section */
-
 .forms{
     display: flex;
     justify-content: center;
 }
 
 /* FAQ section */
-
 .faq-section {
     margin-top: 3rem;
     margin-bottom: 4rem;
@@ -123,13 +172,10 @@ mat-card-header{
 .faq-panel {
     height:max-content;
 }
-
 .faq-question {
     font-size: 1rem;
 }
-
 .faq-answer {
-    margin-top: 0.5rem;
     font-size: larger;
 }
 

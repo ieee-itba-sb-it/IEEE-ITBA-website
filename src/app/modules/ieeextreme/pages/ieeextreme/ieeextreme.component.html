@@ -27,57 +27,52 @@
   </div>
 
   <!-- Resolve problemas en equipo -->
-  <div class="bottomLine">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <h2>{{ 'IEEEXTREME.TEAM.TITLE' | translate }}</h2>
-          <div class="transparent">{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</div>
-        </div>
-        <div class="col-sm">
-          <img src="../../../../../assets/image/events/ieeextreme/teamdisc_black.png" height="200vmin" alt="Logo ITBA-IEEE">
-        </div>
-      </div>
+  <div class="info">
+    <div style="padding-right:3rem;">
+      <h2 class="course-subtitle">{{ 'IEEEXTREME.TEAM.TITLE' | translate }}</h2>
+      <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
+    </div>
+    <div>
+      <img src="../../../../../assets/image/events/ieeextreme/teamdisc_black.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
   </div>
 
   <!-- Queres participar -->
-  <div class="bottomLine" id="takepart">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="200vmin" alt="Logo ITBA-IEEE">
-        </div>
-        <div class="col-sm">
-          <h2>{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}</h2>
-          <div class="transparent">{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</div>
-        </div>
-      </div>
+  <div class="info">
+    <div style="padding-right:3rem;">
+      <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
+    </div>
+    <div>
+      <h2 class="course-subtitle">{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}</h2>
+      <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
     </div>
   </div>
 
   <!-- Sponsors -->
-  <div class="bottomLine">
-    <h1>{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h1>
+  <div>
+    <h2 class="course-subtitle">{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h2>
     <br>
     <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getIeextremeSponsors()"></app-sponsor-component>
   </div>
 
   <!-- Sponsor team -->
-  <div class="noLine">
-    <h1>Sponsorship 2022</h1>
-    <p class="sponsors-needed-text">{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm" *ngFor="let contact of contacts">
-          <div class="sponsorContact">
-            <h3>{{ contact.name }}</h3>
-            <a href="mailto:{{contact.mail}}" class="whiteLink">
-              {{contact.mail}}
-            </a>
-          </div>
-        </div>
-      </div>
+  <div>
+    <h2 class="course-subtitle">Sponsorship 2022</h2>
+    <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
+    <div style="display:flex; justify-content: space-around; margin-top:2rem;">
+      <mat-card *ngFor="let contact of contacts" class="example-card"
+              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+      <mat-card-header>
+        <mat-card-title>
+          <b>{{ contact.name }}</b>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+        <a class="card-content" href="mailto:{{contact.mail}}">
+          {{contact.mail}}
+        </a>
+      </mat-card-content>
+    </mat-card>
     </div>
   </div>
 </div>
