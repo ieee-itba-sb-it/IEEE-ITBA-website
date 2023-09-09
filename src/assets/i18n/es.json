@@ -519,6 +519,7 @@
       "UNKNOWN": "Error desconocido",
       "DISABLED_USER": "Usuario ha sido deshabilitado"
     },
+    "PAGETITLE": "Iniciar Sesión",
     "SUCCESS": "Bienvenido a IEEE!"
   },
   "REGISTER": {

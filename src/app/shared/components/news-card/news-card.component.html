@@ -1,8 +1,8 @@
 <a class="text-decoration-none" [routerLink]="['/noticias/' + noticia.reference]">
   <mat-card class="news-card">
-      <img appResize [ngWidth]="400" class="news-card-img" mat-card-image
-      ngSrc="{{noticia.imageUrl}}" alt="Foto de Noticia" loading="lazy"
-      >
+    <img height="800" width="400" class="news-card-img" mat-card-image
+         [ngSrc]="noticia.imageUrl" alt="Foto de Noticia" loading="lazy"
+    >
       <mat-card-content class="news-card-content">
           <mat-card-title class="clamp">{{ noticia.title }}</mat-card-title>
           <mat-card-subtitle class="clamp align-end">{{ noticia.author }}</mat-card-subtitle>

@@ -6,7 +6,11 @@
 
     <ng-template #showProfile>
         <!-- Imagen principal -->
-        <mdb-card-img appResize [ngWidth]="400" [ngSrc]="person.photo" alt="Foto de {{person.name}}"></mdb-card-img>
+        <img height="200" width="400" mat-card-image
+             [ngSrc]="person.photo" alt="Foto de {{person.name}}" loading="eager"
+             style="width: 100%;"
+        >
+
         <a>
             <div class="mask rgba-white-slight"></div>
         </a>

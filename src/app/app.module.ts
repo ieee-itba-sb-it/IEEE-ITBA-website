@@ -28,6 +28,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
 import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
+import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
   // easeInOutExpo easing
@@ -72,11 +73,17 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     FlexModule,
     MatChipsModule,
     SharedModule,
+    NgOptimizedImage
   ],
   providers: [
     { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
     { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
     { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
+    {
+      provide: IMAGE_LOADER, useValue: ({ src, width }: ImageLoaderConfig) => {
+        return `https://imagecdn.app/v2/image/${encodeURIComponent(src)}?format=webp&width=${encodeURIComponent(width)}`;
+      }
+    }
   ],
   bootstrap: [AppComponent]
 })

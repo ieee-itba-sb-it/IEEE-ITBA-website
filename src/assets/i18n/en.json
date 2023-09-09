@@ -468,7 +468,8 @@
       "UNKNOWN": "Unknown error",
       "DISABLED_USER": "User has been disabled"
     },
-    "SUCCESS": "Welcome to IEEE!"
+    "SUCCESS": "Welcome to IEEE!",
+    "PAGETITLE": "Log in to IEEE"
   },
   "REGISTER": {
     "TITLE": "Register",
