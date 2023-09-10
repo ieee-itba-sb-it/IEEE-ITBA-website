@@ -7,17 +7,14 @@
           <h1>15</h1>
           <h3 class="facts">{{ 'IEEEXTREME.FACTS.EDITIONS' | translate }}</h3>
         </div>
-        <div class="dottedlineright"></div>
         <div class="col-sm">
           <h1>54+</h1>
           <h3 class="facts">{{ 'IEEEXTREME.FACTS.PARTICIPANTS' | translate }}</h3>
         </div>
-        <div class="dottedlineright"></div>
         <div class="col-sm">
           <h1>11</h1>
           <h3 class="facts">{{ 'IEEEXTREME.FACTS.TOPTEAMS' | translate }}</h3>
         </div>
-        <div class="dottedlineright"></div>
         <div class="col-sm">
           <h1>24hs</h1>
           <h3 class="facts">{{ 'IEEEXTREME.FACTS.HOURS' | translate }}</h3>
@@ -52,12 +49,13 @@
   <div>
     <h2 class="course-subtitle">{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h2>
     <br>
-    <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getIeextremeSponsors()"></app-sponsor-component>
+    <app-sponsor-component style="display: flex; justify-content: center;"
+    [currentsponsor]="sponsorsServiceVar.getIeextremeSponsors()"></app-sponsor-component>
   </div>
 
   <!-- Sponsor team -->
   <div>
-    <h2 class="course-subtitle">Sponsorship 2022</h2>
+    <h2 class="course-subtitle">Sponsorship 2023</h2>
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
     <div style="display:flex; justify-content: space-around; margin-top:2rem;">
       <mat-card *ngFor="let contact of contacts" class="example-card"

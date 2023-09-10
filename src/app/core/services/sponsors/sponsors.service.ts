@@ -10,14 +10,6 @@ export class SponsorsService {
 
   currentSponsors: Sponsor[] = [
     {
-      name: 'Hitachi Energy',
-      img: this.imgSrcPrefix + 'hitachi-energy.png'
-    },
-    {
-      name: 'Inclusion',
-      img: this.imgSrcPrefix + 'inclusion.png'
-    },
-    {
       name: 'Innovid',
       img: this.imgSrcPrefix + 'innovid.png'
     },
@@ -32,6 +24,14 @@ export class SponsorsService {
   ];
 
   previousSponsors: Sponsor[] = [
+    {
+      name: 'Inclusion',
+      img: this.imgSrcPrefix + 'inclusion.png'
+    },
+    {
+      name: 'Hitachi Energy',
+      img: this.imgSrcPrefix + 'hitachi-energy.png'
+    },
     {
       name: 'Axion Energy',
       img: this.imgSrcPrefix + 'axion-energy.png'
@@ -64,20 +64,8 @@ export class SponsorsService {
 
   ieextremeSponsors: Sponsor[] = [
     {
-      name: 'Hitachi Energy',
-      img: this.imgSrcPrefix + 'hitachi-energy.png'
-    },
-    {
-      name: 'Inclusion',
-      img: this.imgSrcPrefix + 'inclusion.png'
-    },
-    {
       name: 'Innovid',
       img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
     }
   ];
 

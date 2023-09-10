@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
 
 @Component({
@@ -12,12 +12,12 @@ export class IeeextremeComponent implements OnInit {
 
   contacts = [
     {
-      name: 'Brisa Rojas Silva',
-      mail: 'brojas@itba.edu.ar'
+      name: 'Nicolás Agustín Beade',
+      mail: 'nbeade@itba.edu.ar'
     },
     {
-      name: 'Nicolas Bustelo',
-      mail: 'nbustelo@itba.edu.ar'
+      name: 'Miranda Ormaechea Graiver',
+      mail: 'mormaecheagraiver@itba.edu.ar'
     }
   ];
 
