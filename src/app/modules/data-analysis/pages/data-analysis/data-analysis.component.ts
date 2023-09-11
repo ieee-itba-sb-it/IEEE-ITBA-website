@@ -73,7 +73,7 @@ export class DataAnalysisComponent implements OnInit {
 
   hasTestsAvailable() {
     const now = Timestamp.now();
-    const startDate = Timestamp.fromDate(new Date('02 Oct 2022 03:00:00 UTC'));
+    const startDate = Timestamp.fromDate(new Date('02 Oct 2023 03:00:00 UTC'));
     const endDate = Timestamp.fromDate(new Date('09 Oct 2023 03:00:00 UTC'));
     return startDate < now && now < endDate;
   }
