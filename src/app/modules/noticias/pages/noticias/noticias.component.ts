@@ -50,10 +50,12 @@ export class NoticiasComponent implements OnInit {
     this.blogService.retrieveListedDocsSize();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  scrollHome() {
     this.pageScrollService.scroll({
       document: this.document,
-      scrollTarget: '#meetup',
+      scrollTarget: 'html'
     });
   }
 
@@ -65,18 +67,18 @@ export class NoticiasComponent implements OnInit {
       return this.currentPage < this.pageCount;
   }
 
-  nextPage(){
-    if (this.hasNextPage()) {
+  nextPage() {
+      if (!this.hasNextPage()) return;
       this.blogService.getNextDocsPage();
       this.currentPage++;
-    }
+      this.scrollHome();
   }
 
-  prevPage(){
-    if (this.hasPrevPage()) {
+  prevPage() {
+      if (!this.hasPrevPage()) return;
       this.blogService.getPrevDocsPage();
       this.currentPage--;
-    }
+      this.scrollHome();
   }
 
 }

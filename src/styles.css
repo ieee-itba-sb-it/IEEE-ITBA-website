@@ -8,7 +8,10 @@
   src: url('assets/fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%; 
+  scroll-behavior: auto !important; 
+}
 body { margin: 0; font-family: "Open sans", "Helvetica Neue", sans-serif; line-height: 1.5; }
 p { line-height: 1.5; }
 
