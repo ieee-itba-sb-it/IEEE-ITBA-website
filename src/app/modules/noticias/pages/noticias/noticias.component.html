@@ -16,6 +16,10 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
 
+  <div *ngIf="!showLoadingSpinner">
+    <app-pagination (next)="nextPage(false)" (previous)="prevPage(false)" [hasNext]="hasNextPage()" [hasPrevious]="hasPrevPage()" [currentPage]="currentPage" [pageCount]="pageCount"></app-pagination>
+  </div>
+
   <div class="row news-grid">
     <div *ngFor="let noticia of newsData">
       <div class="col-sm margin-top">
@@ -25,14 +29,6 @@
   </div>
 
   <div *ngIf="!showLoadingSpinner">
-    <div class="pagination-controller">
-      <button class="page-change-button page-change-button-left" (click)="prevPage()" [disabled]="!hasPrevPage()">
-        <img class="page-change-button-image" src="../../../../../assets/image/logos/left-arrow.svg" alt="Previous page icon"/>
-      </button>
-      <span>{{this.currentPage}} {{ 'NEWS.OF' | translate }} {{this.pageCount}}</span>
-      <button class="page-change-button page-change-button-right" (click)="nextPage()" [disabled]="!hasNextPage()">
-        <img class="page-change-button-image" src="../../../../../assets/image/logos/right-arrow.svg" alt="Previous page icon"/>
-      </button>
-    </div>
+    <app-pagination (next)="nextPage(true)" (previous)="prevPage(true)" [hasNext]="hasNextPage()" [hasPrevious]="hasPrevPage()" [currentPage]="currentPage" [pageCount]="pageCount"></app-pagination>
   </div>
 </div>

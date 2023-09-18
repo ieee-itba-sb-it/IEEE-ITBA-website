@@ -29,21 +29,15 @@ export class NoticiasComponent implements OnInit {
     this.blogService.setDocsPageSize(this.pageSize + 1);
     this.newsCountObs = this.blogService.listedDocsSizeObs();
     this.newsDataObs = this.blogService.docsObs();
-    this.newsCountObs.subscribe(listedCount => {
-      this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1;
-    });
+    this.newsCountObs.subscribe(listedCount => this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1);
     this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.newsData = [];
-      if (data.length > 0){
+      if (data.length > 0) 
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
-      }
       for (const i in data) {
-        if (data[i].listed) {
-          if (this.newsData.length < this.pageSize) {
-            this.newsData.push(data[i]);
-          }
-        }
+        if (data[i].listed && this.newsData.length < this.pageSize) 
+          this.newsData.push(data[i]);
       }
     });
     this.blogService.getFirstDocsPage();
@@ -67,18 +61,18 @@ export class NoticiasComponent implements OnInit {
       return this.currentPage < this.pageCount;
   }
 
-  nextPage() {
+  nextPage(scroll: boolean) {
       if (!this.hasNextPage()) return;
       this.blogService.getNextDocsPage();
       this.currentPage++;
-      this.scrollHome();
+      if (scroll) this.scrollHome();
   }
 
-  prevPage() {
+  prevPage(scroll: boolean) {
       if (!this.hasPrevPage()) return;
       this.blogService.getPrevDocsPage();
       this.currentPage--;
-      this.scrollHome();
+      if (scroll) this.scrollHome();
   }
 
 }
