@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {MainpageComponent} from '../mainpage/pages/mainpage/mainpage.component';
 import {NoticiasComponent} from './pages/noticias/noticias.component';
@@ -44,7 +44,8 @@ export const routing = RouterModule.forChild(routes);
     MDBBootstrapModule.forRoot(),
     MatChipsModule,
     EmojiModule,
-    MatGridListModule
+    MatGridListModule,
+    NgOptimizedImage
   ],
   providers: [ CookieService ]
 })

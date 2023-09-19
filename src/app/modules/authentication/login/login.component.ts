@@ -37,7 +37,7 @@ export class LoginComponent  implements OnInit {
   email: string;
   pass: string;
 
-  loginResponse: ApiResponse;
+  loginResponse: ApiResponse = null;
 
   // On Init
   ngOnInit(): void {
@@ -74,6 +74,5 @@ export class LoginComponent  implements OnInit {
         }
       });
     });
-
   }
 }

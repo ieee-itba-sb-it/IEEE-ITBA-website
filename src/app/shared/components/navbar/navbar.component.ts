@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     // Load name
     this.user = this.authService.getCurrentUser();
-    this.user.pipe(skip(1)).subscribe(async (usuario: IEEEuser) => {
+    this.user.subscribe(async (usuario: IEEEuser) => {
       if (usuario) {
         this.loggedIn = true;
         const aux: number = await this.userService.getCurrentUserRole(usuario.email);
