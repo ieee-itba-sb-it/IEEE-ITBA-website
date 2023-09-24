@@ -22,9 +22,8 @@
         <p class="word-break text-justify" [innerHtml]="newsData.shortIntro"></p>
       </div>
       <div class="news-image">
-        <mdb-card-img class="roundedBlock" src="{{newsData.imageUrl}}"
-                      alt="Foto de noticia">
-        </mdb-card-img>
+        <img mat-card-image ngSrc="{{newsData.imageUrl}}" width="1000" height="500"
+                      alt="Foto de noticia" style="top: 0; width: 100%; height: 100%;" />
         <p class="pt-1">{{newsData.imageText}}</p>
       </div>
       <div class="news-content word-break py-5">

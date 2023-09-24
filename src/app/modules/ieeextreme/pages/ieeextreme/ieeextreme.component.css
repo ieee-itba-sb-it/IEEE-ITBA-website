@@ -1,8 +1,47 @@
 .main-container {
-    padding: 5% 10% 0;
+    padding: 10%;
     background: rgb(255, 255, 255);
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
+}
+
+.info {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+p {
+    color: rgb(0, 0, 0);
+    background: rgba(245, 245, 245, 0.2);
+    padding: 2vmin 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+  
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+h2{
+    font-size: 3vmin;
+    margin-left: 20px;
+    text-align: left;
+    color: black;
+}
+
+.example-card {
+    text-align:justify;
+    padding: 0.5rem 4rem;
+}
+
+.card-content {
+    text-align: justify;
+    font-size: 1.2em;
 }
 
 .whiteRoundedBlock{
@@ -15,7 +54,6 @@
     padding-top: 5vmin;
     padding-bottom: 5vmin;
     border-top: var(--bs-ieee-bright-blue) 2px solid;
-    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
 }
@@ -23,6 +61,7 @@
 .bottomLine {
     padding-top: 10vmin;
     padding-bottom: 10vmin;
+    margin-bottom: 4rem;
     border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
@@ -72,21 +111,6 @@
 
 #facts {
     margin-top: 8vmin;
-}
-
-mdb-card {
-    border-radius: 5vmin;
-    margin: 1.5vmin;
-}
-
-mdb-card-text {
-    text-align: left;
-}
-
-h1 {
-    color: black;
-    font-size: 5vmin;
-    font-weight: lighter;
 }
 
 .right {
@@ -170,4 +194,18 @@ h2 {
         width: 70%;
     }
 
+}
+
+.course-title {
+    font-size: calc(1.5vw + 1rem);
+    font-weight: 400;
+    color: var(--bs-ieee-bright-blue-80);
+    letter-spacing: 1px;
+}
+
+.course-subtitle {
+    font-size: calc(0.7vw + 0.7rem);
+    color: var(--bs-ieee-bright-blue);
+    font-weight: 600;
+    margin-top: 0.5rem;
 }

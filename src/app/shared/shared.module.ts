@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -26,7 +26,6 @@ import {TeamCardComponent} from './components/team-card/team-card.component';
 import {EventCardShortComponent} from './components/event-card-short/event-card-short.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
-import {ResizeDirective} from './directives/resize.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {HttpLoaderFactory} from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
@@ -40,7 +39,7 @@ export const routing = RouterModule.forChild(routes);
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
     EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, ResizeDirective, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
+    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
   imports: [
     routing,
     CommonModule,
@@ -61,10 +60,11 @@ export const routing = RouterModule.forChild(routes);
     MatTabsModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgOptimizedImage
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
     EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, ResizeDirective, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
+    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
 })
 export class SharedModule { }

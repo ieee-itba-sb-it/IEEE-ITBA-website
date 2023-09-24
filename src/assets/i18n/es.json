@@ -416,7 +416,8 @@
     "FORMAT_SUBTITLE": "Formato del curso",
     "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
     "ENROLLBUTTON": "¡Anotate ahora!",
-    "SOLUTIONBUTTON": "IR A LAS SOLUCIONES",
+    "CONTENTBUTTON": "Ir al contenido",
+    "SOLUTIONBUTTON": "Ir al solucionario",
     "TESTBUTTON": "Empezar el examen",
     "CONTENT_TITLE": "Contenido",
     "CONTENT_DESC": "El curso consiste de 2 clases cubriendo los siguientes temas, para acceder a los contenidos de las clases y los solucionarios puedes hacer click en el boton correspondiente.",
@@ -519,6 +520,7 @@
       "UNKNOWN": "Error desconocido",
       "DISABLED_USER": "Usuario ha sido deshabilitado"
     },
+    "PAGETITLE": "Iniciar Sesión",
     "SUCCESS": "Bienvenido a IEEE!"
   },
   "REGISTER": {

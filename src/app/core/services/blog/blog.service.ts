@@ -149,7 +149,7 @@ export class BlogService {
    */
 
 
-retrieveDocsSize() {
+  retrieveDocsSize() {
     this.afs.collection(metadataCollectionName).doc(this.collectionName).get().subscribe(doc => {
       // @ts-ignore
       this.docsSize.next(doc.data().count);

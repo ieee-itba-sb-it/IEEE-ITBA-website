@@ -365,7 +365,8 @@
     "FORMAT_SUBTITLE": "Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
-    "SOLUTIONBUTTON": "GO TO SOLUTIONS",
+    "CONTENTBUTTON": "Go to content",
+    "SOLUTIONBUTTON": "Go to solutions",
     "TESTBUTTON": "Start Test",
     "CONTENT_TITLE": "Course contents",
     "CONTENT_DESC": "The course consists of 2 classes covering the following topics, to access the contents of the classes and the solutions you can click on the corresponding button.",
@@ -468,7 +469,8 @@
       "UNKNOWN": "Unknown error",
       "DISABLED_USER": "User has been disabled"
     },
-    "SUCCESS": "Welcome to IEEE!"
+    "SUCCESS": "Welcome to IEEE!",
+    "PAGETITLE": "Log in to IEEE"
   },
   "REGISTER": {
     "TITLE": "Register",

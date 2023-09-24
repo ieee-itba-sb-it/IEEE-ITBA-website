@@ -24,12 +24,10 @@
   margin-right: auto;
 }
 
-p{
+p {
   color: rgb(0, 0, 0);
-  margin-top: 3vmin;
-  margin-bottom: 3vmin;
   background: rgba(245, 245, 245, 0.2);
-  padding: 3vmin;
+  padding: 2vmin 3vmin;
   border-radius: 5vmin;
   text-align: justify;
   font-size: 1.1rem;
@@ -56,6 +54,11 @@ h1 {
   text-align: center;
 }
 
+.card-content {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
 
 .example-header-image {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
@@ -66,8 +69,8 @@ h1 {
 .topbottomLine {
   padding-top: 2vmin;
   padding-bottom: 2vmin;
-  border-top: whitesmoke 2px solid;
-  border-bottom: whitesmoke 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -323,7 +326,7 @@ img {
 }
 
 ::ng-deep .mat-expansion-indicator::after {
-  color:rgb(23, 46, 148);
+  color:var(--bs-ieee-bright-blue);
 }
 
 mat-panel-description {
@@ -336,12 +339,12 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-  border: rgb(23, 46, 148) 1px solid;
+  border: var(--bs-ieee-bright-blue) 1px solid;
   border-radius: 5vmin;
 }
 
 mat-panel-title {
-  color:rgb(23, 46, 148);
+  color:var(--bs-ieee-bright-blue);
 }
 
 .mat-list .mat-list-item {
@@ -350,24 +353,27 @@ mat-panel-title {
 
 
 .ieeecard-button {
+  font-size: 1.2em;
+  padding: 0.4em 0.7em;
   font-weight: 600;
   margin-top: 0.25rem;
-  border: solid rgb(23, 46, 148);
-  color: rgb(23, 46, 148) !important;
+  border: solid var(--bs-ieee-bright-blue);
+  color: var(--bs-ieee-bright-blue) !important;
   border-radius: 5px;
   background-color: inherit;
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
+
 .ieeecard-button:hover {
   box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
   color: white !important;
-  background-color: #0d47a1;
+  background-color: var(--bs-ieee-bright-blue);
   border-color: white;
 }
-.ieeecard-button >.button-text {
-  color: rgb(23, 46, 148) !important;
-}
-.ieeecard-button:hover > .button-text{
-  color: white !important;
+
+.ieeecard-button:disabled {
+background-color: lightgrey;
+border: solid gray;
+color: gray !important;
 }

@@ -1,12 +1,32 @@
 @import url('https://unpkg.com/swiper/swiper-bundle.css');
-@import '~swiper/swiper-bundle.min.css';
 
 .main-container {
-  padding: 0% 10% ;
+  padding: 0% 10%;
   background: rgb(255, 255, 255);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
-  font-size: 1.2em;
+}
+
+p {
+  color: rgb(0, 0, 0);
+  background: rgba(245, 245, 245, 0.2);
+  padding: 2vmin 3vmin;
+  border-radius: 5vmin;
+  text-align: justify;
+  font-size: 1.1rem;
+}
+
+h1 {
+  color: rgb(0, 0, 0);
+  font-size: 5vmin;
+  font-weight: lighter;
+}
+
+h2{
+  font-size: 3vmin;
+  margin-left: 20px;
+  text-align: left;
+  color: black;
 }
 
 .col-sm {
@@ -15,41 +35,39 @@
   text-align: center;
 }
 
-.topbottomLine {
+.top_bottom_line {
   padding-top: 2vmin;
   padding-bottom: 2vmin;
-  border-top: whitesmoke 2px solid;
-  border-bottom: whitesmoke 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
 
 @media (max-width: 700px) {
-  .topbottomLine {
+  .top_bottom_line {
     padding-top: 30%;
   }
 }
 
 .course-title {
-  font-size: calc(1.5vw + 1.2rem);
+  font-size: calc(1.5vw + 1rem);
   font-weight: 400;
   color: var(--bs-ieee-bright-blue-80);
   letter-spacing: 1px;
 }
+
 .course-subtitle {
-  font-size: calc(0.7vw + 1rem);
+  font-size: calc(0.7vw + 0.7rem);
   color: var(--bs-ieee-bright-blue);
   font-weight: 600;
-  margin: 1rem 20px;
-}
-
-.desc-text{
-  margin-left: 20px;
+  margin-top: 0.5rem;
 }
 
 .banner {
   position: relative;
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .max-width {
@@ -85,7 +103,7 @@
 }
 
 .section {
-  margin-top: 3rem;
+  margin-bottom: 4rem;
 }
 
 .faq-section {

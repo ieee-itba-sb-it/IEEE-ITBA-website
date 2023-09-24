@@ -143,20 +143,17 @@ export class AuthService {
 
   // Get user Name
   getCurrentUser(): Observable<IEEEuser> {
-    const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
-
-    this.firebaseAuth.onAuthStateChanged((usuario) => {
-      if (usuario){ // There is an user
-        firebase.firestore().collection('users').doc(usuario.email).get().then((data) => {
-          const doc = data.data() as IEEEuser;
-          ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
-        });
-      } else {
-        ans.next(null);
-      }
-    });
-
-    return ans.asObservable();
-
+    return new Observable<IEEEuser>((subscriber) => {
+      this.firebaseAuth.onAuthStateChanged((usuario) => {
+        if (usuario){ // There is an user
+          firebase.firestore().collection('users').doc(usuario.email).get().then((data) => {
+            const doc = data.data() as IEEEuser;
+            subscriber.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
+          });
+        } else {
+          subscriber.next(null);
+        }
+      });
+    })
   }
 }
