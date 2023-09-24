@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.6",

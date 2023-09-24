@@ -12,12 +12,12 @@
     </div>
   </div>
 
-  <div class="mt-5 mr-5 ml-5">
-    <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0">
+  <div class="team-container">
+    <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0 expansion-panel">
       <mat-expansion-panel-header>
         <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
-      <app-team-card [team]="commission.team"></app-team-card>
+        <app-team-card [team]="commission.team"></app-team-card>
     </mat-expansion-panel>
   </div>
 </div>
