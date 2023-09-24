@@ -12,14 +12,6 @@ export class SponsorsService {
     {
       name: 'Innovid',
       img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Schneider Electric',
-      img: this.imgSrcPrefix + 'Schneider Logo.png'
     }
   ];
 
@@ -59,6 +51,14 @@ export class SponsorsService {
     {
       name: 'TGS',
       img: this.imgSrcPrefix + 'tgs.png'
+    },
+    {
+      name: 'JPMorgan',
+      img: this.imgSrcPrefix + 'jpmorgan.png'
+    },
+    {
+      name: 'Schneider Electric',
+      img: this.imgSrcPrefix + 'Schneider Logo.png'
     }
   ];
 

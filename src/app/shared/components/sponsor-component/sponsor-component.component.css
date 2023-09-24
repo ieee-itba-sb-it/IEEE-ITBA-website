@@ -1,7 +1,7 @@
 /* Thick red border */
 
 .sponsor-listing {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem 10rem;
   justify-content: center;
