@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {HttpLoaderFactory} from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -38,7 +39,7 @@ export const routing = RouterModule.forChild(routes);
 @NgModule({
   declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
     EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, EventCardShortComponent, StudentChapterComponent ],
+    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
   imports: [
     routing,
     CommonModule,
@@ -64,6 +65,6 @@ export const routing = RouterModule.forChild(routes);
   ],
   exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
     EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, EventCardShortComponent, StudentChapterComponent]
+    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
 })
 export class SharedModule { }

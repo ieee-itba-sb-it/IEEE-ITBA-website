@@ -1,0 +1,37 @@
+.pagination-controller {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
+
+.page-change-button {
+    background-color: var(--bs-ieee-bright-blue-80);
+    border: 0;
+}
+
+.page-change-button-left {
+    border-radius: 40% 20% 20% 40%;
+}
+
+.page-change-button-right {
+    border-radius: 20% 40% 40% 20%;
+}
+
+.page-change-button:disabled {
+    opacity: 0.2;
+}
+
+.page-change-button:hover {
+    background-color: var(--bs-ieee-bright-blue-80);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.page-change-button-image {
+    height: 45px;
+    width: 45px;
+}
