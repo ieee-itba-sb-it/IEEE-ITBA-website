@@ -69,52 +69,6 @@ export class SponsorsService {
     }
   ];
 
-  bitCupSponsors: Sponsor[] = [
-    {
-      name: 'Axion Energy',
-      img: this.imgSrcPrefix + 'axion-energy.png'
-    },
-    {
-      name: 'Flowics',
-      img: this.imgSrcPrefix + 'flowics.png'
-    },
-    {
-      name: 'Innovid',
-      img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Pan American Energy',
-      img: this.imgSrcPrefix + 'pan-american-energy.png'
-    }
-  ];
-
-  analisisSponsors: Sponsor[] = [
-    {
-      name: 'Axion Energy',
-      img: this.imgSrcPrefix + 'axion-energy.png'
-    },
-    {
-      name: 'Flowics',
-      img: this.imgSrcPrefix + 'flowics.png'
-    },
-    {
-      name: 'Innovid',
-      img: this.imgSrcPrefix + 'innovid.png'
-    },
-    {
-      name: 'JPMorgan',
-      img: this.imgSrcPrefix + 'jpmorgan.png'
-    },
-    {
-      name: 'Pan American Energy',
-      img: this.imgSrcPrefix + 'pan-american-energy.png'
-    }
-  ];
-
   asimovSponsors: Sponsor[] = [];
   /*
     {
@@ -137,14 +91,6 @@ export class SponsorsService {
 
   getIeextremeSponsors() {
     return this.ieextremeSponsors;
-  }
-
-  getBitCupSponsors() {
-    return this.bitCupSponsors;
-  }
-
-  getAnalisisSponsors() {
-    return this.analisisSponsors;
   }
 
   getAsimovSponsors() {
