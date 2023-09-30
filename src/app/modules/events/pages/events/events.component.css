@@ -104,6 +104,12 @@
   }
 }
 
+@media (max-width: 1024px) {
+    .card-listing {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 400px) {
   .card-listing {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
