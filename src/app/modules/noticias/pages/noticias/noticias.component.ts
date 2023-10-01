@@ -1,10 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { blogCollectionName } from '../../../../secrets';
 import { BlogService } from '../../../../core/services/blog/blog.service';
-import { Observable} from 'rxjs';
+import { Observable, Subscription} from 'rxjs';
 import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import {PageScrollService} from "ngx-page-scroll-core";
 import {DOCUMENT} from "@angular/common";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-noticias',
@@ -24,7 +25,10 @@ export class NoticiasComponent implements OnInit {
   pagesOnPaginator: Array<number>;
   currentPage = 1;
 
-  constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {
+  cursorSub: Subscription;
+  cursor: Date;
+
+  constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, private route: ActivatedRoute) {
     this.blogService.setCollectionName(blogCollectionName);
     this.blogService.setDocsPageSize(this.pageSize + 1);
     this.newsCountObs = this.blogService.listedDocsSizeObs();
@@ -40,11 +44,26 @@ export class NoticiasComponent implements OnInit {
           this.newsData.push(data[i]);
       }
     });
-    this.blogService.getFirstDocsPage();
+    this.route.queryParams.subscribe((params: any) => {
+      if (params.cursor) this.cursor = new Date(params.cursor);
+      if (params.page) this.currentPage = params.page;
+    });
+    this.blogService.getFirstDocsPage(this.cursor);
     this.blogService.retrieveListedDocsSize();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cursorSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
+      if (data.length <= 0) return;
+      if (this.currentPage <= 1) return window.history.replaceState('', '', 'noticias');
+      let cursor: string = new Date(data[0].date).toISOString();
+      window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}`);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.cursorSub.unsubscribe();
+  }
 
   scrollHome() {
     this.pageScrollService.scroll({

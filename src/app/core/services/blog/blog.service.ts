@@ -221,10 +221,14 @@ export class BlogService {
   }
 
   // Gets all docs from setted collection
-  getFirstDocsPage() {
-    const collection = this.afs.collection(this.collectionName, ref => ref
+  getFirstDocsPage(cursor?: Date) {
+    const collection = this.afs.collection(this.collectionName, r => {
+      let ref = r
       .orderBy('date', 'desc')
-      .limit(this.docsPageSize));
+      .limit(this.docsPageSize);
+      if (cursor) ref = ref.startAt(cursor);
+      return ref;
+    });
     this.getDocsPage(collection);
   }
 

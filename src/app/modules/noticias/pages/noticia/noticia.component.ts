@@ -35,7 +35,6 @@ export class NoticiaComponent implements OnInit {
 
     this.blogService.setCollectionName(blogCollectionName);
 
-    this.blogService.getFirstDocsPage();
     this.blogService.retrieveListedDocsSize();
   }
 
