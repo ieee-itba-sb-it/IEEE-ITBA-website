@@ -33,6 +33,6 @@ export const routing = RouterModule.forChild(routes);
         MDBBootstrapModule.forRoot(),
         FlexLayoutModule
     ],
-  declarations: [RasComponent],
+    declarations: [RasComponent],
 })
 export class RasModule {}

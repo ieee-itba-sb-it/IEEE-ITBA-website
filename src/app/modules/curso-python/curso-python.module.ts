@@ -12,29 +12,29 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: CursoPythonComponent }
+    { path: '',  component: CursoPythonComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MatExpansionModule,
-    MatCardModule,
-    FlexLayoutModule
-  ],
-  declarations: [CursoPythonComponent],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MatExpansionModule,
+        MatCardModule,
+        FlexLayoutModule
+    ],
+    declarations: [CursoPythonComponent],
 })
 export class CursoPythonModule { }

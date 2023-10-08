@@ -31,61 +31,61 @@ import { HttpLoaderFactory } from './shared/translation-helpers';
 import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
-  // easeInOutExpo easing
-  if (t === 0) {
-    return b;
-  }
-  if (t === d) {
-    return b + c;
-  }
+    // easeInOutExpo easing
+    if (t === 0) {
+        return b;
+    }
+    if (t === d) {
+        return b + c;
+    }
 
-  t = t / (d / 2);
-  if (t >= 1) {
-    return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-  }
+    t = t / (d / 2);
+    if (t >= 1) {
+        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+    }
 
-  return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+    return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
 };
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
-    BrowserAnimationsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      defaultLanguage: 'es'
-    }),
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    HttpClientModule,
-    CardsModule,
-    EmojiModule,
-    FlexModule,
-    MatChipsModule,
-    SharedModule,
-    NgOptimizedImage
-  ],
-  providers: [
-    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
-    { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
-    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
-    {
-      provide: IMAGE_LOADER, useValue: ({ src, width }: ImageLoaderConfig) => {
-        return `https://imagecdn.app/v2/image/${encodeURIComponent(src)}?format=webp&width=${encodeURIComponent(width)}`;
-      }
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
+        BrowserAnimationsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            defaultLanguage: 'es'
+        }),
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        HttpClientModule,
+        CardsModule,
+        EmojiModule,
+        FlexModule,
+        MatChipsModule,
+        SharedModule,
+        NgOptimizedImage
+    ],
+    providers: [
+        { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
+        { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
+        { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
+        {
+            provide: IMAGE_LOADER, useValue: ({ src, width }: ImageLoaderConfig) => {
+                return `https://imagecdn.app/v2/image/${encodeURIComponent(src)}?format=webp&width=${encodeURIComponent(width)}`;
+            }
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
 

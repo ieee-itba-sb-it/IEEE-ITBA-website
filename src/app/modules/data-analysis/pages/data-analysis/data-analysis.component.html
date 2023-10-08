@@ -44,42 +44,40 @@
   <!-- Cards Temario -->
 
   <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-    <ng-container *ngFor="let courseClass of courseData.courseClasses, let i=index">
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!isOldDate(courseClass.openDate)}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <b>{{'DATAANALYSIS.CLASSES.TITLE' | translate }} {{i+1}}</b>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-        <span class="card-content">
-          {{ courseClass.description | translate }}
-        </span>
-      </mat-card-content>
-      <mat-card-actions>
-        <a
-          [href]="isOldDate(courseClass.openDate) ? courseClass.content : ''"
-          (click)="check($event, isOldDate(courseClass.openDate))"
-          [class.disabled]="!isOldDate(courseClass.openDate) ? true : null"
-        >
-          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!isOldDate(courseClass.openDate)">
-            {{ 'DATAANALYSIS.CONTENTBUTTON' | translate }}
-          </button>
-        </a>
-        <a
-          [href]="i < courseData.courseClasses.length-1 && !isOldDate(courseData.courseClasses[i+1].openDate) || !isOldDate(courseData.endDate) ? courseClass.solutions : ''"
-          (click)="check($event, i < courseData.courseClasses.length-1 && !isOldDate(courseData.courseClasses[i+1].openDate) || !isOldDate(courseData.endDate))"
-          [class.disabled]="!(i < courseData.courseClasses.length-1 && !isOldDate(courseData.courseClasses[i+1].openDate) || !isOldDate(courseData.endDate) ? true : null)"
-        >
-          <button mat-raised-button class="ieeecard-button me-3" [disabled]="!(i < courseData.courseClasses.length-1 && !isOldDate(courseData.courseClasses[i+1].openDate) || !isOldDate(courseData.endDate))">
-            {{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}
-          </button>
-        </a>
-      </mat-card-actions>
-    </mat-card>
-    </ng-container>
+      <ng-container *ngFor="let courseClass of courseData.courseClasses, let i=index">
+            <mat-card class="example-card" [ngClass]="{'not-available-background-color':!isOldDate(courseClass.openDate)}"
+                      fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>
+                      <b>{{'DATAANALYSIS.CLASSES.TITLE' | translate }} {{i+1}}</b>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+                    <span class="card-content">
+                        {{ courseClass.description | translate }}
+                    </span>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a [href]="weekContentOpen(i) ? courseClass.content : ''"
+                       (click)="check($event, weekContentOpen(i))"
+                       [class.disabled]="!weekContentOpen(i) ? true : null"
+                    >
+                        <button mat-raised-button class="ieeecard-button me-3" [disabled]="!weekContentOpen(i)">
+                            {{ 'DATAANALYSIS.CONTENTBUTTON' | translate }}
+                        </button>
+                    </a>
+                    <a [href]="weekContentOpen(i+1) ? courseClass.solutions : ''"
+                       (click)="check($event, weekContentOpen(i+1))"
+                       [class.disabled]="!weekContentOpen(i+1) ? true : null"
+                    >
+                        <button mat-raised-button class="ieeecard-button me-3" [disabled]="!weekContentOpen(i+1)">
+                            {{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}
+                        </button>
+                    </a>
+                </mat-card-actions>
+            </mat-card>
+      </ng-container>
   </div>
 
   <div class="faq-section">

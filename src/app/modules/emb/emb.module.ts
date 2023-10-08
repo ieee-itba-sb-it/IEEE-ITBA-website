@@ -16,7 +16,7 @@ const routes: Routes = [{ path: '', component: EmbComponent }];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-      imports: [
+    imports: [
         routing,
         CommonModule,
         SharedModule,
@@ -33,8 +33,8 @@ export const routing = RouterModule.forChild(routes);
         MDBBootstrapModule.forRoot(),
         FlexLayoutModule
     ],
-  declarations: [EmbComponent],
+    declarations: [EmbComponent],
 
-  exports: [EmbComponent]
+    exports: [EmbComponent]
 })
 export class EmbModule { }

@@ -16,7 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {HttpLoaderFactory} from '../../../shared/translation-helpers';
 
 @NgModule({
-  declarations: [RegisterComponent],
+    declarations: [RegisterComponent],
     imports: [
         CommonModule,
         SharedModule,

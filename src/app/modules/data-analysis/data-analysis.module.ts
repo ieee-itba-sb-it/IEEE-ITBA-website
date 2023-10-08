@@ -15,13 +15,13 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: DataAnalysisComponent }
+    { path: '',  component: DataAnalysisComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [DataAnalysisComponent],
+    declarations: [DataAnalysisComponent],
     imports: [
         routing,
         CommonModule,

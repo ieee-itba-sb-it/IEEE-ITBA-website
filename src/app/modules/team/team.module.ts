@@ -12,7 +12,7 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: TeamComponent }
+    { path: '',  component: TeamComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);

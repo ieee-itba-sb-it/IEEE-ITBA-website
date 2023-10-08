@@ -9,26 +9,26 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '', component: Error404Component}
+    { path: '', component: Error404Component}
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [Error404Component],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    })
-  ]
+    declarations: [Error404Component],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        })
+    ]
 })
 export class Error404Module { }

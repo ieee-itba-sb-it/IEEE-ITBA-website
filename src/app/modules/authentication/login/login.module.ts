@@ -17,26 +17,26 @@ import {HttpLoaderFactory} from '../../../shared/translation-helpers';
 
 
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    TranslateModule,
-    LoginRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MatCardModule,
-    MatButtonModule,
-  ]
+    declarations: [LoginComponent],
+    imports: [
+        CommonModule,
+        SharedModule,
+        TranslateModule,
+        LoginRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatGridListModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MatCardModule,
+        MatButtonModule,
+    ]
 })
 export class LoginModule { }

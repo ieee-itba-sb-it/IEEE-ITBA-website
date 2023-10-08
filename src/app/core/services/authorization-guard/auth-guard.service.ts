@@ -12,46 +12,46 @@ import {UserService} from '../user/user.service';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate{
 
-  user: Observable<IEEEuser>;
+    user: Observable<IEEEuser>;
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
+    constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
 
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
     // here we check if user is logged in or not
 
-    const expectedRole: Array<roles> = next.data.expectedRole;
+        const expectedRole: Array<roles> = next.data.expectedRole;
 
-    this.user = this.authService.getCurrentUser();
+        this.user = this.authService.getCurrentUser();
 
 
-    const p: Promise<boolean> = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.user.subscribe( async (usuario: IEEEuser) => {
+        const p: Promise<boolean> = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                this.user.subscribe( async (usuario: IEEEuser) => {
 
-          if (usuario){
-            const userRole: number = await this.userService.getCurrentUserRole(usuario.email);
+                    if (usuario){
+                        const userRole: number = await this.userService.getCurrentUserRole(usuario.email);
 
-            if (expectedRole.includes(userRole)){
-              return resolve(true);
-            }else{
-              this.router.navigate(['error401']);
-              return resolve(false);
-            }
-          }else{
-            this.router.navigate(['login']);
-            return resolve(false);
-          }
+                        if (expectedRole.includes(userRole)){
+                            return resolve(true);
+                        }else{
+                            this.router.navigate(['error401']);
+                            return resolve(false);
+                        }
+                    }else{
+                        this.router.navigate(['login']);
+                        return resolve(false);
+                    }
+                });
+            }, 2000);
         });
-      }, 2000);
-    });
 
-    return p;
+        return p;
 
-  }
+    }
 
 }
