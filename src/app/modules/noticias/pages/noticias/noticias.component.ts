@@ -25,7 +25,7 @@ export class NoticiasComponent implements OnInit {
   pagesOnPaginator: Array<number>;
   currentPage = 1;
 
-  cursorSub: Subscription;
+  newsSub: Subscription;
   cursor: Date;
 
   constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, private route: ActivatedRoute) {
@@ -33,12 +33,20 @@ export class NoticiasComponent implements OnInit {
     this.blogService.setDocsPageSize(this.pageSize + 1);
     this.newsCountObs = this.blogService.listedDocsSizeObs();
     this.newsDataObs = this.blogService.docsObs();
+  }
+
+  ngOnInit(): void {
     this.newsCountObs.subscribe(listedCount => this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1);
-    this.newsDataObs.subscribe((data: NewsItem[]) => {
+    this.newsSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.newsData = [];
       if (data.length > 0) 
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
+        if (this.currentPage > 1) {
+          let cursor: string = new Date(data[0].date).toISOString();
+          window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}`);
+        }
+        else window.history.replaceState('', '', 'noticias');
       for (const i in data) {
         if (data[i].listed && this.newsData.length < this.pageSize) 
           this.newsData.push(data[i]);
@@ -52,17 +60,8 @@ export class NoticiasComponent implements OnInit {
     this.blogService.retrieveListedDocsSize();
   }
 
-  ngOnInit(): void {
-    this.cursorSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
-      if (data.length <= 0) return;
-      if (this.currentPage <= 1) return window.history.replaceState('', '', 'noticias');
-      let cursor: string = new Date(data[0].date).toISOString();
-      window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}`);
-    });
-  }
-
   ngOnDestroy(): void {
-    this.cursorSub.unsubscribe();
+    this.newsSub.unsubscribe();
   }
 
   scrollHome() {
