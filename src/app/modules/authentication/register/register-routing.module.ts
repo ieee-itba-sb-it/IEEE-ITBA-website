@@ -9,10 +9,10 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 const routes: Routes = [{ path: '', component: RegisterComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),
-    AngularFireAuthModule
-  ],
-  providers: [AuthService],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes),
+        AngularFireAuthModule
+    ],
+    providers: [AuthService],
+    exports: [RouterModule]
 })
 export class RegisterRoutingModule { }

@@ -8,22 +8,22 @@ import {DOCUMENT} from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+    selector: 'app-noticias',
+    templateUrl: './noticias.component.html',
+    styleUrls: ['./noticias.component.css']
 })
 
 export class NoticiasComponent implements OnInit {
-  newsDataObs: Observable<NewsItem[]>;
-  newsCountObs: Observable<number>;        // TODO: Connect with db
+    newsDataObs: Observable<NewsItem[]>;
+    newsCountObs: Observable<number>;        // TODO: Connect with db
 
-  newsData: NewsItem[] = [];
-  showLoadingSpinner = true;
+    newsData: NewsItem[] = [];
+    showLoadingSpinner = true;
 
-  pageSize = 9;
-  pageCount: number;
-  pagesOnPaginator: Array<number>;
-  currentPage = 1;
+    pageSize = 9;
+    pageCount: number;
+    pagesOnPaginator: Array<number>;
+    currentPage = 1;
 
   newsSub: Subscription;
   cursor: Date;
@@ -40,7 +40,7 @@ export class NoticiasComponent implements OnInit {
     this.newsSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
       // cuando hay nuevas noticias se llama este codigo
       this.newsData = [];
-      if (data.length > 0) 
+      if (data.length > 0)
         this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
         if (this.currentPage > 1) {
           let cursor: string = new Date(data[0].date).toISOString();
@@ -48,7 +48,7 @@ export class NoticiasComponent implements OnInit {
         }
         else window.history.replaceState('', '', 'noticias');
       for (const i in data) {
-        if (data[i].listed && this.newsData.length < this.pageSize) 
+        if (data[i].listed && this.newsData.length < this.pageSize)
           this.newsData.push(data[i]);
       }
     });
@@ -64,33 +64,33 @@ export class NoticiasComponent implements OnInit {
     this.newsSub.unsubscribe();
   }
 
-  scrollHome() {
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: 'html'
-    });
-  }
+    scrollHome() {
+        this.pageScrollService.scroll({
+            document: this.document,
+            scrollTarget: 'html'
+        });
+    }
 
-  hasPrevPage() {
-      return this.currentPage > 1;
-  }
+    hasPrevPage() {
+        return this.currentPage > 1;
+    }
 
-  hasNextPage() {
-      return this.currentPage < this.pageCount;
-  }
+    hasNextPage() {
+        return this.currentPage < this.pageCount;
+    }
 
-  nextPage(scroll: boolean) {
-      if (!this.hasNextPage()) return;
-      this.blogService.getNextDocsPage();
-      this.currentPage++;
-      if (scroll) this.scrollHome();
-  }
+    nextPage(scroll: boolean) {
+        if (!this.hasNextPage()) return;
+        this.blogService.getNextDocsPage();
+        this.currentPage++;
+        if (scroll) this.scrollHome();
+    }
 
-  prevPage(scroll: boolean) {
-      if (!this.hasPrevPage()) return;
-      this.blogService.getPrevDocsPage();
-      this.currentPage--;
-      if (scroll) this.scrollHome();
-  }
+    prevPage(scroll: boolean) {
+        if (!this.hasPrevPage()) return;
+        this.blogService.getPrevDocsPage();
+        this.currentPage--;
+        if (scroll) this.scrollHome();
+    }
 
 }

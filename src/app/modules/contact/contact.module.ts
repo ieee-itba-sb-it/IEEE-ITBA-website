@@ -14,7 +14,7 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: ContactPageComponent }
+    { path: '',  component: ContactPageComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
@@ -38,9 +38,9 @@ export const routing = RouterModule.forChild(routes);
         }),
         MatRadioModule
     ],
-  declarations: [
-    ContactPageComponent
-  ]
+    declarations: [
+        ContactPageComponent
+    ]
 })
 
 export class ContactModule{

@@ -37,34 +37,34 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    FlexLayoutModule,
-    MDBBootstrapModule.forRoot(),
-    MatMenuModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatTabsModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    NgOptimizedImage
-  ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
+    declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+        EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
+    imports: [
+        routing,
+        CommonModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        FlexLayoutModule,
+        MDBBootstrapModule.forRoot(),
+        MatMenuModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatTabsModule,
+        MatChipsModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        NgOptimizedImage
+    ],
+    exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+        EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
 })
 export class SharedModule { }

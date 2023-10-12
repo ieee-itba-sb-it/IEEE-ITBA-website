@@ -4,110 +4,110 @@ import {ApiResponse} from '../../../shared/models/data-types';
 import {Router} from '@angular/router';
 
 const ERROR_MESSAGES = {
-  'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
-  'auth/invalid-email': 'REGISTER.ERROR.INVALID_EMAIL',
-  'auth/weak-password': 'REGISTER.ERROR.WEAK_PASSWORD',
-  default: 'REGISTER.ERROR.UNKNOWN_ERROR',
+    'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
+    'auth/invalid-email': 'REGISTER.ERROR.INVALID_EMAIL',
+    'auth/weak-password': 'REGISTER.ERROR.WEAK_PASSWORD',
+    default: 'REGISTER.ERROR.UNKNOWN_ERROR',
 };
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, private readonly router: Router) {
-    scroll(0, 0);
-  }
+    constructor(private authService: AuthService, private readonly router: Router) {
+        scroll(0, 0);
+    }
 
-  // Data
-  signupForm: HTMLElement | any;
-  alertText: HTMLElement;
+    // Data
+    signupForm: HTMLElement | any;
+    alertText: HTMLElement;
 
-  // Visual vars
-  isHidden: boolean;
-  isHidden2: boolean;
-  isHidden3: boolean;
+    // Visual vars
+    isHidden: boolean;
+    isHidden2: boolean;
+    isHidden3: boolean;
 
-  // Form data
-  fname: string;
-  lname: string;
-  email: string;
-  pass: string;
-  passConf: string;
-  registerResponse: ApiResponse = null;
+    // Form data
+    fname: string;
+    lname: string;
+    email: string;
+    pass: string;
+    passConf: string;
+    registerResponse: ApiResponse = null;
 
-  // On Init
-  ngOnInit(): void {
+    // On Init
+    ngOnInit(): void {
 
-    this.isHidden = true;
-    this.isHidden2 = true;
-    this.isHidden3 = true;
+        this.isHidden = true;
+        this.isHidden2 = true;
+        this.isHidden3 = true;
 
-    // Consts
-    this.signupForm = document.getElementById('singup-form');
-    this.alertText = document.getElementById('passerr');
+        // Consts
+        this.signupForm = document.getElementById('singup-form');
+        this.alertText = document.getElementById('passerr');
 
-    // Listener submit
-    this.signupForm.addEventListener('submit', (e) => {
-      e.preventDefault(); // dont refresh
-      // Get data
-      this.email = this.signupForm.email.value;
-      this.pass = this.signupForm.pass.value;
-      this.passConf = this.signupForm.passConf.value;
-      // Save in database
-      this.fname = this.signupForm.fname.value;
-      this.lname = this.signupForm.lname.value;
+        // Listener submit
+        this.signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // dont refresh
+            // Get data
+            this.email = this.signupForm.email.value;
+            this.pass = this.signupForm.pass.value;
+            this.passConf = this.signupForm.passConf.value;
+            // Save in database
+            this.fname = this.signupForm.fname.value;
+            this.lname = this.signupForm.lname.value;
 
-      this.isHidden3 = false;
-      if (this.pass === this.passConf){
-        this.registerResponse = null;
-        this.authService
-          .signup(this.email, this.pass, this.fname, this.lname)
-          .subscribe({
-            next: (value) => {
-              this.registerResponse = {
-                message: 'REGISTER.SUCCESS',
-                success: true,
-              };
-              setTimeout(() => {
-                this.router.navigate(['home']);
-              }, 1000);
-            },
-            error: (err) => {
-              const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
-              this.registerResponse = {
-                message,
-                success: false,
-              };
+            this.isHidden3 = false;
+            if (this.pass === this.passConf){
+                this.registerResponse = null;
+                this.authService
+                    .signup(this.email, this.pass, this.fname, this.lname)
+                    .subscribe({
+                        next: (value) => {
+                            this.registerResponse = {
+                                message: 'REGISTER.SUCCESS',
+                                success: true,
+                            };
+                            setTimeout(() => {
+                                this.router.navigate(['home']);
+                            }, 1000);
+                        },
+                        error: (err) => {
+                            const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
+                            this.registerResponse = {
+                                message,
+                                success: false,
+                            };
+                        }
+                    });
             }
-          });
-      }
-      else {
-        this.registerResponse = {
-          message: 'REGISTER.ERROR.PASS_DONT_MATCH',
-          success: false,
-        };
-        console.log(this);
-      }
+            else {
+                this.registerResponse = {
+                    message: 'REGISTER.ERROR.PASS_DONT_MATCH',
+                    success: false,
+                };
+                console.log(this);
+            }
 
-    });
+        });
 
-  }
-
-  // Change Pass
-  chgpass(){
-
-    if (this.isHidden) {
-      this.isHidden = false;
-    }
-    else {
-      this.isHidden2 = false;
-      const changePassElem: any = document.getElementById('changepass');
-      this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
     }
 
-  }
+    // Change Pass
+    chgpass(){
+
+        if (this.isHidden) {
+            this.isHidden = false;
+        }
+        else {
+            this.isHidden2 = false;
+            const changePassElem: any = document.getElementById('changepass');
+            this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
+        }
+
+    }
 
 }

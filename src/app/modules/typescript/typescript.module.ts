@@ -12,31 +12,31 @@ import {MatButtonModule} from '@angular/material/button';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  {path: '', component: TypescriptComponent}
+    {path: '', component: TypescriptComponent}
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 
 @NgModule({
-  declarations: [TypescriptComponent],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    },
-    ),
-    MatExpansionModule,
-    MatCardModule,
-    MatButtonModule
-  ]
+    declarations: [TypescriptComponent],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        },
+        ),
+        MatExpansionModule,
+        MatCardModule,
+        MatButtonModule
+    ]
 })
 export class TypescriptModule { }

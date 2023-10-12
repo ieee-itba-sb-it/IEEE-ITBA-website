@@ -7,22 +7,22 @@ import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.compone
 import { AppConfigService } from '../../../../core/services/configuration/app-config.service';
 
 @Component({
-  selector: 'app-ras',
-  templateUrl: './ras.component.html',
-  styleUrls: ['./ras.component.css'],
+    selector: 'app-ras',
+    templateUrl: './ras.component.html',
+    styleUrls: ['./ras.component.css'],
 })
 export class RasComponent implements OnInit {
 
-  events: EventCardData[];
-  team: Commission = null;
+    events: EventCardData[];
+    team: Commission = null;
 
-  constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService) {
-  }
+    constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService) {
+    }
 
-  ngOnInit(): void {
-    this.events = this.eventService.getRasEvents();
-    this.team = this.teamService.getRasTeam();
-    this.appConfigService.setNavbarColor('#862633');
-    this.appConfigService.setTitle('RAS.PAGETITLE');
-  }
+    ngOnInit(): void {
+        this.events = this.eventService.getRasEvents();
+        this.team = this.teamService.getRasTeam();
+        this.appConfigService.setNavbarColor('#862633');
+        this.appConfigService.setTitle('RAS.PAGETITLE');
+    }
 }

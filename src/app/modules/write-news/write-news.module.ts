@@ -28,47 +28,47 @@ import {MatRadioModule} from '@angular/material/radio';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: WriteNewsComponent },
-  { path: ':id', component: EditarAnuncioComponent }
+    { path: '',  component: WriteNewsComponent },
+    { path: ':id', component: EditarAnuncioComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [ WriteNewsComponent, EditarAnuncioComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MatCardModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    QuillModule,
-    MatButtonModule,
-    MatInputModule,
-    FlexLayoutModule,
-    MatSnackBarModule,
-    QuillModule.forRoot(),
-    MatListModule,
-    CardsModule,
-    FormsModule,
-    MatChipsModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule
-  ]
+    declarations: [ WriteNewsComponent, EditarAnuncioComponent ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MatCardModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        QuillModule,
+        MatButtonModule,
+        MatInputModule,
+        FlexLayoutModule,
+        MatSnackBarModule,
+        QuillModule.forRoot(),
+        MatListModule,
+        CardsModule,
+        FormsModule,
+        MatChipsModule,
+        MatIconModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule
+    ]
 })
 export class WriteNewsModule { }
