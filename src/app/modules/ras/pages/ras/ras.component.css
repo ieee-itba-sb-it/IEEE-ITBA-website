@@ -1,16 +1,9 @@
 .main-container {
-  padding: 10%;
-  padding-top: 5%;
-  padding-bottom: 0%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
   --ras-red: #862633;
   --ras-purple: #5f2167;
 }
 
 .bottomLine {
-  padding-top: 10vmin;
   padding-bottom: 10vmin;
   border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;

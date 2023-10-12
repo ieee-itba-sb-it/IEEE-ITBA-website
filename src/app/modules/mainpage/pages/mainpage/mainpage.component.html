@@ -57,10 +57,13 @@
             alt="Events"
             class="section-header-logo"
           />
-          <h1 class="section-title">{{ 'HOME.EVENTS.TITLE' | translate }}</h1>
+          <div class="flex flex-column">
+            <h1 class="section-title">{{ 'HOME.EVENTS.TITLE' | translate }}</h1>
+            <p class="section-subtitle mt-2 mb-0 d-md-none">{{ "HOME.EVENTS.CONTENT" | translate }}</p>
+          </div>
         </div>
         <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.EVENTS.CONTENT" | translate }}</span>
+        <span class="section-subtitle d-md-inline d-none">{{ "HOME.EVENTS.CONTENT" | translate }}</span>
       </div>
       <div>
         <div class="carousel-wrapper">
@@ -98,10 +101,13 @@
         <div class="section-header-start-line"></div>
         <div class="section-header-content">
           <img class="section-header-logo" src="../../../../../assets/image/section-icons/IEEENews_sin_fondo.png" alt="Logo"/>
-          <h1 class="section-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h1>
+          <div class="flex flex-column">
+            <h1 class="section-title">{{ 'HOME.IEEENEWS.TITLE' | translate }}</h1>
+            <p class="section-subtitle mt-2 mb-0 d-md-none">{{ "HOME.IEEENEWS.CONTENT" | translate }}</p>
+          </div>
         </div>
         <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
+        <span class="section-subtitle d-md-inline d-none">{{ "HOME.IEEENEWS.CONTENT" | translate }}</span>
       </div>
       <div *ngIf="(newsDataObs | async)?.length !== 0; else loadingSpinnerBlock">
         <div class="carousel-wrapper">
@@ -145,10 +151,13 @@
             alt="Events"
             class="section-header-logo"
           />
-          <h1 class="section-title">{{ 'HOME.CHAPTERS.TITLE' | translate }}</h1>
+          <div class="flex flex-column">
+            <h1 class="section-title">{{ 'HOME.CHAPTERS.TITLE' | translate }}</h1>
+            <p class="section-subtitle mt-2 mb-0 d-md-none">{{ "HOME.CHAPTERS.CONTENT" | translate }}</p>
+          </div>
         </div>
         <div class="section-header-end-line"></div>
-        <span class="section-subtitle">{{ "HOME.CHAPTERS.CONTENT" | translate }}</span>
+        <span class="section-subtitle d-md-inline d-none">{{ "HOME.CHAPTERS.CONTENT" | translate }}</span>
       </div>
       <div>
         <div class="carousel-wrapper">

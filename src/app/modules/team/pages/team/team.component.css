@@ -96,14 +96,6 @@ mat-panel-title {
 	font-variant: normal;
 }
 
-.main-container {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
-  padding: 160px 10% 10%;
-}
-
-
 @media (min-width: 768px) {
 
 	.flexText{
@@ -119,9 +111,6 @@ mat-panel-title {
   margin-top: 5px;
   margin-right: 5px;
   margin-left: 5px;
-}
-
-.expansion-panel {
 }
 
 @media screen and (max-width: 600px) {

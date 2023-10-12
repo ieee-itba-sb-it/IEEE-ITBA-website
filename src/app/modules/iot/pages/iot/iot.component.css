@@ -1,12 +1,5 @@
 @import url('https://unpkg.com/swiper/swiper-bundle.css');
 
-.main-container {
-  padding: 0% 10%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
-}
-
 p {
   color: rgb(0, 0, 0);
   background: rgba(245, 245, 245, 0.2);
@@ -71,7 +64,6 @@ h2{
 }
 
 .max-width {
-  margin-top: calc(7.5em);
   width: 100%;
   transform: translateY(0);
   /*height: 20em; */
