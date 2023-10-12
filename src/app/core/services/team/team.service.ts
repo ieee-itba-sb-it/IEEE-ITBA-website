@@ -29,15 +29,6 @@ export class TeamService {
 
     // private teamCurrent = [
     //     {
-    //         name: this.teamMapper[CommissionType.CD],
-    //         team: [
-    //             new IEEEMember('Agustin Luis Gullino', 'https://i.ibb.co/qr7P1R8/agustin-gullino.jpg', 'https://www.linkedin.com/in/agust%C3%ADn-gullino-a87083197/', 'agullino@itba.edu.ar', 'HOME.CARGO.CD.OFFICER'),
-    //             new IEEEMember('Josue Francisco Laszeski', 'https://i.ibb.co/jbdn3WT/JOSUE-FRANCISCO-LASZESKI.jpg', 'https://www.linkedin.com/in/jlaszeski/', 'jlaszeski@itba.edu.ar', 'HOME.CARGO.CD.OFFICER'),
-    //             new IEEEMember('Nicolás Bustelo', 'https://i.ibb.co/MG4Kkcx/Nicol-s-Bustelo.jpg', 'https://www.linkedin.com/in/nicol%C3%A1s-bustelo/', 'nbustelo@itba.edu.ar', 'HOME.CARGO.CD.OFFICER'),
-    //             new IEEEMember('Brisa Rojas', 'https://i.ibb.co/09bzKCg/brisa-rojas.jpg', 'https://www.linkedin.com/in/rojas-brisa/', 'brojas@itba.edu.ar', 'HOME.CARGO.CD.OFFICER'),
-    //         ]
-    //     },
-    //     {
     //         name: this.teamMapper[CommissionType.MEDIACOM],
     //         team: [
     //             new IEEEMember('Agustín Cabantous Soler',  'https://i.ibb.co/pJqgdPN/AGUSTIN-CABANTOUS-SOLER.jpg', 'https://www.linkedin.com/in/agustin-cabantous-soler-349908190', 'acabantous@itba.edu.ar', 'HOME.CARGO.MEDIACOM.DIRECTOR'),
@@ -69,7 +60,6 @@ export class TeamService {
     //     {
     //         name: this.FUNDRAISING,
     //         team: [
-    //             new IEEEMember('Nicolas Agustín Beade', 'https://i.ibb.co/QC3tWPV/nicolas-agustin-beade.jpg', 'https://www.linkedin.com/in/nicolas-agustín-beade-671bb2235/', 'nbeade@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.CHIEF'),
     //             new IEEEMember('Andrés Paolina', 'https://i.ibb.co/YhRDDMf/ANDRES-PAOLINA.jpg', 'https://linkedin.com/in/andres-paolina-gaston', 'apaolina@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
     //             new IEEEMember('Juan Ignacio Noms', 'https://i.ibb.co/QDTwMhB/juan-ignacio-noms.jpg', 'https://www.linkedin.com/in/juannoms/', 'jnoms@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
     //             new IEEEMember('Julieta Dapelo', 'https://i.ibb.co/0V5BqD1/JULIETA-DAPELO.jpg', 'https://www.linkedin.com/in/julietadapelo/', 'jdapelo@itba.edu.ar', 'HOME.CARGO.FUNDRAISING.FUNDRAISER'),
