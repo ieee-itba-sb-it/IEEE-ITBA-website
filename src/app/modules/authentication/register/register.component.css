@@ -36,9 +36,6 @@ a:hover{
   color: var(--bs-ieee-dark-orange);
 }
 
-.mainFrame {
-}
-
 .error {
   color: red;
 }
