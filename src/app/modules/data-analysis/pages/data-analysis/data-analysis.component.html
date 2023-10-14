@@ -58,7 +58,7 @@
                         {{ courseClass.description | translate }}
                     </span>
                 </mat-card-content>
-                <mat-card-actions>
+                <mat-card-actions class="flex-wrap justify-content-center gap-1">
                     <a [href]="weekContentOpen(i) ? courseClass.content : ''"
                        (click)="check($event, weekContentOpen(i))"
                        [class.disabled]="!weekContentOpen(i) ? true : null"

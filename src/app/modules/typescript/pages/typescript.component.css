@@ -141,10 +141,13 @@ mat-card-header{
     margin: 1rem 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .syllabus > mat-card {
     width: 40%;
+    min-width: min-content;
 }
 
 /* Form section */
@@ -206,5 +209,10 @@ mat-panel-title {
 @media (max-width: 770px) {
     .course-title {
         font-size: 1.7rem;
+    }
+
+    .syllabus > mat-card {
+        width: 90%;
+        min-width: min-content;
     }
   }
