@@ -43,7 +43,7 @@
 
   <!-- Cards Temario -->
 
-  <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+  <div class="schedule-cards">
       <ng-container *ngFor="let courseClass of courseData.courseClasses, let i=index">
             <mat-card class="example-card" [ngClass]="{'not-available-background-color':!isOldDate(courseClass.openDate)}"
                       fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">

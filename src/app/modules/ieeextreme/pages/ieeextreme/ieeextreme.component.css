@@ -190,15 +190,38 @@ h2 {
 }
 
 .course-title {
-    font-size: calc(1.5vw + 1rem);
+    font-size: 2rem;
     font-weight: 400;
     color: var(--bs-ieee-bright-blue-80);
     letter-spacing: 1px;
 }
 
 .course-subtitle {
-    font-size: calc(0.7vw + 0.7rem);
+    font-size: 1.5rem;
     color: var(--bs-ieee-bright-blue);
     font-weight: 600;
     margin-top: 0.5rem;
+}
+
+.contact-cards {
+    display:flex; 
+    justify-content: space-around; 
+    margin-top:2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+@media (max-width: 770px) {
+    .course-title {
+        font-size: 1.7rem;
+    }
+    .info {
+        flex-flow: column;
+    }
+    .info > div {
+        padding: 0 !important;
+    }
+    .reversed {
+        flex-flow: column-reverse
+    }
 }

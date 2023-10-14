@@ -66,14 +66,6 @@ h1 {
 }
 
 
-@media (max-width: 700px) {
-    .topbottomLine {
-        padding-top: 30%;
-    }
-
-}
-
-
 .transparentButton {
     padding: 2vmin;
     border: solid 2px whitesmoke;
@@ -235,16 +227,16 @@ img {
 }
 
 .course-title {
-    font-size: calc(1.5vw + 1rem);
+    font-size: 2rem;
     font-weight: 400;
     color: var(--bs-ieee-bright-blue-80);
     letter-spacing: 1px;
 }
 .course-subtitle {
-    font-size: calc(0.7vw + 0.7rem);
+    font-size: 1.5rem;
     color: var(--bs-ieee-bright-blue);
     font-weight: 600;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .ieeecard-button {
@@ -348,4 +340,10 @@ mat-expansion-panel-header {
 
 mat-panel-title {
     color:var(--bs-ieee-bright-blue);
+}
+
+@media (max-width: 770px) {
+    .course-title {
+        font-size: 1.7rem;
+    }
 }
