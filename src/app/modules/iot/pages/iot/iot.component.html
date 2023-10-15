@@ -35,7 +35,7 @@
   <div class="section">
     <h2 class="course-subtitle">{{ 'IOT.GALLERY_TITLE' | translate }}</h2>
     <swiper [config]="swiperConfig" class="carousel-wrapper">
-      <ng-template swiperSlide class="news-card" *ngFor="let image of imageLinks">
+      <ng-template swiperSlide class="carrousel-card" *ngFor="let image of imageLinks">
         <img data-src="{{image}}"
              data-background="../../../../../assets/image/events/python-introductory/cursopython.jpg" class="news-card-img"
              alt="IoT image" />
