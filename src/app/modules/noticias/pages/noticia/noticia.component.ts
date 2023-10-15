@@ -1,13 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { PageScrollService } from 'ngx-page-scroll-core';
-import { DOCUMENT } from '@angular/common';
-import { blogCollectionName } from '../../../../secrets';
-import { NewsItem } from '../../../../shared/models/news-item/news-item';
-import { BlogService } from '../../../../core/services/blog/blog.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, Inject, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {DOCUMENT} from '@angular/common';
+import {blogCollectionName} from '../../../../secrets';
+import {NewsItem} from '../../../../shared/models/news-item/news-item';
+import {BlogService} from '../../../../core/services/blog/blog.service';
+import {ActivatedRoute} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
-import { filter, Observable, switchMap, tap, map, BehaviorSubject } from 'rxjs';
+import {map, Observable, switchMap, tap} from 'rxjs';
 
 @Component({
     selector: 'app-noticia',
@@ -35,7 +34,6 @@ export class NoticiaComponent implements OnInit {
 
         this.blogService.setCollectionName(blogCollectionName);
 
-        this.blogService.getFirstDocsPage();
         this.blogService.retrieveListedDocsSize();
     }
 
