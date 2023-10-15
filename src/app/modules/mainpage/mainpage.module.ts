@@ -13,30 +13,30 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: MainpageComponent }
+    { path: '',  component: MainpageComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [ MainpageComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatCardModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    MDBBootstrapModule.forRoot(),
-    FlexLayoutModule,
-    SwiperModule
-  ]
+    declarations: [ MainpageComponent ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatCardModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        MDBBootstrapModule.forRoot(),
+        FlexLayoutModule,
+        SwiperModule
+    ]
 })
 export class MainpageModule { }

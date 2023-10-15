@@ -5,23 +5,23 @@ import { userCollectionName} from '../../../secrets';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
 
-  collectionName = userCollectionName;
+    collectionName = userCollectionName;
 
-  constructor(private afs: AngularFirestore) { }
+    constructor(private afs: AngularFirestore) { }
 
-  getCurrentUserRole(email: string): Promise<number> | number {
-    const out: Promise<number> = new Promise((resolve, reject) => {
-      this.afs.collection(this.collectionName).doc(email).get().subscribe(data => {
-        const doc = data.data();
-        // @ts-ignore
-        return resolve(doc.role);
-      });
-    });
+    getCurrentUserRole(email: string): Promise<number> | number {
+        const out: Promise<number> = new Promise((resolve, reject) => {
+            this.afs.collection(this.collectionName).doc(email).get().subscribe(data => {
+                const doc = data.data();
+                // @ts-ignore
+                return resolve(doc.role);
+            });
+        });
 
-    return out;
-  }
+        return out;
+    }
 }

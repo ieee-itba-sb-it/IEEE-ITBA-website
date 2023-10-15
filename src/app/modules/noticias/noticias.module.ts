@@ -18,35 +18,35 @@ import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTransla
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
 const routes: Routes = [
-  { path: '',  component: NoticiasComponent },
-  { path: ':id', component: NoticiaComponent }
+    { path: '',  component: NoticiasComponent },
+    { path: ':id', component: NoticiaComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [ NoticiaComponent, NoticiasComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    FlexLayoutModule,
-    MatCardModule,
-    MDBBootstrapModule.forRoot(),
-    MatChipsModule,
-    EmojiModule,
-    MatGridListModule,
-    NgOptimizedImage
-  ],
-  providers: [ CookieService ]
+    declarations: [ NoticiaComponent, NoticiasComponent ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        FlexLayoutModule,
+        MatCardModule,
+        MDBBootstrapModule.forRoot(),
+        MatChipsModule,
+        EmojiModule,
+        MatGridListModule,
+        NgOptimizedImage
+    ],
+    providers: [ CookieService ]
 })
 export class NoticiasModule { }
