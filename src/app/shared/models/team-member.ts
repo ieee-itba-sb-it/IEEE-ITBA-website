@@ -30,7 +30,7 @@ export class IEEEMember implements TeamMember {
             photo,
             linkedin,
             mail,
-            this.mapRoleToI18n(commission, role, gender)
+            this.mapRoleToI18n(commission, role, gender),
         );
     }
 
