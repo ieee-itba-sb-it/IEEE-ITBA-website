@@ -19,16 +19,6 @@ jobs:
         uses: borales/actions-yarn@v3
         with:
           cmd: install # will run `yarn install` command
-      - name: Add secrets
-        run: |
-          sed -i "s\API_KEY\${{ secrets.API_KEY }}\g" src/app/secrets.ts.template
-          sed -i "s\AUTH_DOMAIN\${{ secrets.AUTH_DOMAIN }}\g" src/app/secrets.ts.template
-          sed -i "s\DATABASE_URL\${{ secrets.DATABASE_URL }}\g" src/app/secrets.ts.template
-          sed -i "s\PROJECT_ID\${{ secrets.PROJECT_ID }}\g" src/app/secrets.ts.template
-          sed -i "s\STORAGE_BUCKET\${{ secrets.STORAGE_BUCKET }}\g" src/app/secrets.ts.template
-          sed -i "s\APP_ID\${{ secrets.APP_ID }}\g" src/app/secrets.ts.template
-      - name: Rename and move secrets.ts.template to secrets.ts
-        run: mv src/app/secrets.ts.template src/app/secrets.ts
       - name: Build
         run: npx ng build
       - name: Deploy to Firebase
@@ -36,4 +26,4 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
