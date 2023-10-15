@@ -8824,6 +8824,13 @@ ngx-quill@^22.0.0:
   dependencies:
     tslib "^2.3.0"
 
+ngx-skeleton-loader@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-skeleton-loader/-/ngx-skeleton-loader-8.1.0.tgz#ae6c858589d94dc9b3639b7bfb374a8d6448e893"
+  integrity sha512-Ap/QSjadv/Kl0Vj7BiIWLG0JZZlo0eCJhdIVJ3Ryz7R0c4BR2Eq3O01du3ftf0SDbwt5vt7342NyqhLNrQ08RA==
+  dependencies:
+    tslib "^2.0.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"

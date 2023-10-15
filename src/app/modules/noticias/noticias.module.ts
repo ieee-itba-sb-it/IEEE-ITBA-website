@@ -16,6 +16,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 const routes: Routes = [
     { path: '',  component: NoticiasComponent },
@@ -45,7 +46,8 @@ export const routing = RouterModule.forChild(routes);
         MatChipsModule,
         EmojiModule,
         MatGridListModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        NgxSkeletonLoaderModule
     ],
     providers: [ CookieService ]
 })
