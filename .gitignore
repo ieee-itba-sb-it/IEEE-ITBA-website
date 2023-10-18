@@ -45,9 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Secrets
-src/app/secrets.ts
-
 # Firebase
 .firebase/
 .angular/
@@ -55,3 +52,8 @@ dump/
 mock_data/
 
 *.log
+
+.env.*
+.env
+
+!.env.template
