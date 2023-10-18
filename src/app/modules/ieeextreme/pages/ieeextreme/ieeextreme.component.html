@@ -35,7 +35,7 @@
   </div>
 
   <!-- Queres participar -->
-  <div class="info">
+  <div class="info reversed">
     <div style="padding-right:3rem;">
       <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
@@ -57,7 +57,7 @@
   <div>
     <h2 class="course-subtitle">Sponsorship 2023</h2>
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
-    <div style="display:flex; justify-content: space-around; margin-top:2rem;">
+    <div class="contact-cards">
       <mat-card *ngFor="let contact of contacts" class="example-card"
               fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
       <mat-card-header>

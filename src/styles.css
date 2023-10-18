@@ -18,3 +18,11 @@ p { line-height: 1.5; }
 .ql-container {
   height: 450px !important;
 }
+
+.main-container {
+  padding: 10rem 6% 0 6%;
+  background: rgb(136, 31, 31);
+  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
+  background-size: cover;
+  line-height: 1.5;
+}
