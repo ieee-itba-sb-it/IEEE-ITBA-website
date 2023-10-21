@@ -9,7 +9,8 @@
 }
 
 .news-image{
-  max-width: 768px;
+    max-width: 768px;
+    top: 0;
 }
 
 @media (max-width: 768px) {
@@ -139,12 +140,6 @@ footer {
     vertical-align: middle;
 }
 
-img {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 /* Flex */
 
 @media (max-width: 1000px) {
@@ -246,6 +241,7 @@ img {
 .blog-image{
   max-width: border-box;
 }
+
 .blog-img{
 
     margin:20px;
