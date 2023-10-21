@@ -5,6 +5,7 @@
     "ng": "ng",
     "dev": "concurrently \"firebase emulators:start --import mock_data --export-on-exit\" \"ng serve\"",
     "build": "ng build",
+      "dev-prod": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

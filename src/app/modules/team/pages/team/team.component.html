@@ -13,11 +13,17 @@
   </div>
 
   <div class="team-container">
-    <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0 expansion-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
-      </mat-expansion-panel-header>
-        <app-team-card [team]="commission.team"></app-team-card>
-    </mat-expansion-panel>
+    <div *ngIf="team$ | async as team; else loading">
+        <mat-expansion-panel *ngFor="let commission of team" class="mat-elevation-z0 expansion-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>{{ commission.name | translate }}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-team-card [team]="commission.team"></app-team-card>
+        </mat-expansion-panel>
+    </div>
+      <ng-template #loading>
+          <app-loading-spinner>
+          </app-loading-spinner>
+      </ng-template>
   </div>
 </div>
