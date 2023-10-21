@@ -1,10 +1,3 @@
-.main-container {
-    padding: 10%;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-    background-size: cover;
-}
-
 p {
     color: rgb(0, 0, 0);
     background: rgba(245, 245, 245, 0.2);
@@ -56,14 +49,14 @@ li > p{
 }
 
 .course-title {
-    font-size: calc(1.5vw + 1rem);
+    font-size: 2rem;
     font-weight: 400;
     color: var(--bs-ieee-bright-blue-80);
     letter-spacing: 1px;
 }
 
 .course-subtitle {
-    font-size: calc(0.7vw + 0.7rem);
+    font-size: 1.5rem;
     color: var(--bs-ieee-bright-blue);
     font-weight: 600;
     margin-top: 0.5rem;
@@ -148,10 +141,13 @@ mat-card-header{
     margin: 1rem 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .syllabus > mat-card {
     width: 40%;
+    min-width: min-content;
 }
 
 /* Form section */
@@ -209,3 +205,14 @@ mat-expansion-panel-header {
 mat-panel-title {
     color:var(--bs-ieee-bright-blue);
 }
+
+@media (max-width: 770px) {
+    .course-title {
+        font-size: 1.7rem;
+    }
+
+    .syllabus > mat-card {
+        width: 90%;
+        min-width: min-content;
+    }
+  }

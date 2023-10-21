@@ -220,13 +220,17 @@ export class BlogService {
         this.getDocsPage(collection);
     }
 
-    // Gets all docs from setted collection
-    getFirstDocsPage() {
-        const collection = this.afs.collection(this.collectionName, ref => ref
-            .orderBy('date', 'desc')
-            .limit(this.docsPageSize));
-        this.getDocsPage(collection);
-    }
+  // Gets all docs from setted collection
+  getFirstDocsPage(cursor?: Date) {
+    const collection = this.afs.collection(this.collectionName, r => {
+      let ref = r
+      .orderBy('date', 'desc')
+      .limit(this.docsPageSize);
+      if (cursor) ref = ref.startAt(cursor);
+      return ref;
+    });
+    this.getDocsPage(collection);
+  }
 
     // Sets a doc inside a collection and updates metadata
     setDoc(content: NewsItem) {

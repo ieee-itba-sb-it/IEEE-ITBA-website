@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import { blogCollectionName } from '../../../../secrets';
-import { BlogService } from '../../../../core/services/blog/blog.service';
-import { Observable} from 'rxjs';
-import { NewsItem } from '../../../../shared/models/news-item/news-item';
-import {PageScrollService} from "ngx-page-scroll-core";
-import {DOCUMENT} from "@angular/common";
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {blogCollectionName} from '../../../../secrets';
+import {BlogService} from '../../../../core/services/blog/blog.service';
+import {Observable, Subscription} from 'rxjs';
+import {NewsItem} from '../../../../shared/models/news-item/news-item';
+import {PageScrollService} from 'ngx-page-scroll-core';
+import {DOCUMENT} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-noticias',
@@ -12,7 +13,7 @@ import {DOCUMENT} from "@angular/common";
     styleUrls: ['./noticias.component.css']
 })
 
-export class NoticiasComponent implements OnInit {
+export class NoticiasComponent implements OnInit, OnDestroy {
     newsDataObs: Observable<NewsItem[]>;
     newsCountObs: Observable<number>;        // TODO: Connect with db
 
@@ -24,27 +25,44 @@ export class NoticiasComponent implements OnInit {
     pagesOnPaginator: Array<number>;
     currentPage = 1;
 
-    constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {
+    newsSub: Subscription;
+    cursor: Date;
+
+    constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, private route: ActivatedRoute) {
         this.blogService.setCollectionName(blogCollectionName);
         this.blogService.setDocsPageSize(this.pageSize + 1);
         this.newsCountObs = this.blogService.listedDocsSizeObs();
         this.newsDataObs = this.blogService.docsObs();
+    }
+
+    ngOnInit(): void {
         this.newsCountObs.subscribe(listedCount => this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1);
-        this.newsDataObs.subscribe((data: NewsItem[]) => {
+        this.newsSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
             // cuando hay nuevas noticias se llama este codigo
             this.newsData = [];
-            if (data.length > 0) 
+            if (data.length > 0)
                 this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
+            if (this.currentPage > 1) {
+                let cursor: string = new Date(data[0].date).toISOString();
+                window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}`);
+            }
+            else window.history.replaceState('', '', 'noticias');
             for (const i in data) {
-                if (data[i].listed && this.newsData.length < this.pageSize) 
+                if (data[i].listed && this.newsData.length < this.pageSize)
                     this.newsData.push(data[i]);
             }
         });
-        this.blogService.getFirstDocsPage();
+        this.route.queryParams.subscribe((params: any) => {
+            if (params.cursor) this.cursor = new Date(params.cursor);
+            if (params.page) this.currentPage = params.page;
+        });
+        this.blogService.getFirstDocsPage(this.cursor);
         this.blogService.retrieveListedDocsSize();
     }
 
-    ngOnInit(): void {}
+    ngOnDestroy(): void {
+        this.newsSub.unsubscribe();
+    }
 
     scrollHome() {
         this.pageScrollService.scroll({

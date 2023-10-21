@@ -1,12 +1,5 @@
 @import url('https://unpkg.com/swiper/swiper-bundle.css');
 
-.main-container {
-  padding: 0% 10%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
-}
-
 p {
   color: rgb(0, 0, 0);
   background: rgba(245, 245, 245, 0.2);
@@ -51,14 +44,14 @@ h2{
 }
 
 .course-title {
-  font-size: calc(1.5vw + 1rem);
+  font-size: 2rem;
   font-weight: 400;
   color: var(--bs-ieee-bright-blue-80);
   letter-spacing: 1px;
 }
 
 .course-subtitle {
-  font-size: calc(0.7vw + 0.7rem);
+  font-size: 1.5rem;
   color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
@@ -71,7 +64,6 @@ h2{
 }
 
 .max-width {
-  margin-top: calc(7.5em);
   width: 100%;
   transform: translateY(0);
   /*height: 20em; */
@@ -180,4 +172,10 @@ mat-panel-title {
 }
 .goback-button:hover > .button-text{
   color: white !important;
+}
+
+@media (max-width: 770px) {
+  .course-title {
+      font-size: 1.7rem;
+  }
 }
