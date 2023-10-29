@@ -29,13 +29,14 @@ export class IotComponent implements OnInit {
         centeredSlides: true,
         spaceBetween: 30,
         loop: true,
-        preloadImages: true,
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
         }
     };
+
+    swiperOn: boolean = false;
 
     isEnrollingAvailable() {
         const now = Timestamp.now();
@@ -45,5 +46,24 @@ export class IotComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {}
+
+    ngAfterViewInit(): void {
+        this.preloadImages(this.imageLinks).then((res) => {
+            this.swiperOn = true;
+        });
+    }
+
+    preloadImages(images: string[]): Promise<void[]> {
+        const promises = images.map((src) => this.preloadImage(src));
+        return Promise.all(promises);
+      }
+    
+    preloadImage(src: string): Promise<void> {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.src = src;
+        });
+    }
 
 }
