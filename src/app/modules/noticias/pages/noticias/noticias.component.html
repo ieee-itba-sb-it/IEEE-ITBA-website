@@ -20,6 +20,14 @@
     <app-pagination (next)="nextPage(false)" (previous)="prevPage(false)" [hasNext]="hasNextPage()" [hasPrevious]="hasPrevPage()" [currentPage]="currentPage" [pageCount]="pageCount"></app-pagination>
   </div>
 
+  <div class="tags-container" *ngIf="!showLoadingSpinner">
+    <p>Filtrar por tags:</p>
+    <mat-chip-listbox aria-label="Tags" (change)="onTagSelect($event)" multiple>
+      <mat-chip-option *ngFor="let tag of tagsObs | async">{{tag}}</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+  <hr *ngIf="!showLoadingSpinner">
+
   <div class="row news-grid">
     <div *ngFor="let noticia of newsData">
       <div class="col-sm margin-top">

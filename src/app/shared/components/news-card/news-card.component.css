@@ -20,7 +20,7 @@
     margin: 1rem auto !important;
     text-overflow: ellipsis;
     width: 92%;
-    height: 6rem;
+    min-height: 6rem;
     position: relative;
 }
 
@@ -33,6 +33,7 @@
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
+    position: static !important;
 }
 
 .mat-mdc-card-content::ng-deep {
@@ -43,4 +44,10 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.chip-container {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import {AngularFirestore, AngularFirestoreCollection, DocumentSnapshot} from '@angular/fire/compat/firestore';
 // import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
@@ -78,8 +78,8 @@ export class BlogService {
                             doc.author,
                             doc.imageText,
                             doc.reference,
-                            doc.tags,
                             doc.listed,
+                            doc.tags,
                             doc.ratings
                         )
                     );
@@ -191,8 +191,8 @@ export class BlogService {
                             doc.author,
                             doc.imageText,
                             doc.reference,
-                            doc.tags,
                             doc.listed,
+                            doc.tags,
                             doc.ratings
                         )
                     );
@@ -221,11 +221,12 @@ export class BlogService {
     }
 
   // Gets all docs from setted collection
-  getFirstDocsPage(cursor?: Date) {
+  getFirstDocsPage(cursor?: Date, tags?: string[]) {
     const collection = this.afs.collection(this.collectionName, r => {
       let ref = r
       .orderBy('date', 'desc')
       .limit(this.docsPageSize);
+      if (tags && tags.length > 0) ref = ref.orderBy('tags').where('tags', 'array-contains-any', tags);
       if (cursor) ref = ref.startAt(cursor);
       return ref;
     });
@@ -236,7 +237,7 @@ export class BlogService {
     setDoc(content: NewsItem) {
         const call = new BehaviorSubject<boolean>(false);
         const document = this.afs.collection(this.collectionName).doc(content.reference);
-        document.get().subscribe(async (snapshot) => {
+        document.get().subscribe(async (snapshot: DocumentSnapshot<NewsItem>) => {
             const metadataDoc = this.afs.collection(metadataCollectionName).doc(this.collectionName);
             const parallelPromises = [document.set(content)];
             if (!snapshot.exists) {
