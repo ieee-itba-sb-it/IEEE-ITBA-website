@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { userCollectionName} from '../../../secrets';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -11,11 +9,11 @@ export class UserService {
 
     collectionName = userCollectionName;
 
-    constructor(private afs: AngularFirestore) { }
+    constructor(private afs: Firestore) { }
 
     getCurrentUserRole(email: string): Promise<number> | number {
         const out: Promise<number> = new Promise((resolve, reject) => {
-            this.afs.collection(this.collectionName).doc(email).get().subscribe(data => {
+            getDoc(doc(this.afs, this.collectionName, email)).then(data => {
                 const doc = data.data();
                 // @ts-ignore
                 return resolve(doc.role);
