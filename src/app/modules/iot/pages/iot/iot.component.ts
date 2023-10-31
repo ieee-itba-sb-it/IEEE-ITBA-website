@@ -11,9 +11,6 @@ SwiperCore.use([Navigation, Autoplay, Lazy]);
     styleUrls: ['./iot.component.css']
 })
 export class IotComponent implements OnInit {
-    images = [1, 2, 4, 7, 3, 6].map((n) => `../../../assets/image/events/iot/image${n}.jpg`);
-
-    // TODO: Download images dynamically
     imageLinks = [
         'https://i.ibb.co/h2NXFqZ/image1.jpg',
         'https://i.ibb.co/4NWyHH0/image2.jpg',
@@ -28,24 +25,18 @@ export class IotComponent implements OnInit {
 
     swiperConfig: SwiperOptions = {
         navigation: true,
-        slidesPerView: 1,
-        preloadImages: true,
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 30,
+        loop: true,
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
-        },
-        breakpoints: {
-            1024: {
-                slidesPerView: 2,
-                spaceBetween: 10
-            },
-            1680: {
-                slidesPerView: 3,
-                spaceBetween: 20
-            }
         }
     };
+
+    swiperOn: boolean = false;
 
     isEnrollingAvailable() {
         const now = Timestamp.now();
@@ -54,7 +45,25 @@ export class IotComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit(): void {
+    ngOnInit(): void {}
+
+    ngAfterViewInit(): void {
+        this.preloadImages(this.imageLinks).then((res) => {
+            this.swiperOn = true;
+        });
+    }
+
+    preloadImages(images: string[]): Promise<void[]> {
+        const promises = images.map((src) => this.preloadImage(src));
+        return Promise.all(promises);
+      }
+    
+    preloadImage(src: string): Promise<void> {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.src = src;
+        });
     }
 
 }

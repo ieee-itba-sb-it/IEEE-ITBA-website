@@ -69,28 +69,13 @@ h2{
   /*height: 20em; */
 }
 
-.news-card {
-  height: 25rem;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 0;
-  margin: 5px 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .news-card-img {
   margin: 0;
   height: 25em;
-  width: 100%;
-  object-fit: cover;
+  width: auto;
 }
 
 .carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
   width: 90%;
 }
 
