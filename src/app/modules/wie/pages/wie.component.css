@@ -5,10 +5,6 @@
 }
 
 .main-container {
-  padding: 5% 10% 0%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
   --wie-purple: #702f8a;
   --wie-dark-purple: #451754;
 }
@@ -146,7 +142,7 @@ mat-panel-title {
 .buttons-display>div>a {
     flex: 1 1;
     padding: 2rem;
-    margin: 0 1rem;
+    max-lines: 2;
     font-size: 1.75rem;
     display: flex;
     justify-content: center;
@@ -156,7 +152,9 @@ mat-panel-title {
 
 .buttons-display>div {
     display: flex;
+    flex-wrap: wrap;
     flex-grow: 1;
+    gap: 1rem;
     max-width: 48rem;
 }
 

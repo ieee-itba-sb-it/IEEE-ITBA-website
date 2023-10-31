@@ -1,10 +1,3 @@
-.main-container {
-  padding: 10%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
-}
-
 p {
   color: rgb(0, 0, 0);
   background: rgba(245, 245, 245, 0.2);
@@ -74,15 +67,8 @@ mat-card-actions{
   text-align: center;
 }
 .max-width {
-  margin-top: calc(7.5em);
   width: 100%;
   transform: translateY(0);
-  /*height: 20em; */
-}
-@media (max-width: 990px) {
-  .max-width {
-    margin-top: calc(6.5em);
-  }
 }
 
 .topbottomLine {
@@ -419,21 +405,21 @@ h3 {
 }
 
 .course-title {
-  font-size: calc(1.5vw + 1.2rem);
+  font-size: 2rem;
   font-weight: 400;
   color: #862633;
   letter-spacing: 1px;
 }
 
 .title {
-  font-size: calc(1.5vw + 1rem);
+  font-size: 2rem;
   font-weight: 400;
   color: #862633;
   letter-spacing: 1px;
 }
 
 .subtitle {
-  font-size: calc(0.7vw + 0.7rem);
+  font-size: 1.5rem;
   color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
@@ -466,9 +452,14 @@ h3 {
 }
 
 .section-title {
-  font-size: calc(0.7vw + 0.7rem);
+  font-size: 1.5rem;
   color: #862633;
   font-weight: 600;
+  margin: 0;
+}
+
+p {
+  padding: 0;
 }
 
 .list-section li::marker {
@@ -539,4 +530,10 @@ mat-panel-title {
 .image-section img {
   object-fit: contain;
   height: inherit;
+}
+
+@media (max-width: 770px) {
+  .course-title {
+      font-size: 1.7rem;
+  }
 }

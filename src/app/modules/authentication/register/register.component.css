@@ -4,9 +4,7 @@ html {
 }
 
 .main-container {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
+  padding: 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   width: 100vw !important;
   height: 100vh !important;
@@ -36,9 +34,6 @@ a:any-link{
 
 a:hover{
   color: var(--bs-ieee-dark-orange);
-}
-
-.mainFrame {
 }
 
 .error {
