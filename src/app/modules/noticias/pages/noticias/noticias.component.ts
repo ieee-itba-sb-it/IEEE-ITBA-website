@@ -47,9 +47,9 @@ export class NoticiasComponent implements OnInit, OnDestroy {
             this.newsData = [];
             if (data.length > 0)
                 this.showLoadingSpinner = false; // significa que las noticias ya cargaron, sacamos el icono de cargando
-            if (this.currentPage > 1) {
+            if (this.currentPage > 1 || this.selectedTags.length > 0) {
                 let cursor: string = new Date(data[0].date).toISOString();
-                window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}&tags=${this.selectedTags}`);
+                window.history.replaceState('', '', `noticias?page=${this.currentPage}&cursor=${cursor}&tags=[${this.selectedTags.map(o => `"${o}"`)}]`);
             }
             else window.history.replaceState('', '', 'noticias');
             for (const i in data) {
@@ -60,9 +60,10 @@ export class NoticiasComponent implements OnInit, OnDestroy {
         this.route.queryParams.subscribe((params: any) => {
             if (params.cursor) this.cursor = new Date(params.cursor);
             if (params.page) this.currentPage = params.page;
+            if (params.tags) this.selectedTags = JSON.parse(params.tags);
         });
-        this.blogService.getFirstDocsPage(this.cursor);
-        this.blogService.retrieveListedDocsSize();
+        this.blogService.getFirstDocsPage(this.cursor, this.selectedTags);
+        this.blogService.retrieveListedDocsSize(this.selectedTags);
     }
 
     ngOnDestroy(): void {
@@ -86,21 +87,27 @@ export class NoticiasComponent implements OnInit, OnDestroy {
 
     nextPage(scroll: boolean) {
         if (!this.hasNextPage()) return;
-        this.blogService.getNextDocsPage();
+        this.blogService.getNextDocsPage(this.selectedTags);
         this.currentPage++;
         if (scroll) this.scrollHome();
     }
 
     prevPage(scroll: boolean) {
         if (!this.hasPrevPage()) return;
-        this.blogService.getPrevDocsPage();
+        this.blogService.getPrevDocsPage(this.selectedTags);
         this.currentPage--;
         if (scroll) this.scrollHome();
     }
 
     onTagSelect(event: MatChipListboxChange) {
         this.selectedTags = event.value;
-        this.blogService.getFirstDocsPage(this.cursor, event.value);
+        this.currentPage = 1;
+        this.blogService.getFirstDocsPage(undefined, event.value);
+        this.blogService.retrieveListedDocsSize(event.value);
+    }
+
+    isSelectedTag(tag: string) {
+        return this.selectedTags.findIndex((t) => t == tag) >= 0;
     }
 
 }

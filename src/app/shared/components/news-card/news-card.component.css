@@ -17,10 +17,12 @@
     flex:auto;
 }
 .news-card-content {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
     margin: 1rem auto !important;
     text-overflow: ellipsis;
     width: 92%;
-    min-height: 6rem;
     position: relative;
 }
 
@@ -48,6 +50,13 @@
 
 .chip-container {
   display: flex;
-  justify-content: center;
   gap: .5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.chip-center {
+  justify-content: center;
 }

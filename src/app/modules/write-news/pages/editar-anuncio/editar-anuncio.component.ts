@@ -5,12 +5,8 @@ import { NewsItem } from '../../../../shared/models/news-item/news-item';
 import { createNewsItem } from '../../../../shared/models/data-types';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
-import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
-
-import { sanitizeString } from '../../utils';
-
-import Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
     selector: 'app-editar-anuncio',

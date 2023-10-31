@@ -50,7 +50,7 @@
         <div class="news-grid col">
           <div *ngFor="let noticia of (recommendedNews$ | async)" class="recommended-news-card">
             <div class="col-sm margin-top">
-              <app-news-card [noticia]="noticia"></app-news-card>
+              <app-news-card [noticia]="noticia" [center]="true"></app-news-card>
             </div>
           </div>
         </div>

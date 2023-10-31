@@ -58,9 +58,10 @@ export class NoticiaComponent implements OnInit {
                 map((param) => (param.get('id'))),
                 switchMap((id) => this.blogService.getDoc(id))
             );
-        this.recommendedNews$ = this.newsData$.pipe(
-            switchMap(currentNews => this.blogService.getRecommendedNews(currentNews.date))
-        );
+        this.newsData$.subscribe(news => {
+            if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
+        })
+        
     }
 
     rateNews(emoji: string, rating: number) {
