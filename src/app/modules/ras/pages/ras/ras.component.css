@@ -1,16 +1,9 @@
 .main-container {
-  padding: 10%;
-  padding-top: 5%;
-  padding-bottom: 0%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
   --ras-red: #862633;
   --ras-purple: #5f2167;
 }
 
 .bottomLine {
-  padding-top: 10vmin;
   padding-bottom: 10vmin;
   border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
@@ -102,9 +95,10 @@
 }
 
 .title {
-  margin: auto 0 auto 0;
+  margin: auto 0 1rem 0;
   font-weight: 600;
   font-size: 3rem;
+  line-height: 1;
 }
 
 .subtitle {
@@ -128,6 +122,11 @@
 }
 
 @media (max-width: 770px) {
+  .title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: .5rem;
+  }
   .rasLogo {
     width: 50vw;
   }

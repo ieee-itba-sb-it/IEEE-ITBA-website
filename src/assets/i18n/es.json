@@ -8,67 +8,136 @@
     "CARGO": {
       "CD": {
         "TITLE": "CD",
-        "OFFICER": "Officer",
-        "PRESIDENT": "Presidente",
-        "VP": "Vicepresidente",
-        "OPANDGENSEC": "Directora de Operaciones y Secretaria General",
-        "TREASURER": "Tesorero"
+        "OFFICER": {
+            "M": "Officer",
+            "F": "Officer"
+        },
+        "PRESIDENT": {
+            "M": "Presidente",
+            "F": "Presidente"
+        },
+        "VP": {
+            "M": "Vicepresidente",
+            "F": "Vicepresidente"
+        },
+        "OPANDGENSEC": {
+            "M": "Director de Operaciones y Secretario General",
+            "F": "Directora de Operaciones y Secretaria General"
+        },
+        "TREASURER": {
+            "M": "Tesorero",
+            "F": "Tesorera"
+        },
+          "SECRETARY": {
+            "M": "Secretario",
+            "F": "Secretaria"
+          }
       },
       "EDUCATION": {
         "TITLE": "Educación",
-        "DIRECTOR": "Director de Educación",
-        "ASSISTANT": "Ayudante de tutorías",
-        "HEADTUTOR": "Tutor Encargado",
-        "RRPP": "RRPP & Logística",
-        "TUTOR": "Tutor",
-        "TUTORA": "Tutora"
+        "DIRECTOR": {
+            "M": "Director de Educación",
+            "F": "Directora de Educación"
+        },
+        "ASSISTANT": {
+            "M": "Ayudante de tutorías",
+            "F": "Ayudante de tutorías"
+        },
+        "HEADTUTOR": {
+            "M": "Tutor Encargado",
+            "F": "Tutora Encargada"
+        },
+        "RRPP": {
+            "M": "RRPP & Logística",
+            "F": "RRPP & Logística"
+        },
+        "TUTOR": {
+            "M": "Tutor",
+            "F": "Tutora"
+        }
       },
       "FUNDRAISING": {
         "TITLE": "Fundraising & Logística",
-        "CHIEF": "Director de Fundraising & Logística",
-        "CHIEFA": "Directora de Fundraising & Logística",
-        "FUNDRAISER": "Fundraiser",
-        "RRPP": "RRHH & RRPP"
+        "DIRECTOR": {
+            "M": "Director de Fundraising & Logística",
+            "F": "Directora de Fundraising & Logística"
+        },
+        "FUNDRAISER": {
+            "M": "Fundraiser",
+            "F": "Fundraiser"
+        },
+        "RRPP": {
+            "M": "RRHH & RRPP",
+            "F": "RRHH & RRPP"
+        }
       },
       "ID": {
         "TITLE": "I+D",
-        "ASSISTANT": "Asistente",
-        "RESEARCHER": "Investigador",
-        "CHIEFA": "Directora de I+D",
-        "CHIEF": "Director de I+D"
+        "ASSISTANT": {
+            "M": "Asistente de I+D",
+            "F": "Asistente de I+D"
+        },
+        "RESEARCHER": {
+            "M": "Investigador",
+            "F": "Investigadora"
+        },
+        "DIRECTOR": {
+            "M": "Director de I+D",
+            "F": "Directora de I+D"
+        }
       },
       "MEDIACOM": {
         "TITLE": "Media & Com",
-        "DIRECTOR": "Director de Medios",
-        "DIRECTOR_AND_WRITER": "Director de Medios y Redactor",
-        "CC": "Creador de Contenido",
-        "CCA": "Creadora de Contenido",
-        "DESIGNER": "Diseñador",
-        "WEBMASTER": "Webmaster & Editor General",
-        "WRITER": "Redactor",
-        "WRITERA": "Redactora",
-        "REDACTOR": "Redactor",
-        "ILLUSTRATOR": "Dibujante",
-        "DESIGNERANDILLUSTRATOR": "Dibujante y Diseñador",
-        "CM": "Community Manager"
-      },
-      "VOLUNTEERS": {
-        "FUNDRAISINGMENTOR": "Mentor de Fundraising",
-        "GENERALASSIST": "Asistente General",
-        "TEAMMENTOR": "Mentor de Equipos Competitivos",
-        "VOLUNTEER": "Voluntario"
+        "DIRECTOR": {
+            "M": "Director de Medios",
+            "F": "Directora de Medios"
+        },
+        "DIRECTOR_AND_WRITER": {
+            "M": "Director de Medios y Redactor",
+            "F": "Directora de Medios y Redactora"
+        },
+        "CC": {
+            "M": "Creador de Contenido",
+            "F": "Creadora de Contenido"
+        },
+        "DESIGNER": {
+            "M": "Diseñador",
+            "F": "Diseñadora"
+        },
+        "WRITER": {
+            "M": "Redactor",
+            "F": "Redactora"
+        },
+        "ILLUSTRATOR": {
+            "M": "Dibujante",
+            "F": "Dibujante"
+        }
       },
       "IT": {
         "TITLE": "TI",
-        "DIRECTOR": "Webmaster",
-        "DEV": "Desarrollador",
-        "DATA": "Analista de Datos"
+        "DIRECTOR": {
+            "M": "Webmaster",
+            "F": "Webmaster"
+        },
+        "DEV": {
+            "M": "Desarrollador",
+            "F": "Desarrollador"
+        }
       },
       "RAS": {
         "TITLE": "RAS",
-        "DIRECTOR": "Director de RAS",
-        "DEV": "Desarrollador",
-        "RESEARCHER": "Investigador"
+        "DIRECTOR": {
+            "M": "Director de RAS",
+            "F": "Directora de RAS"
+        },
+        "DEV": {
+            "M": "Desarrollador",
+            "F": "Desarrolladora"
+        },
+        "RESEARCHER": {
+            "M": "Investigador",
+            "F": "Investigadora"
+        }
       }
     },
     "CARGO2022": {

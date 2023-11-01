@@ -1,14 +1,12 @@
 .main-container {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-    background-size: cover;
+    padding: 0;
     width: 100vw !important;
     height: 100vh !important;
 }
 
 .custom-width {
-  max-width: 75%;
-  width: fit-content;
+    max-width: 75%;
+    width: fit-content;
 }
 
 h1{
@@ -45,9 +43,6 @@ a:hover{
 .success {
   color: green;
   text-align: start;
-}
-
-.mainFrame {
 }
 
 input {
