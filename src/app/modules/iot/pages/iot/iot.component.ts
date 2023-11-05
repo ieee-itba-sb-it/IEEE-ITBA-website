@@ -20,6 +20,11 @@ export class IotComponent implements OnInit {
         'https://i.ibb.co/HF074sP/image6.jpg'
     ];
 
+    faq = [
+        { q: 'IOT.FAQ.QUESTIONS.0.QUESTION', a: 'IOT.FAQ.QUESTIONS.0.ANSWER' },
+        { q: 'IOT.FAQ.QUESTIONS.1.QUESTION', a: 'IOT.FAQ.QUESTIONS.1.ANSWER' }
+    ];
+
     enrollLink = 'https://forms.gle/mUWavTU2wcRY1xqJ6';
     enrollEndDate = '22 Nov 2022 03:00:00 UTC';
 
@@ -56,7 +61,7 @@ export class IotComponent implements OnInit {
     preloadImages(images: string[]): Promise<void[]> {
         const promises = images.map((src) => this.preloadImage(src));
         return Promise.all(promises);
-      }
+    }
     
     preloadImage(src: string): Promise<void> {
         return new Promise((resolve) => {

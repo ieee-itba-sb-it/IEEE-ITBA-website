@@ -1,4 +1,3 @@
-/*IMPORTS*/
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import Timestamp = firebase.firestore.Timestamp;
@@ -28,6 +27,17 @@ export class CursoPythonComponent implements OnInit {
 
     enrollOpen = false;
     enrollClosed = false;
+
+    faq = [
+        { q: 'PYTHONCOURSES.FAQ.QUESTIONS.0.QUESTION', a: 'PYTHONCOURSES.FAQ.QUESTIONS.0.ANSWER' },
+        { q: 'PYTHONCOURSES.FAQ.QUESTIONS.1.QUESTION', a: 'PYTHONCOURSES.FAQ.QUESTIONS.1.ANSWER' },
+        { q: 'PYTHONCOURSES.FAQ.QUESTIONS.2.QUESTION', a: 'PYTHONCOURSES.FAQ.QUESTIONS.2.ANSWER' },
+        { q: 'PYTHONCOURSES.FAQ.QUESTIONS.3.QUESTION', a: 'PYTHONCOURSES.FAQ.QUESTIONS.3.ANSWER' },
+        { q: 'PYTHONCOURSES.FAQ.QUESTIONS.4.QUESTION', a: 'PYTHONCOURSES.FAQ.QUESTIONS.4.ANSWER' }
+    ];
+
+    pythonImageUrl= 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png';
+    
 
     getDate() { }
 

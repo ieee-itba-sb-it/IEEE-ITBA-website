@@ -1,71 +1,3 @@
-p {
-    color: rgb(0, 0, 0);
-    background: rgba(245, 245, 245, 0.2);
-    padding: 2vmin 3vmin;
-    border-radius: 5vmin;
-    text-align: justify;
-    font-size: 1.1rem;
-}
-
-h1 {
-    color: rgb(0, 0, 0);
-    font-size: 5vmin;
-    font-weight: lighter;
-}
-
-h2{
-    font-size: 3vmin;
-    margin-left: 20px;
-    text-align: left;
-    color: black;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: 500;
-}
-
-li > p{ 
-    margin: 0;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-}
-
-.banner{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-
-.title-container {
-    padding-top: 2vmin;
-    padding-bottom: 2vmin;
-    border-top: var(--bs-ieee-bright-blue) 2px solid;
-    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
-    vertical-align: middle;
-    text-align: center;
-    align-content: center;
-    margin-bottom:2%
-}
-
-.course-title {
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--bs-ieee-bright-blue-80);
-    letter-spacing: 1px;
-}
-
-.course-subtitle {
-    font-size: 1.5rem;
-    color: var(--bs-ieee-bright-blue);
-    font-weight: 600;
-    margin-top: 0.5rem;
-}
-
-.information{
-    margin-bottom: 4rem;
-}
-  
 /* Buttons */
 
 .button {
@@ -110,31 +42,6 @@ li > p{
   color: white !important;
 }
 
-.cover-background {
-  flex-grow: inherit;
-  max-width: 100%;
-}
-
-/* Cards */
-mat-card-header{
-    height: 5.5rem;
-    left: 0rem;
-}
-
-.card{
-    margin: 0 1rem;
-    padding: 0 1rem;
-}
-
-.card-content {
-    text-align: justify;
-    font-size: 1.2em;
-}
-
-.header-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png');
-    background-size: cover;
-}
 
 /* Syllabus section*/
 .syllabus{
@@ -145,7 +52,7 @@ mat-card-header{
     gap: 2rem;
 }
 
-.syllabus > mat-card {
+.syllabus > app-event-content-card {
     width: 40%;
     min-width: min-content;
 }
@@ -156,62 +63,8 @@ mat-card-header{
     justify-content: center;
 }
 
-/* FAQ section */
-.faq-section {
-    margin-top: 3rem;
-    margin-bottom: 4rem;
-}
-
-.faq-accordion {
-    margin-top: 1.5rem;
-}
-.faq-panel {
-    height:max-content;
-}
-.faq-question {
-    font-size: 1rem;
-}
-.faq-answer {
-    font-size: larger;
-}
-
-::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-    color:rgb(23, 46, 148);
-    background-color: transparent;
-}
-
-::ng-deep .mat-ink-bar {
-    background-color: var(--primary-color,whitesmoke) !important;
-}
-
-::ng-deep .mat-expansion-indicator::after {
-    color:rgb(23, 46, 148);
-}
-
-mat-panel-description {
-    text-align: right;
-}
-
-mat-expansion-panel {
-    background-color: transparent;
-    margin-top: 1.5vmin;
-}
-
-mat-expansion-panel-header {
-    border: var(--bs-ieee-bright-blue) 1px solid;
-    border-radius: 5vmin;
-}
-
-mat-panel-title {
-    color:var(--bs-ieee-bright-blue);
-}
-
 @media (max-width: 770px) {
-    .course-title {
-        font-size: 1.7rem;
-    }
-
-    .syllabus > mat-card {
+    .syllabus > app-event-content-card {
         width: 90%;
         min-width: min-content;
     }

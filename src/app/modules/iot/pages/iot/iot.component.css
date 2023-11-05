@@ -1,68 +1,5 @@
 @import url('https://unpkg.com/swiper/swiper-bundle.css');
 
-p {
-  color: rgb(0, 0, 0);
-  background: rgba(245, 245, 245, 0.2);
-  padding: 2vmin 3vmin;
-  border-radius: 5vmin;
-  text-align: justify;
-  font-size: 1.1rem;
-}
-
-h1 {
-  color: rgb(0, 0, 0);
-  font-size: 5vmin;
-  font-weight: lighter;
-}
-
-h2{
-  font-size: 3vmin;
-  margin-left: 20px;
-  text-align: left;
-  color: black;
-}
-
-.col-sm {
-  margin-top: 1vmin;
-  margin-bottom: 1vmin;
-  text-align: center;
-}
-
-.top_bottom_line {
-  padding-top: 2vmin;
-  padding-bottom: 2vmin;
-  border-top: var(--bs-ieee-bright-blue) 2px solid;
-  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
-  vertical-align: middle;
-  align-content: center;
-}
-
-@media (max-width: 700px) {
-  .top_bottom_line {
-    padding-top: 30%;
-  }
-}
-
-.course-title {
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--bs-ieee-bright-blue-80);
-  letter-spacing: 1px;
-}
-
-.course-subtitle {
-  font-size: 1.5rem;
-  color: var(--bs-ieee-bright-blue);
-  font-weight: 600;
-  margin-top: 0.5rem;
-}
-
-.banner {
-  position: relative;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
 .max-width {
   width: 100%;
   transform: translateY(0);
@@ -77,60 +14,6 @@ h2{
 
 .carousel-wrapper {
   width: 90%;
-}
-
-.section {
-  margin-bottom: 4rem;
-}
-
-.faq-section {
-  margin-top: 3rem;
-  margin-bottom: 4rem;
-}
-
-.faq-accordion {
-  margin-top: 1.5rem;
-}
-.faq-panel {
-  height:max-content;
-}
-.faq-question {
-  font-size: 1rem;
-}
-.faq-answer {
-  font-size: larger;
-  margin: 1rem 0 0 0;
-}
-
-::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-  color:rgb(23, 46, 148);
-  background-color: transparent;
-}
-
-::ng-deep .mat-ink-bar {
-  background-color: var(--primary-color,whitesmoke) !important;
-}
-
-::ng-deep .mat-expansion-indicator::after {
-  color:rgb(23, 46, 148);
-}
-
-mat-panel-description {
-  text-align: right;
-}
-
-mat-expansion-panel {
-  background-color: transparent;
-  margin-top: 1.5vmin;
-}
-
-mat-expansion-panel-header {
-  border: var(--bs-ieee-bright-blue) 1px solid;
-  border-radius: 5vmin;
-}
-
-mat-panel-title {
-  color:var(--bs-ieee-bright-blue);
 }
 
 .goback-button {
@@ -157,10 +40,4 @@ mat-panel-title {
 }
 .goback-button:hover > .button-text{
   color: white !important;
-}
-
-@media (max-width: 770px) {
-  .course-title {
-      font-size: 1.7rem;
-  }
 }

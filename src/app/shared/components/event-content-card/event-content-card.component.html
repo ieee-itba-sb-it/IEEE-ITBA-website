@@ -1,0 +1,16 @@
+<mat-card 
+[ngClass]="{'not-available-background-color': disabled}"
+[style]="{ '--imageUrl': imageUrl }" class="content-card"
+fxFlexAlign="stretch"
+>
+    <mat-card-header style="height: unset;">
+      <img mat-card-avatar src={{imageUrl}} class="card-image">
+      <mat-card-title><b>{{title}}</b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+      <span class="content">
+        <ng-content select="[content]"></ng-content>
+      </span>
+    </mat-card-content>
+    <ng-content select="[actions]"></ng-content>
+</mat-card>

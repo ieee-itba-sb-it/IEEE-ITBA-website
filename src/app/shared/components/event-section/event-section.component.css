@@ -1,0 +1,27 @@
+.section-container{
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    color: var(--bs-ieee-bright-blue);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+p {
+    color: rgb(0, 0, 0);
+    background: rgba(245, 245, 245, 0.2);
+    padding: 2vmin 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+
+h2{
+    font-size: 3vmin;
+    margin-left: 20px;
+    text-align: left;
+    color: black;
+}

@@ -30,3 +30,35 @@ p { line-height: 1.5; }
 .carrousel-card {
   width: fit-content !important;
 }
+.event p {
+  color: rgb(0, 0, 0);
+  background: rgba(245, 245, 245, 0.2);
+  padding: 2vmin 3vmin;
+  border-radius: 5vmin;
+  text-align: justify;
+  font-size: 1.1rem;
+}
+
+.event h1 {
+  color: rgb(0, 0, 0);
+  font-size: 5vmin;
+  font-weight: lighter;
+}
+
+.event h2{
+  font-size: 3vmin;
+  margin-left: 20px;
+  text-align: left;
+  color: black;
+}
+
+.event h3 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.event li > p{ 
+  margin: 0;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}

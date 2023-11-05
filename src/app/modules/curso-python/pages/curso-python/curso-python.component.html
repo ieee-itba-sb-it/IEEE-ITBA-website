@@ -1,14 +1,5 @@
-<div class="main-container">
-  <div class="topbottomLine" id="home">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <h1 id="logotext" class="course-title">{{ 'PYTHONCOURSES.TITLE' | translate }}</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="main-container event">
+  <app-event-title>{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
   <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
       <button class="goback-button">
@@ -18,31 +9,24 @@
     </div>
   </div>
   <!-- Introductory text -->
-  <div>
-    <h2 class="course-subtitle">{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}</h2>
+  <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
     <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
-    <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}</h2>
+  </app-event-section>
+
+  <app-event-section title="{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}">
     <p>{{ 'PYTHONCOURSES.FORMAT' | translate }}</p>
-  </div>
+  </app-event-section>
 
   <!-- Cards Temario -->
 
-  <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
-
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1</b>
-        </mat-card-title>
-        <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</span>
-      </mat-card-content>
-      <!-- Boton del solucionario -->
-      <mat-card-actions align="center">
+  <div style="display:flex; margin-bottom:5rem;">
+    <app-event-content-card 
+      [disabled]="!week1ContentOpen"
+      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1"
+      [imageUrl]="pythonImageUrl"
+    >
+      <span content>{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</span>
+      <mat-card-actions actions align="center">
         <a
           [href]="week1ContentOpen ? week1ContentLink : ''"
           (click)="check($event, week1ContentOpen)"
@@ -62,22 +46,14 @@
           </button>
         </a>
       </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2</b>
-        </mat-card-title>
-        <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</span>
-      </mat-card-content>
-      <!-- Boton del solucionario -->
-      <mat-card-actions align="center">
+    </app-event-content-card>
+    <app-event-content-card
+      [disabled]="!week2ContentOpen"
+      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2"
+      [imageUrl]="pythonImageUrl"
+    >
+      <span content>{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</span>
+      <mat-card-actions actions align="center">
         <a
           [href]="week2ContentOpen ? week2ContentLink : ''"
           (click)="check($event, week2ContentOpen)"
@@ -97,22 +73,14 @@
           </button>
         </a>
       </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week3ContentOpen}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <b>{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3</b>
-        </mat-card-title>
-        <!-- <mat-card-subtitle>{{ 'PYTHONCOURSES.CLASSES.DATE3' | translate }}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-        <span class="card-content">{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</span>
-      </mat-card-content>
-      <!-- Boton del solucionario -->
-      <mat-card-actions align="center">
+    </app-event-content-card>
+    <app-event-content-card
+      [disabled]="!week3ContentOpen"
+      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3"
+      [imageUrl]="pythonImageUrl"
+    >
+      <span content>{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</span>
+      <mat-card-actions actions align="center">
         <a
           [href]="week3ContentOpen ? week3ContentLink : ''"
           (click)="check($event, week3ContentOpen)"
@@ -132,7 +100,7 @@
           </button>
         </a>
       </mat-card-actions>
-    </mat-card>
+    </app-event-content-card>
 
   </div>
 
@@ -179,25 +147,10 @@
   </div>
   -->
 
-
-
-  <div class="faq-section">
-    <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}</h2>
-    <mat-accordion class="faq-accordion">
-
-      <mat-expansion-panel class="mat-elevation-z0"
-                           *ngFor="let question of ('PYTHONCOURSES.FAQ.QUESTIONS' | translate)">
-        <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-          <mat-panel-title class="faq-question my-2">
-            {{ question.QUESTION }}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <p class="faq-answer">{{ question.ANSWER }}</p>
-      </mat-expansion-panel>
-
-    </mat-accordion>
-  </div>
+  <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
+    <app-event-faq-accordion [faq]="faq">
+    </app-event-faq-accordion>
+  </app-event-section>
 
   <!-- Terminos y condiciones -->
   <div class="tyc-section">

@@ -19,6 +19,16 @@ export class DataAnalysisComponent implements OnInit {
     courseEnd = '02 Oct 2023 03:00:00 UTC';
     testsOpen = '09 Oct 2023 03:00:00 UTC';
 
+    pythonUrl = 'https://cdn.freebiesupply.com/logos/large/2x/python-5-logo-png-transparent.png'
+
+    faq = [
+        { q: 'DATAANALYSIS.FAQ.QUESTIONS.0.QUESTION', a: 'DATAANALYSIS.FAQ.QUESTIONS.0.ANSWER' },
+        { q: 'DATAANALYSIS.FAQ.QUESTIONS.1.QUESTION', a: 'DATAANALYSIS.FAQ.QUESTIONS.1.ANSWER' },
+        { q: 'DATAANALYSIS.FAQ.QUESTIONS.2.QUESTION', a: 'DATAANALYSIS.FAQ.QUESTIONS.2.ANSWER' },
+        { q: 'DATAANALYSIS.FAQ.QUESTIONS.3.QUESTION', a: 'DATAANALYSIS.FAQ.QUESTIONS.3.ANSWER' },
+        { q: 'DATAANALYSIS.FAQ.QUESTIONS.4.QUESTION', a: 'DATAANALYSIS.FAQ.QUESTIONS.4.ANSWER' }
+    ];
+
     courseData: CourseWithTests = {
         enrollLink: 'https://forms.gle/BiCzJWPADYmQwYvFA',
         enrollDates: {
@@ -66,6 +76,7 @@ export class DataAnalysisComponent implements OnInit {
 
         this.courseData.contentCloseDate = new Date(this.courseData.endDate);
         this.courseData.contentCloseDate.setDate(this.courseData.contentCloseDate.getDate() + this.courseData.daysOpenAfterFinish);
+
     }
 
     isOldDate(date: Date) {
