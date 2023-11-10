@@ -54,7 +54,7 @@ export class ContactPageComponent implements OnInit {
             formData.destination = this.form.get('destination').value;
             this.isLoading = true; // sending the post request async so it's in progress
             this.submitted = false; // hide the response message on multiple submits
-            this.http.post('https://script.google.com/macros/s/AKfycbyYZEUsEW6KOJyrQMRYf0_GM55k_8DktIj1VwY-XQ-WW5EKtWytixoYF6uuGOrhU0rQUQ/exec', JSON.stringify(formData), {
+            this.http.post('https://script.google.com/macros/s/AKfycbxCPfeG0wtqMTwLdYwI2WMAJNLjHVpjYJ9Jlr_rG6tgy4XuwaGoZcH5ShtrQRmL8HsbWQ/exec', JSON.stringify(formData), {
                 headers: {
                     "Content-Type": "text/plain;charset=utf-8",
                 }})
