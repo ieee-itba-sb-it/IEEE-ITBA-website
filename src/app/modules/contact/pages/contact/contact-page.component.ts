@@ -12,7 +12,7 @@ export class ContactPageComponent implements OnInit {
     form: FormGroup;
     name: FormControl = new FormControl('', [Validators.required]);
     email: FormControl = new FormControl('', [Validators.required, Validators.email]);
-    message: FormControl = new FormControl('', [Validators.required, Validators.maxLength(256)]);
+    message: FormControl = new FormControl('', [Validators.required, Validators.maxLength(350)]);
     honeypot: FormControl = new FormControl(''); // we will use this to prevent spam
     destinations: string[] = ['administration', 'courses'];
     destination: FormControl = new FormControl(this.destinations[0]);
@@ -47,11 +47,11 @@ export class ContactPageComponent implements OnInit {
     onSubmit() {
         if (this.form.status === 'VALID' && this.honeypot.value === '') {
             this.form.disable(); // disable the form if it's valid to disable multiple submissions
-            const formData: any = new FormData();
-            formData.append('name', this.form.get('name').value);
-            formData.append('email', this.form.get('email').value);
-            formData.append('message', this.form.get('message').value);
-            formData.append('destination', this.form.get('destination').value);
+            const formData: any = {};
+            formData.name = this.form.get('name').value;
+            formData.email = this.form.get('email').value;
+            formData.message = this.form.get('message').value;
+            formData.destination = this.form.get('destination').value;
             this.isLoading = true; // sending the post request async so it's in progress
             this.submitted = false; // hide the response message on multiple submits
             this.http.post('https://script.google.com/macros/s/AKfycbyYZEUsEW6KOJyrQMRYf0_GM55k_8DktIj1VwY-XQ-WW5EKtWytixoYF6uuGOrhU0rQUQ/exec', JSON.stringify(formData), {
