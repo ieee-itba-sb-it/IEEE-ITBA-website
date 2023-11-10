@@ -541,7 +541,9 @@
     "EMAIL_ERROR": "Por favor, ingresá un email válido",
     "MESSAGE": "Mensaje",
     "MESSAGE_ERROR": "Por favor, ingresá un mensaje",
-    "SEND": "Enviar"
+    "SEND": "Enviar",
+    "OK_RESPONSE": "¡Gracias por el mensaje! Nos contactaremos contigo pronto.",
+    "ERROR_RESPONSE": "Algo salió mal... Intenta nuevamente o utiliza otro método de contacto."
   },
   "ABOUT-US": {
     "TITLE": "Sobre Nosotros",
