@@ -11,4 +11,5 @@ export interface EventDate {
   date: Date;
   descriptionCode: string;
   showMonth?: boolean;
+  showYear?: boolean;
 }
