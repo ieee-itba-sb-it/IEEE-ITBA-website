@@ -485,7 +485,9 @@
     "EMAIL_ERROR": "Please enter a valid email",
     "MESSAGE": "Message",
     "MESSAGE_ERROR": "Please enter a message",
-    "SEND": "Send"
+    "SEND": "Send",
+    "OK_RESPONSE": "Thanks for the message! We'll get back to you soon!",
+    "ERROR_RESPONSE": "Oops! Something went wrong... Try again or use another contact method"
   },
   "ABOUT-US": {
     "TITLE": "About Us",
