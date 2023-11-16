@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventCardData } from '../../../shared/models/event/event-card-data';
-import firebase from 'firebase/compat/app';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -122,7 +122,7 @@ export class EventService {
 
     getUpcomingEvents(): EventCardData[] {
         return this.getAllEvents()
-            .filter((event) => event.dates.length > 0 && (event.dates[0].date == null || event.dates[0].date.getTime() >= firebase.firestore.Timestamp.now().toDate().getTime()))
+            .filter((event) => event.dates.length > 0 && (event.dates[0].date == null || event.dates[0].date.getTime() >= Timestamp.now().toDate().getTime()))
             .sort((event1, event2) => {
                 if (event1.dates.length !== event2.dates.length) {
                     return event2.dates.length - event1.dates.length;

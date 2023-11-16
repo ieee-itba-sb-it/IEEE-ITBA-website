@@ -213,7 +213,6 @@ footer {
 }
 
 .col-sm {
-    text-align: center;
     padding-top: auto;
     vertical-align: middle;
 }
@@ -346,6 +345,18 @@ background-size: cover;
     object-fit: contain;
     position: relative;
     top: 50%;
+}
+
+.tags-container {
+    margin-top: 1rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tags-container > p {
+    margin: 0
 }
 
 @media (min-width: 768px) {

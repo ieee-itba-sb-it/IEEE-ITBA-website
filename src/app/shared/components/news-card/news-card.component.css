@@ -17,10 +17,12 @@
     flex:auto;
 }
 .news-card-content {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
     margin: 1rem auto !important;
     text-overflow: ellipsis;
     width: 92%;
-    height: 6rem;
     position: relative;
 }
 
@@ -33,6 +35,7 @@
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
+    position: static !important;
 }
 
 .mat-mdc-card-content::ng-deep {
@@ -43,4 +46,17 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.chip-container {
+  display: flex;
+  gap: .5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.chip-center {
+  justify-content: center;
 }

@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 
 // Translations
 import {TranslateModule, TranslateLoader, MissingTranslationHandler} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
@@ -14,13 +13,11 @@ import { firebaseConfig } from './secrets';
 import { environment } from '../environments/environment';
 
 import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
-import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
-import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
-import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
-import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
-import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
+import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { connectDatabaseEmulator, getDatabase, provideDatabase } from '@angular/fire/database';
 
 import { CardsModule } from 'angular-bootstrap-md';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
@@ -29,6 +26,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
 import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
+import { connectAuthEmulator } from '@angular/fire/auth';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -64,9 +62,22 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
             defaultLanguage: 'es'
         }),
-        AngularFireModule.initializeApp(firebaseConfig),
-        AngularFirestoreModule,
-        AngularFireAuthModule,
+        provideFirebaseApp(() => initializeApp(firebaseConfig)),
+        provideFirestore(() => {
+            const firestore = getFirestore();
+            if (!environment.production) connectFirestoreEmulator(firestore, 'localhost', 8080);
+            return firestore;
+        }),
+        provideAuth(() => {
+            const fireauth = getAuth();
+            if (!environment.production) connectAuthEmulator(fireauth, 'http://localhost:9099');
+            return fireauth;
+        }),
+        provideDatabase(() => {
+            const firedatabase = getDatabase();
+            if (!environment.production) connectDatabaseEmulator(firedatabase, 'localhost', 9000)
+            return firedatabase;
+        }),
         HttpClientModule,
         CardsModule,
         EmojiModule,
@@ -76,9 +87,6 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         NgOptimizedImage
     ],
     providers: [
-        { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['http://localhost:9099'] : undefined },
-        { provide: USE_DATABASE_EMULATOR, useValue: !environment.production ? ['http://localhost:9000'] : undefined },
-        { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
         {
             provide: IMAGE_LOADER, useValue: ({ src, width }: ImageLoaderConfig) => {
                 return `https://imagecdn.app/v2/image/${encodeURIComponent(src)}?format=webp&width=${encodeURIComponent(width)}`;

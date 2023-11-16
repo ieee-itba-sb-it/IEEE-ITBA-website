@@ -7,11 +7,11 @@ import { NewsItem } from '../../models/news-item/news-item';
     styleUrls: ['./news-card.component.css']
 })
 export class NewsCardComponent implements OnInit {
-  @Input() noticia?: NewsItem ;
+  @Input() noticia?: NewsItem;
+  @Input() center?: Boolean;
+  
   constructor() { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

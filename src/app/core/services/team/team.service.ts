@@ -1,11 +1,10 @@
 import {IEEEMember} from '../../../shared/models/team-member';
 import {Injectable} from '@angular/core';
 import {Commission} from 'src/app/shared/models/commission';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {map, Observable} from 'rxjs';
 import {IEEEUserResponse} from '../../../shared/models/ieee-user/ieee-user.response';
 import {COMMISSION_ORDER, CommissionType, Role, ROLE_ORDER} from '../../../shared/models/ieee-user/ieee-team.enums';
-import firebase from 'firebase/compat/app';
+import { collection, DocumentData, Firestore, getDocs, query, QuerySnapshot, where } from '@angular/fire/firestore';
 
 interface IEEEUserRole extends IEEEMember {
     roleType: Role;
@@ -16,9 +15,8 @@ interface IEEEUserRole extends IEEEMember {
 })
 export class TeamService {
     private static readonly TEAM_COLLECTION_NAME = 'team';
-    constructor(private firestore: AngularFirestore) {
-
-    }
+    
+    constructor(private afs: Firestore) {}
 
     static TEAM_MAPPER = {
         [CommissionType.CD]: 'HOME.CARGO.CD.TITLE',
@@ -32,9 +30,11 @@ export class TeamService {
     };
 
     getCurrentTeam(): Observable<Commission[]> {
-        return this.firestore.collection(TeamService.TEAM_COLLECTION_NAME,
-            ref => ref.where('commission', 'not-in', [CommissionType.RAS, CommissionType.EMB])).get()
-            .pipe(map(TeamService.mapQuerySnapshotToCommission));
+        return new Observable<QuerySnapshot<DocumentData>>((subscriber) => {
+            getDocs(query(collection(this.afs, TeamService.TEAM_COLLECTION_NAME), where('commission', 'not-in', [CommissionType.RAS, CommissionType.EMB]))).then(res => {
+                subscriber.next(res)
+            });
+        }).pipe(map(TeamService.mapQuerySnapshotToCommission));
     }
 
     getRasTeam(): Observable<Commission> {
@@ -46,19 +46,22 @@ export class TeamService {
     }
 
     private getSingularTeam(commissionType: CommissionType): Observable<Commission> {
-        return this.firestore.collection(TeamService.TEAM_COLLECTION_NAME, ref => ref.where('commission', '==', commissionType))
-            .get()
-            .pipe(map(TeamService.mapQuerySnapshotToCommission))
-            .pipe(map(commissions => {
-                if (commissions.length === 0) return {
-                    name: TeamService.TEAM_MAPPER[CommissionType.RAS],
-                    team: []
-                }
-                return commissions[0];
-            }))
+        return new Observable<QuerySnapshot<DocumentData>>((subscriber) => {
+            getDocs(query(collection(this.afs, TeamService.TEAM_COLLECTION_NAME), where('commission', '==', commissionType))).then(res => {
+                subscriber.next(res);
+            })
+        })
+        .pipe(map(TeamService.mapQuerySnapshotToCommission))
+        .pipe(map(commissions => {
+            if (commissions.length === 0) return {
+                name: TeamService.TEAM_MAPPER[CommissionType.RAS],
+                team: []
+            }
+            return commissions[0];
+        }));
     }
 
-    private static mapQuerySnapshotToCommission(querySnapshot: firebase.firestore.QuerySnapshot<unknown>): Commission[] {
+    private static mapQuerySnapshotToCommission(querySnapshot: QuerySnapshot<DocumentData>): Commission[] {
         if (querySnapshot.empty) return [];
         const commissionMap = new Map<string, IEEEUserRole[]>();
         querySnapshot.forEach(doc => {

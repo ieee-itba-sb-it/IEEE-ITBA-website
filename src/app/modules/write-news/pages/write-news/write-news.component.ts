@@ -15,8 +15,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
-import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
     selector: 'app-write-news',
@@ -30,8 +29,8 @@ export class WriteNewsComponent implements OnInit {
     durationInSeconds = 5;
     newsContent: NewsItem;
     textContent = '';
-    today = firebase.firestore.Timestamp.now().toDate();
-    minDate = firebase.firestore.Timestamp.now().toDate();
+    today = Timestamp.now().toDate();
+    minDate = Timestamp.now().toDate();
     publishDate = new Date(this.minDate);
     publishNow = true;
     maxTags = 3;
