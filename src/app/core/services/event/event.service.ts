@@ -16,7 +16,9 @@ export class EventService {
         descriptionCode: 'HOME.IEEEXTREME.TEXT',
         dates: [
             {
-                date: new Date(2023, 9, 28),
+                showMonth: true,
+                showYear: true,
+                date: new Date(2024, 9, 1),
                 descriptionCode: 'EVENTCARD.DATE.TBD'
             }
         ]
@@ -30,7 +32,9 @@ export class EventService {
         descriptionCode: 'HOME.CLASSES.TEXT',
         dates: [
             {
-                date: new Date(2023, 7, 7),
+                showMonth: true,
+                showYear: true,
+                date: new Date(2024, 4, 1),
                 descriptionCode: 'EVENTCARD.DATE.TBD',
             }
         ]
@@ -53,7 +57,9 @@ export class EventService {
         descriptionCode: 'HOME.DATAANALYSIS.TEXT',
         dates: [
             {
-                date: new Date(2023, 8, 18),
+                showMonth: true,
+                showYear: true,
+                date: new Date(2024, 8, 1),
                 descriptionCode: '',
             }
         ]
@@ -67,7 +73,9 @@ export class EventService {
         descriptionCode: 'HOME.ASIMOVCUP.TEXT',
         dates: [
             {
-                date: new Date(2023, 6, 29),
+                showMonth: true,
+                showYear: true,
+                date: new Date(2024, 6, 1),
                 descriptionCode: ''
             }
         ]
@@ -79,7 +87,11 @@ export class EventService {
         imageAlt: 'Logo de la Asimov Cup',
         titleCode: 'HOME.IOT.TITLE',
         descriptionCode: 'HOME.IOT.TEXT',
-        dates: []
+        dates: [{
+            showMonth: true,
+            date: new Date(2023, 11, 4),
+            descriptionCode: '',
+        }]
     };
 
     private typescript: EventCardData = {
@@ -89,7 +101,9 @@ export class EventService {
         titleCode: 'TYPESCRIPT.TITLE',
         descriptionCode: 'TYPESCRIPT.DESCRIPTION.TEXT',
         dates: [{
-            date: new Date(2023, 4, 31),
+            showMonth: true,
+            showYear: true,
+            date: new Date(2024, 5, 1),
             descriptionCode: '',
         }]
     };
