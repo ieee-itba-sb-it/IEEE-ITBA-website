@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import SwiperCore, { Navigation, Autoplay, Lazy, SwiperOptions } from 'swiper';
-import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
+import {Timestamp} from '@angular/fire/firestore';
 
 SwiperCore.use([Navigation, Autoplay, Lazy]);
 
@@ -57,7 +56,7 @@ export class IotComponent implements OnInit {
         const promises = images.map((src) => this.preloadImage(src));
         return Promise.all(promises);
       }
-    
+
     preloadImage(src: string): Promise<void> {
         return new Promise((resolve) => {
             const img = new Image();

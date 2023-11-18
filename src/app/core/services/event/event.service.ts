@@ -88,8 +88,7 @@ export class EventService {
         titleCode: 'HOME.IOT.TITLE',
         descriptionCode: 'HOME.IOT.TEXT',
         dates: [{
-            showMonth: true,
-            date: new Date(2023, 11, 4),
+            date: new Date(2023, 11, 1),
             descriptionCode: '',
         }]
     };

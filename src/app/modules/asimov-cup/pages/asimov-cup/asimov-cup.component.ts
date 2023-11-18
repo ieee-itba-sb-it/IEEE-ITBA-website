@@ -4,8 +4,7 @@ import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service
 import {Sponsor} from '../../../../shared/models/sponsors';
 import {EventCardData} from '../../../../shared/models/event/event-card-data';
 import {EventService} from '../../../../core/services/event/event.service';
-import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from '@angular/fire/firestore';
 import { AppConfigService } from '../../../../core/services/configuration/app-config.service';
 
 @Component({

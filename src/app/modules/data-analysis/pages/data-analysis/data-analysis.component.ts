@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
-import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from '@angular/fire/firestore';
 import {CourseWithTests} from '../../../../shared/models/courses/course-with-tests';
 
 @Component({
@@ -75,7 +74,7 @@ export class DataAnalysisComponent implements OnInit {
     }
 
     getCurrentTest() {
-        const now = firebase.firestore.Timestamp.now();
+        const now = Timestamp.now();
 
         for (let days = this.courseData.tests.length-1 ; days >= 0 ; days--) {
             let testDate = new Date(this.courseData.testDates.open);
