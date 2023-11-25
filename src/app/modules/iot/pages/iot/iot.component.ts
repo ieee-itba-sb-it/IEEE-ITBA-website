@@ -19,8 +19,8 @@ export class IotComponent implements OnInit {
         'https://i.ibb.co/HF074sP/image6.jpg'
     ];
 
-    enrollLink = 'https://forms.gle/mUWavTU2wcRY1xqJ6';
-    enrollEndDate = '22 Nov 2022 03:00:00 UTC';
+    enrollLink = 'https://forms.gle/tWspqnnYahbbLVSF8';
+    enrollEndDate = '28 Nov 2023 03:00:00 UTC';
 
     swiperConfig: SwiperOptions = {
         navigation: true,
