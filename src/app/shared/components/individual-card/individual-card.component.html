@@ -6,12 +6,15 @@
 
     <ng-template #showProfile>
         <!-- Imagen principal -->
-        <mdb-card-img appResize [ngWidth]="400" [ngSrc]="person.photo" alt="Foto de {{person.name}}"></mdb-card-img>
+
+        <img height="201" width="500" mat-card-image
+             [ngSrc]="person.photo" alt="Foto de {{person.name}}" loading="eager"
+             style="width: 280px; object-fit: cover;">
         <a>
             <div class="mask rgba-white-slight"></div>
         </a>
 
-        <mdb-card-body cascade="true" class="textContainer text-center pb-0 px-0">
+        <mdb-card-body cascade="true" class="textContainer text-center pb-2 px-0">
             <!-- Nombre -->
             <mdb-card-title>
               <h4 class="nameTextContainer">
@@ -26,11 +29,11 @@
 
           <div class="iconContainer">
             <!-- Linkedin -->
-            <a class="cardIcon" href="{{person.linkedin}}">
+            <a class="cardIcon" href="{{person.linkedin}}" target="_blank">
               <i class="fab fa-lg fa-linkedin"></i>
             </a>
             <!-- Mail -->
-            <a class="cardIcon" href="mailto:{{person.mail}}">
+            <a class="cardIcon" href="mailto:{{person.mail}}" target="_blank">
               <i class="fas fa-lg fa-envelope"></i>
             </a>
           </div>

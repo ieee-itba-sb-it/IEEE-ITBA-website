@@ -1,10 +1,3 @@
-.main-container {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-    background-size: cover;
-    padding: 160px 10% 10%;
-}
-
 .topbottomLine {
     border-top:var(--bs-ieee-bright-blue) 2px solid;
     border-bottom: var(--bs-ieee-bright-blue) 2px solid;
@@ -220,13 +213,8 @@ footer {
 }
 
 .col-sm {
-    text-align: center;
     padding-top: auto;
     vertical-align: middle;
-}
-
-img {
-
 }
 
 /* Flex */
@@ -359,42 +347,16 @@ background-size: cover;
     top: 50%;
 }
 
-.pagination-controller {
-    margin: 2rem 0;
+.tags-container {
+    margin-top: 1rem;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 100%;
-    justify-content: center;
+    gap: .5rem;
     align-items: center;
-    font-size: x-large;
+    flex-wrap: wrap;
 }
 
-.page-change-button {
-    background-color: var(--bs-ieee-bright-blue-80);
-    border: 0;
-}
-
-.page-change-button-left {
-    border-radius: 40% 20% 20% 40%;
-}
-
-.page-change-button-right {
-    border-radius: 20% 40% 40% 20%;
-}
-
-.page-change-button:disabled {
-    opacity: 0.2;
-}
-
-.page-change-button:hover {
-    background-color: var(--bs-ieee-bright-blue-80);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-.page-change-button-image {
-    height: 45px;
-    width: 45px;
+.tags-container > p {
+    margin: 0
 }
 
 @media (min-width: 768px) {

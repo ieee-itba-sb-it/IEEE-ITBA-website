@@ -6,75 +6,139 @@
   "HOME": {
     "TITLE": "Student Branch",
     "CARGO": {
-      "CD": {
-        "TITLE": "CD",
-        "OFFICER": "Officer",
-        "PRESIDENT": "President",
-        "VP": "Vice president",
-        "OPANDGENSEC": "Operational manager and General Secretary",
-        "TREASURER": "Treasurer"
-      },
-      "EDUCATION": {
-        "TITLE": "Education",
-        "DIRECTOR": "Education Director",
-        "ASSISTANT": "Tutor Assistant",
-        "HEADTUTOR": "Head Tutor",
-        "RRPP": "Logistics & PR",
-        "TUTOR": "Tutor",
-        "TUTORA": "Tutor"
-      },
-      "FUNDRAISING": {
-        "TITLE": "Fundraising & Logistics",
-        "CHIEF": "Fundraising & Logistics Director",
-        "CHIEFA": "Fundraising & Logistics Director",
-        "FUNDRAISER": "Fundraiser",
-        "RRPP": "HR & PR"
-      },
-      "ID": {
-        "TITLE": "I+D",
-        "ASSISTANT": "Assistant",
-        "RESEARCHER": "Researcher",
-        "CHIEF": "I+D Director"
-      },
-      "MEDIACOM": {
-        "TITLE": "Media & Com",
-        "DIRECTOR": "Media Director",
-        "DIRECTOR_AND_WRITER": "Media Director and Writter",
-        "CC": "Content Creator",
-        "CCA": "Content Creator",
-        "DESIGNER": "Designer",
-        "WEBMASTER": "General Webmaster & Editor",
-        "WRITER": "Writer",
-        "WRITERA": "Writer",
-        "REDACTOR": "Writer",
-        "ILLUSTRATOR": "Illustrator",
-        "DESIGNERANDILLUSTRATOR": "Designer and Illustrator",
-        "CM": "Community Manager"
-      },
-      "IT": {
-        "TITLE": "IT",
-        "DIRECTOR": "Webmaster",
-        "DEV": "Developer",
-        "DATA": "Data Analyst"
-      },
-      "RAS": {
-        "TITLE": "RAS",
-        "DIRECTOR": "RAS Director",
-        "DEV": "Developer",
-        "RESEARCHER": "Researcher"
-      },
-      "EMB": {
-        "TITLE": "EMB",
-        "DIRECTOR": "RAS Director",
-        "DEV": "Developer",
-        "RESEARCHER": "Researcher"
-      },
-      "VOLUNTEERS": {
-        "FUNDRAISINGMENTOR": "Fundraising Mentor",
-        "GENERALASSIST": "General Assistant",
-        "TEAMMENTOR": "Competitive Teams Mentor",
-        "VOLUNTEER": "Volunteer"
-      }
+        "CD": {
+            "TITLE": "CD",
+            "OFFICER": {
+                "M": "Officer",
+                "F": "Officer"
+            },
+            "PRESIDENT": {
+                "M": "President",
+                "F": "President"
+            },
+            "VP": {
+                "M": "Vice President",
+                "F": "Vice President"
+            },
+            "OPANDGENSEC": {
+                "M": "Operations and General Secretary",
+                "F": "Operations and General Secretary"
+            },
+            "TREASURER": {
+                "M": "Treasurer",
+                "F": "Treasurer"
+            },
+            "SECRETARY": {
+                "M": "Secretary",
+                "F": "Secretary"
+            }
+        },
+        "EDUCATION": {
+            "TITLE": "Educación",
+            "DIRECTOR": {
+                "M": "Education Director",
+                "F": "Education Director"
+            },
+            "ASSISTANT": {
+                "M": "Tutoring Assistant",
+                "F": "Tutoring Assistant"
+            },
+            "HEADTUTOR": {
+                "M": "Head Tutor",
+                "F": "Head Tutor"
+            },
+            "RRPP": {
+                "M": "RRPP & Logistics",
+                "F": "RRPP & Logistics"
+            },
+            "TUTOR": {
+                "M": "Tutor",
+                "F": "Tutor"
+            }
+        },
+        "FUNDRAISING": {
+            "TITLE": "Fundraising & Logística",
+            "DIRECTOR": {
+                "M": "Fundraising & Logistics Director",
+                "F": "Fundraising & Logistics Director"
+            },
+            "FUNDRAISER": {
+                "M": "Fundraiser",
+                "F": "Fundraiser"
+            },
+            "RRPP": {
+                "M": "RRHH & RRPP",
+                "F": "RRHH & RRPP"
+            }
+        },
+        "ID": {
+            "TITLE": "I+D",
+            "ASSISTANT": {
+                "M": "I+D Assistant",
+                "F": "I+D Assistant"
+            },
+            "RESEARCHER": {
+                "M": "Researcher",
+                "F": "Researcher"
+            },
+            "DIRECTOR": {
+                "M": "I+D Director",
+                "F": "I+D Director"
+            }
+        },
+        "MEDIACOM": {
+            "TITLE": "Media & Com",
+            "DIRECTOR": {
+                "M": "Media & Com Director",
+                "F": "Media & Com Director"
+            },
+            "DIRECTOR_AND_WRITER": {
+                "M": "Media & Com Director and Writer",
+                "F": "Media & Com Director and Writer"
+            },
+            "CC": {
+                "M": "Content Creator",
+                "F": "Content Creator"
+            },
+            "DESIGNER": {
+                "M": "Designer",
+                "F": "Designer"
+            },
+            "WRITER": {
+                "M": "Writer",
+                "F": "Writer"
+            },
+            "ILLUSTRATOR": {
+                "M": "Illustrator",
+                "F": "Illustrator"
+            }
+        },
+        "IT": {
+            "TITLE": "TI",
+            "DIRECTOR": {
+                "M": "Webmaster",
+                "F": "Webmaster"
+            },
+            "DEV": {
+                "M": "Developer",
+                "F": "Developer"
+            }
+        },
+        "RAS": {
+            "TITLE": "RAS",
+            "DIRECTOR": {
+                "M": "RAS Director",
+                "F": "RAS Director"
+            },
+            "DEV": {
+                "M": "Developer",
+                "F": "Developer"
+            },
+            "RESEARCHER": {
+                "M": "Researcher",
+                "F": "Researcher"
+            }
+        }
     },
     "CARGO2021": {
       "CD": {
@@ -365,7 +429,8 @@
     "FORMAT_SUBTITLE": "Course format",
     "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
     "ENROLLBUTTON": "Enroll now!",
-    "SOLUTIONBUTTON": "GO TO SOLUTIONS",
+    "CONTENTBUTTON": "Go to content",
+    "SOLUTIONBUTTON": "Go to solutions",
     "TESTBUTTON": "Start Test",
     "CONTENT_TITLE": "Course contents",
     "CONTENT_DESC": "The course consists of 2 classes covering the following topics, to access the contents of the classes and the solutions you can click on the corresponding button.",
@@ -420,7 +485,9 @@
     "EMAIL_ERROR": "Please enter a valid email",
     "MESSAGE": "Message",
     "MESSAGE_ERROR": "Please enter a message",
-    "SEND": "Send"
+    "SEND": "Send",
+    "OK_RESPONSE": "Thanks for the message! We'll get back to you soon!",
+    "ERROR_RESPONSE": "Oops! Something went wrong... Try again or use another contact method"
   },
   "ABOUT-US": {
     "TITLE": "About Us",
@@ -468,7 +535,8 @@
       "UNKNOWN": "Unknown error",
       "DISABLED_USER": "User has been disabled"
     },
-    "SUCCESS": "Welcome to IEEE!"
+    "SUCCESS": "Welcome to IEEE!",
+    "PAGETITLE": "Log in to IEEE"
   },
   "REGISTER": {
     "TITLE": "Register",

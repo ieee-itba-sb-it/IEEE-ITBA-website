@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
-
-.main-container {
-  padding: 10%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
-}
-
 #icons {
   text-align: center;
   color: whitesmoke;
@@ -24,12 +16,10 @@
   margin-right: auto;
 }
 
-p{
+p {
   color: rgb(0, 0, 0);
-  margin-top: 3vmin;
-  margin-bottom: 3vmin;
   background: rgba(245, 245, 245, 0.2);
-  padding: 3vmin;
+  padding: 2vmin 3vmin;
   border-radius: 5vmin;
   text-align: justify;
   font-size: 1.1rem;
@@ -56,6 +46,11 @@ h1 {
   text-align: center;
 }
 
+.card-content {
+  text-align: justify;
+  font-size: 1.2em;
+}
+
 
 .example-header-image {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png');
@@ -66,8 +61,8 @@ h1 {
 .topbottomLine {
   padding-top: 2vmin;
   padding-bottom: 2vmin;
-  border-top: whitesmoke 2px solid;
-  border-bottom: whitesmoke 2px solid;
+  border-top: var(--bs-ieee-bright-blue) 2px solid;
+  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -246,7 +241,7 @@ img {
 
 
 .goback-button {
-  font-size: calc(0.5vw + 0.5rem);
+  font-size: 1rem;
   font-weight: 600;
   margin-top: 0.25rem;
   padding:  0.7rem 1rem 0.7rem 1rem;
@@ -277,13 +272,13 @@ img {
 }
 
 .course-title {
-  font-size: calc(1.5vw + 1rem);
+  font-size: 2rem;
   font-weight: 400;
   color: var(--bs-ieee-bright-blue-80);
   letter-spacing: 1px;
 }
 .course-subtitle {
-  font-size: calc(0.7vw + 0.7rem);
+  font-size: 1.5rem;
   color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
@@ -323,7 +318,7 @@ img {
 }
 
 ::ng-deep .mat-expansion-indicator::after {
-  color:rgb(23, 46, 148);
+  color:var(--bs-ieee-bright-blue);
 }
 
 mat-panel-description {
@@ -336,12 +331,12 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel-header {
-  border: rgb(23, 46, 148) 1px solid;
+  border: var(--bs-ieee-bright-blue) 1px solid;
   border-radius: 5vmin;
 }
 
 mat-panel-title {
-  color:rgb(23, 46, 148);
+  color:var(--bs-ieee-bright-blue);
 }
 
 .mat-list .mat-list-item {
@@ -350,24 +345,39 @@ mat-panel-title {
 
 
 .ieeecard-button {
+  font-size: 1.2em;
+  padding: 0.4em 0.7em;
   font-weight: 600;
   margin-top: 0.25rem;
-  border: solid rgb(23, 46, 148);
-  color: rgb(23, 46, 148) !important;
+  border: solid var(--bs-ieee-bright-blue);
+  color: var(--bs-ieee-bright-blue) !important;
   border-radius: 5px;
   background-color: inherit;
   border-width: 3px;
   transition: all 175ms ease-in-out;
 }
+
 .ieeecard-button:hover {
   box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
   color: white !important;
-  background-color: #0d47a1;
+  background-color: var(--bs-ieee-bright-blue);
   border-color: white;
 }
-.ieeecard-button >.button-text {
-  color: rgb(23, 46, 148) !important;
+
+.ieeecard-button:disabled {
+background-color: lightgrey;
+border: solid gray;
+color: gray !important;
 }
-.ieeecard-button:hover > .button-text{
-  color: white !important;
+
+.schedule-cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 770px) {
+  .course-title {
+      font-size: 1.7rem;
+  }
 }

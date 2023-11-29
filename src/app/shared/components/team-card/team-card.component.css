@@ -3,3 +3,10 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+@media screen and (max-width: 600px) {
+    .card-group {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -30,35 +30,39 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,
               private authService: AuthService, private userService: UserService) {
-    this.language = translate.currentLang;
+      this.language = translate.currentLang;
   }
 
+  // ----------Methods----------
+
+  // Translator
   useLanguage(language: string) {
-    this.translate.use(language);
-    this.language = language;
+      this.translate.use(language);
+      this.language = language;
   }
 
+  // Set Up
   ngOnInit() {
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: '#home',
-    });
+      this.pageScrollService.scroll({
+          document: this.document,
+          scrollTarget: '#home',
+      });
 
-    // Load name
-    this.user = this.authService.getCurrentUser();
-    this.user.pipe(skip(1)).subscribe(async (usuario: IEEEuser) => {
-      if (usuario) {
-        this.loggedIn = true;
-        const aux: Promise<number> | number = await this.userService.getCurrentUserRole(usuario.email);
-        if (this.newsRoles.includes(<roles>aux)) {
-          this.journalist = true;
-        }
-      }
-      else {
-        this.loggedIn = false;
-      }
-      this.loadingUser = false;
-    });
+      // Load name
+      this.user = this.authService.getCurrentUser();
+      this.user.subscribe(async (usuario: IEEEuser) => {
+          if (usuario) {
+              this.loggedIn = true;
+              const aux: number = await this.userService.getCurrentUserRole(usuario.email);
+              if (this.newsRoles.includes(aux)) {
+                  this.journalist = true;
+              }
+          }
+          else {
+              this.loggedIn = false;
+          }
+          this.loadingUser = false;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -69,31 +73,31 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
   // Scroll
   ngAfterViewInit() {
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: '#home',
-    });
+      this.pageScrollService.scroll({
+          document: this.document,
+          scrollTarget: '#home',
+      });
   }
 
   hasEnglishLanguage() {
-    return this.language === 'en';
+      return this.language === 'en';
   }
 
   hasSpanishLanguage() {
-    return this.language === 'es';
+      return this.language === 'es';
   }
 
   // Scroll
   scrollTo(target: string) {
-    this.pageScrollService.scroll({
-      document: this.document,
-      scrollTarget: target,
-    });
+      this.pageScrollService.scroll({
+          document: this.document,
+          scrollTarget: target,
+      });
   }
 
   logoutUser() {
-    this.authService.logout();
-    window.location.reload();
+      this.authService.logout();
+      window.location.reload();
   }
 
   private applyStyles() {

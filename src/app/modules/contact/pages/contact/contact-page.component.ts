@@ -4,67 +4,76 @@ import {FormBuilder, FormGroup, FormControl, Validators, FormControlName} from '
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-contact-page',
-  templateUrl: './contact-page.component.html',
-  styleUrls: ['./contact-page.component.css']
+    selector: 'app-contact-page',
+    templateUrl: './contact-page.component.html',
+    styleUrls: ['./contact-page.component.css']
 })
 export class ContactPageComponent implements OnInit {
-  form: FormGroup;
-  name: FormControl = new FormControl('', [Validators.required]);
-  email: FormControl = new FormControl('', [Validators.required, Validators.email]);
-  message: FormControl = new FormControl('', [Validators.required, Validators.maxLength(256)]);
-  honeypot: FormControl = new FormControl(''); // we will use this to prevent spam
-  destinations: string[] = ['administration', 'courses'];
-  destination: FormControl = new FormControl(this.destinations[0]);
-  submitted = false; // show and hide the success message
-  isLoading = false; // disable the submit button if we're loading
-  responseMessage: string; // the response message to show to the user
+    form: FormGroup;
+    name: FormControl = new FormControl('', [Validators.required]);
+    email: FormControl = new FormControl('', [Validators.required, Validators.email]);
+    message: FormControl = new FormControl('', [Validators.required, Validators.maxLength(350)]);
+    honeypot: FormControl = new FormControl(''); // we will use this to prevent spam
+    destinations: string[] = ['administration', 'courses'];
+    destination: FormControl = new FormControl(this.destinations[0]);
+    submitted = false; // show and hide the success message
+    isLoading = false; // disable the submit button if we're loading
+    responseMessage: string; // the response message to show to the user
+    
+    response_ok: string;
+    response_error: string;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    scroll(0, 0);
+    constructor(private formBuilder: FormBuilder, private http: HttpClient, private translate: TranslateService) {
+        scroll(0, 0);
 
-    this.form = this.formBuilder.group({
-      name: this.name,
-      email: this.email,
-      message: this.message,
-      honeypot: this.honeypot,
-      destination: this.destination
-    });
-  }
-
-  ngOnInit(): void { }
-
-  onSubmit() {
-    if (this.form.status === 'VALID' && this.honeypot.value === '') {
-      this.form.disable(); // disable the form if it's valid to disable multiple submissions
-      const formData: any = new FormData();
-      formData.append('name', this.form.get('name').value);
-      formData.append('email', this.form.get('email').value);
-      formData.append('message', this.form.get('message').value);
-      formData.append('destination', this.form.get('destination').value);
-      this.isLoading = true; // sending the post request async so it's in progress
-      this.submitted = false; // hide the response message on multiple submits
-      this.http.post('https://script.google.com/macros/s/AKfycbx_ubNpBWnhHrziPB_tUYH7WrqzA4TaQmKKgjfFEKFeuR9YT35X9a1Ok0B3hGCyqTAPjA/exec',
-        formData).subscribe(
-        (response: any) => {
-          // choose the response message
-          if (response.result === 'success') {
-            this.responseMessage = 'Thanks for the message! I\'ll get back to you soon!';
-          } else {
-            this.responseMessage = 'Oops! Something went wrong... Reload the page and try again.';
-          }
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
-        },
-        (error) => {
-          this.responseMessage = 'Oops! An error occurred... Reload the page and try again.';
-          this.form.enable(); // re enable the form after a success
-          this.submitted = true; // show the response message
-          this.isLoading = false; // re enable the submit button
-        }
-      );
+        this.form = this.formBuilder.group({
+            name: this.name,
+            email: this.email,
+            message: this.message,
+            honeypot: this.honeypot,
+            destination: this.destination
+        });
     }
-  }
+
+    ngOnInit(): void { 
+        this.translate.get('CONTACT.OK_RESPONSE').subscribe(res => {
+            this.response_ok = res;
+        });
+        this.translate.get('CONTACT.ERROR_RESPONSE').subscribe(res => {
+            this.response_error = res;
+        });
+    }
+
+    onSubmit() {
+        if (this.form.status === 'VALID' && this.honeypot.value === '') {
+            this.form.disable(); // disable the form if it's valid to disable multiple submissions
+            const formData: any = {};
+            formData.name = this.form.get('name').value;
+            formData.email = this.form.get('email').value;
+            formData.message = this.form.get('message').value;
+            formData.destination = this.form.get('destination').value;
+            this.isLoading = true; // sending the post request async so it's in progress
+            this.submitted = false; // hide the response message on multiple submits
+            this.http.post('https://script.google.com/macros/s/AKfycbxCPfeG0wtqMTwLdYwI2WMAJNLjHVpjYJ9Jlr_rG6tgy4XuwaGoZcH5ShtrQRmL8HsbWQ/exec', JSON.stringify(formData), {
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                }})
+                .subscribe({
+                    next: (response: any) => {
+                        this.form.enable(); // re enable the form after a success
+                        this.submitted = true; // show the response message
+                        this.isLoading = false; // re enable the submit button
+                        if (response.ok) this.responseMessage = this.response_ok;
+                        else this.responseMessage = this.response_error;
+                    },
+                    error: (error: any) => {
+                        this.responseMessage = this.response_error;
+                        this.form.enable(); // re enable the form after a success
+                        this.submitted = true; // show the response message
+                        this.isLoading = false; // re enable the submit button
+                    },
+                });
+        }
+    }
 
 }

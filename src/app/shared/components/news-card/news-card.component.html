@@ -1,10 +1,13 @@
 <a class="text-decoration-none" [routerLink]="['/noticias/' + noticia.reference]">
   <mat-card class="news-card">
-      <img appResize [ngWidth]="400" class="news-card-img" mat-card-image
-      ngSrc="{{noticia.imageUrl}}" alt="Foto de Noticia" loading="lazy"
-      >
-      <mat-card-content class="news-card-content">
+    <img height="800" width="400" class="news-card-img" mat-card-image
+         [ngSrc]="noticia.imageUrl" alt="Foto de Noticia" loading="lazy"
+    >
+      <mat-card-content class="news-card-content" [class]="center ? 'text-center' : ''">
           <mat-card-title class="clamp">{{ noticia.title }}</mat-card-title>
+          <div class="chip-container" [class]="center ? 'chip-center' : ''" *ngIf="noticia.tags.length > 0">
+            <mat-chip *ngFor="let tag of noticia.tags">{{tag}}</mat-chip>
+          </div>
           <mat-card-subtitle class="clamp align-end">{{ noticia.author }}</mat-card-subtitle>
       </mat-card-content>
   </mat-card>

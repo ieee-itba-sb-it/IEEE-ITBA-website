@@ -12,6 +12,7 @@
         <div *ngIf="event.dates[0].date !== null" class="date-inner-container">
           <span *ngIf="!event.dates[0].showMonth">{{ event.dates[0].date.getDate() }}</span>
           {{ capitalizeFirstLetter(event.dates[0].date.toLocaleString(locale(), { month: 'long' })) }}
+          <span *ngIf="event.dates[0].showYear">{{ event.dates[0].date.getFullYear() }}</span>
         </div>
         <p class="text-on-image">
           {{ event.titleCode | translate }}

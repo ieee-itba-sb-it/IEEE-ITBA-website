@@ -1,9 +1,23 @@
-.main-container {
-  padding: 0 15%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
-  background-size: cover;
+p {
+  color: rgb(0, 0, 0);
+  background: rgba(245, 245, 245, 0.2);
+  padding: 2vmin 3vmin;
+  border-radius: 5vmin;
+  text-align: justify;
   font-size: 1.1rem;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+h2 {
+  font-size: 3vmin;
+  margin-left: 20px;
+  text-align: left;
+  color: black;
 }
 
 .not-available-background-color {
@@ -33,12 +47,6 @@
   text-align: justify;
 }
 
-h1 {
-  color: rgb(0, 0, 0);
-  font-size: 5vmin;
-  font-weight: lighter;
-}
-
 .col-sm {
   margin-top: 1vmin;
   margin-bottom: 1vmin;
@@ -49,27 +57,25 @@ h1 {
   margin-bottom: 15px;
 }
 
+mat-card-actions{
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+
 .banner {
   position: relative;
   text-align: center;
 }
 .max-width {
-  margin-top: calc(7.5em);
   width: 100%;
   transform: translateY(0);
-  /*height: 20em; */
-}
-@media (max-width: 990px) {
-  .max-width {
-    margin-top: calc(6.5em);
-  }
 }
 
 .topbottomLine {
   padding-top: 2vmin;
   padding-bottom: 2vmin;
-  border-top: whitesmoke 2px solid;
-  border-bottom: whitesmoke 2px solid;
+  border-top: #862633 2px solid;
+  border-bottom: #862633 2px solid;
   vertical-align: middle;
   align-content: center;
 }
@@ -129,12 +135,6 @@ mdb-card {
   border-radius: 5vmin;
   margin-top: 1vmin;
   margin-bottom: 1vmin;
-}
-
-h2 {
-  font-size: 3vmin;
-  text-align: start;
-  color: black;
 }
 
 #anotate {
@@ -405,21 +405,21 @@ h3 {
 }
 
 .course-title {
-  font-size: calc(1.5vw + 1.2rem);
+  font-size: 2rem;
   font-weight: 400;
   color: #862633;
   letter-spacing: 1px;
 }
 
 .title {
-  font-size: calc(1.5vw + 1rem);
+  font-size: 2rem;
   font-weight: 400;
   color: #862633;
   letter-spacing: 1px;
 }
 
 .subtitle {
-  font-size: calc(0.7vw + 0.7rem);
+  font-size: 1.5rem;
   color: var(--bs-ieee-bright-blue);
   font-weight: 600;
   margin-top: 0.5rem;
@@ -439,27 +439,27 @@ h3 {
 }
 
 .faq-accordion {
-  margin-top: 1.4em;
+  margin-top: 1.5rem;
 }
 .faq-panel {
-  height: max-content;
+  height:max-content;
 }
 .faq-question {
-  font-size: 1.2em;
+  font-size: 1rem;
 }
 .faq-answer {
   font-size: larger;
-  margin-top: 0.5rem;
 }
 
 .section-title {
+  font-size: 1.5rem;
   color: #862633;
   font-weight: 600;
-  font-size: 1.6em;
+  margin: 0;
 }
 
-.p {
-  margin: 0;
+p {
+  padding: 0;
 }
 
 .list-section li::marker {
@@ -530,4 +530,10 @@ mat-panel-title {
 .image-section img {
   object-fit: contain;
   height: inherit;
+}
+
+@media (max-width: 770px) {
+  .course-title {
+      font-size: 1.7rem;
+  }
 }

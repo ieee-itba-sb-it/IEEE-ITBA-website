@@ -1,11 +1,12 @@
 /* Thick red border */
 
 .sponsor-listing {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem 10rem;
   justify-content: center;
   align-content: center;
+  width: 100%;
 }
 
 .sponsor-container {

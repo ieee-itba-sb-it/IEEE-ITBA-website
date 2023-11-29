@@ -34,14 +34,14 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>{{ 'CONTACT.MESSAGE' | translate }}</mat-label>
-              <textarea matInput [formControl]="message" maxlength="256" placeholder="I'm interested in..." required></textarea>
-              <mat-hint align="end"> {{message.value?.length || 0}}/256</mat-hint>
+              <textarea matInput [formControl]="message" maxlength="350" placeholder="I'm interested in..." required></textarea>
+              <mat-hint align="end"> {{message.value?.length || 0}}/350</mat-hint>
               <mat-error *ngIf="message.invalid">{{ 'CONTACT.MESSAGE_ERROR' | translate }}</mat-error>
             </mat-form-field>
 
             <mat-label>{{ 'CONTACT.DESTINATION' | translate }}</mat-label>
             <mat-radio-group color="primary" class="justify-content-center" formControlName="destination">
-              <mat-radio-button [checked]=true [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
+              <mat-radio-button checked [value]="destinations[0]">{{ 'CONTACT.ADMINISTRATION' | translate}}</mat-radio-button>
               <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
             </mat-radio-group>
 

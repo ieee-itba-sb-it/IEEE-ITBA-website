@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -26,11 +26,10 @@ import {TeamCardComponent} from './components/team-card/team-card.component';
 import {EventCardShortComponent} from './components/event-card-short/event-card-short.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
-import {ResizeDirective} from './directives/resize.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {HttpLoaderFactory} from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
-import {AppRoutingModule} from "../app-routing.module";
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -38,33 +37,34 @@ const routes: Routes = [];
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, ResizeDirective, EventCardShortComponent, StudentChapterComponent ],
-  imports: [
-    routing,
-    CommonModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    }),
-    FlexLayoutModule,
-    MDBBootstrapModule.forRoot(),
-    MatMenuModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatTabsModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressSpinnerModule
-  ],
-  exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
-    EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-    TeamCardComponent, ResizeDirective, EventCardShortComponent, StudentChapterComponent]
+    declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+        EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
+    imports: [
+        routing,
+        CommonModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+        FlexLayoutModule,
+        MDBBootstrapModule.forRoot(),
+        MatMenuModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatTabsModule,
+        MatChipsModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        NgOptimizedImage
+    ],
+    exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
+        EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
 })
 export class SharedModule { }

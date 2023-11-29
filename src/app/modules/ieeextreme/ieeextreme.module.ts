@@ -7,28 +7,30 @@ import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-
 import {HttpClient} from '@angular/common/http';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
+import {MatCardModule} from '@angular/material/card';
 
 const routes: Routes = [
-  { path: '',  component: IeeextremeComponent }
+    { path: '',  component: IeeextremeComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-    })
-  ],
-  declarations: [ IeeextremeComponent ]
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatCardModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        })
+    ],
+    declarations: [ IeeextremeComponent ]
 })
 export class IeeextremeModule { }

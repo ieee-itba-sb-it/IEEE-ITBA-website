@@ -9,10 +9,10 @@
     </div>
   </div>
 
-  <div *ngIf="isEnrollAvailable()">
+  <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
       <!-- Button is inside <a> tag because it allows a greater hitmark -->
-      <a href="https://forms.gle/zdYmj6QgzH9iLuJF9" target="_blank" class="button-text">
+      <a href="{{ courseData.enrollLink }}" target="_blank" class="button-text">
         <button class="goback-button">
           {{ 'DATAANALYSIS.ENROLLBUTTON' | translate }}
         </button>
@@ -22,7 +22,7 @@
 
   <div>
     <div class="d-flex flex-row-reverse">
-      <div *ngIf="hasTestsAvailable() && !contentClosed">
+      <div *ngIf="hasTestsAvailable() && !isContentClosed()">
         <a href="{{ getCurrentTest() }}" target="_blank" class="button-text">
           <button class="goback-button">
             {{ 'DATAANALYSIS.TESTBUTTON' | translate }}
@@ -43,80 +43,41 @@
 
   <!-- Cards Temario -->
 
-  <div class="marginTop" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="16px" fxLayoutAlign="flex-start">
-
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week1ContentOpen}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <ng-template [ngIf]="week1ContentOpen" [ngIfElse]="class1Closed">
-            <a
-              href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_1_Analisis_de_Datos.ipynb">{{
-              'DATAANALYSIS.CLASSES.TITLE' | translate }}
-              1
-            </a>
-          </ng-template>
-          <ng-template #class1Closed>
-            {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 1
-          </ng-template>
-        </mat-card-title>
-        <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE1' | translate }}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content>
-        {{ 'DATAANALYSIS.CLASSES.C1' | translate }}
-      </mat-card-content>
-      <!-- Boton del solucionario -->
-      <mat-card-actions align="center">
-        <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="solutions1Closed">
-          <a
-            href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_1.ipynb">
-            <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
-          </a>
-        </ng-template>
-        <ng-template #solutions1Closed>
-          <button mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'DATAANALYSIS.SOLUTIONBUTTON' |
-            translate }}</button>
-        </ng-template>
-      </mat-card-actions>
-    </mat-card>
-
-    <mat-card class="example-card" [ngClass]="{'not-available-background-color':!week2ContentOpen}"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>
-          <ng-template [ngIf]="week2ContentOpen" [ngIfElse]="class2Closed">
-            <a
-              href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Clases/Clase_2_Analisis_de_Datos.ipynb">{{
-              'DATAANALYSIS.CLASSES.TITLE' | translate }}
-              2
-            </a>
-          </ng-template>
-          <ng-template #class2Closed>
-            {{'DATAANALYSIS.CLASSES.TITLE' | translate }} 2
-          </ng-template>
-        </mat-card-title>
-        <!-- <mat-card-subtitle>{{ 'DATAANALYSIS.CLASSES.DATE2' | translate }}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content>
-        {{ 'DATAANALYSIS.CLASSES.C2' | translate }}
-      </mat-card-content>
-      <!-- Boton del solucionario -->
-      <mat-card-actions align="center">
-        <ng-template [ngIf]="week3ContentOpen" [ngIfElse]="solutions2Closed">
-          <a
-            href="https://colab.research.google.com/github/IEEESBITBA/Curso-python/blob/master/Curso_Analisis_de_Datos_Solucionarios/Solucionario_Clase_2.ipynb">
-            <button mat-raised-button class="ieeecard-button">{{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}</button>
-          </a>
-        </ng-template>
-        <ng-template #solutions2Closed>
-          <button mat-raised-button disabled class="ieeecard-button button-disabled">{{ 'DATAANALYSIS.SOLUTIONBUTTON' |
-            translate }}</button>
-        </ng-template>
-      </mat-card-actions>
-    </mat-card>
-
+  <div class="schedule-cards">
+      <ng-container *ngFor="let courseClass of courseData.courseClasses, let i=index">
+            <mat-card class="example-card" [ngClass]="{'not-available-background-color':!isOldDate(courseClass.openDate)}"
+                      fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>
+                      <b>{{'DATAANALYSIS.CLASSES.TITLE' | translate }} {{i+1}}</b>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="flex-grow-1 overflow-auto mb-1">
+                    <span class="card-content">
+                        {{ courseClass.description | translate }}
+                    </span>
+                </mat-card-content>
+                <mat-card-actions class="flex-wrap justify-content-center gap-1">
+                    <a [href]="weekContentOpen(i) ? courseClass.content : ''"
+                       (click)="check($event, weekContentOpen(i))"
+                       [class.disabled]="!weekContentOpen(i) ? true : null"
+                    >
+                        <button mat-raised-button class="ieeecard-button me-3" [disabled]="!weekContentOpen(i)">
+                            {{ 'DATAANALYSIS.CONTENTBUTTON' | translate }}
+                        </button>
+                    </a>
+                    <a [href]="weekContentOpen(i+1) ? courseClass.solutions : ''"
+                       (click)="check($event, weekContentOpen(i+1))"
+                       [class.disabled]="!weekContentOpen(i+1) ? true : null"
+                    >
+                        <button mat-raised-button class="ieeecard-button me-3" [disabled]="!weekContentOpen(i+1)">
+                            {{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}
+                        </button>
+                    </a>
+                </mat-card-actions>
+            </mat-card>
+      </ng-container>
   </div>
 
   <div class="faq-section">
@@ -125,7 +86,7 @@
 
       <mat-expansion-panel class="mat-elevation-z0" *ngFor="let question of ('DATAANALYSIS.FAQ.QUESTIONS' | translate)">
         <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-          <mat-panel-title class="faq-question mt-1 mb-1">
+          <mat-panel-title class="faq-question my-2">
             {{ question.QUESTION }}
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -143,7 +104,7 @@
 
       <br>
 
-      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getAnalisisSponsors()"></app-sponsor-component>
+      <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
     </div>
 
   </div>

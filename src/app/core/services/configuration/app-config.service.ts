@@ -13,7 +13,7 @@ export interface NavbarColors {
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AppConfigService {
   private navbarColorsSource = new BehaviorSubject<NavbarColors>({
@@ -29,18 +29,18 @@ export class AppConfigService {
     });
   }
 
-  // title tiene que ser un codigo i18n
-  setTitle(title: string) {
-    this.translate.get(title).subscribe((res: string) => {
-      this.titleService.setTitle(res);
-    });
-  }
+    // title tiene que ser un codigo i18n
+    setTitle(title: string) {
+        this.translate.get(title).subscribe((res: string) => {
+            this.titleService.setTitle(res);
+        });
+    }
 
-  resetTitle() {
-    this.translate.get('DEFAULT.PAGETITLE').subscribe((res: string) => {
-      this.titleService.setTitle(res);
-    });
-  }
+    resetTitle() {
+        this.translate.get('DEFAULT.PAGETITLE').subscribe((res: string) => {
+            this.titleService.setTitle(res);
+        });
+    }
 
   // Tiene que ser de tipo RGB, RGBA o HEX en formato CSS
   setNavbarColor(colors: NavbarColors) {
