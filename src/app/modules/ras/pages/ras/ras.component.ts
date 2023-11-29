@@ -22,7 +22,11 @@ export class RasComponent implements OnInit {
   ngOnInit(): void {
     this.events = this.eventService.getRasEvents();
     this.team = this.teamService.getRasTeam();
-    this.appConfigService.setNavbarColor('#862633');
+    this.appConfigService.setNavbarColor({
+      background: '#862633',
+      underlying: '#C83D59FF',
+      hover: '#9E4C67FF'
+    });
     this.appConfigService.setTitle('RAS.PAGETITLE');
   }
 }

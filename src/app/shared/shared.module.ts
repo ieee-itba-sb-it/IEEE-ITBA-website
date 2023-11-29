@@ -30,6 +30,7 @@ import {ResizeDirective} from './directives/resize.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {HttpLoaderFactory} from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
+import {AppRoutingModule} from "../app-routing.module";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];

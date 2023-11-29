@@ -1,0 +1,113 @@
+.buttonNavbar {
+  padding: 1.5vmin;
+  text-align: center;
+  border: whitesmoke 2px solid;
+  border-radius: 3vmin;
+  color: whitesmoke;
+  background-color: transparent;
+  transition: all ease 0.5s;
+}
+
+.navItems {
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.custom-nav-icon {
+  font-size: large;
+}
+
+/* 1200px = bootstrap lg breakpoint (1px more needed) */
+@media (max-width: 1199px) {
+  .buttonNavbar {
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding: 0.75rem 2rem;
+  }
+
+  .nav-last {
+    margin-bottom: 1rem;
+  }
+
+  .navItems {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  ::ng-deep.mat-menu-panel {
+    margin-top: 0.5rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+/* 1200px = bootstrap lg breakpoint (1px more needed) */
+@media (min-width: 1199px) {
+  .nav-last {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-last-content {
+  align-self: center;
+}
+
+.navbar-nav {
+  gap: 1rem;
+}
+
+.buttonNavbar:hover {
+  color: black;
+  background-color: whitesmoke;
+}
+
+.nav-item {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.row {
+  border: solid 1px red;
+  width: 100%;
+}
+
+.es-en-button {
+  color: white;
+  transition: all ease 0.5s;
+}
+
+.es-en-button:hover {
+  color: black;
+  background-color: whitesmoke;
+}
+
+.mat-button-toggle-checked {
+  background-color: whitesmoke;
+  color: black;
+}
+
+#nav {
+  background: var(--bs-ieee-bright-blue);
+  color: whitesmoke;
+}
+
+#accountButton {
+  background-color: transparent;
+  border: 0px;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+}
+
+::ng-deep.mat-menu-panel {
+  /*transform: translate(0px, 20%); */
+  margin-top: 1rem;
+}

@@ -1,0 +1,107 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-nav navbar-expand-xl navbar-dark" id="nav" [style.background-color]="bgColor" mdbStickyHeader>
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['']"><img
+        src="../../../../assets/image/general-icons/IEEE-Logo-No-Text-Darkest.png" height="60vmin"
+        alt="Icon IEEE-ITBA"></a>
+  </mdb-navbar-brand>
+  <!-- All Items -->
+  <links id="myNavItems" class="navItems">
+    <!-- Menu -->
+    <ul class="navbar-nav">
+      <li class="nav-item m-auto">
+        <button [routerLink]="['/about-us']" class="buttonNavbar" type="button">
+          {{ 'NAVBAR.ABOUTUS' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto">
+        <button [routerLink]="['/noticias']" class="buttonNavbar" type="button">
+          {{ 'NAVBAR.NEWS' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto">
+        <button [routerLink]="['/events']" class="buttonNavbar" type="button">
+          {{ 'NAVBAR.EVENTS' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto">
+        <button [routerLink]="['/sponsors']" class="buttonNavbar" type="button">
+          {{ 'NAVBAR.SPONSORS' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto">
+        <button class="buttonNavbar dropdown-toggle" type="button" [matMenuTriggerFor]="institutionalMenu">
+          {{ 'NAVBAR.INSTITUTIONAL' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto">
+        <button [routerLink]="['/contact']" class="buttonNavbar" type="button">
+          {{ 'NAVBAR.CONTACT' | translate }}
+        </button>
+      </li>
+      <li class="nav-item m-auto" *ngIf="journalist">
+        <button [routerLink]="['/write-news']" class="buttonNavbar" type="button">
+          {{ 'WRITE-NEW.TITLE' | translate }}
+        </button>
+      </li>
+    </ul>
+
+    <!-- Icons on right -->
+    <ul class="navbar-nav nav-last d-flex flex-row justify-content-center align-content-center">
+      <li class="nav-item">
+        <a href="https://www.linkedin.com/company/ieee-itba" class="nav-link custom-nav-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="https://www.instagram.com/ieee.itba/" class="nav-link custom-nav-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <!-- Language toggle button -->
+      <li class="nav-item">
+        <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle class="es-en-button" value="es" checked="{{ hasSpanishLanguage() }}"
+            (click)="useLanguage('es')">es</mat-button-toggle>
+          <mat-button-toggle class="es-en-button" value="en" checked="{{ hasEnglishLanguage() }}"
+            (click)="useLanguage('en')">en</mat-button-toggle>
+        </mat-button-toggle-group>
+      </li>
+      <!-- Dropdown -->
+      <li *ngIf="!loadingUser; else loading" class="nav-item">
+        <a [matMenuTriggerFor]="menu" class="nav-link">
+          <div class="profile-button-container">
+            <i class="fas fa-user-circle" style="font-size: x-large"></i>
+            <div *ngIf="loggedIn; else notLogged">
+              <div class="account">{{'NAVBAR.WELCOME' | translate}} {{(user | async).fname}}</div>
+            </div>
+            <ng-template #notLogged>
+              <div class="account">{{ 'NAVBAR.LOGIN' | translate }}</div>
+            </ng-template>
+          </div>
+        </a>
+      </li>
+      <ng-template #loading>
+        <div class="h-100">
+          <mat-progress-spinner [diameter]="30"
+                                mode="indeterminate"
+                                color="primary"></mat-progress-spinner>
+        </div>
+      </ng-template>
+    </ul>
+  </links>
+</mdb-navbar>
+
+<mat-menu #institutionalMenu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item [routerLink]="['/team']">{{ 'NAVBAR.TEAM' | translate }}</button>
+  <button mat-menu-item [routerLink]="['/ras']">RAS</button>
+  <button mat-menu-item onclick="window.location.href = 'https://csitba.web.app/'">CS</button>
+  <button mat-menu-item [routerLink]="['/wie']">WIE</button>
+  <button mat-menu-item [routerLink]="['/emb']">EMB</button>
+</mat-menu>
+
+<mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item *ngIf="loggedIn" (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="!loggedIn" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</button>
+  <button mat-menu-item *ngIf="!loggedIn" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</button>
+</mat-menu>
