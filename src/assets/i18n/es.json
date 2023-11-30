@@ -384,6 +384,13 @@
     "WRITENEWS": "Crear Noticia",
     "INSTITUTIONAL": "Institucional"
   },
+    "FOOTER": {
+        "ABOUTUS": "Acerca de",
+        "CONTACT": "Contacto",
+        "SPONSORS": "Auspiciantes",
+        "ORGANIZATION": "Nuestra Organización",
+        "SOCIAL": "Redes Sociales"
+    },
   "PYTHONCOURSES": {
     "CLASSES": {
       "C1": "Introducción a la programación en Python, Variables, Operadores, Control de flujo (if, while, for), Funciones",

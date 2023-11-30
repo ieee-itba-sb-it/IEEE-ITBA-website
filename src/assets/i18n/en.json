@@ -328,6 +328,13 @@
     "WRITENEWS": "Create News",
     "INSTITUTIONAL": "Institutional"
   },
+    "FOOTER": {
+        "ABOUTUS": "About us",
+        "CONTACT": "Contact",
+        "SPONSORS": "Sponsors",
+        "ORGANIZATION": "Our Organization",
+        "SOCIAL": "Social Media"
+    },
   "PYTHONCOURSES": {
     "CLASSES": {
       "C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
