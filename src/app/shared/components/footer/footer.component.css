@@ -1,5 +1,5 @@
 .page-footer {
-    background-color: #000;
+    background-color: var(--bs-ieee-bright-blue);
     color: white;
 }
 

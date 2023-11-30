@@ -4,3 +4,7 @@ body {
     background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
     background-size: cover;
 }
+
+.router-content {
+    min-height: 100vh;
+}
