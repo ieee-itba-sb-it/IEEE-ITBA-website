@@ -3,12 +3,6 @@
   --ras-purple: #5f2167;
 }
 
-.bottomLine {
-  padding-bottom: 10vmin;
-  border-bottom: var(--bs-ieee-bright-blue) 2px solid;
-  vertical-align: middle;
-  align-content: center;
-}
 .topLine {
   padding-top: 5vmin;
   padding-bottom: 5vmin;
