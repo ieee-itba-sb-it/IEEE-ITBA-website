@@ -1,0 +1,51 @@
+:host{
+    --primary-color: var(--bs-ieee-bright-blue);
+    --secondary-color: var(--bs-ieee-bright-blue-80);
+}
+
+.asimov-variation {
+    --primary-color: #862633;
+    --secondary-color: #862633;
+}
+
+.faq-accordion {
+    margin-top: 1.5rem;
+}
+
+.faq-question {
+    font-size: 1rem;
+}
+.faq-answer {
+    font-size: larger;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color:rgb(23, 46, 148);
+    background-color: transparent;
+}
+
+::ng-deep .mat-ink-bar {
+    background-color: var(--primary-color,whitesmoke) !important;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+    color:rgb(23, 46, 148);
+}
+
+mat-panel-description {
+    text-align: right;
+}
+
+mat-expansion-panel {
+    background-color: transparent;
+    margin-top: 1.5vmin;
+}
+
+mat-expansion-panel-header {
+    border: var(--primary-color) 1px solid;
+    border-radius: 5vmin;
+}
+
+mat-panel-title {
+    color:var(--primary-color);
+}

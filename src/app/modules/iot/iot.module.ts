@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { SwiperModule } from 'swiper/angular';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 
@@ -35,8 +34,7 @@ export const routing = RouterModule.forChild(routes);
         }),
         MatExpansionModule,
         MatCardModule,
-        FlexLayoutModule,
-        SwiperModule
+        FlexLayoutModule
     ],
 })
 export class IotModule { }

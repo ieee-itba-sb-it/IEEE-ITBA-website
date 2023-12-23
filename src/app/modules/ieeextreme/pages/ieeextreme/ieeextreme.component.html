@@ -1,34 +1,16 @@
-<div class="main-container">
-  <div class="bottomLine" id="home">
-    <img src="../../../../../assets/image/events/ieeextreme/XtremeLogo.png" class="extremeLogo" alt="Logo ITBA-IEEE">
-    <div class="container" id="facts">
-      <div class="row">
-        <div class="col-sm">
-          <h1>15</h1>
-          <h3 class="facts">{{ 'IEEEXTREME.FACTS.EDITIONS' | translate }}</h3>
-        </div>
-        <div class="col-sm">
-          <h1>54+</h1>
-          <h3 class="facts">{{ 'IEEEXTREME.FACTS.PARTICIPANTS' | translate }}</h3>
-        </div>
-        <div class="col-sm">
-          <h1>11</h1>
-          <h3 class="facts">{{ 'IEEEXTREME.FACTS.TOPTEAMS' | translate }}</h3>
-        </div>
-        <div class="col-sm">
-          <h1>24hs</h1>
-          <h3 class="facts">{{ 'IEEEXTREME.FACTS.HOURS' | translate }}</h3>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="main-container event">
+  <app-event-facts-banner 
+    imageUrl="../../../../../assets/image/events/ieeextreme/XtremeLogo.png"
+    imageAlt="Logo IEEEXtreme"
+    [facts]="facts"
+  ></app-event-facts-banner>
 
   <!-- Resolve problemas en equipo -->
   <div class="info">
-    <div style="padding-right:3rem;">
-      <h2 class="course-subtitle">{{ 'IEEEXTREME.TEAM.TITLE' | translate }}</h2>
+    <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
+      style="padding-right:3rem;">
       <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
-    </div>
+    </app-event-section>
     <div>
       <img src="../../../../../assets/image/events/ieeextreme/teamdisc_black.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
@@ -39,38 +21,31 @@
     <div style="padding-right:3rem;">
       <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
-    <div>
-      <h2 class="course-subtitle">{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}</h2>
+    <app-event-section title="{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}">
       <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
-    </div>
+    </app-event-section>
   </div>
 
   <!-- Sponsors -->
-  <div>
-    <h2 class="course-subtitle">{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h2>
-    <br>
+  <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
     <app-sponsor-component style="display: flex; justify-content: center;"
     [currentsponsor]="sponsorsServiceVar.getIeextremeSponsors()"></app-sponsor-component>
-  </div>
+  </app-event-section>
 
   <!-- Sponsor team -->
-  <div>
-    <h2 class="course-subtitle">Sponsorship 2023</h2>
+  <app-event-section title="Sponsorship 2023">
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
-    <div class="contact-cards">
-      <mat-card *ngFor="let contact of contacts" class="example-card"
-              fxFlex="0 1 calc(33.3% - 16px)" fxFlex.lt-md="0 1 calc(50% - 16px)" fxFlex.lt-sm="100%">
-      <mat-card-header>
-        <mat-card-title>
-          <b>{{ contact.name }}</b>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-        <a class="card-content" href="mailto:{{contact.mail}}">
-          {{contact.mail}}
-        </a>
-      </mat-card-content>
-    </mat-card>
+    <div style="display: flex; justify-content:center;">
+      <app-event-content-card 
+      *ngFor="let contact of contacts"
+      title="{{contact.name }}"
+      [image] = "false"
+    >
+      <a content class="card-content" href="mailto:{{contact.mail}}">
+        {{contact.mail}}
+      </a>
+    </app-event-content-card>
     </div>
-  </div>
+  </app-event-section>
+
 </div>

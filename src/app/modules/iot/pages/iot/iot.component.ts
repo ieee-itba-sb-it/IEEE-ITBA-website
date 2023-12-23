@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import SwiperCore, { Navigation, Autoplay, Lazy, SwiperOptions } from 'swiper';
 import {Timestamp} from '@angular/fire/firestore';
 
-SwiperCore.use([Navigation, Autoplay, Lazy]);
 
 @Component({
     selector: 'app-iot',
@@ -22,20 +20,11 @@ export class IotComponent implements OnInit {
     enrollLink = 'https://forms.gle/tWspqnnYahbbLVSF8';
     enrollEndDate = '28 Nov 2023 03:00:00 UTC';
 
-    swiperConfig: SwiperOptions = {
-        navigation: true,
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-        }
-    };
+    faq = [
+        { q: 'IOT.FAQ.QUESTIONS.0.QUESTION', a: 'IOT.FAQ.QUESTIONS.0.ANSWER' },
+        { q: 'IOT.FAQ.QUESTIONS.1.QUESTION', a: 'IOT.FAQ.QUESTIONS.1.ANSWER' }
+    ];
 
-    swiperOn: boolean = false;
 
     isEnrollingAvailable() {
         const now = Timestamp.now();
@@ -46,23 +35,5 @@ export class IotComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    ngAfterViewInit(): void {
-        this.preloadImages(this.imageLinks).then((res) => {
-            this.swiperOn = true;
-        });
-    }
-
-    preloadImages(images: string[]): Promise<void[]> {
-        const promises = images.map((src) => this.preloadImage(src));
-        return Promise.all(promises);
-      }
-
-    preloadImage(src: string): Promise<void> {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve();
-            img.src = src;
-        });
-    }
 
 }

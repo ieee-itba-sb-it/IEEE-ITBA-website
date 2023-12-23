@@ -1,0 +1,10 @@
+<mat-accordion [ngClass]="{'asimov-variation': asimov === true}" class="faq-accordion">
+    <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
+      <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
+        <mat-panel-title class="faq-question my-2">
+          {{ qa.q | translate}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p class="faq-answer">{{ qa.a | translate}}</p>
+    </mat-expansion-panel>
+</mat-accordion>

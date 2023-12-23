@@ -1,0 +1,11 @@
+<a
+    [href]="href"
+    (click)="click"
+    [class.disabled]="disabled"
+    [ngClass]="{'asimov-variation': asimov === true}"
+    >
+    <button mat-raised-button class="ieeecard-button me-3" [disabled]="disabled">
+        <mat-icon *ngIf="icon">{{icon}}</mat-icon>
+        <ng-content></ng-content>
+    </button>
+</a>

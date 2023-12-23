@@ -1,0 +1,22 @@
+mat-card-header{
+    height: 5.5rem;
+    left: 0rem;
+}
+
+.content-card{
+    margin: 0 1rem;
+    padding: 0 1rem;
+}
+
+.content {
+    text-align: justify;
+    font-size: 1.2em;
+}
+
+.card-image {
+    background-size: cover;
+}
+
+.not-available-background-color{
+    background-color: lightgrey;
+}

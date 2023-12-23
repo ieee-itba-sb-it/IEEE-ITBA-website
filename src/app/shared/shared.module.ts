@@ -30,6 +30,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {HttpLoaderFactory} from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { EventTitleComponent } from './components/event-title/event-title.component';
+import { EventBannerComponent } from './components/event-banner/event-banner.component';
+import { EventContentCardComponent } from './components/event-content-card/event-content-card.component';
+import { EventFaqAccordionComponent } from './components/event-faq-accordion/event-faq-accordion.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { EventSectionComponent } from './components/event-section/event-section.component';
+import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
+import { SwiperModule } from 'swiper/angular';
+import { EventFactsBannerComponent } from './components/event-facts-banner/event-facts-banner.component';
+import { ButtonComponent } from './components/button/button.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -39,7 +49,9 @@ export const routing = RouterModule.forChild(routes);
 @NgModule({
     declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent ],
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent, 
+        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent, 
+        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent],
     imports: [
         routing,
         CommonModule,
@@ -61,10 +73,14 @@ export const routing = RouterModule.forChild(routes);
         MatChipsModule,
         MatIconModule,
         MatProgressSpinnerModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        MatExpansionModule,
+        SwiperModule
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent]
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent, 
+        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent, 
+        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent]
 })
 export class SharedModule { }

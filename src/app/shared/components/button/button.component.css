@@ -1,0 +1,35 @@
+:host{
+  --primary-color: var(--bs-ieee-bright-blue);
+  --secondary-color: var(--bs-ieee-bright-blue-80);
+}
+
+.asimov-variation {
+  --primary-color: #862633;
+  --secondary-color: #862633;
+}
+
+.ieeecard-button {
+    font-size: 1.2em;
+    padding: 0.4em 0.7em;
+    font-weight: 600;
+    margin-top: 0.25rem;
+    border: solid var(--primary-color);
+    color: var(--primary-color) !important;
+    border-radius: 5px;
+    background-color: inherit;
+    border-width: 3px;
+    transition: all 175ms ease-in-out;
+}
+
+.ieeecard-button:hover {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white !important;
+    background-color: var(--primary-color);
+    border-color: white;
+  }
+
+.ieeecard-button:disabled {
+  background-color: lightgrey;
+  border: solid gray;
+  color: gray !important;
+}
