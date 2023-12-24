@@ -15,6 +15,8 @@ export class TypescriptComponent implements OnInit {
     enrollOpen = false;
     enrollClosed = false;
 
+    typescriptUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png";
+    
     faq = [
         { q: 'TYPESCRIPT.FAQ.1.QUESTION', a: 'TYPESCRIPT.FAQ.1.ANSWER' },
         { q: 'TYPESCRIPT.FAQ.2.QUESTION', a: 'TYPESCRIPT.FAQ.2.ANSWER' },

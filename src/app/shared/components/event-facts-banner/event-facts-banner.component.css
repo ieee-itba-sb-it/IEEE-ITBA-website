@@ -1,0 +1,46 @@
+h1 {
+    font-size: 5vmin;
+    font-weight: lighter;
+}
+
+.facts-banner {
+    padding-bottom: 4vmin;
+    margin-bottom: 4rem;
+    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
+    vertical-align: middle;
+    align-content: center;
+    text-align: center;
+}
+
+.container {
+    margin-top: 8vmin;
+}
+
+.facts {
+    text-align: center;
+    font-weight: lighter;
+}
+
+.col-sm {
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+.banner-image{
+    width: 35%;
+}
+
+@media (max-width: 950px) {
+    .banner-image{
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .banner-image{
+        width: 70%;
+    }
+
+}

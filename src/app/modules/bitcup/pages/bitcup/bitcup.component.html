@@ -1,14 +1,17 @@
-<div class="main-container">
-  <div class="bottomLine" id="home">
-    <img src="../../../../../assets/image/events/bitcup/bitcup.png" class="extremeLogo" alt="Logo ITBA-IEEE">
-  </div>
+<div class="main-container event">
+  <app-event-facts-banner
+    imageUrl="../../../../../assets/image/events/bitcup/bitcup.png"
+    imageAlt="Logo Bitcup"
+  >
+  </app-event-facts-banner>
 
   <!-- bitcup -->
   <div class="info">
-    <div style="padding-right:3rem;">
-      <h2 class="course-subtitle">{{ 'BITCUP.BITCUP-TITLE' | translate }}</h2>
-    <p>{{ 'BITCUP.BITCUP-TEXT' | translate }}</p>
-    </div>
+    <app-event-section 
+      style="padding-right:3rem;"
+      title="{{ 'BITCUP.BITCUP-TITLE' | translate }}">
+      <p>{{ 'BITCUP.BITCUP-TEXT' | translate }}</p>
+    </app-event-section>
     <div>
       <img src="../../../../../assets/image/logos/data.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
@@ -19,27 +22,26 @@
     <div style="padding-right:3rem;">
       <img src="../../../../../assets/image/events/bitcup/competencia.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
-    <div>
-      <h2 class="course-subtitle">{{ 'BITCUP.FORMAT' | translate }}</h2>
+    <app-event-section
+      title="{{ 'BITCUP.FORMAT' | translate }}">
       <p>{{ 'BITCUP.FORMAT-TEXT' | translate }}</p>
-    </div>
+    </app-event-section>
   </div>
 
   <!-- nivel -->
   <div class="info">
-    <div>
-      <h2 class="course-subtitle">{{ 'BITCUP.LEVEL' | translate }}</h2>
+    <app-event-section
+      title="{{ 'BITCUP.LEVEL' | translate }}">
       <p>{{ 'BITCUP.LEVEL-TEXT' | translate }}</p>
-    </div>
+    </app-event-section>
     <div>
       <img src="../../../../../assets/image/events/bitcup/level.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
   </div>
 
   <!-- Sponsors -->
-  <div>
-    <h2 class="course-subtitle">{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}</h2>
+  <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
     <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
-  </div>
+  </app-event-section>
 
 </div>

@@ -1,0 +1,27 @@
+:host{
+    --primary-color: var(--bs-ieee-bright-blue);
+    --secondary-color: var(--bs-ieee-bright-blue-80);
+}
+
+.asimov-variation {
+    --primary-color: #862633;
+    --secondary-color: #862633;
+}
+
+.title-container {
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
+    border-top: var(--primary-color) 2px solid;
+    border-bottom: var(--primary-color) 2px solid;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    margin-bottom: 2%
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--secondary-color);
+    letter-spacing: 1px;
+}

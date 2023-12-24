@@ -1,15 +1,8 @@
-<div class="main-container">
+<div class="main-container event">
   <!-- BANNER -->
-  <section class="banner">
-    <img
-      src="../../../../../assets/image/events/typescript-course/big-banner.jpg"
-      class="cover-background"
-      alt="Asimov Cup - Competencia de Robótica"
-    />
-  </section>
-  <div class="title-container">
-    <h1 class="course-title">{{ 'TYPESCRIPT.TITLE' | translate}}</h1>
-  </div>
+  <app-event-banner url="events/typescript-course/big-banner.jpg" 
+    alt="{{ 'TYPESCRIPT.TITLE' | translate}}"></app-event-banner>
+  <app-event-title>{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
   <!-- DESCRIPTION -->
   <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
@@ -19,79 +12,63 @@
       </button>
     </div>
   </div>
-  <section class="information">
-    <h2 class="course-subtitle">{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}} </h2>
+  <app-event-section title="{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}}">
     <p>{{ 'TYPESCRIPT.DESCRIPTION.TEXT' | translate}}</p>
-  </section>
+  </app-event-section>
   <!-- SYLLABUS -->
-  <section class="information">
-    <h2 class="course-subtitle">{{ 'TYPESCRIPT.SYLLABUS.TITLE' | translate}} </h2>
+  <app-event-section title="{{ 'TYPESCRIPT.SYLLABUS.TITLE' | translate}}">
     <div class="syllabus">
-      <mat-card class="card">
-        <mat-card-header style="height: unset;">
-          <div mat-card-avatar class="header-image"></div>
-          <mat-card-title><b>{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}</b></mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-          <span class="card-content">{{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.1' | translate}},
-            {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}}, 
-          {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.3' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.4' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}
-          </span>
-        </mat-card-content>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-header style="height: unset;">
-          <div mat-card-avatar class="header-image"></div>
-          <mat-card-title><b>{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}</b></mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-          <span class="card-content">{{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}
-          </span>
-        </mat-card-content>
-      </mat-card>
+      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}" 
+      [imageUrl]="typescriptUrl"  
+      >
+      <div content>
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.1' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.3' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.4' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}  
+      </div>
+      </app-event-content-card>
+      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}"
+      [imageUrl]="typescriptUrl"  
+      >
+      <div content>
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}
+      </div>
+      </app-event-content-card>
     </div>
     <div class="syllabus">
-      <mat-card class="card">
-        <mat-card-header style="height: unset;">
-          <div mat-card-avatar class="header-image"></div>
-          <mat-card-title><b>{{ 'TYPESCRIPT.SYLLABUS.3.TEXT' | translate}}</b></mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-          <span class="card-content">{{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.1' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.3' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.4' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.5' | translate}}
-          </span>
-        </mat-card-content>
-      </mat-card>
-      <mat-card class="card">
-        <mat-card-header style="height: unset;">
-          <div mat-card-avatar class="header-image"></div>
-          <mat-card-title>
-            <b>{{ 'TYPESCRIPT.SYLLABUS.4.TEXT' | translate}}</b>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="flex-grow-1 overflow-auto mb-1">
-          <span class="card-content">{{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.1' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}},
+      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.3.TEXT' | translate}}"
+      [imageUrl]="typescriptUrl"  
+      >
+      <div content>
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.1' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.3' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.4' | translate}},
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.5' | translate}}
+      </div>
+      </app-event-content-card>
+      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.4.TEXT' | translate}}"
+      [imageUrl]="typescriptUrl"  
+      >
+      <div content>
+          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.1' | translate}},
+          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}}, 
           {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.3' | translate}}
-          </span>
-        </mat-card-content>
-      </mat-card>
+      </div>
+      </app-event-content-card>
     </div>
-  </section>
+  </app-event-section>
   <!-- FORMS (no esta habilitado por ahora)-->
   <!--
      <section class="forms">
@@ -112,8 +89,7 @@
   </section>
   -->
   <!-- REQUIREMENTS -->
-  <section class="information">
-    <h2 class="course-subtitle">{{ 'TYPESCRIPT.REQUIREMENTS.TITLE' | translate}} </h2>
+  <app-event-section title="{{ 'TYPESCRIPT.REQUIREMENTS.TITLE' | translate}}">
     <p> {{ 'TYPESCRIPT.REQUIREMENTS.1' | translate}}</p>
     <p> {{ 'TYPESCRIPT.REQUIREMENTS.2' | translate}}</p>
     <p> {{ 'TYPESCRIPT.REQUIREMENTS.3' | translate}}</p>
@@ -128,10 +104,9 @@
         {{ 'TYPESCRIPT.REQUIREMENTS.LINK' | translate}}
       </a>
     </p>
-  </section>
+  </app-event-section>
   <!-- SUGGESTIONS -->
-  <section class="information">
-    <h2 class="course-subtitle">{{ 'TYPESCRIPT.SUGGESTIONS.TITLE' | translate}} </h2>
+  <app-event-section title="{{ 'TYPESCRIPT.SUGGESTIONS.TITLE' | translate}}">
     <p>{{ 'TYPESCRIPT.SUGGESTIONS.TEXT' | translate}}</p>
     <ul>
       <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.1' | translate}}</p></li>
@@ -142,27 +117,17 @@
       <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.6' | translate}}</p></li>
       <li><p>{{ 'TYPESCRIPT.SUGGESTIONS.BULLET_PTS.7' | translate}}</p></li>
     </ul>
-  </section>
+  </app-event-section>
   <!-- FORMAT -->
-  <section class="information">
-    <h2 class="course-subtitle">{{ 'TYPESCRIPT.FORMAT.TITLE' | translate}} </h2>
+  <app-event-section title="{{ 'TYPESCRIPT.FORMAT.TITLE' | translate}}">
     <p> {{ 'TYPESCRIPT.FORMAT.1' | translate}}</p>
     <p> {{ 'TYPESCRIPT.FORMAT.2' | translate}}</p>
     <p> {{ 'TYPESCRIPT.FORMAT.3' | translate}}</p>
     <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
-  </section>
+  </app-event-section>
   <!-- FAQ -->
-  <section class="faq-section">
-    <h2 class="course-subtitle">{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}</h2>
-    <mat-accordion class="faq-accoredion">
-      <mat-expansion-panel class="mat-elevation-z0" *ngFor="let qa of faq">
-        <mat-expansion-panel-header [collapsedHeight]="'max-content'" [expandedHeight]="'max-content'">
-          <mat-panel-title class="faq-question my-2">
-            {{ qa.q | translate}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p class="faq-answer">{{ qa.a | translate}}</p>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </section>
+  <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
+    <app-event-faq-accordion [faq]="faq">
+    </app-event-faq-accordion>
+  </app-event-section>
 </div>

@@ -21,6 +21,9 @@ export class IeeextremeComponent implements OnInit {
         }
     ];
 
+    facts = [ 'IEEEXTREME.FACTS.EDITIONS', 'IEEEXTREME.FACTS.PARTICIPANTS', 
+        'IEEEXTREME.FACTS.TOPTEAMS', 'IEEEXTREME.FACTS.HOURS' ]
+
     constructor(private sponsorsService: SponsorsService) {
         scroll(0, 0);
         this.sponsorsServiceVar = sponsorsService;

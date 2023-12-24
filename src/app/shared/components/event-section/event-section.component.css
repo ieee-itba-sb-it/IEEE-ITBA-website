@@ -1,0 +1,34 @@
+:host{
+    --primary-color: var(--bs-ieee-bright-blue);
+    --secondary-color: var(--bs-ieee-bright-blue-80);
+}
+
+.asimov-variation {
+    --primary-color: #862633;
+    --secondary-color: #862633;
+}
+
+.section-container{
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+p {
+    padding: 2vmin 3vmin;
+    border-radius: 5vmin;
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+
+h2{
+    font-size: 3vmin;
+    margin-left: 20px;
+    text-align: left;
+}

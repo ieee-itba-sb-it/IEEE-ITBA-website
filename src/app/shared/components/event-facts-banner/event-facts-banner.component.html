@@ -1,0 +1,24 @@
+<div class="facts-banner">
+    <img src="{{imageUrl}}" alt="{{imageAlt}}">
+    <div class="container">
+      <div *ngIf="facts" class="row">
+        <div class="col-sm">
+          <h1>15</h1>
+          <h3 class="facts">{{ facts[0] | translate }}</h3>
+        </div>
+        <div class="col-sm">
+          <h1>54+</h1>
+          <h3 class="facts">{{ facts[1] | translate }}</h3>
+        </div>
+        <div class="col-sm">
+          <h1>11</h1>
+          <h3 class="facts">{{ facts[2] | translate }}</h3>
+        </div>
+        <div class="col-sm">
+          <h1>24hs</h1>
+          <h3 class="facts">{{ facts[3] | translate }}</h3>
+        </div>
+      </div>
+    </div>
+</div>
+
