@@ -48,12 +48,17 @@
             <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/emb']">EMB</a>
           </div>
         </li>
-
+        <li *ngIf="isJournalist$ | async" class="nav-item active mx-5 d-flex align-items-center justify-content-center">
+          <div class="animated-text waves-light justify-content-center d-flex flex-fill flex-column hover-effect" mdbWavesEffect [routerLink]="['/write-news']">
+              <span style="font-size: medium" class="text-center padding-below-lg">{{ 'NAVBAR.WRITENEWS' | translate }}</span>
+              <div class="underline d-none d-lg-block"></div>
+              <div class="underline-inanimated d-lg-none"></div>
+          </div>
+        </li>
       </ul>
 
     <ul class="navbar-nav nav-last ms-auto d-flex my-4 justify-content-center">
-
-      <li *ngIf="!loadingUser; else loading" class="nav-item d-flex flex-row justify-content-center align-items-center">
+      <li *ngIf="!isLoading; else loading" class="nav-item d-flex flex-row justify-content-center align-items-center">
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
           <mat-button-toggle class="es-en-button" value="es" checked="{{ hasSpanishLanguage() }}"
                              (click)="useLanguage('es')" color="primary">es</mat-button-toggle>
@@ -62,20 +67,27 @@
         </mat-button-toggle-group>
 
         <div mdbDropdown>
-          <a  mdbDropdownToggle  class="nav-link d-flex nav-link align-items-center">
-            <i class="fas fa-user-circle text-white mx-1" style="font-size: x-large"></i>
-            <div *ngIf="loggedIn; else notLogged">
-              <div class="account">{{'NAVBAR.WELCOME' | translate}} {{(user | async).fname}}</div>
-            </div>
-            <ng-template #notLogged>
-              <div class="text-white">{{ 'NAVBAR.LOGIN' | translate }}</div>
-            </ng-template>
-          </a>
+            <a mdbDropdownToggle  class="nav-link d-flex nav-link align-items-center">
+                <i class="fas fa-user-circle text-white mx-1" style="font-size: x-large"></i>
+                <ng-container *ngIf="user$ | async as user; else notLogged">
+                    <div *ngIf="user !== null; else notLogged">
+                        <div class="account">{{'NAVBAR.WELCOME' | translate}} {{user.fname}}</div>
+                    </div>
+
+                </ng-container>
+                <ng-template #notLogged>
+                    <div class="text-white">{{ 'NAVBAR.LOGIN' | translate }}</div>
+                </ng-template>
+            </a>
 
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-            <a class="dropdown-item" *ngIf="loggedIn" (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</a>
-            <a class="dropdown-item" *ngIf="!loggedIn" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</a>
-            <a class="dropdown-item" *ngIf="!loggedIn" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</a>
+              <ng-container *ngIf="user$ | async; else noUser">
+                  <a class="dropdown-item"  (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</a>
+              </ng-container>
+            <ng-template #noUser>
+                <a class="dropdown-item" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</a>
+                <a class="dropdown-item" [routerLink]="['/register']">{{ 'REGISTER.TITLE' | translate }}</a>
+            </ng-template>
           </div>
         </div>
       </li>
