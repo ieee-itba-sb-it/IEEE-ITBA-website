@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Translations
-import {TranslateModule, TranslateLoader, MissingTranslationHandler} from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';

@@ -65,21 +65,21 @@ export class EventService {
         ]
     };
 
-    private asimovCup: EventCardData = {
-        routerLink: '/asimovcup',
-        imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
-        imageAlt: 'Logo de la Asimov Cup',
-        titleCode: 'HOME.ASIMOVCUP.TITLE',
-        descriptionCode: 'HOME.ASIMOVCUP.TEXT',
-        dates: [
-            {
-                showMonth: true,
-                showYear: true,
-                date: new Date(2024, 6, 1),
-                descriptionCode: ''
-            }
-        ]
-    };
+  private asimovCup: EventCardData = {
+    routerLink: '/asimovcup',
+    imageSrc: '../../../../../assets/image/events/asimov-cup/asimov-cup-logo.png',
+    imageAlt: 'Logo de la Asimov Cup',
+    titleCode: 'HOME.ASIMOVCUP.TITLE',
+    descriptionCode: 'HOME.ASIMOVCUP.TEXT',
+    dates: [
+      {
+          showMonth: true,
+          showYear: true,
+        date: new Date(2024, 7, 3),
+        descriptionCode: ''
+      }
+    ]
+  };
 
     private iotWorkshop: EventCardData = {
         routerLink: '/iot',
