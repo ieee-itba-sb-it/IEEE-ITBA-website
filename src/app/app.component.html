@@ -1,10 +1,13 @@
 <header>
   <app-navbar [navbarColors]="getNavbarColor() | async"></app-navbar>
 </header>
-<div class="router-content">
+<div class="router-content" *ngIf="!loading">
     <router-outlet></router-outlet>
 </div>
-<app-footer [color]="(getNavbarColor() | async).background"></app-footer>
+<div *ngIf="loading" class="main-container">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<app-footer [color]="(getNavbarColor() | async).background" *ngIf="!loading"></app-footer>
 
 
 

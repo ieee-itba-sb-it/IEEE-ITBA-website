@@ -14,7 +14,6 @@ import { Auth, User, UserCredential, createUserWithEmailAndPassword, sendPasswor
 })
 
 export class AuthService {
-
     // Vars
     user: User;
     accountObs: Observable<IEEEuser>;
@@ -110,12 +109,14 @@ export class AuthService {
 
     // Get user Name
     getCurrentUser(): Observable<IEEEuser> {
+        if (this.account) return new Observable<IEEEuser>((subscriber) => {subscriber.next(this.account)});
         return new Observable<IEEEuser>((subscriber) => {
             this.firebaseAuth.onAuthStateChanged((usuario) => {
                 if (usuario){ // There is an user
                     getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                         const doc = data.data() as IEEEuser;
-                        subscriber.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
+                        this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID);
+                        subscriber.next(this.account);
                     });
                 } else {
                     subscriber.next(null);
