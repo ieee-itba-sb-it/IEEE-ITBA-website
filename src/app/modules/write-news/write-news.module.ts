@@ -26,6 +26,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const routes: Routes = [
     { path: '',  component: WriteNewsComponent },
@@ -68,7 +69,8 @@ export const routing = RouterModule.forChild(routes);
         MatCheckboxModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatRadioModule
+        MatRadioModule,
+        NgxSkeletonLoaderModule
     ]
 })
 export class WriteNewsModule { }

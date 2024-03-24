@@ -3,36 +3,37 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 
 
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import {createRegularUser} from '../../../shared/models/data-types';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { Auth, User, UserCredential, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { roles } from 'src/app/shared/models/roles/roles.enum';
 
 @Injectable({
     providedIn: 'root',
 })
 
 export class AuthService {
-
     // Vars
     user: User;
-    accountObs: Observable<IEEEuser>;
+    accountObs: ReplaySubject<IEEEuser | null>;
     account: IEEEuser;
 
     // Constructor
     constructor(private firebaseAuth: Auth, private router: Router, private afs: Firestore) {
         this.user = firebaseAuth.currentUser
         // Seteamos observer
-        firebaseAuth.onAuthStateChanged((usuario) => {
-            if (usuario) {
-                // Get user info from database
-                const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
+        this.accountObs = new ReplaySubject(1);
+        this.firebaseAuth.onAuthStateChanged((usuario) => {
+            if (usuario){
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const doc = data.data() as IEEEuser;
-                    ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
-                    this.accountObs = ans;
-                })
+                    this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID);
+                    this.accountObs.next(this.account);
+                });
+            } else {
+                this.accountObs.next(null);
             }
         });
 
@@ -44,7 +45,7 @@ export class AuthService {
     signup(email: string, password: string, fname: string, lname: string): Observable<UserCredential> {
         return new Observable((subscriber) => {
             createUserWithEmailAndPassword(this.firebaseAuth, email, password).then((crededential: UserCredential) => {
-                this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.currentUser.uid);
+                this.account = createRegularUser(fname, lname, email, '', roles.regularUser, this.firebaseAuth.currentUser.uid);
                 setDoc(doc(this.afs, 'users', email), this.account).then(res => {
                     subscriber.next(crededential);
                 });
@@ -76,7 +77,6 @@ export class AuthService {
 
     // Check user state
     isUserLogued(){
-    // this.user = this.firebaseAuth.currentUser;
         return !!this.user;
     }
 
@@ -110,17 +110,6 @@ export class AuthService {
 
     // Get user Name
     getCurrentUser(): Observable<IEEEuser> {
-        return new Observable<IEEEuser>((subscriber) => {
-            this.firebaseAuth.onAuthStateChanged((usuario) => {
-                if (usuario){ // There is an user
-                    getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
-                        const doc = data.data() as IEEEuser;
-                        subscriber.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
-                    });
-                } else {
-                    subscriber.next(null);
-                }
-            });
-        })
+        return this.accountObs.asObservable();
     }
 }

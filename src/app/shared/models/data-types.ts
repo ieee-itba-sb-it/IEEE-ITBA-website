@@ -35,9 +35,8 @@ export function createNewsItemWithDate(
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
-export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, uID: string) {
+export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, role: number, uID: string) {
     let newUser: IEEEuser;
-    const role = roles.regularUser;
     newUser = { fname, lname, email, photoURL, uID, role };
     return newUser;
 }
