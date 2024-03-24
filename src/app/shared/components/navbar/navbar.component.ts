@@ -49,9 +49,8 @@ export class NavbarComponent implements OnInit, AfterViewInit{
       // Load name
       this.isLoading = true;
       this.authService.getCurrentUser().subscribe(async (usuario: IEEEuser) => {
-          console.log(usuario)
           if (usuario) {
-              const aux: number = await this.userService.getCurrentUserRole(usuario.email);
+              const aux: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
               if (this.newsRoles.includes(aux)) {
                   this.isJournalist$.next(true);
               }

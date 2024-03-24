@@ -32,11 +32,9 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe(event => {
             if (event instanceof GuardsCheckStart) {
                 this.loading = true;
-                console.log("GuardStart")
             }     
             if (event instanceof GuardsCheckEnd || event instanceof NavigationCancel) {
                 this.loading = false;
-                console.log("GuardEnd")
             } 
         });
     }
