@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 
 
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import {createRegularUser} from '../../../shared/models/data-types';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
@@ -17,22 +17,23 @@ import { roles } from 'src/app/shared/models/roles/roles.enum';
 export class AuthService {
     // Vars
     user: User;
-    accountObs: Observable<IEEEuser>;
+    accountObs: ReplaySubject<IEEEuser | null>;
     account: IEEEuser;
 
     // Constructor
     constructor(private firebaseAuth: Auth, private router: Router, private afs: Firestore) {
         this.user = firebaseAuth.currentUser
         // Seteamos observer
-        firebaseAuth.onAuthStateChanged((usuario) => {
-            if (usuario) {
-                // Get user info from database
-                const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
+        this.accountObs = new ReplaySubject(1);
+        this.firebaseAuth.onAuthStateChanged((usuario) => {
+            if (usuario){
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const doc = data.data() as IEEEuser;
-                    ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID));
-                    this.accountObs = ans;
-                })
+                    this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID);
+                    this.accountObs.next(this.account);
+                });
+            } else {
+                this.accountObs.next(null);
             }
         });
 
@@ -76,7 +77,6 @@ export class AuthService {
 
     // Check user state
     isUserLogued(){
-    // this.user = this.firebaseAuth.currentUser;
         return !!this.user;
     }
 
@@ -110,19 +110,6 @@ export class AuthService {
 
     // Get user Name
     getCurrentUser(): Observable<IEEEuser> {
-        if (this.account) return new Observable<IEEEuser>((subscriber) => {subscriber.next(this.account)});
-        return new Observable<IEEEuser>((subscriber) => {
-            this.firebaseAuth.onAuthStateChanged((usuario) => {
-                if (usuario){ // There is an user
-                    getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
-                        const doc = data.data() as IEEEuser;
-                        this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID);
-                        subscriber.next(this.account);
-                    });
-                } else {
-                    subscriber.next(null);
-                }
-            });
-        })
+        return this.accountObs.asObservable();
     }
 }
