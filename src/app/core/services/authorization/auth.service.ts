@@ -8,6 +8,7 @@ import {createRegularUser} from '../../../shared/models/data-types';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { Auth, User, UserCredential, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { roles } from 'src/app/shared/models/roles/roles.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -29,7 +30,7 @@ export class AuthService {
                 const ans: BehaviorSubject<IEEEuser> = new BehaviorSubject(null);
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const doc = data.data() as IEEEuser;
-                    ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID));
+                    ans.next(createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID));
                     this.accountObs = ans;
                 })
             }
@@ -43,7 +44,7 @@ export class AuthService {
     signup(email: string, password: string, fname: string, lname: string): Observable<UserCredential> {
         return new Observable((subscriber) => {
             createUserWithEmailAndPassword(this.firebaseAuth, email, password).then((crededential: UserCredential) => {
-                this.account = createRegularUser(fname, lname, email, '', this.firebaseAuth.currentUser.uid);
+                this.account = createRegularUser(fname, lname, email, '', roles.regularUser, this.firebaseAuth.currentUser.uid);
                 setDoc(doc(this.afs, 'users', email), this.account).then(res => {
                     subscriber.next(crededential);
                 });
@@ -115,7 +116,7 @@ export class AuthService {
                 if (usuario){ // There is an user
                     getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                         const doc = data.data() as IEEEuser;
-                        this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.uID);
+                        this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID);
                         subscriber.next(this.account);
                     });
                 } else {

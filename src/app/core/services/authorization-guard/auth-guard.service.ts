@@ -26,7 +26,7 @@ export class PermissionsService {
         const p: Promise<boolean> = new Promise((resolve, reject) => {
             this.user.subscribe( async (usuario: IEEEuser) => {
                 if (usuario){
-                    const userRole: number = await this.userService.getCurrentUserRole(usuario.email);
+                    const userRole: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
 
                     if (expectedRole.includes(userRole)){
                         return resolve(true);
