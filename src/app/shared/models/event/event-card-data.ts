@@ -9,12 +9,14 @@ export const IeeeEvent = {
 };
 
 export interface EventCardData {
+  id: string;
   routerLink: string;
   imageSrc: string;
   imageAlt: string;
   titleCode: string;
   descriptionCode: string;
   dates: EventDate[];
+  isRasEvent: boolean;
 }
 
 export interface EventDate {
