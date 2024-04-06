@@ -14,7 +14,7 @@ import { AppConfigService } from '../../../../core/services/configuration/app-co
 })
 export class AsimovCupComponent implements OnInit {
     sponsors: Sponsor[] = [];
-    eventData: EventCardData;
+    eventData?: EventCardData;
     enrollOpen = false;
     enrollClosed = false;
     spectatorEnrollClosed = false;
@@ -79,7 +79,6 @@ export class AsimovCupComponent implements OnInit {
 
     constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService) {
         this.sponsors = sponsorsService.getAsimovSponsors();
-        this.eventData = this.eventService.getAsimovCupEvent();
 
         const now = Timestamp.now();
         this.enrollOpen = this.isOldDate(now, new Date('10 Jun 2023 03:00:00 UTC'));
@@ -97,12 +96,18 @@ export class AsimovCupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    // Set navbar color
+        this.getAsimovCupEvent();
+        // Set navbar color
         this.appConfigService.setNavbarColor({
             background: '#862633',
             underlying: '#C83D59FF',
             hover: '#9E4C67FF'
         });
         this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
+    }
+
+    getAsimovCupEvent(): void {
+        this.eventService.getAsimovCupEvent()
+            .subscribe(event => this.eventData = event);
     }
 }

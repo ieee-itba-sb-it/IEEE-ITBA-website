@@ -49,7 +49,7 @@ export class MainpageComponent implements OnInit {
     studentChapters$: Observable<StudentChapter[]>;
     sponsors: Sponsor[];
 
-    latestEvents: EventCardData[];
+    latestEvents: EventCardData[] = [];
 
     swiperConfig: SwiperOptions = {
         pagination: {
@@ -115,8 +115,13 @@ export class MainpageComponent implements OnInit {
             this.showLoadingSpinner = false;
         });
         this.studentChapters$ = this.studentChapterService.getStudentChapters();
-        this.latestEvents = this.eventService.getUpcomingEvents();
+        this.getLatestEvents();
         this.sponsors = this.sponsorsService.getCurrentSponsors();
+    }
+
+    getLatestEvents(): void {
+        this.eventService.getUpcomingEvents()
+            .subscribe(events => this.latestEvents = events);
     }
 
 }

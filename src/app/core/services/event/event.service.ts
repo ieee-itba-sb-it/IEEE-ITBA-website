@@ -7,7 +7,13 @@ import {
     query,
     Timestamp,
     collection,
-    DocumentData, QueryDocumentSnapshot, where, Query, getDoc, doc
+    DocumentData,
+    QueryDocumentSnapshot,
+    where,
+    Query,
+    getDoc,
+    doc,
+    updateDoc
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
 import {BehaviorSubject, map, Observable, Subject} from "rxjs";
@@ -15,7 +21,6 @@ import {BehaviorSubject, map, Observable, Subject} from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
-
 export class EventService {
     private static readonly collectionName = eventsCollectionName;
     private readonly collection: CollectionReference;
@@ -126,7 +131,7 @@ export class EventService {
     private mapEventCardSnapshot(eventSnapshot: QueryDocumentSnapshot): EventCardData{
         const eventDoc = eventSnapshot.data();
         return {
-            id: eventSnapshot.id,
+            id: eventSnapshot.id as IeeeEvent,
             routerLink: eventDoc.routerLink,
             imageSrc: eventDoc.imageSrc,
             imageAlt: eventDoc.imageAlt,

@@ -13,14 +13,14 @@ import {Observable} from 'rxjs';
 })
 export class RasComponent implements OnInit {
 
-    events: EventCardData[];
+    events: EventCardData[] = [];
     team$: Observable<Commission> = null;
 
     constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService) {
     }
 
     ngOnInit(): void {
-        this.events = this.eventService.getRasEvents();
+        this.getRasEvents();
         this.team$ = this.teamService.getRasTeam();
         this.appConfigService.setNavbarColor({
             background: '#862633',
@@ -28,5 +28,10 @@ export class RasComponent implements OnInit {
             hover: '#9E4C67FF'
         });
         this.appConfigService.setTitle('RAS.PAGETITLE');
+    }
+
+    getRasEvents(): void {
+        this.eventService.getRasEvents()
+            .subscribe(events => this.events = events);
     }
 }
