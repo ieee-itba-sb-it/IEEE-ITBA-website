@@ -78,4 +78,6 @@
     <app-sponsor-component content [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
   </app-event-section>
 
+    <!-- Editor de evento -->
+    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
 </div>

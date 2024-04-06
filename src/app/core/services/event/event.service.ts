@@ -154,7 +154,7 @@ export class EventService {
         )).then((events) => {
             call.next(events);
         }).catch((error) => {
-            console.error(`{operation} failed: ${error}`);
+            console.error(`${operation} failed: ${error}`);
             call.next([])
         })
         return call.asObservable();
@@ -222,13 +222,39 @@ export class EventService {
         return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)), 'getRasEvents');
     }
 
-    getAsimovCupEvent(): Observable<EventCardData> {
+    getEvent(eventId: IeeeEvent): Observable<EventCardData> {
         const subject = new Subject<EventCardData>();
-        getDoc(doc(this.afs, EventService.collectionName, IeeeEvent.ASIMOV_CUP)).then((data) => {
+        getDoc(doc(this.afs, EventService.collectionName, eventId)).then((data) => {
             subject.next(this.mapEventCardSnapshot(data));
         }).catch((error) => {
-            console.error(`getAsimovCupEvent failed: ${error}`);
+            console.error(`getEvent ${eventId} failed: ${error}`);
             subject.next(null);
+        });
+        return subject.asObservable();
+    }
+
+    getAsimovCupEvent(): Observable<EventCardData> {
+        return this.getEvent(IeeeEvent.ASIMOV_CUP);
+    }
+
+    private getIsoDate(date: Date): string {
+        const isoTimeStamp = date.toISOString();
+        return isoTimeStamp.split('T')[0];
+    }
+
+    updateEvent(event: EventCardData): Observable<boolean> {
+        const subject = new Subject<boolean>();
+        updateDoc(doc(this.afs, EventService.collectionName, event.id), {
+            ...event,
+            dates: event.dates.map((eventDate) => ({
+                ...eventDate,
+                date: this.getIsoDate(eventDate.date),
+            }))
+        }).then(() => {
+            subject.next(true);
+        }).catch((error) => {
+            console.error(`updateEvent ${event.id} failed: ${error}`);
+            subject.next(false);
         });
         return subject.asObservable();
     }
