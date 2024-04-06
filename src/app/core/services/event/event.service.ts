@@ -147,18 +147,21 @@ export class EventService {
         };
     }
 
-    private getEventsByQuery(query: Query): Observable<EventCardData[]> {
+    private getEventsByQuery(query: Query, operation: string): Observable<EventCardData[]> {
         const call = new Subject<EventCardData[]>();
         getDocs(query).then((data =>
             data.docs.map(this.mapEventCardSnapshot)
         )).then((events) => {
             call.next(events);
-        });
+        }).catch((error) => {
+            console.error(`{operation} failed: ${error}`);
+            call.next([])
+        })
         return call.asObservable();
     }
 
-    public getAllEvents(): Observable<EventCardData[]> {
-        return this.getEventsByQuery(query(this.collection));
+    public getAllEvents(operation: string = "getAllEvents"): Observable<EventCardData[]> {
+        return this.getEventsByQuery(query(this.collection), operation);
     }
 
     // getAllEvents(): EventCardData[] {
@@ -172,7 +175,7 @@ export class EventService {
     // }
 
     public getUpcomingEvents(): Observable<EventCardData[]> {
-        return this.getAllEvents().pipe(
+        return this.getAllEvents("getUpcomingEvents").pipe(
             map((events: EventCardData[]) => events
                 .filter((event) =>
                     event.dates.length > 0 && (event.dates[0].date == null ||
@@ -216,13 +219,16 @@ export class EventService {
     // }
 
     getRasEvents(): Observable<EventCardData[]> {
-        return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)));
+        return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)), 'getRasEvents');
     }
 
     getAsimovCupEvent(): Observable<EventCardData> {
         const subject = new Subject<EventCardData>();
         getDoc(doc(this.afs, EventService.collectionName, IeeeEvent.ASIMOV_CUP)).then((data) => {
             subject.next(this.mapEventCardSnapshot(data));
+        }).catch((error) => {
+            console.error(`getAsimovCupEvent failed: ${error}`);
+            subject.next(null);
         });
         return subject.asObservable();
     }
