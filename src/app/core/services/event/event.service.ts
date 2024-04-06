@@ -16,7 +16,7 @@ import {
     updateDoc
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {BehaviorSubject, map, Observable, Subject} from "rxjs";
+import {map, Observable, Subject} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -148,7 +148,7 @@ export class EventService {
     }
 
     private getEventsByQuery(query: Query): Observable<EventCardData[]> {
-        const call = new BehaviorSubject<EventCardData[]>([]);
+        const call = new Subject<EventCardData[]>();
         getDocs(query).then((data =>
             data.docs.map(this.mapEventCardSnapshot)
         )).then((events) => {
