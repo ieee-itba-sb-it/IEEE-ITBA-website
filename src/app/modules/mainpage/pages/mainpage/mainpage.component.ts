@@ -50,6 +50,7 @@ export class MainpageComponent implements OnInit {
     sponsors: Sponsor[];
 
     latestEvents: EventCardData[] = [];
+    loadingLatestEvents: boolean = true;
 
     swiperConfig: SwiperOptions = {
         pagination: {
@@ -121,7 +122,10 @@ export class MainpageComponent implements OnInit {
 
     getLatestEvents(): void {
         this.eventService.getUpcomingEvents()
-            .subscribe(events => this.latestEvents = events);
+            .subscribe(events => {
+                this.latestEvents = events;
+                this.loadingLatestEvents = false;
+            });
     }
 
 }

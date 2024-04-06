@@ -10,6 +10,7 @@ import {EventService} from '../../../../core/services/event/event.service';
 export class EventsComponent implements OnInit {
 
     events: EventCardData[] = [];
+    loadingEvents: boolean = true;
 
     constructor(private eventService: EventService) {
 
@@ -21,7 +22,10 @@ export class EventsComponent implements OnInit {
 
     getEvents(): void {
         this.eventService.getAllEvents()
-            .subscribe(events => this.events = events);
+            .subscribe(events => {
+                this.events = events;
+                this.loadingEvents = false;
+            });
     }
 
 }

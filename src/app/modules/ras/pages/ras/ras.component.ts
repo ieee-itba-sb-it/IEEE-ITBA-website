@@ -14,6 +14,7 @@ import {Observable} from 'rxjs';
 export class RasComponent implements OnInit {
 
     events: EventCardData[] = [];
+    loadingEvents: boolean = true;
     team$: Observable<Commission> = null;
 
     constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService) {
@@ -32,6 +33,9 @@ export class RasComponent implements OnInit {
 
     getRasEvents(): void {
         this.eventService.getRasEvents()
-            .subscribe(events => this.events = events);
+            .subscribe(events => {
+                this.events = events;
+                this.loadingEvents = false;
+            });
     }
 }

@@ -13,7 +13,7 @@
       <h2 class="section-title">{{ "RAS.EVENTS" | translate }}</h2>
     </div>
     <!-- Asimov Cup -->
-    <div class="row d-flex row-eq-height">
+    <div class="row d-flex row-eq-height" *ngIf="loadingEvents === false; else loadingEventsBlock">
       <ul class="card-listing">
         <li *ngFor="let event of events; index as i" class="event-container">
           <app-event-card [event]="event" [index]="i">
@@ -21,6 +21,9 @@
         </li>
       </ul>
     </div>
+    <ng-template #loadingEventsBlock>
+      <app-loading-spinner [isRas]="true"></app-loading-spinner>
+    </ng-template>
     <hr>
     <div class="text-container">
       <h2 class="section-title">{{ "RAS.OBJECTIVES.TITLE" | translate}}</h2>
