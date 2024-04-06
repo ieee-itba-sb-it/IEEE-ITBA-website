@@ -243,7 +243,16 @@
     "EVENTS": {
       "TITLE": "Eventos",
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
-      "MORE": "Ver más eventos"
+      "MORE": "Ver más eventos",
+      "INITIAL_DATE": "Fecha de inicio",
+      "EDIT": {
+         "TITLE": "Editar evento",
+         "CANCEL": "Cancelar",
+         "SAVE": "Guardar",
+         "ERROR": {
+            "SAVE": "Ocurrió un error al actualizar el evento"
+         }
+      }
     },
     "SPONSORS": "Auspiciantes",
     "CLASSES": {

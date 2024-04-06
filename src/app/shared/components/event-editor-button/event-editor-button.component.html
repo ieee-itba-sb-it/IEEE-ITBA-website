@@ -1,0 +1,20 @@
+<div class="outside-div">
+    <div class="inside-div">
+        <span class="button-tooltip" [class.hidden]="!showTooltip">
+            {{ 'HOME.EVENTS.EDIT.TITLE' | translate }}
+        </span>
+        <button
+            class="edit-button"
+            (click)="openModal()"
+            (mouseover)="toggleTooltip()"
+            (mouseout)="toggleTooltip()"
+            *ngIf="!!event"
+        >
+            <mdb-icon
+                fas
+                size="2x"
+                icon="edit"
+            ></mdb-icon>
+        </button>
+    </div>
+</div>

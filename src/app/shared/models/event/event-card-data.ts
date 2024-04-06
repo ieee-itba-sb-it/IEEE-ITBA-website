@@ -9,19 +9,19 @@ export enum IeeeEvent {
 }
 
 export interface EventCardData {
-  id: IeeeEvent;
-  routerLink: string;
-  imageSrc: string;
-  imageAlt: string;
-  titleCode: string;
-  descriptionCode: string;
+  readonly id: IeeeEvent;
+  readonly routerLink: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly titleCode: string;
+  readonly descriptionCode: string;
   dates: EventDate[];
-  isRasEvent: boolean;
+  readonly isRasEvent: boolean;
 }
 
 export interface EventDate {
   date: Date;
-  descriptionCode: string;
-  showMonth?: boolean;
-  showYear?: boolean;
+  readonly descriptionCode: string;
+  readonly showMonth?: boolean;
+  readonly showYear?: boolean;
 }

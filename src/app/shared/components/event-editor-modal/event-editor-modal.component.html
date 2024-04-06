@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
+    <button type="button" (click)="modalRef.hide()" class="btn">
+        <mdb-icon
+            fas
+            icon="times"
+            size="lg"
+        ></mdb-icon>
+    </button>
+</div>
+<div class="modal-body">
+    <label for="date">{{ "HOME.EVENTS.INITIAL_DATE" | translate }}</label>
+    <input
+        type="date"
+        id="date"
+        [ngModel]="event.dates[0].date | date:'yyyy-MM-dd' : 'UTC'"
+        (ngModelChange)="dateChanged($event)"
+        class="form-control"
+        required
+    >
+    <p *ngIf="!!errorI18n" class="error">
+        {{ errorI18n | translate }}
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+    <button type="button" class="save-btn" (click)="updateEvent()">
+        {{ "HOME.EVENTS.EDIT.SAVE" | translate }}
+    </button>
+</div>
