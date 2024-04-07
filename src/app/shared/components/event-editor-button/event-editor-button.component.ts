@@ -11,7 +11,6 @@ import {EventCardData} from "../../models/event/event-card-data";
 export class EventEditorButtonComponent {
 
     modalRef: MDBModalRef | null = null;
-    showTooltip = false;
     @Input() event: EventCardData;
 
     constructor(private modalService: MDBModalService) { }
@@ -21,11 +20,6 @@ export class EventEditorButtonComponent {
             data: {
                 event: this.event
             },
-            modalClass: 'modal-dialog-centered',
         });
-    }
-
-    toggleTooltip() {
-        this.showTooltip = !this.showTooltip;
     }
 }

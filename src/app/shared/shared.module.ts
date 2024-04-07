@@ -43,6 +43,7 @@ import { ButtonComponent } from './components/button/button.component';
 import {EventEditorModalComponent} from "./components/event-editor-modal/event-editor-modal.component";
 import { EventEditorButtonComponent } from './components/event-editor-button/event-editor-button.component';
 import {FormsModule} from "@angular/forms";
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -55,7 +56,7 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorModalComponent, EventEditorButtonComponent],
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent],
     imports: [
         routing,
         CommonModule,
@@ -87,6 +88,6 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorButtonComponent]
+        EventEditorButtonComponent, FloatingButtonComponent]
 })
 export class SharedModule { }
