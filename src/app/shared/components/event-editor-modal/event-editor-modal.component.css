@@ -7,9 +7,16 @@
     font-size: 1rem;
 }
 
+.modal-body .error-container {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+}
+
 .modal-body p.error {
     color: var(--bs-danger);
-    font-weight: 400;
+    font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 0;
 }
@@ -18,16 +25,33 @@
     border-radius: 12px;
     padding: 0.5rem 1rem;
     font-weight: 600;
+    font-size: 0.9rem;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.modal-footer, .modal-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .modal-footer .close-btn {
     background-color: var(--bs-light);
     color: var(--bs-ieee-bright-blue);
     border-color: var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+}
+
+.modal-footer .close-btn:hover {
+    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
 }
 
 .modal-footer .save-btn {
     background-color: var(--bs-ieee-bright-blue);
     color: var(--bs-light);
     border-color: var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+}
+
+.modal-footer .save-btn:hover {
+    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
 }

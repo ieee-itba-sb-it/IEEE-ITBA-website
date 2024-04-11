@@ -42,7 +42,7 @@ import { EventFactsBannerComponent } from './components/event-facts-banner/event
 import { ButtonComponent } from './components/button/button.component';
 import {EventEditorModalComponent} from "./components/event-editor-modal/event-editor-modal.component";
 import { EventEditorButtonComponent } from './components/event-editor-button/event-editor-button.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
@@ -81,7 +81,8 @@ export const routing = RouterModule.forChild(routes);
         NgOptimizedImage,
         MatExpansionModule,
         SwiperModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
