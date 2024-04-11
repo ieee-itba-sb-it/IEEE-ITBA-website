@@ -129,4 +129,6 @@
     <app-sponsor-component [currentsponsor]="sponsors"></app-sponsor-component>
   </div>
 
+    <!-- Editor de evento -->
+    <app-event-editor-button *ngIf="!!eventData" [event]="eventData"></app-event-editor-button>
 </div>

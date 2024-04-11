@@ -139,10 +139,8 @@ export class EventService {
             descriptionCode: eventDoc.descriptionCode,
             isRasEvent: eventDoc.isRasEvent,
             dates: eventDoc.dates.map((dateElem: DocumentData) => ({
-                date: new Date(dateElem.date),
-                descriptionCode: dateElem.descriptionCode,
-                showMonth: dateElem.showMonth,
-                showYear: dateElem.showYear
+                ...dateElem,
+                date: new Date(dateElem.date)
             }))
         };
     }

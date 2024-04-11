@@ -15,7 +15,6 @@ export class DataAnalysisComponent implements OnInit {
     sponsorsServiceVar: SponsorsService;
 
     event?: EventCardData;
-    loadingEvent: boolean = true;
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';
@@ -142,7 +141,6 @@ export class DataAnalysisComponent implements OnInit {
         this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS)
             .subscribe(event => {
                 this.event = event;
-                this.loadingEvent = false;
             });
     }
 }

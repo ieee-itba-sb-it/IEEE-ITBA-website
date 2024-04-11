@@ -21,7 +21,7 @@ export interface EventCardData {
 
 export interface EventDate {
   date: Date;
-  readonly descriptionCode: string;
+  readonly descriptionCode?: string;
   readonly showMonth?: boolean;
   readonly showYear?: boolean;
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
+import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {EventService} from "../../../../core/services/event/event.service";
 
 
 @Component({
@@ -8,6 +10,8 @@ import {Timestamp} from '@angular/fire/firestore';
     styleUrls: ['./iot.component.css']
 })
 export class IotComponent implements OnInit {
+    event?: EventCardData;
+
     imageLinks = [
         'https://i.ibb.co/h2NXFqZ/image1.jpg',
         'https://i.ibb.co/4NWyHH0/image2.jpg',
@@ -31,9 +35,17 @@ export class IotComponent implements OnInit {
         return now < Timestamp.fromDate(new Date(this.enrollEndDate));
     }
 
-    constructor() { }
+    constructor(private eventService: EventService) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.getEvent();
+    }
 
+    getEvent(): void {
+        this.eventService.getEvent(IeeeEvent.IOT_WORKSHOP)
+            .subscribe(event => {
+                this.event = event;
+            });
+    }
 
 }

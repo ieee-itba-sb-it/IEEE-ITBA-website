@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
+import {Component, OnInit} from '@angular/core';
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
-import {EventCardData} from '../../../../shared/models/event/event-card-data';
+import {EventCardData, IeeeEvent} from '../../../../shared/models/event/event-card-data';
 import {EventService} from '../../../../core/services/event/event.service';
-import { Timestamp } from '@angular/fire/firestore';
-import { AppConfigService } from '../../../../core/services/configuration/app-config.service';
+import {Timestamp} from '@angular/fire/firestore';
+import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
 
 @Component({
     selector: 'app-asimov-cup',
@@ -107,7 +106,7 @@ export class AsimovCupComponent implements OnInit {
     }
 
     getAsimovCupEvent(): void {
-        this.eventService.getAsimovCupEvent()
+        this.eventService.getEvent(IeeeEvent.ASIMOV_CUP)
             .subscribe(event => this.eventData = event);
     }
 }
