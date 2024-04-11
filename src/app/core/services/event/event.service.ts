@@ -240,9 +240,10 @@ export class EventService {
                 .subscribe(async (user) => {
                     if (!user) {
                         resolve(false);
+                    } else {
+                        const userRole = user.role || await this.userService.getCurrentUserRole(user.email);
+                        resolve(userRole === roles.admin);
                     }
-                    const userRole = user.role || await this.userService.getCurrentUserRole(user.email);
-                    resolve(userRole === roles.admin);
                 });
         });
     }
@@ -255,6 +256,7 @@ export class EventService {
     async updateEvent(event: EventCardData): Promise<boolean> {
         if (!await this.isCurrentUserAdmin()) {
             console.error('updateEvent failed: user is not admin');
+            return false;
         }
         try {
             await updateDoc(doc(this.afs, EventService.collectionName, event.id), {
