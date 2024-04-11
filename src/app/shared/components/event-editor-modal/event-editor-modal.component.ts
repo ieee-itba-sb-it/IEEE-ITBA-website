@@ -61,7 +61,7 @@ export class EventEditorModalComponent implements OnInit {
         return this.eventForm.get('date');
     }
 
-    updateEvent() {
+    async updateEvent() {
         if (this.eventForm.invalid) {
             return;
         }
@@ -72,16 +72,14 @@ export class EventEditorModalComponent implements OnInit {
             this.event.dates[0].date = newDate;
         }
         this.loading = true;
-        this.eventService.updateEvent(this.event)
-            .subscribe((updated) => {
-                if (updated) {
-                    this.errorI18n = null;
-                    this.modalRef.hide();
-                } else {
-                    this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
-                }
-                this.loading = false;
-            });
+        const updated = await this.eventService.updateEvent(this.event);
+        if (updated) {
+            this.errorI18n = null;
+            this.modalRef.hide();
+        } else {
+            this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
+        }
+        this.loading = false;
     }
 
 }

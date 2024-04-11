@@ -17,6 +17,9 @@ import {
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
 import {map, Observable, Subject} from "rxjs";
+import {AuthService} from "../authorization/auth.service";
+import {UserService} from "../user/user.service";
+import {roles} from "../../../shared/models/roles/roles.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -124,7 +127,7 @@ export class EventService {
     //       }]
     //   };
 
-    constructor(private afs: Firestore) {
+    constructor(private afs: Firestore, private authService: AuthService, private userService: UserService) {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
@@ -231,8 +234,17 @@ export class EventService {
         return subject.asObservable();
     }
 
-    getAsimovCupEvent(): Observable<EventCardData> {
-        return this.getEvent(IeeeEvent.ASIMOV_CUP);
+    private isCurrentUserAdmin(): Promise<boolean> {
+        return new Promise((resolve) => {
+            this.authService.getCurrentUser()
+                .subscribe(async (user) => {
+                    if (!user) {
+                        resolve(false);
+                    }
+                    const userRole = user.role || await this.userService.getCurrentUserRole(user.email);
+                    resolve(userRole === roles.admin);
+                });
+        });
     }
 
     private getIsoDate(date: Date): string {
@@ -240,21 +252,23 @@ export class EventService {
         return isoTimeStamp.split('T')[0];
     }
 
-    updateEvent(event: EventCardData): Observable<boolean> {
-        const subject = new Subject<boolean>();
-        updateDoc(doc(this.afs, EventService.collectionName, event.id), {
-            ...event,
-            dates: event.dates.map((eventDate) => ({
-                ...eventDate,
-                date: this.getIsoDate(eventDate.date),
-            }))
-        }).then(() => {
-            subject.next(true);
-        }).catch((error) => {
+    async updateEvent(event: EventCardData): Promise<boolean> {
+        if (!await this.isCurrentUserAdmin()) {
+            console.error('updateEvent failed: user is not admin');
+        }
+        try {
+            await updateDoc(doc(this.afs, EventService.collectionName, event.id), {
+                ...event,
+                dates: event.dates.map((eventDate) => ({
+                    ...eventDate,
+                    date: this.getIsoDate(eventDate.date),
+                }))
+            });
+            return true;
+        } catch (error) {
             console.error(`updateEvent ${event.id} failed: ${error}`);
-            subject.next(false);
-        });
-        return subject.asObservable();
+            return false;
+        }
     }
 
 }
