@@ -1,5 +1,8 @@
 <div class="modal-header">
-    <h2 class="modal-title">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
+    <div>
+        <h2 class="modal-title">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
+        <h4 class="modal-subtitle">{{ event.titleCode | translate }}</h4>
+    </div>
     <button type="button" (click)="modalRef.hide()" class="btn">
         <mdb-icon
             fas
@@ -35,8 +38,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button type="submit" class="btn save-btn" [disabled]="eventForm.invalid">
-            {{ "HOME.EVENTS.EDIT.SAVE" | translate }}
+        <button type="submit" class="btn save-btn" [disabled]="eventForm.invalid || loading">
+            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
         </button>
     </div>
 </form>

@@ -1,4 +1,12 @@
+.modal-header {
+    align-items: flex-start;
+}
+
 .modal-title {
+    font-weight: 600;
+}
+
+.modal-title, .modal-subtitle {
     margin-bottom: 0;
 }
 

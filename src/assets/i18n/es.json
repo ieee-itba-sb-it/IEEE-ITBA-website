@@ -248,9 +248,9 @@
       "EDIT": {
          "TITLE": "Editar evento",
          "CANCEL": "Cancelar",
-         "SAVE": "Guardar",
+         "UPDATE": "Actualizar",
          "ERROR": {
-             "SAVE": "Ocurrió un error al actualizar el evento",
+             "UPDATE": "Ocurrió un error al actualizar el evento",
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado"

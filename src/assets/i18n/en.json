@@ -192,9 +192,9 @@
       "EDIT": {
           "TITLE": "Edit Event",
           "CANCEL": "Cancel",
-          "SAVE": "Save",
+          "UPDATE": "Update",
           "ERROR": {
-              "SAVE": "An error occurred while updating the event",
+              "UPDATE": "An error occurred while updating the event",
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past"

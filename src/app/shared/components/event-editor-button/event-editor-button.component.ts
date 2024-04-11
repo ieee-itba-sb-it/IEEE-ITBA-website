@@ -20,6 +20,7 @@ export class EventEditorButtonComponent {
             data: {
                 event: this.event
             },
+            class: 'modal-dialog-centered',
         });
     }
 }

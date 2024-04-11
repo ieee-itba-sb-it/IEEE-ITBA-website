@@ -21,6 +21,7 @@ export class EventEditorModalComponent implements OnInit {
     @Input() event: EventCardData;
     eventForm: FormGroup;
     errorI18n: string = null;
+    loading = false;
 
     constructor(private eventService: EventService, public modalRef: MDBModalRef) { }
 
@@ -54,14 +55,16 @@ export class EventEditorModalComponent implements OnInit {
             return;
         }
         this.event.dates[0].date = new Date(this.date.value);
+        this.loading = true;
         this.eventService.updateEvent(this.event)
             .subscribe((updated) => {
                 if (updated) {
                     this.errorI18n = null;
                     this.modalRef.hide();
                 } else {
-                    this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.SAVE';
+                    this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
                 }
+                this.loading = false;
             });
     }
 
