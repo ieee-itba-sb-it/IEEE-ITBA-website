@@ -109,7 +109,7 @@ export class AuthService {
     // -----------Info Getters-----------
 
     // Get user Name
-    getCurrentUser(): Observable<IEEEuser> {
+    getCurrentUser(): Observable<IEEEuser | null> {
         return this.accountObs.asObservable();
     }
 }
