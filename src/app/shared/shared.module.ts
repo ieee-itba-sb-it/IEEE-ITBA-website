@@ -40,6 +40,10 @@ import { ImageCarouselComponent } from './components/image-carousel/image-carous
 import { SwiperModule } from 'swiper/angular';
 import { EventFactsBannerComponent } from './components/event-facts-banner/event-facts-banner.component';
 import { ButtonComponent } from './components/button/button.component';
+import {EventEditorModalComponent} from "./components/event-editor-modal/event-editor-modal.component";
+import { EventEditorButtonComponent } from './components/event-editor-button/event-editor-button.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -49,9 +53,10 @@ export const routing = RouterModule.forChild(routes);
 @NgModule({
     declarations: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent, 
-        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent, 
-        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent],
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
+        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
+        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent],
     imports: [
         routing,
         CommonModule,
@@ -75,12 +80,15 @@ export const routing = RouterModule.forChild(routes);
         MatProgressSpinnerModule,
         NgOptimizedImage,
         MatExpansionModule,
-        SwiperModule
+        SwiperModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
-        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent, 
-        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent, 
-        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent]
+        TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
+        EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
+        EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
+        EventEditorButtonComponent, FloatingButtonComponent]
 })
 export class SharedModule { }

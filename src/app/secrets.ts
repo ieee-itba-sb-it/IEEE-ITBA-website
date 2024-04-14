@@ -12,3 +12,4 @@ export const firebaseConfig = {
 export const blogCollectionName = 'blog-entries';
 export const userCollectionName = 'users';
 export const metadataCollectionName = 'collection-metadata';
+export const eventsCollectionName = 'events';

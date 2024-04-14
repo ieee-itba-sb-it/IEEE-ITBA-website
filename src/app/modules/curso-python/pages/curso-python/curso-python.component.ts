@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
+import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {EventService} from "../../../../core/services/event/event.service";
 
 @Component({
     selector: 'app-curso-python',
@@ -7,6 +9,7 @@ import {Timestamp} from '@angular/fire/firestore';
     styleUrls: ['./curso-python.component.css'],
 })
 export class CursoPythonComponent implements OnInit {
+    event?: EventCardData;
 
     enrollLink = 'https://forms.gle/F5yVdarakDSmh3GF6';
 
@@ -36,7 +39,7 @@ export class CursoPythonComponent implements OnInit {
     ];
 
     pythonImageUrl= 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png';
-    
+
 
     getDate() { }
 
@@ -47,7 +50,7 @@ export class CursoPythonComponent implements OnInit {
         return now > oldDate;
     }
 
-    constructor() {
+    constructor(private eventService: EventService) {
         scroll(0, 0);
         this.enrollOpen = this.isOldDate('27 Mar 2023 03:00:00 UTC');
         this.enrollClosed = this.isOldDate('07 Aug 2023 03:00:00 UTC');
@@ -63,12 +66,21 @@ export class CursoPythonComponent implements OnInit {
         return this.enrollOpen && !this.enrollClosed;
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.getEvent();
+    }
 
     check = (event, isReady) => {
         if (!isReady) {
             event.preventDefault();
         }
+    }
+
+    getEvent(): void {
+        this.eventService.getEvent(IeeeEvent.PYTHON_COURSE)
+            .subscribe(event => {
+                this.event = event;
+            });
     }
 
 }

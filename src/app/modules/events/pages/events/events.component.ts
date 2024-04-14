@@ -9,14 +9,23 @@ import {EventService} from '../../../../core/services/event/event.service';
 })
 export class EventsComponent implements OnInit {
 
-    events: EventCardData[];
+    events: EventCardData[] = [];
+    loadingEvents: boolean = true;
 
     constructor(private eventService: EventService) {
 
     }
 
     ngOnInit(): void {
-        this.events = this.eventService.getAllEvents();
+        this.getEvents();
+    }
+
+    getEvents(): void {
+        this.eventService.getAllEvents()
+            .subscribe(events => {
+                this.events = events;
+                this.loadingEvents = false;
+            });
     }
 
 }

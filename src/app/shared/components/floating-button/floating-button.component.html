@@ -1,0 +1,15 @@
+<div class="outside-div">
+    <div class="inside-div">
+        <span class="button-tooltip" [class.hidden]="!showTooltip">
+            {{ tooltipI18n | translate }}
+        </span>
+        <button
+            class="edit-button"
+            (click)="onClick()"
+            (mouseover)="toggleTooltip()"
+            (mouseout)="toggleTooltip()"
+        >
+            <ng-content></ng-content>
+        </button>
+    </div>
+</div>

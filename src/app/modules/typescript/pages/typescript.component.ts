@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
+import {EventCardData, IeeeEvent} from "../../../shared/models/event/event-card-data";
+import {EventService} from "../../../core/services/event/event.service";
 
 @Component({
     selector: 'app-typescript',
@@ -7,6 +9,7 @@ import { Timestamp } from '@angular/fire/firestore';
     styleUrls: ['./typescript.component.css']
 })
 export class TypescriptComponent implements OnInit {
+    event?: EventCardData;
 
     requirementsLink = 'https://raw.githubusercontent.com/IEEESBITBA/curso-typescript/main/Anexo/Gu%C3%ADa%20de%20Instalaci%C3%B3n%20de%20Herramientas.pdf';
 
@@ -16,7 +19,7 @@ export class TypescriptComponent implements OnInit {
     enrollClosed = false;
 
     typescriptUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png";
-    
+
     faq = [
         { q: 'TYPESCRIPT.FAQ.1.QUESTION', a: 'TYPESCRIPT.FAQ.1.ANSWER' },
         { q: 'TYPESCRIPT.FAQ.2.QUESTION', a: 'TYPESCRIPT.FAQ.2.ANSWER' },
@@ -40,16 +43,23 @@ export class TypescriptComponent implements OnInit {
         return now > oldDate;
     }
 
-    constructor() {
+    constructor(private eventService: EventService) {
         this.enrollOpen = this.isOldDate('15 May 2023 03:00:00 UTC');
         this.enrollClosed = this.isOldDate('29 May 2023 03:00:00 UTC');
     }
 
     ngOnInit(): void {
+        this.getEvent();
     }
 
     enrollAvailable(): boolean {
         return this.enrollOpen && !this.enrollClosed;
     }
 
+    getEvent(): void {
+        this.eventService.getEvent(IeeeEvent.TYPESCRIPT_COURSE)
+            .subscribe(event => {
+                this.event = event;
+            });
+    }
 }

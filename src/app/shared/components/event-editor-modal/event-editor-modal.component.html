@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <div>
+        <h2 class="modal-title">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
+        <h4 class="modal-subtitle">{{ event.titleCode | translate }}</h4>
+    </div>
+    <button type="button" (click)="modalRef.hide()" class="btn">
+        <mdb-icon
+            fas
+            icon="times"
+            size="lg"
+        ></mdb-icon>
+    </button>
+</div>
+<form [formGroup]="eventForm" (ngSubmit)="updateEvent()">
+    <div class="modal-body">
+        <label for="date">{{ "HOME.EVENTS.INITIAL_DATE" | translate }}</label>
+        <input
+            type="date"
+            id="date"
+            class="form-control"
+            formControlName="date"
+            required
+        >
+        <div *ngIf="(date.invalid && (date.dirty || date.touched)) || !!errorI18n" class="error-container">
+            <p *ngIf="date.errors?.['required']" class="error">
+                {{ "HOME.EVENTS.EDIT.ERROR.DATE_REQUIRED" | translate }}
+            </p>
+            <p *ngIf="date.errors?.['pattern']" class="error">
+                {{ "HOME.EVENTS.EDIT.ERROR.DATE_INVALID" | translate }}
+            </p>
+            <p *ngIf="date.errors?.['pastDate']" class="error">
+                {{ "HOME.EVENTS.EDIT.ERROR.DATE_PAST" | translate }}
+            </p>
+            <p *ngIf="!!errorI18n" class="error">
+                {{ errorI18n | translate }}
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+        <button type="submit" class="btn save-btn" [disabled]="eventForm.invalid || loading">
+            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+        </button>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+<app-floating-button
+    [tooltipI18n]="'HOME.EVENTS.EDIT.TITLE'"
+    (clickEvent)="openModal()"
+    *ngIf="!!event && isAdmin$ | async"
+>
+    <mdb-icon
+        fas
+        size="2x"
+        icon="edit"
+    ></mdb-icon>
+</app-floating-button>

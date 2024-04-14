@@ -20,7 +20,7 @@
   <!-- Cards Temario -->
 
   <div style="display:flex; margin-bottom:5rem;">
-    <app-event-content-card 
+    <app-event-content-card
       [disabled]="!week1ContentOpen"
       title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1"
       [imageUrl]="pythonImageUrl"
@@ -171,6 +171,9 @@
       <p class="tyc-text">{{'TYC.ITBA.3.TEXT' | translate}}</p>
     </mat-expansion-panel>
   </div>
+
+    <!-- Editor de evento -->
+    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
 
   <!-- Sponsors Actuales -->
   <!-- <div class="bottomLine mt-4">

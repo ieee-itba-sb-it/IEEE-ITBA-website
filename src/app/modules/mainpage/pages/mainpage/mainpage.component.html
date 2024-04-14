@@ -66,7 +66,7 @@
         <span class="section-subtitle d-md-inline d-none">{{ "HOME.EVENTS.CONTENT" | translate }}</span>
       </div>
       <div>
-        <div class="carousel-wrapper">
+        <div class="carousel-wrapper" *ngIf="loadingLatestEvents === false; else loadingLatestEventsBlock">
           <div class="pagination-prev-wrapper">
             <span class="swiper-button-prev swiper-events pagination-prev" id="events-pagination-prev"></span>
           </div>
@@ -81,10 +81,13 @@
             <span class="events-swiper-button-next swiper-button-next swiper-events pagination-next" id="events-pagination-next"></span>
           </div>
         </div>
+        <ng-template #loadingLatestEventsBlock>
+          <app-loading-spinner></app-loading-spinner>
+        </ng-template>
       </div>
       <div class="pagination-wrapper swiper-events" id="events-pagination-wrapper"></div>
     </div>
-    <div class="end-button-container">
+    <div class="end-button-container" *ngIf="loadingLatestEvents === false && latestEvents.length !== 0">
       <button class="learn-more-button" [routerLink]="['/events']">{{ 'HOME.EVENTS.MORE' | translate }} <mdb-icon
         fas
         icon="chevron-right"
