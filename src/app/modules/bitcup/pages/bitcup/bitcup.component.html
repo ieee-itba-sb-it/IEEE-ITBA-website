@@ -7,7 +7,7 @@
 
   <!-- bitcup -->
   <div class="info">
-    <app-event-section 
+    <app-event-section
       style="padding-right:3rem;"
       title="{{ 'BITCUP.BITCUP-TITLE' | translate }}">
       <p>{{ 'BITCUP.BITCUP-TEXT' | translate }}</p>
@@ -44,4 +44,6 @@
     <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
   </app-event-section>
 
+  <!-- Editor de evento -->
+  <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
 </div>

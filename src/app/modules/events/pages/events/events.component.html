@@ -19,12 +19,15 @@
     <!-- Eventos (material angular) -->
 
     <!-- new card grid -->
-    <ul class="card-listing">
+    <ul class="card-listing" *ngIf="loadingEvents === false; else loadingEventsBlock">
       <li *ngFor="let event of events; index as i">
         <app-event-card [event]="event" [index]="i">
         </app-event-card>
       </li>
     </ul>
+    <ng-template #loadingEventsBlock>
+        <app-loading-spinner></app-loading-spinner>
+    </ng-template>
   </div>
 
 </div>

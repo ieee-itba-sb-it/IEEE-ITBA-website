@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
-import { Timestamp } from '@angular/fire/firestore';
+import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
+import {Timestamp} from '@angular/fire/firestore';
 import {CourseWithTests} from '../../../../shared/models/courses/course-with-tests';
+import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {EventService} from "../../../../core/services/event/event.service";
 
 @Component({
     selector: 'app-data-analysis',
@@ -11,6 +13,8 @@ import {CourseWithTests} from '../../../../shared/models/courses/course-with-tes
 })
 export class DataAnalysisComponent implements OnInit {
     sponsorsServiceVar: SponsorsService;
+
+    event?: EventCardData;
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';
@@ -66,7 +70,9 @@ export class DataAnalysisComponent implements OnInit {
         ]
     };
 
-    constructor(private sponsorsService: SponsorsService) {
+    constructor(private sponsorsService: SponsorsService,
+                private eventService: EventService,
+    ) {
         this.sponsorsServiceVar = sponsorsService;
         scroll(0, 0);
 
@@ -128,6 +134,13 @@ export class DataAnalysisComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getEvent();
     }
 
+    getEvent(): void {
+        this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS)
+            .subscribe(event => {
+                this.event = event;
+            });
+    }
 }

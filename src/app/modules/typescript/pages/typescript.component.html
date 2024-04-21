@@ -1,6 +1,6 @@
 <div class="main-container event">
   <!-- BANNER -->
-  <app-event-banner url="events/typescript-course/big-banner.jpg" 
+  <app-event-banner url="events/typescript-course/big-banner.jpg"
     alt="{{ 'TYPESCRIPT.TITLE' | translate}}"></app-event-banner>
   <app-event-title>{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
   <!-- DESCRIPTION -->
@@ -18,23 +18,23 @@
   <!-- SYLLABUS -->
   <app-event-section title="{{ 'TYPESCRIPT.SYLLABUS.TITLE' | translate}}">
     <div class="syllabus">
-      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}" 
-      [imageUrl]="typescriptUrl"  
+      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}"
+      [imageUrl]="typescriptUrl"
       >
       <div content>
         {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.3' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.4' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}  
+        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}
       </div>
       </app-event-content-card>
       <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"  
+      [imageUrl]="typescriptUrl"
       >
       <div content>
         {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}},
@@ -48,22 +48,22 @@
     </div>
     <div class="syllabus">
       <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.3.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"  
+      [imageUrl]="typescriptUrl"
       >
       <div content>
         {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}}, 
+        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.3' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.4' | translate}},
         {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.5' | translate}}
       </div>
       </app-event-content-card>
       <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.4.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"  
+      [imageUrl]="typescriptUrl"
       >
       <div content>
           {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.1' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}}, 
+          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}},
           {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.3' | translate}}
       </div>
       </app-event-content-card>
@@ -130,4 +130,7 @@
     <app-event-faq-accordion [faq]="faq">
     </app-event-faq-accordion>
   </app-event-section>
+
+    <!-- Editor de evento -->
+    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
 </div>

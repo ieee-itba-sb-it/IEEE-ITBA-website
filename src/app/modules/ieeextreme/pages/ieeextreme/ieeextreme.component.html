@@ -1,5 +1,5 @@
 <div class="main-container event">
-  <app-event-facts-banner 
+  <app-event-facts-banner
     imageUrl="../../../../../assets/image/events/ieeextreme/XtremeLogo.png"
     imageAlt="Logo IEEEXtreme"
     [facts]="facts"
@@ -36,7 +36,7 @@
   <app-event-section title="Sponsorship 2023">
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
     <div style="display: flex; justify-content:center;">
-      <app-event-content-card 
+      <app-event-content-card
       *ngFor="let contact of contacts"
       title="{{contact.name }}"
       [image] = "false"
@@ -48,4 +48,6 @@
     </div>
   </app-event-section>
 
+    <!-- Editor de evento -->
+    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
 </div>

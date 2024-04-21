@@ -187,7 +187,19 @@
     "EVENTS": {
       "TITLE": "Events",
       "CONTENT": "Find out about our newest events!",
-      "MORE": "View more events"
+      "MORE": "View more events",
+      "INITIAL_DATE": "Initial date",
+      "EDIT": {
+          "TITLE": "Edit Event",
+          "CANCEL": "Cancel",
+          "UPDATE": "Update",
+          "ERROR": {
+              "UPDATE": "An error occurred while updating the event",
+              "DATE_REQUIRED": "The date is required",
+              "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
+              "DATE_PAST": "The date cannot be in the past"
+          }
+      }
     },
     "CHAPTERS": {
       "TITLE": "Student Chapters",
