@@ -82,7 +82,8 @@
 
           <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <ng-container *ngIf="user$ | async; else noUser">
-                  <a class="dropdown-item"  (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</a>
+                <a class="dropdown-item" *ngIf="isAdmin$ | async"  [routerLink]="['/admin']">{{ 'NAVBAR.ADMIN' | translate }}</a>
+                <a class="dropdown-item"  (click)="logoutUser()">{{ 'LOGOUT.TITLE' | translate }}</a>
               </ng-container>
             <ng-template #noUser>
                 <a class="dropdown-item" [routerLink]="['/login']">{{ 'LOGIN.TITLE' | translate }}</a>

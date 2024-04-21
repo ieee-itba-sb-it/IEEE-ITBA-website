@@ -1,0 +1,28 @@
+<div class="search-bar">
+    <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
+    <input (keyup)="handleInputEvent($event)" (submit)="handleInputEvent($event)" type="text" name="user" id="user" autocomplete="off" placeholder="Buscar usuario por email">
+    <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
+</div>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Rol</th>
+    </tr>
+    <tr *ngFor="let user of users$ | async">
+        <td>{{ user.fname }}</td>
+        <td>{{ user.lname }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="colors[user.role]" highlighted>{{ roles[user.role] }}</mat-chip>
+        </td>
+    </tr>
+</table>
+<mat-paginator [length]="count"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="handlePageEvent($event)"
+              aria-label="Select page"
+              class="paginator">
+</mat-paginator>

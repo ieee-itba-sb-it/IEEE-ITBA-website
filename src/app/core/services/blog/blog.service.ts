@@ -56,7 +56,7 @@ export class BlogService {
 
     // Gets all docs from setted collection
     getDocs() {
-        getDocs(query(this.collection)).then(data => {
+        getDocs(query(this.collection, where("listed", "==", true))).then(data => {
             const ans: NewsItem[] = [];
             for (const blogEntry in data.docs) {
                 if (data.docs.hasOwnProperty(blogEntry)) {
@@ -90,6 +90,7 @@ export class BlogService {
         const call = new BehaviorSubject<NewsItem[]>([]);
         getDocs(query(this.collection, 
             where("date", "!=", Timestamp.fromDate(currentNewsDate)),
+            where("listed", "==", true),
             orderBy("date", "desc"),
             limit(10)
         )).then(snapshot => {
@@ -168,7 +169,7 @@ export class BlogService {
     }
 
     getNextDocsPage(tags?: string[]) {
-        let constraints: QueryConstraint[] = [orderBy('date', 'desc')];
+        let constraints: QueryConstraint[] = [orderBy('date', 'desc'), where("listed", "==", true)];
         if (tags && tags.length > 0) constraints.push(orderBy('tags'), where('tags', 'array-contains-any', tags));
         constraints.push(limit(this.docsPageSize), startAt(this.blogData.getValue().pop().date));
         const q = query(this.collection, ...constraints);
@@ -176,21 +177,21 @@ export class BlogService {
     }
 
     getPrevDocsPage(tags?: string[]) {
-        let constraints: QueryConstraint[] = [orderBy('date', 'desc')];
+        let constraints: QueryConstraint[] = [orderBy('date', 'desc'), where("listed", "==", true)];
         if (tags && tags.length > 0) constraints.push(orderBy('tags'), where('tags', 'array-contains-any', tags));
         constraints.push(limitToLast(this.docsPageSize), endAt(this.blogData.getValue().reverse().pop().date));
         const q = query(this.collection, ...constraints);
         this.getDocsPage(q);
     }
 
-  // Gets all docs from setted collection
-  getFirstDocsPage(cursor?: Date, tags?: string[]) {
-    let constraints: QueryConstraint[] = [orderBy('date', 'desc'), limit(this.docsPageSize)];
-    if (tags && tags.length > 0) constraints.push(orderBy('tags'), where('tags', 'array-contains-any', tags));
-    if (cursor) constraints.push(startAt(cursor));
-    const q = query(this.collection, ...constraints);
-    this.getDocsPage(q);
-  }
+    // Gets all docs from setted collection
+    getFirstDocsPage(cursor?: Date, tags?: string[]) {
+        let constraints: QueryConstraint[] = [orderBy('date', 'desc'), limit(this.docsPageSize), where("listed", "==", true)];
+        if (tags && tags.length > 0) constraints.push(orderBy('tags'), where('tags', 'array-contains-any', tags));
+        if (cursor) constraints.push(startAt(cursor));
+        const q = query(this.collection, ...constraints);
+        this.getDocsPage(q);
+    }
 
     // Sets a doc inside a collection and updates metadata
     setDoc(content: NewsItem) {

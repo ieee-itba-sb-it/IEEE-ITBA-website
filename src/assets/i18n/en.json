@@ -326,7 +326,8 @@
     "NEWS": "News",
     "SPONSORS": "Sponsors",
     "WRITENEWS": "Create News",
-    "INSTITUTIONAL": "Institutional"
+    "INSTITUTIONAL": "Institutional",
+    "ADMIN": "Admin panel"
   },
     "FOOTER": {
         "ABOUTUS": "About us",
@@ -971,5 +972,9 @@
   },
   "CS": {
     "ABOUT": "A technology-focused organization made up of students and alumni of ITBA, dedicated to inspiring and educating in various areas of technology related to software engineering and technology."
+  },
+  "ADMIN": {
+    "TITLE": "Admin panel",
+    "USERTAB": "Users"
   }
 }

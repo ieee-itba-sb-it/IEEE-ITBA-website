@@ -1,0 +1,21 @@
+<div class="main-container">
+    <div class="title-container">
+        <h1 class="page-title">{{ "ADMIN.TITLE" | translate }}</h1>
+    </div>
+    <div class="wrapper">
+        <aside>
+            <mat-nav-list>
+                <div>
+                    <a mat-list-item *ngFor="let tab of tabs" [class]="tab.selected ? 'selected' : ''" [activated]="tab.isActive" [routerLink]="[tab.link]" routerLinkActive="router-link-active" >
+                        <mdb-icon fas [icon]="tab.icon" class="tab-icon" mdbWavesEffect />
+                        {{ tab.title | translate }}
+                    </a>
+                    <mat-divider />
+                </div>
+            </mat-nav-list>
+        </aside>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

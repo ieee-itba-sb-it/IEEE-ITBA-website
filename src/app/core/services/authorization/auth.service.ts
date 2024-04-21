@@ -7,7 +7,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import {createRegularUser} from '../../../shared/models/data-types';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
-import { Auth, User, UserCredential, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { roles } from 'src/app/shared/models/roles/roles.enum';
 
 @Injectable({
@@ -25,8 +25,9 @@ export class AuthService {
         this.user = firebaseAuth.currentUser
         // Seteamos observer
         this.accountObs = new ReplaySubject(1);
-        this.firebaseAuth.onAuthStateChanged((usuario) => {
+        onAuthStateChanged(this.firebaseAuth, (usuario) => {
             if (usuario){
+                this.user = usuario;
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const doc = data.data() as IEEEuser;
                     this.account = createRegularUser(doc.fname, doc.lname, doc.email, doc.photoURL, doc.role, doc.uID);

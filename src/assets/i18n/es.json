@@ -382,7 +382,8 @@
     "NEWS": "Noticias",
     "SPONSORS": "Auspiciantes",
     "WRITENEWS": "Crear Noticia",
-    "INSTITUTIONAL": "Institucional"
+    "INSTITUTIONAL": "Institucional",
+    "ADMIN": "Panel de administrador"
   },
     "FOOTER": {
         "ABOUTUS": "Acerca de",
@@ -1024,5 +1025,9 @@
   },
   "CS": {
     "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
+  },
+  "ADMIN": {
+    "TITLE": "Panel de administración",
+    "USERTAB": "Usuarios"
   }
 }
