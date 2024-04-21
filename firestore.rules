@@ -2,16 +2,48 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // This rule allows anyone on the internet to view, edit, and delete
-    // all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // your app will lose access to your Firestore database
-    match /{document=**} {
-      allow read, write;
+    function isSignedIn() {
+      return request.auth.uid != null;
+    }
+
+    function hasRole(role) {
+      let roles = {"admin": 1, "writer": 2};
+      return isSignedIn() && roles[role] in get(/databases/$(database)/documents/roles/$(request.auth.token.email)).data.roles;
+    }
+
+    function isDataOwner() {
+      return resource.data.uID == request.auth.uid;
+    }
+
+    match /blog-entries/{document=**}  {
+      allow read: if resource.data.listed == true || hasRole("writer") || hasRole("admin");
+      allow write: if hasRole("writer") || hasRole("admin");
+    }
+
+    match /events/{document=**} {
+    	allow read;
+      allow write: if hasRole("admin");
+    }
+
+    match /collection-metadata/{document=**}   {
+      allow read;
+      allow write: if hasRole("admin");
+    }
+
+    match /team/{document=**}  {
+      allow read;
+      allow write: if hasRole("admin");
+    }
+
+    match /users/{document=**}  {
+    	allow get, update, delete: if isDataOwner() || hasRole("admin");
+      allow list: if hasRole("admin");
+      // Solo puede crear el objeto usuario si el id del usuario en el body corresponde con el id del usuario en el token
+      allow create: if isSignedIn() && request.resource.data.uID == request.auth.uid;
+    }
+
+    match /roles/{document=**} {
+      allow read, write: if hasRole("admin");
     }
   }
 }
