@@ -21,7 +21,7 @@ export class CursoPythonComponent implements OnInit {
     week2SolutionsLink = 'https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb';
     week3SolutionsLink = 'https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb';
 
-    week1ContentOpen = false;
+    week1ContentOpen = true;
     week2ContentOpen = false;
     week3ContentOpen = false;
     week4ContentOpen = false;
