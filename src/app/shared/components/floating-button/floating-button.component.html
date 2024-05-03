@@ -1,5 +1,5 @@
 <div class="outside-div">
-    <div class="inside-div">
+    <div class="inside-div" [style.--color]="color">
         <span class="button-tooltip" [class.hidden]="!showTooltip">
             {{ tooltipI18n | translate }}
         </span>

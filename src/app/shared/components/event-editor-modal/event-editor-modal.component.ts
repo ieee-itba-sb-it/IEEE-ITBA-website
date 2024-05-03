@@ -10,6 +10,7 @@ import {
     ValidatorFn,
     Validators
 } from "@angular/forms";
+import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 
 @Component({
     selector: 'app-event-editor-modal',
@@ -22,8 +23,9 @@ export class EventEditorModalComponent implements OnInit {
     eventForm: FormGroup;
     errorI18n: string = null;
     loading = false;
+    color: string;
 
-    constructor(private eventService: EventService, public modalRef: MDBModalRef) { }
+    constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
 
     private getIsoDate(date: Date): string {
         return date.toISOString().split('T')[0];
@@ -44,6 +46,14 @@ export class EventEditorModalComponent implements OnInit {
         }
     }
 
+    getColor() {
+        this.appConfigService.getPaletteColors().subscribe(
+            palletColors => {
+                this.color = palletColors.background;
+            }
+        );
+    }
+
     ngOnInit(): void {
         const initialDate = (this.event.dates && this.event.dates.length > 0) ?
             this.getIsoDate(this.event.dates[0].date) :
@@ -55,6 +65,7 @@ export class EventEditorModalComponent implements OnInit {
                 this.nonPastDateValidator()
             ])
         });
+        this.getColor();
     }
 
     get date() {

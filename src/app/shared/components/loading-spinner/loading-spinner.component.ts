@@ -1,16 +1,26 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 
 @Component({
     selector: 'app-loading-spinner',
     templateUrl: './loading-spinner.component.html',
     styleUrls: ['./loading-spinner.component.css']
 })
-export class LoadingSpinnerComponent {
+export class LoadingSpinnerComponent implements OnInit {
 
-    @Input() isRas?: boolean = false;
+    color: string;
 
-    constructor() { }
+    constructor(private appConfigService: AppConfigService) { }
 
+    getColor() {
+        this.appConfigService.getPaletteColors().subscribe(
+            palletColors => {
+                this.color = palletColors.background;
+            }
+        );
+    }
 
-
+    ngOnInit(): void {
+        this.getColor();
+    }
 }
