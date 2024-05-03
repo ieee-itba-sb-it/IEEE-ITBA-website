@@ -97,7 +97,7 @@ export class AsimovCupComponent implements OnInit {
     ngOnInit(): void {
         this.getAsimovCupEvent();
         // Set navbar color
-        this.appConfigService.setNavbarColor({
+        this.appConfigService.setPaletteColors({
             background: '#862633',
             underlying: '#C83D59FF',
             hover: '#9E4C67FF'
