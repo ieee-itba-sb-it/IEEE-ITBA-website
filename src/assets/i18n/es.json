@@ -245,6 +245,7 @@
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
       "MORE": "Ver más eventos",
       "INITIAL_DATE": "Fecha de inicio",
+      "UNSCHEDULED": "A definir",
       "EDIT": {
          "TITLE": "Editar evento",
          "CANCEL": "Cancelar",

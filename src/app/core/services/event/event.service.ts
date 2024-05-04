@@ -1,25 +1,22 @@
-import { Injectable } from '@angular/core';
-import {EventCardData, IeeeEvent} from '../../../shared/models/event/event-card-data';
+import {Injectable} from '@angular/core';
+import {Event, EventDate, EventDoc, EventStatus, IeeeEvent} from '../../../shared/models/event/event';
 import {
+    collection,
     CollectionReference,
+    doc,
     Firestore,
+    getDoc,
     getDocs,
     query,
-    Timestamp,
-    collection,
-    DocumentData,
-    QueryDocumentSnapshot,
-    where,
     Query,
-    getDoc,
-    doc,
-    updateDoc
+    QueryDocumentSnapshot,
+    Timestamp,
+    updateDoc,
+    where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
 import {map, Observable, Subject} from "rxjs";
-import {AuthService} from "../authorization/auth.service";
 import {UserService} from "../user/user.service";
-import {roles} from "../../../shared/models/roles/roles.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -28,31 +25,40 @@ export class EventService {
     private static readonly collectionName = eventsCollectionName;
     private readonly collection: CollectionReference;
 
-    constructor(private afs: Firestore, private authService: AuthService, private userService: UserService) {
+    constructor(private afs: Firestore, private userService: UserService) {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
-    private mapEventCardSnapshot(eventSnapshot: QueryDocumentSnapshot): EventCardData{
-        const eventDoc = eventSnapshot.data();
+    private static mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
+        const dates: Event['dates'] = {} as Event['dates'];
+        for (const date in eventDoc.dates) {
+            if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
+                dates[date] = {
+                    status: EventStatus.CONFIRMED,
+                    date: new Date(eventDoc.dates[date].date)
+                }
+            } else {
+                dates[date] = {
+                    ...eventDoc.dates[date]
+                }
+            }
+        }
+        return dates;
+    }
+
+    private static mapEventDoc(eventSnapshot: QueryDocumentSnapshot<EventDoc>): Event {
+        const eventDoc: EventDoc = eventSnapshot.data();
         return {
+            ...eventDoc,
             id: eventSnapshot.id as IeeeEvent,
-            routerLink: eventDoc.routerLink,
-            imageSrc: eventDoc.imageSrc,
-            imageAlt: eventDoc.imageAlt,
-            titleCode: eventDoc.titleCode,
-            descriptionCode: eventDoc.descriptionCode,
-            isRasEvent: eventDoc.isRasEvent,
-            dates: eventDoc.dates.map((dateElem: DocumentData) => ({
-                ...dateElem,
-                date: new Date(dateElem.date)
-            }))
+            dates: EventService.mapEventDocDates(eventDoc)
         };
     }
 
-    private getEventsByQuery(query: Query, operation: string): Observable<EventCardData[]> {
-        const call = new Subject<EventCardData[]>();
+    private getEventsByQuery(query: Query, operation: string): Observable<Event[]> {
+        const call = new Subject<Event[]>();
         getDocs(query).then((data =>
-            data.docs.map(this.mapEventCardSnapshot)
+            data.docs.map(EventService.mapEventDoc)
         )).then((events) => {
             call.next(events);
         }).catch((error) => {
@@ -62,43 +68,77 @@ export class EventService {
         return call.asObservable();
     }
 
-    public getAllEvents(operation: string = "getAllEvents"): Observable<EventCardData[]> {
+    public getAllEvents(operation: string = "getAllEvents"): Observable<Event[]> {
         return this.getEventsByQuery(query(this.collection), operation);
     }
 
-    public getUpcomingEvents(): Observable<EventCardData[]> {
+    private static filterUpcomingEvents(event: Event): boolean {
+        const now = Timestamp.now().toDate();
+        const inscriptionDate = event.dates[EventDate.INSCRIPTION];
+        if (inscriptionDate.status === EventStatus.UNSCHEDULED) {
+            return false;
+        }
+        if (inscriptionDate.status === EventStatus.UPCOMING) {
+            return inscriptionDate.year >= now.getFullYear();
+        }
+        if (inscriptionDate.status === EventStatus.TENTATIVE) {
+            return inscriptionDate.month >= now.getMonth();
+        }
+        if (inscriptionDate.status === EventStatus.CONFIRMED) {
+            return inscriptionDate.date >= now;
+        }
+    }
+
+    private static sortEvents(event1: Event, event2: Event): number {
+        const event1InscriptionDate = event1.dates[EventDate.INSCRIPTION];
+        const event2InscriptionDate = event2.dates[EventDate.INSCRIPTION];
+        if (event1InscriptionDate.status === EventStatus.CONFIRMED && event2InscriptionDate.status !== EventStatus.CONFIRMED) {
+            return -1;
+        }
+        if (event1InscriptionDate.status !== EventStatus.CONFIRMED && event2InscriptionDate.status === EventStatus.CONFIRMED) {
+            return 1;
+        }
+        if (event1InscriptionDate.status === EventStatus.CONFIRMED && event2InscriptionDate.status === EventStatus.CONFIRMED) {
+            return event1InscriptionDate.date.getTime() - event2InscriptionDate.date.getTime();
+        }
+        if (event1InscriptionDate.status === EventStatus.TENTATIVE && event2InscriptionDate.status !== EventStatus.TENTATIVE) {
+            return -1;
+        }
+        if (event1InscriptionDate.status !== EventStatus.TENTATIVE && event2InscriptionDate.status === EventStatus.TENTATIVE) {
+            return 1;
+        }
+        if (event1InscriptionDate.status === EventStatus.TENTATIVE && event2InscriptionDate.status === EventStatus.TENTATIVE) {
+            return event1InscriptionDate.month - event2InscriptionDate.month;
+        }
+        if (event1InscriptionDate.status === EventStatus.UPCOMING && event2InscriptionDate.status !== EventStatus.UPCOMING) {
+            return -1;
+        }
+        if (event1InscriptionDate.status !== EventStatus.UPCOMING && event2InscriptionDate.status === EventStatus.UPCOMING) {
+            return 1;
+        }
+        if (event1InscriptionDate.status === EventStatus.UPCOMING && event2InscriptionDate.status === EventStatus.UPCOMING) {
+            return event1InscriptionDate.year - event2InscriptionDate.year;
+        }
+        return 0;
+    }
+
+    public getUpcomingEvents(): Observable<Event[]> {
         return this.getAllEvents("getUpcomingEvents").pipe(
-            map((events: EventCardData[]) => events
-                .filter((event) =>
-                    event.dates.length > 0 && (event.dates[0].date == null ||
-                    event.dates[0].date.getTime() >= Timestamp.now().toDate().getTime())
-                )
-                .sort((event1, event2) => {
-                    if (event1.dates.length !== event2.dates.length) {
-                        return event2.dates.length - event1.dates.length;
-                    }
-                    const eventDate1 = event1.dates[0];
-                    const eventDate2 = event2.dates[0];
-                    if (eventDate1.date && eventDate2.date) {
-                        if (eventDate1.showMonth && eventDate2.showMonth || !eventDate1.showMonth && !eventDate2.showMonth) {
-                            return eventDate1.date.getTime() - eventDate2.date.getTime();
-                        }
-                        return eventDate1.showMonth ? 1 : -1;
-                    }
-                    return event1.dates[0].date ? -1 : 1;
-                })
+            map((events: Event[]) => events
+                .filter(EventService.filterUpcomingEvents)
+                .sort(EventService.sortEvents)
             )
         );
     }
 
-    getRasEvents(): Observable<EventCardData[]> {
+    getRasEvents(): Observable<Event[]> {
         return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)), 'getRasEvents');
     }
 
-    getEvent(eventId: IeeeEvent): Observable<EventCardData> {
-        const subject = new Subject<EventCardData>();
-        getDoc(doc(this.afs, EventService.collectionName, eventId)).then((data) => {
-            subject.next(this.mapEventCardSnapshot(data));
+    getEvent(eventId: IeeeEvent): Observable<Event> {
+        const subject = new Subject<Event>();
+        getDoc(doc(this.afs, EventService.collectionName, eventId)).then((data: QueryDocumentSnapshot<EventDoc>) => {
+            subject.next(EventService.mapEventDoc(data));
         }).catch((error) => {
             console.error(`getEvent ${eventId} failed: ${error}`);
             subject.next(null);
@@ -106,38 +146,67 @@ export class EventService {
         return subject.asObservable();
     }
 
-    private isCurrentUserAdmin(): Promise<boolean> {
-        return new Promise((resolve) => {
-            this.authService.getCurrentUser()
-                .subscribe(async (user) => {
-                    if (!user) {
-                        resolve(false);
-                    } else {
-                        const userRole = user.role || await this.userService.getCurrentUserRole(user.email);
-                        resolve(userRole === roles.admin);
-                    }
-                });
-        });
-    }
-
-    private getIsoDate(date: Date): string {
+    private static getIsoDate(date: Date): `${number}-${number}-${number}` {
         const isoTimeStamp = date.toISOString();
-        return isoTimeStamp.split('T')[0];
+        return isoTimeStamp.split('T')[0] as `${number}-${number}-${number}`;
     }
 
-    async updateEvent(event: EventCardData): Promise<boolean> {
-        if (!await this.isCurrentUserAdmin()) {
+    private static mapEventDates(event: Event): EventDoc['dates'] {
+        const now = Timestamp.now().toDate();
+        const dates: EventDoc['dates'] = {} as EventDoc['dates'];
+        for (const date in event.dates) {
+            if (event.dates[date].status === EventStatus.CONFIRMED) {
+                if (event.dates[date].date === null) {
+                    throw new Error(`updateEventDocDates failed: date ${date} is null`);
+                }
+                if (event.dates[date].date < now) {
+                    throw new Error(`updateEventDocDates failed: date ${date} is in the past`);
+                }
+                dates[date] = {
+                    status: EventStatus.CONFIRMED,
+                    date: EventService.getIsoDate(event.dates[date].date)
+                }
+            } else if (event.dates[date].status === EventStatus.TENTATIVE) {
+                if (event.dates[date].month === null) {
+                    throw new Error(`updateEventDocDates failed: month ${date} is null`);
+                }
+                if (event.dates[date].month > 11) {
+                    throw new Error(`updateEventDocDates failed: month ${event.dates[date].month} is invalid`);
+                }
+                if (event.dates[date].month < now.getMonth()) {
+                    throw new Error(`updateEventDocDates failed: month ${event.dates[date].month} is in the past`);
+                }
+            } else if (event.dates[date].status === EventStatus.UPCOMING) {
+                if (event.dates[date].year === null) {
+                    throw new Error(`updateEventDocDates failed: year ${date} is null`);
+                }
+                if (event.dates[date].year < now.getFullYear()) {
+                    throw new Error(`updateEventDocDates failed: year ${event.dates[date].year} is in the past`);
+                }
+            }
+            dates[date] = {
+                ...event.dates[date]
+            }
+        }
+        return dates;
+    }
+
+    private static mapEvent(event: Event): EventDoc {
+        const dates = EventService.mapEventDates(event);
+        return {
+            ...event,
+            dates
+        }
+    }
+
+    async updateEvent(event: Event): Promise<boolean> {
+        if (!await this.userService.isCurrentUserAdmin()) {
             console.error('updateEvent failed: user is not admin');
             return false;
         }
         try {
-            await updateDoc(doc(this.afs, EventService.collectionName, event.id), {
-                ...event,
-                dates: event.dates.map((eventDate) => ({
-                    ...eventDate,
-                    date: this.getIsoDate(eventDate.date),
-                }))
-            });
+            const eventDoc = EventService.mapEvent(event);
+            await updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc);
             return true;
         } catch (error) {
             console.error(`updateEvent ${event.id} failed: ${error}`);
