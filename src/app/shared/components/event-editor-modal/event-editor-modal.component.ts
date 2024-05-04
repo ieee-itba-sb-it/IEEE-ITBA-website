@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EventCardData} from "../../models/event/event-card-data";
+import {Event} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {
@@ -18,7 +18,7 @@ import {
 })
 export class EventEditorModalComponent implements OnInit {
 
-    @Input() event: EventCardData;
+    @Input() event: Event;
     eventForm: FormGroup;
     errorI18n: string = null;
     loading = false;

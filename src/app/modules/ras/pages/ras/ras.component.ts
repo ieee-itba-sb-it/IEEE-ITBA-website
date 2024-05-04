@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {EventCardData} from '../../../../shared/models/event/event-card-data';
+import {Event} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Commission} from '../../../../shared/models/commission';
 import {TeamService} from '../../../../core/services/team/team.service';
@@ -13,7 +13,7 @@ import {Observable} from 'rxjs';
 })
 export class RasComponent implements OnInit {
 
-    events: EventCardData[] = [];
+    events: Event[] = [];
     loadingEvents: boolean = true;
     team$: Observable<Commission> = null;
 

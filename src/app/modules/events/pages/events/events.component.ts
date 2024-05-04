@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventCardData} from '../../../../shared/models/event/event-card-data';
+import {Event} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {EventService} from '../../../../core/services/event/event.service';
 })
 export class EventsComponent implements OnInit {
 
-    events: EventCardData[] = [];
+    events: Event[] = [];
     loadingEvents: boolean = true;
 
     constructor(private eventService: EventService) {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MDBModalRef, MDBModalService} from "angular-bootstrap-md";
 import {EventEditorModalComponent} from "../event-editor-modal/event-editor-modal.component";
-import {EventCardData} from "../../models/event/event-card-data";
+import {Event} from "../../models/event/event";
 import {AuthService} from "../../../core/services/authorization/auth.service";
 import {BehaviorSubject, map} from "rxjs";
 import {UserService} from "../../../core/services/user/user.service";
@@ -16,7 +16,7 @@ export class EventEditorButtonComponent {
     constructor(private modalService: MDBModalService, private authService: AuthService, private userService: UserService) { }
 
     modalRef: MDBModalRef | null = null;
-    @Input() event: EventCardData;
+    @Input() event: Event;
 
     isAdmin$ = this.authService.getCurrentUser().pipe(map((user) => {
         return !!user && user.role === roles.admin;
