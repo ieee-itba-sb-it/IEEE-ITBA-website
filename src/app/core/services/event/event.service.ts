@@ -37,9 +37,19 @@ export class EventService {
                     status: EventStatus.CONFIRMED,
                     date: new Date(eventDoc.dates[date].date)
                 }
+            } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
+                dates[date] = {
+                    status: EventStatus.TENTATIVE,
+                    month: parseInt(eventDoc.dates[date].month, 10)
+                }
+            } else if (eventDoc.dates[date].status === EventStatus.UPCOMING) {
+                dates[date] = {
+                    status: EventStatus.UPCOMING,
+                    year: parseInt(eventDoc.dates[date].year, 10)
+                }
             } else {
                 dates[date] = {
-                    ...eventDoc.dates[date]
+                    status: EventStatus.UNSCHEDULED
                 }
             }
         }
@@ -74,52 +84,51 @@ export class EventService {
 
     private static filterUpcomingEvents(event: Event): boolean {
         const now = Timestamp.now().toDate();
-        const inscriptionDate = event.dates[EventDate.INSCRIPTION];
-        if (inscriptionDate.status === EventStatus.UNSCHEDULED) {
+        const openingDate = event.dates[EventDate.OPENING];
+        if (openingDate.status === EventStatus.UNSCHEDULED) {
             return false;
         }
-        if (inscriptionDate.status === EventStatus.UPCOMING) {
-            return inscriptionDate.year >= now.getFullYear();
+        if (openingDate.status === EventStatus.UPCOMING) {
+            return openingDate.year >= now.getFullYear();
         }
-        if (inscriptionDate.status === EventStatus.TENTATIVE) {
-            return inscriptionDate.month >= now.getMonth();
+        if (openingDate.status === EventStatus.TENTATIVE) {
+            return openingDate.month >= now.getMonth();
         }
-        if (inscriptionDate.status === EventStatus.CONFIRMED) {
-            return inscriptionDate.date >= now;
+        if (openingDate.status === EventStatus.CONFIRMED) {
+            return openingDate.date >= now;
         }
     }
 
+    private static getFakeDate(eventDate: Event['dates'][EventDate]): Date {
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            return eventDate.date;
+        }
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            // The last day of the month
+            const today = new Date();
+            return new Date(Date.UTC(today.getFullYear(), eventDate.month + 1, 0));
+        }
+        if (eventDate.status === EventStatus.UPCOMING) {
+            // The last day of the year
+            return new Date(eventDate.year, 11, 31);
+        }
+        return null;
+    }
+
     private static sortEvents(event1: Event, event2: Event): number {
-        const event1InscriptionDate = event1.dates[EventDate.INSCRIPTION];
-        const event2InscriptionDate = event2.dates[EventDate.INSCRIPTION];
-        if (event1InscriptionDate.status === EventStatus.CONFIRMED && event2InscriptionDate.status !== EventStatus.CONFIRMED) {
+        const event1OpeningDate = event1.dates[EventDate.OPENING];
+        const event2OpeningDate = event2.dates[EventDate.OPENING];
+        if (event1OpeningDate.status === EventStatus.UNSCHEDULED) {
+            if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
+                return 0;
+            }
             return -1;
-        }
-        if (event1InscriptionDate.status !== EventStatus.CONFIRMED && event2InscriptionDate.status === EventStatus.CONFIRMED) {
+        } else if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
             return 1;
         }
-        if (event1InscriptionDate.status === EventStatus.CONFIRMED && event2InscriptionDate.status === EventStatus.CONFIRMED) {
-            return event1InscriptionDate.date.getTime() - event2InscriptionDate.date.getTime();
-        }
-        if (event1InscriptionDate.status === EventStatus.TENTATIVE && event2InscriptionDate.status !== EventStatus.TENTATIVE) {
-            return -1;
-        }
-        if (event1InscriptionDate.status !== EventStatus.TENTATIVE && event2InscriptionDate.status === EventStatus.TENTATIVE) {
-            return 1;
-        }
-        if (event1InscriptionDate.status === EventStatus.TENTATIVE && event2InscriptionDate.status === EventStatus.TENTATIVE) {
-            return event1InscriptionDate.month - event2InscriptionDate.month;
-        }
-        if (event1InscriptionDate.status === EventStatus.UPCOMING && event2InscriptionDate.status !== EventStatus.UPCOMING) {
-            return -1;
-        }
-        if (event1InscriptionDate.status !== EventStatus.UPCOMING && event2InscriptionDate.status === EventStatus.UPCOMING) {
-            return 1;
-        }
-        if (event1InscriptionDate.status === EventStatus.UPCOMING && event2InscriptionDate.status === EventStatus.UPCOMING) {
-            return event1InscriptionDate.year - event2InscriptionDate.year;
-        }
-        return 0;
+        const fakeEvent1Date = EventService.getFakeDate(event1OpeningDate);
+        const fakeEvent2Date = EventService.getFakeDate(event2OpeningDate);
+        return fakeEvent1Date.getTime() - fakeEvent2Date.getTime();
     }
 
     public getUpcomingEvents(): Observable<Event[]> {
@@ -146,9 +155,9 @@ export class EventService {
         return subject.asObservable();
     }
 
-    private static getIsoDate(date: Date): `${number}-${number}-${number}` {
+    private static getIsoDate(date: Date): string {
         const isoTimeStamp = date.toISOString();
-        return isoTimeStamp.split('T')[0] as `${number}-${number}-${number}`;
+        return isoTimeStamp.split('T')[0];
     }
 
     private static mapEventDates(event: Event): EventDoc['dates'] {
@@ -176,6 +185,10 @@ export class EventService {
                 if (event.dates[date].month < now.getMonth()) {
                     throw new Error(`updateEventDocDates failed: month ${event.dates[date].month} is in the past`);
                 }
+                dates[date] = {
+                    status: EventStatus.TENTATIVE,
+                    month: event.dates[date].month
+                }
             } else if (event.dates[date].status === EventStatus.UPCOMING) {
                 if (event.dates[date].year === null) {
                     throw new Error(`updateEventDocDates failed: year ${date} is null`);
@@ -183,9 +196,14 @@ export class EventService {
                 if (event.dates[date].year < now.getFullYear()) {
                     throw new Error(`updateEventDocDates failed: year ${event.dates[date].year} is in the past`);
                 }
-            }
-            dates[date] = {
-                ...event.dates[date]
+                dates[date] = {
+                    status: EventStatus.UPCOMING,
+                    year: event.dates[date].year
+                }
+            } else {
+                dates[date] = {
+                    status: EventStatus.UNSCHEDULED
+                }
             }
         }
         return dates;
