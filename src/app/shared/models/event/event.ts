@@ -16,7 +16,7 @@ export enum EventStatus {
 }
 
 export enum EventDate {
-    INSCRIPTION = "INSCRIPTION",
+    OPENING = "OPENING",
 }
 
 export type Event = {
