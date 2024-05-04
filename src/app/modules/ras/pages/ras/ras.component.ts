@@ -23,7 +23,7 @@ export class RasComponent implements OnInit {
     ngOnInit(): void {
         this.getRasEvents();
         this.team$ = this.teamService.getRasTeam();
-        this.appConfigService.setPaletteColors({
+        this.appConfigService.setAppColors({
             background: '#862633',
             underlying: '#C83D59FF',
             hover: '#9E4C67FF'

@@ -47,9 +47,9 @@ export class EventEditorModalComponent implements OnInit {
     }
 
     getColor() {
-        this.appConfigService.getPaletteColors().subscribe(
-            palletColors => {
-                this.color = palletColors.background;
+        this.appConfigService.getAppColors().subscribe(
+            appColors => {
+                this.color = appColors.background;
             }
         );
     }

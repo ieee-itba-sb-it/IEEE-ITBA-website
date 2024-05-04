@@ -41,8 +41,8 @@ export class AppComponent implements OnInit {
 
     title = 'ITBA-IEEE-Website-A9';
 
-    getPaletteColors() {
-        return this.appConfigService.getPaletteColors();
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     useLanguage(language: string) {
