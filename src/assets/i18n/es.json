@@ -335,7 +335,8 @@
     "OF": "de",
     "MORENEWS": "Ver más noticias",
     "RECOMMENDED": "Noticias recomendadas",
-    "RATING": "¿Que te pareció la noticia?"
+    "RATING": "¿Que te pareció la noticia?",
+    "EDIT-NEW": "Editar noticia"
   },
   "IEEEXTREME": {
     "FACTS": {
@@ -579,6 +580,7 @@
     "BODY": "Cuerpo",
     "CHECKBUTTON": "Mostrar en la página de noticias",
     "UPLOAD": "SUBIR NOTICIA",
+    "UPDATE": "ACTUALIZAR NOTICIA",
     "TAGS": "Tags (hasta 3)",
     "FIRST_PARAGRAPH": "Primer párrafo encima de la imagen",
     "PUBLISH_NOW": "Publicar ahora",
