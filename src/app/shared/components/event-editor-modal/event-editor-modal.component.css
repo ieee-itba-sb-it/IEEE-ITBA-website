@@ -10,9 +10,47 @@
     margin-bottom: 0;
 }
 
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
 .modal-body label {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.event-date-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+}
+
+.event-date-container .event-date-title {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.event-date-container .event-date-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.event-date-info .status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-date-info .status-container .status-item {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.25rem;
+    align-items: center;
 }
 
 .modal-body .error-container {

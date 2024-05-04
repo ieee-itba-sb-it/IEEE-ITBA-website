@@ -13,32 +13,101 @@
 </div>
 <form [formGroup]="eventForm" (ngSubmit)="updateEvent()">
     <div class="modal-body">
-        <label for="date">{{ "HOME.EVENTS.INITIAL_DATE" | translate }}</label>
-        <input
-            type="date"
-            id="date"
-            class="form-control"
-            formControlName="date"
-            required
-        >
-        <div *ngIf="(date.invalid && (date.dirty || date.touched)) || !!errorI18n" class="error-container">
-            <p *ngIf="date.errors?.['required']" class="error">
-                {{ "HOME.EVENTS.EDIT.ERROR.DATE_REQUIRED" | translate }}
-            </p>
-            <p *ngIf="date.errors?.['pattern']" class="error">
-                {{ "HOME.EVENTS.EDIT.ERROR.DATE_INVALID" | translate }}
-            </p>
-            <p *ngIf="date.errors?.['pastDate']" class="error">
-                {{ "HOME.EVENTS.EDIT.ERROR.DATE_PAST" | translate }}
-            </p>
-            <p *ngIf="!!errorI18n" class="error">
+        <div *ngFor="let eventDate of eventDates" class="event-date-container" formGroupName="{{eventDate}}">
+            <h3 class="event-date-title">{{ ("HOME.EVENTS.DATE." + eventDate) | translate }}</h3>
+            <div class="event-date-info">
+                <label for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
+                <div class="status-container">
+                    <div *ngFor="let eventStatus of eventStatuses" class="status-item">
+                        <input
+                            type="radio"
+                            id="{{eventDate + '-status'}}"
+                            formControlName="status"
+                            value="{{eventStatus}}"
+                            required
+                        >
+                        <span>{{ ("HOME.EVENTS.STATUS." + eventStatus) | translate }}</span>
+                    </div>
+                </div>
+                <div *ngIf="isEventDateConfirmed(eventDate)" class="event-date">
+                    <label for="{{eventDate + '-date'}}">{{ "HOME.EVENTS.DATE.TITLE" | translate }}</label>
+                    <input
+                        type="date"
+                        id="{{eventDate + '-date'}}"
+                        class="form-control"
+                        formControlName="date"
+                        required
+                    >
+    <!--                <div *ngIf="(eventForm[eventDate].date.invalid && (eventForm[eventDate].date.dirty || eventForm[eventDate].date.touched))" class="error-container">-->
+    <!--                    <p *ngIf="eventForm[eventDate].date.errors?.['pattern']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.DATE_INVALID" | translate }}-->
+    <!--                    </p>-->
+    <!--                    <p *ngIf="eventForm[eventDate].date.errors?.['pastDate']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.DATE_PAST" | translate }}-->
+    <!--                    </p>-->
+    <!--                </div>-->
+                </div>
+                <div *ngIf="isEventDateTentative(eventDate)" class="event-month">
+                    <label for="{{eventDate + '-month'}}">{{ "HOME.EVENTS.MONTH.TITLE" | translate }}</label>
+                    <select
+                        id="{{eventDate + '-month'}}"
+                        class="form-select"
+                        formControlName="month"
+                    >
+                        <option [value]="defaultMonthValue">{{ "HOME.EVENTS.MONTH.PLACEHOLDER" | translate }}</option>
+                        <option *ngFor="let month of months" [value]="month">{{ ('MONTH.' + month) | translate }}</option>
+                    </select>
+    <!--                <div *ngIf="(eventForm[eventDate].month.invalid && (eventForm[eventDate].month.dirty || eventForm[eventDate].month.touched))" class="error-container">-->
+    <!--                    <p *ngIf="eventForm[eventDate].month.errors?.['pattern']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.MONTH_INVALID" | translate }}-->
+    <!--                    </p>-->
+    <!--                    <p *ngIf="eventForm[eventDate].month.errors?.['invalidMonth']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.MONTH_INVALID" | translate }}-->
+    <!--                    </p>-->
+    <!--                    <p *ngIf="eventForm[eventDate].month.errors?.['pastMonth']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.MONTH_PAST" | translate }}-->
+    <!--                    </p>-->
+    <!--                </div>-->
+                </div>
+                <div *ngIf="isEventDateUpcoming(eventDate)" class="event-year"><label for="{{eventDate + '-year'}}">{{ "HOME.EVENTS.YEAR.TITLE" | translate }}</label>
+                    <input
+                        type="number"
+                        id="{{eventDate + '-year'}}"
+                        class="form-control"
+                        formControlName="year"
+                        required
+                    >
+    <!--                <div *ngIf="(eventForm[eventDate].year.invalid && (eventForm[eventDate].year.dirty || eventForm[eventDate].year.touched))" class="error-container">-->
+    <!--                    <p *ngIf="eventForm[eventDate].year.errors?.['pattern']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.YEAR_INVALID" | translate }}-->
+    <!--                    </p>-->
+    <!--                    <p *ngIf="eventForm[eventDate].year.errors?.['pastYear']" class="error">-->
+    <!--                        {{ "HOME.EVENTS.EDIT.ERROR.YEAR_PAST" | translate }}-->
+    <!--                    </p>-->
+    <!--                </div>-->
+                </div>
+    <!--            <div *ngIf="Object.keys(eventForm[eventDate].errors).length > 0 && (eventForm[eventDate].dirty || eventForm[eventDate].touched)" class="error-container">-->
+    <!--                <p *ngIf="eventForm[eventDate].errors?.['dateRequired']" class="error">-->
+    <!--                    {{ "HOME.EVENTS.EDIT.ERROR.DATE_REQUIRED" | translate }}-->
+    <!--                </p>-->
+    <!--                <p *ngIf="eventForm[eventDate].errors?.['monthRequired']" class="error">-->
+    <!--                    {{ "HOME.EVENTS.EDIT.ERROR.MONTH_REQUIRED" | translate }}-->
+    <!--                </p>-->
+    <!--                <p *ngIf="eventForm[eventDate].errors?.['yearRequired']" class="error">-->
+    <!--                    {{ "HOME.EVENTS.EDIT.ERROR.YEAR_REQUIRED" | translate }}-->
+    <!--                </p>-->
+    <!--            </div>-->
+            </div>
+        </div>
+        <div *ngIf="!!errorI18n" class="error-container">
+            <p class="error">
                 {{ errorI18n | translate }}
             </p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button type="submit" class="btn save-btn" [disabled]="eventForm.invalid || loading">
+        <button type="submit" class="btn save-btn" [disabled]="loading">
             {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
         </button>
     </div>

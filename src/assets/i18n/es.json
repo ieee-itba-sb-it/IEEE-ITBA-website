@@ -244,8 +244,24 @@
       "TITLE": "Eventos",
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
       "MORE": "Ver más eventos",
-      "INITIAL_DATE": "Fecha de inicio",
-      "UNSCHEDULED": "A definir",
+      "DATE": {
+         "TITLE": "Fecha",
+         "OPENING": "Fecha de apertura"
+      },
+      "MONTH": {
+          "TITLE": "Mes",
+          "PLACEHOLDER": "Elegí un mes"
+      },
+      "YEAR": {
+          "TITLE": "Año"
+      },
+      "STATUS": {
+          "TITLE": "Estado",
+          "UNSCHEDULED": "A definir",
+          "UPCOMING": "Próximamente",
+          "TENTATIVE": "Tentativo",
+          "CONFIRMED": "Confirmado"
+      },
       "EDIT": {
          "TITLE": "Editar evento",
          "CANCEL": "Cancelar",
@@ -254,7 +270,13 @@
              "UPDATE": "Ocurrió un error al actualizar el evento",
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
-             "DATE_PAST": "La fecha no puede ser en el pasado"
+             "DATE_PAST": "La fecha no puede ser en el pasado",
+             "MONTH_REQUIRED": "El mes es requerido",
+             "MONTH_INVALID": "El mes es inválido",
+             "MONTH_PAST": "El mes no puede ser anterior al mes actual",
+             "YEAR_REQUIRED": "El año es requerido",
+             "YEAR_INVALID": "El año es inválido",
+             "YEAR_PAST": "El año no puede ser anterior al año actual"
          }
       }
     },
@@ -1037,5 +1059,19 @@
   },
   "CS": {
     "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
+  },
+  "MONTH": {
+      "0": "Enero",
+      "1": "Febrero",
+      "2": "Marzo",
+      "3": "Abril",
+      "4": "Mayo",
+      "5": "Junio",
+      "6": "Julio",
+      "7": "Agosto",
+      "8": "Septiembre",
+      "9": "Octubre",
+      "10": "Noviembre",
+      "11": "Diciembre"
   }
 }
