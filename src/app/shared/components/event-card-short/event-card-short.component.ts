@@ -36,18 +36,18 @@ export class EventCardShortComponent implements OnInit {
   }
 
   getEventDate(): string {
-      const inscriptionDate = this.event.dates[EventDate.INSCRIPTION];
-      if (inscriptionDate.status === EventStatus.CONFIRMED) {
-          const date = inscriptionDate.date;
+      const openingDate = this.event.dates[EventDate.OPENING];
+      if (openingDate.status === EventStatus.CONFIRMED) {
+          const date = openingDate.date;
           return this.capitalizeFirstLetter(date.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + date.getFullYear();
       }
-      if (inscriptionDate.status === EventStatus.TENTATIVE) {
-          const fakeDate = new Date(new Date().getFullYear(), inscriptionDate.month);
-          return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'}));
+      if (openingDate.status === EventStatus.TENTATIVE) {
+          const fakeDate = new Date(new Date().getFullYear(), openingDate.month);
+          return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
       }
-      if (inscriptionDate.status === EventStatus.UPCOMING) {
-          return inscriptionDate.year.toLocaleString();
+      if (openingDate.status === EventStatus.UPCOMING) {
+          return openingDate.year.toLocaleString();
       }
-      return this.translate.instant('EVENTS.UNSCHEDULED');
+      return this.translate.instant('EVENTS.STATUS.UNSCHEDULED');
   }
 }
