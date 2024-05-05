@@ -30,7 +30,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const routes: Routes = [
     { path: '',  component: WriteNewsComponent },
-    { path: ':id', component: EditarAnuncioComponent }
+    { path: ':id', component: WriteNewsComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);

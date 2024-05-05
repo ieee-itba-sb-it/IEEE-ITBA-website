@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { blogCollectionName } from '../../../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sanitizeString } from '../../utils';
 import {AuthService} from '../../../../core/services/authorization/auth.service';
-import {Observable} from 'rxjs';
+import {Observable, switchMap} from 'rxjs';
 import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -49,11 +49,9 @@ export class WriteNewsComponent implements OnInit {
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
+  @Input('id') newsReference: string = '';
+
   constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService) {
-      this.filteredTags = this.tagControl.valueChanges.pipe(
-          startWith(null),
-          map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice())
-      );
       this.user = {
           fname: '',
           lname: '',
@@ -75,6 +73,10 @@ export class WriteNewsComponent implements OnInit {
           tags: [],
           ratings: [0, 0, 0, 0, 0],
       };
+      this.filteredTags = this.tagControl.valueChanges.pipe(
+          startWith(null),
+          map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice())
+      );
       this.blogService.setCollectionName(blogCollectionName);
       this.blogService.getDocsTagsAsObservable().subscribe((tags: string[]) => {
           this.allTags = tags;
@@ -91,6 +93,20 @@ export class WriteNewsComponent implements OnInit {
       this.minDate.setDate(this.minDate.getDate() + 1);
       this.publishDate = new Date(this.minDate);
       this.blogService.retrieveDocsSize();
+  }
+
+  ngOnInit() {
+      this.blogService.getDoc(this.newsReference).subscribe(news => {
+          if (news) {
+              this.newsContent = news;
+              this.newsContent.reference = this.newsReference;
+              this.textContent = news.content;
+              this.newsContent.tags.forEach(tag => this.addTag(tag));
+              if (this.newsContent.shortIntro != '') {
+                  this.hasShortIntro = true;
+              }
+          }
+      })
   }
 
   dateFormatted() {
@@ -114,7 +130,7 @@ export class WriteNewsComponent implements OnInit {
       // Add our tag
       if ((value || '').trim()) {
           if (this.allTags.includes(this.sanitizeTag(value.trim()))) {
-              this.newsTagMap[this.sanitizeTag(value)] = true;
+              this.addTag(value)
           }
       }
 
@@ -124,6 +140,10 @@ export class WriteNewsComponent implements OnInit {
       }
 
       this.tagControl.setValue(null);
+  }
+
+  addTag(tag: string) {
+      this.newsTagMap[this.sanitizeTag(tag)] = true;
   }
 
   remove(tag: string): void {
@@ -144,13 +164,16 @@ export class WriteNewsComponent implements OnInit {
       return Object.keys(this.newsTagMap);
   }
 
+  getAuthorName() {
+      if (!this.newsContent.author) {
+          return this.user.fname + ' ' + this.user.lname;
+      }
+      return this.newsContent.author;
+  }
+
   private _filter(value: string): string[] {
       const filterValue = value.toLowerCase();
       return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  ngOnInit() {
-
   }
 
   splitContent() {
@@ -176,25 +199,24 @@ export class WriteNewsComponent implements OnInit {
   }
 
   submitNews() {
-      this.newsContent.author = this.user.fname + ' ' + this.user.lname;
+      if (this.newsReference) {
+          this.blogService.setDoc(
+              this.newsContent
+          ).subscribe(sent => {
+              if (sent) {
+                  this.router.navigate([`/noticias/${this.newsContent.reference}`]);
+              }
+          });
+          return;
+      }
+
+      this.newsContent.author = this.getAuthorName();
       this.newsContent.reference = encodeURIComponent(sanitizeString(this.newsContent.title) + '-' + this.blogService.docsSize.getValue());
       this.newsContent.tags = this.currentTags();
 
       if (this.newsContent.title !== '') {
           this.blogService.setDoc(
-              createNewsItem(
-                  this.newsContent.title,
-                  this.newsContent.content,
-                  this.newsContent.shortIntro,
-                  this.newsContent.imageUrl,
-                  Timestamp.fromDate(this.newsContent.date),
-                  this.newsContent.author,
-                  this.newsContent.imageText,
-                  this.newsContent.reference,
-                  this.newsContent.listed,
-                  this.newsContent.tags,
-                  this.newsContent.ratings
-              )
+              this.newsContent
           ).subscribe(sent => {
               if (sent) {
                   this.router.navigate([`/noticias/${this.newsContent.reference}`]);

@@ -291,7 +291,8 @@
     "OF": "of",
     "MORENEWS": "View more news",
     "RECOMMENDED": "Recommended news",
-    "RATING": "What do you think about the post?"
+    "RATING": "What do you think about the post?",
+    "EDIT-NEW": "Edit news"
   },
   "IEEEXTREME": {
     "FACTS": {
@@ -535,6 +536,7 @@
     "BODY": "Body",
     "CHECKBUTTON": "show on the news page",
     "UPLOAD": "UPLOAD NEWS",
+    "UPDATE": "UPDATE NEWS",
     "TAGS": "Tags (up to 3)",
     "FIRST_PARAGRAPH": "First paragraph over image",
     "PUBLISH_NOW": "Publish now",

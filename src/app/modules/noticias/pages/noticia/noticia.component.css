@@ -363,3 +363,42 @@ hr {
   background-color: var(--bs-ieee-bright-blue);
   border-color: transparent;
 }
+
+.outside-div {
+    position: sticky;
+    bottom: 2rem;
+    margin-left: 100%;
+}
+
+.inside-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
+.button-tooltip {
+    text-wrap: nowrap;
+    background-color: whitesmoke;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 100%;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+}
+
+.button-tooltip.hidden {
+    opacity: 0;
+}
+
+.edit-button {
+    font-weight: 600;
+    padding: 1rem;
+    border: solid var(--bs-ieee-bright-blue);
+    border-radius: 50%;
+    background-color: var(--bs-ieee-bright-blue);
+    color: var(--bs-light);
+    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+}
