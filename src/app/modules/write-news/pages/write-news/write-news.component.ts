@@ -100,11 +100,11 @@ export class WriteNewsComponent implements OnInit {
           if (news) {
               this.newsContent = news;
               this.newsContent.reference = this.newsReference;
-              this.textContent = news.content;
               this.newsContent.tags.forEach(tag => this.addTag(tag));
               if (this.newsContent.shortIntro != '') {
                   this.hasShortIntro = true;
               }
+              this.textContent = this.newsContent.shortIntro + this.newsContent.content;
           }
       })
   }
@@ -176,26 +176,33 @@ export class WriteNewsComponent implements OnInit {
       return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  splitContent() {
+  splitContent(htmlText?: string) {
+      let text: string = '';
+      if (htmlText) {
+          text = htmlText;
+      } else {
+          text = this.textContent;
+      }
       const breakCharacter = '</p>';
-      const breakCharacterIdx = this.textContent.indexOf(breakCharacter);
+      const breakCharacterIdx = text.indexOf(breakCharacter);
 
       if (this.hasShortIntro) {
           let skippedCharacters = breakCharacter.length;
-          this.newsContent.shortIntro = this.textContent.substring(0, breakCharacterIdx + skippedCharacters);
+          this.newsContent.shortIntro = text.substring(0, breakCharacterIdx + skippedCharacters);
           if (this.newsContent.shortIntro.length > 0) {
               skippedCharacters = breakCharacter.length;
           }
-          this.newsContent.content = this.textContent.substring(breakCharacterIdx + skippedCharacters);
+          this.newsContent.content = text.substring(breakCharacterIdx + skippedCharacters);
       } else {
           this.newsContent.shortIntro = '';
-          this.newsContent.content = this.textContent;
+          this.newsContent.content = text;
       }
   }
 
   updateNewsText($event) {
-      this.textContent = $event.html;
-      this.splitContent();
+      // TODO: Fix infinite callback on ngOnInit() when assigning text without shortIntro
+      // this.textContent = $event.html;
+      this.splitContent($event.html);
   }
 
   submitNews() {
