@@ -21,7 +21,7 @@ export class CursoPythonComponent implements OnInit {
     week2SolutionsLink = 'https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_2_Curso_Introductorio_de_Python.ipynb';
     week3SolutionsLink = 'https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb';
 
-    week1ContentOpen = false;
+    week1ContentOpen = true;
     week2ContentOpen = false;
     week3ContentOpen = false;
     week4ContentOpen = false;
@@ -52,14 +52,14 @@ export class CursoPythonComponent implements OnInit {
 
     constructor(private eventService: EventService) {
         scroll(0, 0);
-        this.enrollOpen = this.isOldDate('27 Mar 2023 03:00:00 UTC');
-        this.enrollClosed = this.isOldDate('07 Aug 2023 03:00:00 UTC');
-
-        this.contentClosed = this.isOldDate('02 Oct 2023 03:00:00 UTC');
-        this.week1ContentOpen = this.isOldDate('14 Aug 2023 03:00:00 UTC') && !this.contentClosed;
-        this.week2ContentOpen = this.isOldDate('21 Aug 2023 03:00:00 UTC') && !this.contentClosed;
-        this.week3ContentOpen = this.isOldDate('28 Aug 2023 03:00:00 UTC') && !this.contentClosed;
-        this.week4ContentOpen = this.isOldDate('04 Sep 2023 03:00:00 UTC') && !this.contentClosed;
+        // this.enrollOpen = this.isOldDate('27 Mar 2023 03:00:00 UTC');
+        // this.enrollClosed = this.isOldDate('07 Aug 2023 03:00:00 UTC');
+        //
+        // this.contentClosed = this.isOldDate('02 Oct 2023 03:00:00 UTC');
+        // this.week1ContentOpen = this.isOldDate('14 Aug 2023 03:00:00 UTC') && !this.contentClosed;
+        // this.week2ContentOpen = this.isOldDate('21 Aug 2023 03:00:00 UTC') && !this.contentClosed;
+        // this.week3ContentOpen = this.isOldDate('28 Aug 2023 03:00:00 UTC') && !this.contentClosed;
+        // this.week4ContentOpen = this.isOldDate('04 Sep 2023 03:00:00 UTC') && !this.contentClosed;
     }
 
     enrollAvailable() {

@@ -88,7 +88,7 @@ export class BlogService {
 
     getRecommendedNews(currentNewsDate: Date): Observable<NewsItem[]> {
         const call = new BehaviorSubject<NewsItem[]>([]);
-        getDocs(query(this.collection, 
+        getDocs(query(this.collection,
             where("date", "!=", Timestamp.fromDate(currentNewsDate)),
             where("listed", "==", true),
             orderBy("date", "desc"),
