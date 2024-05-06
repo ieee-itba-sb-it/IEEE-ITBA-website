@@ -1,104 +1,86 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from "../../../../core/services/admin/admin.service"
-import { BehaviorSubject, Observable, combineLatest, last, map, switchMap } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { UserEditorModalComponent } from 'src/app/shared/components/user-editor-modal/user-editor-modal.component';
+import { roles } from 'src/app/shared/models/roles/roles';
+import { IEEEUserFilters } from 'src/app/shared/models/ieee-user/ieee-user-filters';
+import { UserManagerService } from './user.manager';
+import { MatChipListboxChange } from '@angular/material/chips';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  providers: [UserManagerService]
 })
 export class UsersComponent implements OnInit {
 
-  users$: Observable<IEEEuser[]>;
-  count: number;
-  cursor: IEEEuser[] = [];
+  users$: Observable<{content: IEEEuser[], count: number, loading: boolean}>;
 
+  filters: IEEEUserFilters = {};
   searchbarTimeout: number;
-  searchword$: BehaviorSubject<string> = new BehaviorSubject(null);
 
-  roles: string[] = [null, "Admin", "Escritor"]
-  colors: string[] = [null, "primary", "accent"]
+  modalRef: MDBModalRef | null = null;
+  roles = roles;
 
-  userPage$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
-  userPageSize$: BehaviorSubject<number> = new BehaviorSubject<number>(10);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  constructor(private adminService: AdminService) {
-    adminService.setCollectionName('users');
-  }
-
-  setPageSize(size: number) {
-    this.userPage$.next(1);
-    this.userPageSize$.next(size);
-    this.firstPage();
-  }
-
-  hasNextPage(): boolean {
-    let pageCount = Math.floor((this.count - 1) / this.userPageSize$.getValue()) + 1;
-    return this.userPage$.getValue() < pageCount || !this.cursor[1];
-  }
-
-  hasPrevPage(): boolean {
-    return this.userPage$.getValue() > 1 || !this.cursor[0];
-  }
+  constructor(private userManagerService: UserManagerService, private modalService: MDBModalService) {}
   
   nextPage() {
-    if (!this.hasNextPage()) return;
-    this.users$ = this.adminService.getUsersNextPage(this.cursor[1], this.userPageSize$.getValue(), this.searchword$.getValue());
-    this.setCursor();
-    this.userPage$.next(this.userPage$.getValue() + 1);
+    this.userManagerService.pullNextPage();
   }
 
   prevPage() {
-    if (!this.hasPrevPage()) return;
-    this.users$ = this.adminService.getUsersPrevPage(this.cursor[0], this.userPageSize$.getValue(), this.searchword$.getValue());
-    this.setCursor();
-    this.userPage$.next(this.userPage$.getValue() - 1);
+    this.userManagerService.pullPrevPage();
   }
 
   firstPage() {
-    this.users$ = this.adminService.getUsersFirstPage(this.userPageSize$.getValue(), this.searchword$.getValue());
-    this.setCursor();
-  }
-
-  setCursor() {
-    this.users$.subscribe((users) => {
-      this.cursor[0] = users[0];
-      this.cursor[1] = users[users.length - 1];
-    })
+    if (this.paginator) this.paginator.firstPage();
+    this.userManagerService.pullUsers();
   }
 
   handlePageEvent(e: PageEvent) {
     if (e.pageIndex > e.previousPageIndex) this.nextPage();
     if (e.pageIndex < e.previousPageIndex) this.prevPage();
-    if (e.pageSize != this.userPageSize$.getValue()) this.setPageSize(e.pageSize);
+    if (this.userManagerService.setPageSize(e.pageSize)) this.paginator.firstPage();
   }
 
-  handleInputEvent(e: any) {
+  handleSearchbarEvent(e: any) {
     if (this.searchbarTimeout) clearTimeout(this.searchbarTimeout);
     this.searchbarTimeout = setTimeout(() => {
-      if (e.target.value == this.searchword$.getValue()) return;
-      if (e.target.value.trim() == "") this.searchword$.next(null);
-      else this.searchword$.next(e.target.value);
-      this.userPage$.next(1);
-      this.firstPage();
-      this.getCount();
+      if (e.target.value == this.filters.email) return;
+      if (e.target.value.trim() == "") delete this.filters.email;
+      else this.filters.email = e.target.value;
+      if (this.paginator) this.paginator.firstPage();
+      this.userManagerService.applyFilters(this.filters);
     }, 1000);
   }
 
-  getCount() {
-    let count$: Observable<number>;
-    if (!this.searchword$.getValue()) count$ = this.adminService.getTotalCount();
-    else count$ = this.adminService.getSearchCount(this.searchword$.getValue());
-    count$.subscribe(count => {
-      this.count = count;
+  handleRoleFilterEvent(e: MatChipListboxChange) {
+    this.filters.role = e.value;
+    if (e.value.length <= 0) delete this.filters.role;
+    if (this.paginator) this.paginator.firstPage();
+    this.userManagerService.applyFilters(this.filters);
+  }
+
+  openModal(user: IEEEuser) {
+    this.modalRef = this.modalService.show(UserEditorModalComponent, {
+        data: {
+            user: user
+        },
+        class: 'modal-dialog-centered',
+    });
+    this.modalRef.content.update.subscribe(user => {
+      this.userManagerService.updateUserLocally(user);
     })
   }
 
   ngOnInit(): void {
+    this.users$ = this.userManagerService.getUsers();
     this.firstPage();
-    this.getCount();
   }
 
 }

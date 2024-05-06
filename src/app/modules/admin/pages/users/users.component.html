@@ -1,28 +1,42 @@
 <div class="search-bar">
     <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
-    <input (keyup)="handleInputEvent($event)" (submit)="handleInputEvent($event)" type="text" name="user" id="user" autocomplete="off" placeholder="Buscar usuario por email">
+    <input (keyup)="handleSearchbarEvent($event)" 
+        (submit)="handleSearchbarEvent($event)" 
+        type="text" name="user" id="user" 
+        autocomplete="off" 
+        [placeholder]=" 'ADMIN.USERTAB.SEARCHBAR' | translate ">
     <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
 </div>
+<p class="role-filter-label">Filtrar por roles:</p>
+<mat-chip-listbox class="role-filter" aria-label="Role filter" (change)="handleRoleFilterEvent($event)" id="role" multiple>
+    <mat-chip-option *ngFor="let role of roles | slice:1; index as i" 
+        [color]="role.color" 
+        [value]="i+1">
+        {{ role.code | translate }}
+    </mat-chip-option>
+</mat-chip-listbox>
 <table>
     <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Rol</th>
+        <th>{{ "ADMIN.USERTAB.TABLE.FNAME" | translate }}</th>
+        <th>{{ "ADMIN.USERTAB.TABLE.LNAME" | translate }}</th>
+        <th>{{ "ADMIN.USERTAB.TABLE.EMAIL" | translate }}</th>
+        <th>{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</th>
     </tr>
-    <tr *ngFor="let user of users$ | async">
+    <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)">
         <td>{{ user.fname }}</td>
         <td>{{ user.lname }}</td>
         <td>{{ user.email }}</td>
         <td>
-            <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="colors[user.role]" highlighted>{{ roles[user.role] }}</mat-chip>
+            <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="roles[user.role].color" highlighted>{{ roles[user.role].code | translate }}</mat-chip>
         </td>
     </tr>
 </table>
-<mat-paginator [length]="count"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="handlePageEvent($event)"
-              aria-label="Select page"
-              class="paginator">
+<mat-paginator 
+    #paginator
+    [length]="(users$ | async).count"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 25, 50, 100]"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page"
+    class="paginator">
 </mat-paginator>

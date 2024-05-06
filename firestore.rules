@@ -8,7 +8,7 @@ service cloud.firestore {
 
     function hasRole(role) {
       let roles = {"admin": 1, "writer": 2};
-      return isSignedIn() && roles[role] in get(/databases/$(database)/documents/roles/$(request.auth.token.email)).data.roles;
+      return isSignedIn() && roles[role] == get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.role;
     }
 
     function isDataOwner() {
@@ -42,7 +42,7 @@ service cloud.firestore {
       allow create: if isSignedIn() && request.resource.data.uID == request.auth.uid;
     }
 
-    match /roles/{document=**} {
+    match /sensitive-user-data/{document=**} {
       allow read, write: if hasRole("admin");
     }
   }

@@ -987,6 +987,23 @@
   },
   "ADMIN": {
     "TITLE": "Admin panel",
-    "USERTAB": "Users"
+    "USERTAB": {
+      "TITLE": "Users",
+      "TABLE": {
+        "FNAME": "First Name",
+        "LNAME": "Last Name",
+        "EMAIL": "Email",
+        "ROLE": "Role"
+      },
+      "SEARCHBAR": "Search user by email",
+      "ERRORS": {
+        "NO_CHANGES": "There are no changes to save",
+        "CANNOT_CHANGE_EMAIL": "It is not possible to change the user's email"
+      },
+      "ROLES": {
+        "ADMIN": "Admin",
+        "WRITER": "Writer"
+      }
+    }
   }
 }

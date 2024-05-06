@@ -6,7 +6,12 @@
         <aside>
             <mat-nav-list>
                 <div>
-                    <a mat-list-item *ngFor="let tab of tabs" [class]="tab.selected ? 'selected' : ''" [activated]="tab.isActive" [routerLink]="[tab.link]" routerLinkActive="router-link-active" >
+                    <a mat-list-item 
+                    *ngFor="let tab of tabs" 
+                    [class.selected]="url.split('/')[2] == tab.link" 
+                    [activated]="tab.isActive" 
+                    [routerLink]="[tab.link]" 
+                    routerLinkActive="router-link-active">
                         <mdb-icon fas [icon]="tab.icon" class="tab-icon" mdbWavesEffect />
                         {{ tab.title | translate }}
                     </a>

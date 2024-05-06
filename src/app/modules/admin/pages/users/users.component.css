@@ -31,7 +31,7 @@
 
 table {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: .25rem;
 }
 
 tr {
@@ -44,6 +44,7 @@ th, td {
 
 tr:not(:first-child):hover {
     background-color: #DEDEDE;
+    cursor: pointer
 }
 
 .small-chip {
@@ -52,4 +53,13 @@ tr:not(:first-child):hover {
 
 .paginator {
     margin-top: 2rem;
+}
+
+p.role-filter-label {
+    margin-bottom: .2rem;
+    margin-top: .5rem;
+}
+
+.role-filter {
+    padding: 0 1rem;
 }

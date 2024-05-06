@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,17 +6,23 @@ import { Router } from '@angular/router';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
+
+  url: string
 
   tabs = [
     {
-      title: "ADMIN.USERTAB",
+      title: "ADMIN.USERTAB.TITLE",
       link: "users",
       isActive: true,
       icon: "user",
-      selected: this.router.url.split("/")[1] == "users"
     }
   ]
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.url = this.router.url;
+  }
+
 }
