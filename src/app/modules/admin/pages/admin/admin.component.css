@@ -38,3 +38,23 @@ aside {
 a.selected {
     background-color: #DEDEDE;
 }
+
+@media (max-width: 860px){
+    .wrapper {
+        grid-template-areas: 
+            "sidebar"
+            "content";
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        border-left: none;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .main-container {
+        padding: 10rem .2rem 0 .2rem;
+    }
+}

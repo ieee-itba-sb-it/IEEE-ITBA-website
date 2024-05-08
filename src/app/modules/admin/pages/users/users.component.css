@@ -32,6 +32,7 @@
 table {
     width: 100%;
     margin-top: .25rem;
+    table-layout: fixed;
 }
 
 tr {
@@ -40,11 +41,17 @@ tr {
 
 th, td {
     padding: 0 1rem;
+    overflow: hidden;
 }
 
 tr:not(:first-child):hover {
     background-color: #DEDEDE;
     cursor: pointer
+}
+
+.role-col {
+    vertical-align: middle;
+    text-align: center;
 }
 
 .small-chip {
@@ -62,4 +69,14 @@ p.role-filter-label {
 
 .role-filter {
     padding: 0 1rem;
+}
+
+@media (max-width: 550px) {
+    .search-bar {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 0;
+    }
 }
