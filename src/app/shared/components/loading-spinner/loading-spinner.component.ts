@@ -6,21 +6,11 @@ import {AppConfigService} from "../../../core/services/configuration/app-config.
     templateUrl: './loading-spinner.component.html',
     styleUrls: ['./loading-spinner.component.css']
 })
-export class LoadingSpinnerComponent implements OnInit {
-
-    color: string;
+export class LoadingSpinnerComponent  {
 
     constructor(private appConfigService: AppConfigService) { }
 
-    getColor() {
-        this.appConfigService.getAppColors().subscribe(
-            appColors => {
-                this.color = appColors.background;
-            }
-        );
-    }
-
-    ngOnInit(): void {
-        this.getColor();
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 }

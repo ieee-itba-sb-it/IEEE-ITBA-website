@@ -6,15 +6,18 @@ import {AppConfigService} from "../../../core/services/configuration/app-config.
     templateUrl: './floating-button.component.html',
     styleUrls: ['./floating-button.component.css']
 })
-export class FloatingButtonComponent implements OnInit {
+export class FloatingButtonComponent {
 
     @Input() tooltipI18n: string;
     showTooltip = false;
-    color: string;
 
     @Output() clickEvent = new EventEmitter<void>();
 
     constructor(private appConfigService: AppConfigService) {
+    }
+
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     toggleTooltip() {
@@ -23,17 +26,5 @@ export class FloatingButtonComponent implements OnInit {
 
     onClick() {
         this.clickEvent.emit();
-    }
-
-    getColor() {
-        this.appConfigService.getAppColors().subscribe(
-            appColors => {
-                this.color = appColors.background;
-            }
-        );
-    }
-
-    ngOnInit(): void {
-        this.getColor();
     }
 }

@@ -1,5 +1,5 @@
 <div class="spinner-container">
-  <div class="lds-roller" [style.--color]="color">
+  <div class="lds-roller" [style.--color]="(getAppColors() | async).background">
     <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
   </div>
 </div>

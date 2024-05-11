@@ -23,7 +23,6 @@ export class EventEditorModalComponent implements OnInit {
     eventForm: FormGroup;
     errorI18n: string = null;
     loading = false;
-    color: string;
 
     constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
 
@@ -46,12 +45,8 @@ export class EventEditorModalComponent implements OnInit {
         }
     }
 
-    getColor() {
-        this.appConfigService.getAppColors().subscribe(
-            appColors => {
-                this.color = appColors.background;
-            }
-        );
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     ngOnInit(): void {
@@ -65,7 +60,6 @@ export class EventEditorModalComponent implements OnInit {
                 this.nonPastDateValidator()
             ])
         });
-        this.getColor();
     }
 
     get date() {
