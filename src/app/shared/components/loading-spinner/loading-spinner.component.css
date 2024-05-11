@@ -10,11 +10,6 @@
     position: relative;
     width: 80px;
     height: 80px;
-    --background-color: var(--bs-ieee-bright-blue);
-}
-
-.lds-roller.ras {
-    --background-color: var(--bs-ieee-bright-red);
 }
 
 .lds-roller div {
@@ -29,7 +24,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--background-color);
+    background: var(--color);
     margin: -4px 0 0 -4px;
 }
 

@@ -10,6 +10,7 @@ import {
     ValidatorFn,
     Validators
 } from "@angular/forms";
+import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 
 @Component({
     selector: 'app-event-editor-modal',
@@ -23,7 +24,7 @@ export class EventEditorModalComponent implements OnInit {
     errorI18n: string = null;
     loading = false;
 
-    constructor(private eventService: EventService, public modalRef: MDBModalRef) { }
+    constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
 
     private getIsoDate(date: Date): string {
         return date.toISOString().split('T')[0];
@@ -42,6 +43,10 @@ export class EventEditorModalComponent implements OnInit {
             }
             return null;
         }
+    }
+
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     ngOnInit(): void {

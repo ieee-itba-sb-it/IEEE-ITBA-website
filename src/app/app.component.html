@@ -1,5 +1,5 @@
 <header>
-  <app-navbar [navbarColors]="getNavbarColor() | async"></app-navbar>
+  <app-navbar [navbarColors]="getAppColors() | async"></app-navbar>
 </header>
 <div class="router-content" *ngIf="!loading">
     <router-outlet></router-outlet>
@@ -7,7 +7,7 @@
 <div *ngIf="loading" class="main-container">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<app-footer [color]="(getNavbarColor() | async).background" *ngIf="!loading"></app-footer>
+<app-footer [color]="(getAppColors() | async).background" *ngIf="!loading"></app-footer>
 
 
 

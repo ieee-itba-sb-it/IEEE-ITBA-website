@@ -32,17 +32,17 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe(event => {
             if (event instanceof GuardsCheckStart) {
                 this.loading = true;
-            }     
+            }
             if (event instanceof GuardsCheckEnd || event instanceof NavigationCancel) {
                 this.loading = false;
-            } 
+            }
         });
     }
 
     title = 'ITBA-IEEE-Website-A9';
 
-    getNavbarColor() {
-        return this.appConfigService.getNavbarColor();
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     useLanguage(language: string) {
