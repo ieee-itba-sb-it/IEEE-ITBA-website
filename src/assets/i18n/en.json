@@ -201,10 +201,22 @@
       },
       "STATUS": {
           "TITLE": "Status",
-          "UNSCHEDULED": "To be defined",
-          "UPCOMING": "Upcoming",
-          "TENTATIVE": "Tentative",
-          "CONFIRMED": "Confirmed"
+          "UNSCHEDULED": {
+              "TITLE": "To be defined",
+              "DESCRIPTION": "It is not planned to take place during the year"
+          },
+          "UPCOMING": {
+              "TITLE": "Upcoming",
+              "DESCRIPTION": "It will take place during the year"
+          },
+          "TENTATIVE": {
+              "TITLE": "Tentative",
+              "DESCRIPTION": "It will take place in a certain month of the current year"
+          },
+          "CONFIRMED": {
+                "TITLE": "Confirmed",
+                "DESCRIPTION": "It has a defined date"
+          }
        },
       "EDIT": {
           "TITLE": "Edit Event",

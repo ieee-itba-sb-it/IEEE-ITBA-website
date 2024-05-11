@@ -19,14 +19,19 @@
                 <label for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
                 <div class="status-container">
                     <div *ngFor="let eventStatus of eventStatuses" class="status-item">
-                        <input
-                            type="radio"
-                            id="{{eventDate + '-status'}}"
-                            formControlName="status"
-                            value="{{eventStatus}}"
-                            required
-                        >
-                        <span>{{ ("HOME.EVENTS.STATUS." + eventStatus) | translate }}</span>
+                        <span class="status-tooltip" [class.hidden]="!isTooltipVisible(eventStatus)">
+                            {{ ("HOME.EVENTS.STATUS." + eventStatus + ".DESCRIPTION") | translate }}
+                        </span>
+                        <div class="status-input" (mouseover)="toggleTooltip(eventStatus)" (mouseout)="toggleTooltip(eventStatus)">
+                            <input
+                                type="radio"
+                                id="{{eventDate + '-status'}}"
+                                formControlName="status"
+                                value="{{eventStatus}}"
+                                required
+                            >
+                            <span>{{ ("HOME.EVENTS.STATUS." + eventStatus + ".TITLE") | translate }}</span>
+                        </div>
                     </div>
                 </div>
                 <div *ngIf="isEventDateConfirmed(eventDate)" class="event-date">

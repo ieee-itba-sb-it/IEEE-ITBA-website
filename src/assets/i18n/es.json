@@ -257,10 +257,22 @@
       },
       "STATUS": {
           "TITLE": "Estado",
-          "UNSCHEDULED": "A definir",
-          "UPCOMING": "Próximamente",
-          "TENTATIVE": "Tentativo",
-          "CONFIRMED": "Confirmado"
+          "UNSCHEDULED": {
+              "TITLE": "A definir",
+              "DESCRIPTION": "No está planeado realizarse durante el año"
+          },
+          "UPCOMING": {
+              "TITLE": "Próximamente",
+              "DESCRIPTION": "Se realizará durante el año"
+          },
+          "TENTATIVE": {
+                "TITLE": "Tentativo",
+                "DESCRIPTION": "Se realizará en cierto mes del año actual"
+          },
+          "CONFIRMED": {
+                "TITLE": "Confirmado",
+                "DESCRIPTION": "Se tiene fecha definida"
+          }
       },
       "EDIT": {
          "TITLE": "Editar evento",

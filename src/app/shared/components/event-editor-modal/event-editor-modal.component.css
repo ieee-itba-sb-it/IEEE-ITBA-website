@@ -46,7 +46,31 @@
     align-items: center;
 }
 
-.event-date-info .status-container .status-item {
+.status-item {
+    position: relative;
+}
+
+.status-tooltip {
+    position: absolute;
+    text-wrap: nowrap;
+    background-color: #000000;
+    color: var(--bs-light);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    opacity: 100%;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 0 4px #000000;
+    min-width: fit-content;
+    transform: translate(0%, -100%);
+}
+
+.status-tooltip.hidden {
+    opacity: 0;
+}
+
+.status-input {
     display: flex;
     flex-direction: row;
     column-gap: 0.25rem;

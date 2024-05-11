@@ -30,8 +30,22 @@ export class EventEditorModalComponent implements OnInit {
     loading = false;
     defaultMonthValue = -1;
     defaultYearValue = new Date().getFullYear();
+    tooltipByEventStatus: Record<EventStatus, boolean> = {
+        [EventStatus.CONFIRMED]: false,
+        [EventStatus.TENTATIVE]: false,
+        [EventStatus.UPCOMING]: false,
+        [EventStatus.UNSCHEDULED]: false
+    }
 
     constructor(private eventService: EventService, public modalRef: MDBModalRef) { }
+
+    toggleTooltip(eventStatus: EventStatus) {
+        this.tooltipByEventStatus[eventStatus] = !this.tooltipByEventStatus[eventStatus];
+    }
+
+    isTooltipVisible(eventStatus: EventStatus): boolean {
+        return this.tooltipByEventStatus[eventStatus];
+    }
 
     private getIsoDate(date: Date): string {
         return date.toISOString().split('T')[0];
@@ -99,7 +113,7 @@ export class EventEditorModalComponent implements OnInit {
         const initialMonth = eventDateInfo.status === EventStatus.TENTATIVE ? eventDateInfo.month : this.defaultMonthValue;
         const initialYear = eventDateInfo.status === EventStatus.UPCOMING ? eventDateInfo.year : this.defaultYearValue;
         return new FormGroup({
-            status: new FormControl(this.event.dates[eventDate].status, Validators.required),
+            status: new FormControl(this.event.dates[eventDate].status ?? EventStatus.UNSCHEDULED, Validators.required),
             date: new FormControl(initialDate,
                 [
                     Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),
@@ -206,5 +220,4 @@ export class EventEditorModalComponent implements OnInit {
         this.event = newEvent;
     }
 
-    protected readonly Object = Object;
 }
