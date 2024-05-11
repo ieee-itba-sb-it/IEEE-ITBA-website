@@ -22,7 +22,7 @@ export class CursoPythonComponent implements OnInit {
     week3SolutionsLink = 'https://colab.research.google.com/github/IEEESBITBA/Curso-Python/blob/master/Curso_Introductorio_Solucionarios/Solucionario_Clase_3_Curso_Introductorio_de_Python.ipynb';
 
     week1ContentOpen = true;
-    week2ContentOpen = false;
+    week2ContentOpen = true;
     week3ContentOpen = false;
     week4ContentOpen = false;
     contentClosed = false;

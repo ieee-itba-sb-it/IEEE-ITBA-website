@@ -139,7 +139,6 @@ const routes: Routes = [
     // data: { authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
-    // TODO: Change this, it should refer to a single new
         path: 'write-news/:id',
         loadChildren: () =>
             import('./modules/write-news/write-news.module').then(
@@ -185,6 +184,7 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes, {
         scrollPositionRestoration: 'enabled',
+        bindToComponentInputs: true
     })],
     exports: [RouterModule],
 })
