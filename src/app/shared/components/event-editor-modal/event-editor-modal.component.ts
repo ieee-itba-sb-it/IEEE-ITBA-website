@@ -161,7 +161,11 @@ export class EventEditorModalComponent implements OnInit {
         return Object.values(EventStatus);
     }
 
-    private isEventDateStatus(eventDate: EventDate, status: EventStatus): boolean {
+    setEventDateStatus(eventDate: EventDate, status: EventStatus) {
+        this.eventForm.get(eventDate).get('status').setValue(status);
+    }
+
+    isEventDateStatus(eventDate: EventDate, status: EventStatus): boolean {
         return this.eventForm.get(eventDate).get('status').value === status;
     }
 

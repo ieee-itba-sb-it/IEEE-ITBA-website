@@ -24,13 +24,18 @@
                         </span>
                         <div class="status-input" (mouseover)="toggleTooltip(eventStatus)" (mouseout)="toggleTooltip(eventStatus)">
                             <input
-                                type="radio"
+                                type="hidden"
                                 id="{{eventDate + '-status'}}"
                                 formControlName="status"
                                 value="{{eventStatus}}"
                                 required
                             >
-                            <span>{{ ("HOME.EVENTS.STATUS." + eventStatus + ".TITLE") | translate }}</span>
+                            <button type="button" class="btn status-btn"
+                                    [class.active]="isEventDateStatus(eventDate, eventStatus)"
+                                    (click)="setEventDateStatus(eventDate, eventStatus)"
+                            >
+                                <span>{{ ("HOME.EVENTS.STATUS." + eventStatus + ".TITLE") | translate }}</span>
+                            </button>
                         </div>
                     </div>
                 </div>

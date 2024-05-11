@@ -63,7 +63,7 @@
     transition: opacity 0.5s ease;
     box-shadow: 0 0 4px #000000;
     min-width: fit-content;
-    transform: translate(0%, -100%);
+    transform: translate(0%, -120%);
 }
 
 .status-tooltip.hidden {
@@ -75,6 +75,30 @@
     flex-direction: row;
     column-gap: 0.25rem;
     align-items: center;
+}
+
+.status-btn {
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: box-shadow 0.2s ease;
+    box-shadow: 0 0 4px #000000;
+    color: #000000;
+}
+
+.status-btn:hover {
+    box-shadow: 0 0 2px #000000;
+}
+
+.status-btn.active {
+    background-color: var(--bs-ieee-bright-blue);
+    color: var(--bs-light);
+    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+}
+
+.status-btn.active:hover {
+    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
 }
 
 .modal-body .error-container {
