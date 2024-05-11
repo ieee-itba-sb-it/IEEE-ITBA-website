@@ -11,7 +11,7 @@
         ></mdb-icon>
     </button>
 </div>
-<form [formGroup]="eventForm" (ngSubmit)="updateEvent()">
+<form [formGroup]="form.formGroup" (ngSubmit)="updateEvent()">
     <div class="modal-body">
         <div *ngFor="let eventDate of eventDates" class="event-date-container" formGroupName="{{eventDate}}">
             <h3 class="event-date-title">{{ ("HOME.EVENTS.DATE." + eventDate) | translate }}</h3>
