@@ -4,12 +4,14 @@ import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
-type EventDateForm = FormGroup<{
+type EventDateFormFields = {
     status: FormControl<EventStatus>;
     date: FormControl<string | null>;
     month: FormControl<number | null>;
     year: FormControl<number | null>;
-}>;
+}
+
+type EventDateForm = FormGroup<EventDateFormFields>;
 
 type EventFormGroup = {
     [key in EventDate]: EventDateForm;
@@ -57,6 +59,10 @@ export class EventEditorModalComponent implements OnInit {
 
     private nonPastDateValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
+            const patternError = Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)(control);
+            if (patternError) {
+                return patternError;
+            }
             const date = new Date(control.value);
             const today = this.getToday();
             if (date < today) {
@@ -68,12 +74,16 @@ export class EventEditorModalComponent implements OnInit {
 
     private monthValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
+            const patternError = Validators.pattern(/^\d{1,2}$/)(control);
+            if (patternError) {
+                return patternError;
+            }
             const month = parseInt(control.value, 10);
             const today = this.getToday();
             if (month < 0 || month > 11) {
                 return { invalidMonth: { value: control.value } };
             }
-            if (month < today.getMonth()) {
+            if (month < today.getUTCMonth()) {
                 return { pastMonth: { value: control.value } };
             }
             return null;
@@ -82,9 +92,13 @@ export class EventEditorModalComponent implements OnInit {
 
     private yearValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
+            const patternError = Validators.pattern(/^\d{4}$/)(control);
+            if (patternError) {
+                return patternError;
+            }
             const year = parseInt(control.value, 10);
             const today = this.getToday();
-            if (year < today.getFullYear()) {
+            if (year < today.getUTCFullYear()) {
                 return { pastYear: { value: control.value } };
             }
             return null;
@@ -94,13 +108,13 @@ export class EventEditorModalComponent implements OnInit {
     private requiredIfStatus(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
             const status = control.get('status').value;
-            if (status === EventStatus.CONFIRMED) {
+            if (status === EventStatus.CONFIRMED && !control.get('date').value) {
                 return { dateRequired: { value: control.get('date').value } };
             }
-            if (status === EventStatus.TENTATIVE) {
+            if (status === EventStatus.TENTATIVE && control.get('month').value === null) {
                 return { monthRequired: { value: control.get('month').value } };
             }
-            if (status === EventStatus.UPCOMING) {
+            if (status === EventStatus.UPCOMING && control.get('year').value === null) {
                 return { yearRequired: { value: control.get('year').value } };
             }
             return null;
@@ -115,26 +129,17 @@ export class EventEditorModalComponent implements OnInit {
         return new FormGroup({
             status: new FormControl(this.event.dates[eventDate].status ?? EventStatus.UNSCHEDULED, Validators.required),
             date: new FormControl(initialDate,
-                [
-                    Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),
-                    this.nonPastDateValidator()
-                ]
+                this.nonPastDateValidator()
             ),
             month: new FormControl(initialMonth,
-                [
-                    Validators.pattern(/^\d{2}$/),
-                    this.monthValidator()
-                ]
+                this.monthValidator()
             ),
             year: new FormControl(initialYear,
-                [
-                    Validators.pattern(/^\d{4}$/),
-                    this.yearValidator()
-                ]
+                this.yearValidator()
             )
-        }, [
-            this.requiredIfStatus()
-        ]);
+        },
+        this.requiredIfStatus()
+        );
     }
 
     private createEventForm(): EventForm {
@@ -181,8 +186,59 @@ export class EventEditorModalComponent implements OnInit {
         return this.isEventDateStatus(eventDate, EventStatus.UPCOMING);
     }
 
+    hasFieldError(eventDate: EventDate, controlName: keyof EventDateFormFields, errorName?: string): boolean {
+        const control = this.eventForm.get(eventDate).get(controlName);
+        if (!errorName) {
+            return control.invalid && (control.dirty || control.touched);
+        }
+        const errors = control.errors;
+        return errors && errors[errorName];
+    }
+
+    isFormValid(): boolean {
+        return Object.values(EventDate).every(eventDate => {
+            const eventDateForm = this.eventForm.get(eventDate);
+            const status = eventDateForm.get('status').value;
+            if (status === EventStatus.CONFIRMED) {
+                return !this.hasFieldError(eventDate, 'date');
+            }
+            if (status === EventStatus.TENTATIVE) {
+                return !this.hasFieldError(eventDate, 'month');
+            }
+            if (status === EventStatus.UPCOMING) {
+                return !this.hasFieldError(eventDate, 'year');
+            }
+            return true;
+        });
+    }
+
+    hasFormError(eventDate: EventDate, errorName?: string): boolean {
+        const form = this.eventForm.get(eventDate);
+        const errors = form.errors;
+        if (!errorName) {
+            return !this.isFormValid() && !!errors;
+        }
+        return errors && errors[errorName];
+    }
+
+    hasFormChanged(): boolean {
+        return Object.values(EventDate).some(eventDate => {
+            const eventDateForm = this.eventForm.get(eventDate);
+            const status = eventDateForm.get('status').value;
+            if (status === EventStatus.CONFIRMED) {
+                return eventDateForm.get('date').dirty || eventDateForm.get('date').touched;
+            }
+            if (status === EventStatus.TENTATIVE) {
+                return eventDateForm.get('month').dirty || eventDateForm.get('month').touched;
+            }
+            return true;
+        });
+    }
+
+
+
     async updateEvent() {
-        if (this.eventForm.invalid) {
+        if (!this.isFormValid()) {
             return;
         }
         const newEvent: Event = {

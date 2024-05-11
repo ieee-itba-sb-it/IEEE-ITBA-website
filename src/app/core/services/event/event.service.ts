@@ -89,10 +89,10 @@ export class EventService {
             return false;
         }
         if (openingDate.status === EventStatus.UPCOMING) {
-            return openingDate.year >= now.getFullYear();
+            return openingDate.year >= now.getUTCFullYear();
         }
         if (openingDate.status === EventStatus.TENTATIVE) {
-            return openingDate.month >= now.getMonth();
+            return openingDate.month >= now.getUTCMonth();
         }
         if (openingDate.status === EventStatus.CONFIRMED) {
             return openingDate.date >= now;
@@ -106,7 +106,7 @@ export class EventService {
         if (eventDate.status === EventStatus.TENTATIVE) {
             // The last day of the month
             const today = new Date();
-            return new Date(Date.UTC(today.getFullYear(), eventDate.month + 1, 0));
+            return new Date(Date.UTC(today.getUTCFullYear(), eventDate.month + 1, 0));
         }
         if (eventDate.status === EventStatus.UPCOMING) {
             // The last day of the year
@@ -165,10 +165,11 @@ export class EventService {
         const dates: EventDoc['dates'] = {} as EventDoc['dates'];
         for (const date in event.dates) {
             if (event.dates[date].status === EventStatus.CONFIRMED) {
+                const today = new Date(this.getIsoDate(now));
                 if (event.dates[date].date === null) {
                     throw new Error(`updateEventDocDates failed: date ${date} is null`);
                 }
-                if (event.dates[date].date < now) {
+                if (event.dates[date].date < today) {
                     throw new Error(`updateEventDocDates failed: date ${date} is in the past`);
                 }
                 dates[date] = {
@@ -182,7 +183,7 @@ export class EventService {
                 if (event.dates[date].month > 11) {
                     throw new Error(`updateEventDocDates failed: month ${event.dates[date].month} is invalid`);
                 }
-                if (event.dates[date].month < now.getMonth()) {
+                if (event.dates[date].month < now.getUTCMonth()) {
                     throw new Error(`updateEventDocDates failed: month ${event.dates[date].month} is in the past`);
                 }
                 dates[date] = {
@@ -193,7 +194,7 @@ export class EventService {
                 if (event.dates[date].year === null) {
                     throw new Error(`updateEventDocDates failed: year ${date} is null`);
                 }
-                if (event.dates[date].year < now.getFullYear()) {
+                if (event.dates[date].year < now.getUTCFullYear()) {
                     throw new Error(`updateEventDocDates failed: year ${event.dates[date].year} is in the past`);
                 }
                 dates[date] = {
