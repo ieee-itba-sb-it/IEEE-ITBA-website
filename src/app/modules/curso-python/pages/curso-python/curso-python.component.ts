@@ -23,7 +23,7 @@ export class CursoPythonComponent implements OnInit {
 
     week1ContentOpen = true;
     week2ContentOpen = true;
-    week3ContentOpen = false;
+    week3ContentOpen = true;
     week4ContentOpen = false;
     contentClosed = false;
 
