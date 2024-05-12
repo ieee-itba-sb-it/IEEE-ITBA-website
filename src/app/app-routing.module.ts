@@ -166,6 +166,17 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'admin',
+        loadChildren: () =>
+            import('./modules/admin/admin.module').then(
+                (m) => m.AdminModule
+            ),
+        canActivate: [AuthGuardService],
+        data: {
+            expectedRole: [roles.admin],
+        },
+    },
+    {
         path: '**',
         loadChildren: () =>
             import('./modules/error404/error404.module').then(

@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
   user$ = new BehaviorSubject<IEEEuser | null>(null);
   isJournalist$ = new BehaviorSubject<boolean>(false);
+  isAdmin$ = new BehaviorSubject<boolean>(false);
   language: string;
   color: string;
   isLoading: boolean = true;
@@ -51,9 +52,8 @@ export class NavbarComponent implements OnInit, AfterViewInit{
       this.authService.getCurrentUser().subscribe(async (usuario: IEEEuser) => {
           if (usuario) {
               const aux: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
-              if (this.newsRoles.includes(aux)) {
-                  this.isJournalist$.next(true);
-              }
+              if (this.newsRoles.includes(aux)) this.isJournalist$.next(true);
+              if (aux == roles.admin) this.isAdmin$.next(true);
               this.user$.next(usuario);
           }
           this.isLoading = false;

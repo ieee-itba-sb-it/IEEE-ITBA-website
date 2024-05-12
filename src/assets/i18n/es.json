@@ -395,7 +395,8 @@
     "NEWS": "Noticias",
     "SPONSORS": "Auspiciantes",
     "WRITENEWS": "Crear Noticia",
-    "INSTITUTIONAL": "Institucional"
+    "INSTITUTIONAL": "Institucional",
+    "ADMIN": "Panel de administrador"
   },
     "FOOTER": {
         "ABOUTUS": "Acerca de",
@@ -1038,5 +1039,26 @@
   },
   "CS": {
     "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
+  },
+  "ADMIN": {
+    "TITLE": "Admin panel",
+    "USERTAB": {
+      "TITLE": "Usuarios",
+      "TABLE": {
+        "FNAME": "Nombre",
+        "LNAME": "Apellido",
+        "EMAIL": "Email",
+        "ROLE": "Rol"
+      },
+      "SEARCHBAR": "Buscar usuario por email",
+      "ERRORS": {
+        "NO_CHANGES": "No hay cambios para guardar",
+        "CANNOT_CHANGE_EMAIL": "No es posible modificar el email del usuario"
+      },
+      "ROLES": {
+        "ADMIN": "Admin",
+        "WRITER": "Escritor"
+      }
+    }
   }
 }
