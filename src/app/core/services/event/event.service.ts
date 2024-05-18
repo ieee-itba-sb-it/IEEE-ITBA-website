@@ -1,5 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Event, EventDate, EventDoc, EventStatus, IeeeEvent} from '../../../shared/models/event/event';
+import {
+    Event,
+    EventDate,
+    EventDoc,
+    EventStatus,
+    IeeeEvent,
+    sortedEventDates
+} from '../../../shared/models/event/event';
 import {
     collection,
     CollectionReference,
@@ -82,21 +89,31 @@ export class EventService {
         return this.getEventsByQuery(query(this.collection), operation);
     }
 
-    private static filterUpcomingEvents(event: Event): boolean {
+    private static isEventDateUpcoming(eventDate: Event['dates'][EventDate]): boolean {
         const now = Timestamp.now().toDate();
-        const openingDate = event.dates[EventDate.OPENING];
-        if (openingDate.status === EventStatus.UNSCHEDULED) {
-            return false;
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            return eventDate.date >= now;
         }
-        if (openingDate.status === EventStatus.UPCOMING) {
-            return openingDate.year >= now.getUTCFullYear();
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month >= now.getUTCMonth();
         }
-        if (openingDate.status === EventStatus.TENTATIVE) {
-            return openingDate.month >= now.getUTCMonth();
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year >= now.getUTCFullYear();
         }
-        if (openingDate.status === EventStatus.CONFIRMED) {
-            return openingDate.date >= now;
+        return false;
+    }
+
+    private static getUpcomingEventDate(event: Event): EventDate | null {
+        for (const eventDate of sortedEventDates) {
+            if (EventService.isEventDateUpcoming(event.dates[eventDate])) {
+                return eventDate;
+            }
         }
+        return null;
+    }
+
+    private static filterUpcomingEvents(event: Event): boolean {
+        return EventService.getUpcomingEventDate(event) !== null;
     }
 
     private static getFakeDate(eventDate: Event['dates'][EventDate]): Date {
@@ -116,19 +133,21 @@ export class EventService {
     }
 
     private static sortEvents(event1: Event, event2: Event): number {
-        const event1OpeningDate = event1.dates[EventDate.OPENING];
-        const event2OpeningDate = event2.dates[EventDate.OPENING];
-        if (event1OpeningDate.status === EventStatus.UNSCHEDULED) {
-            if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
+        const event1UpcomingDate = EventService.getUpcomingEventDate(event1);
+        const event2UpcomingDate = EventService.getUpcomingEventDate(event2);
+        if (event1UpcomingDate === null) {
+            if (event2UpcomingDate === null) {
                 return 0;
             }
             return -1;
-        } else if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
+        } else if (event2UpcomingDate === null) {
             return 1;
         }
-        const fakeEvent1Date = EventService.getFakeDate(event1OpeningDate);
-        const fakeEvent2Date = EventService.getFakeDate(event2OpeningDate);
-        return fakeEvent1Date.getTime() - fakeEvent2Date.getTime();
+        const event1Date = event1.dates[event1UpcomingDate];
+        const event2Date = event2.dates[event2UpcomingDate];
+        const event1FakeDate = EventService.getFakeDate(event1Date);
+        const event2FakeDate = EventService.getFakeDate(event2Date);
+        return event1FakeDate.getTime() - event2FakeDate.getTime();
     }
 
     public getUpcomingEvents(): Observable<Event[]> {
