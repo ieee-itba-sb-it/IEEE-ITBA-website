@@ -16,8 +16,20 @@ export enum EventStatus {
 }
 
 export enum EventDate {
+    INSCRIPTION = "INSCRIPTION",
     OPENING = "OPENING",
+    FINISH = "FINISH",
 }
+
+const EventDateByPriority: Record<EventDate, number> = {
+    INSCRIPTION: 1,
+    OPENING: 2,
+    FINISH: 3,
+};
+
+export const sortedEventDates = Object.entries(EventDateByPriority)
+    .sort(([_, prio1], [__, prio2]) => prio1 - prio2)
+    .map(([date, _]) => date as EventDate);
 
 export type Event = {
     readonly id: IeeeEvent;
