@@ -30,7 +30,7 @@
                                 value="{{eventStatus}}"
                                 required
                             >
-                            <button type="button" class="btn status-btn"
+                            <button type="button" class="btn status-btn" [style.--color]="(getAppColors() | async).background"
                                     [class.active]="isEventDateStatus(eventDate, eventStatus)"
                                     (click)="setEventDateStatus(eventDate, eventStatus)"
                             >

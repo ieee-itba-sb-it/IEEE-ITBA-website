@@ -92,13 +92,13 @@
 }
 
 .status-btn.active {
-    background-color: var(--bs-ieee-bright-blue);
+    background-color: var(--color);
     color: var(--bs-light);
-    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 4px var(--color);
 }
 
 .status-btn.active:hover {
-    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 2px var(--color);
 }
 
 .modal-body .error-container {
