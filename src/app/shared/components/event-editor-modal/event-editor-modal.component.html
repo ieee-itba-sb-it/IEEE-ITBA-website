@@ -115,7 +115,7 @@
             </p>
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer" [style.--color]="(getAppColors() | async).background">
         <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
         <button type="submit" class="btn save-btn" [disabled]="loading || !hasFormChanged() || !isFormValid()">
             {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}

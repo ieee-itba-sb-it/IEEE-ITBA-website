@@ -130,22 +130,22 @@
 
 .modal-footer .close-btn {
     background-color: var(--bs-light);
-    color: var(--bs-ieee-bright-blue);
-    border-color: var(--bs-ieee-bright-blue);
-    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+    color: var(--color);
+    border-color: var(--color);
+    box-shadow: 0 0 4px var(--color);
 }
 
 .modal-footer .close-btn:hover {
-    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 2px var(--color);
 }
 
 .modal-footer .save-btn {
-    background-color: var(--bs-ieee-bright-blue);
+    background-color: var(--color);
     color: var(--bs-light);
-    border-color: var(--bs-ieee-bright-blue);
-    box-shadow: 0 0 4px var(--bs-ieee-bright-blue);
+    border-color: var(--color);
+    box-shadow: 0 0 4px var(--color);
 }
 
 .modal-footer .save-btn:hover {
-    box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
+    box-shadow: 0 0 2px var(--color);
 }

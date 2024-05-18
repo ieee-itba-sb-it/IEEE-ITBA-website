@@ -7,7 +7,7 @@ import {PageScrollService} from 'ngx-page-scroll-core';
 import {DOCUMENT} from '@angular/common';
 import {AuthService} from '../../../core/services/authorization/auth.service';
 import {UserService} from '../../../core/services/user/user.service';
-import {NavbarColors} from '../../../core/services/configuration/app-config.service';
+import {AppColors} from '../../../core/services/configuration/app-config.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,10 +15,11 @@ import {NavbarColors} from '../../../core/services/configuration/app-config.serv
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, AfterViewInit{
-  @Input() navbarColors: NavbarColors;
+  @Input() navbarColors: AppColors;
 
   user$ = new BehaviorSubject<IEEEuser | null>(null);
   isJournalist$ = new BehaviorSubject<boolean>(false);
+  isAdmin$ = new BehaviorSubject<boolean>(false);
   language: string;
   color: string;
   isLoading: boolean = true;
@@ -51,9 +52,8 @@ export class NavbarComponent implements OnInit, AfterViewInit{
       this.authService.getCurrentUser().subscribe(async (usuario: IEEEuser) => {
           if (usuario) {
               const aux: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
-              if (this.newsRoles.includes(aux)) {
-                  this.isJournalist$.next(true);
-              }
+              if (this.newsRoles.includes(aux)) this.isJournalist$.next(true);
+              if (aux == roles.admin) this.isAdmin$.next(true);
               this.user$.next(usuario);
           }
           this.isLoading = false;

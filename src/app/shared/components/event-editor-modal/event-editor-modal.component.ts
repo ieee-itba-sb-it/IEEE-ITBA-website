@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
+import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 import {EventEditorForm} from "./event-editor-form";
 
 @Component({
@@ -22,7 +23,7 @@ export class EventEditorModalComponent implements OnInit {
         [EventStatus.UNSCHEDULED]: false
     }
 
-    constructor(private eventService: EventService, public modalRef: MDBModalRef) { }
+    constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
 
     ngOnInit() {
         this.form = new EventEditorForm(this.event);
@@ -74,6 +75,10 @@ export class EventEditorModalComponent implements OnInit {
 
     hasFieldError: EventEditorForm['hasFieldError'] = (eventDate, controlName, errorName) => {
         return this.form.hasFieldError(eventDate, controlName, errorName);
+    }
+
+    getAppColors() {
+        return this.appConfigService.getAppColors();
     }
 
     isFormValid(): boolean {

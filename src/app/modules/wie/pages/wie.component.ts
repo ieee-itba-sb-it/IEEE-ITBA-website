@@ -11,7 +11,7 @@ export class WieComponent implements OnInit {
     constructor(private appConfigService: AppConfigService) { }
 
     ngOnInit(): void {
-        this.appConfigService.setNavbarColor({
+        this.appConfigService.setAppColors({
             background: '#702f8a',
             underlying: '#92519CFF',
             hover: '#AD7CB5FF'

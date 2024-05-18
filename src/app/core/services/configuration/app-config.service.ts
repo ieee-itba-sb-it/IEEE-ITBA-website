@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {NavigationEnd, Router} from '@angular/router';
 
 
-export interface NavbarColors {
+export interface AppColors {
   background: string;
   underlying: string;
   hover: string;
@@ -16,7 +16,7 @@ export interface NavbarColors {
     providedIn: 'root'
 })
 export class AppConfigService {
-  private navbarColorsSource = new BehaviorSubject<NavbarColors>({
+  private appColorsSource = new BehaviorSubject<AppColors>({
     background: '#00629BFF', // default background color
     underlying: '#00B5E2FF', // default underlying color
     hover: '#3381AFFF'            // default hover color
@@ -25,7 +25,7 @@ export class AppConfigService {
   constructor(private titleService: Title, private translate: TranslateService, private router: Router) {
     router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.resetTitle();
-      this.resetNavbarColor();
+      this.resetAppColors();
     });
   }
 
@@ -43,19 +43,19 @@ export class AppConfigService {
     }
 
   // Tiene que ser de tipo RGB, RGBA o HEX en formato CSS
-  setNavbarColor(colors: NavbarColors) {
-    this.navbarColorsSource.next(colors);
+  setAppColors(colors: AppColors) {
+    this.appColorsSource.next(colors);
   }
 
-  resetNavbarColor() {
-    this.navbarColorsSource.next({
+  resetAppColors() {
+    this.appColorsSource.next({
       background: '#00629BFF',
       underlying: '#00B5E2FF',
       hover: '#3381AFFF'
     });
   }
 
-  getNavbarColor() {
-    return this.navbarColorsSource.asObservable();
+  getAppColors() {
+    return this.appColorsSource.asObservable();
   }
 }

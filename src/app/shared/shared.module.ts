@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {NavbarComponent} from './components/navbar/navbar.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {FooterComponent} from './components/footer/footer.component';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
@@ -11,7 +8,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {MatMenuModule} from '@angular/material/menu';
 import {RouterModule, Routes} from '@angular/router';
-import {ContactPageComponent} from '../modules/contact/pages/contact/contact-page.component';
 import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
 import {Error401Component} from './components/error401/error401.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -44,6 +40,7 @@ import {EventEditorModalComponent} from "./components/event-editor-modal/event-e
 import { EventEditorButtonComponent } from './components/event-editor-button/event-editor-button.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { UserEditorModalComponent } from './components/user-editor-modal/user-editor-modal.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -56,7 +53,7 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent],
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent],
     imports: [
         routing,
         CommonModule,
