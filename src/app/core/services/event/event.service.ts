@@ -15,7 +15,7 @@ import {
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {map, Observable, Subject} from "rxjs";
+import {catchError, from, map, Observable, of, Subject} from "rxjs";
 import {UserService} from "../user/user.service";
 
 @Injectable({
@@ -66,16 +66,13 @@ export class EventService {
     }
 
     private getEventsByQuery(query: Query, operation: string): Observable<Event[]> {
-        const call = new Subject<Event[]>();
-        getDocs(query).then((data =>
-            data.docs.map(EventService.mapEventDoc)
-        )).then((events) => {
-            call.next(events);
-        }).catch((error) => {
-            console.error(`${operation} failed: ${error}`);
-            call.next([])
-        })
-        return call.asObservable();
+        return from(getDocs(query)).pipe(
+            map((data) => data.docs.map(EventService.mapEventDoc)),
+            catchError((err) => {
+                console.error(`${operation} failed: ${err}`);
+                return of([]);
+            })
+        );
     }
 
     public getAllEvents(operation: string = "getAllEvents"): Observable<Event[]> {
@@ -144,15 +141,29 @@ export class EventService {
         return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)), 'getRasEvents');
     }
 
-    getEvent(eventId: IeeeEvent): Observable<Event> {
-        const subject = new Subject<Event>();
-        getDoc(doc(this.afs, EventService.collectionName, eventId)).then((data: QueryDocumentSnapshot<EventDoc>) => {
-            subject.next(EventService.mapEventDoc(data));
-        }).catch((error) => {
-            console.error(`getEvent ${eventId} failed: ${error}`);
-            subject.next(null);
-        });
-        return subject.asObservable();
+    getEvent(eventId: IeeeEvent): Observable<Event | null> {
+        return from(getDoc(doc(this.afs, EventService.collectionName, eventId)))
+            .pipe(map((data: QueryDocumentSnapshot<EventDoc>) => EventService.mapEventDoc(data)))
+            .pipe(catchError((err) => {
+                console.error(`getEvent ${eventId} failed: ${err}`);
+                return of(null);
+            }));
+    }
+
+    updateEvent(event: Event): Observable<boolean> {
+        return this.userService.isCurrentUserAdmin().pipe((isAdmin) => {
+            if (!isAdmin) {
+                console.error('updateEvent failed: user is not admin');
+                return of(false);
+            }
+            const eventDoc = EventService.mapEvent(event);
+            return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
+                .pipe(() => of(true))
+                .pipe(catchError((error) => {
+                    console.error(`updateEvent ${event.id} failed: ${error}`);
+                    return of(false)
+                }));
+        })
     }
 
     private static getIsoDate(date: Date): string {
@@ -218,19 +229,6 @@ export class EventService {
         }
     }
 
-    async updateEvent(event: Event): Promise<boolean> {
-        if (!await this.userService.isCurrentUserAdmin()) {
-            console.error('updateEvent failed: user is not admin');
-            return false;
-        }
-        try {
-            const eventDoc = EventService.mapEvent(event);
-            await updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc);
-            return true;
-        } catch (error) {
-            console.error(`updateEvent ${event.id} failed: ${error}`);
-            return false;
-        }
-    }
+
 
 }

@@ -89,7 +89,6 @@ export class RegisterComponent implements OnInit {
                     message: 'REGISTER.ERROR.PASS_DONT_MATCH',
                     success: false,
                 };
-                console.log(this);
             }
 
         });

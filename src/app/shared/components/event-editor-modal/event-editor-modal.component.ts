@@ -93,20 +93,21 @@ export class EventEditorModalComponent implements OnInit {
         return this.form.hasChanged();
     }
 
-    async updateEvent() {
+    updateEvent() {
         if (!this.isFormValid()) {
             return;
         }
         const newEvent = this.form.submit();
         this.loading = true;
-        const updated = await this.eventService.updateEvent(newEvent);
-        if (updated) {
-            this.errorI18n = null;
-            this.modalRef.hide();
-        } else {
-            this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
-        }
-        this.loading = false;
-        this.event = newEvent;
+        this.eventService.updateEvent(newEvent).subscribe((updated) => {
+            if (updated) {
+                this.errorI18n = null;
+                this.modalRef.hide();
+            } else {
+                this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
+            }
+            this.loading = false;
+            this.event = newEvent;
+        })
     }
 }

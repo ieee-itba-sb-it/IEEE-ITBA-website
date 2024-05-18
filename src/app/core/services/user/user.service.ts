@@ -3,6 +3,8 @@ import { userCollectionName} from '../../../secrets';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import {AuthService} from "../authorization/auth.service";
 import {roles} from "../../../shared/models/roles/roles.enum";
+import {map, Observable} from "rxjs";
+import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 
 @Injectable({
     providedIn: 'root'
@@ -13,29 +15,18 @@ export class UserService {
 
     constructor(private afs: Firestore, private authService: AuthService) { }
 
-    getCurrentUserRole(email: string): Promise<number> | number {
-        const out: Promise<number> = new Promise((resolve, reject) => {
+    // Cold observable, returns role of that specific user
+    getCurrentUserRole(email: string): Observable<roles> {
+        return new Observable<roles>((observer) => {
             getDoc(doc(this.afs, this.collectionName, email)).then(data => {
-                const doc = data.data();
-                // @ts-ignore
-                return resolve(doc.role);
+                const doc = data.data() as IEEEuser;
+                observer.next(doc.role);
+                observer.complete();
             });
         });
-
-        return out;
     }
 
-    isCurrentUserAdmin(): Promise<boolean> {
-        return new Promise((resolve) => {
-            this.authService.getCurrentUser()
-                .subscribe(async (user) => {
-                    if (!user) {
-                        resolve(false);
-                    } else {
-                        const userRole = user.role || await this.getCurrentUserRole(user.email);
-                        resolve(userRole === roles.admin);
-                    }
-                });
-        });
+    isCurrentUserAdmin(): Observable<boolean> {
+        return this.authService.getCurrentUser().pipe(map((user) => user !== null && user.role === roles.admin));
     }
 }
