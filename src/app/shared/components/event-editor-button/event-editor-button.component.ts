@@ -28,7 +28,8 @@ export class EventEditorButtonComponent {
             data: {
                 event: this.event
             },
-            class: 'modal-dialog-centered',
+            class: 'modal-dialog-centered modal-lg',
+            animated: false
         });
     }
 }

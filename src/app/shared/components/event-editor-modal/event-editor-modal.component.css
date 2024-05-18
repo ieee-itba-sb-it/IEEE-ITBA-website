@@ -26,6 +26,21 @@
     display: flex;
     flex-direction: column;
     row-gap: 0.25rem;
+    padding: 1rem;
+}
+
+.event-date-tab {
+    color: var(--color);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.event-dates-tabs .mdc-tab__ripple::before {
+    background-color: var(--color) !important;
+}
+
+.event-dates-tabs .mdc-tab-indicator__content--underline {
+    border-color: var(--color) !important;
 }
 
 .event-date-container .event-date-title {

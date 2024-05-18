@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
@@ -8,7 +8,8 @@ import {EventEditorForm} from "./event-editor-form";
 @Component({
     selector: 'app-event-editor-modal',
     templateUrl: './event-editor-modal.component.html',
-    styleUrls: ['./event-editor-modal.component.css']
+    styleUrls: ['./event-editor-modal.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class EventEditorModalComponent implements OnInit {
 
@@ -42,7 +43,7 @@ export class EventEditorModalComponent implements OnInit {
     }
 
     get eventDates(): EventDate[] {
-        return Object.values(EventDate);
+        return sortedEventDates;
     }
 
     get eventStatuses(): EventStatus[] {

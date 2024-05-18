@@ -190,7 +190,9 @@
       "MORE": "View more events",
       "DATE": {
           "TITLE": "Date",
-          "OPENING": "Opening date"
+          "OPENING": "Opening date",
+          "INSCRIPTION": "Inscription date",
+          "FINISH": "Finish date"
       },
       "MONTH": {
             "TITLE": "Month",

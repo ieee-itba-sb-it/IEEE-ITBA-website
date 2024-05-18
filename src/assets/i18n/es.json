@@ -246,7 +246,9 @@
       "MORE": "Ver más eventos",
       "DATE": {
          "TITLE": "Fecha",
-         "OPENING": "Fecha de apertura"
+         "OPENING": "Fecha de apertura",
+         "INSCRIPTION": "Fecha de inscripción",
+         "FINISH": "Fecha de cierre"
       },
       "MONTH": {
           "TITLE": "Mes",
