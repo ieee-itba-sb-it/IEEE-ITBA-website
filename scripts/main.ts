@@ -1,6 +1,6 @@
-import {generateMissingUsers} from "./clean-unauthenticated";
 import {createEventInitialSchema} from "./create-event-initial-schema";
 import {initializeApp} from "firebase-admin/app";
+import {migrateEventDates} from "./migrate-event-dates";
 
 //  export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json" Prod
 // export FIREBASE_AUTH_EMULATOR_HOST='localhost:9099' for local
@@ -9,8 +9,9 @@ initializeApp({
     projectId: 'ieeeitba'
 });
 
-function main() {
-    createEventInitialSchema();
+async function main() {
+    await createEventInitialSchema();
+    await migrateEventDates();
 }
 
 main();

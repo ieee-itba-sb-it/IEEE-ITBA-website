@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
-import {EventCardData, IeeeEvent} from "../../../shared/models/event/event-card-data";
+import {Event, IeeeEvent} from "../../../shared/models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {EventService} from "../../../core/services/event/event.service";
     styleUrls: ['./typescript.component.css']
 })
 export class TypescriptComponent implements OnInit {
-    event?: EventCardData;
+    event?: Event;
 
     requirementsLink = 'https://raw.githubusercontent.com/IEEESBITBA/curso-typescript/main/Anexo/Gu%C3%ADa%20de%20Instalaci%C3%B3n%20de%20Herramientas.pdf';
 

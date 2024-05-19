@@ -74,6 +74,7 @@ export class AuthService {
     // Logout
     logout() {
         this.firebaseAuth.signOut();
+        this.accountObs.next(null);
     }
 
     // Check user state

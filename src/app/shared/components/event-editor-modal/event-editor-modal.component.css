@@ -10,9 +10,95 @@
     margin-bottom: 0;
 }
 
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
 .modal-body label {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.event-date-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+}
+
+.event-date-container .event-date-title {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.event-date-container .event-date-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.event-date-info .status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-item {
+    position: relative;
+}
+
+.status-tooltip {
+    position: absolute;
+    text-wrap: nowrap;
+    background-color: #000000;
+    color: var(--bs-light);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    opacity: 100%;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 0 4px #000000;
+    min-width: fit-content;
+    transform: translate(0%, -120%);
+}
+
+.status-tooltip.hidden {
+    opacity: 0;
+}
+
+.status-input {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.25rem;
+    align-items: center;
+}
+
+.status-btn {
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: box-shadow 0.2s ease;
+    box-shadow: 0 0 4px #000000;
+    color: #000000;
+}
+
+.status-btn:hover {
+    box-shadow: 0 0 2px #000000;
+}
+
+.status-btn.active {
+    background-color: var(--color);
+    color: var(--bs-light);
+    box-shadow: 0 0 4px var(--color);
+}
+
+.status-btn.active:hover {
+    box-shadow: 0 0 2px var(--color);
 }
 
 .modal-body .error-container {

@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {CourseWithTests} from '../../../../shared/models/courses/course-with-tests';
-import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
 
 @Component({
@@ -14,7 +14,7 @@ import {EventService} from "../../../../core/services/event/event.service";
 export class DataAnalysisComponent implements OnInit {
     sponsorsServiceVar: SponsorsService;
 
-    event?: EventCardData;
+    event?: Event;
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';

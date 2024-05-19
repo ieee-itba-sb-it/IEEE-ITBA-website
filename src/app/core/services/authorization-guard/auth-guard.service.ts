@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn } from '@angular/router';
 import { AuthService } from '../authorization/auth.service';
 
-import { Observable, of } from 'rxjs';
+import {from, map, Observable, of, switchMap} from 'rxjs';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import { roles } from '../../../shared/models/roles/roles.enum';
 
@@ -19,29 +19,18 @@ export class PermissionsService {
     constructor(private authService: AuthService, private router: Router, private userService: UserService) { }
 
     // here we check if user is logged in or not
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
+    canActivate(next: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
         const expectedRole: Array<roles> = next.data.expectedRole;
-        this.user = this.authService.getCurrentUser();
-
-        const p: Promise<boolean> = new Promise((resolve, reject) => {
-            this.user.subscribe( async (usuario: IEEEuser) => {
-                if (usuario){
-                    const userRole: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
-
-                    if (expectedRole.includes(userRole)){
-                        return resolve(true);
-                    }else{
-                        this.router.navigate(['error401']);
-                        return resolve(false);
-                    }
-                }else{
-                    this.router.navigate(['login']);
-                    return resolve(false);
-                }
-            });
-        });
-
-        return p;
+        // getCurrentUser() should have the role already, is not necessary to call it again.
+        return this.authService.getCurrentUser().pipe(switchMap((possibleUser) => {
+            if (possibleUser === null) {
+                return from(this.router.navigate(['login'])).pipe(map(() => false));
+            }
+            if (expectedRole.includes(possibleUser.role)) {
+                return of(true);
+            }
+            return from(this.router.navigate(['error401'])).pipe(map(() => false));
+        }));
     }
 }
 

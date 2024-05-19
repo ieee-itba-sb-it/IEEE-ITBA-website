@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EventCardData} from '../../models/event/event-card-data';
+import {Event} from '../../models/event/event';
 
 @Component({
     selector: 'app-event-card',
@@ -8,7 +8,7 @@ import {EventCardData} from '../../models/event/event-card-data';
 })
 export class EventCardComponent implements OnInit {
 
-  @Input() event: EventCardData;
+  @Input() event: Event;
 
   @Input() index: number;
 
