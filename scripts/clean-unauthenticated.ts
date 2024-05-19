@@ -1,11 +1,5 @@
-import {applicationDefault, initializeApp } from 'firebase-admin/app';
 import {getAuth, UserRecord} from 'firebase-admin/auth';
 import { getFirestore } from "firebase-admin/firestore";
-
-//  export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json"
-initializeApp({
-    credential: applicationDefault(),
-});
 
 export async function generateMissingUsers() {
     const userCollection = getFirestore().collection("users");

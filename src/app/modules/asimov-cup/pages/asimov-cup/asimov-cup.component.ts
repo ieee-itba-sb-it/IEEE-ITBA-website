@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
-import {EventCardData, IeeeEvent} from '../../../../shared/models/event/event-card-data';
+import {Event, IeeeEvent} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
@@ -13,7 +13,7 @@ import {AppConfigService} from '../../../../core/services/configuration/app-conf
 })
 export class AsimovCupComponent implements OnInit {
     sponsors: Sponsor[] = [];
-    eventData?: EventCardData;
+    eventData?: Event;
     enrollOpen = false;
     enrollClosed = false;
     spectatorEnrollClosed = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
-import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {EventService} from "../../../../core/services/event/event.service";
     styleUrls: ['./curso-python.component.css'],
 })
 export class CursoPythonComponent implements OnInit {
-    event?: EventCardData;
+    event?: Event;
 
     enrollLink = 'https://forms.gle/F5yVdarakDSmh3GF6';
 

@@ -1,5 +1,5 @@
-import {Component, Inject, Input, LOCALE_ID, OnInit} from '@angular/core';
-import { EventCardData } from '../../models/event/event-card-data';
+import {Component, Input, OnInit} from '@angular/core';
+import {Event, EventDate, EventStatus} from '../../models/event/event';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -9,7 +9,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class EventCardShortComponent implements OnInit {
 
-  @Input() event: EventCardData;
+  @Input() event: Event;
 
   @Input() index: number;
 
@@ -33,5 +33,21 @@ export class EventCardShortComponent implements OnInit {
 
   capitalizeFirstLetter(str: string): string {
       return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  getEventDate(): string {
+      const openingDate = this.event.dates[EventDate.OPENING];
+      if (openingDate.status === EventStatus.CONFIRMED) {
+          const date = openingDate.date;
+          return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: 'UTC'}) + ' ' + date.getFullYear();
+      }
+      if (openingDate.status === EventStatus.TENTATIVE) {
+          const fakeDate = new Date(new Date().getFullYear(), openingDate.month);
+          return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
+      }
+      if (openingDate.status === EventStatus.UPCOMING) {
+          return openingDate.year.toLocaleString();
+      }
+      return this.translate.instant('EVENTS.STATUS.UNSCHEDULED');
   }
 }

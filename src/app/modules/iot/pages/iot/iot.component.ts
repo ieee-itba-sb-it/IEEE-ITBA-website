@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
-import {EventCardData, IeeeEvent} from "../../../../shared/models/event/event-card-data";
+import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
 
 
@@ -10,7 +10,7 @@ import {EventService} from "../../../../core/services/event/event.service";
     styleUrls: ['./iot.component.css']
 })
 export class IotComponent implements OnInit {
-    event?: EventCardData;
+    event?: Event;
 
     imageLinks = [
         'https://i.ibb.co/h2NXFqZ/image1.jpg',

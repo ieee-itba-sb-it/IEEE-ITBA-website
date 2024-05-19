@@ -1,10 +1,4 @@
-import {applicationDefault, initializeApp } from 'firebase-admin/app';
 import { getFirestore } from "firebase-admin/firestore";
-
-//  export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json"
-initializeApp({
-    credential: applicationDefault(),
-});
 
 export async function migrateRoles() {
     const userCollection = getFirestore().collection("users");

@@ -6,7 +6,7 @@ import {NewsItem} from '../../../../shared/models/news-item/news-item';
 import {blogCollectionName} from '../../../../secrets';
 import SwiperCore, {Pagination, Navigation, Autoplay, SwiperOptions} from 'swiper';
 import {EventService} from '../../../../core/services/event/event.service';
-import {EventCardData} from '../../../../shared/models/event/event-card-data';
+import {Event} from '../../../../shared/models/event/event';
 import { StudentChaptersService } from '../../../../core/services/student-chapters/student-chapters.service';
 import { StudentChapter } from '../../../../shared/models/student-chapters/student-chapter.types';
 import { Sponsor } from '../../../../shared/models/sponsors';
@@ -49,7 +49,7 @@ export class MainpageComponent implements OnInit {
     studentChapters$: Observable<StudentChapter[]>;
     sponsors: Sponsor[];
 
-    latestEvents: EventCardData[] = [];
+    latestEvents: Event[] = [];
     loadingLatestEvents: boolean = true;
 
     swiperConfig: SwiperOptions = {
