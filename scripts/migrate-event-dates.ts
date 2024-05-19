@@ -1,11 +1,6 @@
-import {applicationDefault, initializeApp} from "firebase-admin/app";
 import {getFirestore} from "firebase-admin/firestore";
 import {eventsCollectionName} from "../src/app/secrets";
 import {EventDate, EventDoc, EventStatus} from "../src/app/shared/models/event/event";
-
-initializeApp({
-    credential: applicationDefault(),
-});
 
 interface OldDate {
     date?: `${number}-${number}-${number}`

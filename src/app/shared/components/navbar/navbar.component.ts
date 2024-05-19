@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Inject, Input, OnInit, SimpleChanges} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {map, Observable, tap} from 'rxjs';
 import {IEEEuser} from '../../models/ieee-user/ieee-user';
 import {TranslateService} from '@ngx-translate/core';
 import {roles} from '../../models/roles/roles.enum';
@@ -8,28 +8,38 @@ import {DOCUMENT} from '@angular/common';
 import {AuthService} from '../../../core/services/authorization/auth.service';
 import {UserService} from '../../../core/services/user/user.service';
 import {AppColors} from '../../../core/services/configuration/app-config.service';
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, AfterViewInit{
   @Input() navbarColors: AppColors;
 
-  user$ = new BehaviorSubject<IEEEuser | null>(null);
-  isJournalist$ = new BehaviorSubject<boolean>(false);
-  isAdmin$ = new BehaviorSubject<boolean>(false);
+  user$: Observable<IEEEuser | null>;
+  isJournalist$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
+
   language: string;
   color: string;
   isLoading: boolean = true;
   languageService: TranslateService;
 
-  newsRoles: roles[] = [roles.admin, roles.contentCreator];
+  NEWS_ROLES: roles[] = [roles.admin, roles.contentCreator];
 
   constructor(private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, public translate: TranslateService,
-              private authService: AuthService, private userService: UserService) {
+              private authService: AuthService, private userService: UserService, private router: Router) {
       this.language = translate.currentLang;
+      // Load name
+      this.isLoading = true;
+      this.user$ = this.authService.getCurrentUser().pipe(tap(() => { this.isLoading = false; }, tap(console.log)));
+      this.isJournalist$ = this.user$.pipe(map((user) => {
+          if (user === null) return false;
+          return this.NEWS_ROLES.includes(user.role);
+      }));
+      this.isAdmin$ = this.user$.pipe(map((user) => (user !== null && user.role === roles.admin)));
   }
 
   // ----------Methods----------
@@ -46,24 +56,12 @@ export class NavbarComponent implements OnInit, AfterViewInit{
           document: this.document,
           scrollTarget: '#home',
       });
-
-      // Load name
-      this.isLoading = true;
-      this.authService.getCurrentUser().subscribe(async (usuario: IEEEuser) => {
-          if (usuario) {
-              const aux: number = usuario.role || await this.userService.getCurrentUserRole(usuario.email);
-              if (this.newsRoles.includes(aux)) this.isJournalist$.next(true);
-              if (aux == roles.admin) this.isAdmin$.next(true);
-              this.user$.next(usuario);
-          }
-          this.isLoading = false;
-      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.navbarColors) {
-      this.applyStyles();
-    }
+      if (changes.navbarColors) {
+          this.applyStyles();
+      }
   }
 
   // Scroll
@@ -92,13 +90,13 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
   logoutUser() {
       this.authService.logout();
-      window.location.reload();
+      this.router.navigate(['login']);
   }
 
   private applyStyles() {
-    document.documentElement.style.setProperty('--navbar-bg-color', this.navbarColors.background);
-    document.documentElement.style.setProperty('--navbar-underlying-color', this.navbarColors.underlying);
-    document.documentElement.style.setProperty('--navbar-hover-color', this.navbarColors.hover);
+      document.documentElement.style.setProperty('--navbar-bg-color', this.navbarColors.background);
+      document.documentElement.style.setProperty('--navbar-underlying-color', this.navbarColors.underlying);
+      document.documentElement.style.setProperty('--navbar-hover-color', this.navbarColors.hover);
   }
 
 }

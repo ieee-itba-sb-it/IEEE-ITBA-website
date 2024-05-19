@@ -109,14 +109,13 @@ export class EventEditorForm {
                 this.yearValidator()
             )
         },
-            this.requiredIfStatusValidator()
+        this.requiredIfStatusValidator()
         );
     }
 
     private readonly eventForm: EventForm;
 
     constructor(private event: Event) {
-        console.log("event", event)
         const eventFormGroup: EventFormGroup = {} as EventFormGroup;
         for (const eventDate of Object.values(EventDate)) {
             eventFormGroup[eventDate] = EventEditorForm.createEventDateForm(event, eventDate);
