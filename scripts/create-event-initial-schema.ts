@@ -1,6 +1,6 @@
-import {IeeeEvent} from "../src/app/shared/models/event/event-card-data";
 import {getFirestore} from "firebase-admin/firestore";
 import {eventsCollectionName} from "../src/app/secrets";
+import {IeeeEvent} from "../src/app/shared/models/event/event";
 
 // Execute this script before any other script that updates the events collection
 
