@@ -15,7 +15,7 @@ import {
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of, Subject} from "rxjs";
+import {catchError, from, map, Observable, of} from "rxjs";
 import {UserService} from "../user/user.service";
 
 @Injectable({
@@ -158,7 +158,7 @@ export class EventService {
             }
             const eventDoc = EventService.mapEvent(event);
             return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
-                .pipe(() => of(true))
+                .pipe(map(() => true))
                 .pipe(catchError((error) => {
                     console.error(`updateEvent ${event.id} failed: ${error}`);
                     return of(false)
