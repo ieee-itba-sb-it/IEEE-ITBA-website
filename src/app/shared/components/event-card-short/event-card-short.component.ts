@@ -39,7 +39,7 @@ export class EventCardShortComponent implements OnInit {
       const openingDate = this.event.dates[EventDate.OPENING];
       if (openingDate.status === EventStatus.CONFIRMED) {
           const date = openingDate.date;
-          return this.capitalizeFirstLetter(date.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + date.getFullYear();
+          return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: 'UTC'}) + ' ' + date.getFullYear();
       }
       if (openingDate.status === EventStatus.TENTATIVE) {
           const fakeDate = new Date(new Date().getFullYear(), openingDate.month);
