@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 0.25rem;
-    padding: 1rem;
+    padding: 0.75rem 0.75rem 0 0.75rem;
 }
 
 .event-date-tab {
@@ -41,6 +41,12 @@
 
 .event-dates-tabs .mdc-tab-indicator__content--underline {
     border-color: var(--color) !important;
+}
+
+.mat-mdc-tab-body-wrapper,
+.mat-mdc-tab-body,
+.mat-mdc-tab-body-content {
+    overflow: visible !important;
 }
 
 .event-date-container .event-date-title {
@@ -59,6 +65,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .status-item {
@@ -135,31 +142,8 @@
     row-gap: 0.5rem;
 }
 
-.event-date-info .status-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .status-item {
     position: relative;
-}
-
-.status-tooltip {
-    position: absolute;
-    text-wrap: nowrap;
-    background-color: #000000;
-    color: var(--bs-light);
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    font-weight: 400;
-    font-size: 0.9rem;
-    opacity: 100%;
-    transition: opacity 0.5s ease;
-    box-shadow: 0 0 4px #000000;
-    min-width: fit-content;
-    transform: translate(0%, -120%);
 }
 
 .status-tooltip.hidden {
@@ -197,18 +181,40 @@
     box-shadow: 0 0 2px var(--color);
 }
 
-.modal-body .error-container {
-    margin-top: 0.5rem;
+.event-date {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.event-date-input:has(.form-check-input-checkbox) {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    align-items: center;
+}
+
+.form-check-input-checkbox {
+    accent-color: var(--color);
+    border-color: var(--color);
+}
+
+
+.error-container {
     display: flex;
     flex-direction: column;
     row-gap: 0.25rem;
+}
+
+.error-container:not(:has(.error)) {
+    display: none;
 }
 
 .modal-body p.error {
     color: var(--bs-danger);
     font-weight: 600;
     font-size: 0.9rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .modal-footer button {

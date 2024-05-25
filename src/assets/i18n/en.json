@@ -189,10 +189,17 @@
       "CONTENT": "Find out about our newest events!",
       "MORE": "View more events",
       "DATE": {
-          "TITLE": "Date",
-          "OPENING": "Opening date",
+          "UNIQUE": "Date",
+          "FIRST": "First date",
+          "EVENT": "Event date",
           "INSCRIPTION": "Inscription date",
           "FINISH": "Finish date"
+      },
+      "IS_PERIOD": {
+          "TITLE": "Is it a period?"
+      },
+      "LAST_DATE": {
+          "TITLE": "Last date"
       },
       "MONTH": {
             "TITLE": "Month",
@@ -229,6 +236,10 @@
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past",
+              "LAST_DATE_REQUIRED": "The last date is required",
+              "LAST_DATE_INVALID": "The last date format is invalid, it should be dd/mm/yyyy",
+              "LAST_DATE_PAST": "The last date cannot be in the past",
+              "LAST_DATE_BEFORE_DATE": "The last date must be after the first date",
               "MONTH_REQUIRED": "The month is required",
               "MONTH_INVALID": "The month is invalid",
               "MONTH_PAST": "The month cannot be previous to the current month",

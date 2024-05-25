@@ -245,10 +245,17 @@
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
       "MORE": "Ver más eventos",
       "DATE": {
-         "TITLE": "Fecha",
-         "OPENING": "Fecha de apertura",
+         "UNIQUE": "Fecha",
+         "FIRST": "Primera fecha",
+         "EVENT": "Fecha del evento",
          "INSCRIPTION": "Fecha de inscripción",
          "FINISH": "Fecha de cierre"
+      },
+      "IS_PERIOD": {
+          "TITLE": "¿Es un periodo?"
+      },
+      "LAST_DATE": {
+          "TITLE": "Última fecha"
       },
       "MONTH": {
           "TITLE": "Mes",
@@ -285,6 +292,10 @@
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado",
+             "LAST_DATE_REQUIRED": "La última fecha es requerida",
+             "LAST_DATE_INVALID": "El formato de la última fecha es inválido, debe ser dd/mm/yyyy",
+             "LAST_DATE_PAST": "La última fecha no puede ser en el pasado",
+             "LAST_DATE_BEFORE_DATE": "La última fecha debe ser posterior a la fecha de apertura",
              "MONTH_REQUIRED": "El mes es requerido",
              "MONTH_INVALID": "El mes es inválido",
              "MONTH_PAST": "El mes no puede ser anterior al mes actual",

@@ -94,6 +94,10 @@ export class EventEditorModalComponent implements OnInit {
         return this.form.hasChanged();
     }
 
+    isEventDateAPeriod(eventDate: EventDate): boolean {
+        return this.form.isEventDateAPeriod(eventDate);
+    }
+
     async updateEvent() {
         if (!this.isFormValid()) {
             return;
