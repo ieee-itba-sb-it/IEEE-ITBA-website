@@ -9,18 +9,18 @@ interface OldDate {
     showYear?: boolean;
 }
 
-const mapOldDateToNewDates = (dates?: OldDate[]): EventDoc['dates'] => {
+const mapOldDateToNewDates = (dates?: OldDate[]) => {
     const date = dates?.[0]?.date;
     if (date) {
         return {
-            [EventDate.OPENING]: {
+            OPENING: {
                 status: EventStatus.CONFIRMED,
                 date
             }
         }
     }
     return {
-        [EventDate.OPENING]: {
+        OPENING: {
             status: EventStatus.UNSCHEDULED
         }
     }

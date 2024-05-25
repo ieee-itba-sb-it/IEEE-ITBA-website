@@ -1,9 +1,15 @@
 import {getFirestore} from "firebase-admin/firestore";
 import {eventsCollectionName} from "../src/app/secrets";
-import {EventDoc, EventStatus, sortedEventDates} from "../src/app/shared/models/event/event";
+import {EventDate, EventDoc, EventStatus, sortedEventDates} from "../src/app/shared/models/event/event";
 
-const addMissingEventDates = (dates: EventDoc['dates']): EventDoc['dates'] => {
-    const out: EventDoc['dates'] = {...dates};
+const updateEventDates = (dates): EventDoc['dates'] => {
+    const out: EventDoc['dates'] = {} as EventDoc['dates'];
+    const openingDate = dates?.OPENING;
+    if (openingDate) {
+        out[EventDate.EVENT] = {
+            ...openingDate,
+        }
+    }
     for (const eventDate of sortedEventDates) {
         if (!out[eventDate]) {
             out[eventDate] = {
@@ -20,7 +26,7 @@ export const addNewEventDates = async () => {
     const batch = getFirestore().batch();
     events.forEach(event => {
         const data = event.data();
-        const dates = addMissingEventDates(data.dates);
+        const dates = updateEventDates(data.dates);
         batch.update(event.ref, {
             dates
         });

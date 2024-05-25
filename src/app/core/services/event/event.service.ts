@@ -42,7 +42,12 @@ export class EventService {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: new Date(eventDoc.dates[date].date)
+                    date: new Date(eventDoc.dates[date].date),
+                    isPeriod: false
+                }
+                if (eventDoc.dates[date].lastDate) {
+                    dates[date].lastDate = new Date(eventDoc.dates[date].lastDate);
+                    dates[date].isPeriod = true;
                 }
             } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
                 dates[date] = {
@@ -89,7 +94,7 @@ export class EventService {
     private static isEventDateUpcoming(eventDate: Event['dates'][EventDate]): boolean {
         const now = Timestamp.now().toDate();
         if (eventDate.status === EventStatus.CONFIRMED) {
-            return eventDate.date >= now;
+            return eventDate.date >= now || (eventDate.isPeriod && eventDate.lastDate >= now);
         }
         if (eventDate.status === EventStatus.TENTATIVE) {
             return eventDate.month >= now.getUTCMonth();
@@ -115,6 +120,10 @@ export class EventService {
 
     private static getFakeDate(eventDate: Event['dates'][EventDate]): Date {
         if (eventDate.status === EventStatus.CONFIRMED) {
+            const now = Timestamp.now().toDate();
+            if (eventDate.isPeriod && eventDate.date < now) {
+                return eventDate.lastDate;
+            }
             return eventDate.date;
         }
         if (eventDate.status === EventStatus.TENTATIVE) {
@@ -204,7 +213,16 @@ export class EventService {
                 }
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: EventService.getIsoDate(event.dates[date].date)
+                    date: EventService.getIsoDate(event.dates[date].date),
+                }
+                if (event.dates[date].isPeriod) {
+                    if (event.dates[date].lastDate === null) {
+                        throw new Error(`updateEventDocDates failed: lastDate ${date} is null`);
+                    }
+                    if (event.dates[date].lastDate < event.dates[date].date) {
+                        throw new Error(`updateEventDocDates failed: lastDate ${date} is before date`);
+                    }
+                    dates[date].lastDate = EventService.getIsoDate(event.dates[date].lastDate);
                 }
             } else if (event.dates[date].status === EventStatus.TENTATIVE) {
                 if (event.dates[date].month === null) {
