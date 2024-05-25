@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Event, EventDate, EventStatus} from '../../models/event/event';
 import {TranslateService} from '@ngx-translate/core';
+import {EventService} from "../../../core/services/event/event.service";
+import {Timestamp} from "@angular/fire/firestore";
 
 @Component({
     selector: 'app-event-card-short',
@@ -15,8 +17,22 @@ export class EventCardShortComponent implements OnInit {
 
   hasPrimaryColorIndex: boolean;
 
+  private static readonly ICON_CLASSES = {
+      [EventDate.EVENT]: {
+          default: 'fa-calendar-day',
+          lastDate: 'fa-flag-checkered',
+          firstDate: 'fa-bullhorn'
+      },
+      [EventDate.INSCRIPTION]: {
+          default: 'fa-file-pen',
+          lastDate: 'fa-file-circle-check',
+          firstDate: 'fa-file-pen'
+      }
+  }
+
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private eventService: EventService
   ) {}
 
   ngOnInit(): void {
@@ -35,19 +51,61 @@ export class EventCardShortComponent implements OnInit {
       return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  private formatConfirmedDate(date: Date): string {
+      return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: 'UTC'});
+  }
+
+  private formatTentativeDate(month: number): string {
+      const fakeDate = new Date(new Date().getFullYear(), month);
+      return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
+  }
+
+  getEventData(): {
+      date: string,
+      iconClass: string
+      } {
+      const upcomingDate = this.eventService.getUpcomingEventDate(this.event) || EventDate.EVENT;
+      const eventDate = this.event.dates[upcomingDate];
+      if (eventDate.status === EventStatus.CONFIRMED) {
+          const now = Timestamp.now().toDate();
+          if (eventDate.isPeriod) {
+              if (eventDate.date < now && now < eventDate.lastDate) {
+                  return {
+                      date: this.formatConfirmedDate(eventDate.lastDate),
+                      iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].lastDate
+                  }
+              }
+              return {
+                  date: this.formatConfirmedDate(eventDate.date),
+                  iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].firstDate
+              }
+          }
+          return {
+              date: this.formatConfirmedDate(eventDate.date),
+              iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].default
+          }
+      } else if (eventDate.status === EventStatus.TENTATIVE) {
+          return {
+              date: this.formatTentativeDate(eventDate.month),
+              iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].default
+          }
+      } else if (eventDate.status === EventStatus.UPCOMING) {
+          return {
+              date: eventDate.year.toLocaleString(),
+              iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].default
+          }
+      }
+      return {
+          date: this.translate.instant('EVENTS.STATUS.UNSCHEDULED'),
+          iconClass: ''
+      }
+  }
+
   getEventDate(): string {
-      const openingDate = this.event.dates[EventDate.OPENING];
-      if (openingDate.status === EventStatus.CONFIRMED) {
-          const date = openingDate.date;
-          return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: 'UTC'}) + ' ' + date.getFullYear();
-      }
-      if (openingDate.status === EventStatus.TENTATIVE) {
-          const fakeDate = new Date(new Date().getFullYear(), openingDate.month);
-          return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
-      }
-      if (openingDate.status === EventStatus.UPCOMING) {
-          return openingDate.year.toLocaleString();
-      }
-      return this.translate.instant('EVENTS.STATUS.UNSCHEDULED');
+      return this.getEventData().date;
+  }
+
+  getEventIconClass(): string {
+      return this.getEventData().iconClass;
   }
 }
