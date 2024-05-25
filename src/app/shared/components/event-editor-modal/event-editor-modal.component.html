@@ -106,35 +106,8 @@
         </mat-tab-group>
         <div *ngFor="let eventDate of eventDates" class="error-container">
             <div *ngIf="hasFormError(eventDate)" class="error-container">
-                <p *ngIf="hasFormError(eventDate, 'dateRequired')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.DATE_REQUIRED" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'pastDate')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.DATE_PAST" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'lastDateRequired')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.LAST_DATE_REQUIRED" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'pastLastDate')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.LAST_DATE_PAST" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'lastDateBeforeDate')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.LAST_DATE_BEFORE_DATE" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'monthRequired')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.MONTH_REQUIRED" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'invalidMonth')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.MONTH_INVALID" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate,  'pastMonth')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.MONTH_PAST" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'yearRequired')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.YEAR_REQUIRED" | translate }}
-                </p>
-                <p *ngIf="hasFormError(eventDate, 'pastYear')" class="error">
-                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ "HOME.EVENTS.EDIT.ERROR.YEAR_PAST" | translate }}
+                <p *ngFor="let errorI18n of this.getFormErrorsI18n(eventDate)" class="error">
+                    {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ errorI18n | translate }}
                 </p>
             </div>
         </div>

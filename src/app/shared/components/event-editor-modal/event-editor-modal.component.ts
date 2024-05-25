@@ -22,6 +22,18 @@ export class EventEditorModalComponent implements OnInit {
         [EventStatus.TENTATIVE]: false,
         [EventStatus.UPCOMING]: false,
         [EventStatus.UNSCHEDULED]: false
+    };
+    i18nErrorByFormErrorName: Record<string, string> = {
+        dateRequired: 'DATE_REQUIRED',
+        pastDate: 'DATE_PAST',
+        lastDateRequired: 'LAST_DATE_REQUIRED',
+        pastLastDate: 'LAST_DATE_PAST',
+        lastDateBeforeDate: 'LAST_DATE_BEFORE_DATE',
+        monthRequired: 'MONTH_REQUIRED',
+        invalidMonth: 'MONTH_INVALID',
+        pastMonth: 'MONTH_PAST',
+        yearRequired: 'YEAR_REQUIRED',
+        pastYear: 'YEAR_PAST'
     }
 
     constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
@@ -74,10 +86,6 @@ export class EventEditorModalComponent implements OnInit {
         return this.form.isEventDateStatus(eventDate, EventStatus.UPCOMING);
     }
 
-    hasFieldError: EventEditorForm['hasFieldError'] = (eventDate, controlName, errorName) => {
-        return this.form.hasFieldError(eventDate, controlName, errorName);
-    }
-
     getAppColors() {
         return this.appConfigService.getAppColors();
     }
@@ -88,6 +96,13 @@ export class EventEditorModalComponent implements OnInit {
 
     hasFormError(eventDate: EventDate, errorName?: string): boolean {
         return this.form.hasError(eventDate, errorName);
+    }
+
+    getFormErrorsI18n(eventDate: EventDate): string[] {
+        return Object.keys(this.i18nErrorByFormErrorName)
+            .filter(errorName => this.hasFormError(eventDate, errorName))
+            .map(errorName => this.i18nErrorByFormErrorName[errorName])
+            .map(i18nKey => `HOME.EVENTS.EDIT.ERROR.${i18nKey}`)
     }
 
     hasFormChanged(): boolean {
