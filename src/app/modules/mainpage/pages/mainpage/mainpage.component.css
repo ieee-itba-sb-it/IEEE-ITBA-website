@@ -294,4 +294,8 @@ h2{
   .section-divider {
       height: 2px;
   }
+
+  .section-title {
+      font-size : 1.85rem;
+  }
 }
