@@ -19,8 +19,6 @@
     </div>
   </div>
 
-  <app-event-date-section [dates]="event.dates" />
-
   <!-- Introductory text -->
   <app-event-section title="{{ 'IOT.DESC.TITLE' | translate }}">
     <p>{{ 'IOT.DESC.TEXT.1' | translate }}</p>
@@ -28,6 +26,8 @@
     <p>{{ 'IOT.DESC.TEXT.3' | translate }}</p>
     <p>{{ 'IOT.DESC.TEXT.4' | translate }}</p>
   </app-event-section>
+
+  <app-event-date-section [dates]="event.dates" />
 
   <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
     <app-image-carousel [imageLinks]="imageLinks"></app-image-carousel>

@@ -5,8 +5,6 @@
   >
   </app-event-facts-banner>
 
-  <app-event-date-section [dates]="event.dates" />
-
   <!-- bitcup -->
   <div class="info">
     <app-event-section
@@ -40,6 +38,8 @@
       <img src="../../../../../assets/image/events/bitcup/level.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
   </div>
+
+  <app-event-date-section [dates]="event.dates" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">

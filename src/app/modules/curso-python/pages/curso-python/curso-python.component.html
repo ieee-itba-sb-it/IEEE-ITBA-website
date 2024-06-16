@@ -9,8 +9,6 @@
     </div>
   </div>
 
-  <app-event-date-section [dates]="event.dates" />
-
   <!-- Introductory text -->
   <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
     <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
@@ -137,6 +135,8 @@
       </mat-card>
   </div>
   -->
+
+  <app-event-date-section [dates]="event.dates" />
 
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

@@ -5,8 +5,6 @@
     [facts]="facts"
   ></app-event-facts-banner>
 
-  <app-event-date-section [dates]="event.dates" />
-
   <!-- Resolve problemas en equipo -->
   <div class="info">
     <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
@@ -27,6 +25,8 @@
       <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
     </app-event-section>
   </div>
+
+  <app-event-date-section [dates]="event.dates" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
