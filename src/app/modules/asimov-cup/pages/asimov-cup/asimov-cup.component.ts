@@ -108,5 +108,8 @@ export class AsimovCupComponent implements OnInit {
     getAsimovCupEvent(): void {
         this.eventService.getEvent(IeeeEvent.ASIMOV_CUP)
             .subscribe(event => this.eventData = event);
+
+    updateEventData(event: Event) {
+        this.eventData = event;
     }
 }

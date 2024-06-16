@@ -132,5 +132,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

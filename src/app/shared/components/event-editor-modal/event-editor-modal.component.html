@@ -105,7 +105,7 @@
             </mat-tab>
         </mat-tab-group>
         <div *ngFor="let eventDate of eventDates" class="error-container">
-            <div *ngIf="hasFormError(eventDate)" class="error-container">
+            <div *ngIf="hasFormChanged() && hasFormError(eventDate)" class="error-container">
                 <p *ngFor="let errorI18n of this.getFormErrorsI18n(eventDate)" class="error">
                     {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ errorI18n | translate }}
                 </p>

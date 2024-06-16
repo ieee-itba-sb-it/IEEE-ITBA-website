@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
@@ -14,6 +14,8 @@ import {EventEditorForm} from "./event-editor-form";
 export class EventEditorModalComponent implements OnInit {
 
     @Input() event: Event;
+    @Output() updateEmitter: EventEmitter<Event> = new EventEmitter();
+
     form: EventEditorForm;
     errorI18n: string = null;
     loading = false;
@@ -106,7 +108,7 @@ export class EventEditorModalComponent implements OnInit {
     }
 
     hasFormChanged(): boolean {
-        return this.form.hasChanged();
+        return this.form.hasChanged()
     }
 
     isEventDateAPeriod(eventDate: EventDate): boolean {
@@ -120,14 +122,14 @@ export class EventEditorModalComponent implements OnInit {
         const newEvent = this.form.submit();
         this.loading = true;
         this.eventService.updateEvent(newEvent).subscribe((updated) => {
+            this.loading = false;
             if (updated) {
+                this.updateEmitter.emit(newEvent);
                 this.errorI18n = null;
                 this.modalRef.hide();
             } else {
                 this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
             }
-            this.loading = false;
-            this.event = newEvent;
         })
     }
 }

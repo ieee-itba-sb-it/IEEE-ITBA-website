@@ -62,4 +62,8 @@ export class TypescriptComponent implements OnInit {
                 this.event = event;
             });
     }
+
+    updateEvent(event: Event) {
+        this.event = event;
+    }
 }
