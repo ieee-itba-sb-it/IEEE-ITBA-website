@@ -36,7 +36,7 @@ export class EventService {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
-    private mapEventDocDates(this: EventService, eventDoc: EventDoc): Event['dates'] {
+    private mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
         const dates: Event['dates'] = {} as Event['dates'];
         for (const date in eventDoc.dates) {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
