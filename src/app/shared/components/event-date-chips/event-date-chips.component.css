@@ -5,3 +5,28 @@
     column-gap: 0.5rem;
     font-weight: 600;
 }
+
+@media (max-width: 1199px) {
+    .chip {
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .chip {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .chip {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .chip {
+        font-size: 0.5rem;
+    }
+}
