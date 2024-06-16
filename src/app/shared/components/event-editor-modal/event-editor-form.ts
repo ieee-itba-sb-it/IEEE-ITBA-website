@@ -1,5 +1,6 @@
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {EventService} from "../../../core/services/event/event.service";
 
 type EventEditorFormDateFields = {
     status: FormControl<EventStatus>;
@@ -129,18 +130,64 @@ export class EventEditorForm {
         );
     }
 
-    private readonly eventForm: EventForm;
+    private static cloneEvent(event: Event): Event {
+        const dates: Event["dates"] = {} as Event["dates"];
+        for (const eventDate of Object.keys(EventDate)) {
+            dates[eventDate] = {
+                ...event.dates[eventDate]
+            }
+        }
+        return {
+            ...event,
+            dates
+        }
+    }
 
-    constructor(private event: Event) {
+    private readonly eventForm: EventForm;
+    private readonly eventInitialState: Event;
+
+    constructor(event: Event) {
         const eventFormGroup: EventFormGroup = {} as EventFormGroup;
         for (const eventDate of Object.values(EventDate)) {
             eventFormGroup[eventDate] = EventEditorForm.createEventDateForm(event, eventDate);
         }
         this.eventForm = new FormGroup(eventFormGroup);
+        this.eventInitialState = EventEditorForm.cloneEvent(event);
     }
 
     get formGroup(): EventForm {
         return this.eventForm;
+    }
+
+    get eventCurrentState(): Event {
+        const newEvent = EventEditorForm.cloneEvent(this.eventInitialState);
+        for (const eventDate of Object.values(EventDate)) {
+            const eventDateForm = this.eventForm.get(eventDate);
+            const status = eventDateForm.get('status').value;
+            if (status === EventStatus.CONFIRMED) {
+                newEvent.dates[eventDate] = {
+                    status,
+                    date: new Date(eventDateForm.get('date').value),
+                    isPeriod: eventDateForm.get('isPeriod').value,
+                    lastDate: eventDateForm.get('isPeriod').value ? new Date(eventDateForm.get('lastDate').value) : undefined
+                };
+            } else if (status === EventStatus.TENTATIVE) {
+                newEvent.dates[eventDate] = {
+                    status,
+                    month: eventDateForm.get('month').value
+                };
+            } else if (status === EventStatus.UPCOMING) {
+                newEvent.dates[eventDate] = {
+                    status,
+                    year: eventDateForm.get('year').value
+                };
+            } else {
+                newEvent.dates[eventDate] = {
+                    status
+                };
+            }
+        }
+        return newEvent;
     }
 
     setEventDateStatus(eventDate: EventDate, status: EventStatus): void {
@@ -193,18 +240,34 @@ export class EventEditorForm {
     }
 
     hasChanged(): boolean {
+        const currentDates = this.eventCurrentState.dates;
+        const initialDates = this.eventInitialState.dates;
         return Object.values(EventDate).some(eventDate => {
-            const eventDateForm = this.eventForm.get(eventDate);
-            const status = eventDateForm.get('status').value;
-            if (status === EventStatus.CONFIRMED) {
-                return eventDateForm.get('date').dirty || eventDateForm.get('date').touched ||
-                    eventDateForm.get('isPeriod').dirty || eventDateForm.get('isPeriod').touched ||
-                    eventDateForm.get('lastDate').dirty || eventDateForm.get('lastDate').touched;
+            const currentEventDate = currentDates[eventDate];
+            const currentStatus = currentEventDate.status;
+            const initialEventDate = initialDates[eventDate];
+            const initialStatus = initialEventDate.status;
+            switch (currentStatus) {
+            case EventStatus.UPCOMING:
+                return initialStatus !== EventStatus.UPCOMING || initialEventDate.year !== currentEventDate.year;
+            case EventStatus.TENTATIVE:
+                return initialStatus !== EventStatus.TENTATIVE || initialEventDate.month !== currentEventDate.month;
+            case EventStatus.CONFIRMED: {
+                if (initialStatus !== EventStatus.CONFIRMED) {
+                    return true;
+                }
+                if (currentEventDate.date.getTime() !== initialEventDate.date.getTime()) {
+                    return true;
+                }
+                if (currentEventDate.isPeriod) {
+                    return !initialEventDate.isPeriod || currentEventDate.lastDate.getTime() !== initialEventDate.lastDate.getTime();
+                } else {
+                    return initialEventDate.isPeriod;
+                }
             }
-            if (status === EventStatus.TENTATIVE) {
-                return eventDateForm.get('month').dirty || eventDateForm.get('month').touched;
+            default:
+                return initialEventDate.status !== EventStatus.UNSCHEDULED;
             }
-            return true;
         });
     }
 
@@ -213,33 +276,6 @@ export class EventEditorForm {
     }
 
     submit(): Event {
-        const newEvent = { ...this.event };
-        for (const eventDate of Object.values(EventDate)) {
-            const eventDateForm = this.eventForm.get(eventDate);
-            const status = eventDateForm.get('status').value;
-            if (status === EventStatus.CONFIRMED) {
-                newEvent.dates[eventDate] = {
-                    status,
-                    date: new Date(eventDateForm.get('date').value),
-                    isPeriod: eventDateForm.get('isPeriod').value,
-                    lastDate: eventDateForm.get('isPeriod').value ? new Date(eventDateForm.get('lastDate').value) : undefined
-                };
-            } else if (status === EventStatus.TENTATIVE) {
-                newEvent.dates[eventDate] = {
-                    status,
-                    month: eventDateForm.get('month').value
-                };
-            } else if (status === EventStatus.UPCOMING) {
-                newEvent.dates[eventDate] = {
-                    status,
-                    year: eventDateForm.get('year').value
-                };
-            } else {
-                newEvent.dates[eventDate] = {
-                    status
-                };
-            }
-        }
-        return newEvent;
+        return this.eventCurrentState;
     }
 }
