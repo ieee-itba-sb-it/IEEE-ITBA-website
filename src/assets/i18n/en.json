@@ -188,7 +188,10 @@
       "TITLE": "Events",
       "CONTENT": "Find out about our newest events!",
       "MORE": "View more events",
+      "EVENT": "Event",
+      "INSCRIPTION": "Inscription",
       "DATE": {
+          "TITLE": "Dates",
           "UNIQUE": "Date",
           "FIRST": "First date",
           "EVENT": "Event date",

@@ -65,15 +65,17 @@
       <div class="columned-section">
         <div class="aboutus-container">
           <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/calendar.svg" alt="Calendar icon"/>
-            <span>{{ 'ASIMOVCUP.D_AND_L.DATE' | translate }}</span>
+            <app-event-date [dates]="eventData.dates" [eventDate]="EventDate.INSCRIPTION" [isAsimov]="true" />
           </div>
           <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/location.svg" alt="Location icon"/>
+            <app-event-date [dates]="eventData.dates" [eventDate]="EventDate.EVENT" [isAsimov]="true" />
+          </div>
+          <div class="aboutus-section">
+            <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
           </div>
           <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/time.svg" alt="Time icon"/>
+            <i class="fa-regular fa-clock" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
           </div>
         </div>

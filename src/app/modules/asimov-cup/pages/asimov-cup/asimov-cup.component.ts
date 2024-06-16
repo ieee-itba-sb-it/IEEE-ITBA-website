@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
-import {Event, IeeeEvent} from '../../../../shared/models/event/event';
+import {Event, EventDate, IeeeEvent} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
@@ -113,4 +113,10 @@ export class AsimovCupComponent implements OnInit {
     updateEventData(event: Event) {
         this.eventData = event;
     }
+
+    getAppColors() {
+        return this.appConfigService.getAppColors();
+    }
+
+    protected readonly EventDate = EventDate;
 }

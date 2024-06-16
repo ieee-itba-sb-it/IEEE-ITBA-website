@@ -96,7 +96,7 @@ export class EventCardShortComponent implements OnInit {
           }
       }
       return {
-          date: this.translate.instant('EVENTS.STATUS.UNSCHEDULED'),
+          date: this.translate.instant('HOME.EVENTS.STATUS.UNSCHEDULED.TITLE'),
           iconClass: ''
       }
   }

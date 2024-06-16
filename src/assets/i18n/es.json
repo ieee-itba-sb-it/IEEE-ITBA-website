@@ -244,7 +244,10 @@
       "TITLE": "Eventos",
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
       "MORE": "Ver más eventos",
+      "EVENT": "Evento",
+      "INSCRIPTION": "Inscripción",
       "DATE": {
+         "TITLE": "Fechas",
          "UNIQUE": "Fecha",
          "FIRST": "Primera fecha",
          "EVENT": "Fecha del evento",
