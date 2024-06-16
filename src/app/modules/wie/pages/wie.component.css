@@ -162,6 +162,17 @@ mat-panel-title {
     background-color: var(--wie-purple);
 }
 
+@media (max-width: 770px) {
+    .btn.btn-outline-dark {
+        height: 50px;
+        width: 150px;
+    }
+
+    .buttons-display>div>a {
+        font-size: 1.1rem;
+    }
+}
+
 .contact-link {
     display: inline-block;
     width: 50px;
