@@ -371,8 +371,8 @@
     }
   },
   "BITCUP": {
-    "BITCUP-TITLE": "Bit cup!",
-    "BITCUP-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
     "FORMAT": "Format",
     "FORMAT-TEXT": "This competition consists of solving a series of challenges released as the competition develops. It is graded from a set of test cases so that your score increases as you pass more test cases. Memory limits and processing time will need to be taken into account.",
     "LEVEL": "¿Level?",

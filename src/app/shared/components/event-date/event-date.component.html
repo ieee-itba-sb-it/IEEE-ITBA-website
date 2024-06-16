@@ -1,4 +1,4 @@
-<div class="event-date-container" [style.--color]="(getAppColors() | async).background">
+<div class="event-date-container" [style.--color]="(getAppColors() | async).background" *ngIf="!!dates">
     <div class="event-date-icon-container" [class.asimov]="isAsimov">
         <i class="fa {{getIconClass()}}"></i>
     </div>

@@ -1,5 +1,5 @@
 <div class="main-container event">
-  <app-event-title>{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
+  <app-event-title [dates]="event?.dates">{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
   <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
       <button class="goback-button">
@@ -136,7 +136,7 @@
   </div>
   -->
 
-  <app-event-date-section [dates]="event.dates" />
+  <app-event-date-section [dates]="event?.dates" />
 
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

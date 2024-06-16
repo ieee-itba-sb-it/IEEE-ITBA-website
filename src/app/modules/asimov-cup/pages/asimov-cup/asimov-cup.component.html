@@ -5,7 +5,7 @@
   >
   </app-event-banner>
 
-  <app-event-title [asimov]="true">
+  <app-event-title [asimov]="true" [dates]="eventData?.dates">
     {{ 'ASIMOVCUP.TITLE' | translate }}
   </app-event-title>
 
@@ -65,10 +65,10 @@
       <div class="columned-section">
         <div class="aboutus-container">
           <div class="aboutus-section">
-            <app-event-date [dates]="eventData.dates" [eventDate]="EventDate.INSCRIPTION" [isAsimov]="true" />
+            <app-event-date [dates]="eventData?.dates" [eventDate]="EventDate.INSCRIPTION" [isAsimov]="true" />
           </div>
           <div class="aboutus-section">
-            <app-event-date [dates]="eventData.dates" [eventDate]="EventDate.EVENT" [isAsimov]="true" />
+            <app-event-date [dates]="eventData?.dates" [eventDate]="EventDate.EVENT" [isAsimov]="true" />
           </div>
           <div class="aboutus-section">
             <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>

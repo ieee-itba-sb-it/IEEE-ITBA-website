@@ -5,12 +5,16 @@
   >
   </app-event-facts-banner>
 
+  <app-event-title [dates]="event?.dates">
+    {{ 'HOME.BITCUP.TITLE' | translate }}
+  </app-event-title>
+
   <!-- bitcup -->
   <div class="info">
     <app-event-section
       style="padding-right:3rem;"
-      title="{{ 'BITCUP.BITCUP-TITLE' | translate }}">
-      <p>{{ 'BITCUP.BITCUP-TEXT' | translate }}</p>
+      title="{{ 'BITCUP.DESCRIPTION' | translate }}">
+      <p>{{ 'BITCUP.DESCRIPTION-TEXT' | translate }}</p>
     </app-event-section>
     <div>
       <img src="../../../../../assets/image/logos/data.png" height="160vmin" alt="Logo ITBA-IEEE">
@@ -39,7 +43,7 @@
     </div>
   </div>
 
-  <app-event-date-section [dates]="event.dates" />
+  <app-event-date-section [dates]="event?.dates" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">

@@ -16,7 +16,8 @@
     vertical-align: middle;
     text-align: center;
     align-content: center;
-    margin-bottom: 2%
+    margin-bottom: 2%;
+    position: relative;
 }
 
 .title {
@@ -24,4 +25,10 @@
     font-weight: 400;
     color: var(--secondary-color);
     letter-spacing: 1px;
+}
+
+.chip-list-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

@@ -1,5 +1,5 @@
 <div class="main-container event">
-  <app-event-title>
+  <app-event-title [dates]="event?.dates">
     {{ 'DATAANALYSIS.TITLE' | translate }}
   </app-event-title>
 
@@ -68,7 +68,7 @@
       </ng-container>
   </div>
 
-  <app-event-date-section [dates]="event.dates" />
+  <app-event-date-section [dates]="event?.dates" />
 
   <app-event-section title="{{ 'DATAANALYSIS.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

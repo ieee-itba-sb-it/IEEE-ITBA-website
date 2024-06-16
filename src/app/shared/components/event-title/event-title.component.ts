@@ -1,4 +1,5 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input} from '@angular/core';
+import {Event} from "../../models/event/event";
 
 @Component({
     selector: 'app-event-title',
@@ -7,4 +8,5 @@ import { Component, Input, OnInit} from '@angular/core';
 })
 export class EventTitleComponent {
     @Input() asimov: boolean = false;
+    @Input() dates: Event['dates'];
 }
