@@ -7,8 +7,8 @@ type EventEditorFormDateFields = {
     date: FormControl<string | null>;
     lastDate: FormControl<string | null>;
     isPeriod: FormControl<boolean>;
-    month: FormControl<number | null>;
-    year: FormControl<number | null>;
+    month: FormControl<string | null>;
+    year: FormControl<string | null>;
 }
 
 type EventDateForm = FormGroup<EventEditorFormDateFields>;
@@ -123,8 +123,8 @@ export class EventEditorForm {
             date: new FormControl(initialDate),
             lastDate: new FormControl(initialLastDate),
             isPeriod: new FormControl(initialIsPeriod),
-            month: new FormControl(initialMonth),
-            year: new FormControl(initialYear)
+            month: new FormControl(initialMonth.toString()),
+            year: new FormControl(initialYear.toString())
         },
         this.formValidator()
         );
@@ -174,12 +174,12 @@ export class EventEditorForm {
             } else if (status === EventStatus.TENTATIVE) {
                 newEvent.dates[eventDate] = {
                     status,
-                    month: eventDateForm.get('month').value
+                    month: parseInt(eventDateForm.get('month').value, 10)
                 };
             } else if (status === EventStatus.UPCOMING) {
                 newEvent.dates[eventDate] = {
                     status,
-                    year: eventDateForm.get('year').value
+                    year: parseInt(eventDateForm.get('year').value, 10)
                 };
             } else {
                 newEvent.dates[eventDate] = {
