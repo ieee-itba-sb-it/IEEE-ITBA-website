@@ -14,6 +14,7 @@ import {CustomMissingTranslationHandler} from '../../../shared/CustomMissingTran
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {HttpLoaderFactory} from '../../../shared/translation-helpers';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {HttpLoaderFactory} from '../../../shared/translation-helpers';
         MatFormFieldModule,
         MatInputModule,
         MatGridListModule,
+        MDBBootstrapModule.forRoot(),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
