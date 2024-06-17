@@ -20,7 +20,7 @@ p { line-height: 1.5; }
 }
 
 .main-container {
-  padding: 10rem 6% 0 6%;
+  padding: 10rem 6% 5rem 6%;
   background: rgb(136, 31, 31);
   background: linear-gradient(to bottom, #f0f0f0 0%, white 100%);
   background-size: cover;
