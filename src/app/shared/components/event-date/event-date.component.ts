@@ -35,35 +35,17 @@ export class EventDateComponent {
         private appConfigService: AppConfigService
     ) { }
 
-    private locale(): string {
-        return this.translate.currentLang;
+    pipeInput() {
+        return {
+            input: this.dates[this.eventDate],
+            eventDate: this.eventDate,
+        };
     }
 
-    private capitalizeFirstLetter(str: string): string {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    private formatConfirmedDate(date: Date): string {
-        return date.toLocaleDateString(this.locale(), {timeZone: 'UTC'});
-    }
-
-    private formatTentativeDate(month: number): string {
-        const fakeDate = new Date(new Date().getFullYear(), month);
-        return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
-    }
-
-    formatDate(): string {
+    isShown(): boolean {
+        if (!this.dates) return false;
         const date = this.dates[this.eventDate];
-        switch (date.status) {
-        case EventStatus.UNSCHEDULED:
-            return this.translate.instant('HOME.EVENTS.STATUS.UNSCHEDULED.DESCRIPTION');
-        case EventStatus.UPCOMING:
-            return date.year.toLocaleString();
-        case EventStatus.TENTATIVE:
-            return this.formatTentativeDate(date.month);
-        case EventStatus.CONFIRMED:
-            return this.formatConfirmedDate(date.date) + (date.isPeriod ? ` - ${this.formatConfirmedDate(date.lastDate)}` : '');
-        }
+        return date.status !== EventStatus.UNSCHEDULED;
     }
 
     getIconClass(): string {

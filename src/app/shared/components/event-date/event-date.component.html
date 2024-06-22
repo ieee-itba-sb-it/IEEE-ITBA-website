@@ -1,9 +1,9 @@
-<div class="event-date-container" [style.--color]="(getAppColors() | async).background" *ngIf="!!dates">
+<div class="event-date-container" [style.--color]="(getAppColors() | async).background" *ngIf="isShown()">
     <div class="event-date-icon-container" [class.asimov]="isAsimov">
         <i class="fa {{getIconClass()}}"></i>
     </div>
     <div class="event-date-text-container" [class.asimov]="isAsimov">
         <p class="event-date-title" [class.asimov]="isAsimov">{{getTitle()}}</p>
-        <p class="event-date-label" [class.asimov]="isAsimov">{{formatDate()}}</p>
+        <p class="event-date-label" [class.asimov]="isAsimov">{{pipeInput() | FormatDateEventPipe }}</p>
     </div>
 </div>

@@ -29,7 +29,7 @@ export const sortedEventDates = Object.entries(EventDateByPriority)
     .sort(([_, prio1], [__, prio2]) => prio1 - prio2)
     .map(([date, _]) => date as EventDate);
 
-type ConfirmedDateEvent = {
+export type ConfirmedDateEvent = {
     status: EventStatus.CONFIRMED;
     date: Date;
 } & ({

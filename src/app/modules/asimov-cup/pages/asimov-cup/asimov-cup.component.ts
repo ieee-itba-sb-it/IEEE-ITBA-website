@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
-import {Event, EventDate, IeeeEvent} from '../../../../shared/models/event/event';
+import {Event, EventDate, EventStatus, IeeeEvent} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
@@ -70,6 +70,12 @@ export class AsimovCupComponent implements OnInit {
         'ASIMOVCUP.SCHEDULE.11',
         'ASIMOVCUP.SCHEDULE.12',
     ];
+
+    // If no relevant events are happening, do not show section
+    isShown(): boolean {
+        if (!this.eventData) return false;
+        return !!Object.keys(EventDate).find(key => this.eventData[key as EventDate].status !== EventStatus.UNSCHEDULED);
+    }
 
     isOldDate(now: Timestamp, date: Date) {
         const oldDate = Timestamp.fromDate(new Date(date));

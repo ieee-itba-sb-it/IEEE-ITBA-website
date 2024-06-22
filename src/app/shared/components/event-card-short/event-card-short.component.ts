@@ -91,7 +91,7 @@ export class EventCardShortComponent implements OnInit {
           }
       } else if (eventDate.status === EventStatus.UPCOMING) {
           return {
-              date: eventDate.year.toLocaleString(),
+              date: String(eventDate.year),
               iconClass: EventCardShortComponent.ICON_CLASSES[upcomingDate].default
           }
       }

@@ -282,8 +282,10 @@
                 "DESCRIPTION": "Se realizará en cierto mes del año actual"
           },
           "CONFIRMED": {
-                "TITLE": "Confirmado",
-                "DESCRIPTION": "Se tiene fecha definida"
+              "TITLE": "Confirmado",
+              "DESCRIPTION": "Tiene definido una fecha",
+              "FINISHED_INSCRIPTION": "Cerradas",
+              "FINISHED_EVENT": "Finalizado"
           }
       },
       "EDIT": {

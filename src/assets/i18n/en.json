@@ -227,7 +227,9 @@
           },
           "CONFIRMED": {
                 "TITLE": "Confirmed",
-                "DESCRIPTION": "It has a defined date"
+                "DESCRIPTION": "It has a defined date",
+              "FINISHED_INSCRIPTION": "Closed",
+              "FINISHED_EVENT": "Ended"
           }
        },
       "EDIT": {
