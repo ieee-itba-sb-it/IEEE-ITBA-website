@@ -2,7 +2,7 @@
   <!-- BANNER -->
   <app-event-banner url="events/typescript-course/big-banner.jpg"
     alt="{{ 'TYPESCRIPT.TITLE' | translate}}"></app-event-banner>
-  <app-event-title>{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
+  <app-event-title [dates]="event?.dates">{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
   <!-- DESCRIPTION -->
   <div *ngIf="enrollAvailable()">
     <div class="d-flex flex-row-reverse">
@@ -125,6 +125,8 @@
     <p> {{ 'TYPESCRIPT.FORMAT.3' | translate}}</p>
     <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
   </app-event-section>
+  <!-- DATES -->
+  <app-event-date-section [dates]="event?.dates" />
   <!-- FAQ -->
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">
@@ -132,5 +134,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

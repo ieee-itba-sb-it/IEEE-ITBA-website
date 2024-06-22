@@ -1,0 +1,99 @@
+.event-date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+.event-date-icon-container > i {
+    font-size: 3rem;
+    color: var(--color);
+}
+
+.event-date-icon-container.asimov > i {
+    font-size: 3rem;
+}
+
+.event-date-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
+.event-date-text-container.asimov {
+    row-gap: 0;
+}
+
+.event-date-text-container p {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.event-date-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color);
+}
+
+.event-date-title.asimov {
+    font-size: 15px;
+}
+
+.event-date-label {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color);
+}
+
+.event-date-label.asimov {
+    font-size: 15px;
+    font-weight: normal;
+    color: inherit;
+}
+
+@media (max-width: 991px) {
+    .event-date-icon-container > i {
+        font-size: 2.5rem;
+    }
+
+    .event-date-title {
+        font-size: 1.5rem;
+    }
+
+    .event-date-label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .event-date-icon-container > i {
+        font-size: 2rem;
+    }
+
+    .event-date-text-container {
+        row-gap: 0.25rem;
+    }
+
+    .event-date-title {
+        font-size: 1.25rem;
+    }
+
+    .event-date-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .event-date-icon-container > i {
+        font-size: 1.5rem;
+    }
+
+    .event-date-title {
+        font-size: 1rem;
+    }
+
+    .event-date-label {
+        font-size: 0.8rem;
+    }
+}

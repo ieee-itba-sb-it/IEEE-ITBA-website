@@ -4,7 +4,7 @@
     alt="Banner IOT"
   >
   </app-event-banner>
-  <app-event-title>
+  <app-event-title [dates]="event?.dates">
     {{ 'IOT.TITLE' | translate }}
   </app-event-title>
 
@@ -27,6 +27,8 @@
     <p>{{ 'IOT.DESC.TEXT.4' | translate }}</p>
   </app-event-section>
 
+  <app-event-date-section [dates]="event?.dates" />
+
   <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
     <app-image-carousel [imageLinks]="imageLinks"></app-image-carousel>
   </app-event-section>
@@ -37,5 +39,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

@@ -1,6 +1,7 @@
-import {createEventInitialSchema} from "./create-event-initial-schema";
+import {createEventInitialSchema} from "./migrations/create-event-initial-schema";
 import {initializeApp} from "firebase-admin/app";
-import {migrateEventDates} from "./migrate-event-dates";
+import {migrateEventDates} from "./migrations/migrate-event-dates";
+import {addNewEventDates} from "./migrations/add-new-event-dates";
 
 //  export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json" Prod
 // export FIREBASE_AUTH_EMULATOR_HOST='localhost:9099' for local
@@ -12,6 +13,7 @@ initializeApp({
 async function main() {
     await createEventInitialSchema();
     await migrateEventDates();
+    await addNewEventDates();
 }
 
 main();

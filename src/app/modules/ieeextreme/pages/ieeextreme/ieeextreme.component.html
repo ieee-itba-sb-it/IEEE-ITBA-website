@@ -5,6 +5,10 @@
     [facts]="facts"
   ></app-event-facts-banner>
 
+  <app-event-title [dates]="event?.dates">
+    {{ 'HOME.IEEEXTREME.TITLE' | translate }}
+  </app-event-title>
+
   <!-- Resolve problemas en equipo -->
   <div class="info">
     <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
@@ -25,6 +29,8 @@
       <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
     </app-event-section>
   </div>
+
+  <app-event-date-section [dates]="event?.dates" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
@@ -49,5 +55,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

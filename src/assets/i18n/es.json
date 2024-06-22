@@ -244,9 +244,21 @@
       "TITLE": "Eventos",
       "CONTENT": "¡Entérate de nuestros próximos eventos!",
       "MORE": "Ver más eventos",
+      "EVENT": "Evento",
+      "INSCRIPTION": "Inscripción",
       "DATE": {
-         "TITLE": "Fecha",
-         "OPENING": "Fecha de apertura"
+         "TITLE": "Fechas",
+         "UNIQUE": "Fecha",
+         "FIRST": "Primera fecha",
+         "EVENT": "Fecha del evento",
+         "INSCRIPTION": "Fecha de inscripción",
+         "FINISH": "Fecha de cierre"
+      },
+      "IS_PERIOD": {
+          "TITLE": "¿Es un periodo?"
+      },
+      "LAST_DATE": {
+          "TITLE": "Última fecha"
       },
       "MONTH": {
           "TITLE": "Mes",
@@ -270,8 +282,10 @@
                 "DESCRIPTION": "Se realizará en cierto mes del año actual"
           },
           "CONFIRMED": {
-                "TITLE": "Confirmado",
-                "DESCRIPTION": "Se tiene fecha definida"
+              "TITLE": "Confirmado",
+              "DESCRIPTION": "Tiene definido una fecha",
+              "FINISHED_INSCRIPTION": "Cerradas",
+              "FINISHED_EVENT": "Finalizado"
           }
       },
       "EDIT": {
@@ -283,6 +297,10 @@
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado",
+             "LAST_DATE_REQUIRED": "La última fecha es requerida",
+             "LAST_DATE_INVALID": "El formato de la última fecha es inválido, debe ser dd/mm/yyyy",
+             "LAST_DATE_PAST": "La última fecha no puede ser en el pasado",
+             "LAST_DATE_BEFORE_DATE": "La última fecha debe ser posterior a la fecha de apertura",
              "MONTH_REQUIRED": "El mes es requerido",
              "MONTH_INVALID": "El mes es inválido",
              "MONTH_PAST": "El mes no puede ser anterior al mes actual",
@@ -411,8 +429,8 @@
     }
   },
   "BITCUP": {
-    "BITCUP-TITLE": "¡Bit cup!",
-    "BITCUP-TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo ¡Podés aprovechar para practicar para la IEEEXtreme y conocer el mundo de la programación competitiva!",
+    "DESCRIPTION": "Descripción",
+    "DESCRIPTION-TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo ¡Podés aprovechar para practicar para la IEEEXtreme y conocer el mundo de la programación competitiva!",
     "FORMAT": "Formato",
     "FORMAT-TEXT": "La competencia funciona a partir de una serie de problemas a resolver que se van habilitando a lo largo de su desarrollo. Se evalúa a partir de un set de casos de prueba tal que mientras más superes, más puntos sumás. Se deberá tener en cuenta los límites en cuanto a memoria y tiempo de procesamiento.",
     "LEVEL": "¿Nivel?",

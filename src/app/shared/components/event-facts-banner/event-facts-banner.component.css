@@ -5,8 +5,6 @@ h1 {
 
 .facts-banner {
     padding-bottom: 4vmin;
-    margin-bottom: 4rem;
-    border-bottom: var(--bs-ieee-bright-blue) 2px solid;
     vertical-align: middle;
     align-content: center;
     text-align: center;

@@ -44,4 +44,7 @@ export class IeeextremeComponent implements OnInit {
             });
     }
 
+    updateEvent(event: Event) {
+        this.event = event;
+    }
 }

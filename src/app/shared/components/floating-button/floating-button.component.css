@@ -1,7 +1,10 @@
 .outside-div {
     position: sticky;
     bottom: 2rem;
-    margin-left: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: -2rem;
 }
 
 .inside-div {
@@ -30,10 +33,23 @@
 
 .edit-button {
     font-weight: 600;
-    padding: 1rem;
     border: solid var(--color);
     border-radius: 50%;
     background-color: var(--color);
     color: var(--bs-light);
     box-shadow: 0 0 4px var(--color);
+    aspect-ratio: 1/1;
+}
+
+@media (max-width: 991px) {
+    .button-tooltip {
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .button-tooltip {
+        font-size: 0.8rem;
+    }
 }

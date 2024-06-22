@@ -41,6 +41,10 @@ import { EventEditorButtonComponent } from './components/event-editor-button/eve
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { UserEditorModalComponent } from './components/user-editor-modal/user-editor-modal.component';
+import { EventDateComponent } from './components/event-date/event-date.component';
+import { EventDateSectionComponent } from './components/event-date-section/event-date-section.component';
+import { EventDateChipsComponent } from './components/event-date-chips/event-date-chips.component';
+import {FormatDateEventPipe} from "./pipes/FormatDateEventPipe";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -53,7 +57,8 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent],
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe],
     imports: [
         routing,
         CommonModule,
@@ -86,6 +91,7 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorButtonComponent, FloatingButtonComponent]
+        EventEditorButtonComponent, FloatingButtonComponent, EventDateComponent, EventDateSectionComponent,
+        EventDateChipsComponent, FormatDateEventPipe],
 })
 export class SharedModule { }
