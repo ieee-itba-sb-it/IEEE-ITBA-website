@@ -281,35 +281,47 @@ h2{
    - >= 800px: items in rows
 */
 @media (max-width: 991px){
-  .aboutus-container {
+    .aboutus-container {
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-  }
+    }
 
-  .aboutus-section {
+    .aboutus-section {
       width: 75%;
-  }
+    }
 
-  .section-divider {
+    .section-divider {
       height: 2px;
-  }
+    }
 
-  .section-title {
+    .section-title {
       font-size : 1.85rem;
-  }
+    }
 
-  .section-header-logo {
+    .section-header-logo {
       height: 50px;
       width: 50px;
-  }
+    }
 
-  .main-title {
-      left: 2.25em;
-  }
+    .main-title {
+        left: 20px;
+    }
 
-  .aboutus-image {
+    .subtitle {
+        left: 20px;
+    }
+
+    .aboutus-image {
       height: 4rem;
       width: 4rem;
-  }
+    }
+
+    .pagination-prev-wrapper {
+        display: none;
+    }
+
+    .pagination-next-wrapper {
+        display: none;
+    }
 }

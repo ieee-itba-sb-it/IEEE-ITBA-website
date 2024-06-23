@@ -85,3 +85,7 @@ color: gray !important;
 .schedule-cards > app-event-content-card {
   flex-grow: 1;
 }
+
+.description-text {
+
+}
