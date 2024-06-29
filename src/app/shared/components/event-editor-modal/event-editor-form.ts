@@ -1,6 +1,5 @@
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Event, EventDate, EventStatus} from "../../models/event/event";
-import {EventService} from "../../../core/services/event/event.service";
 
 type EventEditorFormDateFields = {
     status: FormControl<EventStatus>;
@@ -17,11 +16,14 @@ type EventFormGroup = {
     [key in EventDate]: EventDateForm;
 };
 
-type EventForm = FormGroup<EventFormGroup>;
+type EventForm = FormGroup<EventFormGroup & {
+    inscriptionLink: FormControl<string | null>;
+}>;
 
 export class EventEditorForm {
     public static readonly DEFAULT_MONTH_VALUE = -1;
     private static readonly DEFAULT_YEAR_VALUE = new Date().getFullYear();
+    public static readonly INSCRIPTION_LINK_MAX_LENGTH = 255;
 
     private static getIsoDate(date: Date): string {
         return date.toISOString().split('T')[0];
@@ -95,6 +97,14 @@ export class EventEditorForm {
         return null;
     }
 
+    private static isInscriptionLinkValid(control: AbstractControl): ValidationErrors {
+        const inscriptionLinkValue = control.get('inscriptionLink').value.trim();
+        if (inscriptionLinkValue !== null && inscriptionLinkValue.length > 0 && inscriptionLinkValue > this.INSCRIPTION_LINK_MAX_LENGTH) {
+            return { inscriptionLinkMaxLength: { value: inscriptionLinkValue } };
+        }
+        return null;
+    }
+
     private static formValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
             const status = control.get('status').value;
@@ -124,7 +134,7 @@ export class EventEditorForm {
             lastDate: new FormControl(initialLastDate),
             isPeriod: new FormControl(initialIsPeriod),
             month: new FormControl(initialMonth.toString()),
-            year: new FormControl(initialYear.toString())
+            year: new FormControl(initialYear.toString()),
         },
         this.formValidator()
         );
@@ -151,7 +161,11 @@ export class EventEditorForm {
         for (const eventDate of Object.values(EventDate)) {
             eventFormGroup[eventDate] = EventEditorForm.createEventDateForm(event, eventDate);
         }
-        this.eventForm = new FormGroup(eventFormGroup);
+        const initialInscriptionLink = event.inscriptionLink ?? null;
+        this.eventForm = new FormGroup({
+            ...eventFormGroup,
+            inscriptionLink: new FormControl(initialInscriptionLink, EventEditorForm.isInscriptionLinkValid)
+        });
         this.eventInitialState = EventEditorForm.cloneEvent(event);
     }
 
@@ -187,7 +201,10 @@ export class EventEditorForm {
                 };
             }
         }
-        return newEvent;
+        return {
+            ...newEvent,
+            inscriptionLink: this.eventForm.get('inscriptionLink').value
+        }
     }
 
     setEventDateStatus(eventDate: EventDate, status: EventStatus): void {
@@ -198,7 +215,7 @@ export class EventEditorForm {
         return this.eventForm.get(eventDate).get('status').value === status;
     }
 
-    hasFieldError(eventDate: EventDate, controlName: keyof EventEditorFormDateFields, errorName?: string): boolean {
+    private hasEventDateFieldError(eventDate: EventDate, controlName: keyof EventEditorFormDateFields, errorName?: string): boolean {
         const control = this.eventForm.get(eventDate).get(controlName);
         if (!errorName) {
             return control.invalid && (control.dirty || control.touched);
@@ -207,7 +224,7 @@ export class EventEditorForm {
         return errors && errors[errorName];
     }
 
-    isValid(): boolean {
+    private areEventDatesValid(): boolean {
         return Object.values(EventDate).every(eventDate => {
             const eventDateForm = this.eventForm.get(eventDate);
             const errors = eventDateForm.errors;
@@ -216,30 +233,45 @@ export class EventEditorForm {
             }
             const status = eventDateForm.get('status').value;
             if (status === EventStatus.CONFIRMED) {
-                return !this.hasFieldError(eventDate, 'date') &&
-                    !this.hasFieldError(eventDate, 'isPeriod') &&
-                    !this.hasFieldError(eventDate, 'lastDate');
+                return !this.hasEventDateFieldError(eventDate, 'date') &&
+                    !this.hasEventDateFieldError(eventDate, 'isPeriod') &&
+                    !this.hasEventDateFieldError(eventDate, 'lastDate');
             }
             if (status === EventStatus.TENTATIVE) {
-                return !this.hasFieldError(eventDate, 'month');
+                return !this.hasEventDateFieldError(eventDate, 'month');
             }
             if (status === EventStatus.UPCOMING) {
-                return !this.hasFieldError(eventDate, 'year');
+                return !this.hasEventDateFieldError(eventDate, 'year');
             }
             return true;
         });
     }
 
-    hasError(eventDate: EventDate, errorName?: string): boolean {
+    private isEventInscriptionLinkValid(): boolean {
+        const inscriptionLinkControl = this.eventForm.get('inscriptionLink');
+        const inscriptionLinkErrors = inscriptionLinkControl.errors;
+        return !inscriptionLinkErrors || Object.keys(inscriptionLinkErrors).length === 0;
+    }
+
+    isValid(): boolean {
+        const areEventDatesValid = this.areEventDatesValid();
+        const isEventInscriptionLinkValid = this.isEventInscriptionLinkValid();
+        return areEventDatesValid && isEventInscriptionLinkValid;
+    }
+
+    getEventDateError(eventDate: EventDate, errorName: string): ValidationErrors | null {
         const form = this.eventForm.get(eventDate);
         const errors = form.errors;
-        if (!errorName) {
-            return !this.isValid();
-        }
         return errors && errors[errorName];
     }
 
-    hasChanged(): boolean {
+    getInscriptionLinkError(errorName: string): ValidationErrors | null {
+        const form = this.eventForm.get('inscriptionLink');
+        const errors = form.errors;
+        return errors && errors[errorName];
+    }
+
+    private hasEventDatesChanged(): boolean {
         const currentDates = this.eventCurrentState.dates;
         const initialDates = this.eventInitialState.dates;
         return Object.values(EventDate).some(eventDate => {
@@ -269,6 +301,14 @@ export class EventEditorForm {
                 return initialEventDate.status !== EventStatus.UNSCHEDULED;
             }
         });
+    }
+
+    private hasInscriptionLinkChanged(): boolean {
+        return this.eventCurrentState.inscriptionLink !== this.eventInitialState.inscriptionLink;
+    }
+
+    hasChanged(): boolean {
+        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged();
     }
 
     isEventDateAPeriod(eventDate: EventDate): boolean {

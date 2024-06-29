@@ -236,6 +236,8 @@
           "TITLE": "Edit Event",
           "CANCEL": "Cancel",
           "UPDATE": "Update",
+          "LINK": "Inscription link",
+          "DATES": "Event dates",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
               "DATE_REQUIRED": "The date is required",
@@ -250,7 +252,8 @@
               "MONTH_PAST": "The month cannot be previous to the current month",
               "YEAR_REQUIRED": "The year is required",
               "YEAR_INVALID": "The year is invalid",
-              "YEAR_PAST": "The year cannot be previous to the current year"
+              "YEAR_PAST": "The year cannot be previous to the current year",
+              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ value }} characters)"
           }
       }
     },

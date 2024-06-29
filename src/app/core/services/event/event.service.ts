@@ -73,7 +73,8 @@ export class EventService {
         return {
             ...eventDoc,
             id: eventSnapshot.id as IeeeEvent,
-            dates: this.mapEventDocDates.bind(this)(eventDoc)
+            dates: this.mapEventDocDates.bind(this)(eventDoc),
+            inscriptionLink: eventDoc.inscriptionLink || null
         };
     }
 

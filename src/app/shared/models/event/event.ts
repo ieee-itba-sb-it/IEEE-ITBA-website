@@ -39,15 +39,16 @@ export type ConfirmedDateEvent = {
     isPeriod: false;
 });
 
-export type Event = {
-    readonly id: IeeeEvent;
-    readonly routerLink: string;
-    readonly imageSrc: string;
-    readonly imageAlt: string;
-    readonly titleCode: string;
-    readonly descriptionCode: string;
-    readonly isRasEvent: boolean;
-    readonly dates: Record<EventDate, ConfirmedDateEvent | {
+export type Event = Readonly<{
+    id: IeeeEvent;
+    routerLink: string;
+    imageSrc: string;
+    imageAlt: string;
+    titleCode: string;
+    descriptionCode: string;
+    isRasEvent: boolean;
+    inscriptionLink: string | null;
+    dates: Record<EventDate, ConfirmedDateEvent | {
         status: EventStatus.TENTATIVE;
         month: number;
     } | {
@@ -56,7 +57,7 @@ export type Event = {
     } | {
         status: EventStatus.UNSCHEDULED;
     }>;
-}
+}>;
 
 export type EventDoc = Omit<Event, 'dates'> & {
     dates: Record<EventDate, {
