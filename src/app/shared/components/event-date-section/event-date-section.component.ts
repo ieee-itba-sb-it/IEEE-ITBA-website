@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
 
 @Component({
     selector: 'app-event-date-section',
@@ -13,6 +13,14 @@ export class EventDateSectionComponent {
     // Do not show section if there are no valid dates
     isShown(): boolean {
         if (!this.dates) return false;
-        return !!Object.keys(EventDate).find((dateType) => (this.dates[dateType as EventDate].status !== EventStatus.UNSCHEDULED));
+        return !!Object.keys(EventDate).find((dateType) => this.showEventDate(dateType as EventDate));
+    }
+
+    showEventDate(dateType: EventDate): boolean {
+        return this.dates[dateType].status !== EventStatus.UNSCHEDULED;
+    }
+
+    get eventDates(): EventDate[] {
+        return sortedEventDates;
     }
 }

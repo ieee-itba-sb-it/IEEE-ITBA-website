@@ -64,12 +64,11 @@
     <div class="centered-section">
       <div class="columned-section">
         <div class="aboutus-container">
-          <div class="aboutus-section">
-            <app-event-date [dates]="eventData?.dates" [eventDate]="EventDate.INSCRIPTION" [isAsimov]="true" />
-          </div>
-          <div class="aboutus-section">
-            <app-event-date [dates]="eventData?.dates" [eventDate]="EventDate.EVENT" [isAsimov]="true" />
-          </div>
+          <ng-container *ngFor="let eventDate of eventDates">
+            <div class="aboutus-section" *ngIf="showEventDate(eventDate)">
+              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" />
+            </div>
+          </ng-container>
           <div class="aboutus-section">
             <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>

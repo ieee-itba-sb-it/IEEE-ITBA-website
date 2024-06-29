@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
 import {TranslateService} from "@ngx-translate/core";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 

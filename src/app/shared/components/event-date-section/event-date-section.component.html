@@ -1,6 +1,7 @@
 <app-event-section *ngIf="isShown()" title="{{ 'HOME.EVENTS.DATE.TITLE' | translate}}">
     <div class="event-date-container">
-        <app-event-date [eventDate]="EventDate.INSCRIPTION" [dates]="dates"></app-event-date>
-        <app-event-date [eventDate]="EventDate.EVENT" [dates]="dates"></app-event-date>
+        <ng-container *ngFor="let eventDate of eventDates">
+            <app-event-date [dates]="dates" [eventDate]="eventDate" *ngIf="showEventDate(eventDate)"></app-event-date>
+        </ng-container>
     </div>
 </app-event-section>
