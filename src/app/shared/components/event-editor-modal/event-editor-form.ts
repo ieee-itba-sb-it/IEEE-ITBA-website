@@ -52,10 +52,6 @@ export class EventEditorForm {
         if (dateValue === null) {
             return { dateRequired: { value: dateValue } };
         }
-        const dateError = this.validateDateIsNotInThePast(control.get('date'), 'pastDate');
-        if (dateError) {
-            return dateError;
-        }
         if (isPeriodValue) {
             const lastDateValue = control.get('lastDate').value;
             if (lastDateValue === null) {
@@ -68,6 +64,8 @@ export class EventEditorForm {
             if (lastDateValue <= dateValue) {
                 return { lastDateBeforeDate: { value: lastDateValue } };
             }
+        } else {
+            return this.validateDateIsNotInThePast(control.get('date'), 'pastDate');
         }
         return null;
     }
