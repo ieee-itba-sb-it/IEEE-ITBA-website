@@ -1,7 +1,7 @@
 .event-date-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 1rem 15rem;
     gap: 5rem;

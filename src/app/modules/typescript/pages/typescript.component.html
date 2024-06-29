@@ -126,7 +126,7 @@
     <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
   </app-event-section>
   <!-- DATES -->
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" />
   <!-- FAQ -->
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

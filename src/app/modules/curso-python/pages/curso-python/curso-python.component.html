@@ -136,7 +136,7 @@
   </div>
   -->
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" />
 
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

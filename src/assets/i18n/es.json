@@ -246,6 +246,10 @@
       "MORE": "Ver más eventos",
       "EVENT": "Evento",
       "INSCRIPTION": "Inscripción",
+      "ENROLL": {
+        "OPEN": "¡Inscribite!",
+        "CLOSED": "Inscripciones cerradas"
+      },
       "DATE": {
          "TITLE": "Fechas",
          "UNIQUE": "Fecha",

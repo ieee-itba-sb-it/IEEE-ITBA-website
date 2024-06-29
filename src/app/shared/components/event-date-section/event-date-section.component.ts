@@ -8,7 +8,7 @@ import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/even
 })
 export class EventDateSectionComponent {
     @Input() dates: Event['dates'];
-    protected readonly EventDate = EventDate;
+    @Input() inscriptionLink?: Event['inscriptionLink'];
 
     // Do not show section if there are no valid dates
     isShown(): boolean {

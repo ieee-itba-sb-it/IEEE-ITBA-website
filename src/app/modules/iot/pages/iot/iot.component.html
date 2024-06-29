@@ -27,7 +27,7 @@
     <p>{{ 'IOT.DESC.TEXT.4' | translate }}</p>
   </app-event-section>
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" />
 
   <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
     <app-image-carousel [imageLinks]="imageLinks"></app-image-carousel>

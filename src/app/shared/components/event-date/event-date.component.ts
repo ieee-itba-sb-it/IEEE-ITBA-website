@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
+import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {TranslateService} from "@ngx-translate/core";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
+import {EventService} from "../../../core/services/event/event.service";
 
 type Props = {
     iconClass: string,
@@ -18,6 +19,7 @@ export class EventDateComponent {
     @Input() eventDate: EventDate;
     @Input() dates?: Event['dates'];
     @Input() isAsimov: boolean = false;
+    @Input() inscriptionLink?: Event['inscriptionLink'];
 
     propsByEventDate: Record<EventDate, Props> = {
         [EventDate.EVENT]: {
@@ -32,7 +34,8 @@ export class EventDateComponent {
 
     constructor(
         private translate: TranslateService,
-        private appConfigService: AppConfigService
+        private appConfigService: AppConfigService,
+        private eventService: EventService
     ) { }
 
     pipeInput() {
@@ -58,5 +61,25 @@ export class EventDateComponent {
 
     getAppColors() {
         return this.appConfigService.getAppColors();
+    }
+
+    showInscriptionButton(): boolean {
+        return this.inscriptionLink && this.eventDate === EventDate.INSCRIPTION && this.dates?.[EventDate.INSCRIPTION].status === EventStatus.CONFIRMED;
+    }
+
+    isInscriptionButtonDisabled(): boolean {
+        return !(this.showInscriptionButton() && this.eventService.isEventDateCurrent(this.dates?.[EventDate.INSCRIPTION]));
+    }
+
+    get inscriptionButtonText(): string {
+        const isDisabled = this.isInscriptionButtonDisabled();
+        const i18nKey = `HOME.EVENTS.ENROLL.${isDisabled ? 'CLOSED' : 'OPEN'}`;
+        return this.translate.instant(i18nKey);
+    }
+
+    onInscriptionClick() {
+        if (this.inscriptionLink) {
+            window.open(this.inscriptionLink, '_blank');
+        }
     }
 }

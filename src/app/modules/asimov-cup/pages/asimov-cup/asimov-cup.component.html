@@ -66,7 +66,7 @@
         <div class="aboutus-container">
           <ng-container *ngFor="let eventDate of eventDates">
             <div class="aboutus-section" *ngIf="showEventDate(eventDate)">
-              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" />
+              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" [inscriptionLink]="eventData?.inscriptionLink" />
             </div>
           </ng-container>
           <div class="aboutus-section">

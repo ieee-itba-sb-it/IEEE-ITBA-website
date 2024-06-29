@@ -190,6 +190,10 @@
       "MORE": "View more events",
       "EVENT": "Event",
       "INSCRIPTION": "Inscription",
+      "ENROLL": {
+         "OPEN": "Sign up!",
+         "CLOSED": "Inscriptions closed"
+      },
       "DATE": {
           "TITLE": "Dates",
           "UNIQUE": "Date",
