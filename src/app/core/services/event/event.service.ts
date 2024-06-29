@@ -166,6 +166,37 @@ export class EventService {
         );
     }
 
+    public isEventDateCurrent(eventDate: Event['dates'][EventDate]): boolean {
+        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            if (eventDate.isPeriod) {
+                return eventDate.date.getTime() <= todayUtc.getTime() && eventDate.lastDate.getTime() >= todayUtc.getTime();
+            }
+            return eventDate.date.getTime() === todayUtc.getTime();
+        }
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month === todayUtc.getUTCMonth();
+        }
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year === todayUtc.getUTCFullYear();
+        }
+        return false;
+    }
+
+    public hasEventDateEnded(eventDate: Event['dates'][EventDate]): boolean {
+        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            return eventDate.date.getTime() < todayUtc.getTime() && (!eventDate.isPeriod || eventDate.lastDate.getTime() < todayUtc.getTime());
+        }
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month < todayUtc.getUTCMonth();
+        }
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year < todayUtc.getUTCFullYear();
+        }
+        return false;
+    }
+
     getRasEvents(): Observable<Event[]> {
         return this.getEventsByQuery(query(this.collection, where('isRasEvent', '==', true)), 'getRasEvents');
     }
@@ -185,13 +216,18 @@ export class EventService {
                 console.error('updateEvent failed: user is not admin');
                 return of(false);
             }
-            const eventDoc = this.mapEvent.bind(this)(event);
-            return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
-                .pipe(map(() => true))
-                .pipe(catchError((error) => {
-                    console.error(`updateEvent ${event.id} failed: ${error}`);
-                    return of(false)
-                }));
+            try {
+                const eventDoc = this.mapEvent.bind(this)(event);
+                return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
+                    .pipe(map(() => true))
+                    .pipe(catchError((error) => {
+                        console.error(`updateEvent ${event.id} failed: ${error}`);
+                        return of(false)
+                    }));
+            } catch (error) {
+                console.error(`updateEvent ${event.id} failed: ${error}`);
+                return of(false);
+            }
         })
     }
 
@@ -209,7 +245,7 @@ export class EventService {
                 if (event.dates[date].date === null) {
                     throw new Error(`updateEventDocDates failed: date ${date} is null`);
                 }
-                if (event.dates[date].date < today) {
+                if (!event.dates[date].isPeriod && event.dates[date].date < today) {
                     throw new Error(`updateEventDocDates failed: date ${date} is in the past`);
                 }
                 dates[date] = {
