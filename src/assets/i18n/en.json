@@ -253,7 +253,7 @@
               "YEAR_REQUIRED": "The year is required",
               "YEAR_INVALID": "The year is invalid",
               "YEAR_PAST": "The year cannot be previous to the current year",
-              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ value }} characters)"
+              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ length }} characters)"
           }
       }
     },

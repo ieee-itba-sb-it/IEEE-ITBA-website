@@ -14,13 +14,27 @@
 <form [formGroup]="form.formGroup" (ngSubmit)="updateEvent()">
     <div class="modal-body">
         <div class="form-input">
-            <p class="form-input-label">{{ "HOME.EVENTS.EDIT.LINK" | translate }}</p>
-            <input
-                type="url"
-                id="inscriptionLink"
-                class="form-control"
-                formControlName="inscriptionLink"
-            >
+            <label class="form-input-label">{{ "HOME.EVENTS.EDIT.LINK" | translate }}</label>
+            <div class="input-group">
+                <input
+                    type="url"
+                    id="inscriptionLink"
+                    class="form-control"
+                    formControlName="inscriptionLink"
+                >
+                <button
+                    type="button"
+                    class="btn clear-btn"
+                    (click)="clearInscriptionLink()"
+                    *ngIf="!isInscriptionLinkEmpty()"
+                    [style.--color]="(getAppColors() | async).background"
+                >
+                    <mdb-icon
+                        fas
+                        icon="trash"
+                    ></mdb-icon>
+                </button>
+            </div>
             <div *ngIf="hasFormChanged() && hasFormInscriptionLinkErrors" class="error-container">
                 <p *ngFor="let error of this.getFormInscriptionLinkErrors()" class="error">
                     {{ error }}
@@ -28,7 +42,7 @@
             </div>
         </div>
         <div class="form-input">
-            <p class="form-input-label">{{ "HOME.EVENTS.EDIT.DATES" | translate }}</p>
+            <label class="form-input-label">{{ "HOME.EVENTS.EDIT.DATES" | translate }}</label>
             <mat-tab-group dynamicHeight class="event-dates-tabs" [style.--color]="(getAppColors() | async).background" animationDuration="0ms">
                 <mat-tab *ngFor="let eventDate of eventDates">
                     <ng-template mat-tab-label>
@@ -36,7 +50,7 @@
                     </ng-template>
                     <div class="event-date-container" formGroupName="{{eventDate}}">
                         <div class="event-date-info">
-                            <label for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
+                            <label class="event-date-label" for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
                             <div class="status-container">
                                 <div *ngFor="let eventStatus of eventStatuses" class="status-item">
                                 <span class="status-tooltip" [class.hidden]="!isTooltipVisible(eventStatus)">
@@ -62,7 +76,7 @@
                             <div *ngIf="isEventDateConfirmed(eventDate)" class="event-date">
                                 <div class="event-date-input-container">
                                     <div class="event-date-input">
-                                        <label for="{{eventDate + '-isPeriod'}}">{{ "HOME.EVENTS.IS_PERIOD.TITLE" | translate }}</label>
+                                        <label class="event-date-label" for="{{eventDate + '-isPeriod'}}">{{ "HOME.EVENTS.IS_PERIOD.TITLE" | translate }}</label>
                                         <input
                                             type="checkbox"
                                             id="{{eventDate + '-isPeriod'}}"
@@ -74,7 +88,7 @@
                                 </div>
                                 <div class="event-date-input-container">
                                     <div class="event-date-input">
-                                        <label for="{{eventDate + '-date'}}">{{ isEventDateAPeriod(eventDate) ? ('HOME.EVENTS.DATE.FIRST' | translate) : ('HOME.EVENTS.DATE.UNIQUE' | translate) }}</label>
+                                        <label class="event-date-label" for="{{eventDate + '-date'}}">{{ isEventDateAPeriod(eventDate) ? ('HOME.EVENTS.DATE.FIRST' | translate) : ('HOME.EVENTS.DATE.UNIQUE' | translate) }}</label>
                                         <input
                                             type="date"
                                             id="{{eventDate + '-date'}}"
@@ -86,7 +100,7 @@
                                 </div>
                                 <div class="event-date-input-container" *ngIf="isEventDateAPeriod(eventDate)">
                                     <div class="event-date-input">
-                                        <label for="{{eventDate + '-lastDate'}}">{{ "HOME.EVENTS.LAST_DATE.TITLE" | translate }}</label>
+                                        <label class="event-date-label" for="{{eventDate + '-lastDate'}}">{{ "HOME.EVENTS.LAST_DATE.TITLE" | translate }}</label>
                                         <input
                                             type="date"
                                             id="{{eventDate + '-lastDate'}}"
@@ -97,7 +111,7 @@
                                 </div>
                             </div>
                             <div *ngIf="isEventDateTentative(eventDate)" class="event-month">
-                                <label for="{{eventDate + '-month'}}">{{ "HOME.EVENTS.MONTH.TITLE" | translate }}</label>
+                                <label class="event-date-label" for="{{eventDate + '-month'}}">{{ "HOME.EVENTS.MONTH.TITLE" | translate }}</label>
                                 <select
                                     id="{{eventDate + '-month'}}"
                                     class="form-select"

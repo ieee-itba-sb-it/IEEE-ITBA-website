@@ -183,6 +183,14 @@ export class EventEditorModalComponent implements OnInit {
         return this.form.isEventDateAPeriod(eventDate);
     }
 
+    clearInscriptionLink() {
+        this.form.clearInscriptionLink();
+    }
+
+    isInscriptionLinkEmpty(): boolean {
+        return this.form.isInscriptionLinkEmpty();
+    }
+
     async updateEvent() {
         if (!this.isFormValid()) {
             return;

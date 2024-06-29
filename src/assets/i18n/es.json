@@ -309,7 +309,7 @@
              "YEAR_REQUIRED": "El año es requerido",
              "YEAR_INVALID": "El año es inválido",
              "YEAR_PAST": "El año no puede ser anterior al año actual",
-             "INSCRIPTION_LINK_MAX_LENGTH": "El link de inscripción no puede tener más de {{ max }} caracteres (el ingresado tiene {{ value }} caracteres)"
+             "INSCRIPTION_LINK_MAX_LENGTH": "El link de inscripción no puede tener más de {{ max }} caracteres (el ingresado tiene {{ length }} caracteres)"
          }
       }
     },

@@ -263,7 +263,8 @@ export class EventService {
         const dates = this.mapEventDates.bind(this)(event);
         return {
             ...event,
-            dates
+            dates,
+            inscriptionLink: event.inscriptionLink?.trim() || null
         }
     }
 }
