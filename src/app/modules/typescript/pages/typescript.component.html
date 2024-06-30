@@ -3,15 +3,11 @@
   <app-event-banner url="events/typescript-course/big-banner.jpg"
     alt="{{ 'TYPESCRIPT.TITLE' | translate}}"></app-event-banner>
   <app-event-title [dates]="event?.dates">{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
+
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
   <!-- DESCRIPTION -->
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex flex-row-reverse">
-      <button class="goback-button">
-        <a href="{{ enrollLink }}" class="button-text">
-          {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
-      </button>
-    </div>
-  </div>
   <app-event-section title="{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}}">
     <p>{{ 'TYPESCRIPT.DESCRIPTION.TEXT' | translate}}</p>
   </app-event-section>
@@ -126,7 +122,7 @@
     <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
   </app-event-section>
   <!-- DATES -->
-  <app-event-date-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" />
+  <app-event-date-section [dates]="event?.dates" />
   <!-- FAQ -->
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

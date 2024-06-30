@@ -9,7 +9,10 @@
     {{ 'HOME.BITCUP.TITLE' | translate }}
   </app-event-title>
 
-  <!-- bitcup -->
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- bitcup -->
   <div class="info">
     <app-event-section
       style="padding-right:3rem;"
@@ -43,7 +46,7 @@
     </div>
   </div>
 
-  <app-event-date-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" />
+  <app-event-date-section [dates]="event?.dates" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">

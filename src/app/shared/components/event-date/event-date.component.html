@@ -6,9 +6,4 @@
         <p class="event-date-title" [class.asimov]="isAsimov">{{getTitle()}}</p>
         <p class="event-date-label" [class.asimov]="isAsimov">{{pipeInput() | FormatDateEventPipe }}</p>
     </div>
-    <div class="inscription-button-container" *ngIf="showInscriptionButton()">
-        <button class="btn inscription-button" [style.--color]="(getAppColors() | async).background" (click)="onInscriptionClick()" [disabled]="isInscriptionButtonDisabled()">
-            <span>{{inscriptionButtonText}}</span>
-        </button>
-    </div>
 </div>

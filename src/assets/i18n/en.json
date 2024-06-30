@@ -191,8 +191,8 @@
       "EVENT": "Event",
       "INSCRIPTION": "Inscription",
       "ENROLL": {
-         "OPEN": "Sign up!",
-         "CLOSED": "Inscriptions closed"
+        "OPEN": "Inscriptions are open!",
+        "CLICK": "Enroll now!"
       },
       "DATE": {
           "TITLE": "Dates",

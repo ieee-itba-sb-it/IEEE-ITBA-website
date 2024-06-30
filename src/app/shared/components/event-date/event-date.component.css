@@ -52,18 +52,6 @@
     color: inherit;
 }
 
-.inscription-button, .inscription-button:active {
-    background-color: var(--color);
-    color: white;
-    font-weight: 600;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.inscription-button:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-}
-
 @media (max-width: 991px) {
     .event-date-icon-container > i {
         font-size: 2.5rem;

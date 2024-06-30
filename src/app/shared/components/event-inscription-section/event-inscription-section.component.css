@@ -1,0 +1,43 @@
+.inscription-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.inscription-button, .inscription-button:active {
+    background-color: var(--color);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    transition: box-shadow 0.3s;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.inscription-button:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 991px) {
+    .inscription-button {
+        font-size: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .inscription-button {
+        font-size: 1.25rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .inscription-button {
+        font-size: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}

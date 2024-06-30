@@ -247,8 +247,8 @@
       "EVENT": "Evento",
       "INSCRIPTION": "Inscripción",
       "ENROLL": {
-        "OPEN": "¡Inscribite!",
-        "CLOSED": "Inscripciones cerradas"
+        "OPEN": "¡Inscripciones abiertas!",
+        "CLICK": "¡Anotate ahora!"
       },
       "DATE": {
          "TITLE": "Fechas",

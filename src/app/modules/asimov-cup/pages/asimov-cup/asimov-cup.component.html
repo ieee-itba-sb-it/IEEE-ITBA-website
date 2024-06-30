@@ -9,15 +9,8 @@
     {{ 'ASIMOVCUP.TITLE' | translate }}
   </app-event-title>
 
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex justify-content-center">
-      <a href="{{enrollLink}}" class="button-text">
-        <button class="enroll-button">
-          {{ "ASIMOVCUP.ENROLLBUTTON" | translate }}
-        </button>
-      </a>
-    </div>
-  </div>
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="eventData?.dates" [inscriptionLink]="eventData?.inscriptionLink" [isAsimov]="true" />
 
     <!-- DESCRIPTION section -->
   <app-event-section [asimov]="true" title="{{ 'ASIMOVCUP.DESC.TITLE' | translate }}">
@@ -66,7 +59,7 @@
         <div class="aboutus-container">
           <ng-container *ngFor="let eventDate of eventDates">
             <div class="aboutus-section" *ngIf="showEventDate(eventDate)">
-              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" [inscriptionLink]="eventData?.inscriptionLink" />
+              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" />
             </div>
           </ng-container>
           <div class="aboutus-section">
