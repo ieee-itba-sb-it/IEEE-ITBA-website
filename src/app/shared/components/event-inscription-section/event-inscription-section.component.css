@@ -1,6 +1,7 @@
 .inscription-button-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0 1.2rem;
 }
 
 .inscription-button, .inscription-button:active {
@@ -12,6 +13,7 @@
     transition: box-shadow 0.3s;
     padding-left: 3rem;
     padding-right: 3rem;
+    width: 100%;
 }
 
 .inscription-button:hover {
