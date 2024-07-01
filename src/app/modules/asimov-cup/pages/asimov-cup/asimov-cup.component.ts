@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
 import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from '../../../../shared/models/event/event';
@@ -31,25 +31,25 @@ export class AsimovCupComponent implements OnInit {
 
     categories = [
         { textCode: 'ASIMOVCUP.CATEGORIES.SUMO.NAME',
-            rulesLink: 'https://lnr-argentina.com.ar/reglamentos/Reglamento%20Sumo%202023%20-%20Rev%200.pdf',
+            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Sumo.pdf?alt=media&token=15542ea0-42ad-4df7-a098-361848b3cead',
             imgLink: '../../../../../assets/image/events/asimov-cup/sumo.svg',
             altTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.IMAGE_ALT_TEXT',
             descriptionTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.DESC'
         },
         { textCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.NAME',
-            rulesLink: 'https://lnr-argentina.com.ar/reglamentos/Reglamento%20Sumo%202023%20-%20Rev%200.pdf',
+            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Sumo.pdf?alt=media&token=15542ea0-42ad-4df7-a098-361848b3cead',
             imgLink: '../../../../../assets/image/events/asimov-cup/mini-sumo.svg',
             altTextCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.IMAGE_ALT_TEXT',
             descriptionTextCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.DESC'
         },
         { textCode: 'ASIMOVCUP.CATEGORIES.RACING.NAME',
-            rulesLink: 'https://lnr-argentina.com.ar/reglamentos/Reglamento%20Carrera%202023%20-%20Rev%200.pdf',
+            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Carrera.pdf?alt=media&token=05ff1614-16a3-44df-93bb-4f9564720f4d',
             imgLink: '../../../../../assets/image/events/asimov-cup/racing.svg',
             altTextCode: 'ASIMOVCUP.CATEGORIES.RACING.IMAGE_ALT_TEXT',
             descriptionTextCode: 'ASIMOVCUP.CATEGORIES.RACING.DESC'
         },
         { textCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.NAME',
-            rulesLink: 'https://lnr-argentina.com.ar/reglamentos/Reglamento%20Futbol%202023%20-%20Rev%200.pdf',
+            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Futbol.pdf?alt=media&token=bf0696c9-4302-453c-971b-531c86b3e185',
             imgLink: '../../../../../assets/image/events/asimov-cup/football.svg',
             altTextCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.IMAGE_ALT_TEXT',
             descriptionTextCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.DESC'
