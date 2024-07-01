@@ -1,15 +1,10 @@
 <div class="main-container event">
   <app-event-title [dates]="event?.dates">{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex flex-row-reverse">
-      <button class="goback-button">
-        <a href="{{ enrollLink }}" class="button-text text-decoration-none">
-          {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
-      </button>
-    </div>
-  </div>
 
-  <!-- Introductory text -->
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- Introductory text -->
   <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
     <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
   </app-event-section>

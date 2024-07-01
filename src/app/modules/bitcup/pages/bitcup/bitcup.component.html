@@ -9,7 +9,10 @@
     {{ 'HOME.BITCUP.TITLE' | translate }}
   </app-event-title>
 
-  <!-- bitcup -->
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- bitcup -->
   <div class="info">
     <app-event-section
       style="padding-right:3rem;"

@@ -9,7 +9,10 @@
     {{ 'HOME.IEEEXTREME.TITLE' | translate }}
   </app-event-title>
 
-  <!-- Resolve problemas en equipo -->
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- Resolve problemas en equipo -->
   <div class="info">
     <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
       style="padding-right:3rem;">

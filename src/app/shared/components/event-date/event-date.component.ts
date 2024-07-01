@@ -32,7 +32,7 @@ export class EventDateComponent {
 
     constructor(
         private translate: TranslateService,
-        private appConfigService: AppConfigService
+        private appConfigService: AppConfigService,
     ) { }
 
     pipeInput() {

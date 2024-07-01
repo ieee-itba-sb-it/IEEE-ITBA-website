@@ -1,6 +1,7 @@
 import {Pipe, PipeTransform} from "@angular/core";
 import {ConfirmedDateEvent, EventDate, EventStatus} from "../models/event/event";
 import {TranslateService} from "@ngx-translate/core";
+import {EventService} from "../../core/services/event/event.service";
 
 type Input = {
     input: ConfirmedDateEvent | { status: EventStatus.TENTATIVE, month: number } | {  status: EventStatus.UPCOMING, year: number } | { status: EventStatus.UNSCHEDULED };
@@ -9,7 +10,7 @@ type Input = {
 
 @Pipe({ name: "FormatDateEventPipe", pure: false })
 export class FormatDateEventPipe implements PipeTransform {
-    constructor(private readonly translate: TranslateService) {
+    constructor(private readonly translate: TranslateService, private eventService: EventService) {
     }
 
     transform({
@@ -25,8 +26,7 @@ export class FormatDateEventPipe implements PipeTransform {
         case EventStatus.TENTATIVE:
             return this.formatTentativeDate(date.month);
         case EventStatus.CONFIRMED:
-            const today = new Date();
-            const hasEnded = (date.isPeriod ? (date.lastDate < today) : (date.date < today));
+            const hasEnded = this.eventService.hasEventDateEnded(date);
             if (hasEnded) {
                 return this.translate.instant(eventDate === EventDate.INSCRIPTION ?
                     'HOME.EVENTS.STATUS.CONFIRMED.FINISHED_INSCRIPTION' :

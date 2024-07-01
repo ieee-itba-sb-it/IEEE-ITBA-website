@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SponsorsService} from 'src/app/core/services/sponsors/sponsors.service';
 import {Sponsor} from '../../../../shared/models/sponsors';
-import {Event, EventDate, EventStatus, IeeeEvent} from '../../../../shared/models/event/event';
+import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from '../../../../shared/models/event/event';
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
@@ -124,5 +124,11 @@ export class AsimovCupComponent implements OnInit {
         return this.appConfigService.getAppColors();
     }
 
-    protected readonly EventDate = EventDate;
+    get eventDates(): EventDate[] {
+        return sortedEventDates;
+    }
+
+    showEventDate(eventDate: EventDate): boolean {
+        return this.eventData && this.eventData.dates[eventDate] && this.eventData.dates[eventDate].status !== EventStatus.UNSCHEDULED;
+    }
 }

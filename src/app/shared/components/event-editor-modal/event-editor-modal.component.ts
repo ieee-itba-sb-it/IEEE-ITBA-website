@@ -4,6 +4,16 @@ import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 import {EventEditorForm} from "./event-editor-form";
+import {TranslateService} from "@ngx-translate/core";
+
+type I18nParams = Record<string, string>;
+
+type I18nElements = {
+    key: string;
+    params?: I18nParams;
+}
+
+type I18nErrorByFormErrorName = Record<string, I18nElements>;
 
 @Component({
     selector: 'app-event-editor-modal',
@@ -25,20 +35,51 @@ export class EventEditorModalComponent implements OnInit {
         [EventStatus.UPCOMING]: false,
         [EventStatus.UNSCHEDULED]: false
     };
-    i18nErrorByFormErrorName: Record<string, string> = {
-        dateRequired: 'DATE_REQUIRED',
-        pastDate: 'DATE_PAST',
-        lastDateRequired: 'LAST_DATE_REQUIRED',
-        pastLastDate: 'LAST_DATE_PAST',
-        lastDateBeforeDate: 'LAST_DATE_BEFORE_DATE',
-        monthRequired: 'MONTH_REQUIRED',
-        invalidMonth: 'MONTH_INVALID',
-        pastMonth: 'MONTH_PAST',
-        yearRequired: 'YEAR_REQUIRED',
-        pastYear: 'YEAR_PAST'
+    i18nEventDateErrorByFormErrorName: I18nErrorByFormErrorName = {
+        dateRequired: {
+            key: 'DATE_REQUIRED'
+        },
+        pastDate: {
+            key: 'DATE_PAST'
+        },
+        lastDateRequired: {
+            key: 'LAST_DATE_REQUIRED'
+        },
+        pastLastDate: {
+            key: 'LAST_DATE_PAST'
+        },
+        lastDateBeforeDate: {
+            key: 'LAST_DATE_BEFORE_DATE'
+        },
+        monthRequired: {
+            key: 'MONTH_REQUIRED'
+        },
+        invalidMonth: {
+            key: 'MONTH_INVALID'
+        },
+        pastMonth: {
+            key: 'MONTH_PAST'
+        },
+        yearRequired: {
+            key: 'YEAR_REQUIRED'
+        },
+        pastYear: {
+            key: 'YEAR_PAST'
+        }
+    }
+    i18nInscriptionLinkErrorByFormErrorName: I18nErrorByFormErrorName = {
+        inscriptionLinkMaxLength: {
+            key: 'INSCRIPTION_LINK_MAX_LENGTH',
+            params: {max: EventEditorForm.INSCRIPTION_LINK_MAX_LENGTH.toString()}
+        },
     }
 
-    constructor(private eventService: EventService, public modalRef: MDBModalRef, private appConfigService: AppConfigService) { }
+    constructor(
+        private eventService: EventService,
+        public modalRef: MDBModalRef,
+        private appConfigService: AppConfigService,
+        private translateService: TranslateService
+    ) { }
 
     ngOnInit() {
         this.form = new EventEditorForm(this.event);
@@ -96,15 +137,42 @@ export class EventEditorModalComponent implements OnInit {
         return this.form.isValid();
     }
 
-    hasFormError(eventDate: EventDate, errorName?: string): boolean {
-        return this.form.hasError(eventDate, errorName);
+    private getFormErrors(
+        i18nErrorByFormErrorName: I18nErrorByFormErrorName,
+        getError: (errorName: string) => I18nParams | null,
+    ): string[] {
+        return Object.keys(i18nErrorByFormErrorName)
+            .map<[string, I18nParams | null]>((errorName) => [errorName, getError(errorName)])
+            .filter(([errorName, error]) => error !== null)
+            .map<[I18nElements, I18nParams]>((([errorName, error]) => [i18nErrorByFormErrorName[errorName], error]))
+            .map(([i18nElements, dynamicParams]) => {
+                return this.translateService.instant(`HOME.EVENTS.EDIT.ERROR.${i18nElements.key}`, {
+                    ...(i18nElements.params ?? {}),
+                    ...dynamicParams
+                });
+            });
     }
 
-    getFormErrorsI18n(eventDate: EventDate): string[] {
-        return Object.keys(this.i18nErrorByFormErrorName)
-            .filter(errorName => this.hasFormError(eventDate, errorName))
-            .map(errorName => this.i18nErrorByFormErrorName[errorName])
-            .map(i18nKey => `HOME.EVENTS.EDIT.ERROR.${i18nKey}`)
+    getFormEventDateErrors(eventDate: EventDate): string[] {
+        return this.getFormErrors(
+            this.i18nEventDateErrorByFormErrorName,
+            errorName => this.form.getEventDateError(eventDate, errorName),
+        );
+    }
+
+    get hasFormEventDateErrors(): boolean {
+        return this.eventDates.some(eventDate => this.getFormEventDateErrors(eventDate).length > 0);
+    }
+
+    getFormInscriptionLinkErrors(): string[] {
+        return this.getFormErrors(
+            this.i18nInscriptionLinkErrorByFormErrorName,
+            errorName => this.form.getInscriptionLinkError(errorName),
+        );
+    }
+
+    get hasFormInscriptionLinkErrors(): boolean {
+        return this.getFormInscriptionLinkErrors().length > 0;
     }
 
     hasFormChanged(): boolean {
@@ -113,6 +181,14 @@ export class EventEditorModalComponent implements OnInit {
 
     isEventDateAPeriod(eventDate: EventDate): boolean {
         return this.form.isEventDateAPeriod(eventDate);
+    }
+
+    clearInscriptionLink() {
+        this.form.clearInscriptionLink();
+    }
+
+    isInscriptionLinkEmpty(): boolean {
+        return this.form.isInscriptionLinkEmpty();
     }
 
     async updateEvent() {

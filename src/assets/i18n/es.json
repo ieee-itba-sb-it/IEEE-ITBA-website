@@ -246,6 +246,10 @@
       "MORE": "Ver más eventos",
       "EVENT": "Evento",
       "INSCRIPTION": "Inscripción",
+      "ENROLL": {
+        "OPEN": "¡Inscripciones abiertas!",
+        "CLICK": "¡Anotate ahora!"
+      },
       "DATE": {
          "TITLE": "Fechas",
          "UNIQUE": "Fecha",
@@ -292,6 +296,8 @@
          "TITLE": "Editar evento",
          "CANCEL": "Cancelar",
          "UPDATE": "Actualizar",
+         "LINK": "Link de inscripción",
+         "DATES": "Fechas del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
              "DATE_REQUIRED": "La fecha es requerida",
@@ -306,7 +312,8 @@
              "MONTH_PAST": "El mes no puede ser anterior al mes actual",
              "YEAR_REQUIRED": "El año es requerido",
              "YEAR_INVALID": "El año es inválido",
-             "YEAR_PAST": "El año no puede ser anterior al año actual"
+             "YEAR_PAST": "El año no puede ser anterior al año actual",
+             "INSCRIPTION_LINK_MAX_LENGTH": "El link de inscripción no puede tener más de {{ max }} caracteres (el ingresado tiene {{ length }} caracteres)"
          }
       }
     },
