@@ -188,9 +188,25 @@
       "TITLE": "Events",
       "CONTENT": "Find out about our newest events!",
       "MORE": "View more events",
+      "EVENT": "Event",
+      "INSCRIPTION": "Inscription",
+      "ENROLL": {
+        "OPEN": "Inscriptions are open!",
+        "CLICK": "Enroll now!"
+      },
       "DATE": {
-          "TITLE": "Date",
-          "OPENING": "Opening date"
+          "TITLE": "Dates",
+          "UNIQUE": "Date",
+          "FIRST": "First date",
+          "EVENT": "Event date",
+          "INSCRIPTION": "Inscription date",
+          "FINISH": "Finish date"
+      },
+      "IS_PERIOD": {
+          "TITLE": "Is it a period?"
+      },
+      "LAST_DATE": {
+          "TITLE": "Last date"
       },
       "MONTH": {
             "TITLE": "Month",
@@ -215,24 +231,33 @@
           },
           "CONFIRMED": {
                 "TITLE": "Confirmed",
-                "DESCRIPTION": "It has a defined date"
+                "DESCRIPTION": "It has a defined date",
+              "FINISHED_INSCRIPTION": "Closed",
+              "FINISHED_EVENT": "Ended"
           }
        },
       "EDIT": {
           "TITLE": "Edit Event",
           "CANCEL": "Cancel",
           "UPDATE": "Update",
+          "LINK": "Inscription link",
+          "DATES": "Event dates",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past",
+              "LAST_DATE_REQUIRED": "The last date is required",
+              "LAST_DATE_INVALID": "The last date format is invalid, it should be dd/mm/yyyy",
+              "LAST_DATE_PAST": "The last date cannot be in the past",
+              "LAST_DATE_BEFORE_DATE": "The last date must be after the first date",
               "MONTH_REQUIRED": "The month is required",
               "MONTH_INVALID": "The month is invalid",
               "MONTH_PAST": "The month cannot be previous to the current month",
               "YEAR_REQUIRED": "The year is required",
               "YEAR_INVALID": "The year is invalid",
-              "YEAR_PAST": "The year cannot be previous to the current year"
+              "YEAR_PAST": "The year cannot be previous to the current year",
+              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ length }} characters)"
           }
       }
     },
@@ -333,7 +358,7 @@
     "FACTS": {
       "EDITIONS": "Past editions",
       "HOURS": "long",
-      "PARTICIPANTS": "Participants in 2020",
+      "PARTICIPANTS": "Participants in 2023",
       "TOPTEAMS": "Teams in best 500 of 8000"
     },
     "NAVBAR": {
@@ -355,8 +380,8 @@
     }
   },
   "BITCUP": {
-    "BITCUP-TITLE": "Bit cup!",
-    "BITCUP-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
     "FORMAT": "Format",
     "FORMAT-TEXT": "This competition consists of solving a series of challenges released as the competition develops. It is graded from a set of test cases so that your score increases as you pass more test cases. Memory limits and processing time will need to be taken into account.",
     "LEVEL": "¿Level?",

@@ -1,0 +1,9 @@
+<ng-container *ngIf="showInscriptionButton()">
+    <app-event-section title="{{ 'HOME.EVENTS.ENROLL.OPEN' | translate }}" [asimov]="isAsimov">
+        <div class="inscription-button-container">
+            <button class="btn inscription-button" [style.--color]="(getAppColors() | async).background" (click)="onInscriptionClick()">
+                <span>{{ 'HOME.EVENTS.ENROLL.CLICK' | translate }}</span>
+            </button>
+        </div>
+    </app-event-section>
+</ng-container>

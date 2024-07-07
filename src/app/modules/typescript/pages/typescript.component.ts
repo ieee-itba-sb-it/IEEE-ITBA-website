@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
-import {Event, IeeeEvent} from "../../../shared/models/event/event";
+import {Event, EventDate, IeeeEvent} from "../../../shared/models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 
 @Component({
@@ -61,5 +61,9 @@ export class TypescriptComponent implements OnInit {
             .subscribe(event => {
                 this.event = event;
             });
+    }
+
+    updateEvent(event: Event) {
+        this.event = event;
     }
 }

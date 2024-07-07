@@ -294,4 +294,22 @@ h2{
   .section-divider {
       height: 2px;
   }
+
+  .section-title {
+      font-size : 1.85rem;
+  }
+
+  .section-header-logo {
+      height: 50px;
+      width: 50px;
+  }
+
+  .main-title {
+      left: 2.25em;
+  }
+
+  .aboutus-image {
+      height: 4rem;
+      width: 4rem;
+  }
 }

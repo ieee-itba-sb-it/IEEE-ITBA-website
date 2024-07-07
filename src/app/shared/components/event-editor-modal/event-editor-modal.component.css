@@ -13,10 +13,22 @@
 .modal-body {
     display: flex;
     flex-direction: column;
+    row-gap: 1rem;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
     row-gap: 0.5rem;
 }
 
-.modal-body label {
+.form-input-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.event-date-label {
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 0;
@@ -26,6 +38,27 @@
     display: flex;
     flex-direction: column;
     row-gap: 0.25rem;
+    padding: 0.75rem 0.75rem 0 0.75rem;
+}
+
+.event-date-tab {
+    color: var(--color);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.event-dates-tabs .mdc-tab__ripple::before {
+    background-color: var(--color) !important;
+}
+
+.event-dates-tabs .mdc-tab-indicator__content--underline {
+    border-color: var(--color) !important;
+}
+
+.mat-mdc-tab-body-wrapper,
+.mat-mdc-tab-body,
+.mat-mdc-tab-body-content {
+    overflow: visible !important;
 }
 
 .event-date-container .event-date-title {
@@ -44,6 +77,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .status-item {
@@ -99,20 +133,100 @@
 
 .status-btn.active:hover {
     box-shadow: 0 0 2px var(--color);
+    font-size: 0.9rem;
+    margin-bottom: 0;
 }
 
-.modal-body .error-container {
-    margin-top: 0.5rem;
+.event-date-container {
     display: flex;
     flex-direction: column;
     row-gap: 0.25rem;
+}
+
+.event-date-container .event-date-title {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.event-date-container .event-date-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.status-item {
+    position: relative;
+}
+
+.status-tooltip.hidden {
+    opacity: 0;
+}
+
+.status-input {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.25rem;
+    align-items: center;
+}
+
+.status-btn {
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: box-shadow 0.2s ease;
+    box-shadow: 0 0 4px #000000;
+    color: #000000;
+}
+
+.status-btn:hover {
+    box-shadow: 0 0 2px #000000;
+}
+
+.status-btn.active {
+    background-color: var(--color);
+    color: var(--bs-light);
+    box-shadow: 0 0 4px var(--color);
+}
+
+.status-btn.active:hover {
+    box-shadow: 0 0 2px var(--color);
+}
+
+.event-date {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.event-date-input:has(.form-check-input-checkbox) {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    align-items: center;
+}
+
+.form-check-input-checkbox {
+    accent-color: var(--color);
+    border-color: var(--color);
+}
+
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+}
+
+.error-container:not(:has(.error)) {
+    display: none;
 }
 
 .modal-body p.error {
     color: var(--bs-danger);
     font-weight: 600;
     font-size: 0.9rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .modal-footer button {
@@ -128,15 +242,18 @@
     padding-bottom: 0.5rem;
 }
 
-.modal-footer .close-btn {
+.modal-footer .close-btn, .clear-btn {
     background-color: var(--bs-light);
     color: var(--color);
     border-color: var(--color);
     box-shadow: 0 0 4px var(--color);
 }
 
-.modal-footer .close-btn:hover {
+.modal-footer .close-btn:hover, .clear-btn:hover {
     box-shadow: 0 0 2px var(--color);
+    background-color: var(--bs-light);
+    color: var(--color);
+    border-color: var(--color);
 }
 
 .modal-footer .save-btn {

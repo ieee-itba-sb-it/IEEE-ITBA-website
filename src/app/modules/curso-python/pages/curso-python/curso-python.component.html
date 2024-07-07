@@ -1,14 +1,10 @@
 <div class="main-container event">
-  <app-event-title>{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex flex-row-reverse">
-      <button class="goback-button">
-        <a href="{{ enrollLink }}" class="button-text text-decoration-none">
-          {{ 'PYTHONCOURSES.ENROLLBUTTON' | translate }} </a>
-      </button>
-    </div>
-  </div>
-  <!-- Introductory text -->
+  <app-event-title [dates]="event?.dates">{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
+
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- Introductory text -->
   <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
     <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
   </app-event-section>
@@ -135,6 +131,8 @@
   </div>
   -->
 
+  <app-event-date-section [dates]="event?.dates" />
+
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">
     </app-event-faq-accordion>
@@ -173,7 +171,7 @@
   </div>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 
   <!-- Sponsors Actuales -->
   <!-- <div class="bottomLine mt-4">

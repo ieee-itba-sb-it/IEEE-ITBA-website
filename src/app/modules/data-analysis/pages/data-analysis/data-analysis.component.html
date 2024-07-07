@@ -1,18 +1,10 @@
 <div class="main-container event">
-  <app-event-title>
+  <app-event-title [dates]="event?.dates">
     {{ 'DATAANALYSIS.TITLE' | translate }}
   </app-event-title>
 
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex flex-row-reverse">
-      <!-- Button is inside <a> tag because it allows a greater hitmark -->
-      <a href="{{ courseData.enrollLink }}" target="_blank" class="button-text">
-        <button class="goback-button">
-          {{ 'DATAANALYSIS.ENROLLBUTTON' | translate }}
-        </button>
-      </a>
-    </div>
-  </div>
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
 
   <div>
     <div class="d-flex flex-row-reverse">
@@ -68,6 +60,8 @@
       </ng-container>
   </div>
 
+  <app-event-date-section [dates]="event?.dates" />
+
   <app-event-section title="{{ 'DATAANALYSIS.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">
     </app-event-faq-accordion>
@@ -79,5 +73,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

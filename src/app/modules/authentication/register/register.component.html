@@ -1,13 +1,13 @@
 <div class="main-container">
   <div class="row" style="height: 100%">
-    <div class="col-lg-4 col-md-6 col-sm-0 h-100 d-none d-md-flex d-lg-flex align-items-center justify-content-center mt-4 "
+    <div class="sticky-top col-lg-4 col-md-6 col-sm-0 vh-100 d-none d-md-flex d-lg-flex align-items-center justify-content-center mt-4 "
          style="background-color: #00629B"
     >
       <img alt="itbot" src="../../../../assets/image/login/itbot.png" class="h-50"/>
     </div>
     <div class="mainFrame col-lg-8 col-md-6 col-12" style="padding-top: 160px">
-      <div class="row d-flex flex-column h-75 align-items-center justify-content-center">
-        <mat-card class="d-flex flex-column align-items-center" style="max-width: 75%; width: fit-content;">
+      <div class="row d-flex flex-column align-items-center justify-content-center">
+        <mat-card class="d-flex flex-column align-items-center mb-5" style="max-width: 75%; width: fit-content;">
           <mat-card-header>
             <mat-card-title>
               {{ 'REGISTER.TITLE' | translate }}
@@ -45,6 +45,19 @@
               </mat-form-field>
               <div class="d-flex justify-content-center">
                 <button mat-raised-button class="login-button" color="primary" type="submit">{{ 'REGISTER.BUTTON' | translate }}</button>
+              </div>
+              <div class="divider-line">
+                <span></span>
+                <p>O bien, continua con</p>
+                <span></span>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button mat-raised-button class="login-button" color="primary" type="button" (click)="signupWithGoogle()">
+                  <div class="icon-container">
+                    <img class="social-icon" src="../../../../assets/image/general-icons/google.svg">
+                    Google
+                  </div>
+                </button>
               </div>
 
               <div class="row d-flex justify-content-center">

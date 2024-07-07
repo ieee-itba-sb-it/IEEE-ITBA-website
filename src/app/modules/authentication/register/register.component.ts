@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import {ApiResponse} from '../../../shared/models/data-types';
-import {Router} from '@angular/router';
-import {catchError, concatMap, filter, of} from 'rxjs';
+import { ApiResponse } from '../../../shared/models/data-types';
+import { Router } from '@angular/router';
+import { catchError, concatMap, filter, of } from 'rxjs';
 
 const ERROR_MESSAGES = {
     'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
@@ -78,10 +78,9 @@ export class RegisterComponent implements OnInit {
                                 message: 'REGISTER.SUCCESS',
                                 success: true,
                             };
-                            setTimeout(
-                                () => this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
-                                1000
-                            );
+                            setTimeout(() =>
+                                    this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
+                                1000);
                         },
                         error: (err) => {
                             const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
@@ -115,6 +114,17 @@ export class RegisterComponent implements OnInit {
             this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
         }
 
+    }
+
+    signupWithGoogle() {
+        this.authService.googleLogin().subscribe({
+            next: (value) => {
+                this.router.navigate(['home']);
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
     }
 
 }
