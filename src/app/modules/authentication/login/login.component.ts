@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import {Router} from '@angular/router';
 import {ApiResponse} from '../../../shared/models/data-types';
@@ -29,6 +29,8 @@ export class LoginComponent  implements OnInit {
     constructor(private authService: AuthService, private router: Router, private appConfigService: AppConfigService) {
         scroll(0, 0);
     }
+
+    @Input() redirectTo: string;
 
     // Data
     signupForm: HTMLElement | any;
@@ -63,7 +65,7 @@ export class LoginComponent  implements OnInit {
                         message: 'LOGIN.SUCCESS',
                     };
                     setTimeout(() => {
-                        this.router.navigate(['home']);
+                        this.router.navigate([this.redirectTo ? this.redirectTo : 'home']);
                     }, 1000);
                 },
                 error: (err) => {

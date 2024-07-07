@@ -1,0 +1,12 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h2 class="modal-title">{{ "AUTH.LOGIN.ACTION_REQUIRED" | translate }}</h2>
+    </div>
+    <div class="modal-body">
+        {{ "AUTH.LOGIN.ACTION_EXPLAINED" | translate }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeModal('/login')">{{ "AUTH.LOGIN.LOGIN" | translate }}</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal('/register')">{{ "AUTH.LOGIN.REGISTER" | translate }}</button>
+    </div>
+</div>

@@ -41,6 +41,7 @@ import { EventEditorButtonComponent } from './components/event-editor-button/eve
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { UserEditorModalComponent } from './components/user-editor-modal/user-editor-modal.component';
+import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -53,7 +54,7 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent],
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent, AuthActionModalComponent],
     imports: [
         routing,
         CommonModule,

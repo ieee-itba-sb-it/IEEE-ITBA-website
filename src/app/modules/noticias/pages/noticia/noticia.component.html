@@ -34,12 +34,10 @@
             </div>
             <div class="news-ratings">
                 <h2>{{"NEWS.RATING" | translate}}</h2>
-                <mat-chip-listbox *ngIf="newsData !== undefined"  aria-label="Emoji selection">
-                    <div *ngFor="let emoji of emojisList; index as i">
-                        <mat-chip-option [disabled]="!isSelected(i) && cookieValue !== ''" [selected]="isSelected(i)" (click)="rateNews(emoji, i)">
-                            {{newsData.ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
-                        </mat-chip-option>
-                    </div>
+                <mat-chip-listbox *ngIf="newsData !== undefined" aria-label="Emoji selection">
+                    <mat-chip *ngFor="let emoji of emojisList; index as i" [disabled]="!isSelected(i) && cookieValue !== ''" (click)="rateNews(emoji, i)">
+                        {{newsData.ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
+                    </mat-chip>
                 </mat-chip-listbox>
             </div>
         </div>

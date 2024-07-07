@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import {ApiResponse} from '../../../shared/models/data-types';
 import {Router} from '@angular/router';
+import {catchError, concatMap, filter, of} from 'rxjs';
 
 const ERROR_MESSAGES = {
     'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
@@ -20,6 +21,8 @@ export class RegisterComponent implements OnInit {
     constructor(private authService: AuthService, private readonly router: Router) {
         scroll(0, 0);
     }
+
+    @Input() redirectTo: string;
 
     // Data
     signupForm: HTMLElement | any;
@@ -65,15 +68,20 @@ export class RegisterComponent implements OnInit {
                 this.registerResponse = null;
                 this.authService
                     .signup(this.email, this.pass, this.fname, this.lname)
+                    .pipe(
+                        filter(resp => resp != null),
+                        concatMap(() => this.authService.login(this.email, this.pass))
+                    )
                     .subscribe({
                         next: (value) => {
                             this.registerResponse = {
                                 message: 'REGISTER.SUCCESS',
                                 success: true,
                             };
-                            setTimeout(() => {
-                                this.router.navigate(['home']);
-                            }, 1000);
+                            setTimeout(
+                                () => this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
+                                1000
+                            );
                         },
                         error: (err) => {
                             const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;

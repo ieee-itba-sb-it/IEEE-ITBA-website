@@ -578,6 +578,14 @@
     "PUBLISH_NOW": "Publish now",
     "PROGRAM_DATE": "Program publish date"
   },
+    "AUTH": {
+        "LOGIN": {
+            "ACTION_REQUIRED": "This action requires to be logged in",
+            "ACTION_EXPLAINED": "An active session is required to vote. Log in or register to create an account.",
+            "LOGIN": "Log in",
+            "REGISTER": "Register"
+        }
+    },
   "LOGIN": {
     "TITLE": "Log in to your account",
     "EMAIL": "Email",
