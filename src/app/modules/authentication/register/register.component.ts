@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import {ApiResponse} from '../../../shared/models/data-types';
-import {Router} from '@angular/router';
+import { ApiResponse } from '../../../shared/models/data-types';
+import { Router } from '@angular/router';
 
 const ERROR_MESSAGES = {
     'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
@@ -107,6 +107,17 @@ export class RegisterComponent implements OnInit {
             this.authService.changePass(changePassElem.emailchange.value, document.getElementById('passChgConf'));
         }
 
+    }
+
+    signupWithGoogle() {
+        this.authService.googleLogin().subscribe({
+            next: (value) => {
+                this.router.navigate(['home']);
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        });
     }
 
 }

@@ -48,4 +48,8 @@ export class IotComponent implements OnInit {
             });
     }
 
+    updateEvent(event: Event) {
+        this.event = event;
+    }
+
 }

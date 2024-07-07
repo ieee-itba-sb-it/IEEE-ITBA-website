@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "scripts": "npx tsx scripts/main.ts"
+    "scripts": "npx tsx scripts/main.ts",
+    "migrate": "node utils/generate-migration.js"
   },
   "type": "module",
   "private": true,

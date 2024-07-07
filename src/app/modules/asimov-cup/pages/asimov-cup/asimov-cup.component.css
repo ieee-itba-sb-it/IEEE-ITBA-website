@@ -39,6 +39,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
 }
 
 .aboutus-section {
@@ -47,6 +48,11 @@
   align-items: center;
   text-align: center;
   flex: 1 1 auto;
+}
+
+.aboutus-section > i {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
 }
 
 .aboutus-image {

@@ -5,19 +5,12 @@
   >
   </app-event-banner>
 
-  <app-event-title [asimov]="true">
+  <app-event-title [asimov]="true" [dates]="eventData?.dates">
     {{ 'ASIMOVCUP.TITLE' | translate }}
   </app-event-title>
 
-  <div *ngIf="enrollAvailable()">
-    <div class="d-flex justify-content-center">
-      <a href="{{enrollLink}}" class="button-text">
-        <button class="enroll-button">
-          {{ "ASIMOVCUP.ENROLLBUTTON" | translate }}
-        </button>
-      </a>
-    </div>
-  </div>
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="eventData?.dates" [inscriptionLink]="eventData?.inscriptionLink" [isAsimov]="true" />
 
     <!-- DESCRIPTION section -->
   <app-event-section [asimov]="true" title="{{ 'ASIMOVCUP.DESC.TITLE' | translate }}">
@@ -64,16 +57,17 @@
     <div class="centered-section">
       <div class="columned-section">
         <div class="aboutus-container">
+          <ng-container *ngFor="let eventDate of eventDates">
+            <div class="aboutus-section" *ngIf="showEventDate(eventDate)">
+              <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" />
+            </div>
+          </ng-container>
           <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/calendar.svg" alt="Calendar icon"/>
-            <span>{{ 'ASIMOVCUP.D_AND_L.DATE' | translate }}</span>
-          </div>
-          <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/location.svg" alt="Location icon"/>
+            <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
           </div>
           <div class="aboutus-section">
-            <img class="aboutus-image" src="../../../../../assets/image/events/asimov-cup/time.svg" alt="Time icon"/>
+            <i class="fa-regular fa-clock" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
           </div>
         </div>
@@ -130,5 +124,5 @@
   </div>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!eventData" [event]="eventData"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!eventData" [event]="eventData" (updateEmitter)="updateEventData($event)"></app-event-editor-button>
 </div>

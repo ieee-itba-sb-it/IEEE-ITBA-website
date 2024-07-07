@@ -99,3 +99,9 @@
     }
 }
 
+
+@media (max-width: 991px) {
+    .page-not-found-image {
+        width : 7.5rem;
+    }
+}

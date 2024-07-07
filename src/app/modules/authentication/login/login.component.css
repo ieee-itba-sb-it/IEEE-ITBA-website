@@ -73,3 +73,34 @@ input {
     color: var(--bs-ieee-bright-blue);
     font-size: 2.5em
 }
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icon {
+    font-size: 1em;
+    margin-right: .5rem;
+    filter: drop-shadow(2px 2px 2px rgb(0 0 0 / 0.4));
+}
+  
+.divider-line {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 .8rem;
+}
+
+.divider-line p {
+    flex-shrink: 0;
+    color: #8997a3;
+    margin: 0 16px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.divider-line span {
+    border-bottom: 1px solid #8997a3;
+    flex-grow: 1;
+}

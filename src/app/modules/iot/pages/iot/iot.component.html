@@ -4,20 +4,12 @@
     alt="Banner IOT"
   >
   </app-event-banner>
-  <app-event-title>
+  <app-event-title [dates]="event?.dates">
     {{ 'IOT.TITLE' | translate }}
   </app-event-title>
 
-  <div *ngIf="isEnrollingAvailable()">
-    <div class="d-flex flex-row-reverse">
-      <!-- Button is inside <a> tag because it allows a greater hitmark -->
-      <a href="{{ enrollLink }}" target="_blank" class="button-text">
-        <button class="goback-button">
-          {{ 'IOT.ENROLL' | translate }}
-        </button>
-      </a>
-    </div>
-  </div>
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
 
   <!-- Introductory text -->
   <app-event-section title="{{ 'IOT.DESC.TITLE' | translate }}">
@@ -26,6 +18,8 @@
     <p>{{ 'IOT.DESC.TEXT.3' | translate }}</p>
     <p>{{ 'IOT.DESC.TEXT.4' | translate }}</p>
   </app-event-section>
+
+  <app-event-date-section [dates]="event?.dates" />
 
   <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
     <app-image-carousel [imageLinks]="imageLinks"></app-image-carousel>
@@ -37,5 +31,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>
