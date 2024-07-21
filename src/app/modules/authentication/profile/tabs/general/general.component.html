@@ -1,0 +1,61 @@
+<mat-card appearance="outlined" [class.shake]="shake" class="card pb-2">
+    <mat-card-header>
+        <h2 class="card-title my-2">{{ 'PROFILE.TITLES.PROFILE_GENERAL' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form id="account-form">
+            <mat-form-field class="w-100 mt-2">
+                <mat-label for="email">{{ 'REGISTER.EMAIL' | translate }}:</mat-label>
+                <input type="text" id="email" [value]="(user$ | async).email" disabled matInput>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label for="fullname">{{ 'REGISTER.FULL_NAME' | translate }}:</mat-label>
+                <input type="text" id="fullname" [value]="(user$ | async).fullname" matInput>
+            </mat-form-field>
+            <div class="row">
+                <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4">
+                    <app-profile-picture size="150px" [src]="changes.photoURL" />
+                    <div class="picture-buttons d-flex flex-column justify-content-center gap-4">
+                        <input #pictureInput type="file" (change)="uploadPicture($event)" accept="image/png, image/jpeg, image/jpg" class="d-none">
+                        <button mat-raised-button (click)="pictureInput.click()" class="save-button" color="secondary" type="button">
+                            <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
+                            {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}
+                        </button>
+                        <button mat-raised-button (click)="deletePicture()" color="warn" type="button">
+                            <mdb-icon fas icon="times" class="mr-1"></mdb-icon>
+                            {{ 'PROFILE.BUTTONS.PICTURE_DELETE' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" [class.shake]="shake" class="card pb-2 mt-3">
+    <mat-card-header>
+        <h2 class="card-title my-2">{{ 'PROFILE.TITLES.PROFILE_EXTRA' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form id="extra-form">
+            <mat-form-field class="w-100 mt-2">
+                <mat-label for="linkedin">
+                    <mdb-icon fab icon="linkedin" class="mr-1"></mdb-icon>
+                    {{ 'PROFILE.LABELS.LINKEDIN' | translate }}:
+                </mat-label>
+                <input name="linkedin" [(ngModel)]="changes.linkedin" type="text" id="linkedin" [value]="(user$ | async).linkedin || ''" matInput>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<div class="confirm-buttons">
+    <button mat-raised-button (click)="updateUser()" class="save-button" [disabled]="!hasChange()" color="primary" type="button">
+        <mdb-icon fas [icon]="loading ? 'rotate' : 'save'" [class.rotate]="loading"></mdb-icon>
+        <span class="ml-2">{{ 'PROFILE.BUTTONS.SAVE' | translate }}</span>
+    </button>
+    <button mat-raised-button [disabled]="!hasChange()" (click)="discardChanges()" color="warn" type="button">
+        <mdb-icon fas icon="times" class="mr-1"></mdb-icon>
+        {{ 'PROFILE.BUTTONS.RESTORE' | translate }}
+    </button>
+</div>

@@ -76,7 +76,7 @@ export class NoticiaComponent implements OnInit {
             const user = values[0];
             const news = values[1];
             if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
-            this.isUserAuthorOrAdmin = (user.fname + ' ' + user.lname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
+            this.isUserAuthorOrAdmin = (user.fullname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
         })
     }
 

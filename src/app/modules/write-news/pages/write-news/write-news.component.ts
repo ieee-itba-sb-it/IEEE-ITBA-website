@@ -53,8 +53,7 @@ export class WriteNewsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService) {
       this.user = {
-          fname: '',
-          lname: '',
+          fullname: '',
           email: '',
           photoURL: '',
           uID: '',
@@ -166,7 +165,7 @@ export class WriteNewsComponent implements OnInit {
 
   getAuthorName() {
       if (!this.newsContent.author) {
-          return this.user.fname + ' ' + this.user.lname;
+          return this.user.fullname;
       }
       return this.newsContent.author;
   }
