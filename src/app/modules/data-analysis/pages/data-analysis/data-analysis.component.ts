@@ -18,8 +18,8 @@ export class DataAnalysisComponent implements OnInit {
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';
-    classes = ['2024-07-29T00:00:00', '2024-08-05T00:00:00'];
-    courseEnd = '12 Ago 2024 03:00:00 UTC';
+    classes = ['2023-07-29T00:00:00', '2023-08-05T00:00:00'];
+    courseEnd = '2023-08-05T00:00:00';
     testsOpen = '09 Oct 2023 03:00:00 UTC';
 
     pythonUrl = 'https://cdn.freebiesupply.com/logos/large/2x/python-5-logo-png-transparent.png'
