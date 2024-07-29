@@ -18,8 +18,8 @@ export class DataAnalysisComponent implements OnInit {
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';
-    classes = ['18 Sep 2023 03:00:00 UTC', '25 Sep 2023 03:00:00 UTC'];
-    courseEnd = '02 Oct 2023 03:00:00 UTC';
+    classes = ['2024-07-29T00:00:00', '2024-08-05T00:00:00'];
+    courseEnd = '12 Ago 2024 03:00:00 UTC';
     testsOpen = '09 Oct 2023 03:00:00 UTC';
 
     pythonUrl = 'https://cdn.freebiesupply.com/logos/large/2x/python-5-logo-png-transparent.png'
@@ -54,7 +54,7 @@ export class DataAnalysisComponent implements OnInit {
             }
         ],
         daysOpenAfterFinish: 30,
-        contentCloseDate: null,
+        contentCloseDate: new Date(this.courseEnd),
         testDates: {
             open: new Date(this.testsOpen),
             close: null
@@ -84,9 +84,7 @@ export class DataAnalysisComponent implements OnInit {
     }
 
     isOldDate(date: Date) {
-        const oldDate = Timestamp.fromDate(date);
-        const now = Timestamp.now();
-        return now > oldDate;
+        return new Date() > date;
     }
 
     getCurrentTest() {
