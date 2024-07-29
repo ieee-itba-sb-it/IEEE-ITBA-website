@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     fname: string;
     lname: string;
     email: string;
+    fullname: string;
     pass: string;
     passConf: string;
     registerResponse: ApiResponse = null;
@@ -56,15 +57,13 @@ export class RegisterComponent implements OnInit {
             this.email = this.signupForm.email.value;
             this.pass = this.signupForm.pass.value;
             this.passConf = this.signupForm.passConf.value;
-            // Save in database
-            this.fname = this.signupForm.fname.value;
-            this.lname = this.signupForm.lname.value;
+            this.fullname = this.signupForm.fullname.value;
 
             this.isHidden3 = false;
             if (this.pass === this.passConf){
                 this.registerResponse = null;
                 this.authService
-                    .signup(this.email, this.pass, this.fname, this.lname)
+                    .signup(this.email, this.pass, this.fullname)
                     .subscribe({
                         next: (value) => {
                             this.registerResponse = {
@@ -97,7 +96,6 @@ export class RegisterComponent implements OnInit {
 
     // Change Pass
     chgpass(){
-
         if (this.isHidden) {
             this.isHidden = false;
         }

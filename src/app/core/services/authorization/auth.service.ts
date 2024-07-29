@@ -1,14 +1,10 @@
-import {Injectable} from '@angular/core';
-
-import {Router} from '@angular/router';
-
-
+import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import {createRegularUser} from '../../../shared/models/data-types';
-import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
-import { DatabaseErrors } from '../../../shared/models/errors/database';
-import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
-import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, AuthErrorCodes, updateProfile } from '@angular/fire/auth';
+import { createRegularUser } from '../../../shared/models/data-types';
+import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
+import { Firestore, FirestoreError, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError, ActionCodeSettings } from '@angular/fire/auth';
+import { ref, uploadBytes, Storage, getDownloadURL } from '@angular/fire/storage';
 import { roles } from 'src/app/shared/models/roles/roles.enum';
 
 @Injectable({
@@ -26,63 +22,46 @@ export class AuthService {
     googleProvider: GoogleAuthProvider;
 
     // Constructor
-    constructor(private firebaseAuth: Auth, private router: Router, private afs: Firestore) {
+    constructor(private firebaseAuth: Auth, private firebaseStorage: Storage, private afs: Firestore) {
         this.googleProvider = new GoogleAuthProvider();
-        this.user = firebaseAuth.currentUser
+        this.user = firebaseAuth.currentUser;
         // Seteamos observer
         this.accountObs = new ReplaySubject(1);
+
         onAuthStateChanged(this.firebaseAuth, (usuario) => {
             if (usuario){
                 this.user = usuario;
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const userData = data.data() as IEEEuser;
-                    this.account = createRegularUser(userData.fname, userData.lname, userData.email, userData.photoURL, userData.role, userData.uID);
+                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.role, userData.uID, usuario.emailVerified, userData.linkedin);
                     this.accountObs.next(this.account);
-                }).catch(err => {
+                }).catch((err: FirestoreError) => {
                     // Caso en el que no exista el usuario en la base de datos (por ejemplo, si acaba de registrarse con google)
-                    if (err.code === DatabaseErrors.UNAUTHORIZED) {
-                        // Espera a que, en caso de acabar de registrarse con mail, se cree el usuario en la base de datos
-                        const sub = this.accountObs.subscribe((data) => {
-                            let displayName = usuario.displayName;
-                            if (!displayName) displayName = usuario.email.split("@")[0];
-                            let fname = displayName.split(" ")[0];
-                            let lname = displayName.split(" ");
-                            lname.shift();
-                            this.account = createRegularUser(fname, lname.join(" ") || "", usuario.email, usuario.photoURL, roles.regularUser, usuario.uid);
-                            setDoc(doc(this.afs, 'users', usuario.email), this.account).then(res => {
-                                this.accountObs.next(this.account);
-                                sub.unsubscribe();
-                            });
-                        });
-                    }
-                    else {
-                        this.logout();
-                        this.accountObs.next(null);
-                    }
+                    if (err.code == "permission-denied") this.createUserDoc(usuario).subscribe();
+                    else this.logout();
                 });
             } else {
+                this.account = null;
                 this.accountObs.next(null);
             }
         });
-
     }
 
     // ---------------Methods---------------
 
     // Signup with email and password
-    signup(email: string, password: string, fname: string, lname: string): Observable<UserCredential> {
+    signup(email: string, password: string, fullname: string): Observable<UserCredential> {
         return new Observable((subscriber) => {
             this.accountObs.next(null);
-            createUserWithEmailAndPassword(this.firebaseAuth, email, password).then((crededential: UserCredential) => {
-                this.account = createRegularUser(fname, lname, email, null, roles.regularUser, this.firebaseAuth.currentUser.uid);
-                setDoc(doc(this.afs, 'users', email), this.account).then(res => {
-                    updateProfile(this.firebaseAuth.currentUser, {displayName: `${fname} ${lname}`});
+            createUserWithEmailAndPassword(this.firebaseAuth, email, password)
+                .then((crededential: UserCredential) => {
+                    this.account = createRegularUser(fullname, email, null, roles.regularUser, this.firebaseAuth.currentUser.uid);
+                    updateProfile(this.firebaseAuth.currentUser, {displayName: fullname});
                     this.accountObs.next(this.account);
                     subscriber.next(crededential);
-                });
-            }).catch(err => {
-                subscriber.error(err);
-            }).finally(subscriber.complete);
+                })
+                .catch((err: AuthError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
         });
     }
 
@@ -90,13 +69,10 @@ export class AuthService {
     login(email: string, password: string): Observable<UserCredential> {
         return new Observable<UserCredential>(
             (subscriber) => {
-                signInWithEmailAndPassword(this.firebaseAuth, email, password).then((credential: UserCredential) => {
-                    subscriber.next(credential);
-                }).catch (err => {
-                    subscriber.error(err);
-                }).finally(() => {
-                    subscriber.complete();
-                });
+                signInWithEmailAndPassword(this.firebaseAuth, email, password)
+                    .then((credential: UserCredential) => subscriber.next(credential))
+                    .catch((err: AuthError) => subscriber.error(err))
+                    .finally(() => subscriber.complete());
             }
         );
     }
@@ -104,24 +80,34 @@ export class AuthService {
     googleLogin(): Observable<OAuthCredential> { 
         return new Observable<OAuthCredential>(
             (subscriber) => {
-                signInWithPopup(this.firebaseAuth, this.googleProvider).then((result) => {
-                    const credential = GoogleAuthProvider.credentialFromResult(result);
-                    this.credential = result
-                    subscriber.next(credential);
-                }).catch (err => {
-                    console.log(err.code);
-                    
-                    subscriber.error(err);
-                }).finally(() => {
-                    subscriber.complete();
-                });
+                signInWithPopup(this.firebaseAuth, this.googleProvider)
+                    .then((result) => {
+                        const credential = GoogleAuthProvider.credentialFromResult(result);
+                        this.credential = result;
+                        subscriber.next(credential);
+                    })
+                    .catch((err: AuthError) => subscriber.error(err))
+                    .finally(() => subscriber.complete());
             }
         );
+    }
+
+    createUserDoc(user: User): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            let displayName = user.displayName;
+            if (!displayName) displayName = user.email.split("@")[0];
+            this.account = createRegularUser(displayName, user.email, user.photoURL, roles.regularUser, user.uid, user.emailVerified);
+            setDoc(doc(this.afs, 'users', user.email), this.account)
+                .then(res => this.accountObs.next(this.account))
+                .catch((err: FirestoreError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
     }
 
     // Logout
     logout() {
         this.firebaseAuth.signOut();
+        this.account = null;
         this.accountObs.next(null);
     }
 
@@ -154,6 +140,89 @@ export class AuthService {
                 }
             }
         })
+    }
+
+    updateProfile(newUser: IEEEuser): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            let data = { ...newUser };
+            updateProfile(this.firebaseAuth.currentUser, {displayName: newUser.fullname})
+                .then(() => updateDoc(doc(this.afs, 'users', newUser.email), data))
+                .then(() => {
+                    this.account = newUser;
+                    this.accountObs.next(this.account);
+                    subscriber.next(true);
+                })
+                .catch((err: AuthError | FirestoreError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
+    }
+
+    updateProfilePic(imageurl: string, extension: string): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            if (!this.account) 
+                return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
+            const uid = this.account.uID;
+            const serverpath = `profile-pics/${uid}.${extension}`;
+            fetch(imageurl)
+                .then(image => image.blob())
+                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                .then(res => getDownloadURL(res.ref))
+                .then(newpath => 
+                    updateDoc(doc(this.afs, 'users', this.account.email), {photoURL: newpath})
+                        .then(() => newpath)
+                )
+                .then(newpath => {
+                    this.account.photoURL = newpath;
+                    this.accountObs.next(this.account);
+                    subscriber.next(true);
+                })
+                .catch(err => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
+    }
+
+    sendVerificationEmail(returnLink?: string): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            if (!this.firebaseAuth.currentUser) 
+                return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
+            const linkOptions: ActionCodeSettings = {
+                url: returnLink
+            }
+            sendEmailVerification(this.firebaseAuth.currentUser, linkOptions)
+                .then(() => subscriber.next(true))
+                .catch((err: AuthError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
+    }
+
+    sendPasswordResetEmail(email?: string, returnLink?: string): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            if (!email && !this.firebaseAuth.currentUser) 
+                return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
+            const linkOptions: ActionCodeSettings = {
+                url: returnLink
+            }
+            sendPasswordResetEmail(this.firebaseAuth, email || this.firebaseAuth.currentUser.email, linkOptions)
+                .then(() => subscriber.next(true))
+                .catch((err: AuthError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
+    }
+
+    deleteAccount(): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            if (!this.firebaseAuth.currentUser) 
+                return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
+            deleteDoc(doc(this.afs, 'users', this.firebaseAuth.currentUser.email))
+                .then(() => this.firebaseAuth.currentUser.delete())
+                .then(() => {
+                    this.account = null;
+                    this.accountObs.next(null);
+                    subscriber.next(true);
+                })
+                .catch((err: AuthError | FirestoreError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
     }
 
     // -----------Info Getters-----------

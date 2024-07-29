@@ -166,6 +166,14 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'profile',
+        loadChildren: () =>
+            import('./modules/authentication/profile/profile.module').then(
+                (m) => m.ProfileModule
+            ),
+        canActivate: [AuthGuardService],
+    },
+    {
         path: 'admin',
         loadChildren: () =>
             import('./modules/admin/admin.module').then(

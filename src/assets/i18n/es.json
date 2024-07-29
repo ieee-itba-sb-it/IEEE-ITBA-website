@@ -456,7 +456,8 @@
     "SPONSORS": "Auspiciantes",
     "WRITENEWS": "Crear Noticia",
     "INSTITUTIONAL": "Institucional",
-    "ADMIN": "Panel de administrador"
+    "ADMIN": "Panel de administrador",
+    "PROFILE": "Perfil y configuración"
   },
     "FOOTER": {
         "ABOUTUS": "Acerca de",
@@ -678,8 +679,7 @@
   },
   "REGISTER": {
     "TITLE": "Registrarse",
-    "FIRST_NAME": "Nombre",
-    "LAST_NAME": "Apellido",
+    "FULL_NAME": "Nombre completo",
     "EMAIL": "Email",
     "PASSWORD": "Contraseña",
     "REPEAT_PASSWORD": "Repetir Contraseña",
@@ -1134,5 +1134,54 @@
       "9": "Octubre",
       "10": "Noviembre",
       "11": "Diciembre"
+  },
+  "PROFILE": {
+      "TABS": {
+          "GENERAL": "General",
+          "SECURITY": "Seguridad"
+      },
+      "TITLES": {
+          "PROFILE_GENERAL": "Información del perfil",
+          "PROFILE_EXTRA": "Información extra",
+          "ACCOUNT_SECURITY": "Seguridad de la cuenta",
+          "PASSWORD_CHANGE": "Cambiar contraseña",
+          "ACCOUNT_ACTIONS": "Acciones de la cuenta"
+      },
+      "LABELS": {
+        "LINKEDIN": "LinkedIn (Nombre de usuario)"
+      },
+      "MESSAGES": {
+          "VERIFIED_EMAIL": "Tu Email ya ha sido verificado",
+          "NOT_VERIFIED_EMAIL": "Tu Email aún no ha sido verificado",
+          "PASSWORD_CHANGE": "Se enviará un Email para confirmar el cambio de contraseña",
+          "ACCOUNT_DELETE": "Eliminar cuenta y todos sus datos",
+          "SUCCESS_ACCOUNT_DELETION": "Tu cuenta fue eliminada exitosamente",
+          "SUCCESS_EMAIL_VERIFICATION": "Tu Email fue verificado exitosamente",
+          "SUCCESS_PASSWORD_CHANGE": "Tu contraseña fue cambiada exitosamente",
+          "EMAIL_SENT": "Se ha enviado un link a tu Email"
+      },
+      "ERRORS": {
+          "FILE_SIZE": "El tamaño del archivo no puede superar los 2MB",
+          "FILE_TYPE": "El archivo debe ser una imagen",
+          "FILE_EXTENSION": "Solo se permiten archivos con extensión JPG, JPEG o PNG",
+          "COMPRESSION_FAILED": "La compresión de imagen falló, intente con otro archivo",
+          "STORAGE/UNAUTHORIZED": "No tienes permiso para realizar esta acción"
+      },
+      "BUTTONS": {
+          "PICTURE_UPLOAD": "Subir foto",
+          "PICTURE_DELETE": "Eliminar foto",
+          "SAVE": "Guardar",
+          "RESTORE": "Restablecer",
+          "VERIFY_EMAIL": "Verificar Email",
+          "REQUEST_CHANGE": "Solicitar Cambio",
+          "DELETE_ACCOUNT": "Eliminar Cuenta"
+      }
+  },
+  "ALERT_MODAL": {
+      "TITLES": {
+        "ERROR": "Ha ocurrido un error",
+        "SUCCESS": "Enhorabuena",
+        "WARNING": "Advertencia"
+      }
   }
 }
