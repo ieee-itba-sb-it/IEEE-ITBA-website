@@ -10,7 +10,7 @@
             </mat-form-field>
             <mat-form-field class="w-100">
                 <mat-label for="fullname">{{ 'REGISTER.FULL_NAME' | translate }}:</mat-label>
-                <input type="text" id="fullname" [value]="(user$ | async).fullname" matInput>
+                <input name="fullname" type="text" id="fullname" [(ngModel)]="changes.fullname" [value]="(user$ | async).fullname" matInput>
             </mat-form-field>
             <div class="row">
                 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4">

@@ -3,7 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, FirestoreError, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError } from '@angular/fire/auth';
+import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError, ActionCodeSettings } from '@angular/fire/auth';
 import { ref, uploadBytes, Storage, getDownloadURL } from '@angular/fire/storage'
 import { roles } from 'src/app/shared/models/roles/roles.enum';
 
@@ -152,7 +152,8 @@ export class AuthService {
                     this.accountObs.next(this.account);
                     subscriber.next(true);
                 })
-                .catch((err: AuthError | FirestoreError) => subscriber.error(err));
+                .catch((err: AuthError | FirestoreError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
         });
     }
 
@@ -168,7 +169,7 @@ export class AuthService {
                 .then(res => getDownloadURL(res.ref))
                 .then(newpath => 
                     updateDoc(doc(this.afs, 'users', this.account.email), {photoURL: newpath})
-                    .then(() => newpath)
+                        .then(() => newpath)
                 )
                 .then(newpath => {
                     this.account.photoURL = newpath;
@@ -180,22 +181,28 @@ export class AuthService {
         });
     }
 
-    sendVerificationEmail(): Observable<boolean> {
+    sendVerificationEmail(returnLink?: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
             if (!this.firebaseAuth.currentUser) 
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
-            sendEmailVerification(this.firebaseAuth.currentUser)
+            const linkOptions: ActionCodeSettings = {
+                url: returnLink
+            }
+            sendEmailVerification(this.firebaseAuth.currentUser, linkOptions)
                 .then(() => subscriber.next(true))
                 .catch((err: AuthError) => subscriber.error(err))
                 .finally(() => subscriber.complete());
         });
     }
 
-    sendPasswordResetEmail(email?: string): Observable<boolean> {
+    sendPasswordResetEmail(email?: string, returnLink?: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
             if (!email && !this.firebaseAuth.currentUser) 
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
-            sendPasswordResetEmail(this.firebaseAuth, email || this.firebaseAuth.currentUser.email)
+            const linkOptions: ActionCodeSettings = {
+                url: returnLink
+            }
+            sendPasswordResetEmail(this.firebaseAuth, email || this.firebaseAuth.currentUser.email, linkOptions)
                 .then(() => subscriber.next(true))
                 .catch((err: AuthError) => subscriber.error(err))
                 .finally(() => subscriber.complete());

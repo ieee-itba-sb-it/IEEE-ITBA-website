@@ -1075,14 +1075,18 @@
     "MESSAGES": {
       "VERIFIED_EMAIL": "Your Email has already been verified",
       "NOT_VERIFIED_EMAIL": "Your Email has not been verified yet",
-      "PASSWORD_CHANGE": "An email will be sent to confirm the password change",
+      "PASSWORD_CHANGE": "An Email will be sent to confirm the password change",
       "ACCOUNT_DELETE": "Delete account and all your data",
-      "ERROR_OCURRED": "An error ocurred"
+      "SUCCESS_ACCOUNT_DELETION": "Your account has been successfully deleted",
+      "SUCCESS_EMAIL_VERIFICATION": "Your Email has been successfuly verified",
+      "SUCCESS_PASSWORD_CHANGE": "Your password has been successfuly changed",
+      "EMAIL_SENT": "A link has been send to your Email"
     },
     "ERRORS": {
           "FILE_SIZE": "File size must not exceed 2MB",
           "FILE_TYPE": "File must be an image",
           "FILE_EXTENSION": "Only JPG, JPEG or PNG images are allowed",
+          "COMPRESSION_FAILED": "Image compression failed, try with another file",
           "STORAGE/UNAUTHORIZED": "You are not authorized to perform this action"
     },
     "BUTTONS": {
@@ -1094,5 +1098,12 @@
         "REQUEST_CHANGE": "Request Change",
         "DELETE_ACCOUNT": "Delete Account"
     }
+  },
+  "ALERT_MODAL": {
+      "TITLES": {
+        "ERROR": "An error ocurred",
+        "SUCCESS": "Congratulations",
+        "WARNING": "Warning"
+      }
   }
 }

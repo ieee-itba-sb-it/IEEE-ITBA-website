@@ -1128,14 +1128,18 @@
       "MESSAGES": {
           "VERIFIED_EMAIL": "Tu Email ya ha sido verificado",
           "NOT_VERIFIED_EMAIL": "Tu Email aún no ha sido verificado",
-          "PASSWORD_CHANGE": "Se enviará un mail para confirmar el cambio de contraseña",
+          "PASSWORD_CHANGE": "Se enviará un Email para confirmar el cambio de contraseña",
           "ACCOUNT_DELETE": "Eliminar cuenta y todos sus datos",
-          "ERROR_OCURRED": "Ha ocurrido un error"
+          "SUCCESS_ACCOUNT_DELETION": "Tu cuenta fue eliminada exitosamente",
+          "SUCCESS_EMAIL_VERIFICATION": "Tu Email fue verificado exitosamente",
+          "SUCCESS_PASSWORD_CHANGE": "Tu contraseña fue cambiada exitosamente",
+          "EMAIL_SENT": "Se ha enviado un link a tu Email"
       },
       "ERRORS": {
           "FILE_SIZE": "El tamaño del archivo no puede superar los 2MB",
           "FILE_TYPE": "El archivo debe ser una imagen",
           "FILE_EXTENSION": "Solo se permiten archivos con extensión JPG, JPEG o PNG",
+          "COMPRESSION_FAILED": "La compresión de imagen falló, intente con otro archivo",
           "STORAGE/UNAUTHORIZED": "No tienes permiso para realizar esta acción"
       },
       "BUTTONS": {
@@ -1146,6 +1150,13 @@
           "VERIFY_EMAIL": "Verificar Email",
           "REQUEST_CHANGE": "Solicitar Cambio",
           "DELETE_ACCOUNT": "Eliminar Cuenta"
+      }
+  },
+  "ALERT_MODAL": {
+      "TITLES": {
+        "ERROR": "Ha ocurrido un error",
+        "SUCCESS": "Enhorabuena",
+        "WARNING": "Advertencia"
       }
   }
 }

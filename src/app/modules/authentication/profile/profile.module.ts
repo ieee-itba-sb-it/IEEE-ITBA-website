@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 const routes: Routes = [{ 
   path: '',  
@@ -55,6 +56,9 @@ export const routing = RouterModule.forChild(routes);
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
       extend: true
   }),
+  ],
+  providers: [
+    NgxImageCompressService
   ]
 })
 export class ProfileModule { }

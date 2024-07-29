@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthError } from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { DOC_ORIENTATION, NgxImageCompressService, UploadResponse } from 'ngx-image-compress';
 import { BehaviorSubject, Observable, zip } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { ErrorModalComponent } from 'src/app/shared/components/error-modal/error-modal.component';
+import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 
 @Component({
@@ -19,14 +20,14 @@ export class GeneralComponent implements OnInit {
     changes: IEEEuser;
 
     picturetype: string;
-    
+
     loading: boolean = false;
     error$: BehaviorSubject<string>;
     errorModalRef: MDBModalRef | null = null;
 
     shake: boolean;
 
-    constructor(private authService: AuthService, private modalService: MDBModalService, private translate: TranslateService) {
+    constructor(private authService: AuthService, private modalService: MDBModalService, private translate: TranslateService, private imageCompress: NgxImageCompressService) {
         this.user$ = this.authService.getCurrentUser();
         this.error$ = new BehaviorSubject(null);
     }
@@ -46,7 +47,7 @@ export class GeneralComponent implements OnInit {
     }
 
     // Firebase updates
-  
+
     updateUser(): void {
         if (!this.hasChange()) return;
         this.loading = true;
@@ -74,12 +75,24 @@ export class GeneralComponent implements OnInit {
         const sizelimit: number = 2;
         const extensions: string[] = ['png', 'jpg', 'jpeg'];
         const picture: File = event.target['files'][0];
+        const type: string = picture.type.split('/')[1];
         if (!picture) return;
-        if (picture.size > 1024 * 1024 * sizelimit) return this.error$.next("FILE_SIZE");
         if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
-        if (!extensions.includes(picture.type.split('/')[1])) return this.error$.next("FILE_EXTENSION");
-        this.changes.photoURL = URL.createObjectURL(picture);
-        this.picturetype = picture.type.split('/')[1];
+        if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
+        this.imageCompress.getOrientation(picture)
+            .then(async orientation => {
+                const base = await this.toBase64(picture);
+                return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
+            })
+            .then(res => {
+                if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizelimit) throw new Error("Compression not enough");
+                this.changes.photoURL = res;
+                this.picturetype = picture.type.split('/')[1];
+            })
+            .catch(err => {
+                this.error$.next("COMPRESSION_FAILED");
+                console.log(err.image);
+            });
     }
 
     deletePicture(): void {
@@ -99,12 +112,23 @@ export class GeneralComponent implements OnInit {
     }
 
     openErrorModal(error: string): void {
-        this.errorModalRef = this.modalService.show(ErrorModalComponent, {
+        this.errorModalRef = this.modalService.show(AlertModalComponent, {
             data: {
-                error: error
+                message: error,
+                type: "error"
             },
             class: 'modal-dialog-centered',
         });
     }
+
+    toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            if (typeof reader.result == "string") resolve(reader.result);
+            else reject();
+        };
+        reader.onerror = reject;
+    });
 
 }
