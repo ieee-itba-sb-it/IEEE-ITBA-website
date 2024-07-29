@@ -5,7 +5,14 @@
     [facts]="facts"
   ></app-event-facts-banner>
 
-  <!-- Resolve problemas en equipo -->
+  <app-event-title [dates]="event?.dates">
+    {{ 'HOME.IEEEXTREME.TITLE' | translate }}
+  </app-event-title>
+
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- Resolve problemas en equipo -->
   <div class="info">
     <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
       style="padding-right:3rem;">
@@ -26,6 +33,8 @@
     </app-event-section>
   </div>
 
+  <app-event-date-section [dates]="event?.dates" />
+
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
     <app-sponsor-component style="display: flex; justify-content: center;"
@@ -33,7 +42,7 @@
   </app-event-section>
 
   <!-- Sponsor team -->
-  <app-event-section title="Sponsorship 2023">
+  <app-event-section title="Sponsorship 2024">
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
     <div style="display: flex; justify-content:center;">
       <app-event-content-card
@@ -49,5 +58,5 @@
   </app-event-section>
 
     <!-- Editor de evento -->
-    <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+    <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

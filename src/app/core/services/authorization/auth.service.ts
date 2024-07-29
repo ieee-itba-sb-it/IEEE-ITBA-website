@@ -4,7 +4,7 @@ import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, FirestoreError, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError, ActionCodeSettings } from '@angular/fire/auth';
-import { ref, uploadBytes, Storage, getDownloadURL } from '@angular/fire/storage'
+import { ref, uploadBytes, Storage, getDownloadURL } from '@angular/fire/storage';
 import { roles } from 'src/app/shared/models/roles/roles.enum';
 
 @Injectable({

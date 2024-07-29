@@ -44,3 +44,64 @@
   color: black;
   background-color: whitesmoke;
 }
+
+@media (min-width: 360px) and (max-width: 991px) {
+    .page-not-found-image {
+        width : 7.5rem;
+    }
+
+    .error-code {
+        font-size: 7em;
+    }
+
+    .page-title {
+        font-size : 2em;
+    }
+
+    .page-content {
+        font-size : 1em;
+    }
+}
+
+@media (min-width: 290px) and (max-width: 360px) {
+    .page-not-found-image {
+        width : 7rem;
+    }
+
+    .page-title {
+        font-size : 1.5em;
+    }
+
+    .page-content {
+        font-size : 0.8em;
+    }
+
+    .error-code {
+        font-size : 5.5em;
+    }
+}
+
+@media (max-width: 290px) {
+    .page-not-found-image {
+        width : 6rem;
+    }
+
+    .page-title {
+        font-size : 1.2em;
+    }
+
+    .page-content {
+        font-size : 0.6em;
+    }
+
+    .error-code {
+        font-size : 4em;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .page-not-found-image {
+        width : 7.5rem;
+    }
+}

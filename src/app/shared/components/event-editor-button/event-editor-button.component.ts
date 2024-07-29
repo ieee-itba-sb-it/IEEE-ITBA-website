@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MDBModalRef, MDBModalService} from "angular-bootstrap-md";
 import {EventEditorModalComponent} from "../event-editor-modal/event-editor-modal.component";
 import {Event} from "../../models/event/event";
 import {AuthService} from "../../../core/services/authorization/auth.service";
-import {BehaviorSubject, map} from "rxjs";
+import {map} from "rxjs";
 import {UserService} from "../../../core/services/user/user.service";
 import {roles} from "../../models/roles/roles.enum";
 
@@ -17,6 +17,7 @@ export class EventEditorButtonComponent {
 
     modalRef: MDBModalRef | null = null;
     @Input() event: Event;
+    @Output() updateEmitter: EventEmitter<Event> = new EventEmitter();
 
     isAdmin$ = this.authService.getCurrentUser().pipe(map((user) => {
         return !!user && user.role === roles.admin;
@@ -26,9 +27,13 @@ export class EventEditorButtonComponent {
     openModal() {
         this.modalRef = this.modalService.show(EventEditorModalComponent, {
             data: {
-                event: this.event
+                event: this.event,
             },
-            class: 'modal-dialog-centered',
+            class: 'modal-dialog-centered modal-lg',
+            animated: false
+        });
+        this.modalRef.content.updateEmitter.subscribe((event: Event) => {
+            this.updateEmitter.emit(event);
         });
     }
 }

@@ -92,13 +92,6 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         SharedModule,
         NgOptimizedImage
     ],
-    providers: [
-        {
-            provide: IMAGE_LOADER, useValue: ({ src, width }: ImageLoaderConfig) => {
-                return `https://imagecdn.app/v2/image/${encodeURIComponent(src)}?format=webp&width=${encodeURIComponent(width)}`;
-            }
-        }
-    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

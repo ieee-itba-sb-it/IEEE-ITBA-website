@@ -5,12 +5,19 @@
   >
   </app-event-facts-banner>
 
-  <!-- bitcup -->
+  <app-event-title [dates]="event?.dates">
+    {{ 'HOME.BITCUP.TITLE' | translate }}
+  </app-event-title>
+
+  <!-- INSCRIPTION section -->
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+
+    <!-- bitcup -->
   <div class="info">
     <app-event-section
       style="padding-right:3rem;"
-      title="{{ 'BITCUP.BITCUP-TITLE' | translate }}">
-      <p>{{ 'BITCUP.BITCUP-TEXT' | translate }}</p>
+      title="{{ 'BITCUP.DESCRIPTION' | translate }}">
+      <p>{{ 'BITCUP.DESCRIPTION-TEXT' | translate }}</p>
     </app-event-section>
     <div>
       <img src="../../../../../assets/image/logos/data.png" height="160vmin" alt="Logo ITBA-IEEE">
@@ -39,11 +46,13 @@
     </div>
   </div>
 
+  <app-event-date-section [dates]="event?.dates" />
+
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">
     <app-sponsor-component [currentsponsor]="sponsorsServiceVar.getCurrentSponsors()"></app-sponsor-component>
   </app-event-section>
 
   <!-- Editor de evento -->
-  <app-event-editor-button *ngIf="!!event" [event]="event"></app-event-editor-button>
+  <app-event-editor-button *ngIf="!!event" [event]="event" (updateEmitter)="updateEvent($event)"></app-event-editor-button>
 </div>

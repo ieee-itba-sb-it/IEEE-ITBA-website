@@ -1,0 +1,40 @@
+.event-date-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 15rem;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.event-date-container > * {
+    flex-grow: 1;
+}
+
+@media (max-width: 1199px) {
+    .event-date-container {
+        padding: 1rem 10rem;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .event-date-container {
+        padding: 1rem 5rem;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .event-date-container {
+        padding: 1rem 2rem;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .event-date-container {
+        padding: 1rem 1rem;
+    }
+}

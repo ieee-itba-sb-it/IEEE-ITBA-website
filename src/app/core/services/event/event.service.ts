@@ -1,5 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Event, EventDate, EventDoc, EventStatus, IeeeEvent} from '../../../shared/models/event/event';
+import {
+    Event,
+    EventDate,
+    EventDoc,
+    EventStatus,
+    IeeeEvent,
+    sortedEventDates
+} from '../../../shared/models/event/event';
 import {
     collection,
     CollectionReference,
@@ -29,13 +36,18 @@ export class EventService {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
-    private static mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
+    private mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
         const dates: Event['dates'] = {} as Event['dates'];
         for (const date in eventDoc.dates) {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: new Date(eventDoc.dates[date].date)
+                    date: new Date(eventDoc.dates[date].date),
+                    isPeriod: false
+                }
+                if (eventDoc.dates[date].lastDate) {
+                    dates[date].lastDate = new Date(eventDoc.dates[date].lastDate);
+                    dates[date].isPeriod = true;
                 }
             } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
                 dates[date] = {
@@ -56,18 +68,19 @@ export class EventService {
         return dates;
     }
 
-    private static mapEventDoc(eventSnapshot: QueryDocumentSnapshot<EventDoc>): Event {
+    private mapEventDoc(eventSnapshot: QueryDocumentSnapshot<EventDoc>): Event {
         const eventDoc: EventDoc = eventSnapshot.data();
         return {
             ...eventDoc,
             id: eventSnapshot.id as IeeeEvent,
-            dates: EventService.mapEventDocDates(eventDoc)
+            dates: this.mapEventDocDates.bind(this)(eventDoc),
+            inscriptionLink: eventDoc.inscriptionLink || null
         };
     }
 
     private getEventsByQuery(query: Query, operation: string): Observable<Event[]> {
         return from(getDocs(query)).pipe(
-            map((data) => data.docs.map(EventService.mapEventDoc)),
+            map((data) => data.docs.map(this.mapEventDoc.bind(this)) as Event[]),
             catchError((err) => {
                 console.error(`${operation} failed: ${err}`);
                 return of([]);
@@ -79,25 +92,39 @@ export class EventService {
         return this.getEventsByQuery(query(this.collection), operation);
     }
 
-    private static filterUpcomingEvents(event: Event): boolean {
+    private isEventDateUpcoming(eventDate: Event['dates'][EventDate]): boolean {
         const now = Timestamp.now().toDate();
-        const openingDate = event.dates[EventDate.OPENING];
-        if (openingDate.status === EventStatus.UNSCHEDULED) {
-            return false;
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            return eventDate.date >= now || (eventDate.isPeriod && eventDate.lastDate >= now);
         }
-        if (openingDate.status === EventStatus.UPCOMING) {
-            return openingDate.year >= now.getUTCFullYear();
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month >= now.getUTCMonth();
         }
-        if (openingDate.status === EventStatus.TENTATIVE) {
-            return openingDate.month >= now.getUTCMonth();
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year >= now.getUTCFullYear();
         }
-        if (openingDate.status === EventStatus.CONFIRMED) {
-            return openingDate.date >= now;
-        }
+        return false;
     }
 
-    private static getFakeDate(eventDate: Event['dates'][EventDate]): Date {
+    public getUpcomingEventDate(event: Event): EventDate | null {
+        for (const eventDate of sortedEventDates) {
+            if (this.isEventDateUpcoming.bind(this)(event.dates[eventDate])) {
+                return eventDate;
+            }
+        }
+        return null;
+    }
+
+    private filterUpcomingEvents(event: Event): boolean {
+        return this.getUpcomingEventDate.bind(this)(event) !== null;
+    }
+
+    private getFakeDate(eventDate: Event['dates'][EventDate]): Date {
         if (eventDate.status === EventStatus.CONFIRMED) {
+            const now = Timestamp.now().toDate();
+            if (eventDate.isPeriod && eventDate.date < now) {
+                return eventDate.lastDate;
+            }
             return eventDate.date;
         }
         if (eventDate.status === EventStatus.TENTATIVE) {
@@ -112,29 +139,62 @@ export class EventService {
         return null;
     }
 
-    private static sortEvents(event1: Event, event2: Event): number {
-        const event1OpeningDate = event1.dates[EventDate.OPENING];
-        const event2OpeningDate = event2.dates[EventDate.OPENING];
-        if (event1OpeningDate.status === EventStatus.UNSCHEDULED) {
-            if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
+    private sortEvents(event1: Event, event2: Event): number {
+        const event1UpcomingDate = this.getUpcomingEventDate(event1);
+        const event2UpcomingDate = this.getUpcomingEventDate(event2);
+        if (event1UpcomingDate === null) {
+            if (event2UpcomingDate === null) {
                 return 0;
             }
             return -1;
-        } else if (event2OpeningDate.status === EventStatus.UNSCHEDULED) {
+        } else if (event2UpcomingDate === null) {
             return 1;
         }
-        const fakeEvent1Date = EventService.getFakeDate(event1OpeningDate);
-        const fakeEvent2Date = EventService.getFakeDate(event2OpeningDate);
-        return fakeEvent1Date.getTime() - fakeEvent2Date.getTime();
+        const event1Date = event1.dates[event1UpcomingDate];
+        const event2Date = event2.dates[event2UpcomingDate];
+        const event1FakeDate = this.getFakeDate(event1Date);
+        const event2FakeDate = this.getFakeDate(event2Date);
+        return event1FakeDate.getTime() - event2FakeDate.getTime();
     }
 
     public getUpcomingEvents(): Observable<Event[]> {
         return this.getAllEvents("getUpcomingEvents").pipe(
             map((events: Event[]) => events
-                .filter(EventService.filterUpcomingEvents)
-                .sort(EventService.sortEvents)
+                .filter(this.filterUpcomingEvents.bind(this))
+                .sort(this.sortEvents.bind(this))
             )
         );
+    }
+
+    public isEventDateCurrent(eventDate: Event['dates'][EventDate]): boolean {
+        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            if (eventDate.isPeriod) {
+                return eventDate.date.getTime() <= todayUtc.getTime() && eventDate.lastDate.getTime() >= todayUtc.getTime();
+            }
+            return eventDate.date.getTime() === todayUtc.getTime();
+        }
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month === todayUtc.getUTCMonth();
+        }
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year === todayUtc.getUTCFullYear();
+        }
+        return false;
+    }
+
+    public hasEventDateEnded(eventDate: Event['dates'][EventDate]): boolean {
+        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        if (eventDate.status === EventStatus.CONFIRMED) {
+            return eventDate.date.getTime() < todayUtc.getTime() && (!eventDate.isPeriod || eventDate.lastDate.getTime() < todayUtc.getTime());
+        }
+        if (eventDate.status === EventStatus.TENTATIVE) {
+            return eventDate.month < todayUtc.getUTCMonth();
+        }
+        if (eventDate.status === EventStatus.UPCOMING) {
+            return eventDate.year < todayUtc.getUTCFullYear();
+        }
+        return false;
     }
 
     getRasEvents(): Observable<Event[]> {
@@ -143,7 +203,7 @@ export class EventService {
 
     getEvent(eventId: IeeeEvent): Observable<Event | null> {
         return from(getDoc(doc(this.afs, EventService.collectionName, eventId)))
-            .pipe(map((data: QueryDocumentSnapshot<EventDoc>) => EventService.mapEventDoc(data)))
+            .pipe(map((data: QueryDocumentSnapshot<EventDoc>) => this.mapEventDoc(data)))
             .pipe(catchError((err) => {
                 console.error(`getEvent ${eventId} failed: ${err}`);
                 return of(null);
@@ -156,36 +216,50 @@ export class EventService {
                 console.error('updateEvent failed: user is not admin');
                 return of(false);
             }
-            const eventDoc = EventService.mapEvent(event);
-            return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
-                .pipe(map(() => true))
-                .pipe(catchError((error) => {
-                    console.error(`updateEvent ${event.id} failed: ${error}`);
-                    return of(false)
-                }));
+            try {
+                const eventDoc = this.mapEvent.bind(this)(event);
+                return from(updateDoc(doc(this.afs, EventService.collectionName, event.id), eventDoc))
+                    .pipe(map(() => true))
+                    .pipe(catchError((error) => {
+                        console.error(`updateEvent ${event.id} failed: ${error}`);
+                        return of(false)
+                    }));
+            } catch (error) {
+                console.error(`updateEvent ${event.id} failed: ${error}`);
+                return of(false);
+            }
         })
     }
 
-    private static getIsoDate(date: Date): string {
+    private getIsoDate(date: Date): string {
         const isoTimeStamp = date.toISOString();
         return isoTimeStamp.split('T')[0];
     }
 
-    private static mapEventDates(event: Event): EventDoc['dates'] {
+    private mapEventDates(event: Event): EventDoc['dates'] {
         const now = Timestamp.now().toDate();
         const dates: EventDoc['dates'] = {} as EventDoc['dates'];
         for (const date in event.dates) {
             if (event.dates[date].status === EventStatus.CONFIRMED) {
-                const today = new Date(this.getIsoDate(now));
+                const today = new Date(this.getIsoDate.bind(this)(now));
                 if (event.dates[date].date === null) {
                     throw new Error(`updateEventDocDates failed: date ${date} is null`);
                 }
-                if (event.dates[date].date < today) {
+                if (!event.dates[date].isPeriod && event.dates[date].date < today) {
                     throw new Error(`updateEventDocDates failed: date ${date} is in the past`);
                 }
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: EventService.getIsoDate(event.dates[date].date)
+                    date: this.getIsoDate.bind(this)(event.dates[date].date),
+                }
+                if (event.dates[date].isPeriod) {
+                    if (event.dates[date].lastDate === null) {
+                        throw new Error(`updateEventDocDates failed: lastDate ${date} is null`);
+                    }
+                    if (event.dates[date].lastDate < event.dates[date].date) {
+                        throw new Error(`updateEventDocDates failed: lastDate ${date} is before date`);
+                    }
+                    dates[date].lastDate = this.getIsoDate.bind(this)(event.dates[date].lastDate);
                 }
             } else if (event.dates[date].status === EventStatus.TENTATIVE) {
                 if (event.dates[date].month === null) {
@@ -221,14 +295,12 @@ export class EventService {
         return dates;
     }
 
-    private static mapEvent(event: Event): EventDoc {
-        const dates = EventService.mapEventDates(event);
+    private mapEvent(event: Event): EventDoc {
+        const dates = this.mapEventDates.bind(this)(event);
         return {
             ...event,
-            dates
+            dates,
+            inscriptionLink: event.inscriptionLink?.trim() || null
         }
     }
-
-
-
 }
