@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <aside>
+        <div class="user-container">
+            <app-profile-picture size="75px" [src]="(user$ | async).photoURL"></app-profile-picture>
+            <div class="user-info">
+                <h2>{{ (user$ | async).fullname }}</h2>
+                <p>{{ (user$ | async).email }}</p>
+            </div>
+        </div>
+        <mat-nav-list>
+            <div *ngFor="let tab of tabs" [class.selected]="url.split('/')[2] == tab.link">
+                <a mat-list-item
+                class="tab-item"
+                [activated]="tab.isActive"
+                [routerLink]="[tab.link]" 
+                routerLinkActive="router-link-active">
+                    <mdb-icon fas [icon]="tab.icon" class="tab-icon" mdbWavesEffect />
+                    {{ tab.title | translate }}
+                </a>
+            </div>
+        </mat-nav-list>
+    </aside>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

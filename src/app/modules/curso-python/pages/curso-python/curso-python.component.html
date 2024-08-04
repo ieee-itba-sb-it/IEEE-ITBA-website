@@ -6,16 +6,16 @@
 
     <!-- Introductory text -->
   <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
-    <p>{{ 'PYTHONCOURSES.DESC' | translate }}</p>
+    <p class="description-text">{{ 'PYTHONCOURSES.DESC' | translate }}</p>
   </app-event-section>
 
   <app-event-section title="{{ 'PYTHONCOURSES.FORMAT_SUBTITLE' | translate }}">
-    <p>{{ 'PYTHONCOURSES.FORMAT' | translate }}</p>
+    <p class="description-text">{{ 'PYTHONCOURSES.FORMAT' | translate }}</p>
   </app-event-section>
 
   <!-- Cards Temario -->
 
-  <div style="display:flex; margin-bottom:5rem;">
+  <div class="content-card-list">
     <app-event-content-card
       [disabled]="!week1ContentOpen"
       title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1"

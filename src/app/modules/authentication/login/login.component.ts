@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ApiResponse} from '../../../shared/models/data-types';
 import { AppConfigService } from '../../../core/services/configuration/app-config.service';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { AlertModalComponent, AlertModalType } from 'src/app/shared/components/alert-modal/alert-modal.component';
 
 function getErrorMessage(code) {
     switch (code) {
@@ -26,7 +28,7 @@ function getErrorMessage(code) {
 })
 export class LoginComponent  implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router, private appConfigService: AppConfigService) {
+    constructor(private authService: AuthService, private router: Router, private modalService: MDBModalService, private route: ActivatedRoute, private appConfigService: AppConfigService) {
         scroll(0, 0);
     }
 
@@ -40,6 +42,8 @@ export class LoginComponent  implements OnInit {
     pass: string;
 
     loginResponse: ApiResponse = null;
+
+    alertModalRef: MDBModalRef | null = null;
 
     // On Init
     ngOnInit(): void {
@@ -76,6 +80,21 @@ export class LoginComponent  implements OnInit {
                 }
             });
         });
+
+        // Alert modal subscribers
+        this.route.queryParams.subscribe({
+            next: (params) => {
+              if (params.accountDeleted) this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_ACCOUNT_DELETION"); 
+            }
+          });
+        this.modalService.closed.subscribe(() => {
+            this.router.navigate([], {
+                queryParams: {
+                'accountDeleted': null
+                },
+                queryParamsHandling: 'merge'
+            })
+        });
     }
 
     signupWithGoogle() {
@@ -94,4 +113,14 @@ export class LoginComponent  implements OnInit {
             }
         });
     }
+
+    openAlertModal(type: AlertModalType, message: string): void {
+        this.alertModalRef = this.modalService.show(AlertModalComponent, {
+            data: {
+                message: message,
+                type: type
+            },
+            class: 'modal-dialog-centered',
+        });
+      }
 }

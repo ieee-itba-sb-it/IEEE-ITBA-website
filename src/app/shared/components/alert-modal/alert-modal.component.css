@@ -1,0 +1,16 @@
+.modal-title {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.modal-title.success {
+    color: var(--bs-ieee-dark-green);
+}
+
+.modal-title.error {
+    color: var(--bs-ieee-bright-red);
+}
+
+.modal-title.warning {
+    color: var(--bs-ieee-dark-yellow);
+}

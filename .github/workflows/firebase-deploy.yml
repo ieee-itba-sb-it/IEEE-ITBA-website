@@ -1,9 +1,9 @@
 name: Deploy to Firebase
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-
 jobs:
   build:
     name: Build and Deploy

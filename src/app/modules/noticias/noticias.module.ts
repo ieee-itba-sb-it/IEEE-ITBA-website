@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {MainpageComponent} from '../mainpage/pages/mainpage/mainpage.component';
 import {NoticiasComponent} from './pages/noticias/noticias.component';
 import {NoticiaComponent} from './pages/noticia/noticia.component';
 import {SharedModule} from '../../shared/shared.module';

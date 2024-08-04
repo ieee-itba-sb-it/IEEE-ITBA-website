@@ -12,7 +12,6 @@ import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {roles} from '../../../../shared/models/roles/roles.enum';
 import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
 import {AuthActionModalComponent} from '../../../../shared/components/auth-action-modal/auth-action-modal.component';
-import {EventEditorModalComponent} from '../../../../shared/components/event-editor-modal/event-editor-modal.component';
 
 @Component({
     selector: 'app-noticia',
@@ -60,7 +59,6 @@ export class NoticiaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.userData$ = this.authService.getCurrentUser();
         this.newsData$ = this.route.paramMap
             .pipe(
                 tap(
@@ -83,7 +81,7 @@ export class NoticiaComponent implements OnInit {
             const news = values[1];
             if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
             if (user != null)
-                this.isUserAuthorOrAdmin = (user.fname + ' ' + user.lname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
+                this.isUserAuthorOrAdmin = (user.fullname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
             else
                 this.isUserAuthorOrAdmin = false;
         })

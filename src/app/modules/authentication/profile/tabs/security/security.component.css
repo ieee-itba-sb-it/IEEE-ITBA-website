@@ -1,0 +1,31 @@
+.card {
+    padding: 0 1rem;
+    /* animation: horizontal-shaking 0.4s infinite; */
+}
+
+.card-title {
+    margin-bottom: .25rem;
+    font-weight: bold;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.alert {
+    padding: .5rem 1rem;
+}
+
+.alert.danger {
+    border-color: var(--bs-ieee-bright-red-60);
+}
+
+.alert.confirmed {
+    border-color: var(--bs-ieee-bright-darker-green-80);
+}
+
+.button-danger {
+    background-color: var(--bs-ieee-bright-red-60) !important;
+}

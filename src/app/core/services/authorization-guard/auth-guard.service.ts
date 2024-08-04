@@ -26,7 +26,7 @@ export class PermissionsService {
             if (possibleUser === null) {
                 return from(this.router.navigate(['login'])).pipe(map(() => false));
             }
-            if (expectedRole.includes(possibleUser.role)) {
+            if (!expectedRole || expectedRole.includes(possibleUser.role)) {
                 return of(true);
             }
             return from(this.router.navigate(['error401'])).pipe(map(() => false));

@@ -400,7 +400,8 @@
     "SPONSORS": "Sponsors",
     "WRITENEWS": "Create News",
     "INSTITUTIONAL": "Institutional",
-    "ADMIN": "Admin panel"
+    "ADMIN": "Admin panel",
+    "PROFILE": "Profile and settings"
   },
     "FOOTER": {
         "ABOUTUS": "About us",
@@ -630,8 +631,7 @@
   },
   "REGISTER": {
     "TITLE": "Register",
-    "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name",
+    "FULL_NAME": "Full Name",
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "REPEAT_PASSWORD": "Repeat Password",
@@ -1089,5 +1089,54 @@
     "9": "October",
     "10": "November",
     "11": "December"
+    },
+  "PROFILE": {
+    "TABS": {
+        "GENERAL": "General",
+        "SECURITY": "Security"
+    },
+    "TITLES": {
+        "PROFILE_GENERAL": "Profile Information",
+        "PROFILE_EXTRA": "Extra Information",
+        "ACCOUNT_SECURITY": "Account Security",
+        "PASSWORD_CHANGE": "Change Password",
+        "ACCOUNT_ACTIONS": "Account Actions"
+    },
+    "LABELS": {
+        "LINKEDIN": "LinkedIn (Username)"
+    },
+    "MESSAGES": {
+      "VERIFIED_EMAIL": "Your Email has already been verified",
+      "NOT_VERIFIED_EMAIL": "Your Email has not been verified yet",
+      "PASSWORD_CHANGE": "An Email will be sent to confirm the password change",
+      "ACCOUNT_DELETE": "Delete account and all your data",
+      "SUCCESS_ACCOUNT_DELETION": "Your account has been successfully deleted",
+      "SUCCESS_EMAIL_VERIFICATION": "Your Email has been successfuly verified",
+      "SUCCESS_PASSWORD_CHANGE": "Your password has been successfuly changed",
+      "EMAIL_SENT": "A link has been send to your Email"
+    },
+    "ERRORS": {
+          "FILE_SIZE": "File size must not exceed 2MB",
+          "FILE_TYPE": "File must be an image",
+          "FILE_EXTENSION": "Only JPG, JPEG or PNG images are allowed",
+          "COMPRESSION_FAILED": "Image compression failed, try with another file",
+          "STORAGE/UNAUTHORIZED": "You are not authorized to perform this action"
+    },
+    "BUTTONS": {
+        "PICTURE_UPLOAD": "Upload picture",
+        "PICTURE_DELETE": "Delete picture",
+        "SAVE": "Save",
+        "RESTORE": "Restore",
+        "VERIFY_EMAIL": "Verify Email",
+        "REQUEST_CHANGE": "Request Change",
+        "DELETE_ACCOUNT": "Delete Account"
     }
+  },
+  "ALERT_MODAL": {
+      "TITLES": {
+        "ERROR": "An error ocurred",
+        "SUCCESS": "Congratulations",
+        "WARNING": "Warning"
+      }
+  }
 }
