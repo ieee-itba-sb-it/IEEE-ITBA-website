@@ -77,11 +77,17 @@ export class LoginComponent  implements OnInit {
             });
         });
     }
-    
+
     signupWithGoogle() {
         this.authService.googleLogin().subscribe({
             next: (value) => {
-                this.router.navigate(['home']);
+                this.loginResponse = {
+                    success: true,
+                    message: 'LOGIN.SUCCESS',
+                };
+                setTimeout(() => {
+                    this.router.navigate([this.redirectTo ? this.redirectTo : 'home']);
+                }, 1000);
             },
             error: (err) => {
                 console.error(err);

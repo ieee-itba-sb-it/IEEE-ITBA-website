@@ -119,7 +119,13 @@ export class RegisterComponent implements OnInit {
     signupWithGoogle() {
         this.authService.googleLogin().subscribe({
             next: (value) => {
-                this.router.navigate(['home']);
+                this.registerResponse = {
+                    message: 'REGISTER.SUCCESS',
+                    success: true,
+                };
+                setTimeout(() =>
+                        this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
+                    1000);
             },
             error: (err) => {
                 console.error(err);
