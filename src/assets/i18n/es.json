@@ -660,6 +660,14 @@
     "PUBLISH_NOW": "Publicar ahora",
     "PROGRAM_DATE": "Programar fecha de publicación"
   },
+    "AUTH": {
+        "LOGIN": {
+            "ACTION_REQUIRED": "Esta acción requiere inicio de sesión",
+            "ACTION_EXPLAINED": "Se requiere tener una sesión iniciada para realizar esta acción. Inicia sesión o regístrate para crear una cuenta.",
+            "LOGIN": "Iniciar sesión",
+            "REGISTER": "Registrarse"
+        }
+    },
   "LOGIN": {
     "TITLE": "Iniciá sesión",
     "EMAIL": "Email",

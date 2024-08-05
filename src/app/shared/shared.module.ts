@@ -46,8 +46,9 @@ import { AlertModalComponent } from './components/alert-modal/alert-modal.compon
 import { EventDateComponent } from './components/event-date/event-date.component';
 import { EventDateSectionComponent } from './components/event-date-section/event-date-section.component';
 import { EventDateChipsComponent } from './components/event-date-chips/event-date-chips.component';
-import {FormatDateEventPipe} from "./pipes/FormatDateEventPipe";
+import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
+import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -60,8 +61,8 @@ export const routing = RouterModule.forChild(routes);
         TeamCardComponent, EventCardShortComponent, StudentChapterComponent, PaginationComponent,
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
-        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent, 
-        ProfilePictureComponent, AlertModalComponent,
+        EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
+        ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, EventInscriptionSectionComponent],
     imports: [
         routing,
@@ -96,7 +97,7 @@ export const routing = RouterModule.forChild(routes);
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
-        EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, 
+        EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe,
         EventInscriptionSectionComponent],
 })
 export class SharedModule { }
