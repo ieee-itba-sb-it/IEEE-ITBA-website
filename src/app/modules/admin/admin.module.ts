@@ -13,6 +13,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { UsersComponent } from './pages/users/users.component';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CommissionsComponent } from './pages/commissions/commissions.component';
 
 // Tab manager
 const routes: Routes = [{ 
@@ -20,7 +21,8 @@ const routes: Routes = [{
   component: AdminComponent, 
   children: [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'commissions', component: CommissionsComponent }
   ]
 }];
 
@@ -29,7 +31,8 @@ export const routing = RouterModule.forChild(routes);
 @NgModule({
   declarations: [
     AdminComponent,
-    UsersComponent
+    UsersComponent,
+    CommissionsComponent
   ],
   imports: [
     routing,

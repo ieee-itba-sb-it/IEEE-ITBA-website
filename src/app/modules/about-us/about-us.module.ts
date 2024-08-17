@@ -36,6 +36,6 @@ export const routing = RouterModule.forChild(routes);
         MatTabsModule,
         MDBBootstrapModule,
     ],
-    declarations: [AboutUsComponent],
+    declarations: [AboutUsComponent]
 })
 export class AboutUsModule {}

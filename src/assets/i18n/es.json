@@ -1113,8 +1113,7 @@
     "USERTAB": {
       "TITLE": "Usuarios",
       "TABLE": {
-        "FNAME": "Nombre",
-        "LNAME": "Apellido",
+        "FULL_NAME": "Nombre completo",
         "EMAIL": "Email",
         "ROLE": "Rol"
       },
@@ -1127,6 +1126,9 @@
         "ADMIN": "Admin",
         "WRITER": "Escritor"
       }
+    },
+    "COMMISSIONSTAB": {
+      "TITLE": "Comisiones"
     }
   },
   "MONTH": {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -16,6 +16,12 @@ export class AdminComponent implements OnInit {
       link: "users",
       isActive: true,
       icon: "user",
+    },
+    {
+      title: "ADMIN.COMMISSIONSTAB.TITLE",
+      link: "commissions",
+      isActive: true,
+      icon: "user",
     }
   ]
 
@@ -23,6 +29,10 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.url = this.router.url;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd)
+        this.url = event.url;
+    });
   }
 
 }
