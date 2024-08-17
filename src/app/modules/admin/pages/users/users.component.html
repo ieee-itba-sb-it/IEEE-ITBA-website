@@ -17,14 +17,12 @@
 </mat-chip-listbox>
 <table>
     <tr>
-        <th>{{ "ADMIN.USERTAB.TABLE.FNAME" | translate }}</th>
-        <th>{{ "ADMIN.USERTAB.TABLE.LNAME" | translate }}</th>
+        <th>{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
         <th>{{ "ADMIN.USERTAB.TABLE.EMAIL" | translate }}</th>
         <th>{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</th>
     </tr>
     <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)">
-        <td>{{ user.fname }}</td>
-        <td>{{ user.lname }}</td>
+        <td>{{ user.fullname }}</td>
         <td>{{ user.email }}</td>
         <td class="role-col">
             <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="roles[user.role].color" highlighted>{{ roles[user.role].code | translate }}</mat-chip>
