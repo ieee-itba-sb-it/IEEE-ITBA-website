@@ -23,7 +23,11 @@ import {
 import {eventsCollectionName} from "../../../secrets";
 import {catchError, from, map, Observable, of} from "rxjs";
 import {UserService} from "../user/user.service";
-import {getArgentineDate, getArgentineTime} from "../../../shared/argentina-time";
+import {
+    getArgentineDate,
+    getArgentineTime,
+    parseArgentineDate
+} from "../../../shared/argentina-time";
 
 @Injectable({
     providedIn: 'root'
@@ -43,14 +47,15 @@ export class EventService {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
                 const isoDate = eventDoc.dates[date].date;
                 const time = eventDoc.dates[date].time;
-                const fullDate = `${isoDate}T${time}:00${argentineTimezone}`;
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: new Date(fullDate),
+                    date: parseArgentineDate(isoDate, time),
                     isPeriod: false
                 }
                 if (eventDoc.dates[date].lastDate) {
-                    dates[date].lastDate = new Date(eventDoc.dates[date].lastDate);
+                    const isoLastDate = eventDoc.dates[date].lastDate;
+                    const lastTime = eventDoc.dates[date].lastTime;
+                    dates[date].lastDate = parseArgentineDate(isoLastDate, lastTime);
                     dates[date].isPeriod = true;
                 }
             } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
@@ -259,6 +264,7 @@ export class EventService {
                         throw new Error(`updateEventDocDates failed: lastDate ${date} is before date`);
                     }
                     dates[date].lastDate = getArgentineDate(event.dates[date].lastDate);
+                    dates[date].lastTime = getArgentineTime(event.dates[date].lastDate);
                 }
             } else if (event.dates[date].status === EventStatus.TENTATIVE) {
                 if (event.dates[date].month === null) {

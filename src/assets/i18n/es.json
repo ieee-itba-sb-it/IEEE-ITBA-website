@@ -303,10 +303,11 @@
          "DATES": "Fechas del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
-             "TIME_REQUIRED": "El horario es requerido",
+             "TIME_REQUIRED": "El horario de inicio es requerido",
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado",
+             "LAST_TIME_REQUIRED": "El horario de finalización es requerido",
              "LAST_DATE_REQUIRED": "La última fecha es requerida",
              "LAST_DATE_INVALID": "El formato de la última fecha es inválido, debe ser dd/mm/yyyy",
              "LAST_DATE_PAST": "La última fecha no puede ser en el pasado",

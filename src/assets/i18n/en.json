@@ -247,10 +247,11 @@
           "DATES": "Event dates",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
-              "TIME_REQUIRED": "The time is required",
+              "TIME_REQUIRED": "The start time is required",
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past",
+              "LAST_TIME_REQUIRED": "The ending time is required",
               "LAST_DATE_REQUIRED": "The last date is required",
               "LAST_DATE_INVALID": "The last date format is invalid, it should be dd/mm/yyyy",
               "LAST_DATE_PAST": "The last date cannot be in the past",

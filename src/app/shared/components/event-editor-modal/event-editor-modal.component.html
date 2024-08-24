@@ -117,6 +117,15 @@
                                             formControlName="lastDate"
                                         >
                                     </div>
+                                    <div class="event-date-input">
+                                        <label class="event-date-label" for="{{eventDate + '-lastTime'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
+                                        <input
+                                            type="time"
+                                            id="{{eventDate + '-lastTime'}}"
+                                            class="form-control"
+                                            formControlName="lastTime"
+                                        >
+                                    </div>
                                 </div>
                             </div>
                             <div *ngIf="isEventDateTentative(eventDate)" class="event-month">

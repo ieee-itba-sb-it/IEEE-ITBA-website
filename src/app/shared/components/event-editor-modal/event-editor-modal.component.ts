@@ -47,6 +47,9 @@ export class EventEditorModalComponent implements OnInit {
         pastDate: {
             key: 'DATE_PAST'
         },
+        lastTimeRequired: {
+            key: 'LAST_TIME_REQUIRED'
+        },
         lastDateRequired: {
             key: 'LAST_DATE_REQUIRED'
         },

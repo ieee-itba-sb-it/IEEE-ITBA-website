@@ -75,6 +75,7 @@ export type EventDoc = Omit<Event, 'dates'> & {
         date: `${number}-${number}-${number}`;
         time: `${number}:${number}`;
         lastDate?: `${number}-${number}-${number}`;
+        lastTime?: `${number}:${number}`;
     } | {
         status: EventStatus.TENTATIVE;
         month: number;

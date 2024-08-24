@@ -1,6 +1,6 @@
 import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
-import {getArgentineDate, getArgentineTime} from "../../argentina-time";
+import {getArgentineDate, getArgentineTime, parseArgentineDate} from "../../argentina-time";
 
 
 type FormFields = {
@@ -8,6 +8,7 @@ type FormFields = {
     date: string | null;
     lastDate: string | null;
     time: string | null;
+    lastTime: string | null;
     isPeriod: boolean;
     month: string | null;
     year: string | null;
@@ -27,12 +28,8 @@ export class EventDateEventEditorForm {
     public static readonly DEFAULT_MONTH_VALUE = -1;
     private static readonly DEFAULT_YEAR_VALUE = new Date().getFullYear();
 
-    private static parseArgentinaDate(isoDate: string, isoTime: string): Date {
-        return new Date(`${isoDate}T${isoTime}-03:00`);
-    }
-
     private static validateDateIsNotInThePast(date: AbstractControl<string>, time: AbstractControl<string>, dateKey: string): ValidationErrors | null {
-        const argentinaDate = this.parseArgentinaDate(date.value, time.value);
+        const argentinaDate = parseArgentineDate(date.value, time.value);
         const now = new Date();
         if (argentinaDate.getTime() < now.getTime()) {
             return { [dateKey]: { value: argentinaDate.toISOString() } };
@@ -52,10 +49,14 @@ export class EventDateEventEditorForm {
         }
         if (isPeriodValue) {
             const lastDateValue = control.get('lastDate').value;
+            const lastTimeValue = control.get('lastTime').value;
             if (lastDateValue === null) {
                 return { lastDateRequired: { value: lastDateValue } };
             }
-            const lastDateError = this.validateDateIsNotInThePast(control.get('lastDate'), control.get('time'), 'pastLastDate');
+            if (lastTimeValue === null) {
+                return { lastTimeRequired: { value: lastTimeValue } };
+            }
+            const lastDateError = this.validateDateIsNotInThePast(control.get('lastDate'), control.get('lastTime'), 'pastLastDate');
             if (lastDateError) {
                 return lastDateError;
             }
@@ -118,6 +119,7 @@ export class EventDateEventEditorForm {
         const initialDate = eventDateData.status === EventStatus.CONFIRMED ? getArgentineDate(eventDateData.date) : null;
         const initialLastDate = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod ? getArgentineDate(eventDateData.lastDate) : null;
         const initialTime = eventDateData.status === EventStatus.CONFIRMED ? getArgentineTime(eventDateData.date) : null;
+        const initialLastTime = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod ? getArgentineTime(eventDateData.lastDate) : null;
         const initialIsPeriod = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod;
         const initialMonth = eventDateData.status === EventStatus.TENTATIVE ? eventDateData.month : this.DEFAULT_MONTH_VALUE;
         const initialYear = eventDateData.status === EventStatus.UPCOMING ? eventDateData.year : this.DEFAULT_YEAR_VALUE;
@@ -126,6 +128,7 @@ export class EventDateEventEditorForm {
             date: new FormControl(initialDate),
             lastDate: new FormControl(initialLastDate),
             time: new FormControl(initialTime),
+            lastTime: new FormControl(initialLastTime),
             isPeriod: new FormControl(initialIsPeriod),
             month: new FormControl(initialMonth.toString()),
             year: new FormControl(initialYear.toString())
@@ -172,9 +175,9 @@ export class EventDateEventEditorForm {
             case EventStatus.CONFIRMED:
                 dates[eventDate] = {
                     status,
-                    date: EventDateEventEditorForm.parseArgentinaDate(eventDateForm.get('date').value, eventDateForm.get('time').value),
+                    date: parseArgentineDate(eventDateForm.get('date').value, eventDateForm.get('time').value),
                     isPeriod: eventDateForm.get('isPeriod').value,
-                    lastDate: eventDateForm.get('isPeriod').value ? EventDateEventEditorForm.parseArgentinaDate(eventDateForm.get('lastDate').value, eventDateForm.get('time').value) : undefined
+                    lastDate: eventDateForm.get('isPeriod').value ? parseArgentineDate(eventDateForm.get('lastDate').value, eventDateForm.get('lastTime').value) : undefined
                 };
                 break;
             case EventStatus.TENTATIVE:
