@@ -4,17 +4,35 @@
     justify-content: space-between;
     align-items:center;
 }
-  
+
+.sponsor-team {
+    display: flex;
+    justify-content:center;
+}
+
 /* Flex */
 @media (max-width: 950px) {
     body {
         padding-top: 20%;
     }
-
+    .info {
+        flex-direction: column;
+    }
+    .info-reversed {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-bottom: 3rem;
+    }
+    .sponsor-team {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 576px) {
     body {
         padding-top: 25%;
+    }
+    .sponsor-team {
+        font-size: 0.7rem;
     }
 }

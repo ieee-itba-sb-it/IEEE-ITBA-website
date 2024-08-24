@@ -10,6 +10,8 @@ import {combineLatestWith, map, Observable, switchMap, tap} from 'rxjs';
 import {AuthService} from '../../../../core/services/authorization/auth.service';
 import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {roles} from '../../../../shared/models/roles/roles.enum';
+import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
+import {AuthActionModalComponent} from '../../../../shared/components/auth-action-modal/auth-action-modal.component';
 
 @Component({
     selector: 'app-noticia',
@@ -18,14 +20,16 @@ import {roles} from '../../../../shared/models/roles/roles.enum';
 })
 export class NoticiaComponent implements OnInit {
     newsData$: Observable<NewsItem>;
-    userData$: Observable<IEEEuser>;
-    isVisible = false;
-    emojisVisible: boolean = !this.isVisible;
-    cookieValue: string;
+    userData: IEEEuser;
+    isVisible: boolean = false;
+    emojisVisible: boolean = true;
+    cookieValue: string = '';
     cookieName: string;
     emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
     recommendedNews$: Observable<NewsItem[]>;
     isUserAuthorOrAdmin: boolean;
+
+    modalRef: MDBModalRef | null = null;
 
     @Input('id') newsReference: string = '';
 
@@ -41,9 +45,10 @@ export class NoticiaComponent implements OnInit {
     }
 
     constructor(private route: ActivatedRoute,
-              @Inject(DOCUMENT) private document: any, public translate: TranslateService,
-              private blogService: BlogService, private cookieService: CookieService,
-                private authService: AuthService, private router: Router) {
+                @Inject(DOCUMENT) private document: any, public translate: TranslateService,
+                private blogService: BlogService, private cookieService: CookieService,
+                private authService: AuthService, private router: Router,
+                private modalService: MDBModalService) {
         this.blogService.setCollectionName(blogCollectionName);
 
         this.blogService.retrieveListedDocsSize();
@@ -54,16 +59,14 @@ export class NoticiaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.userData$ = this.authService.getCurrentUser();
         this.newsData$ = this.route.paramMap
             .pipe(
                 tap(
                     (paramMap) => {
                         this.cookieName = `${paramMap.get('id')}-vote`;
-                        this.cookieValue = this.cookieService.get(this.cookieName);
-                        if (this.cookieValue !== '') {
-                            this.isVisible = true;
-                            this.emojisVisible = false;
+                        if (this.cookieService.check(this.cookieName)) {
+                            this.toggleSelectRating();
+                            this.cookieValue = this.cookieService.get(this.cookieName);
                         }
                     }
                 ),
@@ -73,28 +76,52 @@ export class NoticiaComponent implements OnInit {
         this.authService.getCurrentUser().pipe(
             combineLatestWith(this.newsData$)
         ).subscribe(values => {
-            const user = values[0];
+            let user = values[0];
+            this.userData = user;
             const news = values[1];
             if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
-            this.isUserAuthorOrAdmin = (user.fname + ' ' + user.lname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
+            if (user != null)
+                this.isUserAuthorOrAdmin = (user.fullname == news.author && user.role == roles.contentCreator) || user.role == roles.admin;
+            else
+                this.isUserAuthorOrAdmin = false;
         })
     }
 
     rateNews(emoji: string, rating: number) {
+        if (this.userData == null) {
+            this.openModal();
+            return false;
+        }
         this.newsData$.subscribe(news => {
-            if (this.cookieValue === '') {
-                const expirationDate = new Date();
-                expirationDate.setDate( expirationDate.getDate() + 365);
-                this.cookieService.set(this.cookieName, emoji, expirationDate);
-                this.isVisible = true;
-                this.emojisVisible = false;
-                this.cookieValue = emoji;
-                this.newsData$ = this.blogService.incrementRating(news, rating);
+            if (news != null) {
+                if (!this.cookieService.check(this.cookieName)) {
+                    const expirationDate = new Date();
+                    expirationDate.setDate(expirationDate.getDate() + 365);
+                    this.cookieService.set(this.cookieName, emoji, expirationDate);
+                    this.cookieValue = emoji;
+                    this.newsData$ = this.blogService.incrementRating(news, rating);
+                } else {
+                    this.cookieService.delete(this.cookieName);
+                    this.cookieValue = '';
+                    this.newsData$ = this.blogService.decrementRating(news, rating);
+                }
+                this.toggleSelectRating();
             }
         });
     }
 
-    isSelected(i: number) {
+    toggleSelectRating() {
+        this.isVisible = !this.isVisible;
+        this.emojisVisible = !this.emojisVisible;
+    }
+
+    isSelected(i: number): boolean {
         return this.cookieValue === this.emojisList[i];
+    }
+
+    openModal() {
+        this.modalRef = this.modalService.show(AuthActionModalComponent, {
+            class: 'modal-dialog-centered'
+        });
     }
 }

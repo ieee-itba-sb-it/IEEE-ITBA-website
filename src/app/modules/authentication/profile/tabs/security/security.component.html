@@ -1,0 +1,50 @@
+<mat-card appearance="outlined" class="card pb-2">
+    <mat-card-header>
+        <h2 class="card-title my-2">{{ 'PROFILE.TITLES.ACCOUNT_SECURITY' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card appearance="outlined" class="alert">
+            <div class="w-100 gap-2 d-flex flex-column flex-sm-row align-items-center justify-content-between">
+                <span *ngIf="(user$ | async).verifiedEmail; else notConfirmed">{{ 'PROFILE.MESSAGES.VERIFIED_EMAIL' | translate }}</span>
+                <ng-template #notConfirmed>
+                    <span #notConfirmed>{{ 'PROFILE.MESSAGES.NOT_VERIFIED_EMAIL' | translate }}</span>
+                </ng-template>
+                <div class="confirm-buttons">
+                    <button (click)="sendVerificationEmail()" mat-raised-button [disabled]="(user$ | async).verifiedEmail" color="primary">{{ 'PROFILE.BUTTONS.VERIFY_EMAIL' | translate }}</button>
+                </div>
+            </div>
+        </mat-card>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" class="card pb-2 mt-3">
+    <mat-card-header>
+        <h2 class="card-title my-2">{{ 'PROFILE.TITLES.PASSWORD_CHANGE' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card appearance="outlined" class="alert">
+            <div class="w-100 gap-2 d-flex flex-column flex-sm-row align-items-center justify-content-between">
+                <span>{{ 'PROFILE.MESSAGES.PASSWORD_CHANGE' | translate }}</span>
+                <div class="confirm-buttons">
+                    <button (click)="sendPasswordResetEmail()" mat-raised-button color="primary">{{ 'PROFILE.BUTTONS.REQUEST_CHANGE' | translate }}</button>
+                </div>
+            </div>
+        </mat-card>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined" class="card pb-2 mt-3">
+    <mat-card-header>
+        <h2 class="card-title my-2">{{ 'PROFILE.TITLES.ACCOUNT_ACTIONS' | translate }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card appearance="outlined" class="alert">
+            <div class="w-100 gap-2 d-flex flex-column flex-sm-row align-items-center justify-content-between">
+                <span>{{ 'PROFILE.MESSAGES.ACCOUNT_DELETE' | translate }}</span>
+                <div class="confirm-buttons">
+                    <button (click)="deleteAccount()" mat-raised-button class="button-danger">{{ 'PROFILE.BUTTONS.DELETE_ACCOUNT' | translate }}</button>
+                </div>
+            </div>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

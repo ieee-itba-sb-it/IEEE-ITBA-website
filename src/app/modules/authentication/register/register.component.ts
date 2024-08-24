@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { ApiResponse } from '../../../shared/models/data-types';
 import { Router } from '@angular/router';
+import { catchError, concatMap, filter, of } from 'rxjs';
 
 const ERROR_MESSAGES = {
     'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
@@ -21,6 +22,8 @@ export class RegisterComponent implements OnInit {
         scroll(0, 0);
     }
 
+    @Input() redirectTo: string;
+
     // Data
     signupForm: HTMLElement | any;
     alertText: HTMLElement;
@@ -34,6 +37,7 @@ export class RegisterComponent implements OnInit {
     fname: string;
     lname: string;
     email: string;
+    fullname: string;
     pass: string;
     passConf: string;
     registerResponse: ApiResponse = null;
@@ -56,24 +60,26 @@ export class RegisterComponent implements OnInit {
             this.email = this.signupForm.email.value;
             this.pass = this.signupForm.pass.value;
             this.passConf = this.signupForm.passConf.value;
-            // Save in database
-            this.fname = this.signupForm.fname.value;
-            this.lname = this.signupForm.lname.value;
+            this.fullname = this.signupForm.fullname.value;
 
             this.isHidden3 = false;
             if (this.pass === this.passConf){
                 this.registerResponse = null;
                 this.authService
-                    .signup(this.email, this.pass, this.fname, this.lname)
+                    .signup(this.email, this.pass, this.fullname)
+                    .pipe(
+                        filter(resp => resp != null),
+                        concatMap(() => this.authService.login(this.email, this.pass))
+                    )
                     .subscribe({
                         next: (value) => {
                             this.registerResponse = {
                                 message: 'REGISTER.SUCCESS',
                                 success: true,
                             };
-                            setTimeout(() => {
-                                this.router.navigate(['home']);
-                            }, 1000);
+                            setTimeout(() =>
+                                    this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
+                                1000);
                         },
                         error: (err) => {
                             const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
@@ -97,7 +103,6 @@ export class RegisterComponent implements OnInit {
 
     // Change Pass
     chgpass(){
-
         if (this.isHidden) {
             this.isHidden = false;
         }
@@ -112,7 +117,13 @@ export class RegisterComponent implements OnInit {
     signupWithGoogle() {
         this.authService.googleLogin().subscribe({
             next: (value) => {
-                this.router.navigate(['home']);
+                this.registerResponse = {
+                    message: 'REGISTER.SUCCESS',
+                    success: true,
+                };
+                setTimeout(() =>
+                        this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
+                    1000);
             },
             error: (err) => {
                 console.error(err);

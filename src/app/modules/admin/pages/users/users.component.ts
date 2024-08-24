@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   users$: Observable<{content: IEEEuser[], count: number, loading: boolean}>;
 
   filters: IEEEUserFilters = {};
-  searchbarTimeout: number;
+  searchbarTimeout;
 
   modalRef: MDBModalRef | null = null;
   roles = roles;

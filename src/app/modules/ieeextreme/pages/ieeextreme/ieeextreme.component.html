@@ -14,8 +14,7 @@
 
     <!-- Resolve problemas en equipo -->
   <div class="info">
-    <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
-      style="padding-right:3rem;">
+    <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}">
       <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
     </app-event-section>
     <div>
@@ -24,7 +23,7 @@
   </div>
 
   <!-- Queres participar -->
-  <div class="info reversed">
+  <div class="info-reversed">
     <div style="padding-right:3rem;">
       <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
     </div>
@@ -44,7 +43,7 @@
   <!-- Sponsor team -->
   <app-event-section title="Sponsorship 2024">
     <p>{{ 'IEEEXTREME.SPONSORSHIP.TEXT' | translate }}</p>
-    <div style="display: flex; justify-content:center;">
+    <div class="sponsor-team">
       <app-event-content-card
       *ngFor="let contact of contacts"
       title="{{contact.name }}"

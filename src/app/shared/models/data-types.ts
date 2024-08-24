@@ -35,9 +35,11 @@ export function createNewsItemWithDate(
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
-export function createRegularUser(fname: string, lname: string, email: string, photoURL: string, role: number, uID: string) {
+export function createRegularUser(fullname: string, email: string, photoURL: string, role: number, uID: string, verifiedEmail?: boolean, linkedin?: string) {
     let newUser: IEEEuser;
-    newUser = { fname, lname, email, photoURL, uID, role };
+    if (!linkedin) linkedin = null;
+    newUser = { fullname, email, photoURL, uID, role, linkedin };
+    if (verifiedEmail) newUser.verifiedEmail = verifiedEmail;
     return newUser;
 }
 

@@ -1,10 +1,10 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Translations
-import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
@@ -27,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
 import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
+import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -77,6 +78,11 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
             const firedatabase = getDatabase();
             if (!environment.production) connectDatabaseEmulator(firedatabase, 'localhost', 9000)
             return firedatabase;
+        }),
+        provideStorage(() => {
+            const firestorage = getStorage();
+            if (!environment.production) connectStorageEmulator(firestorage, 'localhost', 9199);
+            return firestorage;
         }),
         HttpClientModule,
         CardsModule,

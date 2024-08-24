@@ -1,10 +1,11 @@
 import { roles } from '../roles/roles.enum'
 
 export interface IEEEuser {
-  fname: string;
-  lname: string;
+  fullname: string;
   email: string;
+  verifiedEmail?: boolean;
   photoURL: string;
   uID: string;
   role: roles;
+  linkedin?: string;
 }

@@ -1,8 +1,39 @@
 rules_version = '2';
 service firebase.storage {
+
+  function isSignedIn() {
+    return request.auth.uid != null;
+  }
+
+  // Not tested
+  function hasRole(role) {
+    let roles = {"admin": 1, "writer": 2};
+    return isSignedIn() && roles[role] == firestore.get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.role;
+  }
+
+  function isFileOwner(imagename) {
+    return isSignedIn() && imagename.matches(request.auth.uid + "\\..*");
+  }
+
+  // Example: hasExtension(imagename, "jpg|jpeg|png")
+  function hasExtension(filename, extensions) {
+    return filename.matches(".*\\.(" + extensions + ")$");
+  }
+
+  function sizeLessThan(mb) {
+    return request.resource.size < mb * 1024 * 1024;
+  }
+
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth!=null;
+  	match /static/{documents=**} {
+    	allow read;
+    }
+    match /profile-pics/{imagename} {
+      allow read;
+      allow write: if 
+        isFileOwner(imagename) &&
+        hasExtension(imagename, "jpg|jpeg|png") &&
+        sizeLessThan(2);
     }
   }
 }

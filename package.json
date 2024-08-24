@@ -48,6 +48,7 @@
     "ngx-bar-rating": "^6.0.0",
     "ngx-cookie-service": "^16.0.0",
     "ngx-countdown": "^16.0.0",
+    "ngx-image-compress": "^18.1.5",
     "ngx-page-scroll": "^11.0.0",
     "ngx-page-scroll-core": "^11.0.0",
     "ngx-quill": "^22.0.0",

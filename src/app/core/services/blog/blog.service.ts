@@ -290,13 +290,24 @@ export class BlogService {
         return this.listedDocsSize.asObservable();
     }
 
-    incrementRating(news: NewsItem, rating: number) {
+    changeRating(news: NewsItem, rating: number, changeValue: number) {
         const aux: number[] = news.ratings;
-        aux[rating]++;
-        updateDoc(doc(this.afs, this.collectionName, news.reference), {
-            ratings: aux
-        })
+        const nextValue = aux[rating] + changeValue;
+        if (nextValue >= 0) {
+            aux[rating] = nextValue;
+            updateDoc(doc(this.afs, this.collectionName, news.reference), {
+                ratings: aux
+            })
+        }
         return of(news);
+    }
+
+    incrementRating(news: NewsItem, rating: number) {
+        return this.changeRating(news, rating, 1);
+    }
+
+    decrementRating(news: NewsItem, rating: number) {
+        return this.changeRating(news, rating, -1);
     }
 
 }

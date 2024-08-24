@@ -3,6 +3,11 @@ h1 {
     font-weight: lighter;
 }
 
+.facts-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .facts-banner {
     padding-bottom: 4vmin;
     vertical-align: middle;
@@ -31,14 +36,39 @@ h1 {
 
 @media (max-width: 950px) {
     .banner-image{
+        width: 70%;
+    }
+    h1 {
+        margin-bottom: 0;
+    }
+    .col-sm {
         width: 50%;
     }
-
+    .facts-container {
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 576px) {
-    .banner-image{
-        width: 70%;
+    .col-sm {
+        width: 50%;
     }
+    .facts-container {
+        flex-wrap: wrap;
+    }
+}
 
+@media (max-width: 290px) {
+    .banner-image{
+        width: 90%;
+    }
+    .facts {
+        font-size: 5vmin;
+    }
+    .col-sm {
+        width: 50%;
+    }
+    .facts-container {
+        flex-wrap: wrap;
+    }
 }
