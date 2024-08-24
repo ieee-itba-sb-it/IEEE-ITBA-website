@@ -199,6 +199,17 @@
     row-gap: 0.5rem;
 }
 
+.event-date-input-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    align-items: center;
+}
+
+.event-date-input {
+    width: 100%;
+}
+
 .event-date-input:has(.form-check-input-checkbox) {
     display: flex;
     flex-direction: row;

@@ -1,5 +1,6 @@
 import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {getArgentineDate, getArgentineTime} from "../../argentina-time";
 
 
 type FormFields = {
@@ -18,33 +19,22 @@ type FieldsFormControl = {
 
 type FieldsFormGroup = FormGroup<FieldsFormControl>;
 
-export type FormGroupByEventDate = {
+export type EventDateEventForm = {
     [key in EventDate]: FieldsFormGroup;
 }
 
-export class EventDateEditorForm {
+export class EventDateEventEditorForm {
     public static readonly DEFAULT_MONTH_VALUE = -1;
     private static readonly DEFAULT_YEAR_VALUE = new Date().getFullYear();
-    private static readonly DEFAULT_TIME_VALUE = '00:00';
 
-    private static getIsoDate(date: Date): string {
-        return date.toISOString().split('T')[0];
-    }
-
-    private static getIsoTime(date: Date): string {
-        const time = date.toISOString().split('T')[1].split('.')[0];
-        const [hours, minutes] = time.split(':');
-        return `${hours}:${minutes}`;
-    }
-
-    private static getArgentinaDate(isoDate: string, isoTime: string): Date {
-        return new Date(`${isoDate}T${isoTime}:00-03:00`);
+    private static parseArgentinaDate(isoDate: string, isoTime: string): Date {
+        return new Date(`${isoDate}T${isoTime}-03:00`);
     }
 
     private static validateDateIsNotInThePast(date: AbstractControl<string>, time: AbstractControl<string>, dateKey: string): ValidationErrors | null {
-        const argentinaDate = this.getArgentinaDate(date.value, time.value);
+        const argentinaDate = this.parseArgentinaDate(date.value, time.value);
         const now = new Date();
-        if (argentinaDate < now) {
+        if (argentinaDate.getTime() < now.getTime()) {
             return { [dateKey]: { value: argentinaDate.toISOString() } };
         }
         return null;
@@ -80,7 +70,7 @@ export class EventDateEditorForm {
 
     private static isTentativeEventDateValid(control: AbstractControl<FormFields>): ValidationErrors | null {
         const monthValue = control.get('month').value;
-        if (monthValue === null || monthValue === EventDateEditorForm.DEFAULT_MONTH_VALUE.toString()) {
+        if (monthValue === null || monthValue === EventDateEventEditorForm.DEFAULT_MONTH_VALUE.toString()) {
             return { monthRequired: { value: monthValue } };
         }
         const month = parseInt(monthValue, 10);
@@ -125,9 +115,9 @@ export class EventDateEditorForm {
 
     private static createEventDateForm(event: Event, eventDate: EventDate): FieldsFormGroup {
         const eventDateData = event.dates[eventDate];
-        const initialDate = eventDateData.status === EventStatus.CONFIRMED ? this.getIsoDate(eventDateData.date) : null;
-        const initialLastDate = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod ? this.getIsoDate(eventDateData.lastDate) : null;
-        const initialTime = eventDateData.status === EventStatus.CONFIRMED ? this.getIsoTime(eventDateData.date) : this.DEFAULT_TIME_VALUE;
+        const initialDate = eventDateData.status === EventStatus.CONFIRMED ? getArgentineDate(eventDateData.date) : null;
+        const initialLastDate = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod ? getArgentineDate(eventDateData.lastDate) : null;
+        const initialTime = eventDateData.status === EventStatus.CONFIRMED ? getArgentineTime(eventDateData.date) : null;
         const initialIsPeriod = eventDateData.status === EventStatus.CONFIRMED && eventDateData.isPeriod;
         const initialMonth = eventDateData.status === EventStatus.TENTATIVE ? eventDateData.month : this.DEFAULT_MONTH_VALUE;
         const initialYear = eventDateData.status === EventStatus.UPCOMING ? eventDateData.year : this.DEFAULT_YEAR_VALUE;
@@ -144,12 +134,12 @@ export class EventDateEditorForm {
         );
     }
 
-    private static createForm(event: Event): FormGroupByEventDate {
-        const formGroupByEventDate: Partial<FormGroupByEventDate> = {};
+    private static createForm(event: Event): EventDateEventForm {
+        const formGroupByEventDate: Partial<EventDateEventForm> = {};
         for (const eventDate of Object.values(EventDate)) {
             formGroupByEventDate[eventDate] = this.createEventDateForm(event, eventDate);
         }
-        return formGroupByEventDate as FormGroupByEventDate;
+        return formGroupByEventDate as EventDateEventForm;
     }
 
     private static cloneEventDates(event: Event): Event['dates'] {
@@ -161,15 +151,15 @@ export class EventDateEditorForm {
         return dates as Event['dates'];
     }
 
-    private readonly form: FormGroupByEventDate;
+    private readonly form: EventDateEventForm;
     private readonly initialState: Event['dates'];
 
     constructor(event: Event) {
-        this.form = EventDateEditorForm.createForm(event);
-        this.initialState = EventDateEditorForm.cloneEventDates(event);
+        this.form = EventDateEventEditorForm.createForm(event);
+        this.initialState = EventDateEventEditorForm.cloneEventDates(event);
     }
 
-    getForm(): FormGroupByEventDate {
+    getForm(): EventDateEventForm {
         return this.form;
     }
 
@@ -182,9 +172,9 @@ export class EventDateEditorForm {
             case EventStatus.CONFIRMED:
                 dates[eventDate] = {
                     status,
-                    date: EventDateEditorForm.getArgentinaDate(eventDateForm.get('date').value, eventDateForm.get('time').value),
+                    date: EventDateEventEditorForm.parseArgentinaDate(eventDateForm.get('date').value, eventDateForm.get('time').value),
                     isPeriod: eventDateForm.get('isPeriod').value,
-                    lastDate: eventDateForm.get('isPeriod').value ? EventDateEditorForm.getArgentinaDate(eventDateForm.get('lastDate').value, eventDateForm.get('time').value) : undefined
+                    lastDate: eventDateForm.get('isPeriod').value ? EventDateEventEditorForm.parseArgentinaDate(eventDateForm.get('lastDate').value, eventDateForm.get('time').value) : undefined
                 };
                 break;
             case EventStatus.TENTATIVE:

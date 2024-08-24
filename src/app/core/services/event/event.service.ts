@@ -23,6 +23,7 @@ import {
 import {eventsCollectionName} from "../../../secrets";
 import {catchError, from, map, Observable, of} from "rxjs";
 import {UserService} from "../user/user.service";
+import {getArgentineDate, getArgentineTime} from "../../../shared/argentina-time";
 
 @Injectable({
     providedIn: 'root'
@@ -234,18 +235,6 @@ export class EventService {
         })
     }
 
-    private getIsoDate(date: Date): string {
-        const isoTimeStamp = date.toISOString();
-        return isoTimeStamp.split('T')[0];
-    }
-
-    private getIsoTime(date: Date): string {
-        const isoTimeStamp = date.toISOString();
-        const isoTime = isoTimeStamp.split('T')[1].split('.')[0];
-        const [hours, minutes] = isoTime.split(':');
-        return `${hours}:${minutes}`;
-    }
-
     private mapEventDates(event: Event): EventDoc['dates'] {
         const now = new Date();
         const dates: EventDoc['dates'] = {} as EventDoc['dates'];
@@ -259,8 +248,8 @@ export class EventService {
                 }
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: this.getIsoDate.bind(this)(event.dates[date].date),
-                    time: this.getIsoTime.bind(this)(event.dates[date].date)
+                    date: getArgentineDate(event.dates[date].date),
+                    time: getArgentineTime(event.dates[date].date)
                 }
                 if (event.dates[date].isPeriod) {
                     if (event.dates[date].lastDate === null) {
@@ -269,7 +258,7 @@ export class EventService {
                     if (event.dates[date].lastDate < event.dates[date].date) {
                         throw new Error(`updateEventDocDates failed: lastDate ${date} is before date`);
                     }
-                    dates[date].lastDate = this.getIsoDate.bind(this)(event.dates[date].lastDate);
+                    dates[date].lastDate = getArgentineDate(event.dates[date].lastDate);
                 }
             } else if (event.dates[date].status === EventStatus.TENTATIVE) {
                 if (event.dates[date].month === null) {

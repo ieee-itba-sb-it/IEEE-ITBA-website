@@ -250,6 +250,9 @@
         "OPEN": "¡Inscripciones abiertas!",
         "CLICK": "¡Anotate ahora!"
       },
+      "TIME": {
+         "TITLE": "Horario"
+      },
       "DATE": {
          "TITLE": "Fechas",
          "UNIQUE": "Fecha",
@@ -300,6 +303,7 @@
          "DATES": "Fechas del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
+             "TIME_REQUIRED": "El horario es requerido",
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado",

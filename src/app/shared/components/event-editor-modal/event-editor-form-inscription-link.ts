@@ -1,18 +1,18 @@
 import {AbstractControl, FormControl, ValidationErrors} from "@angular/forms";
 import {Event} from "../../models/event/event";
 
-type InscriptionLinkForm = {
+export type InscriptionLinkEventForm = {
     inscriptionLink: FormControl<string | null>;
 }
 
-export class EventInscriptionLinkEditorForm {
+export class InscriptionLinkEventEditorForm {
     private readonly initialState: string | null;
-    private readonly form: InscriptionLinkForm;
+    private readonly form: InscriptionLinkEventForm;
     public static readonly INSCRIPTION_LINK_MAX_LENGTH = 255;
 
     private static isValid(control: AbstractControl<string | null>): ValidationErrors | null {
         const value = control.value?.trim() ?? null;
-        if (value !== null && value.length > EventInscriptionLinkEditorForm.INSCRIPTION_LINK_MAX_LENGTH) {
+        if (value !== null && value.length > InscriptionLinkEventEditorForm.INSCRIPTION_LINK_MAX_LENGTH) {
             return { inscriptionLinkMaxLength: { length: value.length } };
         }
         return null;
@@ -21,8 +21,12 @@ export class EventInscriptionLinkEditorForm {
     constructor(event: Event) {
         this.initialState = event.inscriptionLink;
         this.form = {
-            inscriptionLink: new FormControl(event.inscriptionLink, EventInscriptionLinkEditorForm.isValid)
+            inscriptionLink: new FormControl(event.inscriptionLink, InscriptionLinkEventEditorForm.isValid)
         }
+    }
+
+    getForm(): InscriptionLinkEventForm {
+        return this.form;
     }
 
     getCurrentState(): string | null {

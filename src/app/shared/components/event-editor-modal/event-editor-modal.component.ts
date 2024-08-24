@@ -5,6 +5,8 @@ import {MDBModalRef} from "angular-bootstrap-md";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 import {EventEditorForm} from "./event-editor-form";
 import {TranslateService} from "@ngx-translate/core";
+import {InscriptionLinkEventEditorForm} from "./event-editor-form-inscription-link";
+import {EventDateEventEditorForm} from "./event-editor-form-date";
 
 type I18nParams = Record<string, string>;
 
@@ -36,6 +38,9 @@ export class EventEditorModalComponent implements OnInit {
         [EventStatus.UNSCHEDULED]: false
     };
     i18nEventDateErrorByFormErrorName: I18nErrorByFormErrorName = {
+        timeRequired: {
+            key: 'TIME_REQUIRED'
+        },
         dateRequired: {
             key: 'DATE_REQUIRED'
         },
@@ -70,7 +75,7 @@ export class EventEditorModalComponent implements OnInit {
     i18nInscriptionLinkErrorByFormErrorName: I18nErrorByFormErrorName = {
         inscriptionLinkMaxLength: {
             key: 'INSCRIPTION_LINK_MAX_LENGTH',
-            params: {max: EventEditorForm.INSCRIPTION_LINK_MAX_LENGTH.toString()}
+            params: {max: InscriptionLinkEventEditorForm.INSCRIPTION_LINK_MAX_LENGTH.toString()}
         },
     }
 
@@ -106,7 +111,7 @@ export class EventEditorModalComponent implements OnInit {
     }
 
     get defaultMonthValue(): number {
-        return EventEditorForm.DEFAULT_MONTH_VALUE;
+        return EventDateEventEditorForm.DEFAULT_MONTH_VALUE;
     }
 
     setEventDateStatus: EventEditorForm['setEventDateStatus'] = (eventDate, status) => {

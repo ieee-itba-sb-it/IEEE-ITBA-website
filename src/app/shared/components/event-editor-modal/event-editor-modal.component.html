@@ -97,6 +97,15 @@
                                             required
                                         >
                                     </div>
+                                    <div class="event-date-input">
+                                        <label class="event-date-label" for="{{eventDate + '-time'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
+                                        <input
+                                            type="time"
+                                            id="{{eventDate + '-time'}}"
+                                            class="form-control"
+                                            formControlName="time"
+                                        >
+                                    </div>
                                 </div>
                                 <div class="event-date-input-container" *ngIf="isEventDateAPeriod(eventDate)">
                                     <div class="event-date-input">
