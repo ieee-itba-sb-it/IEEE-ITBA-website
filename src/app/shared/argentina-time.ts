@@ -10,3 +10,7 @@ export const getArgentineTime = (date: Date): string => {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
 }
+
+export const parseArgentineDate = (isoDate: string, isoTime: string): Date => {
+    return new Date(`${isoDate}T${isoTime}:00-03:00`);
+}
