@@ -42,7 +42,6 @@ export class EventService {
 
     private mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
         const dates: Event['dates'] = {} as Event['dates'];
-        const argentineTimezone = '-03:00';
         for (const date in eventDoc.dates) {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
                 const isoDate = eventDoc.dates[date].date;

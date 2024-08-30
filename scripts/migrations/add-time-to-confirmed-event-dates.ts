@@ -9,9 +9,9 @@ const updateConfirmedEventDates = (event: EventDoc): EventDoc['dates'] => {
             ...event.dates[eventDate]
         }
         if (out[eventDate].status === EventStatus.CONFIRMED) {
-            out[eventDate].time = out[eventDate].time ?? '12:00';
+            out[eventDate].time = out[eventDate].time ?? '23:59';
             if (out[eventDate].lastDate) {
-                out[eventDate].lastTime = out[eventDate].lastTime ?? '12:00';
+                out[eventDate].lastTime = out[eventDate].lastTime ?? '23:59';
             }
         }
     }
