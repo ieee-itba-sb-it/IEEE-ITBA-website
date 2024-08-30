@@ -50,8 +50,8 @@ export const migrateEventCourses = async () => {
     const batch = getFirestore().batch();
     for (const eventId of Object.keys(eventCourseClassesByEventId)) {
         const event = getFirestore().collection('events').doc(eventId);
-        const courses = eventCourseClassesByEventId[eventId];
-        batch.update(event, { courses });
+        const course = eventCourseClassesByEventId[eventId];
+        batch.update(event, { course });
     }
     await batch.commit();
 }
