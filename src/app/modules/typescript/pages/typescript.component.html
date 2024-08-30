@@ -13,57 +13,12 @@
   </app-event-section>
   <!-- SYLLABUS -->
   <app-event-section title="{{ 'TYPESCRIPT.SYLLABUS.TITLE' | translate}}">
-    <div class="syllabus">
-      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.1.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"
-      >
-      <div content>
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.2' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.3' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.4' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.1.BULLET_PTS.5' | translate}}
-      </div>
-      </app-event-content-card>
-      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.2.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"
-      >
-      <div content>
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.2' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.3' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.4' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.5' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.6' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.7' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.8' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.9' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.2.BULLET_PTS.10' | translate}}
-      </div>
-      </app-event-content-card>
-    </div>
-    <div class="syllabus">
-      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.3.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"
-      >
-      <div content>
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.1' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.2' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.3' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.4' | translate}},
-        {{ 'TYPESCRIPT.SYLLABUS.3.BULLET_PTS.5' | translate}}
-      </div>
-      </app-event-content-card>
-      <app-event-content-card title="{{ 'TYPESCRIPT.SYLLABUS.4.TEXT' | translate}}"
-      [imageUrl]="typescriptUrl"
-      >
-      <div content>
-          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.1' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.2' | translate}},
-          {{ 'TYPESCRIPT.SYLLABUS.4.BULLET_PTS.3' | translate}}
-      </div>
-      </app-event-content-card>
-    </div>
+    <app-event-course-detail
+        [imageUrl]="typescriptUrl"
+        [contentButtonCode]="'TYPESCRIPT.CONTENTBUTTON'"
+        [solutionButtonCode]="'TYPESCRIPT.SOLUTIONBUTTON'"
+        [event]="event"
+    />
   </app-event-section>
   <!-- FORMS (no esta habilitado por ahora)-->
   <!--

@@ -42,20 +42,6 @@
   color: white !important;
 }
 
-/* Syllabus section*/
-.syllabus{
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.syllabus > app-event-content-card {
-    width: 40%;
-    min-width: min-content;
-}
-
 /* Form section */
 .forms{
     display: flex;

@@ -102,12 +102,6 @@ export class DataAnalysisComponent implements OnInit {
         return '';
     }
 
-    weekContentOpen(weekIdx: number) {
-        return (weekIdx < this.courseData.courseClasses.length && this.isOldDate(this.courseData.courseClasses[weekIdx].openDate)
-              || this.isOldDate(this.courseData.endDate))
-          && !this.isOldDate(this.courseData.contentCloseDate);
-    }
-
     isContentClosed() {
         return this.isOldDate(this.courseData.contentCloseDate);
     }
@@ -123,12 +117,6 @@ export class DataAnalysisComponent implements OnInit {
 
     enrollAvailable() {
         return this.isBetweenDates(this.courseData.enrollDates.open, this.courseData.enrollDates.close);
-    }
-
-    check = (event, isReady) => {
-        if (!isReady) {
-            event.preventDefault();
-        }
     }
 
     ngOnInit(): void {
