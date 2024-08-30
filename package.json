@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "concurrently \"firebase emulators:start --import mock_data --export-on-exit\" \"ng serve\"",
+    "dev": "concurrently \"firebase emulators:start --import mock_data --export-on-exit\" \"ng serve --watch --live-reload --poll 2000\"",
     "build": "ng build",
     "dev-prod": "ng serve -c production",
     "test": "ng test",
