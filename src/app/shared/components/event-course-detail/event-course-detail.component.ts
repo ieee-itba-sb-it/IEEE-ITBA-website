@@ -25,8 +25,6 @@ export class EventCourseDetailComponent {
     }
 
     hasCourse(): boolean {
-        console.log("this.event", this.event)
-        console.log("hasCourse", this.event && this.event.course && this.event.course.length > 0)
         return this.event && this.event.course && this.event.course.length > 0;
     }
 
@@ -71,7 +69,6 @@ export class EventCourseDetailComponent {
 
     getCourseIndexes(): number[] {
         const length = this.hasCourse() ? this.event.course.length : 0;
-        console.log("getCourseIndexes", Array.from({length}, (_, i) => i));
         return Array.from({length}, (_, i) => i);
     }
 
