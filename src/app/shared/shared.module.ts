@@ -49,6 +49,7 @@ import { EventDateChipsComponent } from './components/event-date-chips/event-dat
 import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
+import { CommissionEditorModalComponent } from './components/commission-editor-modal/commission-editor-modal.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -63,7 +64,7 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, EventInscriptionSectionComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, EventInscriptionSectionComponent, CommissionEditorModalComponent],
     imports: [
         routing,
         CommonModule,

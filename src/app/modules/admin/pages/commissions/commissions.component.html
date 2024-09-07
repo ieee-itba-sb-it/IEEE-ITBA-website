@@ -1,1 +1,31 @@
-<p>commissions works!</p>
+<div class="toolbar d-flex justify-content-end gap-2">
+    <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="addCommission()">
+        <mdb-icon fas icon="add"></mdb-icon>
+        <span class="ml-2">Añadir comisión</span>
+    </button>
+    <button mat-raised-button class="animated-color" type="button" [color]="editPositionsMode ? 'warn' : ''" (click)="toggleEditPositionsMode()" [disabled]="commissions.length < 2">
+        <mdb-icon fas [icon]="!editPositionsMode ? 'exchange-alt' : 'close'" [class.rotate]="!editPositionsMode" class="animated-transform"></mdb-icon>
+        <span class="ml-2" *ngIf="!editPositionsMode">Editar posiciones</span>
+        <span class="ml-2" *ngIf="editPositionsMode">Cancelar</span>
+    </button>
+</div>
+<div class="content my-4" *ngIf="commissions.length > 0; else empty">
+    <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="drop($event)" class="example-headers-align" multi>
+        <mat-expansion-panel cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions" hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mdb-icon fas icon="bars" class="animated-transform mr-2" *ngIf="editPositionsMode"></mdb-icon>
+                    {{ commission.title.es }}
+                </mat-panel-title>
+                <mat-panel-description>{{ commission.id }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<ng-template #empty class="d-flex flex-column align-items-center justify-content-center my-5">
+    <div>
+        <mdb-icon fas icon="exclamation-triangle" class="big-icon"></mdb-icon>
+        <p class="mt-2">No hay comisiones registradas</p>
+    </div>
+</ng-template>

@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <div *ngIf="commission;else addHeader">
+        <h2 class="modal-title"><span>Editar comisión</span></h2>
+        <h4 class="modal-subtitle">ID</h4>
+    </div>
+    <ng-template #addHeader>
+        <h2 class="modal-title"><span>Crear comisión</span></h2>
+    </ng-template>
+    <button type="button" (click)="modalRef.hide()" class="btn">
+        <mdb-icon fas icon="times" size="lg"></mdb-icon>
+    </button>
+</div>
+<form>
+    <div class="modal-body">
+        <div class="id" *ngIf="!commission">
+            <label for="title-es">ID</label>
+            <input
+                type="text"
+                id="id"
+                class="form-control"
+                placeholder="ID de la comisión"	
+            >
+        </div>
+        <div class="mt-2">
+            <label for="title-es">Titulo</label>
+            <input
+                type="text"
+                id="title-es"
+                class="form-control"
+                placeholder="Titulo en español"
+            >
+            <input
+                type="text"
+                id="title-en"
+                class="form-control mt-2"
+                placeholder="Titulo en ingles"
+            >
+        </div>
+        <div *ngIf="error" class="error-container">
+            <p class="error">
+                {{ error }}
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+        <button type="submit" class="btn save-btn">
+            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+        </button>
+    </div>
+</form>

@@ -14,6 +14,9 @@ import { UsersComponent } from './pages/users/users.component';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CommissionsComponent } from './pages/commissions/commissions.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 // Tab manager
 const routes: Routes = [{ 
@@ -42,6 +45,10 @@ export const routing = RouterModule.forChild(routes);
     MatListModule,
     MatChipsModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatExpansionModule,
+    CdkDrag,
+    CdkDropList,
     MDBBootstrapModule.forRoot(),
     TranslateModule.forChild({
       loader: {

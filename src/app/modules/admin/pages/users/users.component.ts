@@ -15,6 +15,7 @@ import { MatChipListboxChange } from '@angular/material/chips';
   styleUrls: ['./users.component.css'],
   providers: [UserManagerService]
 })
+// https://v5-angular-4.legacydocs.mdbootstrap.com/docs/angular/data/tables/
 export class UsersComponent implements OnInit {
 
   users$: Observable<{content: IEEEuser[], count: number, loading: boolean}>;

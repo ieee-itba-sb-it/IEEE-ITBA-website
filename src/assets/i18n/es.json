@@ -1109,7 +1109,7 @@
     "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
   },
   "ADMIN": {
-    "TITLE": "Admin panel",
+    "TITLE": "Panel de administrador",
     "USERTAB": {
       "TITLE": "Usuarios",
       "TABLE": {

@@ -1,0 +1,19 @@
+.rotate {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.big-icon {
+    font-size: 2rem;
+}
+
+.animated-transform {
+    transition: transform 0.25s;
+}
+
+.animated-color {
+    transition: background-color 0.25s;
+}

@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
       title: "ADMIN.COMMISSIONSTAB.TITLE",
       link: "commissions",
       isActive: true,
-      icon: "user",
+      icon: "user-group",
     }
   ]
 

@@ -33,6 +33,7 @@ table {
     width: 100%;
     margin-top: .25rem;
     table-layout: fixed;
+    border-radius: 1rem;
 }
 
 tr {
@@ -55,7 +56,7 @@ tr:not(:first-child):hover {
 }
 
 .small-chip {
-    height: 20px !important;
+    height: 25px !important;
 }
 
 .paginator {
