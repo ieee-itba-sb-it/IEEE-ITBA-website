@@ -26,9 +26,9 @@ export class UsersComponent implements OnInit {
   roles = roles;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   constructor(private userManagerService: UserManagerService, private modalService: MDBModalService) {}
-  
+
   nextPage() {
     this.userManagerService.pullNextPage();
   }
@@ -60,8 +60,8 @@ export class UsersComponent implements OnInit {
   }
 
   handleRoleFilterEvent(e: MatChipListboxChange) {
-    this.filters.role = e.value;
-    if (e.value.length <= 0) delete this.filters.role;
+    this.filters.roles = e.value;
+    if (e.value.length <= 0) delete this.filters.roles;
     if (this.paginator) this.paginator.firstPage();
     this.userManagerService.applyFilters(this.filters);
   }

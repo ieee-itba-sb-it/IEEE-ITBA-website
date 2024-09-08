@@ -1,5 +1,5 @@
 export enum roles {
-  regularUser,
-  admin,
-  contentCreator
+  admin=1,
+  contentCreator,
+  member
 }

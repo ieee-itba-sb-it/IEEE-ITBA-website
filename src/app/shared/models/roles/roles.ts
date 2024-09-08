@@ -1,6 +1,8 @@
+import {ThemePalette} from "@angular/material/core";
+
 export interface Role {
     code: string;
-    color: string;
+    color: ThemePalette;
 }
 
 export const roles: (Role | null)[] = [
@@ -12,5 +14,9 @@ export const roles: (Role | null)[] = [
     {
         code: "ADMIN.USERTAB.ROLES.WRITER",
         color: "accent"
+    },
+    {
+        code: "ADMIN.USERTAB.ROLES.IEEEMEMBER",
+        color: "warn"
     }
 ]

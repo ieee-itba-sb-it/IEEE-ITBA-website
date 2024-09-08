@@ -11,7 +11,7 @@ import { MatChipListboxChange } from '@angular/material/chips';
   styleUrls: ['./user-editor-modal.component.css']
 })
 export class UserEditorModalComponent {
-    
+
     @Input() user: IEEEuser;
     @Output() update: EventEmitter<IEEEuser> = new EventEmitter();
     updatedUser: IEEEuser;
@@ -26,17 +26,17 @@ export class UserEditorModalComponent {
     }
 
     changeRole(e: MatChipListboxChange) {
-      this.updatedUser.role = e.value | 0;
+      this.updatedUser.roles = e.value;
     }
 
     updateUser() {
       if (JSON.stringify(this.updatedUser) == JSON.stringify(this.user)) return this.error = "ADMIN.USERTAB.ERRORS.NO_CHANGES";
       if (this.updatedUser.email != this.user.email) return this.error = "ADMIN.USERTAB.ERRORS.CANNOT_CHANGE_EMAIL";
-      this.adminService.updateUser(this.updatedUser, this.updatedUser.role != this.user.role).subscribe(res => {
+      this.adminService.updateUser(this.updatedUser, this.updatedUser.roles != this.user.roles).subscribe(res => {
         delete this.error;
         this.update.emit(this.updatedUser);
         this.modalRef.hide();
       });
-      
+
     }
 }

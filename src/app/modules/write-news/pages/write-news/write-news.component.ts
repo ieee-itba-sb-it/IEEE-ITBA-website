@@ -57,7 +57,7 @@ export class WriteNewsComponent implements OnInit {
           email: '',
           photoURL: '',
           uID: '',
-          role: 0
+          roles: []
       };
       this.newsContent = {
           title: '',

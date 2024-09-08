@@ -1,16 +1,16 @@
 <div class="search-bar">
     <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
-    <input (keyup)="handleSearchbarEvent($event)" 
-        (submit)="handleSearchbarEvent($event)" 
-        type="text" name="user" id="user" 
-        autocomplete="off" 
+    <input (keyup)="handleSearchbarEvent($event)"
+        (submit)="handleSearchbarEvent($event)"
+        type="text" name="user" id="user"
+        autocomplete="off"
         [placeholder]=" 'ADMIN.USERTAB.SEARCHBAR' | translate ">
     <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
 </div>
 <p class="role-filter-label">Filtrar por roles:</p>
 <mat-chip-listbox class="role-filter" aria-label="Role filter" (change)="handleRoleFilterEvent($event)" id="role" multiple>
-    <mat-chip-option *ngFor="let role of roles | slice:1; index as i" 
-        [color]="role.color" 
+    <mat-chip-option *ngFor="let role of roles | slice:1; index as i"
+        [color]="role.color"
         [value]="i+1">
         {{ role.code | translate }}
     </mat-chip-option>
@@ -23,15 +23,14 @@
         <th>{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</th>
     </tr>
     <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)">
-        <td>{{ user.fname }}</td>
-        <td>{{ user.lname }}</td>
+        <td>{{ user.fullname }}</td>
         <td>{{ user.email }}</td>
         <td class="role-col">
-            <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="roles[user.role].color" highlighted>{{ roles[user.role].code | translate }}</mat-chip>
+            <mat-chip class="small-chip" *ngIf="roles[user.roles]" [color]="roles[user.roles].color" highlighted>{{ roles[user.roles].code | translate }}</mat-chip>
         </td>
     </tr>
 </table>
-<mat-paginator 
+<mat-paginator
     #paginator
     [length]="(users$ | async).count"
     [pageSize]="10"

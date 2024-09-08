@@ -33,7 +33,7 @@ export class AuthService {
                 this.user = usuario;
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const userData = data.data() as IEEEuser;
-                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.role, userData.uID, usuario.emailVerified, userData.linkedin);
+                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.roles, userData.uID, usuario.emailVerified, userData.linkedin);
                     this.accountObs.next(this.account);
                 }).catch((err: FirestoreError) => {
                     // Caso en el que no exista el usuario en la base de datos (por ejemplo, si acaba de registrarse con google)
@@ -55,7 +55,7 @@ export class AuthService {
             this.accountObs.next(null);
             createUserWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then((crededential: UserCredential) => {
-                    this.account = createRegularUser(fullname, email, null, roles.regularUser, this.firebaseAuth.currentUser.uid);
+                    this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid);
                     updateProfile(this.firebaseAuth.currentUser, {displayName: fullname});
                     this.accountObs.next(this.account);
                     subscriber.next(crededential);
@@ -77,7 +77,7 @@ export class AuthService {
         );
     }
 
-    googleLogin(): Observable<OAuthCredential> { 
+    googleLogin(): Observable<OAuthCredential> {
         return new Observable<OAuthCredential>(
             (subscriber) => {
                 signInWithPopup(this.firebaseAuth, this.googleProvider)
@@ -96,7 +96,7 @@ export class AuthService {
         return new Observable<boolean>((subscriber) => {
             let displayName = user.displayName;
             if (!displayName) displayName = user.email.split("@")[0];
-            this.account = createRegularUser(displayName, user.email, user.photoURL, roles.regularUser, user.uid, user.emailVerified);
+            this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified);
             setDoc(doc(this.afs, 'users', user.email), this.account)
                 .then(res => this.accountObs.next(this.account))
                 .catch((err: FirestoreError) => subscriber.error(err))
@@ -159,7 +159,7 @@ export class AuthService {
 
     updateProfilePic(imageurl: string, extension: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
-            if (!this.account) 
+            if (!this.account)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
             const uid = this.account.uID;
             const serverpath = `profile-pics/${uid}.${extension}`;
@@ -167,7 +167,7 @@ export class AuthService {
                 .then(image => image.blob())
                 .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
                 .then(res => getDownloadURL(res.ref))
-                .then(newpath => 
+                .then(newpath =>
                     updateDoc(doc(this.afs, 'users', this.account.email), {photoURL: newpath})
                         .then(() => newpath)
                 )
@@ -183,7 +183,7 @@ export class AuthService {
 
     sendVerificationEmail(returnLink?: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
-            if (!this.firebaseAuth.currentUser) 
+            if (!this.firebaseAuth.currentUser)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
             const linkOptions: ActionCodeSettings = {
                 url: returnLink
@@ -197,7 +197,7 @@ export class AuthService {
 
     sendPasswordResetEmail(email?: string, returnLink?: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
-            if (!email && !this.firebaseAuth.currentUser) 
+            if (!email && !this.firebaseAuth.currentUser)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
             const linkOptions: ActionCodeSettings = {
                 url: returnLink
@@ -211,7 +211,7 @@ export class AuthService {
 
     deleteAccount(): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
-            if (!this.firebaseAuth.currentUser) 
+            if (!this.firebaseAuth.currentUser)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
             deleteDoc(doc(this.afs, 'users', this.firebaseAuth.currentUser.email))
                 .then(() => this.firebaseAuth.currentUser.delete())

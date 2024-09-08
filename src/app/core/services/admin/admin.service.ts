@@ -37,7 +37,7 @@ export class AdminService {
       let end: string = filters.email.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1));
       constraints.push(where('email', '>=', filters.email), where('email', '<', end));
     }
-    if (filters?.role) constraints.push(where('role', '==', filters.role));
+    if (filters?.roles) constraints.push(where('roles','array-contains-any', filters.roles));
     return this.getCount(query(this.collection, ...constraints));
   }
 
@@ -63,7 +63,7 @@ export class AdminService {
   getUsersFirstPage(size: number, filters?: IEEEUserFilters): Observable<IEEEuser[]> {
     let constraints: QueryConstraint[] = [limit(size), orderBy("email")];
     if (filters?.email) constraints.push(where('email', '>=', filters.email), where('email', '<', filters.email.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1))));
-    if (filters?.role) constraints.push(where('role', 'in', filters.role));
+    if (filters?.roles) constraints.push(where('roles', 'array-contains-any', filters.roles));
     const q = query(this.collection, ...constraints);
     return this.getUsersPage(q);
   }
@@ -71,7 +71,7 @@ export class AdminService {
   getUsersNextPage(last: IEEEuser, size: number, filters?: IEEEUserFilters) {
     let constraints: QueryConstraint[] = [limit(size), orderBy("email"), startAfter(last.email)];
     if (filters?.email) constraints.push(where('email', '>=', filters.email), where('email', '<', filters.email.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1))));
-    if (filters?.role) constraints.push(where('role', 'in', filters.role));
+    if (filters?.roles) constraints.push(where('roles', 'array-contains-any', filters.roles));
     const q = query(this.collection, ...constraints);
     return this.getUsersPage(q);
   }
@@ -79,21 +79,22 @@ export class AdminService {
   getUsersPrevPage(first: IEEEuser, size: number, filters?: IEEEUserFilters) {
     let constraints: QueryConstraint[] = [limitToLast(size), orderBy("email"), endBefore(first.email)];
     if (filters?.email) constraints.push(where('email', '>=', filters.email), where('email', '<', filters.email.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1))));
-    if (filters?.role) constraints.push(where('role', 'in', filters.role));
+    if (filters?.roles) constraints.push(where('roles', 'array-contains-any', filters.roles));
     const q = query(this.collection, ...constraints);
     return this.getUsersPage(q);
   }
 
+
   refreshUserPage(first: IEEEuser, size: number, filters?: IEEEUserFilters) {
     let constraints: QueryConstraint[] = [limit(size), orderBy("email"), startAt(first.email)];
     if (filters?.email) constraints.push(where('email', '>=', filters.email), where('email', '<', filters.email.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1))));
-    if (filters?.role) constraints.push(where('role', 'in', filters.role));
+    if (filters?.roles) constraints.push(where('roles', 'array-contains-any', filters.roles));
     const q = query(this.collection, ...constraints);
     return this.getUsersPage(q);
   }
 
   updateUser(user: IEEEuser, updateRole: boolean): Observable<IEEEuser> {
-    const roleDocument = { role: user.role };
+    const roleDocument = { roles: user.roles };
     return new Observable(obs => {
       const batch = writeBatch(this.afs);
       batch.set(doc(this.afs, "users", user.email), user);

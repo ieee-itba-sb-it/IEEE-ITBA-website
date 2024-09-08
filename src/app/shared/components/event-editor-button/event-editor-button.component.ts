@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MDBModalRef, MDBModalService} from "angular-bootstrap-md";
 import {EventEditorModalComponent} from "../event-editor-modal/event-editor-modal.component";
 import {Event} from "../../models/event/event";
@@ -20,7 +20,7 @@ export class EventEditorButtonComponent {
     @Output() updateEmitter: EventEmitter<Event> = new EventEmitter();
 
     isAdmin$ = this.authService.getCurrentUser().pipe(map((user) => {
-        return !!user && user.role === roles.admin;
+        return !!user && user.roles.includes(roles.admin);
     }));
 
 

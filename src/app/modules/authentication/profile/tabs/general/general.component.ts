@@ -71,7 +71,7 @@ export class GeneralComponent implements OnInit {
 
     // Local updates
 
-    uploadPicture(event: InputEvent): void {
+    uploadPicture(event: Event): void {
         const sizelimit: number = 2;
         const extensions: string[] = ['png', 'jpg', 'jpeg'];
         const picture: File = event.target['files'][0];
