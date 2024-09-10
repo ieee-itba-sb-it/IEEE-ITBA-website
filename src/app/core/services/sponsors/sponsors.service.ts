@@ -21,10 +21,10 @@ export class SponsorsService {
             name: 'Yokogawa',
             img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.jpg?alt=media&token=300f278f-2e30-4964-b875-84ddccfdb2b0'
         },
-        {
-            name: 'Le Wagon',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon.png?alt=media&token=8afe5950-44ab-4f5f-89aa-ad0c62e524b3'
-        }
+        // {
+        //     name: 'Le Wagon',
+        //     img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon.png?alt=media&token=8afe5950-44ab-4f5f-89aa-ad0c62e524b3'
+        // }
     ];
 
     previousSponsors: Sponsor[] = [
@@ -87,10 +87,10 @@ export class SponsorsService {
             name: 'Yokogawa',
             img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.png?alt=media&token=4cad97a1-6525-431b-a9a4-3576c130efe5'
         },
-        {
-            name: 'Le Wagon',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon.png?alt=media&token=8afe5950-44ab-4f5f-89aa-ad0c62e524b3'
-        }
+        // {
+        //     name: 'Le Wagon',
+        //     img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon.png?alt=media&token=8afe5950-44ab-4f5f-89aa-ad0c62e524b3'
+        // }
     ];
 
     asimovSponsors: Sponsor[] = [];
