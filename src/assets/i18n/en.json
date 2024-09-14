@@ -1071,7 +1071,8 @@
       },
       "ROLES": {
         "ADMIN": "Admin",
-        "WRITER": "Writer"
+        "WRITER": "Writer",
+        "IEEEMEMBER": "IEEE Member"
       }
     },
     "COMMISSIONSTAB": {

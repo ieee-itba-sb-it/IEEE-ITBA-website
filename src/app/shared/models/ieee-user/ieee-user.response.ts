@@ -5,7 +5,7 @@ export interface IEEEUserResponse {
     photo: string;
     linkedin?: string;
     mail?: string;
-    role?: Role;
+    roles?: Role;
     commission: CommissionType;
     gender: Gender;
 }

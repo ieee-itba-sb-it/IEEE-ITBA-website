@@ -80,7 +80,7 @@
             </mat-list-item>
             <mat-list-item>
               <button mat-raised-button class="upload-button" id="submitNews" color="primary" (click)="submitNews()">
-                  <span *ngIf="newsReference == undefined; else noReferenceBlock">
+                  <span *ngIf="newsReference === undefined; else noReferenceBlock">
                       {{ 'WRITE-NEW.UPLOAD' | translate }}
                   </span>
                   <ng-template #noReferenceBlock>

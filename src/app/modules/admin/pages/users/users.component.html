@@ -1,16 +1,16 @@
 <div class="search-bar">
     <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
-    <input (keyup)="handleSearchbarEvent($event)" 
-        (submit)="handleSearchbarEvent($event)" 
-        type="text" name="user" id="user" 
-        autocomplete="off" 
+    <input (keyup)="handleSearchbarEvent($event)"
+        (submit)="handleSearchbarEvent($event)"
+        type="text" name="user" id="user"
+        autocomplete="off"
         [placeholder]=" 'ADMIN.USERTAB.SEARCHBAR' | translate ">
     <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
 </div>
 <p class="role-filter-label">Filtrar por roles:</p>
 <mat-chip-listbox class="role-filter" aria-label="Role filter" (change)="handleRoleFilterEvent($event)" id="role" multiple>
-    <mat-chip-option *ngFor="let role of roles | slice:1; index as i" 
-        [color]="role.color" 
+    <mat-chip-option *ngFor="let role of roles | slice:1; index as i"
+        [color]="role.color"
         [value]="i+1">
         {{ role.code | translate }}
     </mat-chip-option>
@@ -39,7 +39,7 @@
         </tr>
     </tbody>
 </table>
-<mat-paginator 
+<mat-paginator
     #paginator
     [length]="(users$ | async).count"
     [pageSize]="10"

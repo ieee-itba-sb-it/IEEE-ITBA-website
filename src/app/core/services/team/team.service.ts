@@ -15,7 +15,7 @@ interface IEEEUserRole extends IEEEMember {
 })
 export class TeamService {
     private static readonly TEAM_COLLECTION_NAME = 'team';
-    
+
     constructor(private afs: Firestore) {}
 
     static TEAM_MAPPER = {
@@ -69,7 +69,7 @@ export class TeamService {
             if (!commissionMap.has(userResponse.commission)) {
                 commissionMap.set(userResponse.commission, []);
             }
-            commissionMap.get(userResponse.commission).push({ ...IEEEMember.fromIeeeUserResponse(userResponse), roleType: userResponse.role });
+            commissionMap.get(userResponse.commission).push({ ...IEEEMember.fromIeeeUserResponse(userResponse), roleType: userResponse.roles });
         });
 
         return [...commissionMap.entries()].map(([commission, team]) => {
