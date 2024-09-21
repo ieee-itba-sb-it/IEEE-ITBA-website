@@ -39,6 +39,15 @@ export type ConfirmedDateEvent = {
     isPeriod: false;
 });
 
+export type EventCourseClass = {
+    titleCode: string;
+    descriptionCode: string;
+    contentLink?: string;
+    solutionsLink?: string;
+}
+
+export type EventCourse = EventCourseClass[];
+
 export type Event = Readonly<{
     id: IeeeEvent;
     routerLink: string;
@@ -57,13 +66,16 @@ export type Event = Readonly<{
     } | {
         status: EventStatus.UNSCHEDULED;
     }>;
+    course?: EventCourse;
 }>;
 
 export type EventDoc = Omit<Event, 'dates'> & {
     dates: Record<EventDate, {
         status: EventStatus.CONFIRMED;
         date: `${number}-${number}-${number}`;
+        time: `${number}:${number}`;
         lastDate?: `${number}-${number}-${number}`;
+        lastTime?: `${number}:${number}`;
     } | {
         status: EventStatus.TENTATIVE;
         month: number;

@@ -194,6 +194,9 @@
         "OPEN": "Inscriptions are open!",
         "CLICK": "Enroll now!"
       },
+      "TIME": {
+          "TITLE": "Time"
+      },
       "DATE": {
           "TITLE": "Dates",
           "UNIQUE": "Date",
@@ -244,9 +247,11 @@
           "DATES": "Event dates",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
+              "TIME_REQUIRED": "The start time is required",
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past",
+              "LAST_TIME_REQUIRED": "The ending time is required",
               "LAST_DATE_REQUIRED": "The last date is required",
               "LAST_DATE_INVALID": "The last date format is invalid, it should be dd/mm/yyyy",
               "LAST_DATE_PAST": "The last date cannot be in the past",
@@ -854,46 +859,19 @@
       "TITLE": "Syllabus",
       "1": {
         "TEXT" : "First class - Introduction",
-        "BULLET_PTS": {
-          "1": "Advantages and Disadvantages of TypeScript",
-          "2": "Tools to use",
-          "3": "Our first program",
-          "4": "Variables and data types",
-          "5": "Loops and Conditionals"
-        }
+        "DESCRIPTION": "Advantages and Disadvantages of TypeScript, Tools to use, Our first program, Variables and data types, Loops and Conditionals."
       },
       "2": {
         "TEXT": "Second class - Objects",
-        "BULLET_PTS": {
-          "1": "Arrays",
-          "2": "Our first function",
-          "3": "What is an Object?",
-          "4": "Special types of data",
-          "5": "Types of comparison",
-          "6": "Enums",
-          "7": "JSON",
-          "8": "Interfaces",
-          "9": "Classes",
-          "10": "Organization and separation of files"
-        }
+        "DESCRIPTION": "Arrays, Our first function, What is an Object?, Special types of data, Types of comparison, Enums, JSON, Interfaces, Classes, Organization and separation of files."
       },
       "3": {
         "TEXT": "Third Class - Generics, Exceptions and Files",
-        "BULLET_PTS": {
-          "1": "Extension of classes",
-          "2": "Generics",
-          "3": "Recursion",
-          "4": "Exceptions",
-          "5": "File Reading"
-        }
+        "DESCRIPTION": "Extension of classes, Generics, Recursion, Exceptions, File Reading."
       },
       "4": {
-      "TEXT": "Fourth Class - Consultation Programs",
-        "BULLET_PTS": {
-          "1": "A look at Functional Programming",
-          "2": "HTTP Methods and HTTP Status Codes",
-          "3": "Development of a basic API"
-        }
+        "TEXT": "Fourth Class - Consultation Programs",
+        "DESCRIPTION": "A look at Functional Programming, HTTP Methods and HTTP Status Codes, Development of a basic API."
       }
     },
     "INSCRIPTION_FORM": "Inscription",

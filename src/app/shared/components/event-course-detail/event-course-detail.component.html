@@ -1,0 +1,26 @@
+<div class="course-detail-container" *ngIf="hasCourse()">
+    <app-event-content-card *ngFor="let courseIdx of getCourseIndexes()"
+                            [title]="getClassTitle(courseIdx)"
+                            [imageUrl]="imageUrl"
+    >
+        <div content>
+            {{getClassDescription(courseIdx)}}
+        </div>
+        <mat-card-actions *ngIf="doesClassHaveActions(courseIdx)" actions class="flex-wrap justify-content-center gap-1">
+            <app-button
+                [href]="shouldClassContentBeAvailable(courseIdx) ? getClassContentLink(courseIdx) : ''"
+                (click)="check($event, shouldClassContentBeAvailable(courseIdx))"
+                [disabled]="!shouldClassContentBeAvailable(courseIdx) ? true : null"
+            >
+                {{ contentButtonCode | translate }}
+            </app-button>
+            <app-button
+                [href]="shouldClassSolutionBeAvailable(courseIdx) ? getClassSolutionsLink(courseIdx) : ''"
+                (click)="check($event, shouldClassSolutionBeAvailable(courseIdx))"
+                [disabled]="!shouldClassSolutionBeAvailable(courseIdx) ? true : null"
+            >
+                {{ solutionButtonCode | translate }}
+            </app-button>
+        </mat-card-actions>
+    </app-event-content-card>
+</div>

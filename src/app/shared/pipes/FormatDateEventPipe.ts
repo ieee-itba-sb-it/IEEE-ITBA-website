@@ -38,7 +38,7 @@ export class FormatDateEventPipe implements PipeTransform {
 
     private formatTentativeDate(month: number): string {
         const fakeDate = new Date(new Date().getFullYear(), month);
-        return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: 'UTC'})) + ' ' + fakeDate.getFullYear();
+        return this.capitalizeFirstLetter(fakeDate.toLocaleDateString(this.locale(), {month: 'long', timeZone: '-03:00'})) + ' ' + fakeDate.getFullYear();
     }
 
     private capitalizeFirstLetter(str: string): string {
@@ -46,7 +46,7 @@ export class FormatDateEventPipe implements PipeTransform {
     }
 
     private formatConfirmedDate(date: Date): string {
-        return date.toLocaleDateString(this.locale(), {timeZone: 'UTC'});
+        return date.toLocaleDateString(this.locale(), {timeZone: '-03:00', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'});
     }
 
     private locale(): string {

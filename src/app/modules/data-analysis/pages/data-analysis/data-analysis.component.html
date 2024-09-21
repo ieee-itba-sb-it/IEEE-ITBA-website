@@ -31,34 +31,13 @@
   </app-event-section>
 
   <!-- Cards Temario -->
-
-  <div class="schedule-cards">
-      <ng-container *ngFor="let courseClass of courseData.courseClasses, let i=index">
-            <app-event-content-card title="{{'DATAANALYSIS.CLASSES.TITLE' | translate }} {{i+1}}"
-              [imageUrl]="pythonUrl"
-            >
-              <div content>
-                {{ courseClass.description | translate }}
-              </div>
-              <mat-card-actions actions class="flex-wrap justify-content-center gap-1">
-                <app-button
-                  [href]="weekContentOpen(i) ? courseClass.content : ''"
-                  (click)="check($event, weekContentOpen(i))"
-                  [disabled]="!weekContentOpen(i) ? true : null"
-                >
-                {{ 'DATAANALYSIS.CONTENTBUTTON' | translate }}
-                </app-button>
-                <app-button
-                  [href]="weekContentOpen(i+1) ? courseClass.solutions : ''"
-                  (click)="check($event, weekContentOpen(i+1))"
-                  [disabled]="!weekContentOpen(i+1) ? true : null"
-                >
-                {{ 'DATAANALYSIS.SOLUTIONBUTTON' | translate }}
-                </app-button>
-            </mat-card-actions>
-            </app-event-content-card>
-      </ng-container>
-  </div>
+  <app-event-course-detail
+        [imageUrl]="pythonUrl"
+        [isTitleCodeAPrefix]="true"
+        [contentButtonCode]="'DATAANALYSIS.CONTENTBUTTON'"
+        [solutionButtonCode]="'DATAANALYSIS.SOLUTIONBUTTON'"
+        [event]="event"
+  />
 
   <app-event-date-section [dates]="event?.dates" />
 

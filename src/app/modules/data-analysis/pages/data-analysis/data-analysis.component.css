@@ -76,16 +76,6 @@ border: solid gray;
 color: gray !important;
 }
 
-.schedule-cards {
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 4rem;
-}
-
-.schedule-cards > app-event-content-card {
-  flex-grow: 1;
-}
-
 .description-text {
 
 }

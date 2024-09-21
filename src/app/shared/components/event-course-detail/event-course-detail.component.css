@@ -1,0 +1,12 @@
+.course-detail-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.course-detail-container > app-event-content-card {
+    width: 40%;
+    min-width: min-content;
+}

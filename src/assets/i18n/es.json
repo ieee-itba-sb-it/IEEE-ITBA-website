@@ -250,6 +250,9 @@
         "OPEN": "¡Inscripciones abiertas!",
         "CLICK": "¡Anotate ahora!"
       },
+      "TIME": {
+         "TITLE": "Horario"
+      },
       "DATE": {
          "TITLE": "Fechas",
          "UNIQUE": "Fecha",
@@ -300,9 +303,11 @@
          "DATES": "Fechas del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
+             "TIME_REQUIRED": "El horario de inicio es requerido",
              "DATE_REQUIRED": "La fecha es requerida",
              "DATE_INVALID": "El formato de la fecha es inválido, debe ser dd/mm/yyyy",
              "DATE_PAST": "La fecha no puede ser en el pasado",
+             "LAST_TIME_REQUIRED": "El horario de finalización es requerido",
              "LAST_DATE_REQUIRED": "La última fecha es requerida",
              "LAST_DATE_INVALID": "El formato de la última fecha es inválido, debe ser dd/mm/yyyy",
              "LAST_DATE_PAST": "La última fecha no puede ser en el pasado",
@@ -910,46 +915,19 @@
       "TITLE": "Temario",
       "1": {
         "TEXT" : "Primera Clase - Introducción",
-        "BULLET_PTS": {
-          "1": "Ventajas y desventajas de TypeScript",
-          "2": "Herramientas a utilizar",
-          "3": "Nuestro primer programa",
-          "4": "Variables y tipos",
-          "5": "Ciclos y Condicionales"
-        }
+        "DESCRIPTION": "Ventajas y desventajas de TypeScript, Herramientas a utilizar, Nuestro primer programa, Variables y tipos, Ciclos y Condicionales."
       },
       "2": {
         "TEXT": "Segunda Clase - Objetos",
-        "BULLET_PTS": {
-          "1": "Arreglos",
-          "2": "Nuestra primera función",
-          "3": "¿Qué es un objeto?",
-          "4": "Tipos especiales de datos",
-          "5": "Tipos de comparación",
-          "6": "Enums",
-          "7": "JSON",
-          "8": "Interfaces",
-          "9": "Clases",
-          "10": "Organización y separación de archivos"
-        }
+        "DESCRIPTION": "Arreglos, nuestra primera función, ¿Qué es un objeto?, Tipos especiales de datos, Tipos de comparación, Enums, JSON, Interfaces, Clases, Organización y separación de archivos."
       },
       "3": {
         "TEXT": "Tercera Clase - Generics, Excepciones y Archivos",
-        "BULLET_PTS": {
-          "1": "Extensión de clases",
-          "2": "Generics",
-          "3": "Recursividad",
-          "4": "Excepciones",
-          "5": "Lectura de Archivos"
-        }
+        "DESCRIPTION": "Extensión de clases, Generics, Recursividad, Excepciones, Lectura de Archivos."
       },
       "4": {
-      "TEXT": "Cuarta Clase - Programas de Consulta",
-        "BULLET_PTS": {
-          "1": "Una ojeada a la Programación Funcional",
-          "2": "Métodos HTTP y Códigos de estado de HTTP",
-          "3": "Desarrollo de una API básica"
-        }
+        "TEXT": "Cuarta Clase - Programas de Consulta",
+        "DESCRIPTION": "Una ojeada a la Programación Funcional, Métodos HTTP y Códigos de estado de HTTP, Desarrollo de una API básica."
       }
     },
     "INSCRIPTION_FORM": "Inscripción",
