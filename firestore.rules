@@ -35,6 +35,11 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
+    match /commissions/{document=**}  {
+      allow read;
+      allow write: if hasRole("admin");
+    }
+
     match /users/{document=**}  {
     	allow get, update, delete: if isDataOwner() || hasRole("admin");
       allow list: if hasRole("admin");

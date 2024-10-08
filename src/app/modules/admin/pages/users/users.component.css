@@ -55,6 +55,13 @@ tr:not(:first-child):hover {
     text-align: center;
 }
 
+.chip-container {
+    padding: 0.35rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
 .small-chip {
     height: 25px !important;
 }

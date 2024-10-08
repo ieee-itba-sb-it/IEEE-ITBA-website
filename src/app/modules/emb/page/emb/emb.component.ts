@@ -17,7 +17,7 @@ export class EmbComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.team$ = this.teamService.getEmbTeam();
+        // this.team$ = this.teamService.getEmbTeam();
     }
 
 }

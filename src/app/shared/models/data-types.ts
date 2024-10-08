@@ -47,3 +47,8 @@ export type ApiResponse = {
   success: boolean;
   message: string;
 };
+
+export type InternationalText = {
+  es: string;
+  en: string;
+}

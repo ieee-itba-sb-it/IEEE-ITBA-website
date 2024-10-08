@@ -1,6 +1,9 @@
 import { TeamMember } from './team-member';
+import {InternationalText} from "./data-types";
 
 export interface Commission {
-    name: string;
-    team: TeamMember[];
+    id: string;
+    title: InternationalText;
+    position: number;
+    main: boolean;
 }
