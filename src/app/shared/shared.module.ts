@@ -50,6 +50,8 @@ import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
 import { CommissionEditorModalComponent } from './components/commission-editor-modal/commission-editor-modal.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -90,7 +92,9 @@ export const routing = RouterModule.forChild(routes);
         MatExpansionModule,
         SwiperModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,

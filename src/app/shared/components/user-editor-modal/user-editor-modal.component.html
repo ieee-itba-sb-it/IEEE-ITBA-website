@@ -10,7 +10,7 @@
 <form>
     <div class="modal-body">
         <label for="role">{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</label>
-        <mat-chip-listbox aria-label="Role selection" (change)="changeRole($event)" id="role" multiple>
+        <mat-chip-listbox aria-label="Role selection" (change)="changeRole($event)" id="role"   multiple>
             <mat-chip-option *ngFor="let role of roles | slice:1; index as i"
                 [color]="role.color"
                 [selected]="user.roles.includes(i+1)"

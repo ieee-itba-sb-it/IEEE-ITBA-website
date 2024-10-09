@@ -19,7 +19,7 @@ export class CommissionsComponent implements OnInit {
 
     commissions$: Observable<Commission[]>;
 
-    changes: Commission[];
+    commissions: Commission[];
 
     loading: BehaviorSubject<boolean>;
 
@@ -30,15 +30,15 @@ export class CommissionsComponent implements OnInit {
 
     ngOnInit() {
         this.commissions$.subscribe(commissions => {
-            this.changes = commissions;
+            this.commissions = commissions;
             this.loading.next(false);
         })
     }
 
     drop(event: CdkDragDrop<string[]>) {
         if (!this.editPositionsMode) return;
-        moveItemInArray(this.changes, event.previousIndex, event.currentIndex);
-        this.changes.forEach((commission, index) => {
+        moveItemInArray(this.commissions, event.previousIndex, event.currentIndex);
+        this.commissions.forEach((commission, index) => {
             commission.position = index;
         });
     }
@@ -47,12 +47,15 @@ export class CommissionsComponent implements OnInit {
         this.editPositionsMode = !this.editPositionsMode;
     }
 
-    addCommission() {
+    openModal() {
         this.modalRef = this.modalService.show(CommissionEditorModalComponent, {
             data: {
-
+                position: this.commissions.length
             },
             class: 'modal-dialog-centered',
         });
+        this.modalRef.content.update.subscribe(commission => {
+            this.commissions.push(commission);
+        })
     }
 }

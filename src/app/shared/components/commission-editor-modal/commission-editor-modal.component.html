@@ -10,31 +10,31 @@
         <mdb-icon fas icon="times" size="lg"></mdb-icon>
     </button>
 </div>
-<form>
+<form [formGroup]="commissionForm">
     <div class="modal-body">
-        <div class="id" *ngIf="!commission">
-            <label for="title-es">ID</label>
-            <input
-                type="text"
-                id="id"
-                class="form-control"
-                placeholder="ID de la comisión"	
-            >
-        </div>
-        <div class="mt-2">
-            <label for="title-es">Titulo</label>
-            <input
-                type="text"
-                id="title-es"
-                class="form-control"
-                placeholder="Titulo en español"
-            >
-            <input
-                type="text"
-                id="title-en"
-                class="form-control mt-2"
-                placeholder="Titulo en ingles"
-            >
+        <mat-form-field class="w-100" *ngIf="!commission">
+            <mat-label>ID</mat-label>
+            <input matInput
+                   type="text"
+                   id="id"
+                   formControlName="id">
+        </mat-form-field>
+        <div formGroupName="title" class="mt-2">
+            <label>Título</label>
+            <mat-form-field class="w-100">
+                <mat-label>Título en español</mat-label>
+                <input matInput
+                       type="text"
+                       id="es"
+                       formControlName="es">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>Título en Inglés</mat-label>
+                <input matInput
+                       type="text"
+                       id="en"
+                       formControlName="en">
+            </mat-form-field>
         </div>
         <div *ngIf="error" class="error-container">
             <p class="error">
@@ -44,7 +44,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button type="submit" class="btn save-btn">
+        <button type="submit" class="btn save-btn" (click)="addCommission()">
             {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
         </button>
     </div>

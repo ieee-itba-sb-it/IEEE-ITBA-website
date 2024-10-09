@@ -19,46 +19,46 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 // Tab manager
-const routes: Routes = [{ 
-  path: '', 
-  component: AdminComponent, 
-  children: [
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
-      { path: 'users', component: UsersComponent },
-      { path: 'commissions', component: CommissionsComponent }
-  ]
+const routes: Routes = [{
+    path: '',
+    component: AdminComponent,
+    children: [
+        { path: '', redirectTo: 'users', pathMatch: 'full' },
+        { path: 'users', component: UsersComponent },
+        { path: 'commissions', component: CommissionsComponent }
+    ]
 }];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    UsersComponent,
-    CommissionsComponent
-  ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatDividerModule,
-    MatListModule,
-    MatChipsModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatExpansionModule,
-    CdkDrag,
-    CdkDropList,
-    MDBBootstrapModule.forRoot(),
-    TranslateModule.forChild({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-  }),
-  ]
+    declarations: [
+        AdminComponent,
+        UsersComponent,
+        CommissionsComponent
+    ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatDividerModule,
+        MatListModule,
+        MatChipsModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatExpansionModule,
+        CdkDrag,
+        CdkDropList,
+        MDBBootstrapModule.forRoot(),
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+    ]
 })
 export class AdminModule { }

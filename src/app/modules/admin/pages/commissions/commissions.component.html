@@ -1,18 +1,18 @@
 <ng-container *ngIf="(loading | async) === false; else spinner">
     <div class="toolbar d-flex justify-content-end gap-2">
-        <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="addCommission()">
+        <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="openModal()">
             <mdb-icon fas icon="add"></mdb-icon>
             <span class="ml-2">Añadir comisión</span>
         </button>
-        <button mat-raised-button class="animated-color" type="button" [color]="editPositionsMode ? 'warn' : 'primary'" (click)="toggleEditPositionsMode()" [disabled]="changes.length < 2">
+        <button mat-raised-button class="animated-color" type="button" [color]="editPositionsMode ? 'warn' : 'primary'" (click)="toggleEditPositionsMode()" [disabled]="commissions.length < 2">
             <mdb-icon fas [icon]="!editPositionsMode ? 'exchange-alt' : 'close'" [class.rotate]="!editPositionsMode" class="animated-transform"></mdb-icon>
             <span class="ml-2" *ngIf="!editPositionsMode">Editar posiciones</span>
             <span class="ml-2" *ngIf="editPositionsMode">Cancelar</span>
         </button>
     </div>
-    <div class="content my-4" *ngIf="changes.length > 0; else empty">
+    <div class="content my-4" *ngIf="commissions.length > 0; else empty">
         <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="drop($event)" class="example-headers-align" multi>
-            <mat-expansion-panel cdkDrag cdkDragLockAxis="y" *ngFor="let commission of changes" hideToggle>
+            <mat-expansion-panel cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <mdb-icon fas icon="bars" class="animated-transform mr-2" *ngIf="editPositionsMode"></mdb-icon>

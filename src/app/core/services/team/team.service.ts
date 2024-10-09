@@ -5,14 +5,14 @@ import {map, Observable} from 'rxjs';
 import {IEEEUserResponse} from '../../../shared/models/ieee-user/ieee-user.response';
 import {COMMISSION_ORDER, CommissionType, Role, ROLE_ORDER} from '../../../shared/models/ieee-user/ieee-team.enums';
 import {
-  collection, doc,
-  DocumentData,
-  Firestore,
-  getDoc,
-  getDocs, Query,
-  query,
-  QuerySnapshot,
-  where
+    collection, doc,
+    DocumentData,
+    Firestore,
+    getDoc,
+    getDocs, Query,
+    query,
+    QuerySnapshot,
+    where, writeBatch
 } from '@angular/fire/firestore';
 
 interface IEEEUserRole extends IEEEMember {
@@ -100,7 +100,6 @@ export class TeamService {
                 const ans: Commission[] = data.docs.map(commission => {
                     return commission.data() as Commission;
                 })
-                console.log(ans);
                 obs.next(ans);
             }).catch(err => {
                 obs.error(err);
@@ -118,6 +117,20 @@ export class TeamService {
             getDoc(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, id)).then(res => {
                 subscriber.next(res.data() as Commission);
             })
+        })
+    }
+
+    addCommission(commission: Commission) : Observable<Commission> {
+        return new Observable(obs => {
+            const batch = writeBatch(this.afs);
+            batch.set(doc(this.afs, "commissions", commission.id), commission);
+            batch.commit().then(res => {
+                obs.next(commission);
+            }).catch(err => {
+                obs.error(err);
+            }).finally(() => {
+                obs.complete();
+            });
         })
     }
 }
