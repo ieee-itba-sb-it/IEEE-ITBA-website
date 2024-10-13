@@ -13,8 +13,7 @@ export class AdminService {
     collection: CollectionReference;
 
     constructor(private afs: Firestore) {}
-
-        obs.error(err);
+    
     setCollectionName(collectionName: string) {
         this.collectionName = collectionName;
         this.collection = collection(this.afs, collectionName);

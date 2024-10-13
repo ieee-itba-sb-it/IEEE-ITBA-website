@@ -25,7 +25,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
 import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
-import { IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
 import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 

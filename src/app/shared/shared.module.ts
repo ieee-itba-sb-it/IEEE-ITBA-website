@@ -47,6 +47,7 @@ import { EventDateComponent } from './components/event-date/event-date.component
 import { EventDateSectionComponent } from './components/event-date-section/event-date-section.component';
 import { EventDateChipsComponent } from './components/event-date-chips/event-date-chips.component';
 import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
+import { CustomTranslatePipe } from "./pipes/CustomTranslatePipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
 import { CommissionEditorModalComponent } from './components/commission-editor-modal/commission-editor-modal.component';
@@ -66,7 +67,7 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, EventInscriptionSectionComponent, CommissionEditorModalComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent, CommissionEditorModalComponent],
     imports: [
         routing,
         CommonModule,
@@ -102,7 +103,7 @@ export const routing = RouterModule.forChild(routes);
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
-        EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe,
+        EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
         EventInscriptionSectionComponent],
 })
 export class SharedModule { }

@@ -9,7 +9,7 @@ import {
     DocumentData,
     Firestore,
     getDoc,
-    getDocs, Query,
+    getDocs, orderBy, Query,
     query,
     QuerySnapshot,
     where, writeBatch
@@ -109,7 +109,11 @@ export class TeamService {
         })
     }
     getTeamCommissions(): Observable<Commission[]> {
-        return this.getCommissions(query(collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME), where("main", "==", true)));
+        return this.getCommissions(query(
+            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME), 
+            where("main", "==", true),
+            orderBy("position")
+        ));
     }
 
     getComissionByID(id: string): Observable<Commission> {

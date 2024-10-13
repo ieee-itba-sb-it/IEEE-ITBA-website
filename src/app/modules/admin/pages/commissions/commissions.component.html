@@ -11,12 +11,12 @@
         </button>
     </div>
     <div class="content my-4" *ngIf="commissions.length > 0; else empty">
-        <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="drop($event)" class="example-headers-align" multi>
-            <mat-expansion-panel cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions" hideToggle>
+        <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="drop($event)" class="drag-list" multi>
+            <mat-expansion-panel class="drag-box" cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <mdb-icon fas icon="bars" class="animated-transform mr-2" *ngIf="editPositionsMode"></mdb-icon>
-                        {{ commission.title.es }}
+                        {{ commission.title | customTranslate }}
                     </mat-panel-title>
                     <mat-panel-description>{{ commission.id }}</mat-panel-description>
                 </mat-expansion-panel-header>
