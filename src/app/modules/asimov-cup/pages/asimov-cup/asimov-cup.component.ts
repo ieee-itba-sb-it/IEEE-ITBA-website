@@ -5,6 +5,7 @@ import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from '../../
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
+import {SeoService} from "../../../../core/services/seo/seo.service";
 
 @Component({
     selector: 'app-asimov-cup',
@@ -82,7 +83,7 @@ export class AsimovCupComponent implements OnInit {
         return now > oldDate;
     }
 
-    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService) {
+    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService, private seoService: SeoService) {
         this.sponsors = sponsorsService.getAsimovSponsors();
 
         const now = Timestamp.now();
@@ -101,6 +102,7 @@ export class AsimovCupComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags('ASIMOVCUP.PAGETITLE', 'ASIMOVCUP.PAGEDESCRIPTION', ['ASIMOVCUP', 'IEEE', 'ITBA'], 'events/asimov-cup/asimov-cup-logo.png');
         this.getAsimovCupEvent();
         // Set navbar color
         this.appConfigService.setAppColors({
@@ -108,7 +110,6 @@ export class AsimovCupComponent implements OnInit {
             underlying: '#C83D59FF',
             hover: '#9E4C67FF'
         });
-        this.appConfigService.setTitle('ASIMOVCUP.PAGETITLE');
     }
 
     getAsimovCupEvent(): void {

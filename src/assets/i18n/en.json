@@ -1,7 +1,8 @@
 {
   "NULL":"NULL",
   "DEFAULT": {
-    "PAGETITLE": "ITBA IEEE Stud. Branch"
+    "PAGETITLE": "ITBA IEEE Stud. Branch",
+    "PAGEDESCRIPTION": "Official website of the IEEE ITBA Student Branch",
   },
   "HOME": {
     "TITLE": "Student Branch",
@@ -353,6 +354,8 @@
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
   },
   "NEWS": {
+    "PAGETITLE": "ITBA IEEE | News",
+    "PAGEDESCRIPTION": "Find out the latest technological and scientific news!",
     "OF": "of",
     "MORENEWS": "View more news",
     "RECOMMENDED": "Recommended news",
@@ -360,6 +363,8 @@
     "EDIT-NEW": "Edit news"
   },
   "IEEEXTREME": {
+    "PAGETITLE": "ITBA IEEE | IEEExtreme",
+    "PAGEDESCRIPTION": "IEEExtreme is an international programming competition that lasts 24 hours. It is organized by IEEE-ITBA and is the most important in the country.",
     "FACTS": {
       "EDITIONS": "Past editions",
       "HOURS": "long",
@@ -416,6 +421,8 @@
         "SOCIAL": "Social Media"
     },
   "PYTHONCOURSES": {
+    "PAGETITLE": "ITBA IEEE | Introductory Python Course",
+    "PAGEDESCRIPTION": "Introductory Python course organized by IEEE ITBA. Learn the basic concepts of programming and take your first steps in Python.",
     "CLASSES": {
       "C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
       "C2": "Data Types:(int, float, string, boolean), Data type operations, Lists, List operations, Text file manipulation",
@@ -665,6 +672,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "PAGETITLE": "ITBA IEEE | RAS Student Branch Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA RAS Student Branch Chapter",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Events",
     "TEAM": {
@@ -691,6 +699,8 @@
   },
 
   "EMB": {
+    "PAGETITLE": "ITBA IEEE | EMB Student Branch Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA EMB Student Branch Chapter",
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "EMB Student Branch Chapter",
     "EVENTS": "Events",
@@ -751,6 +761,7 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "PAGETITLE": "ITBA IEEE | Asimov CUP",
+    "PAGEDESCRIPTION": "Asimov Cup is a robotics competition open to the general public that takes place at ITBA.",
     "ENROLLBUTTON": "Enroll now!",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {

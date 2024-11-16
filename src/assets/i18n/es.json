@@ -1,7 +1,8 @@
 {
   "NULL":"NULL",
   "DEFAULT": {
-    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil"
+    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Página oficial del Capítulo Estudiantil de IEEE en ITBA"
   },
   "HOME": {
     "TITLE": "Rama Estudiantil",
@@ -409,6 +410,8 @@
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
   },
   "NEWS": {
+    "PAGETITLE": "ITBA IEEE | Noticias",
+    "PAGEDESCRIPTION": "¡Entérate de las últimas noticias científicas y tecnológicas!",
     "OF": "de",
     "MORENEWS": "Ver más noticias",
     "RECOMMENDED": "Noticias recomendadas",
@@ -416,6 +419,8 @@
     "EDIT-NEW": "Editar noticia"
   },
   "IEEEXTREME": {
+    "PAGETITLE": "ITBA IEEE | IEEExtreme",
+    "PAGEDESCRIPTION": "IEEExtreme es una competencia de programación internacional que dura 24 horas. Es organizada por IEEE-ITBA y es la más importante del país.",
     "FACTS": {
       "EDITIONS": "Ediciones realizadas",
       "HOURS": "de competencia",
@@ -472,6 +477,8 @@
         "SOCIAL": "Redes Sociales"
     },
   "PYTHONCOURSES": {
+    "PAGETITLE": "ITBA IEEE | Curso Introductorio de Python",
+    "PAGEDESCRIPTION": "Curso introductorio de Python organizado por IEEE ITBA. Aprende los conceptos básicos de la programación y da tus primeros pasos en Python.",
     "CLASSES": {
       "C1": "Introducción a la programación en Python, Variables, Operadores, Control de flujo (if, while, for), Funciones",
       "C2": "Tipos de datos (int, float, string, boolean), Operaciones con tipos de datos, Listas, Operaciones con listas, Manipulación de archivos de texto",
@@ -721,6 +728,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "PAGETITLE": "ITBA IEEE | RAS Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Capítulo Estudiantil de la Sociedad de Robótica y Automatización del IEEE en ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
     "TEAM": {
@@ -747,6 +755,8 @@
   },
 
   "EMB": {
+    "PAGETITLE": "ITBA IEEE | EMB Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Capítulo Estudiantil de la Sociedad de Ingeniería en Medicina y Biología del IEEE en ITBA",
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "EMB Student Branch Chapter",
     "EVENTS": "Eventos",
@@ -807,6 +817,7 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "PAGETITLE": "ITBA IEEE | Asimov CUP",
+    "PAGEDESCRIPTION": "Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en ITBA.",
     "ENROLLBUTTON": "¡Anotate ahora!",
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "CATEGORIES": {
