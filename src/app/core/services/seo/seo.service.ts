@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Meta, Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +11,14 @@ export class SeoService {
     constructor(
       private titleService: Title,
       private metaService: Meta,
-      private router: Router
+      private router: Router,
+      private translate: TranslateService
     ) { }
 
-    updateMetaTags(title: string, description: string, keywords: string[], imageUrl: string = 'general-icons/ieee-logo.png') {
+    updateMetaTags(titleI18n: string, descriptionI18n: string, keywords: string[], imageUrl: string = 'general-icons/ieee-logo.png') {
         const baseUrl = window.location.origin;
+        const title = this.translate.instant(titleI18n);
+        const description = this.translate.instant(descriptionI18n);
         this.titleService.setTitle(title);
         this.metaService.updateTag({name: 'description', content: description});
         this.metaService.updateTag({name: 'keywords', content: keywords.join(', ')});
