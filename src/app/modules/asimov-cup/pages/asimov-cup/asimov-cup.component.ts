@@ -5,7 +5,7 @@ import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from '../../
 import {EventService} from '../../../../core/services/event/event.service';
 import {Timestamp} from '@angular/fire/firestore';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
-import {SeoService} from "../../../../core/services/seo/seo.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-asimov-cup',
@@ -83,7 +83,7 @@ export class AsimovCupComponent implements OnInit {
         return now > oldDate;
     }
 
-    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService, private seoService: SeoService) {
+    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private appConfigService: AppConfigService, private seoService: StaticSeoService) {
         this.sponsors = sponsorsService.getAsimovSponsors();
 
         const now = Timestamp.now();

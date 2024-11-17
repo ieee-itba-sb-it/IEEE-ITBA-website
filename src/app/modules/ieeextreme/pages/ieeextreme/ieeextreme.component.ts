@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SponsorsService } from 'src/app/core/services/sponsors/sponsors.service';
 import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
-import {SeoService} from "../../../../core/services/seo/seo.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-ieeextreme',
@@ -29,7 +29,7 @@ export class IeeextremeComponent implements OnInit {
     facts = [ 'IEEEXTREME.FACTS.EDITIONS', 'IEEEXTREME.FACTS.PARTICIPANTS',
         'IEEEXTREME.FACTS.TOPTEAMS', 'IEEEXTREME.FACTS.HOURS' ]
 
-    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private seoService: SeoService) {
+    constructor(private sponsorsService: SponsorsService, private eventService: EventService, private seoService: StaticSeoService) {
         scroll(0, 0);
         this.sponsorsServiceVar = sponsorsService;
     }

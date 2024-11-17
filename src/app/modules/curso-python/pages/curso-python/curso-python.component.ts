@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
 import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
-import {SeoService} from "../../../../core/services/seo/seo.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-curso-python',
@@ -22,7 +22,7 @@ export class CursoPythonComponent implements OnInit {
 
     pythonImageUrl= 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png';
 
-    constructor(private eventService: EventService, private seoService: SeoService) {
+    constructor(private eventService: EventService, private seoService: StaticSeoService) {
         scroll(0, 0);
     }
 

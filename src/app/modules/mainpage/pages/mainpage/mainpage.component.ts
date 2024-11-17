@@ -10,7 +10,7 @@ import {Event} from '../../../../shared/models/event/event';
 import { StudentChaptersService } from '../../../../core/services/student-chapters/student-chapters.service';
 import { StudentChapter } from '../../../../shared/models/student-chapters/student-chapter.types';
 import { Sponsor } from '../../../../shared/models/sponsors';
-import {SeoService} from "../../../../core/services/seo/seo.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 const generalSwiperOptions = {
     preloadImages: false,
@@ -94,7 +94,7 @@ export class MainpageComponent implements OnInit {
         private sponsorsService: SponsorsService,
         private eventService: EventService,
         private studentChapterService: StudentChaptersService,
-        private seoService: SeoService
+        private seoService: StaticSeoService
     ) {
 
     }

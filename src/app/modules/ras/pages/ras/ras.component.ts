@@ -5,7 +5,7 @@ import {Commission} from '../../../../shared/models/commission';
 import {TeamService} from '../../../../core/services/team/team.service';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
 import {Observable} from 'rxjs';
-import {SeoService} from "../../../../core/services/seo/seo.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-ras',
@@ -22,7 +22,7 @@ export class RasComponent implements OnInit {
         private eventService: EventService,
         private teamService: TeamService,
         private appConfigService: AppConfigService,
-        private seoService: SeoService
+        private seoService: StaticSeoService
     ) { }
 
     ngOnInit(): void {
