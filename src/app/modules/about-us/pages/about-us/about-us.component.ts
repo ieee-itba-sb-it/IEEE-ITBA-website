@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AppConfigService } from '../../../../core/services/configuration/app-config.service';
+import { StaticSeoService } from 'src/app/core/services/seo/seo-static.service';
 
 @Component({
     selector: 'app-about-us',
@@ -9,11 +10,11 @@ import { AppConfigService } from '../../../../core/services/configuration/app-co
 
 export class AboutUsComponent implements OnInit {
 
-    constructor(private appConfigService: AppConfigService) {
+    constructor(private seoService: StaticSeoService) {
         scroll(0, 0);
     }
 
     ngOnInit(): void {
-        this.appConfigService.setTitle('ABOUTUS.PAGETITLE');
+        this.seoService.updateMetaTags('ABOUTUS.PAGETITLE', 'ABOUTUS.PAGEDESCRIPTION', ['ABOUT US', 'IEEE', 'ITBA']);
     }
 }

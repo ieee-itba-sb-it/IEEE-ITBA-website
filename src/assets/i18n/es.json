@@ -392,6 +392,7 @@
   },
   "ABOUTUS": {
     "PAGETITLE": "ITBA IEEE | About us",
+    "PAGEDESCRIPTION": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.",
     "US": {
       "TITLE": "Quiénes somos",
       "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
@@ -406,6 +407,8 @@
     }
   },
   "TEAM": {
+    "PAGETITLE": "ITBA IEEE | Equipo",
+    "PAGEDESCRIPTION": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos.",
     "TITLE": "Equipo",
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
   },
@@ -624,6 +627,8 @@
     "CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
   },
   "CONTACT": {
+    "PAGETITLE": "ITBA IEEE | Contacto",
+    "PAGEDESCRIPTION": "Contáctanos para cualquier pregunta o consulta. Nos pondremos en contacto contigo lo antes posible.",
     "TITLE": "Contacto",
     "SUBTITLE": "Completá los siguientes datos, nos contactaremos a la brevedad.",
     "DESTINATION": "Enviar a",
@@ -788,6 +793,8 @@
   },
   "WIP": "Sitio en construcción",
   "IOT": {
+    "PAGETITLE": "ITBA IEEE | Taller de IoT",
+    "PAGEDESCRIPTION": "Taller de IoT organizado por IEEE ITBA. Aprendé a controlar un brazo robótico con Internet of Things (IoT) y aplicá tus conocimientos en la práctica.",
     "TITLE": "Taller de IoT",
     "ENROLL": "¡Anotate ahora!",
     "DESC": {
@@ -1034,6 +1041,7 @@
   },
   "WIE": {
     "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
+    "PAGEDESCRIPTION": "Capítulo estudiantil de la rama WIE del IEEE en ITBA",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA",
@@ -1117,6 +1125,14 @@
         "WRITER": "Escritor"
       }
     }
+  },
+  "SPONSORS": {
+      "PAGETITLE": "ITBA IEEE | Auspiciantes",
+      "PAGEDESCRIPTION": "Auspiciantes de IEEE ITBA"
+  },
+  "EVENTS": {
+      "PAGETITLE": "ITBA IEEE | Eventos",
+      "PAGEDESCRIPTION": "Eventos de IEEE ITBA"
   },
   "MONTH": {
       "0": "Enero",

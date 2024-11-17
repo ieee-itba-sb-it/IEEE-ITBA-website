@@ -336,6 +336,7 @@
   },
   "ABOUTUS": {
     "PAGETITLE": "ITBA IEEE | About us",
+    "PAGEDESCRIPTION": "IEEE ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires.",
     "US": {
       "TITLE": "Who we are",
       "TEXT": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires."
@@ -350,6 +351,8 @@
     }
   },
   "TEAM": {
+    "PAGETITLE": "ITBA IEEE | Team",
+    "PAGEDESCRIPTION": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them.",
     "TITLE": "Team",
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
   },
@@ -568,6 +571,8 @@
     "ACTUAL": "CURRENT"
   },
   "CONTACT": {
+    "PAGETITLE": "ITBA IEEE | Contact",
+    "PAGEDESCRIPTION": "Contact us for any questions or inquiries. We will get back to you as soon as possible.",
     "TITLE": "Contact",
     "SUBTITLE": "Complete the following information, we will contact you shortly.",
     "DESTINATION": "Send to",
@@ -732,6 +737,8 @@
   },
   "WIP": "Site under construction",
   "IOT": {
+    "PAGETITLE": "ITBA IEEE | IoT Workshop",
+    "PAGEDESCRIPTION": "IoT Workshop organized by IEEE ITBA. Learn to control a robotic arm using Internet of Things (IoT) and apply your knowledge in practice.",
     "TITLE": "IoT Workshop",
     "ENROLL": "Enroll now!",
     "DESC": {
@@ -978,6 +985,7 @@
   },
   "WIE": {
     "PAGETITLE": "ITBA IEEE | WIE Branch Student Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA WIE Branch Student Chapter",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group",
@@ -1064,6 +1072,14 @@
         "WRITER": "Writer"
       }
     }
+  },
+  "SPONSORS": {
+    "PAGETITLE": "ITBA IEEE | Sponsors",
+    "PAGEDESCRIPTION": "IEEE ITBA Sponsors"
+  },
+  "EVENTS": {
+     "PAGETITLE": "ITBA IEEE | Events",
+     "PAGEDESCRIPTION": "IEEE ITBA Events"
   },
   "MONTH": {
     "0": "January",

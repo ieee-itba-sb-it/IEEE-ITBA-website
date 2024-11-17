@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Timestamp} from '@angular/fire/firestore';
 import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 
 @Component({
@@ -35,9 +36,10 @@ export class IotComponent implements OnInit {
         return now < Timestamp.fromDate(new Date(this.enrollEndDate));
     }
 
-    constructor(private eventService: EventService) { }
+    constructor(private eventService: EventService, private seoService: StaticSeoService) { }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags('IOT.PAGETITLE', 'IOT.PAGEDESCRIPTION', ['IOT', 'IEEE', 'ITBA'], "events/iot/iot-banner.jpeg");
         this.getEvent();
     }
 

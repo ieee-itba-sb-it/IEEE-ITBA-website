@@ -12,6 +12,7 @@ import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {roles} from '../../../../shared/models/roles/roles.enum';
 import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
 import {AuthActionModalComponent} from '../../../../shared/components/auth-action-modal/auth-action-modal.component';
+import {DynamicSeoService} from "../../../../core/services/seo/seo-dynamic.service";
 
 @Component({
     selector: 'app-noticia',
@@ -48,7 +49,7 @@ export class NoticiaComponent implements OnInit {
                 @Inject(DOCUMENT) private document: any, public translate: TranslateService,
                 private blogService: BlogService, private cookieService: CookieService,
                 private authService: AuthService, private router: Router,
-                private modalService: MDBModalService) {
+                private modalService: MDBModalService, private seoService: DynamicSeoService) {
         this.blogService.setCollectionName(blogCollectionName);
 
         this.blogService.retrieveListedDocsSize();
@@ -71,7 +72,10 @@ export class NoticiaComponent implements OnInit {
                     }
                 ),
                 map((param) => (param.get('id'))),
-                switchMap((id) => this.blogService.getDoc(id))
+                switchMap((id) => this.blogService.getDoc(id)),
+                tap(({title, shortIntro, tags, imageUrl}) => {
+                    this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
+                })
             );
         this.authService.getCurrentUser().pipe(
             combineLatestWith(this.newsData$)
