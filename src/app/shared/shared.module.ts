@@ -50,7 +50,7 @@ import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
 import { CustomTranslatePipe } from "./pipes/CustomTranslatePipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
-import { CommissionEditorModalComponent } from './components/commission-editor-modal/commission-editor-modal.component';
+import { CommissionEditorModalComponent } from '../modules/admin/components/commission-editor-modal/commission-editor-modal.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 
@@ -67,7 +67,7 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent, CommissionEditorModalComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent],
     imports: [
         routing,
         CommonModule,

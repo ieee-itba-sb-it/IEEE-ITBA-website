@@ -1,10 +1,11 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {Component, OnInit} from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { CommissionEditorModalComponent } from 'src/app/shared/components/commission-editor-modal/commission-editor-modal.component';
-import {Commission} from "../../../../shared/models/commission";
-import {BehaviorSubject, Observable} from "rxjs";
+import { CommissionEditorModalComponent } from 'src/app/modules/admin/components/commission-editor-modal/commission-editor-modal.component';
+import {Commission } from "../../../../shared/models/commission";
+import {BehaviorSubject, Observable, zip} from "rxjs";
 import {TeamService} from "../../../../core/services/team/team.service";
+import { PositionEditorModalComponent } from '../../components/position-editor-modal/position-editor-modal.component';
 
 @Component({
     selector: 'app-commissions',
@@ -18,7 +19,6 @@ export class CommissionsComponent implements OnInit {
     modalRef: MDBModalRef | null = null;
 
     commissions$: Observable<Commission[]>;
-
     commissions: Commission[];
 
     loading: BehaviorSubject<boolean>;
@@ -29,33 +29,52 @@ export class CommissionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.commissions$.subscribe(commissions => {
+        zip(this.commissions$).subscribe(([commissions]) => {
             this.commissions = commissions;
             this.loading.next(false);
-        })
+        });
     }
 
-    drop(event: CdkDragDrop<string[]>) {
+    dropCommission(event: CdkDragDrop<string[]>) {
         if (!this.editPositionsMode) return;
         moveItemInArray(this.commissions, event.previousIndex, event.currentIndex);
         this.commissions.forEach((commission, index) => {
-            commission.position = index;
+            commission.order = index;
         });
+    }
+
+    dropPosition(commission: Commission, event: CdkDragDrop<string[]>) {
+        if (!this.editPositionsMode) return;
+        moveItemInArray(commission.positions, event.previousIndex, event.currentIndex);
     }
 
     toggleEditPositionsMode() {
         this.editPositionsMode = !this.editPositionsMode;
     }
 
-    openModal() {
+    openCommissionModal() {
         this.modalRef = this.modalService.show(CommissionEditorModalComponent, {
             data: {
-                position: this.commissions.length
+                order: this.commissions.length
             },
             class: 'modal-dialog-centered',
         });
         this.modalRef.content.update.subscribe(commission => {
             this.commissions.push(commission);
-        })
+        });
+    }
+
+    openPositionModal(commission: Commission, position?: number) {
+        this.modalRef = this.modalService.show(PositionEditorModalComponent, {
+            data: {
+                order: commission.positions.length,
+                commission: commission,
+                positionIdx: position
+            },
+            class: 'modal-dialog-centered',
+        });
+        this.modalRef.content.update.subscribe(commission => {
+            this.commissions.find(c => c.id === commission.id).positions = commission.positions;
+        });
     }
 }

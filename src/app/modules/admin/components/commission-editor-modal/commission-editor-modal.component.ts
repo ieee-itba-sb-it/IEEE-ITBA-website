@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
-import {Commission} from "../../models/commission";
-import {TeamService} from "../../../core/services/team/team.service";
+import {Commission} from "../../../../shared/models/commission";
+import {TeamService} from "../../../../core/services/team/team.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     styleUrls: ['./commission-editor-modal.component.css']
 })
 export class CommissionEditorModalComponent {
-    @Input() position: number;
+    @Input() order: number;
     @Output() update: EventEmitter<Commission> = new EventEmitter();
 
     error: string;
@@ -35,8 +35,10 @@ export class CommissionEditorModalComponent {
             return;
         }
         let commission : Commission = this.commissionForm.value as Commission;
-        commission.position = this.position;
-        this.teamService.addCommission(commission).subscribe(res => {
+        commission.order = this.order;
+        commission.main = true;
+        commission.positions = [];
+        this.teamService.setCommission(commission).subscribe(res => {
             this.update.emit(commission);
             this.modalRef.hide();
         });

@@ -1,6 +1,6 @@
 <ng-container *ngIf="(loading | async) === false; else spinner">
     <div class="toolbar d-flex justify-content-end gap-2">
-        <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="openModal()">
+        <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="openCommissionModal()">
             <mdb-icon fas icon="add"></mdb-icon>
             <span class="ml-2">Añadir comisión</span>
         </button>
@@ -10,9 +10,9 @@
             <span class="ml-2" *ngIf="editPositionsMode">Cancelar</span>
         </button>
     </div>
-    <div class="content my-4" *ngIf="commissions.length > 0; else empty">
-        <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="drop($event)" class="drag-list" multi>
-            <mat-expansion-panel class="drag-box" cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions" hideToggle>
+    <div class="content my-4" *ngIf="commissions && commissions.length > 0; else commissionsEmpty">
+        <mat-accordion cdkDropList [cdkDropListDisabled]="!editPositionsMode" (cdkDropListDropped)="dropCommission($event)" class="drag-list" multi>
+            <mat-expansion-panel class="drag-box" cdkDrag cdkDragLockAxis="y" *ngFor="let commission of commissions; index as i" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <mdb-icon fas icon="bars" class="animated-transform mr-2" *ngIf="editPositionsMode"></mdb-icon>
@@ -20,12 +20,27 @@
                     </mat-panel-title>
                     <mat-panel-description>{{ commission.id }}</mat-panel-description>
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+                <div class="d-flex flex-wrap" cdkDropListGroup>
+                    <div *ngIf="commission.positions && commission.positions.length > 0; else rolesEmpty"
+                        cdkDropList [cdkDropListDisabled]="!editPositionsMode" cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropPosition(commission, $event)" class="d-flex gap-2 flex-wrap drag-list" multi>
+                        <mat-chip class="drag-box" cdkDrag *ngFor="let position of commission.positions; index as i" (click)="openPositionModal(commission, i)">{{i+1}}. {{ position.title | customTranslate }}</mat-chip>
+                        <mat-chip (click)="openPositionModal(commission)"><mdb-icon fas icon="add"></mdb-icon></mat-chip>
+                    </div>
+                </div>
+                <ng-template #rolesEmpty>
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+                        <p class="d-inline m-0">No hay roles en esta comisión</p>
+                        <button mat-raised-button size="sm" color="primary" type="button" (click)="openPositionModal(commission)">
+                            <mdb-icon fas icon="add"></mdb-icon>
+                            <span class="ml-2">Añadir rol</span>
+                        </button>
+                    </div>
+                </ng-template>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-    <ng-template #empty class="d-flex flex-column align-items-center justify-content-center my-5">
-        <div>
+    <ng-template #commissionsEmpty>
+        <div class="d-flex flex-column align-items-center justify-content-center my-5">
             <mdb-icon fas icon="exclamation-triangle" class="big-icon"></mdb-icon>
             <p class="mt-2">No hay comisiones registradas</p>
         </div>

@@ -1,19 +1,17 @@
 import {IEEEMember} from '../../../shared/models/team-member';
 import {Injectable} from '@angular/core';
 import {Commission} from 'src/app/shared/models/commission';
-import {map, Observable} from 'rxjs';
-import {IEEEUserResponse} from '../../../shared/models/ieee-user/ieee-user.response';
-import {COMMISSION_ORDER, CommissionType, Role, ROLE_ORDER} from '../../../shared/models/ieee-user/ieee-team.enums';
+import {Observable} from 'rxjs';
+import {CommissionType, Role} from '../../../shared/models/ieee-user/ieee-team.enums';
 import {
-    collection, doc,
-    DocumentData,
+    collection, collectionGroup, doc,
     Firestore,
     getDoc,
     getDocs, orderBy, Query,
     query,
-    QuerySnapshot,
     where, writeBatch
 } from '@angular/fire/firestore';
+import { FirebaseError } from '@angular/fire/app';
 
 interface IEEEUserRole extends IEEEMember {
     roleType: Role;
@@ -25,6 +23,7 @@ interface IEEEUserRole extends IEEEMember {
 export class TeamService {
     private static readonly TEAM_COLLECTION_NAME = 'team';
     private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
+    private static readonly POSITION_COLLECTION_NAME = 'positions';
 
 
     constructor(private afs: Firestore) {}
@@ -94,25 +93,27 @@ export class TeamService {
     //         return COMMISSION_ORDER.indexOf(a.commission) - COMMISSION_ORDER.indexOf(b.commission);
     //     });
     // }
+
     private getCommissions(query: Query): Observable<Commission[]> {
         return new Observable<Commission[]>(obs => {
             getDocs(query).then(data => {
                 const ans: Commission[] = data.docs.map(commission => {
                     return commission.data() as Commission;
-                })
+                });
                 obs.next(ans);
-            }).catch(err => {
+            }).catch((err: FirebaseError) => {
                 obs.error(err);
             }).finally(() => {
                 obs.complete();
             });
         })
     }
+
     getTeamCommissions(): Observable<Commission[]> {
         return this.getCommissions(query(
             collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME), 
             where("main", "==", true),
-            orderBy("position")
+            orderBy("order")
         ));
     }
 
@@ -124,13 +125,13 @@ export class TeamService {
         })
     }
 
-    addCommission(commission: Commission) : Observable<Commission> {
+    setCommission(commission: Commission) : Observable<Commission> {
         return new Observable(obs => {
             const batch = writeBatch(this.afs);
             batch.set(doc(this.afs, "commissions", commission.id), commission);
-            batch.commit().then(res => {
+            batch.commit().then(() => {
                 obs.next(commission);
-            }).catch(err => {
+            }).catch((err: FirebaseError) => {
                 obs.error(err);
             }).finally(() => {
                 obs.complete();

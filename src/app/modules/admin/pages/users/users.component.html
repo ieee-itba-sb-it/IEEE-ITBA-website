@@ -34,7 +34,7 @@
                 </div>
             </td>
             <td class="role-col">
-                <div class="chip-container" *ngIf="user.roles.length > 0">
+                <div class="chip-container" *ngIf="user.roles && user.roles.length > 0">
                   <mat-chip class="small-chip" [color]="roles[user.roles[0]].color" highlighted>{{ roles[user.roles[0]].code | translate }}</mat-chip>
                   <mat-chip class="small-chip" *ngIf="user.roles.length > 1" [color]="roles[user.roles[1]].color" highlighted>+{{ user.roles.length - 1 }}</mat-chip>
                 </div>

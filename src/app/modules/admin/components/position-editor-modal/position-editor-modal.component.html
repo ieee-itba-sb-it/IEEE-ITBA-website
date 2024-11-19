@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <div *ngIf="editMode(); else addHeader">
+        <h2 class="modal-title"><span>Editar rol en {{ commission.title | customTranslate }}</span></h2>
+        <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title | customTranslate }}</h4>
+    </div>
+    <ng-template #addHeader>
+        <h2 class="modal-title"><span>Crear rol en {{ commission.title | customTranslate }}</span></h2>
+    </ng-template>
+    <button type="button" (click)="modalRef.hide()" class="btn">
+        <mdb-icon fas icon="times" size="lg"></mdb-icon>
+    </button>
+</div>
+<form [formGroup]="positionForm">
+    <div class="modal-body">
+        <mat-form-field class="w-100" *ngIf="!editMode()">
+            <mat-label>ID</mat-label>
+            <input matInput
+                   type="text"
+                   id="id"
+                   formControlName="id">
+        </mat-form-field>
+        <div formGroupName="title" class="mt-2">
+            <label>Título</label>
+            <mat-form-field class="w-100">
+                <mat-label>Título en español</mat-label>
+                <input matInput
+                       type="text"
+                       id="es"
+                       formControlName="es"
+                       >
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>Título en Inglés</mat-label>
+                <input matInput
+                       type="text"
+                       id="en"
+                       formControlName="en">
+            </mat-form-field>
+        </div>
+        <div *ngIf="error" class="error-container">
+            <p class="error">
+                {{ error }}
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" *ngIf="editMode()" class="btn delete-btn" (click)="deletePosition()">Eliminar</button>
+        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+        <button type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
+            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+        </button>
+    </div>
+</form>
+

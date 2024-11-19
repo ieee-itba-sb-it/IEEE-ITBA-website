@@ -1,9 +1,15 @@
-import { TeamMember } from './team-member';
 import {InternationalText} from "./data-types";
+
+export interface Position {
+    id: string;
+    title: InternationalText;
+    order?: number;
+}
 
 export interface Commission {
     id: string;
     title: InternationalText;
-    position?: number;
+    order?: number;
     main: boolean;
+    positions: Position[];
 }

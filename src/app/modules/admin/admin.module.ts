@@ -17,6 +17,11 @@ import { CommissionsComponent } from './pages/commissions/commissions.component'
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
+import { CommissionEditorModalComponent } from './components/commission-editor-modal/commission-editor-modal.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PositionEditorModalComponent } from './components/position-editor-modal/position-editor-modal.component';
 
 // Tab manager
 const routes: Routes = [{
@@ -35,7 +40,9 @@ export const routing = RouterModule.forChild(routes);
     declarations: [
         AdminComponent,
         UsersComponent,
-        CommissionsComponent
+        CommissionsComponent,
+        CommissionEditorModalComponent,
+        PositionEditorModalComponent
     ],
     imports: [
         routing,
@@ -47,6 +54,10 @@ export const routing = RouterModule.forChild(routes);
         MatPaginatorModule,
         MatButtonModule,
         MatExpansionModule,
+        MatInputModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule, 
         CdkDrag,
         CdkDropList,
         MDBBootstrapModule.forRoot(),
