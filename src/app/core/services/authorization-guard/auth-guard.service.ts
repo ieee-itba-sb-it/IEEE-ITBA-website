@@ -23,12 +23,15 @@ export class PermissionsService {
         const expectedRole: Array<roles> = next.data.expectedRole;
         // getCurrentUser() should have the role already, is not necessary to call it again.
         return this.authService.getCurrentUser().pipe(switchMap((possibleUser) => {
-            if (possibleUser === null) {
+            if (possibleUser === null)
                 return from(this.router.navigate(['login'])).pipe(map(() => false));
-            }
-            if (possibleUser.roles.length > 0) {
+            if (expectedRole == undefined || expectedRole.length == 0) 
                 return of(true);
-            }
+
+            const userRolesFound = possibleUser.roles.filter(role => expectedRole.includes(role));
+            if (userRolesFound.length > 0) 
+                return of(true);
+            
             return from(this.router.navigate(['error401'])).pipe(map(() => false));
         }));
     }
