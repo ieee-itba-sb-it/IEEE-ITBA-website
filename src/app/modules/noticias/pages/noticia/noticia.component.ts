@@ -73,7 +73,11 @@ export class NoticiaComponent implements OnInit {
                 ),
                 map((param) => (param.get('id'))),
                 switchMap((id) => this.blogService.getDoc(id)),
-                tap(({title, shortIntro, tags, imageUrl}) => {
+                tap((blog) => {
+                    if (!blog) {
+                        return;
+                    }
+                    const {title, shortIntro, tags, imageUrl} = blog;
                     this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
                 })
             );
