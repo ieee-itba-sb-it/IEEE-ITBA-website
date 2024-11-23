@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import {Event, EventDate, IeeeEvent} from "../../../shared/models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
+import {StaticSeoService} from "../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-typescript',
@@ -43,12 +44,13 @@ export class TypescriptComponent implements OnInit {
         return now > oldDate;
     }
 
-    constructor(private eventService: EventService) {
+    constructor(private eventService: EventService, private seoService: StaticSeoService) {
         this.enrollOpen = this.isOldDate('15 May 2023 03:00:00 UTC');
         this.enrollClosed = this.isOldDate('29 May 2023 03:00:00 UTC');
     }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags("TYPESCRIPT.PAGETITLE", "TYPESCRIPT.PAGEDESCRIPTION", ["TYPESCRIPT", "IEEE", "ITBA"]);
         this.getEvent();
     }
 

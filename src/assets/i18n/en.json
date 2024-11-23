@@ -393,6 +393,8 @@
     }
   },
   "BITCUP": {
+    "PAGETITLE": "ITBA IEEE | Bit Cup",
+    "PAGEDESCRIPTION": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time.",
     "DESCRIPTION": "Description",
     "DESCRIPTION-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
     "FORMAT": "Format",
@@ -515,6 +517,8 @@
     }
   },
   "DATAANALYSIS": {
+    "PAGETITLE": "ITBA IEEE | Data Analysis in Python Course",
+    "PAGEDESCRIPTION": "Data Analysis in Python course organized by IEEE ITBA. Learn how to use Python for data analysis and visualization.",
     "CLASSES": {
       "C1": "Introduction to libraries (review), Writing and reading of Excel and CSV files and Data manipulation with Pandas",
       "C2": "Introduction to matplotlib, Data visualization, Customization of plots and graphs and Application cases",
@@ -606,6 +610,8 @@
     "CONTACTUS": "Contact us"
   },
   "WRITE-NEW": {
+    "PAGETITLE": "ITBA IEEE | Write News",
+    "PAGEDESCRIPTION": "Write news for IEEE ITBA. Share your knowledge with the community.",
     "TITLE": "Write News",
     "TITLE2": "Title",
     "POMPADOUR": "Pompadour",
@@ -620,6 +626,10 @@
     "FIRST_PARAGRAPH": "First paragraph over image",
     "PUBLISH_NOW": "Publish now",
     "PROGRAM_DATE": "Program publish date"
+  },
+  "EDIT-NEW": {
+    "PAGETITLE": "ITBA IEEE | Edit News",
+    "PAGEDESCRIPTION": "Edit news for IEEE ITBA."
   },
     "AUTH": {
         "LOGIN": {
@@ -644,9 +654,12 @@
       "DISABLED_USER": "User has been disabled"
     },
     "SUCCESS": "Welcome to IEEE!",
-    "PAGETITLE": "Log in to IEEE"
+    "PAGETITLE": "Log in to IEEE",
+    "PAGEDESCRIPTION": "Log in to IEEE ITBA."
   },
   "REGISTER": {
+    "PAGETITLE": "ITBA IEEE | Register",
+    "PAGEDESCRIPTION": "Register to IEEE ITBA. Join our community!",
     "TITLE": "Register",
     "FULL_NAME": "Full Name",
     "EMAIL": "Email",
@@ -730,6 +743,8 @@
     }
   },
   "ERROR404": {
+    "PAGETITLE": "ITBA IEEE | Page not found",
+    "PAGEDESCRIPTION": "Page not found - IEEE ITBA",
     "TITLE": "Page not found",
     "APOLOGY": "We're sorry, the page you requested doesn't exist or some other error occurred",
     "INDICATION": "Please go back to the home page",
@@ -868,6 +883,8 @@
     "SPONSORS": "Sponsors"
   },
   "TYPESCRIPT": {
+    "PAGETITLE": "ITBA IEEE | Typescript Course",
+    "PAGEDESCRIPTION": "Typescript Course organized by IEEE ITBA. Learn the basics of programming with the TypeScript language.",
     "TITLE": "Typescript Course",
     "DESCRIPTION": {
       "TITLE": "Description",
@@ -1053,6 +1070,8 @@
     "ABOUT": "A technology-focused organization made up of students and alumni of ITBA, dedicated to inspiring and educating in various areas of technology related to software engineering and technology."
   },
   "ADMIN": {
+    "PAGETITLE": "ITBA IEEE | Admin panel",
+    "PAGEDESCRIPTION": "IEEE ITBA Admin panel",
     "TITLE": "Admin panel",
     "USERTAB": {
       "TITLE": "Users",
@@ -1096,6 +1115,8 @@
     "11": "December"
     },
   "PROFILE": {
+    "PAGETITLE": "ITBA IEEE | Profile",
+    "PAGEDESCRIPTION": "IEEE ITBA Profile",
     "TABS": {
         "GENERAL": "General",
         "SECURITY": "Security"
