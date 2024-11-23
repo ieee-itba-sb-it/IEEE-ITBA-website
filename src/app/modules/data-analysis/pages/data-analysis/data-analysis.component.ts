@@ -122,7 +122,7 @@ export class DataAnalysisComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.seoService.updateMetaTags("DATAANALYSIS.PAGETITLE", "DATAANALYSIS.PAGEDESCRIPTION", ["DATA ANALYSIS", "IEEE", "ITBA", "PYTHON"]);
+        this.seoService.updateMetaTags("DATAANALYSIS.PAGETITLE", "DATAANALYSIS.PAGEDESCRIPTION", ["DATA ANALYSIS", "IEEE", "ITBA", "PYTHON"], 'events/data-analysis/data-analysis-event.png');
         this.getEvent();
     }
 

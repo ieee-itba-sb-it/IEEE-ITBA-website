@@ -50,7 +50,7 @@ export class TypescriptComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.seoService.updateMetaTags("TYPESCRIPT.PAGETITLE", "TYPESCRIPT.PAGEDESCRIPTION", ["TYPESCRIPT", "IEEE", "ITBA"]);
+        this.seoService.updateMetaTags("TYPESCRIPT.PAGETITLE", "TYPESCRIPT.PAGEDESCRIPTION", ["TYPESCRIPT", "IEEE", "ITBA"], "events/typescript-course/big-banner.jpg");
         this.getEvent();
     }
 

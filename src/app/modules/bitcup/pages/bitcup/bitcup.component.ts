@@ -20,7 +20,7 @@ export class BitcupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.seoService.updateMetaTags('BITCUP.PAGETITLE', 'BITCUP.PAGEDESCRIPTION', ['BITCUP', 'IEEE', 'ITBA']);
+        this.seoService.updateMetaTags('BITCUP.PAGETITLE', 'BITCUP.PAGEDESCRIPTION', ['BITCUP', 'IEEE', 'ITBA'], 'events/bitcup/bitcup.png');
         this.getEvent();
     }
 
