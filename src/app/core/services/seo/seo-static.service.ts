@@ -18,11 +18,11 @@ export class StaticSeoService extends SeoServiceBase {
         super(titleService, metaService, router);
     }
 
-    updateMetaTags(titleI18n: string, descriptionI18n: string, keywords: string[], imagePath: string = 'general-icons/ieee-logo.png') {
+    updateMetaTags(titleI18n: string, descriptionI18n: string, keywords: string[], imagePath: string = 'general-icons/ieee-itba.png') {
         const baseUrl = window.location.origin;
         const title = this.translate.instant(titleI18n);
         const description = this.translate.instant(descriptionI18n);
-        const imageUrl = `${baseUrl}/assets/images/${imagePath}`;
+        const imageUrl = `${baseUrl}/assets/image/${imagePath}`;
         this.setMetaTags(title, description, keywords, imageUrl);
     }
 }
