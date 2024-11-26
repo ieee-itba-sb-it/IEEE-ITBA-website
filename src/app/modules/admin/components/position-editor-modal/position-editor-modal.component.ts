@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { TeamService } from 'src/app/core/services/team/team.service';
 import { Commission, Position } from 'src/app/shared/models/commission';
+import {IEEEMember} from "../../../../shared/models/team-member";
 
 @Component({
   selector: 'app-position-editor-modal',
@@ -12,10 +13,11 @@ import { Commission, Position } from 'src/app/shared/models/commission';
 export class PositionEditorModalComponent implements OnInit {
     @Input() commission: Commission;
     @Input() positionIdx: number;
+    @Input() commissionMembers: IEEEMember[];
     @Output() update: EventEmitter<Position> = new EventEmitter();
 
     error: string;
-
+    loading: boolean = false;
     positionForm: FormGroup;
 
     constructor(private teamService: TeamService, public modalRef: MDBModalRef) {
@@ -47,6 +49,7 @@ export class PositionEditorModalComponent implements OnInit {
     }
 
     addPosition() {
+        if(this.loading) return;
         if(this.positionForm.invalid) {
             this.error = "Error en el cargado del formulario.";
             return;
@@ -60,6 +63,7 @@ export class PositionEditorModalComponent implements OnInit {
             this.update.emit(this.commission);
             this.modalRef.hide();
         });
+        this.loading = true;
     }
 
     hasChanged() {

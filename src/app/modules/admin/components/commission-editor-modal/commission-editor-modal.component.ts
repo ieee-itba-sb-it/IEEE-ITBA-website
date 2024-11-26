@@ -16,6 +16,7 @@ export class CommissionEditorModalComponent {
     error: string;
     commission: Commission;
     commissionForm: FormGroup;
+    loading:boolean = false;
 
     constructor(private teamService: TeamService, public modalRef: MDBModalRef) {
         this.commissionForm = new FormGroup({
@@ -30,6 +31,7 @@ export class CommissionEditorModalComponent {
     //Chequear tema Validators
 
     addCommission() {
+        if(this.loading) return;
         if(this.commissionForm.invalid) {
             this.error = "Error en el cargado del formulario.";
             return;
@@ -42,5 +44,6 @@ export class CommissionEditorModalComponent {
             this.update.emit(commission);
             this.modalRef.hide();
         });
+        this.loading = true;
     }
 }

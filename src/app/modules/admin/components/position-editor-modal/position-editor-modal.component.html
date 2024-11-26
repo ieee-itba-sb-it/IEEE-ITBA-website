@@ -46,9 +46,29 @@
     <div class="modal-footer">
         <button type="button" *ngIf="editMode()" class="btn delete-btn" (click)="deletePosition()">Eliminar</button>
         <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
+        <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
             {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
         </button>
     </div>
+    <ng-template #loadSpinner class="spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </ng-template>
 </form>
+<table mdbTable class="members_table" small="true">
+    <thead>
+    <tr>
+        <th scope="col"> HOLA </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr mdbTableCol>
+        <th scope="row">A</th>
+        <td>B</td>
+        <td>C</td>
+        <td>D</td>
+    </tr>
+    </tbody>
+</table>
 

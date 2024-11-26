@@ -1,6 +1,6 @@
 import {IEEEMember} from '../../../shared/models/team-member';
 import {Injectable} from '@angular/core';
-import {Commission} from 'src/app/shared/models/commission';
+import {Commission, Position} from 'src/app/shared/models/commission';
 import {Observable} from 'rxjs';
 import {CommissionType, Role} from '../../../shared/models/ieee-user/ieee-team.enums';
 import {
@@ -24,6 +24,7 @@ export class TeamService {
     private static readonly TEAM_COLLECTION_NAME = 'team';
     private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
     private static readonly POSITION_COLLECTION_NAME = 'positions';
+    private static readonly MEMBERS_COLLECTION_NAME = 'members';
 
 
     constructor(private afs: Firestore) {}
@@ -111,7 +112,7 @@ export class TeamService {
 
     getTeamCommissions(): Observable<Commission[]> {
         return this.getCommissions(query(
-            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME), 
+            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME),
             where("main", "==", true),
             orderBy("order")
         ));
@@ -137,5 +138,31 @@ export class TeamService {
                 obs.complete();
             });
         })
+    }
+
+    private getMembers(query : Query) : Observable<IEEEMember[]> {
+        return new Observable<IEEEMember[]>(obs => {
+            getDocs(query).then(res => {
+                let ans : IEEEMember[] = [];
+                res.docs.map(memberArray => {
+                    ans.concat(memberArray.data() as IEEEMember[]);
+                });
+                obs.next(ans);
+            }).catch((err: FirebaseError) => {
+                obs.error(err);
+            }).finally(() => {
+                obs.complete();
+            });
+        });
+    }
+
+    getMembersByCommission(commission : Commission) : Observable<IEEEMember[]> {
+        return this.getMembers(query(
+            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME)
+        ));
+    }
+
+    getAllMembers() : Observable<IEEEMember[]> {
+        return this.getMembers(collectionGroup(this.afs, TeamService.MEMBERS_COLLECTION_NAME));
     }
 }
