@@ -6,6 +6,6 @@ export interface IEEEUserResponse {
     linkedin?: string;
     mail?: string;
     roles?: Role;
-    commission: CommissionType;
-    gender: Gender;
+    commissionid: string;
+    positionid: string;
 }

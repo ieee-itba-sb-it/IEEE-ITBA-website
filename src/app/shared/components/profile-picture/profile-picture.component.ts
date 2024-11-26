@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class ProfilePictureComponent {
     @Input() src?: string;
     @Input() size?: string;
+    @Input() tooltip?: string = "";
 
     defaultImage = '../../../../../assets/image/logos/user.png';
 

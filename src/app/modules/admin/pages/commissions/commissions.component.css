@@ -38,3 +38,8 @@
 .drag-list.cdk-drop-list-dragging .drag-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+tr.position-row:hover td {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}

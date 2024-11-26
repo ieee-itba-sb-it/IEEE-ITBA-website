@@ -1,0 +1,18 @@
+.stack-container {
+    display: flex;
+    margin-left: 0.625rem;
+}
+
+.stack-container ::ng-deep div.stack-item {
+    margin-left: -0.625rem;
+    transform: translateX(0.3125rem);
+    transition: all 0.2s;
+}
+
+.stack-container ::ng-deep img {
+    border: 2px solid #fff;
+}
+
+.stack-container ::ng-deep:not(:last-child) div.stack-item:hover {
+    padding-right: 1rem;
+}

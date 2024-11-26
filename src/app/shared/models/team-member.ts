@@ -7,6 +7,8 @@ export interface TeamMember {
     linkedin: string;
     mail: string;
     roles?: string;
+    commissionid: string;
+    positionid: string;
 }
 
 export class IEEEMember implements TeamMember {
@@ -15,22 +17,28 @@ export class IEEEMember implements TeamMember {
     linkedin: string;
     mail: string;
     roles?: string;
+    commissionid: string;
+    positionid: string;
 
-    constructor(name: string, photo: string, linkedin: string, mail: string, roles: string) {
+    constructor(name: string, photo: string, linkedin: string, mail: string, roles: string, commissionid: string, positionid: string) {
         this.name = name;
         this.photo = photo;
         this.linkedin = linkedin;
         this.mail = mail;
         this.roles = roles;
+        this.commissionid = commissionid;
+        this.positionid = positionid;
     }
 
-    static fromIeeeUserResponse({name, photo, linkedin, mail, roles, gender, commission}: IEEEUserResponse): IEEEMember {
+    static fromIeeeUserResponse({name, photo, linkedin, mail, roles, commissionid, positionid}: IEEEUserResponse): IEEEMember {
         return new IEEEMember(
             name,
             photo,
             linkedin,
             mail,
-            this.mapRoleToI18n(commission, roles, gender),
+            roles,
+            commissionid,
+            positionid
         );
     }
 

@@ -53,6 +53,7 @@ import { AuthActionModalComponent } from './components/auth-action-modal/auth-ac
 import { CommissionEditorModalComponent } from '../modules/admin/components/commission-editor-modal/commission-editor-modal.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { ProfilePictureStackComponent } from './components/profile-picture-stack/profile-picture-stack.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -67,7 +68,7 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent, ProfilePictureStackComponent],
     imports: [
         routing,
         CommonModule,
@@ -104,6 +105,6 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
-        EventInscriptionSectionComponent],
+        EventInscriptionSectionComponent, ProfilePictureStackComponent],
 })
 export class SharedModule { }

@@ -21,11 +21,8 @@ interface IEEEUserRole extends IEEEMember {
     providedIn: 'root'
 })
 export class TeamService {
-    private static readonly TEAM_COLLECTION_NAME = 'team';
     private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
-    private static readonly POSITION_COLLECTION_NAME = 'positions';
     private static readonly MEMBERS_COLLECTION_NAME = 'members';
-
 
     constructor(private afs: Firestore) {}
 
@@ -143,9 +140,8 @@ export class TeamService {
     private getMembers(query : Query) : Observable<IEEEMember[]> {
         return new Observable<IEEEMember[]>(obs => {
             getDocs(query).then(res => {
-                let ans : IEEEMember[] = [];
-                res.docs.map(memberArray => {
-                    ans.concat(memberArray.data() as IEEEMember[]);
+                const ans: IEEEMember[] = res.docs.map(member => {
+                    return member.data() as IEEEMember;
                 });
                 obs.next(ans);
             }).catch((err: FirebaseError) => {
