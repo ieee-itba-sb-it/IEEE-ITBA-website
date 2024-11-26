@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)">
+        <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)" class="user-row">
             <td>
                 <div class="d-flex align-items-center py-2">
                     <app-profile-picture size="45px" [src]="user.photoURL"></app-profile-picture>

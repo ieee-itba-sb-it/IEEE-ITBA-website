@@ -45,9 +45,9 @@ th, td {
     overflow: hidden;
 }
 
-tr:not(:first-child):hover {
-    background-color: #DEDEDE;
-    cursor: pointer
+tr.user-row:hover td {
+    background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 .role-col {
@@ -88,3 +88,5 @@ p.role-filter-label {
         padding: 0;
     }
 }
+
+
