@@ -29,13 +29,6 @@ export class AppConfigService {
     });
   }
 
-    // title tiene que ser un codigo i18n
-    setTitle(title: string) {
-        this.translate.get(title).subscribe((res: string) => {
-            this.titleService.setTitle(res);
-        });
-    }
-
     resetTitle() {
         this.translate.get('DEFAULT.PAGETITLE').subscribe((res: string) => {
             this.titleService.setTitle(res);

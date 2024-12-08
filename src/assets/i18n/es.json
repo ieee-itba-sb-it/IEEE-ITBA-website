@@ -1,7 +1,8 @@
 {
   "NULL":"NULL",
   "DEFAULT": {
-    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil"
+    "PAGETITLE": "ITBA IEEE Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Página oficial del Capítulo Estudiantil de IEEE en ITBA"
   },
   "HOME": {
     "TITLE": "Rama Estudiantil",
@@ -391,6 +392,7 @@
   },
   "ABOUTUS": {
     "PAGETITLE": "ITBA IEEE | About us",
+    "PAGEDESCRIPTION": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires.",
     "US": {
       "TITLE": "Quiénes somos",
       "TEXT": "IEEE-ITBA es una organización estudiantil sin fines de lucro que representa al IEEE en el Instituto Tecnológico de Buenos Aires."
@@ -405,10 +407,14 @@
     }
   },
   "TEAM": {
+    "PAGETITLE": "ITBA IEEE | Equipo",
+    "PAGEDESCRIPTION": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos.",
     "TITLE": "Equipo",
     "SUBTITLE": "IEEE ITBA se basa en el arduo trabajo de nuestros miembros en sus diferentes rubros, conócelos."
   },
   "NEWS": {
+    "PAGETITLE": "ITBA IEEE | Noticias",
+    "PAGEDESCRIPTION": "¡Entérate de las últimas noticias científicas y tecnológicas!",
     "OF": "de",
     "MORENEWS": "Ver más noticias",
     "RECOMMENDED": "Noticias recomendadas",
@@ -416,6 +422,8 @@
     "EDIT-NEW": "Editar noticia"
   },
   "IEEEXTREME": {
+    "PAGETITLE": "ITBA IEEE | IEEExtreme",
+    "PAGEDESCRIPTION": "IEEExtreme es una competencia de programación internacional que dura 24 horas. Es organizada por IEEE-ITBA y es la más importante del país.",
     "FACTS": {
       "EDITIONS": "Ediciones realizadas",
       "HOURS": "de competencia",
@@ -441,6 +449,8 @@
     }
   },
   "BITCUP": {
+    "PAGETITLE": "ITBA IEEE | Bit Cup",
+    "PAGEDESCRIPTION": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo.",
     "DESCRIPTION": "Descripción",
     "DESCRIPTION-TEXT": "La Bit Cup es una competencia de programación abierta y gratuita organizada por IEEE ITBA en la que los participantes se proponen resolver distintos desafíos en un límite de tiempo ¡Podés aprovechar para practicar para la IEEEXtreme y conocer el mundo de la programación competitiva!",
     "FORMAT": "Formato",
@@ -472,6 +482,8 @@
         "SOCIAL": "Redes Sociales"
     },
   "PYTHONCOURSES": {
+    "PAGETITLE": "ITBA IEEE | Curso Introductorio de Python",
+    "PAGEDESCRIPTION": "Curso introductorio de Python organizado por IEEE ITBA. Aprende los conceptos básicos de la programación y da tus primeros pasos en Python.",
     "CLASSES": {
       "C1": "Introducción a la programación en Python, Variables, Operadores, Control de flujo (if, while, for), Funciones",
       "C2": "Tipos de datos (int, float, string, boolean), Operaciones con tipos de datos, Listas, Operaciones con listas, Manipulación de archivos de texto",
@@ -561,6 +573,8 @@
     }
   },
   "DATAANALYSIS": {
+    "PAGETITLE": "ITBA IEEE | Curso de Análisis de Datos en Python",
+    "PAGEDESCRIPTION": "Curso de Análisis de Datos en Python organizado por IEEE ITBA. Aprende a usar herramientas de visualización y análisis de datos en Python.",
     "CLASSES": {
       "C1": "Introducción a librerías (repaso), Lectura y escritura de archivos formato Excel y CSV y Manipulación de datos con Pandas",
       "C2": "Introducción a matplotlib, Visualización de datos, Personalización de los gráficos y Casos de aplicación",
@@ -617,6 +631,8 @@
     "CONTENT": "WIE ITBA anuncia una nueva campaña de recruiting ¡Forma parte del equipo! ¡No dudes consultar cualquier duda que tengas!"
   },
   "CONTACT": {
+    "PAGETITLE": "ITBA IEEE | Contacto",
+    "PAGEDESCRIPTION": "Contáctanos para cualquier pregunta o consulta. Nos pondremos en contacto contigo lo antes posible.",
     "TITLE": "Contacto",
     "SUBTITLE": "Completá los siguientes datos, nos contactaremos a la brevedad.",
     "DESTINATION": "Enviar a",
@@ -650,6 +666,8 @@
     "CONTACTUS": "Contáctanos"
   },
   "WRITE-NEW": {
+    "PAGETITLE": "ITBA IEEE | Escribir Noticia",
+    "PAGEDESCRIPTION": "Escribe una noticia para la página de noticias de IEEE ITBA. ¡Comparte tus conocimientos con la comunidad!",
     "TITLE": "Escribir Noticia",
     "TITLE2": "Título",
     "POMPADOUR": "Copete",
@@ -664,6 +682,10 @@
     "FIRST_PARAGRAPH": "Primer párrafo encima de la imagen",
     "PUBLISH_NOW": "Publicar ahora",
     "PROGRAM_DATE": "Programar fecha de publicación"
+  },
+  "EDIT-NEW": {
+    "PAGETITLE": "ITBA IEEE | Editar Noticia",
+    "PAGEDESCRIPTION": "Edita una noticia de la página de noticias de IEEE ITBA"
   },
     "AUTH": {
         "LOGIN": {
@@ -688,9 +710,12 @@
       "DISABLED_USER": "Usuario ha sido deshabilitado"
     },
     "PAGETITLE": "Iniciar Sesión",
+    "PAGEDESCRIPTION": "Inicia sesión en IEEE ITBA.",
     "SUCCESS": "Bienvenido a IEEE!"
   },
   "REGISTER": {
+    "PAGETITLE": "ITBA IEEE | Registrarse",
+    "PAGEDESCRIPTION": "Registrate en IEEE ITBA. ¡Únete a nuestra comunidad!",
     "TITLE": "Registrarse",
     "FULL_NAME": "Nombre completo",
     "EMAIL": "Email",
@@ -721,6 +746,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "PAGETITLE": "ITBA IEEE | RAS Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Capítulo Estudiantil de la Sociedad de Robótica y Automatización del IEEE en ITBA",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Eventos",
     "TEAM": {
@@ -747,6 +773,8 @@
   },
 
   "EMB": {
+    "PAGETITLE": "ITBA IEEE | EMB Capítulo Estudiantil",
+    "PAGEDESCRIPTION": "Capítulo Estudiantil de la Sociedad de Ingeniería en Medicina y Biología del IEEE en ITBA",
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "EMB Student Branch Chapter",
     "EVENTS": "Eventos",
@@ -771,6 +799,8 @@
     }
   },
   "ERROR404": {
+    "PAGETITLE": "ITBA IEEE | Página no encontrada",
+    "PAGEDESCRIPTION": "Página no encontrada - ITBA IEEE",
     "TITLE": "Página no encontrada",
     "APOLOGY": "Lo sentimos, la página que estaba buscando no existe u ocurrió algún otro error",
     "INDICATION": "Por favor regrese a la página de inicio",
@@ -778,6 +808,8 @@
   },
   "WIP": "Sitio en construcción",
   "IOT": {
+    "PAGETITLE": "ITBA IEEE | Taller de IoT",
+    "PAGEDESCRIPTION": "Taller de IoT organizado por IEEE ITBA. Aprendé a controlar un brazo robótico con Internet of Things (IoT) y aplicá tus conocimientos en la práctica.",
     "TITLE": "Taller de IoT",
     "ENROLL": "¡Anotate ahora!",
     "DESC": {
@@ -807,6 +839,7 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "PAGETITLE": "ITBA IEEE | Asimov CUP",
+    "PAGEDESCRIPTION": "Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en ITBA.",
     "ENROLLBUTTON": "¡Anotate ahora!",
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "CATEGORIES": {
@@ -906,6 +939,8 @@
     "SPONSORS": "Sponsors"
   },
   "TYPESCRIPT": {
+    "PAGETITLE": "ITBA IEEE | Curso de Typescript",
+    "PAGEDESCRIPTION": "Curso de Typescript organizado por IEEE ITBA. Aprende a programar con el lenguaje de programación de Typescript.",
     "TITLE": "Curso de Typescript",
     "DESCRIPTION": {
       "TITLE": "Descripción",
@@ -1023,6 +1058,7 @@
   },
   "WIE": {
     "PAGETITLE": "ITBA IEEE | Capítulo estudiantil rama WIE",
+    "PAGEDESCRIPTION": "Capítulo estudiantil de la rama WIE del IEEE en ITBA",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA es un Grupo de Afinidad de la rama estudiantil de IEEE en el ITBA",
@@ -1087,6 +1123,8 @@
     "ABOUT": "Organización enfocada en la tecnología conformada por estudiantes y ex alumnos del ITBA, dedicada a inspirar y educar en diversas áreas de la tecnología relacionadas con la ingeniería y la tecnología de software."
   },
   "ADMIN": {
+    "PAGETITLE": "ITBA IEEE | Panel de administración",
+    "PAGEDESCRIPTION": "Panel de administración de ITBA IEEE",
     "TITLE": "Admin panel",
     "USERTAB": {
       "TITLE": "Usuarios",
@@ -1107,6 +1145,14 @@
       }
     }
   },
+  "SPONSORS": {
+      "PAGETITLE": "ITBA IEEE | Auspiciantes",
+      "PAGEDESCRIPTION": "Auspiciantes de IEEE ITBA"
+  },
+  "EVENTS": {
+      "PAGETITLE": "ITBA IEEE | Eventos",
+      "PAGEDESCRIPTION": "Eventos de IEEE ITBA"
+  },
   "MONTH": {
       "0": "Enero",
       "1": "Febrero",
@@ -1122,6 +1168,8 @@
       "11": "Diciembre"
   },
   "PROFILE": {
+      "PAGETITLE": "ITBA IEEE | Perfil",
+      "PAGEDESCRIPTION": "Perfil de usuario de IEEE ITBA",
       "TABS": {
           "GENERAL": "General",
           "SECURITY": "Seguridad"

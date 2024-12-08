@@ -1,0 +1,7 @@
+User-agent: *
+Crawl-delay: 10
+Disallow: /write-news/
+Disallow: /profile/
+Disallow: /admin/
+Disallow: /assets/
+

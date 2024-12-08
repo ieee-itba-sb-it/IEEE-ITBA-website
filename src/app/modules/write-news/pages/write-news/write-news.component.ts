@@ -16,6 +16,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
 import { Timestamp } from '@angular/fire/firestore';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-write-news',
@@ -51,7 +52,7 @@ export class WriteNewsComponent implements OnInit {
 
   @Input('id') newsReference: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService, private seoService: StaticSeoService) {
       this.user = {
           fullname: '',
           email: '',
@@ -95,6 +96,7 @@ export class WriteNewsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.seoService.updateMetaTags('WRITE-NEW.PAGETITLE', 'WRITE-NEW.PAGEDESCRIPTION', ['NEWS', 'IEEE', 'ITBA']);
       this.blogService.getDoc(this.newsReference).subscribe(news => {
           if (news) {
               this.newsContent = news;

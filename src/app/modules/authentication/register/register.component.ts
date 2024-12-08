@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { ApiResponse } from '../../../shared/models/data-types';
 import { Router } from '@angular/router';
 import { catchError, concatMap, filter, of } from 'rxjs';
+import {StaticSeoService} from "../../../core/services/seo/seo-static.service";
 
 const ERROR_MESSAGES = {
     'auth/email-already-in-use': 'REGISTER.ERROR.EMAIL_IN_USE',
@@ -18,7 +19,7 @@ const ERROR_MESSAGES = {
 })
 export class RegisterComponent implements OnInit {
 
-    constructor(private authService: AuthService, private readonly router: Router) {
+    constructor(private authService: AuthService, private readonly router: Router, private readonly seoService: StaticSeoService) {
         scroll(0, 0);
     }
 
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit {
 
     // On Init
     ngOnInit(): void {
+        this.seoService.updateMetaTags('REGISTER.PAGETITLE', 'REGISTER.PAGEDESCRIPTION', ['REGISTER', 'IEEE', 'ITBA']);
 
         this.isHidden = true;
         this.isHidden2 = true;

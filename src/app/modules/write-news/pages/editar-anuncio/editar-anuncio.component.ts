@@ -7,6 +7,7 @@ import { BlogService } from '../../../../core/services/blog/blog.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Timestamp } from '@angular/fire/firestore';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-editar-anuncio',
@@ -16,9 +17,10 @@ import { Timestamp } from '@angular/fire/firestore';
 export class EditarAnuncioComponent implements OnInit {
     newsData: Observable<NewsItem>;
 
-    constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private seoService: StaticSeoService) { }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags("EDIT-NEW.PAGETITLE", "EDIT-NEW.PAGEDESCRIPTION", ["NEWS", "IEEE", "ITBA"]);
         this.blogService.setCollectionName(blogCollectionName);
         if (this.route.snapshot.paramMap.get('id') != null) {
             this.newsData = this.blogService.getDoc(this.route.snapshot.paramMap.get('id'));

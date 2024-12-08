@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-error404',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error404Component implements OnInit {
 
-    constructor() { }
+    constructor(
+        private seoService: StaticSeoService
+    ) { }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags("ERROR404.PAGETITLE", "ERROR404.PAGEDESCRIPTION", ["404", "IEEE", "ITBA"]);
     }
 
 }

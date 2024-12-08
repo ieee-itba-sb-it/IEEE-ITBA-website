@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, FormControlName} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-contact-page',
@@ -19,11 +20,11 @@ export class ContactPageComponent implements OnInit {
     submitted = false; // show and hide the success message
     isLoading = false; // disable the submit button if we're loading
     responseMessage: string; // the response message to show to the user
-    
+
     response_ok: string;
     response_error: string;
 
-    constructor(private formBuilder: FormBuilder, private http: HttpClient, private translate: TranslateService) {
+    constructor(private formBuilder: FormBuilder, private http: HttpClient, private translate: TranslateService, private seoService: StaticSeoService) {
         scroll(0, 0);
 
         this.form = this.formBuilder.group({
@@ -35,7 +36,8 @@ export class ContactPageComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
+        this.seoService.updateMetaTags('CONTACT.PAGETITLE', 'CONTACT.PAGEDESCRIPTION', ['CONTACT', 'IEEE', 'ITBA']);
         this.translate.get('CONTACT.OK_RESPONSE').subscribe(res => {
             this.response_ok = res;
         });
