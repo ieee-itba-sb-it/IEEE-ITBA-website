@@ -29,13 +29,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let position of commission.positions" (click)="openPositionModal(commission, i)" class="position-row">
+                        <tr *ngFor="let position of commission.positions; index as i" (click)="openPositionModal(commission, i)" class="position-row">
                             <td>{{ position.id }}</td>
                             <td>{{ position.title | customTranslate }}</td>
-                            <td class="d-flex justify-content-center p-0" *ngIf="position.members.length > 0; else membersEmpty">
+                            <td class="d-flex justify-content-center p-0" *ngIf="position && position.members.length > 0; else membersEmpty">
                                 <app-profile-picture-stack>
                                     <div class="stack-item" *ngFor="let member of position.members">
-                                        <app-profile-picture size="3rem" [tooltip]="member.fullname" [src]="member.photoURL"></app-profile-picture>
+                                        <app-profile-picture size="3rem" [tooltip]="member.name" [src]="member.photo"></app-profile-picture>
                                     </div>
                                 </app-profile-picture-stack>
                             </td>

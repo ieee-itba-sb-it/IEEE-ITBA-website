@@ -6,8 +6,8 @@ import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { UserEditorModalComponent } from 'src/app/shared/components/user-editor-modal/user-editor-modal.component';
 import { roles } from 'src/app/shared/models/roles/roles';
 import { IEEEUserFilters } from 'src/app/shared/models/ieee-user/ieee-user-filters';
-import { UserManagerService } from './user.manager';
 import { MatChipListboxChange } from '@angular/material/chips';
+import {UserManagerService} from "../user.manager";
 
 @Component({
     selector: 'app-users',

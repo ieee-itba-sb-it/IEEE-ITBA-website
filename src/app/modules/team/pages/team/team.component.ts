@@ -17,6 +17,18 @@ export class TeamComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.team$ = this.teamService.getCurrentTeam();
+        this.team$ = this.teamService.getTeamCommissions();
+        this.team$.subscribe(team => {
+            console.log(team);
+        });
+        // this.team$.subscribe(team => {
+        //     team.forEach((commission: Commission) => {
+        //         commission.positions.forEach(position => {
+        //             position.members.forEach(member => {
+        //
+        //             })
+        //         });
+        //     });
+        // });
     }
 }

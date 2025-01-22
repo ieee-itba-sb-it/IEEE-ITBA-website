@@ -4,14 +4,21 @@ import {Commission, Position} from 'src/app/shared/models/commission';
 import {Observable} from 'rxjs';
 import {CommissionType, Role} from '../../../shared/models/ieee-user/ieee-team.enums';
 import {
-    collection, collectionGroup, doc,
+    arrayRemove,
+    arrayUnion,
+    collection, collectionGroup, doc, DocumentData,
     Firestore,
     getDoc,
     getDocs, orderBy, Query,
-    query,
+    query, runTransaction,
     where, writeBatch
 } from '@angular/fire/firestore';
 import { FirebaseError } from '@angular/fire/app';
+import {AdminService} from "../admin/admin.service";
+import {roles} from "../../../shared/models/roles/roles.enum";
+import {SensitiveUserData} from "../../../shared/models/ieee-user/ieee-user";
+import {firestore} from "firebase-admin";
+import DocumentSnapshot = firestore.DocumentSnapshot;
 
 interface IEEEUserRole extends IEEEMember {
     roleType: Role;
@@ -23,6 +30,8 @@ interface IEEEUserRole extends IEEEMember {
 export class TeamService {
     private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
     private static readonly MEMBERS_COLLECTION_NAME = 'members';
+    private static readonly USERS_COLLECTION_NAME = 'users';
+    private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
 
     constructor(private afs: Firestore) {}
 
@@ -91,7 +100,6 @@ export class TeamService {
     //         return COMMISSION_ORDER.indexOf(a.commission) - COMMISSION_ORDER.indexOf(b.commission);
     //     });
     // }
-
     private getCommissions(query: Query): Observable<Commission[]> {
         return new Observable<Commission[]>(obs => {
             getDocs(query).then(data => {
@@ -123,18 +131,71 @@ export class TeamService {
         })
     }
 
-    setCommission(commission: Commission) : Observable<Commission> {
+    addMembers(members: IEEEMember[], commission: Commission): Observable<IEEEMember[]> {
         return new Observable(obs => {
-            const batch = writeBatch(this.afs);
-            batch.set(doc(this.afs, "commissions", commission.id), commission);
-            batch.commit().then(() => {
-                obs.next(commission);
+            runTransaction(this.afs, async (transaction) => {
+                let documents: DocumentData[] = [];
+                for(let i = 0; i < members.length; i++) {
+                    documents[i] = await transaction.get(doc(this.afs, TeamService.SENSITIVE_USER_DATA_COLLECTION_NAME, members[i].email));
+                }
+                for(let i = 0; i < members.length; i++) {
+                    if (documents[i].exists()) {
+                        transaction.update(doc(this.afs, TeamService.SENSITIVE_USER_DATA_COLLECTION_NAME, members[i].email), {roles: arrayUnion(roles.member)});
+                    } else {
+                        transaction.set(doc(this.afs, TeamService.SENSITIVE_USER_DATA_COLLECTION_NAME, members[i].email), {roles: [roles.member]});
+                    }
+                    transaction.set(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME, members[i].email), {
+                        commissionid: members[i].commissionid,
+                        email: members[i].email,
+                        name: members[i].name,
+                        positionid: members[i].positionid
+                    });
+                    transaction.update(doc(this.afs, TeamService.USERS_COLLECTION_NAME, members[i].email), {roles: arrayUnion(roles.member)});
+                }
+            }).then((res) => {
+                obs.next(members);
             }).catch((err: FirebaseError) => {
                 obs.error(err);
             }).finally(() => {
                 obs.complete();
             });
-        })
+        });
+    }
+
+    removeMember(member: IEEEMember, commission: Commission): Observable<IEEEMember> {
+        return new Observable(obs => {
+            runTransaction(this.afs, async (transaction) => {
+                transaction.delete(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME, member.email));
+                const fetch = await getDocs(query(collectionGroup(this.afs, TeamService.MEMBERS_COLLECTION_NAME), where("email", "==", member.email)));
+                if(fetch.docs.length <= 1) {
+                    transaction.update(doc(this.afs, TeamService.USERS_COLLECTION_NAME, member.email), {roles: arrayRemove(roles.member)});
+                    transaction.update(doc(this.afs, TeamService.SENSITIVE_USER_DATA_COLLECTION_NAME, member.email), {roles: arrayRemove(roles.member)});
+                }
+            }).then((res) => {
+                obs.next(member);
+            }).catch((err: FirebaseError) => {
+                obs.error(err);
+            }).finally(() => {
+                obs.complete();
+            });
+        });
+    }
+
+    setCommission(commission: Commission) : Observable<Commission> {
+        let commissionCopy: Commission = {... commission};
+        delete commissionCopy.members;
+        commissionCopy.positions.forEach(position => {delete position.members;});
+        return new Observable(obs => {
+            const batch = writeBatch(this.afs);
+            batch.set(doc(this.afs, "commissions", commissionCopy.id), commissionCopy);
+            batch.commit().then(() => {
+                obs.next(commissionCopy);
+            }).catch((err: FirebaseError) => {
+                obs.error(err);
+            }).finally(() => {
+                obs.complete();
+            });
+        });
     }
 
     private getMembers(query : Query) : Observable<IEEEMember[]> {

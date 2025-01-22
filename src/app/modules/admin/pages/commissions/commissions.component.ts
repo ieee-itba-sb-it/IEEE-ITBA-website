@@ -35,10 +35,10 @@ export class CommissionsComponent implements OnInit {
     ngOnInit() {
         zip(this.commissions$, this.members$).subscribe(([commissions, members]) => {
             this.commissions = commissions;
-            
+
             this.commissions.forEach(commission => {
                 commission.positions.forEach(position => {
-                    position.members = members.filter(member => 
+                    position.members = members.filter(member =>
                         member.positionid == position.id && member.commissionid == commission.id
                     )
                 })
@@ -83,10 +83,11 @@ export class CommissionsComponent implements OnInit {
                 commission: commission,
                 positionIdx: position
             },
-            class: 'modal-dialog-centered',
+            class: 'modal-dialog-centered modal-lg',
         });
         this.modalRef.content.update.subscribe(commission => {
             this.commissions.find(c => c.id === commission.id).positions = commission.positions;
         });
+        //listen
     }
 }

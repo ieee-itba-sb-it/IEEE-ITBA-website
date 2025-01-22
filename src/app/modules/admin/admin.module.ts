@@ -22,6 +22,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PositionEditorModalComponent } from './components/position-editor-modal/position-editor-modal.component';
+import {MatTableModule} from "@angular/material/table";
+import {UserManagerService} from "./pages/user.manager";
 
 // Tab manager
 const routes: Routes = [{
@@ -57,7 +59,7 @@ export const routing = RouterModule.forChild(routes);
         MatInputModule,
         MatFormFieldModule,
         FormsModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         CdkDrag,
         CdkDropList,
         MDBBootstrapModule.forRoot(),
@@ -70,6 +72,7 @@ export const routing = RouterModule.forChild(routes);
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
             extend: true
         }),
+        MatTableModule,
     ]
 })
 export class AdminModule { }

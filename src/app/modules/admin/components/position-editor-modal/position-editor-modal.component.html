@@ -1,74 +1,141 @@
-<div class="modal-header">
-    <div *ngIf="editMode(); else addHeader">
-        <h2 class="modal-title"><span>Editar rol en {{ commission.title | customTranslate }}</span></h2>
-        <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title | customTranslate }}</h4>
-    </div>
-    <ng-template #addHeader>
-        <h2 class="modal-title"><span>Crear rol en {{ commission.title | customTranslate }}</span></h2>
-    </ng-template>
-    <button type="button" (click)="modalRef.hide()" class="btn">
-        <mdb-icon fas icon="times" size="lg"></mdb-icon>
-    </button>
-</div>
-<form [formGroup]="positionForm">
-    <div class="modal-body">
-        <mat-form-field class="w-100" *ngIf="!editMode()">
-            <mat-label>ID</mat-label>
-            <input matInput
-                   type="text"
-                   id="id"
-                   formControlName="id">
-        </mat-form-field>
-        <div formGroupName="title" class="mt-2">
-            <label>Título</label>
-            <mat-form-field class="w-100">
-                <mat-label>Título en español</mat-label>
-                <input matInput
-                       type="text"
-                       id="es"
-                       formControlName="es"
-                       >
-            </mat-form-field>
-            <mat-form-field class="w-100">
-                <mat-label>Título en Inglés</mat-label>
-                <input matInput
-                       type="text"
-                       id="en"
-                       formControlName="en">
-            </mat-form-field>
+<div *ngIf="!addingUser.getValue(); else addUser">
+    <div class="modal-header">
+        <div *ngIf="editMode(); else addHeader">
+            <h2 class="modal-title"><span>Editar rol en {{ commission.title | customTranslate }}</span></h2>
+            <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title | customTranslate }}</h4>
         </div>
-        <div *ngIf="error" class="error-container">
-            <p class="error">
-                {{ error }}
-            </p>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" *ngIf="editMode()" class="btn delete-btn" (click)="deletePosition()">Eliminar</button>
-        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
-            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+        <ng-template #addHeader>
+            <h2 class="modal-title"><span>Crear rol en {{ commission.title | customTranslate }}</span></h2>
+        </ng-template>
+        <button type="button" (click)="modalRef.hide()" class="btn">
+            <mdb-icon fas icon="times" size="lg"></mdb-icon>
         </button>
     </div>
-    <ng-template #loadSpinner class="spinner">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
+    <form [formGroup]="positionForm">
+        <div class="modal-body">
+            <mat-form-field class="w-100" *ngIf="!editMode()">
+                <mat-label>ID</mat-label>
+                <input matInput
+                       type="text"
+                       id="id"
+                       formControlName="id">
+            </mat-form-field>
+            <div formGroupName="title" class="mt-2">
+                <label>{{ this.TITLE | customTranslate }}</label>
+                <mat-form-field class="w-100">
+                    <mat-label>Título en español</mat-label>
+                    <input matInput
+                           type="text"
+                           id="es"
+                           formControlName="es"
+                           >
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Título en Inglés</mat-label>
+                    <input matInput
+                           type="text"
+                           id="en"
+                           formControlName="en">
+                </mat-form-field>
+            </div>
+            <div *ngIf="error" class="error-container">
+                <p class="error">
+                    {{ error }}
+                </p>
+            </div>
         </div>
-    </ng-template>
-</form>
-<table mdbTable class="members_table" small="true">
-    <thead>
-    <tr>
-        <th scope="col"> HOLA </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr mdbTableCol>
-        <th scope="row">A</th>
-        <td>B</td>
-        <td>C</td>
-        <td>D</td>
-    </tr>
-    </tbody>
-</table>
-
+        <div *ngIf="positionIdx >= 0" class="members-table">
+            <label class="members-title">{{ this.MEMBERS_NAME | customTranslate }}</label>
+            <table mdbTable mdbTableScroll class="table align-middle mb-0 mt-2 rounded table-hover">
+                <thead>
+                <tr>
+                    <th class="fw-bold" *ngFor="let head of headElements" scope="col">{{ head | customTranslate}} </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let member of commission.positions[positionIdx].members; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>
+                        <app-profile-picture size="2rem" [tooltip]="member.name" [src]="member.photo"></app-profile-picture>
+                    </td>
+                    <td>
+                        <mdb-icon
+                        fas
+                        icon="trash"
+                        (click)="removeMember(member)"></mdb-icon>
+                    </td>
+                </tr>
+                <tr (click)="openMemberForm()" class="position-row">
+                    <td colspan="5">
+                        <div class="d-flex w-100 justify-content-center">
+                            <mdb-icon fas icon="add"></mdb-icon>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
+                {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+            </button>
+            <button type="button" *ngIf="editMode()" class="btn delete-btn" (click)="deletePosition()">Eliminar</button>
+            <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+        </div>
+    </form>
+</div>
+<ng-template #addUser>
+    <div class="user-list">
+        <div class="search-bar">
+            <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
+            <input (keyup)="handleSearchbarEvent($event)"
+                   (submit)="handleSearchbarEvent($event)"
+                   type="text" name="user" id="user"
+                   autocomplete="off"
+                   [placeholder]=" 'ADMIN.USERTAB.SEARCHBAR' | translate ">
+            <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
+        </div>
+        <table mdbTable class="table align-middle mb-0 mt-2 rounded">
+            <thead>
+                <tr>
+                    <th class="fw-bold">{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
+                    <th class="fw-bold">{{ "ADMIN.USERTAB.TABLE.EMAIL" | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of (users$ | async).content; index as i" (click)="selectUser(user)" [class.belongs-to-position]="belongsToPosition(user)" class="table-hover">
+                    <td [class.user-selected]="isSelected(user)">{{ user.fullname }}</td>
+                    <td [class.user-selected]="isSelected(user)">{{ user.email }}</td>
+                    <td [class.user-selected]="isSelected(user)">
+                        <app-profile-picture size="40px" [src]="user.photoURL"></app-profile-picture>
+                    </td>
+                    <td *ngIf="belongsToPosition(user); else notBelongs">Ya pertenece</td>
+                    <ng-template #notBelongs>
+                        <td [class.user-selected]="isSelected(user)"></td>
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator
+            #paginator
+            [length]="(users$ | async).count"
+            [pageSize]="10"
+            (page)="handlePageEvent($event)"
+            aria-label="Select page"
+            class="paginator border-bottom">
+        </mat-paginator>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addMembers()" [disabled]="selectedUsers.length === 0">
+            {{ ADD_MEMBERS | customTranslate}}
+        </button>
+        <button type="button" class="btn close-btn" (click)="addingUser.next(false); selectedUsers = []">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+    </div>
+</ng-template>
+<ng-template #loadSpinner class="spinner">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</ng-template>

@@ -70,3 +70,66 @@
 .modal-footer .save-btn:hover {
     box-shadow: 0 0 2px var(--bs-ieee-bright-blue);
 }
+
+.members-table {
+    font-weight: 600;
+    overflow-y:scroll;
+    max-height: 250px;
+}
+
+.search-bar {
+    margin: 0 auto;
+    width: 70%;
+    height: 3rem;
+    background-color: #DEDEDE;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+.search-bar .search-icon {
+    color:gray;
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input#user {
+    width: 100%;
+    height: 100%;
+    margin: 0 1rem;
+    background: none;
+    border: none;
+}
+
+.search-bar input#user:focus {
+    outline: none;
+}
+
+.user-list {
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+tr.user-row:hover td {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.members-title {
+    padding-left: 16px;
+}
+
+.belongs-to-position {
+    filter: brightness(80%);
+    cursor: not-allowed;
+}
+
+.user-selected {
+    background-color: var(--bs-ieee-bright-blue);
+    opacity: 60%;
+    color: white;
+}

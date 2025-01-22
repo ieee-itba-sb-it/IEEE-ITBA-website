@@ -9,3 +9,6 @@ export interface IEEEuser {
   roles: roles[];
   linkedin?: string;
 }
+export interface SensitiveUserData {
+    roles: roles[];
+}

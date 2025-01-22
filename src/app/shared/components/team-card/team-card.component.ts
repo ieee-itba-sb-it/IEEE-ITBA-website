@@ -9,9 +9,8 @@ import { Component, Input } from '@angular/core';
 export class TeamCardComponent {
     white = false;
 
-  @Input()
-      team: TeamMember[];
+  @Input() team: TeamMember[];
 
-  constructor() { }
+  constructor() {}
 
 }

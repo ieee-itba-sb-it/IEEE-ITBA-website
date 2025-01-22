@@ -40,7 +40,7 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-    match /{path=**}/members/{member}  { 
+    match /{path=**}/members/{member}  {
       allow read;
       allow write: if hasRole("admin");
     }
@@ -49,7 +49,7 @@ service cloud.firestore {
     	allow get, update, delete: if isDataOwner() || hasRole("admin");
       allow list: if hasRole("admin");
       // Solo puede crear el objeto usuario si el id del usuario en el body corresponde con el id del usuario en el token
-      allow create: if isSignedIn() && request.resource.data.uID == request.auth.uid;
+      allow create: if (isSignedIn() && request.resource.data.uID == request.auth.uid) || hasRole("admin");
     }
 
     match /sensitive-user-data/{document=**} {

@@ -9,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class IndividualCardComponent implements OnInit {
 
   @Input()
-      person: TeamMember = null;
+      person: TeamMember;
 
   constructor() { }
 
