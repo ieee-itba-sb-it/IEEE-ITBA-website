@@ -39,7 +39,6 @@ export class PositionEditorModalComponent implements OnInit {
     positionForm: FormGroup;
 
     headElements: InternationalText[] = [
-        {es: "#", en: "#"},
         {es: "Nombre", en: "Name"},
         {es: "Correo", en: "Email"},
         {es: "Foto", en: "Photo"}
@@ -51,7 +50,7 @@ export class PositionEditorModalComponent implements OnInit {
     selectedUsers: IEEEuser[] = [];
     users$: Observable<{content: IEEEuser[], count: number, loading: boolean }>;
     filters: IEEEUserFilters = {};
-    searchbarTimeout;
+    searchbarTimeout: NodeJS.Timeout;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -67,21 +66,18 @@ export class PositionEditorModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.positionIdx != null) {
-            this.positionForm.patchValue(this.commission.positions[this.positionIdx]);
-        }
         this.userManagerService.setPageSize(this.pageSize);
         this.addingUser = new BehaviorSubject<boolean>(false);
         this.users$ = this.userManagerService.getUsers();
-        this.firstPage();
         if(this.editMode()) {
+            this.positionForm.patchValue(this.commission.positions[this.positionIdx]);
+            this.firstPage();
             this.localMembers = this.commission.positions[this.positionIdx].members;
             this.users$.subscribe((users) => {
                 this.localUsers = users.content.map((user) => ({user, selected: false}));
-
-                this.localUsers.forEach((userModel) => {
+                this.localUsers.forEach((userModel, index) => {
                     if(this.commission.positions[this.positionIdx].members.includes(this.userToMember(userModel.user))) {
-                        this.localUsers.at(this.getUserIndex(userModel.user)).selected = true;
+                        this.localUsers[index].selected = true;
                     }
                 });
             });
@@ -99,23 +95,28 @@ export class PositionEditorModalComponent implements OnInit {
         this.commission.positions.forEach((position, index) => {
             position.order = index;
         });
+        this.teamService.setCommission(this.commission).subscribe(res => {
+            this.update.emit(this.commission);
+            this.modalRef.hide();
+        });
     }
 
-    addPosition() {
+    setPosition() {
         if(this.loading) return;
         if(this.positionForm.invalid) {
             this.error = "Error en el cargado del formulario.";
             return;
         }
+        let commissionCopy: Commission = {...this.commission};
         let position : Position = this.positionForm.value as Position;
         let index: number = (this.positionIdx == undefined ? this.commission.positions.length : this.positionIdx);
         position.order = index;
         position.members = this.positionIdx == undefined ? [] : this.commission.positions[this.positionIdx].members;
-        this.commission.positions[index] = position;
-        this.commission.positions.sort((a, b) => a.order - b.order);
+        commissionCopy.positions[index] = position;
+        commissionCopy.positions.sort((a, b) => a.order - b.order);
         this.loading = true;
-        this.teamService.setCommission(this.commission).subscribe(res => {
-            this.update.emit(this.commission);
+        this.teamService.setCommission(commissionCopy).subscribe(res => {
+            this.update.emit(commissionCopy);
             this.modalRef.hide();
         });
     }
@@ -126,6 +127,11 @@ export class PositionEditorModalComponent implements OnInit {
         delete position.order;
         delete position.members;
         return JSON.stringify(position) != JSON.stringify(this.positionForm.value);
+    }
+
+    hasMembers() {
+        if (this.positionIdx == undefined) return false;
+        return this.commission.positions[this.positionIdx].members.length > 0;
     }
 
     editMode() {
@@ -144,14 +150,12 @@ export class PositionEditorModalComponent implements OnInit {
         });
         this.selectedUsers = [];
         this.addingUser.next(false);
-        //emit
     }
 
     removeMember(member: IEEEMember) {
         this.teamService.removeMember(member, this.commission).subscribe(memberToRemove => {
             this.localMembers.splice(this.localMembers.indexOf(memberToRemove), 1);
         });
-        //emit
     }
 
     isSelected(user: IEEEuser): boolean {
@@ -170,6 +174,7 @@ export class PositionEditorModalComponent implements OnInit {
     }
 
     selectUser(user: IEEEuser) {
+        if (this.belongsToPosition(user)) return;
         let index: number;
         if((index = this.getUserIndex(user)) == -1) {
             this.selectedUsers.push(user);

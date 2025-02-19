@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MDBBootstrapModule, TooltipModule} from 'angular-bootstrap-md';
 import { UsersComponent } from './pages/users/users.component';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -23,7 +23,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PositionEditorModalComponent } from './components/position-editor-modal/position-editor-modal.component';
 import {MatTableModule} from "@angular/material/table";
-import {UserManagerService} from "./pages/user.manager";
 
 // Tab manager
 const routes: Routes = [{

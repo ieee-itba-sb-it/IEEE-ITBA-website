@@ -44,7 +44,7 @@
                 </p>
             </div>
         </div>
-        <div *ngIf="positionIdx >= 0" class="members-table">
+        <div *ngIf="positionIdx >= 0" class="members-table px-2">
             <label class="members-title">{{ this.MEMBERS_NAME | customTranslate }}</label>
             <table mdbTable mdbTableScroll class="table align-middle mb-0 mt-2 rounded table-hover">
                 <thead>
@@ -54,13 +54,12 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let member of commission.positions[positionIdx].members; index as i">
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ member.name }}</td>
-                    <td>{{ member.email }}</td>
+                    <td class="align-middle">{{ member.name }}</td>
+                    <td class="align-middle">{{ member.email }}</td>
                     <td>
-                        <app-profile-picture size="2rem" [tooltip]="member.name" [src]="member.photo"></app-profile-picture>
+                        <app-profile-picture size="2rem" [src]="member.photo"></app-profile-picture>
                     </td>
-                    <td>
+                    <td class="align-middle">
                         <mdb-icon
                         fas
                         icon="trash"
@@ -78,10 +77,13 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addPosition()" [disabled]="!hasChanged()">
+            <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="setPosition()" [disabled]="!hasChanged()">
                 {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
             </button>
-            <button type="button" *ngIf="editMode()" class="btn delete-btn" (click)="deletePosition()">Eliminar</button>
+            <span [mdbTooltip]="hasMembers() ? 'Debes eliminar todos los miembros' : null">
+                <button type="button" *ngIf="editMode()" class="btn delete-btn"
+                        [class.disabled]="hasMembers()" (click)="deletePosition()">Eliminar</button>
+            </span>
             <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
         </div>
     </form>
@@ -134,7 +136,7 @@
         <button type="button" class="btn close-btn" (click)="addingUser.next(false); selectedUsers = []">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
     </div>
 </ng-template>
-<ng-template #loadSpinner class="spinner">
+<ng-template #loadSpinner class="spinner mr-5">
     <div class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
     </div>

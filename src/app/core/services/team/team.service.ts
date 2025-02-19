@@ -6,7 +6,7 @@ import {CommissionType, Role} from '../../../shared/models/ieee-user/ieee-team.e
 import {
     arrayRemove,
     arrayUnion,
-    collection, collectionGroup, doc, DocumentData,
+    collection, collectionGroup, deleteDoc, doc, DocumentData,
     Firestore,
     getDoc,
     getDocs, orderBy, Query,
@@ -182,9 +182,11 @@ export class TeamService {
     }
 
     setCommission(commission: Commission) : Observable<Commission> {
-        let commissionCopy: Commission = {... commission};
+        let commissionCopy: Commission = structuredClone(commission);
         delete commissionCopy.members;
-        commissionCopy.positions.forEach(position => {delete position.members;});
+        commissionCopy.positions.forEach(position => {
+            delete position.members;
+        });
         return new Observable(obs => {
             const batch = writeBatch(this.afs);
             batch.set(doc(this.afs, "commissions", commissionCopy.id), commissionCopy);

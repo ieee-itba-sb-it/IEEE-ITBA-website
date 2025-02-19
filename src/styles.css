@@ -56,10 +56,14 @@ p { line-height: 1.5; }
   font-weight: 500;
 }
 
-.event li > p{ 
+.event li > p{
   margin: 0;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
+}
+
+.table>:not(caption)>*>* {
+    padding: .5rem .5rem !important;
 }
 
 @keyframes horizontal-shaking {

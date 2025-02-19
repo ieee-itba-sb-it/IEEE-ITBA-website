@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { CommissionEditorModalComponent } from 'src/app/modules/admin/components/commission-editor-modal/commission-editor-modal.component';
 import {Commission } from "../../../../shared/models/commission";
@@ -26,7 +26,7 @@ export class CommissionsComponent implements OnInit {
 
     loading: BehaviorSubject<boolean>;
 
-    constructor(private modalService: MDBModalService, private teamService: TeamService) {
+    constructor(private modalService: MDBModalService, private teamService: TeamService, private renderer: Renderer2) {
         this.commissions$ = this.teamService.getTeamCommissions();
         this.members$ = this.teamService.getAllMembers();
         this.loading = new BehaviorSubject(true);
@@ -83,11 +83,11 @@ export class CommissionsComponent implements OnInit {
                 commission: commission,
                 positionIdx: position
             },
-            class: 'modal-dialog-centered modal-lg',
+            class: 'modal-dialog-centered modal-lg overflow-auto',
         });
-        this.modalRef.content.update.subscribe(commission => {
-            this.commissions.find(c => c.id === commission.id).positions = commission.positions;
+        this.renderer.setStyle(document.querySelector('mdb-modal-container'), 'overflow-y', 'auto');
+        this.modalRef.content.update.subscribe((commission: Commission) => {
+            this.commissions[position].positions = commission.positions;
         });
-        //listen
     }
 }
