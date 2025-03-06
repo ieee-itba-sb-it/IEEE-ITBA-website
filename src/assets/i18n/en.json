@@ -1077,6 +1077,9 @@
     },
     "COMMISSIONSTAB": {
       "TITLE": "Commissions"
+    },
+    "TEAMREQUESTSTAB": {
+      "TITLE": "Team requests"
     }
   },
   "MONTH": {

@@ -122,21 +122,21 @@ export class AuthService {
             element.style.color = 'green';
         })).catch(err => {
             switch (err.code) {
-                case 'auth/invalid-email': {
-                    element.textContent = 'Invalid email address.';
-                    element.style.color = 'red';
-                    break;
-                }
-                case 'auth/user-not-found': {
-                    element.textContent = 'No user corresponding to provided email.';
-                    element.style.color = 'red';
-                    break;
-                }
-                default: {
-                    element.textContent = 'Error.';
-                    element.style.color = 'red';
-                    break;
-                }
+            case 'auth/invalid-email': {
+                element.textContent = 'Invalid email address.';
+                element.style.color = 'red';
+                break;
+            }
+            case 'auth/user-not-found': {
+                element.textContent = 'No user corresponding to provided email.';
+                element.style.color = 'red';
+                break;
+            }
+            default: {
+                element.textContent = 'Error.';
+                element.style.color = 'red';
+                break;
+            }
             }
         })
     }

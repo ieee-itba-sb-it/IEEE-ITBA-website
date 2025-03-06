@@ -18,7 +18,6 @@ export class GeneralComponent implements OnInit {
     user$: Observable<IEEEuser>;
     actual: IEEEuser;
     changes: IEEEuser;
-
     picturetype: string;
 
     loading: boolean = false;
@@ -71,34 +70,6 @@ export class GeneralComponent implements OnInit {
 
     // Local updates
 
-    uploadPicture(event: Event): void {
-        const sizelimit: number = 2;
-        const extensions: string[] = ['png', 'jpg', 'jpeg'];
-        const picture: File = event.target['files'][0];
-        const type: string = picture.type.split('/')[1];
-        if (!picture) return;
-        if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
-        if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
-        this.imageCompress.getOrientation(picture)
-            .then(async orientation => {
-                const base = await this.toBase64(picture);
-                return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
-            })
-            .then(res => {
-                if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizelimit) throw new Error("Compression not enough");
-                this.changes.photoURL = res;
-                this.picturetype = picture.type.split('/')[1];
-            })
-            .catch(err => {
-                this.error$.next("COMPRESSION_FAILED");
-                console.log(err.image);
-            });
-    }
-
-    deletePicture(): void {
-        this.changes.photoURL = null;
-    }
-
     discardChanges(): void {
         this.changes = {...this.actual};
         this.shake = true;
@@ -120,15 +91,5 @@ export class GeneralComponent implements OnInit {
             class: 'modal-dialog-centered',
         });
     }
-
-    toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            if (typeof reader.result == "string") resolve(reader.result);
-            else reject();
-        };
-        reader.onerror = reject;
-    });
 
 }

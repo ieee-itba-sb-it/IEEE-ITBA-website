@@ -23,9 +23,9 @@
             </mdb-card-title>
 
             <!-- Cargo de la persona -->
-<!--            <mdb-card-text *ngIf="person.roles !== 'NULL'" id="roleTextContainer">-->
-<!--              <h5 class="roleTextContainer">{{ person.roles | translate }}</h5>-->
-<!--            </mdb-card-text>-->
+            <mdb-card-text *ngIf="position" id="roleTextContainer">
+              <h5 class="roleTextContainer">{{ position | customTranslate }}</h5>
+            </mdb-card-text>
 
           <div class="iconContainer">
             <!-- Linkedin -->

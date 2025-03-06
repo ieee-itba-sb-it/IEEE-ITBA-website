@@ -22,6 +22,12 @@ export class AdminComponent implements OnInit {
       link: "commissions",
       isActive: true,
       icon: "user-group",
+    },
+    {
+      title: "ADMIN.TEAMREQUESTSTAB.TITLE",
+      link: "team-requests",
+      isActive: true,
+      icon: "door-open",
     }
   ]
 

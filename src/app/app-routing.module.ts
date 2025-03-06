@@ -185,6 +185,17 @@ const routes: Routes = [
         },
     },
     {
+        path: 'team-request',
+        loadChildren: () =>
+            import('./modules/team-request/team-request.module').then(
+                (m) => m.TeamRequestModule
+            ),
+        canActivate: [AuthGuardService],
+        data: {
+            expectedRole: [roles.admin],
+        },
+    },
+    {
         path: '**',
         loadChildren: () =>
             import('./modules/error404/error404.module').then(

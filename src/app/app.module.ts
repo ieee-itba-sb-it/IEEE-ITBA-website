@@ -19,7 +19,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { connectDatabaseEmulator, getDatabase, provideDatabase } from '@angular/fire/database';
 
-import { CardsModule } from 'angular-bootstrap-md';
+import {CardsModule, IconsModule} from 'angular-bootstrap-md';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { FlexModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
@@ -28,6 +28,13 @@ import { HttpLoaderFactory } from './shared/translation-helpers';
 import { NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
 import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
+import { TeamRequestComponent } from './modules/team-request/pages/team-request.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {FormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -48,7 +55,8 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        TeamRequestComponent
     ],
     imports: [
         AppRoutingModule,
@@ -90,7 +98,16 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         FlexModule,
         MatChipsModule,
         SharedModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        MatCardModule,
+        IconsModule,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        IconsModule,
+        MatSelectModule,
+        IconsModule
     ],
     bootstrap: [AppComponent]
 })

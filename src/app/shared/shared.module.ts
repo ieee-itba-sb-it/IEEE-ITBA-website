@@ -50,10 +50,11 @@ import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
 import { CustomTranslatePipe } from "./pipes/CustomTranslatePipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
-import { CommissionEditorModalComponent } from '../modules/admin/components/commission-editor-modal/commission-editor-modal.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { ProfilePictureStackComponent } from './components/profile-picture-stack/profile-picture-stack.component';
+import {UploadPictureInputComponent} from "./components/upload-picture-input/upload-picture-input.component";
+import {MatButtonModule} from "@angular/material/button";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -68,7 +69,8 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent, ProfilePictureStackComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
+        ProfilePictureStackComponent, UploadPictureInputComponent],
     imports: [
         routing,
         CommonModule,
@@ -97,6 +99,7 @@ export const routing = RouterModule.forChild(routes);
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatButtonModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
@@ -105,6 +108,6 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
-        EventInscriptionSectionComponent, ProfilePictureStackComponent],
+        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent],
 })
 export class SharedModule { }

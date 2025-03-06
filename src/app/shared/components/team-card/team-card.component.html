@@ -1,5 +1,7 @@
 <div class="card-group bottomLine">
-  <div *ngFor="let person of team">
-    <app-individual-card [person]="person"></app-individual-card>
-  </div>
+  <ng-container *ngFor="let position of team.positions">
+      <div *ngFor="let person of position.members">
+          <app-individual-card [person]="person" [position]="position.title"></app-individual-card>
+      </div>
+  </ng-container>
 </div>

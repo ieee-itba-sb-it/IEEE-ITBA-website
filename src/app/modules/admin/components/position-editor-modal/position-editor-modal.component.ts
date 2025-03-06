@@ -76,17 +76,14 @@ export class PositionEditorModalComponent implements OnInit {
             this.users$.subscribe((users) => {
                 this.localUsers = users.content.map((user) => ({user, selected: false}));
                 this.localUsers.forEach((userModel, index) => {
-                    if(this.commission.positions[this.positionIdx].members.includes(this.userToMember(userModel.user))) {
+                    if(this.commission.positions[this.positionIdx].members.includes(
+                        IEEEMember.fromUser(userModel.user, this.commission.id, this.commission.positions[this.positionIdx].id)
+                    )) {
                         this.localUsers[index].selected = true;
                     }
                 });
             });
         }
-    }
-
-    userToMember(user: IEEEuser): IEEEMember {
-        return new IEEEMember(user.fullname, user.email,
-            this.commission.id, this.commission.positions[this.positionIdx].id);
     }
 
     deletePosition() {
@@ -144,7 +141,7 @@ export class PositionEditorModalComponent implements OnInit {
 
     addMembers() {
         this.teamService.addMembers(this.selectedUsers.map(user => {
-            return this.userToMember(user);
+            return IEEEMember.fromUser(user, this.commission.id, this.commission.positions[this.positionIdx].id)
         }), this.commission).subscribe(membersToAdd => {
             membersToAdd.forEach((member) => {this.localMembers.push(member);});
         });

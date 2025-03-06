@@ -1,5 +1,6 @@
 import {IEEEUserResponse} from './ieee-user/ieee-user.response';
 import {CommissionType, Gender, Role} from './ieee-user/ieee-team.enums';
+import {IEEEuser} from "./ieee-user/ieee-user";
 
 export interface TeamMember {
     name: string;
@@ -36,6 +37,12 @@ export class IEEEMember implements TeamMember {
             commissionid,
             positionid
         );
+    }
+
+    static fromUser(user: IEEEuser, commissionid: string, positionid: string): IEEEMember {
+        return new IEEEMember(user.fullname, user.email,
+            commissionid, positionid,
+            user.photoURL, user.linkedin);
     }
 
     // Necesario para el pipe de traducción. Los enums en TypeScript no pueden contener más info

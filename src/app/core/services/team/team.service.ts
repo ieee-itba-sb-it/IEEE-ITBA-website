@@ -7,10 +7,10 @@ import {
     arrayRemove,
     arrayUnion,
     collection, collectionGroup, deleteDoc, doc, DocumentData,
-    Firestore,
+    Firestore, FirestoreError,
     getDoc,
     getDocs, orderBy, Query,
-    query, runTransaction,
+    query, runTransaction, setDoc,
     where, writeBatch
 } from '@angular/fire/firestore';
 import { FirebaseError } from '@angular/fire/app';
@@ -115,6 +115,13 @@ export class TeamService {
         })
     }
 
+    getAllCommissions(): Observable<Commission[]> {
+        return this.getCommissions(query(
+            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME),
+            orderBy("order")
+        ))
+    }
+
     getTeamCommissions(): Observable<Commission[]> {
         return this.getCommissions(query(
             collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME),
@@ -144,12 +151,7 @@ export class TeamService {
                     } else {
                         transaction.set(doc(this.afs, TeamService.SENSITIVE_USER_DATA_COLLECTION_NAME, members[i].email), {roles: [roles.member]});
                     }
-                    transaction.set(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME, members[i].email), {
-                        commissionid: members[i].commissionid,
-                        email: members[i].email,
-                        name: members[i].name,
-                        positionid: members[i].positionid
-                    });
+                    transaction.set(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME, members[i].email), {...members[i]});
                     transaction.update(doc(this.afs, TeamService.USERS_COLLECTION_NAME, members[i].email), {roles: arrayUnion(roles.member)});
                 }
             }).then((res) => {
@@ -223,5 +225,13 @@ export class TeamService {
 
     getAllMembers() : Observable<IEEEMember[]> {
         return this.getMembers(collectionGroup(this.afs, TeamService.MEMBERS_COLLECTION_NAME));
+    }
+
+    createTeamRequest(member: IEEEMember) {
+        return new Observable<boolean>(obs => {
+            setDoc(doc(this.afs, "team-requests", member.email), member)
+                .then(() => obs.next(true))
+                .catch((err: FirestoreError) => obs.error(err));
+        })
     }
 }

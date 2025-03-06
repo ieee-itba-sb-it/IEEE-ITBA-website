@@ -1,5 +1,5 @@
-import { TeamMember } from '../../models/team-member';
 import { Component, Input } from '@angular/core';
+import {Commission} from "../../models/commission";
 
 @Component({
     selector: 'app-team-card',
@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class TeamCardComponent {
     white = false;
 
-  @Input() team: TeamMember[];
+  @Input() team: Commission;
 
   constructor() {}
 

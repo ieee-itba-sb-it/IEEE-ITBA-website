@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PositionEditorModalComponent } from './components/position-editor-modal/position-editor-modal.component';
 import {MatTableModule} from "@angular/material/table";
+import { TeamRequestsComponent } from './pages/team-requests/team-requests.component';
 
 // Tab manager
 const routes: Routes = [{
@@ -31,7 +32,8 @@ const routes: Routes = [{
     children: [
         { path: '', redirectTo: 'users', pathMatch: 'full' },
         { path: 'users', component: UsersComponent },
-        { path: 'commissions', component: CommissionsComponent }
+        { path: 'commissions', component: CommissionsComponent },
+        { path: 'team-requests', component: TeamRequestsComponent },
     ]
 }];
 
@@ -43,7 +45,8 @@ export const routing = RouterModule.forChild(routes);
         UsersComponent,
         CommissionsComponent,
         CommissionEditorModalComponent,
-        PositionEditorModalComponent
+        PositionEditorModalComponent,
+        TeamRequestsComponent
     ],
     imports: [
         routing,
