@@ -1,7 +1,7 @@
 <footer class="page-footer font-small pt-4 pb-4" style="background-color: {{color}}">
-    <div class="container text-center">
+    <div class="footer-container">
 
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <div class="image-container col-12 col-md-6 mb-3 mb-md-0 ml-5">
             <div class="d-flex align-items-center">
                 <img src="../../../../assets/image/general-icons/IEEE-Logo-No-Text-Darkest.png" alt="IEEE Logo" class="footer-logo">
                 <!-- IEEE ITBA Text -->
@@ -11,44 +11,41 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="text-container">
 
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <div class="text-block">
-                    <h4 class="text-white font-weight-bold mb-3 text-start">{{ 'FOOTER.ORGANIZATION' | translate }}</h4>
-                    <ul class="list-unstyled text-start">
-                        <li>
-                            <a [routerLink]="['/about-us']" class="text-white">{{ 'FOOTER.ABOUTUS' | translate }}</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/sponsors']" class="text-white">{{ 'FOOTER.SPONSORS' | translate }}</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/contact']" class="text-white">{{ 'FOOTER.CONTACT' | translate }}</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="text-block">
+                <h4 class="text-white font-weight-bold mb-3">{{ 'FOOTER.ORGANIZATION' | translate }}</h4>
+                <ul class="list-unstyled text-start row">
+                    <li>
+                        <a [routerLink]="['/about-us']" class="text-white">{{ 'FOOTER.ABOUTUS' | translate }}</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/sponsors']" class="text-white">{{ 'FOOTER.SPONSORS' | translate }}</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/contact']" class="text-white">{{ 'FOOTER.CONTACT' | translate }}</a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="col-12 col-md-3 w-responsive">
-                <div class="text-block">
-                    <h4 class="text-white font-weight-bold mb-3 text-start">{{ 'FOOTER.SOCIAL' | translate }}</h4>
-                    <ul class="list-unstyled text-start">
-                        <li>
-                            <a href="https://www.instagram.com/ieee.itba/" class="text-white">
-                                <i class="fab fa-instagram"></i>
-                                Instagram
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/ieee-itba" class="text-white">
-                                <i class="fab fa-linkedin-in"></i>
-                                LinkedIn
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="text-block">
+                <h4 class="text-white font-weight-bold mb-3">{{ 'FOOTER.SOCIAL' | translate }}</h4>
+                <ul class="list-unstyled text-start row">
+                    <li>
+                        <a href="https://www.instagram.com/ieee.itba/" class="text-white">
+                            <i class="fab fa-instagram"></i>
+                            Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/ieee-itba" class="text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                            LinkedIn
+                        </a>
+                    </li>
+                </ul>
             </div>
+
         </div>
     </div>
 </footer>
