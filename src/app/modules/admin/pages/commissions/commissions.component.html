@@ -5,7 +5,7 @@
             <span class="ml-2">Añadir comisión</span>
         </button>
         <button mat-raised-button class="animated-color" type="button" [color]="editPositionsMode ? 'warn' : 'primary'" (click)="toggleEditPositionsMode()" [disabled]="commissions.length < 2">
-            <mdb-icon fas [icon]="!editPositionsMode ? 'exchange-alt' : 'close'" [class.rotate]="!editPositionsMode" class="animated-transform"></mdb-icon>
+            <mdb-icon fas [icon]="!editPositionsMode ? 'exchange-alt' : 'close'" [class.icon-rotate]="!editPositionsMode" class="animated-transform"></mdb-icon>
             <span class="ml-2" *ngIf="!editPositionsMode">Editar posiciones</span>
             <span class="ml-2" *ngIf="editPositionsMode">Cancelar</span>
         </button>

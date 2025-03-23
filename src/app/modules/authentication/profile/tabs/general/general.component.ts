@@ -3,7 +3,7 @@ import { AuthError } from '@angular/fire/auth';
 import { TranslateService } from '@ngx-translate/core';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { DOC_ORIENTATION, NgxImageCompressService, UploadResponse } from 'ngx-image-compress';
-import { BehaviorSubject, Observable, zip } from 'rxjs';
+import {BehaviorSubject, concatMap, map, Observable, of, zip} from 'rxjs';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
@@ -50,15 +50,18 @@ export class GeneralComponent implements OnInit {
     updateUser(): void {
         if (!this.hasChange()) return;
         this.loading = true;
-        let tasks: Observable<boolean>[] = [];
-        if (this.changes.photoURL && this.changes.photoURL != this.actual.photoURL && this.picturetype) {
-            tasks.push(this.authService.updateProfilePic(this.changes.photoURL, this.picturetype));
-            this.changes.photoURL = this.actual.photoURL;
-        }
-        tasks.push(this.authService.updateProfile(this.changes));
-        zip(...tasks).subscribe({
-            next: (res: boolean[]) => {
+        let hasPhotoChanged = this.changes.photoURL && this.changes.photoURL != this.actual.photoURL && this.picturetype;
+
+        let operation$: Observable<string> = hasPhotoChanged ?
+            this.authService.updateProfilePic(this.changes.photoURL, this.picturetype) :
+            of(null);
+
+        operation$.pipe(
+            concatMap(newpath => this.authService.updateProfile({photoURL: newpath, ...this.changes}))
+        ).subscribe({
+            next: () => {
                 this.loading = false;
+                this.changes.photoURL = this.actual.photoURL;
                 this.error$.next(null);
             },
             error: (err: AuthError) => {

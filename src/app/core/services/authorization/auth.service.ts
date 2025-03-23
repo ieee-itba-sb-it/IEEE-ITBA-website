@@ -4,7 +4,7 @@ import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import { Firestore, FirestoreError, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError, ActionCodeSettings } from '@angular/fire/auth';
-import { ref, uploadBytes, Storage, getDownloadURL } from '@angular/fire/storage';
+import {ref, uploadBytes, Storage, getDownloadURL, deleteObject} from '@angular/fire/storage';
 
 @Injectable({
     providedIn: 'root',
@@ -156,27 +156,30 @@ export class AuthService {
         });
     }
 
-    updateProfilePic(imageurl: string, extension: string): Observable<boolean> {
-        return new Observable<boolean>((subscriber) => {
+    updateProfilePic(imageurl: string, extension: string): Observable<string> {
+        return new Observable<string>((subscriber) => {
             if (!this.account)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
-            const uid = this.account.uID;
-            const serverpath = `profile-pics/${uid}.${extension}`;
-            fetch(imageurl)
-                .then(image => image.blob())
-                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
-                .then(res => getDownloadURL(res.ref))
-                .then(newpath =>
-                    updateDoc(doc(this.afs, 'users', this.account.email), {photoURL: newpath})
-                        .then(() => newpath)
-                )
-                .then(newpath => {
-                    this.account.photoURL = newpath;
-                    this.accountObs.next(this.account);
-                    subscriber.next(true);
-                })
-                .catch(err => subscriber.error(err))
-                .finally(() => subscriber.complete());
+            if (!imageurl || imageurl.trim() == "" || !extension) {
+                deleteObject(ref(this.firebaseStorage, this.account.photoURL)).then(() => {
+                    this.account.photoURL = null;
+                    subscriber.next(null);
+                });
+            } else {
+                const uid = this.account.uID;
+                const serverpath = `profile-pics/${uid}.${extension}`;
+                fetch(imageurl)
+                    .then(image => image.blob())
+                    .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                    .then(res => getDownloadURL(res.ref))
+                    .then(newpath => {
+                        this.account.photoURL = newpath;
+                        this.accountObs.next(this.account);
+                        subscriber.next(newpath);
+                    })
+                    .catch(err => subscriber.error(err))
+                    .finally(() => subscriber.complete());
+            }
         });
     }
 

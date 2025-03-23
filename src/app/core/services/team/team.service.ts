@@ -10,7 +10,7 @@ import {
     Firestore, FirestoreError,
     getDoc,
     getDocs, orderBy, Query,
-    query, runTransaction, setDoc,
+    query, runTransaction, setDoc, updateDoc,
     where, writeBatch
 } from '@angular/fire/firestore';
 import { FirebaseError } from '@angular/fire/app';
@@ -28,10 +28,12 @@ interface IEEEUserRole extends IEEEMember {
     providedIn: 'root'
 })
 export class TeamService {
+    private static readonly TEAM_REQUESTS_COLLECTION_NAME = 'team-requests';
     private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
     private static readonly MEMBERS_COLLECTION_NAME = 'members';
     private static readonly USERS_COLLECTION_NAME = 'users';
     private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
+    private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
 
     constructor(private afs: Firestore) {}
 
@@ -228,10 +230,31 @@ export class TeamService {
     }
 
     createTeamRequest(member: IEEEMember) {
+        let data = {...member};
+        if (data.photo == undefined) delete data.photo;
         return new Observable<boolean>(obs => {
-            setDoc(doc(this.afs, "team-requests", member.email), member)
+            setDoc(doc(this.afs, "team-requests", member.email), data)
                 .then(() => obs.next(true))
                 .catch((err: FirestoreError) => obs.error(err));
+        })
+    }
+
+    getIsTeamRequestOpen() {
+        return new Observable<boolean>(subscriber => {
+            getDoc(doc(this.afs, TeamService.METADATA_COLLECTION_NAME, TeamService.TEAM_REQUESTS_COLLECTION_NAME)).then(snap => {
+                subscriber.next((snap.data().open ?? false) as boolean);
+            }).catch(err => subscriber.error(err));
+        })
+    }
+
+    setIsTeamRequestOpen(open: boolean) {
+        return new Observable<void>(subscriber => {
+            setDoc(
+                doc(this.afs, TeamService.METADATA_COLLECTION_NAME, TeamService.TEAM_REQUESTS_COLLECTION_NAME),
+                { open }
+            )
+                .then(() => subscriber.next())
+                .catch(err => subscriber.error(err));
         })
     }
 }

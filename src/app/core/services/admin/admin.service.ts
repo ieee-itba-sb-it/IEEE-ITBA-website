@@ -1,8 +1,29 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, Firestore, Query, QueryConstraint, collection, doc, endBefore, getCountFromServer, getDocs, limit, limitToLast, orderBy, query, startAfter, startAt, where, writeBatch } from '@angular/fire/firestore';
+import {
+    CollectionReference,
+    Firestore,
+    Query,
+    QueryConstraint,
+    collection,
+    doc,
+    endBefore,
+    getCountFromServer,
+    getDocs,
+    limit,
+    limitToLast,
+    orderBy,
+    query,
+    startAfter,
+    startAt,
+    where,
+    writeBatch,
+    runTransaction, DocumentData, arrayUnion
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 import { IEEEUserFilters } from 'src/app/shared/models/ieee-user/ieee-user-filters';
+import {IEEEMember} from "../../../shared/models/team-member";
+import {roles} from "../../../shared/models/roles/roles.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +33,13 @@ export class AdminService {
     collectionName: string;
     collection: CollectionReference;
 
+    private static readonly COMMISSION_COLLECTION_NAME = 'commissions';
+    private static readonly MEMBERS_COLLECTION_NAME = 'members';
+    private static readonly USERS_COLLECTION_NAME = 'users';
+    private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
+
     constructor(private afs: Firestore) {}
-    
+
     setCollectionName(collectionName: string) {
         this.collectionName = collectionName;
         this.collection = collection(this.afs, collectionName);
@@ -107,5 +133,58 @@ export class AdminService {
                 obs.complete();
             });
         })
+    }
+
+    getTeamRequests(): Observable<IEEEMember[]> {
+        return new Observable(subscriber => {
+            getDocs(query(collection(this.afs, "team-requests"))).then(snapshot => {
+                subscriber.next(snapshot.docs.map(doc => doc.data() as IEEEMember));
+            });
+        })
+    }
+
+    acceptTeamRequests(requests: IEEEMember[]): Observable<void> {
+        return new Observable(subscriber => {
+            runTransaction(this.afs, async transaction => {
+                for(let request of requests) {
+                    let sensitiveData = await transaction.get(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email));
+                    if (sensitiveData.exists()) {
+                        transaction.update(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email), {roles: arrayUnion(roles.member)});
+                    } else {
+                        transaction.set(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email), {roles: [roles.member]});
+                    }
+                    transaction.update(doc(this.afs, AdminService.USERS_COLLECTION_NAME, request.email), {roles: arrayUnion(roles.member)});
+                    transaction.set(
+                        doc(this.afs, "commissions", request.commissionid, "members", request.email),
+                        { ...request }
+                    );
+                    transaction.delete(
+                        doc(this.afs, "team-requests", request.email)
+                    );
+                }
+            })
+                .then(() => {
+                    subscriber.next();
+                    subscriber.complete();
+                })
+                .catch((err) => subscriber.error(err));
+        })
+    }
+
+    rejectTeamRequests(requests: IEEEMember[]): Observable<void> {
+        return new Observable(subscriber => {
+            let batch = writeBatch(this.afs);
+            for(let request of requests) {
+                batch.delete(
+                    doc(this.afs, "team-requests", request.email)
+                );
+            }
+            batch.commit()
+                .then(() => {
+                    subscriber.next();
+                    subscriber.complete();
+                })
+                .catch((err) => subscriber.error(err));
+        });
     }
 }

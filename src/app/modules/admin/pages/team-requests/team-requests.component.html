@@ -1,0 +1,73 @@
+<ng-container *ngIf="requests && commissions; else spinner">
+    <div class="toolbar">
+        <mat-card class="d-flex flex-row justify-content-between align-items-center gap-2 py-2 px-4">
+            <div class="d-flex gap-2">
+                <mdb-icon class="d-flex align-items-center" fas [icon]="areRequestOpen ? 'circle-check' : 'triangle-exclamation'"></mdb-icon>
+                <p class="m-0">{{ areRequestOpen ? 'Las solicitudes se encuentran abiertas' : 'Las solicitudes se encuentran cerradas' }}</p>
+            </div>
+            <div>
+                <button mat-raised-button (click)="setRequestsOpen(!areRequestOpen)" color="primary" type="button">
+                    {{ loadingOpen.value ? 'Cargando...' : areRequestOpen ? 'Cerrar solicitudes' : 'Abrir solicitudes' }}
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="getSelectedRequests().length as length" class="d-flex flex-column flex-sm-row justify-content-between align-items-center rounded-3 bg-white mt-2 p-2 gap-2">
+        <p class="m-0"><b>{{ length }} solicitud seleccionada</b></p>
+        <div class="d-flex flex-column flex-sm-row gap-2">
+            <button mat-raised-button (click)="acceptSelectedRequests()" color="primary" type="button">
+                <mdb-icon fas icon="check"></mdb-icon>
+                <span class="ml-2">Aceptarlas</span>
+            </button>
+            <button mat-raised-button (click)="rejectSelectedRequests()" color="warn" type="button">
+                <mdb-icon fas icon="ban"></mdb-icon>
+                <span class="ml-2">Rechazarlas</span>
+            </button>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table class="table align-middle mb-0 mt-2 rounded">
+            <thead class="bg-light">
+            <tr>
+                <th class="pb-1 align-middle"></th>
+                <th class="pb-1 align-middle">{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
+                <th class="pb-1 align-middle">Comision a entrar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of requests; index as i" class="user-row">
+                <td class="text-center align-middle">
+                    <mat-checkbox [checked]="user.selected" (change)="selectRequest(i, $event.checked)" />
+                </td>
+                <td class="align-middle">
+                    <div class="d-flex text-center text-sm-start align-items-center gap-3 flex-column flex-sm-row py-2">
+                        <app-profile-picture size="45px" [src]="user.photo"></app-profile-picture>
+                        <div>
+                            <p class="fw-bold mb-1">{{ user.name }}</p>
+                            <p class="text-muted mb-0">{{ user.email }}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="align-middle">
+                    <div class="d-flex text-center text-sm-start align-items-center py-2">
+                        <div *ngIf="findCommission(user.commissionid) as commission">
+                            <div *ngIf="findPosition(commission, user.positionid) as position">
+                                <p class="fw-bold mb-1">{{ commission.title | customTranslate }}</p>
+                                <p class="text-muted mb-0">{{ position.title | customTranslate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="!requests.length">
+                <td colspan="3" class="text-center">
+                    No hay solicitudes
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>

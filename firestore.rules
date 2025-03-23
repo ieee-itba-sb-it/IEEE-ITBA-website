@@ -55,7 +55,7 @@ service cloud.firestore {
     }
 
     match /users/{document=**}  {
-    	allow get, update, delete: if isDataOwner() || hasRole("admin");
+        allow get, update, delete: if isDataOwner() || hasRole("admin");
       allow list: if hasRole("admin");
       // Solo puede crear el objeto usuario si el id del usuario en el body corresponde con el id del usuario en el token
       allow create: if (isSignedIn() && request.resource.data.uID == request.auth.uid) || hasRole("admin");

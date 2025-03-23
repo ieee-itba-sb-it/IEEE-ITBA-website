@@ -17,7 +17,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {MatListModule} from '@angular/material/list';
-import {CardsModule} from 'angular-bootstrap-md';
+import {CardsModule, IconsModule} from 'angular-bootstrap-md';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -70,7 +70,8 @@ export const routing = RouterModule.forChild(routes);
         MatDatepickerModule,
         MatNativeDateModule,
         MatRadioModule,
-        NgxSkeletonLoaderModule
+        NgxSkeletonLoaderModule,
+        IconsModule
     ]
 })
 export class WriteNewsModule { }

@@ -9,13 +9,15 @@ import { blogCollectionName } from '../../../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sanitizeString } from '../../utils';
 import {AuthService} from '../../../../core/services/authorization/auth.service';
-import {Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, Observable, switchMap} from 'rxjs';
 import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
 import { Timestamp } from '@angular/fire/firestore';
+import {NgxImageCompressService} from "ngx-image-compress";
+import {ImageUtils} from "../../../../shared/utils/imageUtils";
 
 @Component({
     selector: 'app-write-news',
@@ -35,6 +37,8 @@ export class WriteNewsComponent implements OnInit {
     publishNow = true;
     maxTags = 3;
 
+    error$ = new BehaviorSubject<string>(null)
+
     visible = true;
     selectable = true;
     removable = true;
@@ -51,7 +55,7 @@ export class WriteNewsComponent implements OnInit {
 
   @Input('id') newsReference: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService) {
+  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService, private imageCompress: NgxImageCompressService) {
       this.user = {
           fullname: '',
           email: '',
@@ -215,11 +219,9 @@ export class WriteNewsComponent implements OnInit {
           });
           return;
       }
-
       this.newsContent.author = this.getAuthorName();
       this.newsContent.reference = encodeURIComponent(sanitizeString(this.newsContent.title) + '-' + this.blogService.docsSize.getValue());
       this.newsContent.tags = this.currentTags();
-
       if (this.newsContent.title !== '') {
           this.blogService.setDoc(
               this.newsContent
@@ -235,6 +237,30 @@ export class WriteNewsComponent implements OnInit {
               }
           });
       }
+  }
+
+  uploadImage(event: Event): void {
+      const sizeLimit: number = 2;
+      const extensions: string[] = ['png', 'jpg', 'jpeg'];
+      const picture: File = event.target['files'][0];
+      const type: string = picture.type.split('/')[1];
+      if (!picture) return;
+      if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
+      if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
+      this.imageCompress.getOrientation(picture)
+          .then(async orientation => {
+              const base = await ImageUtils.toBase64(picture);
+              return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
+          })
+          .then(res => {
+              if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");
+              //this.photoURLChange.emit(res);
+              //this.pictureTypeChange.emit(picture.type.split('/')[1]);
+          })
+          .catch(err => {
+              this.error$.next("COMPRESSION_FAILED");
+              console.log(err.image);
+          });
   }
 
   openSnackBar() {

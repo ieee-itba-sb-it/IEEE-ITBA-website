@@ -191,9 +191,6 @@ const routes: Routes = [
                 (m) => m.TeamRequestModule
             ),
         canActivate: [AuthGuardService],
-        data: {
-            expectedRole: [roles.admin],
-        },
     },
     {
         path: '**',

@@ -24,6 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PositionEditorModalComponent } from './components/position-editor-modal/position-editor-modal.component';
 import {MatTableModule} from "@angular/material/table";
 import { TeamRequestsComponent } from './pages/team-requests/team-requests.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCardModule} from "@angular/material/card";
 
 // Tab manager
 const routes: Routes = [{
@@ -75,6 +77,8 @@ export const routing = RouterModule.forChild(routes);
             extend: true
         }),
         MatTableModule,
+        MatCheckboxModule,
+        MatCardModule,
     ]
 })
 export class AdminModule { }

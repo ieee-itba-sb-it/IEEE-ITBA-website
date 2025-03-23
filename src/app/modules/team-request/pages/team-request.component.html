@@ -1,0 +1,82 @@
+<div class="main-container d-flex justify-content-center">
+    <mat-card class="p-3" *ngIf="!(areRequestsOpen$ | async); else form">
+        <mat-card-title class="text-center">Solicitudes cerradas</mat-card-title>
+        <mat-card-content class="mt-2">
+            <p>Esperá a que abran las solicitudes de equipo para enviar una.</p>
+        </mat-card-content>
+    </mat-card>
+    <ng-template #form>
+        <mat-card class="py-3 px-2" *ngIf="(user$ | async).verifiedEmail; else verifyEmail">
+            <mat-card-title class="text-center">
+                Registrate como miembro de IEEE ITBA
+            </mat-card-title>
+            <form>
+                <mat-card-content>
+                    <section>
+                        <h2 class="m-0">Edita tu perfil</h2>
+                        <p>Verifica tu nombre y foto, aparecerá en la página de equipo</p>
+                        <div class="d-flex justify-content-center gap-5 flex-wrap">
+                            <app-upload-picture-input [(photoURL)]="changedUser.photoURL" [(pictureType)]="pictureType"></app-upload-picture-input>
+                            <div>
+                                <mat-form-field class="w-100">
+                                    <mat-label for="fullname">{{ 'REGISTER.FULL_NAME' | translate }}:</mat-label>
+                                    <input name="fullname" type="text" id="fullname" required matInput [(ngModel)]="changedUser.fullname">
+                                </mat-form-field>
+                                <mat-form-field class="w-100 mt-2">
+                                    <mat-label for="linkedin">
+                                        <mdb-icon fab icon="linkedin" class="mr-1" required></mdb-icon>
+                                        {{ 'PROFILE.LABELS.LINKEDIN' | translate }}:
+                                    </mat-label>
+                                    <input name="linkedin" type="text" id="linkedin" required matInput [(ngModel)]="changedUser.linkedin">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mt-2">
+                        <h2 class="m-0">Selecciona tu comisión y rol</h2>
+                        <mat-form-field class="w-100 mt-2">
+                            <mat-label>
+                                Comisión:
+                            </mat-label>
+                            <mat-select required [(value)]="selectedCommission">
+                                <mat-option *ngFor="let commission of (commissions$ | async)" [value]="commission">
+                                    {{ commission.title | customTranslate }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100" *ngIf="selectedCommission">
+                            <mat-label>
+                                Rol:
+                            </mat-label>
+                            <mat-select required [(value)]="selectedPosition">
+                                <mat-option *ngFor="let position of selectedCommission.positions" [value]="position">
+                                    {{ position.title | customTranslate }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </section>
+                </mat-card-content>
+                <mat-card-footer class="w-100 d-flex justify-content-end px-3">
+                    <button mat-raised-button class="save-button" color="primary" (click)="sendTeamRequest()" [disabled]="!canSendTeamRequest() || loading">
+                        <mdb-icon fas [icon]="loading ? 'rotate' : 'paper-plane'" [class.rotate]="loading"></mdb-icon>
+                        <span class="ml-2">{{ loading ? "Cargando..." : "Enviar" }}</span>
+                    </button>
+                </mat-card-footer>
+            </form>
+        </mat-card>
+    </ng-template>
+    <ng-template #verifyEmail>
+        <mat-card class="p-3">
+            <mat-card-title class="text-center">No verificado</mat-card-title>
+            <mat-card-content class="mt-2">
+                <p>Para mandar solicitud, necesitás tener verificar tu email.</p>
+            </mat-card-content>
+            <mat-card-footer class="w-100 d-flex justify-content-end px-3">
+                <button mat-raised-button (click)="sendVerificationEmail()" class="save-button mt-2" color="primary" type="button">
+                    <mdb-icon fas icon="envelope"></mdb-icon>
+                    <span class="ml-2">Enviar mail</span>
+                </button>
+            </mat-card-footer>
+        </mat-card>
+    </ng-template>
+</div>
