@@ -27,11 +27,6 @@ export class PositionEditorModalComponent implements OnInit {
     @Output() update: EventEmitter<Position> = new EventEmitter();
     @Output() updateMembers: EventEmitter<IEEEMember[]> = new EventEmitter();
 
-    readonly MEMBERS_NAME: InternationalText = {es: "Miembros", en: "Members"};
-    readonly TITLE: InternationalText = {es: "Título", en: "Title"};
-    readonly ADD_MEMBERS: InternationalText = {es: "Añadir miembros:", en: "Add members:"};
-    readonly ADD: InternationalText = {es: "Añadir", en: "Add"};
-
     addingUser: BehaviorSubject<boolean>;
     error: string;
     loading: boolean = false;

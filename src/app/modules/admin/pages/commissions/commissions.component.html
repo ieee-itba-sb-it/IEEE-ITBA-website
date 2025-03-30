@@ -2,12 +2,12 @@
     <div class="toolbar d-flex justify-content-end gap-2">
         <button mat-raised-button *ngIf="!editPositionsMode" color="primary" type="button" (click)="openCommissionModal()">
             <mdb-icon fas icon="add"></mdb-icon>
-            <span class="ml-2">Añadir comisión</span>
+            <span class="ml-2">{{ "ADMIN.COMMISSIONSTAB.ADD_COMMISSION" | translate }}</span>
         </button>
         <button mat-raised-button class="animated-color" type="button" [color]="editPositionsMode ? 'warn' : 'primary'" (click)="toggleEditPositionsMode()" [disabled]="commissions.length < 2">
             <mdb-icon fas [icon]="!editPositionsMode ? 'exchange-alt' : 'close'" [class.icon-rotate]="!editPositionsMode" class="animated-transform"></mdb-icon>
-            <span class="ml-2" *ngIf="!editPositionsMode">Editar posiciones</span>
-            <span class="ml-2" *ngIf="editPositionsMode">Cancelar</span>
+            <span class="ml-2" *ngIf="!editPositionsMode">{{ "ADMIN.COMMISSIONSTAB.EDIT_POSITIONS" | translate }}</span>
+            <span class="ml-2" *ngIf="editPositionsMode">{{ "ADMIN.COMMISSIONSTAB.CANCEL" | translate }}</span>
         </button>
     </div>
     <div class="content my-4" *ngIf="commissions && commissions.length > 0; else commissionsEmpty">
@@ -17,15 +17,16 @@
                     <mat-panel-title>
                         <mdb-icon fas icon="bars" class="animated-transform mr-2" *ngIf="editPositionsMode"></mdb-icon>
                         {{ commission.title | customTranslate }}
+                        <mdb-icon fas icon="certificate" class="ml-2 text-secondary" *ngIf="!commission.main"></mdb-icon>
                     </mat-panel-title>
                     <mat-panel-description>{{ commission.id }}</mat-panel-description>
                 </mat-expansion-panel-header>
                 <table *ngIf="commission.positions && commission.positions.length > 0; else rolesEmpty" class="table align-middle mb-0 mt-2 rounded">
                     <thead class="bg-light">
                         <tr>
-                            <th class="pb-1">Posición</th>
-                            <th class="pb-1">Titulo</th>
-                            <th class="pb-1 text-center">Miembros</th>
+                            <th class="pb-1">{{ "ADMIN.COMMISSIONSTAB.TABLE.POSITION" | translate }}</th>
+                            <th class="pb-1">{{ "ADMIN.COMMISSIONSTAB.TABLE.TITLE" | translate }}</th>
+                            <th class="pb-1 text-center">{{ "ADMIN.COMMISSIONSTAB.TABLE.MEMBERS" | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +41,7 @@
                                 </app-profile-picture-stack>
                             </td>
                             <ng-template #membersEmpty>
-                                <td class="text-center">Sin miembros</td>
+                                <td class="text-center">{{ "ADMIN.COMMISSIONSTAB.ERRORS.NO_MEMBERS" | translate }}</td>
                             </ng-template>
                         </tr>
                         <tr (click)="openPositionModal(commission)" class="position-row">
@@ -54,10 +55,10 @@
                 </table>
                 <ng-template #rolesEmpty>
                     <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-                        <p class="d-inline m-0">No hay roles en esta comisión</p>
+                        <p class="d-inline m-0">{{ "ADMIN.COMMISSIONSTAB.ERRORS.NO_POSITIONS_IN_COMMISSION" | translate }}</p>
                         <button mat-raised-button size="sm" color="primary" type="button" (click)="openPositionModal(commission)">
                             <mdb-icon fas icon="add"></mdb-icon>
-                            <span class="ml-2">Añadir rol</span>
+                            <span class="ml-2">{{ "ADMIN.COMMISSIONSTAB.ADD_POSITION" | translate }}</span>
                         </button>
                     </div>
                 </ng-template>
@@ -67,7 +68,7 @@
     <ng-template #commissionsEmpty>
         <div class="d-flex flex-column align-items-center justify-content-center my-5">
             <mdb-icon fas icon="exclamation-triangle" class="big-icon"></mdb-icon>
-            <p class="mt-2">No hay comisiones registradas</p>
+            <p class="mt-2">{{ "ADMIN.COMMISSIONSTAB.ERRORS.NO_COMMISSIONS" | translate }}</p>
         </div>
     </ng-template>
 </ng-container>

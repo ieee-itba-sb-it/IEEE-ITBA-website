@@ -24,7 +24,8 @@ export class CommissionEditorModalComponent {
             title: new FormGroup({
                 es: new FormControl('', Validators.required),
                 en: new FormControl('', Validators.required)
-            })
+            }),
+            main: new FormControl(false, Validators.required)
         });
     }
 
@@ -38,7 +39,7 @@ export class CommissionEditorModalComponent {
         }
         let commission : Commission = this.commissionForm.value as Commission;
         commission.order = this.order;
-        commission.main = true;
+        commission.main = !commission.main;
         commission.positions = [];
         this.teamService.setCommission(commission).subscribe(res => {
             this.update.emit(commission);

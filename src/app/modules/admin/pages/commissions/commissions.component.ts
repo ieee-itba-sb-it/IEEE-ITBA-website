@@ -27,7 +27,7 @@ export class CommissionsComponent implements OnInit {
     loading: BehaviorSubject<boolean>;
 
     constructor(private modalService: MDBModalService, private teamService: TeamService, private renderer: Renderer2) {
-        this.commissions$ = this.teamService.getTeamCommissions();
+        this.commissions$ = this.teamService.getAllCommissions();
         this.members$ = this.teamService.getAllMembers();
         this.loading = new BehaviorSubject(true);
     }

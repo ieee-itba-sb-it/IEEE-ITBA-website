@@ -47,6 +47,12 @@ export class LoginComponent  implements OnInit {
 
     // On Init
     ngOnInit(): void {
+        this.authService.getCurrentUser().subscribe(user => {
+            if (user) {
+                this.router.navigate([this.redirectTo ?? "home"]);
+            }
+        })
+
         this.appConfigService.setTitle('LOGIN.PAGETITLE');
         // Consts
         this.signupForm = document.getElementById('account-form');
@@ -84,7 +90,7 @@ export class LoginComponent  implements OnInit {
         // Alert modal subscribers
         this.route.queryParams.subscribe({
             next: (params) => {
-              if (params.accountDeleted) this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_ACCOUNT_DELETION"); 
+              if (params.accountDeleted) this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_ACCOUNT_DELETION");
             }
           });
         this.modalService.closed.subscribe(() => {
@@ -123,4 +129,8 @@ export class LoginComponent  implements OnInit {
             class: 'modal-dialog-centered',
         });
       }
+
+    redirectToRegister() {
+        this.router.navigate(["register"], {queryParamsHandling: "preserve"});
+    }
 }

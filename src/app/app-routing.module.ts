@@ -181,7 +181,7 @@ const routes: Routes = [
             ),
         canActivate: [AuthGuardService],
         data: {
-            expectedRole: [roles.admin],
+            expectedRole: [roles.admin]
         },
     },
     {

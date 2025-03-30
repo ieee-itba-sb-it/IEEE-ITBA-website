@@ -2,9 +2,38 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
-import { Firestore, FirestoreError, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { Auth, User, UserCredential, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthCredential, updateProfile, sendEmailVerification, AuthErrorCodes, AuthError, ActionCodeSettings } from '@angular/fire/auth';
+import {
+    Firestore,
+    FirestoreError,
+    deleteDoc,
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    writeBatch, collectionGroup, runTransaction, query, where, getDocs
+} from '@angular/fire/firestore';
+import {
+    Auth,
+    User,
+    UserCredential,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    OAuthCredential,
+    updateProfile,
+    sendEmailVerification,
+    AuthErrorCodes,
+    AuthError,
+    ActionCodeSettings,
+    getIdToken, signInWithCustomToken
+} from '@angular/fire/auth';
 import {ref, uploadBytes, Storage, getDownloadURL, deleteObject} from '@angular/fire/storage';
+import {get} from "@angular/fire/database";
+import {getAll} from "@angular/fire/remote-config";
+import {IEEEMember} from "../../../shared/models/team-member";
 
 @Injectable({
     providedIn: 'root',
@@ -183,6 +212,24 @@ export class AuthService {
         });
     }
 
+    updateTeamProfile(newUser: Partial<IEEEMember>) {
+        let data = { ...newUser };
+        console.log(data);
+        return new Observable<string>(subscriber => {
+            getDocs(query(collectionGroup(this.afs, "members"), where("email", "==", newUser.email)))
+                .then(members => {
+                    let queries: Promise<void>[] = [];
+                    members.forEach(member => {
+                        queries.push(updateDoc(member.ref, data));
+                    });
+                    return queries;
+                }).then(Promise.all)
+                .then(() => subscriber.next(newUser.photo))
+                .catch((err) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        })
+    }
+
     sendVerificationEmail(returnLink?: string): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
             if (!this.firebaseAuth.currentUser)
@@ -225,6 +272,20 @@ export class AuthService {
                 .catch((err: AuthError | FirestoreError) => subscriber.error(err))
                 .finally(() => subscriber.complete());
         });
+    }
+
+    reloadToken(): Observable<void> {
+        return new Observable<void>((subscriber) => {
+            this.user.reload()
+                .then(() => this.user.getIdToken(true))
+                .then(() => {
+                    subscriber.next();
+                }).catch(err => {
+                    subscriber.error(err);
+                }).finally(() => {
+                    subscriber.complete();
+                });
+        })
     }
 
     // -----------Info Getters-----------

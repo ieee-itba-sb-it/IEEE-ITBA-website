@@ -41,7 +41,7 @@ service cloud.firestore {
 
     match /team-requests/{document=**} {
       allow read: if hasRole("admin");
-      allow write: if isEmailVerified();
+      allow write: if isEmailVerified() || hasRole("admin");
     }
 
     match /commissions/{document=**}  {

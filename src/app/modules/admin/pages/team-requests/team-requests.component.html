@@ -3,25 +3,25 @@
         <mat-card class="d-flex flex-row justify-content-between align-items-center gap-2 py-2 px-4">
             <div class="d-flex gap-2">
                 <mdb-icon class="d-flex align-items-center" fas [icon]="areRequestOpen ? 'circle-check' : 'triangle-exclamation'"></mdb-icon>
-                <p class="m-0">{{ areRequestOpen ? 'Las solicitudes se encuentran abiertas' : 'Las solicitudes se encuentran cerradas' }}</p>
+                <p class="m-0">{{ areRequestOpen ? ("ADMIN.TEAMREQUESTSTAB.REQUESTS_OPEN" | translate) : ("ADMIN.TEAMREQUESTSTAB.REQUESTS_CLOSE" | translate) }}</p>
             </div>
             <div>
                 <button mat-raised-button (click)="setRequestsOpen(!areRequestOpen)" color="primary" type="button">
-                    {{ loadingOpen.value ? 'Cargando...' : areRequestOpen ? 'Cerrar solicitudes' : 'Abrir solicitudes' }}
+                    {{ loadingOpen.value ? 'Cargando...' : areRequestOpen ? ("ADMIN.TEAMREQUESTSTAB.CLOSE_REQUESTS" | translate) : ("ADMIN.TEAMREQUESTSTAB.OPEN_REQUESTS" | translate) }}
                 </button>
             </div>
         </mat-card>
     </div>
     <div *ngIf="getSelectedRequests().length as length" class="d-flex flex-column flex-sm-row justify-content-between align-items-center rounded-3 bg-white mt-2 p-2 gap-2">
-        <p class="m-0"><b>{{ length }} solicitud seleccionada</b></p>
+        <p class="m-0"><b>{{ length }} {{ "ADMIN.TEAMREQUESTSTAB.SELECTED_REQUESTS" | translate }}</b></p>
         <div class="d-flex flex-column flex-sm-row gap-2">
             <button mat-raised-button (click)="acceptSelectedRequests()" color="primary" type="button">
                 <mdb-icon fas icon="check"></mdb-icon>
-                <span class="ml-2">Aceptarlas</span>
+                <span class="ml-2">{{ "ADMIN.TEAMREQUESTSTAB.ACCEPT_REQUESTS" | translate }}</span>
             </button>
             <button mat-raised-button (click)="rejectSelectedRequests()" color="warn" type="button">
                 <mdb-icon fas icon="ban"></mdb-icon>
-                <span class="ml-2">Rechazarlas</span>
+                <span class="ml-2">{{ "ADMIN.TEAMREQUESTSTAB.REJECT_REQUESTS" | translate }}</span>
             </button>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <tr>
                 <th class="pb-1 align-middle"></th>
                 <th class="pb-1 align-middle">{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
-                <th class="pb-1 align-middle">Comision a entrar</th>
+                <th class="pb-1 align-middle">{{ "ADMIN.TEAMREQUESTSTAB.TABLE.COMMISSION" | translate }}</th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +61,7 @@
             </tr>
             <tr *ngIf="!requests.length">
                 <td colspan="3" class="text-center">
-                    No hay solicitudes
+                  {{ "ADMIN.TEAMREQUESTSTAB.NO_REQUESTS" | translate }}
                 </td>
             </tr>
             </tbody>

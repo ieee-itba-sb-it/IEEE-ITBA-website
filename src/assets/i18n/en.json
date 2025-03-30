@@ -1076,11 +1076,68 @@
       }
     },
     "COMMISSIONSTAB": {
-      "TITLE": "Commissions"
+      "TITLE": "Commissions",
+      "ADD_COMMISSION": "Add commission",
+      "ADD_POSITION": "Add role",
+      "EDIT_POSITIONS": "Edit order",
+      "CANCEL": "Cancel",
+      "ERRORS": {
+        "NO_MEMBERS": "No members",
+        "NO_COMMISSIONS": "No registered commissions",
+        "NO_POSITIONS_IN_COMMISSION": "No roles in this commission"
+      },
+      "TABLE": {
+        "POSITION": "Position",
+        "TITLE": "Title",
+        "MEMBERS": "Members"
+      },
+      "MODALS": {
+        "COMMISSION_EDITOR": {
+          "EDIT_TITLE": "Edit commission",
+          "ADD_TITLE": "Create commission",
+          "TITLE_LABEL": "Title",
+          "SPANISH_TITLE": "Spanish title",
+          "ENGLISH_TITLE": "English title",
+          "LOADING": "Loading..."
+        },
+        "POSITION_EDITOR": {
+          "EDIT_TITLE": "Edit role in",
+          "ADD_TITLE": "Create role in",
+          "DELETE": "Delete",
+          "ALREADY_BELONGS": "Already belongs",
+          "ADD_MEMBERS": "Add members"
+        }
+      }
     },
     "TEAMREQUESTSTAB": {
-      "TITLE": "Team requests"
+      "TITLE": "Team requests",
+      "REQUESTS_OPEN": "Team requests are now open",
+      "REQUESTS_CLOSE": "Team requests are now closed",
+      "OPEN_REQUESTS": "Open team requests",
+      "CLOSE_REQUESTS": "Close team requests",
+      "SELECTED_REQUESTS": "request/s selected",
+      "ACCEPT_REQUESTS": "Accept them",
+      "REJECT_REQUESTS": "Reject them",
+      "NO_REQUESTS": "There are no team requests",
+      "TABLE": {
+        "COMMISSION": "Commission to join"
+      }
     }
+  },
+  "TEAM_REQUEST": {
+    "TITLE": "Register as an IEEE ITBA member",
+    "EDIT_PROFILE": "Edit your profile",
+    "VERIFY_DATA": "Verify your name, email and LinkedIn. It will show up in the team page.",
+    "SELECT_COMMISSION": "Select your commission and role",
+    "COMMISSION": "Commission:",
+    "POSITION": "Role:",
+    "LOADING": "Loading...",
+    "SEND": "Send",
+    "NOT_VERIFIED": "You are not verified",
+    "NOT_VERIFIED_MESSAGE": "In order to send a team request, you must verify your email.",
+    "SEND_EMAIL": "Send email",
+    "REQUESTS_CLOSE": "Team requests are closed",
+    "REQUESTS_CLOSE_MESSAGE": "Wait until team requests are open to send one"
   },
   "MONTH": {
     "0": "January",

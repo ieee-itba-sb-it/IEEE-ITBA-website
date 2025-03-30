@@ -132,7 +132,7 @@ export class TeamService {
         ));
     }
 
-    getComissionByID(id: string): Observable<Commission> {
+    getCommissionByID(id: string): Observable<Commission> {
         return new Observable<Commission>(subscriber => {
             getDoc(doc(this.afs, TeamService.COMMISSION_COLLECTION_NAME, id)).then(res => {
                 subscriber.next(res.data() as Commission);
@@ -219,9 +219,9 @@ export class TeamService {
         });
     }
 
-    getMembersByCommission(commission : Commission) : Observable<IEEEMember[]> {
+    getMembersByCommission(commissionid: string) : Observable<IEEEMember[]> {
         return this.getMembers(query(
-            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commission.id, TeamService.MEMBERS_COLLECTION_NAME)
+            collection(this.afs, TeamService.COMMISSION_COLLECTION_NAME, commissionid, TeamService.MEMBERS_COLLECTION_NAME)
         ));
     }
 

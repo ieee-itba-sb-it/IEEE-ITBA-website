@@ -37,7 +37,7 @@ export class UploadPictureInputComponent {
     }
 
     uploadPicture(event: Event): void {
-        const sizeLimit: number = 2;
+        const sizeLimit: number = 10;
         const extensions: string[] = ['png', 'jpg', 'jpeg'];
         const picture: File = event.target['files'][0];
         const type: string = picture.type.split('/')[1];
@@ -47,7 +47,7 @@ export class UploadPictureInputComponent {
         this.imageCompress.getOrientation(picture)
             .then(async orientation => {
                 const base = await ImageUtils.toBase64(picture);
-                return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
+                return this.imageCompress.compressFile(base, orientation, 100, 100, 1024, 1024);
             })
             .then(res => {
                 if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");

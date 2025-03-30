@@ -1,11 +1,11 @@
 <div *ngIf="!addingUser.getValue(); else addUser">
     <div class="modal-header">
         <div *ngIf="editMode(); else addHeader">
-            <h2 class="modal-title"><span>Editar rol en {{ commission.title | customTranslate }}</span></h2>
+            <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.POSITION_EDITOR.EDIT_TITLE" | translate }} {{ commission.title | customTranslate }}</span></h2>
             <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title | customTranslate }}</h4>
         </div>
         <ng-template #addHeader>
-            <h2 class="modal-title"><span>Crear rol en {{ commission.title | customTranslate }}</span></h2>
+            <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.POSITION_EDITOR.ADD_TITLE" | translate }} {{ commission.title | customTranslate }}</span></h2>
         </ng-template>
         <button type="button" (click)="modalRef.hide()" class="btn">
             <mdb-icon fas icon="times" size="lg"></mdb-icon>
@@ -21,9 +21,9 @@
                        formControlName="id">
             </mat-form-field>
             <div formGroupName="title" class="mt-2">
-                <label>{{ this.TITLE | customTranslate }}</label>
+                <label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.TITLE" | translate }}</label>
                 <mat-form-field class="w-100">
-                    <mat-label>Título en español</mat-label>
+                    <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.SPANISH_TITLE" | translate }}</mat-label>
                     <input matInput
                            type="text"
                            id="es"
@@ -31,7 +31,7 @@
                            >
                 </mat-form-field>
                 <mat-form-field class="w-100">
-                    <mat-label>Título en Inglés</mat-label>
+                    <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.ENGLISH_TITLE" | translate }}</mat-label>
                     <input matInput
                            type="text"
                            id="en"
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div *ngIf="positionIdx >= 0" class="members-table px-2">
-            <label class="members-title">{{ this.MEMBERS_NAME | customTranslate }}</label>
+            <label class="members-title">{{ "ADMIN.COMMISSIONSTAB.TABLE.MEMBERS" | translate }}</label>
             <table mdbTable mdbTableScroll class="table align-middle mb-0 mt-2 rounded table-hover">
                 <thead>
                 <tr>
@@ -131,13 +131,13 @@
     </div>
     <div class="modal-footer">
         <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addMembers()" [disabled]="selectedUsers.length === 0">
-            {{ ADD_MEMBERS | customTranslate}}
+          {{ "ADMIN.COMMISSIONSTAB.MODALS.POSITION_EDITOR.ADD_MEMBERS" | translate }}
         </button>
         <button type="button" class="btn close-btn" (click)="addingUser.next(false); selectedUsers = []">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
     </div>
 </ng-template>
 <ng-template #loadSpinner class="spinner mr-5">
     <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
+        <span class="sr-only">{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.LOADING" | translate }}</span>
     </div>
 </ng-template>

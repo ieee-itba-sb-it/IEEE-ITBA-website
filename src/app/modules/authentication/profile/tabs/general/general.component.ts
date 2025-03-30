@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthError } from '@angular/fire/auth';
-import { TranslateService } from '@ngx-translate/core';
-import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { DOC_ORIENTATION, NgxImageCompressService, UploadResponse } from 'ngx-image-compress';
-import {BehaviorSubject, concatMap, map, Observable, of, zip} from 'rxjs';
-import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
-import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
+import {Component, OnInit} from '@angular/core';
+import {AuthError} from '@angular/fire/auth';
+import {TranslateService} from '@ngx-translate/core';
+import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import {BehaviorSubject, concatMap, Observable, of} from 'rxjs';
+import {AuthService} from 'src/app/core/services/authorization/auth.service';
+import {AlertModalComponent} from 'src/app/shared/components/alert-modal/alert-modal.component';
+import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
+import {roles} from "../../../../../shared/models/roles/roles.enum";
+import {IEEEMember} from "../../../../../shared/models/team-member";
 
 @Component({
-  selector: 'app-general',
-  templateUrl: './general.component.html',
-  styleUrls: ['./general.component.css']
+    selector: 'app-general',
+    templateUrl: './general.component.html',
+    styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
 
@@ -39,8 +41,10 @@ export class GeneralComponent implements OnInit {
         this.error$.subscribe((error) => {
             if (!error) return delete this.errorModalRef;
             this.translate.get(`PROFILE.ERRORS.${error}`).subscribe({
-                next: (res) => {this.openErrorModal(res)},
-                error: (err) => {this.openErrorModal(error)}
+                next: (res) => {
+                    console.error(error);
+                    this.openErrorModal(res)
+                }
             });
         });
     }
@@ -54,7 +58,21 @@ export class GeneralComponent implements OnInit {
 
         let operation$: Observable<string> = hasPhotoChanged ?
             this.authService.updateProfilePic(this.changes.photoURL, this.picturetype) :
-            of(null);
+            of(undefined);
+
+        if (this.actual.roles.includes(roles.member)) {
+            operation$ = operation$.pipe(
+                concatMap((newPath) => {
+                    let data: Partial<IEEEMember> = {
+                        name: this.changes.fullname,
+                        linkedin: this.changes.linkedin,
+                        email: this.actual.email
+                    }
+                    if (newPath !== undefined) data.photo = newPath;
+                    return this.authService.updateTeamProfile(data);
+                })
+            )
+        }
 
         operation$.pipe(
             concatMap(newpath => this.authService.updateProfile({photoURL: newpath, ...this.changes}))
@@ -91,6 +109,7 @@ export class GeneralComponent implements OnInit {
                 message: error,
                 type: "error"
             },
+            key: error,
             class: 'modal-dialog-centered',
         });
     }

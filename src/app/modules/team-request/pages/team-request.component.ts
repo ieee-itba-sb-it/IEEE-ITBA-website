@@ -52,7 +52,10 @@ export class TeamRequestComponent implements OnInit {
         });
         this.route.queryParams.subscribe({
             next: (params) => {
-                if (params.verified) this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_EMAIL_VERIFICATION");
+                if (params.verified) {
+                    this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_EMAIL_VERIFICATION");
+                    this.authService.reloadToken().subscribe();
+                };
             }
         });
         this.modalService.closed.subscribe(() => {

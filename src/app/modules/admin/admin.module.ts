@@ -26,6 +26,7 @@ import {MatTableModule} from "@angular/material/table";
 import { TeamRequestsComponent } from './pages/team-requests/team-requests.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 // Tab manager
 const routes: Routes = [{
@@ -62,6 +63,7 @@ export const routing = RouterModule.forChild(routes);
         MatExpansionModule,
         MatInputModule,
         MatFormFieldModule,
+        MatSlideToggleModule,
         FormsModule,
         ReactiveFormsModule,
         CdkDrag,

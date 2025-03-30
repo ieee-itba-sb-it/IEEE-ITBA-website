@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Commission} from '../../../../shared/models/commission';
 import {TeamService} from '../../../../core/services/team/team.service';
-import {Observable} from 'rxjs';
+import {Observable, zip} from 'rxjs';
 
 @Component({
     selector: 'app-emb',
@@ -10,14 +10,22 @@ import {Observable} from 'rxjs';
 })
 export class EmbComponent implements OnInit {
 
-    team$: Observable<Commission> = null;
+    team: Commission = null;
 
     constructor( private teamService: TeamService) {
 
     }
 
     ngOnInit(): void {
-        // this.team$ = this.teamService.getEmbTeam();
+        zip([
+            this.teamService.getCommissionByID("EMB"),
+            this.teamService.getMembersByCommission("EMB")
+        ]).subscribe(([commission, members]) => {
+            this.team = commission;
+            this.team.positions.forEach(position => {
+                position.members = members.filter(member => member.positionid == position.id);
+            });
+        })
     }
 
 }
