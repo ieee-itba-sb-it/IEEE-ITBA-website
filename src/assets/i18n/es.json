@@ -1245,7 +1245,7 @@
           "ACCOUNT_ACTIONS": "Acciones de la cuenta"
       },
       "LABELS": {
-        "LINKEDIN": "LinkedIn (Nombre de usuario)"
+        "LINKEDIN": "LinkedIn (URL)"
       },
       "MESSAGES": {
           "VERIFIED_EMAIL": "Tu Email ya ha sido verificado",

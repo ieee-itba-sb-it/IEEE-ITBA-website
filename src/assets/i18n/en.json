@@ -1192,7 +1192,7 @@
         "ACCOUNT_ACTIONS": "Account Actions"
     },
     "LABELS": {
-        "LINKEDIN": "LinkedIn (Username)"
+        "LINKEDIN": "LinkedIn (URL)"
     },
     "MESSAGES": {
       "VERIFIED_EMAIL": "Your Email has already been verified",
