@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { ApiResponse } from '../../../shared/models/data-types';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { catchError, concatMap, filter, of } from 'rxjs';
 import {StaticSeoService} from "../../../core/services/seo/seo-static.service";
 
@@ -19,11 +19,11 @@ const ERROR_MESSAGES = {
 })
 export class RegisterComponent implements OnInit {
 
-    constructor(private authService: AuthService, private readonly router: Router, private readonly seoService: StaticSeoService) {
+    constructor(private authService: AuthService, private readonly router: Router, private route: ActivatedRoute, private readonly seoService: StaticSeoService) {
         scroll(0, 0);
     }
 
-    @Input() redirectTo: string;
+    redirectTo: string | null = null;
 
     // Data
     signupForm: HTMLElement | any;
@@ -45,6 +45,15 @@ export class RegisterComponent implements OnInit {
 
     // On Init
     ngOnInit(): void {
+        this.authService.getCurrentUser().subscribe(user => {
+            if (user) {
+                this.router.navigate([this.redirectTo ?? "home"]);
+            }
+        })
+
+        this.route.queryParams.subscribe(params => {
+            this.redirectTo = params['redirectTo'] ?? 'home';
+        });
         this.seoService.updateMetaTags('REGISTER.PAGETITLE', 'REGISTER.PAGEDESCRIPTION', ['REGISTER', 'IEEE', 'ITBA']);
 
         this.isHidden = true;
@@ -79,9 +88,11 @@ export class RegisterComponent implements OnInit {
                                 message: 'REGISTER.SUCCESS',
                                 success: true,
                             };
-                            setTimeout(() =>
-                                    this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
-                                1000);
+                            setTimeout(() => {
+                                    console.log(this.redirectTo)
+                                    this.router.navigate([this.redirectTo ?? "home"])
+                            },
+                            1000);
                         },
                         error: (err) => {
                             const message = (err.code in ERROR_MESSAGES) ? ERROR_MESSAGES[err.code] : ERROR_MESSAGES.default;
@@ -124,13 +135,17 @@ export class RegisterComponent implements OnInit {
                     success: true,
                 };
                 setTimeout(() =>
-                        this.router.navigate([this.redirectTo ? this.redirectTo : 'home']),
-                    1000);
+                    this.router.navigate([this.redirectTo ?? 'home']),
+                1000);
             },
             error: (err) => {
                 console.error(err);
             }
         });
+    }
+
+    redirectToLogin() {
+        this.router.navigate(["login"], {queryParamsHandling: "preserve"})
     }
 
 }

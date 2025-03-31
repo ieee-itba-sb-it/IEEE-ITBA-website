@@ -1,5 +1,6 @@
-import {TeamMember} from '../../models/team-member';
+import {IEEEMember} from '../../models/team-member';
 import {Component, Input, OnInit} from '@angular/core';
+import {InternationalText} from "../../models/data-types";
 
 @Component({
     selector: 'app-individual-card',
@@ -8,8 +9,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IndividualCardComponent implements OnInit {
 
-  @Input()
-      person: TeamMember = null;
+  @Input() person: IEEEMember;
+  @Input() position: InternationalText;
 
   constructor() { }
 

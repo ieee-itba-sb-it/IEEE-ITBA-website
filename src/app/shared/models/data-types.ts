@@ -35,10 +35,10 @@ export function createNewsItemWithDate(
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
-export function createRegularUser(fullname: string, email: string, photoURL: string, role: number, uID: string, verifiedEmail?: boolean, linkedin?: string) {
+export function createRegularUser(fullname: string, email: string, photoURL: string, roles: number[], uID: string, verifiedEmail?: boolean, linkedin?: string) {
     let newUser: IEEEuser;
     if (!linkedin) linkedin = null;
-    newUser = { fullname, email, photoURL, uID, role, linkedin };
+    newUser = { fullname, email, photoURL, uID, roles, linkedin };
     if (verifiedEmail) newUser.verifiedEmail = verifiedEmail;
     return newUser;
 }
@@ -47,3 +47,8 @@ export type ApiResponse = {
   success: boolean;
   message: string;
 };
+
+export type InternationalText = {
+  es: string;
+  en: string;
+}

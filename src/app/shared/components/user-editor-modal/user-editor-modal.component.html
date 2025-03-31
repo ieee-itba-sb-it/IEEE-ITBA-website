@@ -10,15 +10,15 @@
 <form>
     <div class="modal-body">
         <label for="role">{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</label>
-        <mat-chip-listbox aria-label="Role selection" (change)="changeRole($event)" id="role">
-            <mat-chip-option *ngFor="let role of roles | slice:1; index as i" 
-                [color]="role.color" 
-                [selected]="user.role == i+1"
+        <mat-chip-listbox aria-label="Role selection" (change)="changeRole($event)" id="role"   multiple>
+            <mat-chip-option *ngFor="let role of roles | slice:1; index as i"
+                [color]="role.color"
+                [selected]="user.roles.includes(i+1)"
                 [value]="i+1">
                 {{ role.code | translate }}
             </mat-chip-option>
         </mat-chip-listbox>
-        <div *ngIf="error" class="error-container">
+        <div *ngIf="error" class="error-container">yarn
             <p class="error">
                 {{ error | translate }}
             </p>

@@ -6,6 +6,9 @@ export interface IEEEuser {
   verifiedEmail?: boolean;
   photoURL: string;
   uID: string;
-  role: roles;
+  roles: roles[];
   linkedin?: string;
+}
+export interface SensitiveUserData {
+    roles: roles[];
 }

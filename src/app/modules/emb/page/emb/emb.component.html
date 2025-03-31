@@ -30,8 +30,8 @@
       <hr>
 
       <h2 class="section-title">{{ "EMB.TEAM.TITLE" | translate}}</h2>
-      <div *ngIf="team$ !== null && team$ | async as team; else loading">
-          <app-team-card [team]="team.team"></app-team-card>
+      <div *ngIf="team!==null; else loading">
+          <app-team-card [team]="team"></app-team-card>
       </div>
         <ng-template #loading>
             <app-loading-spinner></app-loading-spinner>

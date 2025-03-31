@@ -21,14 +21,22 @@ export class PermissionsService {
     // here we check if user is logged in or not
     canActivate(next: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean{
         const expectedRole: Array<roles> = next.data.expectedRole;
+        const route: string = next.url.map(r => r.path).join('/');
         // getCurrentUser() should have the role already, is not necessary to call it again.
         return this.authService.getCurrentUser().pipe(switchMap((possibleUser) => {
-            if (possibleUser === null) {
-                return from(this.router.navigate(['login'])).pipe(map(() => false));
-            }
-            if (!expectedRole || expectedRole.includes(possibleUser.role)) {
+            if (possibleUser === null)
+                return from(this.router.navigate(['login'], {
+                    queryParams: {
+                        redirectTo: `${route}` ?? null
+                    }
+                })).pipe(map(() => false));
+            if (expectedRole == undefined || expectedRole.length == 0)
                 return of(true);
-            }
+
+            const userRolesFound = possibleUser.roles.filter(role => expectedRole.includes(role));
+            if (userRolesFound.length > 0)
+                return of(true);
+
             return from(this.router.navigate(['error401'])).pipe(map(() => false));
         }));
     }

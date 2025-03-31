@@ -1125,12 +1125,11 @@
   "ADMIN": {
     "PAGETITLE": "ITBA IEEE | Panel de administración",
     "PAGEDESCRIPTION": "Panel de administración de ITBA IEEE",
-    "TITLE": "Admin panel",
+    "TITLE": "Panel de administrador",
     "USERTAB": {
       "TITLE": "Usuarios",
       "TABLE": {
-        "FNAME": "Nombre",
-        "LNAME": "Apellido",
+        "FULL_NAME": "Nombre completo",
         "EMAIL": "Email",
         "ROLE": "Rol"
       },
@@ -1141,9 +1140,73 @@
       },
       "ROLES": {
         "ADMIN": "Admin",
-        "WRITER": "Escritor"
+        "WRITER": "Escritor",
+        "IEEEMEMBER": "Miembro IEEE"
+      }
+    },
+    "COMMISSIONSTAB": {
+      "TITLE": "Comisiones",
+      "ADD_COMMISSION": "Añadir comisión",
+      "ADD_POSITION": "Añadir rol",
+      "EDIT_POSITIONS": "Editar posiciones",
+      "CANCEL": "Cancelar",
+      "ERRORS": {
+        "NO_MEMBERS": "Sin miembros",
+        "NO_COMMISSIONS": "No hay comisiones registradas",
+        "NO_POSITIONS_IN_COMMISSION": "No hay roles en esta comisión"
+      },
+      "TABLE": {
+        "POSITION": "Posición",
+        "TITLE": "Título",
+        "MEMBERS": "Miembros"
+      },
+      "MODALS": {
+        "COMMISSION_EDITOR": {
+          "EDIT_TITLE": "Editar comisión",
+          "ADD_TITLE": "Crear comisión",
+          "TITLE_LABEL": "Título",
+          "SPANISH_TITLE": "Título en español",
+          "ENGLISH_TITLE": "Título en inglés",
+          "LOADING": "Cargando..."
+        },
+        "POSITION_EDITOR": {
+          "EDIT_TITLE": "Editar rol en",
+          "ADD_TITLE": "Crear rol en",
+          "DELETE": "Eliminar",
+          "ALREADY_BELONGS": "Ya pertenece",
+          "ADD_MEMBERS": "Añadir miembros"
+        }
+      }
+    },
+    "TEAMREQUESTSTAB": {
+      "TITLE": "Solicitudes de equipo",
+      "REQUESTS_OPEN": "Las solicitudes se encuentran abiertas",
+      "REQUESTS_CLOSE": "Las solicitudes se encuentran cerradas",
+      "OPEN_REQUESTS": "Abrir solicitudes",
+      "CLOSE_REQUESTS": "Cerrar solicitudes",
+      "SELECTED_REQUESTS": "solicitud/es seleccionada/s",
+      "ACCEPT_REQUESTS": "Aceptarlas",
+      "REJECT_REQUESTS": "Rechazarlas",
+      "NO_REQUESTS": "No hay solicitudes",
+      "TABLE": {
+        "COMMISSION": "Comisión a entrar"
       }
     }
+  },
+  "TEAM_REQUEST": {
+    "TITLE": "Registrate como miembro de IEEE ITBA",
+    "EDIT_PROFILE": "Editá tu perfil",
+    "VERIFY_DATA": "Verificá tu nombre, foto y LinkedIn, aparecerá en la página de equipo",
+    "SELECT_COMMISSION": "Seleccioná tu comisión y rol",
+    "COMMISSION": "Comisión:",
+    "POSITION": "Rol:",
+    "LOADING": "Cargando...",
+    "SEND": "Enviar",
+    "NOT_VERIFIED": "No estás verificado",
+    "NOT_VERIFIED_MESSAGE": "Para enviar una solicitud, necesitas verificar tu email.",
+    "SEND_EMAIL": "Enviar mail",
+    "REQUESTS_CLOSE": "Solicitudes cerradas",
+    "REQUESTS_CLOSE_MESSAGE": "Esperá a que abran las solicitudes de equipo para enviar una."
   },
   "SPONSORS": {
       "PAGETITLE": "ITBA IEEE | Auspiciantes",

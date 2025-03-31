@@ -47,8 +47,14 @@ import { EventDateComponent } from './components/event-date/event-date.component
 import { EventDateSectionComponent } from './components/event-date-section/event-date-section.component';
 import { EventDateChipsComponent } from './components/event-date-chips/event-date-chips.component';
 import { FormatDateEventPipe } from "./pipes/FormatDateEventPipe";
+import { CustomTranslatePipe } from "./pipes/CustomTranslatePipe";
 import { EventInscriptionSectionComponent } from './components/event-inscription-section/event-inscription-section.component';
 import { AuthActionModalComponent } from './components/auth-action-modal/auth-action-modal.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { ProfilePictureStackComponent } from './components/profile-picture-stack/profile-picture-stack.component';
+import {UploadPictureInputComponent} from "./components/upload-picture-input/upload-picture-input.component";
+import {MatButtonModule} from "@angular/material/button";
 import { EventCourseDetailComponent } from './components/event-course-detail/event-course-detail.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
@@ -64,7 +70,8 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, EventInscriptionSectionComponent, EventCourseDetailComponent],
+        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
+        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent],
     imports: [
         routing,
         CommonModule,
@@ -90,7 +97,10 @@ export const routing = RouterModule.forChild(routes);
         MatExpansionModule,
         SwiperModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
@@ -98,7 +108,7 @@ export const routing = RouterModule.forChild(routes);
         EventTitleComponent, EventBannerComponent, EventContentCardComponent, EventFaqAccordionComponent,
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
-        EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe,
-        EventInscriptionSectionComponent, EventCourseDetailComponent],
+        EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
+        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent],
 })
 export class SharedModule { }

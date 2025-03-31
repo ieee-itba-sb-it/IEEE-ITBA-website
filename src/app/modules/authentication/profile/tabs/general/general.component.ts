@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthError } from '@angular/fire/auth';
-import { TranslateService } from '@ngx-translate/core';
-import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
-import { DOC_ORIENTATION, NgxImageCompressService, UploadResponse } from 'ngx-image-compress';
-import { BehaviorSubject, Observable, zip } from 'rxjs';
-import { AuthService } from 'src/app/core/services/authorization/auth.service';
-import { AlertModalComponent } from 'src/app/shared/components/alert-modal/alert-modal.component';
-import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
+import {Component, OnInit} from '@angular/core';
+import {AuthError} from '@angular/fire/auth';
+import {TranslateService} from '@ngx-translate/core';
+import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
+import {NgxImageCompressService} from 'ngx-image-compress';
+import {BehaviorSubject, concatMap, Observable, of} from 'rxjs';
+import {AuthService} from 'src/app/core/services/authorization/auth.service';
+import {AlertModalComponent} from 'src/app/shared/components/alert-modal/alert-modal.component';
+import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
+import {roles} from "../../../../../shared/models/roles/roles.enum";
+import {IEEEMember} from "../../../../../shared/models/team-member";
 
 @Component({
-  selector: 'app-general',
-  templateUrl: './general.component.html',
-  styleUrls: ['./general.component.css']
+    selector: 'app-general',
+    templateUrl: './general.component.html',
+    styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
 
     user$: Observable<IEEEuser>;
     actual: IEEEuser;
     changes: IEEEuser;
-
     picturetype: string;
 
     loading: boolean = false;
@@ -40,8 +41,10 @@ export class GeneralComponent implements OnInit {
         this.error$.subscribe((error) => {
             if (!error) return delete this.errorModalRef;
             this.translate.get(`PROFILE.ERRORS.${error}`).subscribe({
-                next: (res) => {this.openErrorModal(res)},
-                error: (err) => {this.openErrorModal(error)}
+                next: (res) => {
+                    console.error(error);
+                    this.openErrorModal(res)
+                }
             });
         });
     }
@@ -51,15 +54,32 @@ export class GeneralComponent implements OnInit {
     updateUser(): void {
         if (!this.hasChange()) return;
         this.loading = true;
-        let tasks: Observable<boolean>[] = [];
-        if (this.changes.photoURL && this.changes.photoURL != this.actual.photoURL && this.picturetype) {
-            tasks.push(this.authService.updateProfilePic(this.changes.photoURL, this.picturetype));
-            this.changes.photoURL = this.actual.photoURL;
+        let hasPhotoChanged = this.changes.photoURL && this.changes.photoURL != this.actual.photoURL && this.picturetype;
+
+        let operation$: Observable<string> = hasPhotoChanged ?
+            this.authService.updateProfilePic(this.changes.photoURL, this.picturetype) :
+            of(undefined);
+
+        if (this.actual.roles.includes(roles.member)) {
+            operation$ = operation$.pipe(
+                concatMap((newPath) => {
+                    let data: Partial<IEEEMember> = {
+                        name: this.changes.fullname,
+                        linkedin: this.changes.linkedin,
+                        email: this.actual.email
+                    }
+                    if (newPath !== undefined) data.photo = newPath;
+                    return this.authService.updateTeamProfile(data);
+                })
+            )
         }
-        tasks.push(this.authService.updateProfile(this.changes));
-        zip(...tasks).subscribe({
-            next: (res: boolean[]) => {
+
+        operation$.pipe(
+            concatMap(newpath => this.authService.updateProfile({photoURL: newpath, ...this.changes}))
+        ).subscribe({
+            next: () => {
                 this.loading = false;
+                this.changes.photoURL = this.actual.photoURL;
                 this.error$.next(null);
             },
             error: (err: AuthError) => {
@@ -70,34 +90,6 @@ export class GeneralComponent implements OnInit {
     }
 
     // Local updates
-
-    uploadPicture(event: InputEvent): void {
-        const sizelimit: number = 2;
-        const extensions: string[] = ['png', 'jpg', 'jpeg'];
-        const picture: File = event.target['files'][0];
-        const type: string = picture.type.split('/')[1];
-        if (!picture) return;
-        if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
-        if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
-        this.imageCompress.getOrientation(picture)
-            .then(async orientation => {
-                const base = await this.toBase64(picture);
-                return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
-            })
-            .then(res => {
-                if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizelimit) throw new Error("Compression not enough");
-                this.changes.photoURL = res;
-                this.picturetype = picture.type.split('/')[1];
-            })
-            .catch(err => {
-                this.error$.next("COMPRESSION_FAILED");
-                console.log(err.image);
-            });
-    }
-
-    deletePicture(): void {
-        this.changes.photoURL = null;
-    }
 
     discardChanges(): void {
         this.changes = {...this.actual};
@@ -117,18 +109,9 @@ export class GeneralComponent implements OnInit {
                 message: error,
                 type: "error"
             },
+            key: error,
             class: 'modal-dialog-centered',
         });
     }
-
-    toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            if (typeof reader.result == "string") resolve(reader.result);
-            else reject();
-        };
-        reader.onerror = reject;
-    });
 
 }

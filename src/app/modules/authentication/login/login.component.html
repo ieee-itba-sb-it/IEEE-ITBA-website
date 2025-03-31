@@ -45,7 +45,7 @@
             </h4>
             <div class="d-flex justify-content-center mt-3 gap-2">
               <span class="mb-0">{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
-              <a class="font-weight-bolder" [routerLink]="['/register']">{{ 'LOGIN.SIGN_UP' | translate }}</a>
+              <a class="font-weight-bolder" (click)="redirectToRegister()">{{ 'LOGIN.SIGN_UP' | translate }}</a>
             </div>
           </form>
         </mat-card-content>

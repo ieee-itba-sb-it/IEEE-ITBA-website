@@ -1,0 +1,82 @@
+<div class="main-container d-flex justify-content-center">
+    <mat-card class="p-3" *ngIf="!(areRequestsOpen$ | async); else form">
+        <mat-card-title class="text-center">{{ "TEAM_REQUEST.REQUESTS_CLOSE" | translate }}</mat-card-title>
+        <mat-card-content class="mt-2">
+            <p>{{ "TEAM_REQUEST.REQUESTS_CLOSE_MESSAGE" | translate }}</p>
+        </mat-card-content>
+    </mat-card>
+    <ng-template #form>
+        <mat-card class="py-3 px-2" *ngIf="(user$ | async).verifiedEmail; else verifyEmail">
+            <mat-card-title class="text-center">
+              {{ "TEAM_REQUEST.TITLE" | translate }}
+            </mat-card-title>
+            <form>
+                <mat-card-content>
+                    <section>
+                        <h2 class="m-0">{{ "TEAM_REQUEST.EDIT_PROFILE" | translate }}</h2>
+                        <p>{{ "TEAM_REQUEST.VERIFY_DATA" | translate }}</p>
+                        <div class="d-flex justify-content-center gap-5 flex-wrap">
+                            <app-upload-picture-input [(photoURL)]="changedUser.photoURL" [(pictureType)]="pictureType"></app-upload-picture-input>
+                            <div>
+                                <mat-form-field class="w-100">
+                                    <mat-label for="fullname">{{ 'REGISTER.FULL_NAME' | translate }}:</mat-label>
+                                    <input name="fullname" type="text" id="fullname" required matInput [(ngModel)]="changedUser.fullname">
+                                </mat-form-field>
+                                <mat-form-field class="w-100 mt-2">
+                                    <mat-label for="linkedin">
+                                        <mdb-icon fab icon="linkedin" class="mr-1" required></mdb-icon>
+                                        {{ 'PROFILE.LABELS.LINKEDIN' | translate }}:
+                                    </mat-label>
+                                    <input name="linkedin" type="text" id="linkedin" required matInput [(ngModel)]="changedUser.linkedin">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mt-2">
+                        <h2 class="m-0">{{ "TEAM_REQUEST.SELECT_COMMISSION" | translate }}</h2>
+                        <mat-form-field class="w-100 mt-2">
+                            <mat-label>
+                              {{ "TEAM_REQUEST.COMMISSION" | translate }}
+                            </mat-label>
+                            <mat-select required [(value)]="selectedCommission">
+                                <mat-option *ngFor="let commission of (commissions$ | async)" [value]="commission">
+                                    {{ commission.title | customTranslate }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w-100" *ngIf="selectedCommission">
+                            <mat-label>
+                              {{ "TEAM_REQUEST.POSITION" | translate }}
+                            </mat-label>
+                            <mat-select required [(value)]="selectedPosition">
+                                <mat-option *ngFor="let position of selectedCommission.positions" [value]="position">
+                                    {{ position.title | customTranslate }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </section>
+                </mat-card-content>
+                <mat-card-footer class="w-100 d-flex justify-content-end px-3">
+                    <button mat-raised-button class="save-button" color="primary" (click)="sendTeamRequest()" [disabled]="!canSendTeamRequest() || loading">
+                        <mdb-icon fas [icon]="loading ? 'rotate' : 'paper-plane'" [class.rotate]="loading"></mdb-icon>
+                        <span class="ml-2">{{ loading ? ("TEAM_REQUEST.LOADING" | translate) : ("TEAM_REQUEST.SEND" | translate) }}</span>
+                    </button>
+                </mat-card-footer>
+            </form>
+        </mat-card>
+    </ng-template>
+    <ng-template #verifyEmail>
+        <mat-card class="p-3">
+            <mat-card-title class="text-center">{{ "TEAM_REQUEST.NOT_VERIFIED" | translate }}</mat-card-title>
+            <mat-card-content class="mt-2">
+                <p>{{ "TEAM_REQUEST.NOT_VERIFIED_MESSAGE" | translate }}</p>
+            </mat-card-content>
+            <mat-card-footer class="w-100 d-flex justify-content-end px-3">
+                <button mat-raised-button (click)="sendVerificationEmail()" class="save-button mt-2" color="primary" type="button">
+                    <mdb-icon fas icon="envelope"></mdb-icon>
+                    <span class="ml-2">{{ "TEAM_REQUEST.SEND_EMAIL" | translate }}</span>
+                </button>
+            </mat-card-footer>
+        </mat-card>
+    </ng-template>
+</div>

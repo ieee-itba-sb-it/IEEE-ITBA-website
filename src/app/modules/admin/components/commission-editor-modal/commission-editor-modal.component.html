@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <div *ngIf="commission;else addHeader">
+        <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.EDIT_TITLE" | translate }}</span></h2>
+        <h4 class="modal-subtitle">ID</h4>
+    </div>
+    <ng-template #addHeader>
+        <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.ADD_TITLE" | translate }}</span></h2>
+    </ng-template>
+    <button type="button" (click)="modalRef.hide()" class="btn">
+        <mdb-icon fas icon="times" size="lg"></mdb-icon>
+    </button>
+</div>
+<form [formGroup]="commissionForm">
+    <div class="modal-body">
+        <mat-form-field class="w-100" *ngIf="!commission">
+            <mat-label>ID</mat-label>
+            <input matInput
+                   type="text"
+                   id="id"
+                   formControlName="id">
+        </mat-form-field>
+        <div formGroupName="title" class="mt-2">
+            <label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.TITLE_LABEL" | translate }}</label>
+            <mat-form-field class="w-100">
+                <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.SPANISH_TITLE" | translate }}</mat-label>
+                <input matInput
+                       type="text"
+                       id="es"
+                       formControlName="es">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+                <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.ENGLISH_TITLE" | translate }}</mat-label>
+                <input matInput
+                       type="text"
+                       id="en"
+                       formControlName="en">
+            </mat-form-field>
+        </div>
+        <p><mat-slide-toggle formControlName="main">¿Comisión especial? (No aparece en la pagina de equipo)</mat-slide-toggle></p>
+        <div *ngIf="error" class="error-container">
+            <p class="error">
+                {{ error }}
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+        <button *ngIf="!loading; else loadSpinner" type="submit" class="btn save-btn" (click)="addCommission()">
+            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+        </button>
+    </div>
+    <ng-template #loadSpinner>
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.LOADING" | translate }}</span>
+        </div>
+    </ng-template>
+</form>

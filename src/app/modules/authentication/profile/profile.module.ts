@@ -17,48 +17,49 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { UploadPictureInputComponent } from '../../../shared/components/upload-picture-input/upload-picture-input.component';
 
-const routes: Routes = [{ 
-  path: '',  
-  component: ProfileComponent,
-  children: [
-    { path: '', redirectTo: 'general', pathMatch: 'full' },
-    { path: 'general', component: GeneralComponent },
-    { path: 'security', component: SecurityComponent }
-]
+const routes: Routes = [{
+    path: '',
+    component: ProfileComponent,
+    children: [
+        { path: '', redirectTo: 'general', pathMatch: 'full' },
+        { path: 'general', component: GeneralComponent },
+        { path: 'security', component: SecurityComponent }
+    ]
 }];
 
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [
-    ProfileComponent,
-    SecurityComponent,
-    GeneralComponent
-  ],
-  imports: [
-    routing,
-    CommonModule,
-    SharedModule,
-    MatCardModule,
-    MatButtonModule,
-    MatListModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MDBBootstrapModule.forRoot(),
-    TranslateModule.forChild({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-      },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
-      extend: true
-  }),
-  ],
-  providers: [
-    NgxImageCompressService
-  ]
+    declarations: [
+        ProfileComponent,
+        SecurityComponent,
+        GeneralComponent
+    ],
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatCardModule,
+        MatButtonModule,
+        MatListModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MDBBootstrapModule.forRoot(),
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            extend: true
+        }),
+    ],
+    providers: [
+        NgxImageCompressService
+    ]
 })
 export class ProfileModule { }

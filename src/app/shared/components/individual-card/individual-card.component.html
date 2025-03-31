@@ -23,8 +23,8 @@
             </mdb-card-title>
 
             <!-- Cargo de la persona -->
-            <mdb-card-text *ngIf="person.role !== 'NULL'" id="roleTextContainer">
-              <h5 class="roleTextContainer">{{ person.role | translate }}</h5>
+            <mdb-card-text *ngIf="position" id="roleTextContainer">
+              <h5 class="roleTextContainer">{{ position | customTranslate }}</h5>
             </mdb-card-text>
 
           <div class="iconContainer">
@@ -33,7 +33,7 @@
               <i class="fab fa-lg fa-linkedin"></i>
             </a>
             <!-- Mail -->
-            <a class="cardIcon" href="mailto:{{person.mail}}" target="_blank">
+            <a class="cardIcon" href="mailto:{{person.email}}" target="_blank">
               <i class="fas fa-lg fa-envelope"></i>
             </a>
           </div>

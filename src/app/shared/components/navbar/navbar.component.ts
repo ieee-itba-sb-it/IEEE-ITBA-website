@@ -37,9 +37,10 @@ export class NavbarComponent implements OnInit, AfterViewInit{
       this.user$ = this.authService.getCurrentUser().pipe(tap(() => { this.isLoading = false; }, tap(console.log)));
       this.isJournalist$ = this.user$.pipe(map((user) => {
           if (user === null) return false;
-          return this.NEWS_ROLES.includes(user.role);
+          const validRole : roles[] = user.roles.filter((role) => this.NEWS_ROLES.includes(role))
+          return validRole.length > 0;
       }));
-      this.isAdmin$ = this.user$.pipe(map((user) => (user !== null && user.role === roles.admin)));
+      this.isAdmin$ = this.user$.pipe(map((user) => (user !== null && user.roles.includes(roles.admin))));
   }
 
   // ----------Methods----------

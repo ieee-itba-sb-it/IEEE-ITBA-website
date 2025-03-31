@@ -30,10 +30,10 @@ service firebase.storage {
     }
     match /profile-pics/{imagename} {
       allow read;
-      allow write: if 
+      allow write: if
         isFileOwner(imagename) &&
-        hasExtension(imagename, "jpg|jpeg|png") &&
-        sizeLessThan(2);
+        hasExtension(imagename, "jpg|jpeg|png");
+      allow create, update: if sizeLessThan(2);
     }
   }
 }

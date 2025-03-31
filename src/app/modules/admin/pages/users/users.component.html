@@ -1,37 +1,48 @@
 <div class="search-bar">
     <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
-    <input (keyup)="handleSearchbarEvent($event)" 
-        (submit)="handleSearchbarEvent($event)" 
-        type="text" name="user" id="user" 
-        autocomplete="off" 
+    <input (keyup)="handleSearchbarEvent($event)"
+        (submit)="handleSearchbarEvent($event)"
+        type="text" name="user" id="user"
+        autocomplete="off"
         [placeholder]=" 'ADMIN.USERTAB.SEARCHBAR' | translate ">
     <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
 </div>
 <p class="role-filter-label">Filtrar por roles:</p>
 <mat-chip-listbox class="role-filter" aria-label="Role filter" (change)="handleRoleFilterEvent($event)" id="role" multiple>
-    <mat-chip-option *ngFor="let role of roles | slice:1; index as i" 
-        [color]="role.color" 
+    <mat-chip-option *ngFor="let role of roles | slice:1; index as i"
+        [color]="role.color"
         [value]="i+1">
         {{ role.code | translate }}
     </mat-chip-option>
 </mat-chip-listbox>
-<table>
-    <tr>
-        <th>{{ "ADMIN.USERTAB.TABLE.FNAME" | translate }}</th>
-        <th>{{ "ADMIN.USERTAB.TABLE.LNAME" | translate }}</th>
-        <th>{{ "ADMIN.USERTAB.TABLE.EMAIL" | translate }}</th>
-        <th>{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</th>
-    </tr>
-    <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)">
-        <td>{{ user.fname }}</td>
-        <td>{{ user.lname }}</td>
-        <td>{{ user.email }}</td>
-        <td class="role-col">
-            <mat-chip class="small-chip" *ngIf="roles[user.role]" [color]="roles[user.role].color" highlighted>{{ roles[user.role].code | translate }}</mat-chip>
-        </td>
-    </tr>
+<table class="table align-middle mb-0 mt-2 rounded">
+    <thead class="bg-light">
+        <tr>
+            <th class="pb-1">{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
+            <th class="pb-1 text-center">{{ "ADMIN.USERTAB.TABLE.ROLE" | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of (users$ | async).content" (click)="openModal(user)" class="user-row">
+            <td>
+                <div class="d-flex align-items-center py-2">
+                    <app-profile-picture size="45px" [src]="user.photoURL"></app-profile-picture>
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{ user.fullname }}</p>
+                      <p class="text-muted mb-0">{{ user.email }}</p>
+                    </div>
+                </div>
+            </td>
+            <td class="role-col">
+                <div class="chip-container" *ngIf="user.roles && user.roles.length > 0">
+                  <mat-chip class="small-chip" [color]="roles[user.roles[0]].color" highlighted>{{ roles[user.roles[0]].code | translate }}</mat-chip>
+                  <mat-chip class="small-chip" *ngIf="user.roles.length > 1" [color]="roles[user.roles[1]].color" highlighted>+{{ user.roles.length - 1 }}</mat-chip>
+                </div>
+            </td>
+        </tr>
+    </tbody>
 </table>
-<mat-paginator 
+<mat-paginator
     #paginator
     [length]="(users$ | async).count"
     [pageSize]="10"

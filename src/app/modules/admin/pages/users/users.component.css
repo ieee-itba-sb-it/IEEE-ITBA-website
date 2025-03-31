@@ -33,6 +33,7 @@ table {
     width: 100%;
     margin-top: .25rem;
     table-layout: fixed;
+    border-radius: 1rem;
 }
 
 tr {
@@ -44,9 +45,9 @@ th, td {
     overflow: hidden;
 }
 
-tr:not(:first-child):hover {
-    background-color: #DEDEDE;
-    cursor: pointer
+tr.user-row:hover td {
+    background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 .role-col {
@@ -54,8 +55,15 @@ tr:not(:first-child):hover {
     text-align: center;
 }
 
+.chip-container {
+    padding: 0.35rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
 .small-chip {
-    height: 20px !important;
+    height: 25px !important;
 }
 
 .paginator {
@@ -80,3 +88,5 @@ p.role-filter-label {
         padding: 0;
     }
 }
+
+

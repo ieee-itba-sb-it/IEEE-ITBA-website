@@ -48,6 +48,15 @@
             </mat-list-item>
             <mat-list-item>
               <!-- Image -->
+<!--                <div class="w-100 d-flex flex-column mb-3 justify-content-center">-->
+<!--                    <p class="m-2">{{ 'WRITE-NEW.COVERIMG' | translate }}</p>-->
+<!--                    <input #pictureInput (change)="uploadImage($event)" type="file" accept="image/png, image/jpeg, image/jpg"-->
+<!--                           class="d-none">-->
+<!--                    <button mat-raised-button (click)="pictureInput.click()" color="primary" type="button">-->
+<!--                        <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>-->
+<!--                        {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}-->
+<!--                    </button>-->
+<!--                </div>-->
               <mat-form-field class="w-100">
                 <mat-label>{{ 'WRITE-NEW.COVERIMG' | translate }}</mat-label>
                 <input id="imageUrl" matInput [(ngModel)]="newsContent.imageUrl">
@@ -80,7 +89,7 @@
             </mat-list-item>
             <mat-list-item>
               <button mat-raised-button class="upload-button" id="submitNews" color="primary" (click)="submitNews()">
-                  <span *ngIf="newsReference == undefined; else noReferenceBlock">
+                  <span *ngIf="newsReference === undefined; else noReferenceBlock">
                       {{ 'WRITE-NEW.UPLOAD' | translate }}
                   </span>
                   <ng-template #noReferenceBlock>

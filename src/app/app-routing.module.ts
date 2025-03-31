@@ -181,8 +181,16 @@ const routes: Routes = [
             ),
         canActivate: [AuthGuardService],
         data: {
-            expectedRole: [roles.admin],
+            expectedRole: [roles.admin]
         },
+    },
+    {
+        path: 'team-request',
+        loadChildren: () =>
+            import('./modules/team-request/team-request.module').then(
+                (m) => m.TeamRequestModule
+            ),
+        canActivate: [AuthGuardService],
     },
     {
         path: '**',

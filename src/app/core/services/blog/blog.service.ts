@@ -5,6 +5,7 @@ import { NewsItem } from '../../../shared/models/news-item/news-item';
 import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
+import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
 
 /* This file make interface with databe to get blog data */
 
@@ -25,7 +26,7 @@ export class BlogService {
     listedDocsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     docsPageSize = 10;
 
-    constructor(private afs: Firestore) { }
+    constructor(private afs: Firestore, private firebaseStorage: Storage) { }
 
     // ----------Methods----------
 
@@ -215,20 +216,20 @@ export class BlogService {
         getDoc(doc(this.afs, this.collectionName, name)).then(snap => {
             const newsItem = snap.data();
             call.next(
-                    createNewsItem(
-                        newsItem.title,
-                        newsItem.content,
-                        newsItem.shortIntro,
-                        newsItem.imageUrl,
-                        // @ts-ignore
-                        newsItem.date,
-                        newsItem.author,
-                        newsItem.imageText,
-                        newsItem.reference,
-                        newsItem.listed,
-                        newsItem.tags,
-                        newsItem.ratings,
-                    )
+                createNewsItem(
+                    newsItem.title,
+                    newsItem.content,
+                    newsItem.shortIntro,
+                    newsItem.imageUrl,
+                    // @ts-ignore
+                    newsItem.date,
+                    newsItem.author,
+                    newsItem.imageText,
+                    newsItem.reference,
+                    newsItem.listed,
+                    newsItem.tags,
+                    newsItem.ratings,
+                )
             );
         });
         return call.asObservable();
@@ -279,6 +280,17 @@ export class BlogService {
             }
         });
         return call.asObservable();
+    }
+
+    uploadImage(imageUrl: string, extension: string, title: string): Observable<string> {
+        return new Observable(subscriber => {
+            const serverpath = `news-images/${title}.${extension}`
+            fetch(imageUrl)
+                .then(image => image.blob())
+                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                .then(res => getDownloadURL(res.ref))
+                .then(url => subscriber.next(url))
+        })
     }
 
     // Gets a collection observable

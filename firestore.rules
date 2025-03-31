@@ -7,12 +7,16 @@ service cloud.firestore {
     }
 
     function hasRole(role) {
-      let roles = {"admin": 1, "writer": 2};
-      return isSignedIn() && roles[role] == get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.role;
+      let roles = {"admin": 1, "writer": 2, "member": 3};
+      return isSignedIn() && roles[role] in get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.roles;
     }
 
     function isDataOwner() {
       return resource.data.uID == request.auth.uid;
+    }
+
+    function isEmailVerified() {
+      return request.auth.token.email_verified == true;
     }
 
     match /blog-entries/{document=**}  {
@@ -35,11 +39,26 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
+    match /team-requests/{document=**} {
+      allow read: if hasRole("admin");
+      allow write: if isEmailVerified() || hasRole("admin");
+    }
+
+    match /commissions/{document=**}  {
+      allow read;
+      allow write: if hasRole("admin");
+    }
+
+    match /{path=**}/members/{member}  {
+      allow read;
+      allow write: if hasRole("admin") || hasRole("member");
+    }
+
     match /users/{document=**}  {
-    	allow get, update, delete: if isDataOwner() || hasRole("admin");
+        allow get, update, delete: if isDataOwner() || hasRole("admin");
       allow list: if hasRole("admin");
       // Solo puede crear el objeto usuario si el id del usuario en el body corresponde con el id del usuario en el token
-      allow create: if isSignedIn() && request.resource.data.uID == request.auth.uid;
+      allow create: if (isSignedIn() && request.resource.data.uID == request.auth.uid) || hasRole("admin");
     }
 
     match /sensitive-user-data/{document=**} {
