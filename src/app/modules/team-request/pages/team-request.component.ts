@@ -110,7 +110,7 @@ export class TeamRequestComponent implements OnInit {
         ).subscribe({
             next: () => {
                 this.loading = false;
-                this.openAlertModal("success", "PROFILE.MESSAGES.SUCCESS_EMAIL");
+                this.openAlertModal("success", "Solicitud enviada, gracias!");
             },
             error: (err) => {
                 console.error(err);

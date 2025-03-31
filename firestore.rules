@@ -7,7 +7,7 @@ service cloud.firestore {
     }
 
     function hasRole(role) {
-      let roles = {"admin": 1, "writer": 2};
+      let roles = {"admin": 1, "writer": 2, "member": 3};
       return isSignedIn() && roles[role] in get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.roles;
     }
 
@@ -51,7 +51,7 @@ service cloud.firestore {
 
     match /{path=**}/members/{member}  {
       allow read;
-      allow write: if hasRole("admin");
+      allow write: if hasRole("admin") || hasRole("member");
     }
 
     match /users/{document=**}  {
