@@ -16,13 +16,16 @@ export async function multipleRoleMigration() {
 }
 
 function changeDocRole(doc: firestore.QueryDocumentSnapshot, batch: firestore.WriteBatch) {
+    let roles: number[] = [];
     let role = doc.data().role;
-    if (!doc.data().hasOwnProperty("role") || typeof role != "number") {
-        role = 0;
+    if (doc.data().hasOwnProperty("roles")) {
+        roles = doc.data().roles;
+    } else if (doc.data().hasOwnProperty("role") && typeof role == "number" && role != 0) {
+        roles.push(role);
     }
     batch.set<DocumentData, DocumentData>(doc.ref, {
         role: FieldValue.delete(),
-        roles: [role]
+        roles: roles
     }, {
         merge: true
     })

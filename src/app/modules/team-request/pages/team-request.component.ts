@@ -28,6 +28,7 @@ export class TeamRequestComponent implements OnInit {
 
     selectedCommission: Commission;
     selectedPosition: Position;
+    gender: string;
 
     loading: boolean = false;
 
@@ -102,6 +103,7 @@ export class TeamRequestComponent implements OnInit {
                 return this.teamService.createTeamRequest(
                     IEEEMember.fromUser(
                         { photoURL: newPath ?? this.changedUser.photoURL, ...this.changedUser },
+                        this.gender,
                         this.selectedCommission.id,
                         this.selectedPosition.id
                     )

@@ -72,7 +72,7 @@ export class PositionEditorModalComponent implements OnInit {
                 this.localUsers = users.content.map((user) => ({user, selected: false}));
                 this.localUsers.forEach((userModel, index) => {
                     if(this.commission.positions[this.positionIdx].members.includes(
-                        IEEEMember.fromUser(userModel.user, this.commission.id, this.commission.positions[this.positionIdx].id)
+                        IEEEMember.fromUser(userModel.user, "M", this.commission.id, this.commission.positions[this.positionIdx].id)
                     )) {
                         this.localUsers[index].selected = true;
                     }
@@ -136,7 +136,7 @@ export class PositionEditorModalComponent implements OnInit {
 
     addMembers() {
         this.teamService.addMembers(this.selectedUsers.map(user => {
-            return IEEEMember.fromUser(user, this.commission.id, this.commission.positions[this.positionIdx].id)
+            return IEEEMember.fromUser(user, "M", this.commission.id, this.commission.positions[this.positionIdx].id)
         }), this.commission).subscribe(membersToAdd => {
             membersToAdd.forEach((member) => {this.localMembers.push(member);});
         });

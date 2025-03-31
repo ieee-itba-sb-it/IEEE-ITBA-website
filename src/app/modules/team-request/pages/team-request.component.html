@@ -32,6 +32,22 @@
                             </div>
                         </div>
                     </section>
+                    <section>
+                        <h2 class="m-0">Seleccioná tu género</h2>
+                        <mat-form-field class="w-100 mt-2">
+                          <mat-label>
+                            Género
+                          </mat-label>
+                          <mat-select required [(value)]="gender">
+                            <mat-option value="M">
+                              Masculino
+                            </mat-option>
+                            <mat-option value="F">
+                              Femenino
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </section>
                     <section class="mt-2">
                         <h2 class="m-0">{{ "TEAM_REQUEST.SELECT_COMMISSION" | translate }}</h2>
                         <mat-form-field class="w-100 mt-2">
