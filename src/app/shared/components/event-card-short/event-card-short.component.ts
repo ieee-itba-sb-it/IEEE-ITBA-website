@@ -52,7 +52,7 @@ export class EventCardShortComponent implements OnInit {
   }
 
   private formatConfirmedDate(date: Date): string {
-      return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: 'UTC'});
+      return date.toLocaleDateString(this.locale(), {day: 'numeric', month: 'long', timeZone: '-03:00', hour: '2-digit', minute: '2-digit'});
   }
 
   private formatTentativeDate(month: number): string {

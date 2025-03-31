@@ -85,14 +85,3 @@ mat-panel-title {
 .description-text {
     text-align: left;
 }
-
-.content-card-list {
-    display:flex;
-    margin-bottom:5rem;
-}
-
-@media(max-width: 767px) {
-    .content-card-list {
-        flex-direction: column;
-    }
-}

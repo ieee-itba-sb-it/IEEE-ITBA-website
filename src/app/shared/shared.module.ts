@@ -55,6 +55,7 @@ import {MatInputModule} from "@angular/material/input";
 import { ProfilePictureStackComponent } from './components/profile-picture-stack/profile-picture-stack.component';
 import {UploadPictureInputComponent} from "./components/upload-picture-input/upload-picture-input.component";
 import {MatButtonModule} from "@angular/material/button";
+import { EventCourseDetailComponent } from './components/event-course-detail/event-course-detail.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -70,7 +71,7 @@ export const routing = RouterModule.forChild(routes);
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
-        ProfilePictureStackComponent, UploadPictureInputComponent],
+        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent],
     imports: [
         routing,
         CommonModule,
@@ -108,6 +109,6 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent,EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
-        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent],
+        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent],
 })
 export class SharedModule { }

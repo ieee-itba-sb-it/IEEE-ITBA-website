@@ -18,6 +18,7 @@ import {map, startWith} from 'rxjs/operators';
 import { Timestamp } from '@angular/fire/firestore';
 import {NgxImageCompressService} from "ngx-image-compress";
 import {ImageUtils} from "../../../../shared/utils/imageUtils";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-write-news',
@@ -55,7 +56,7 @@ export class WriteNewsComponent implements OnInit {
 
   @Input('id') newsReference: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService, private imageCompress: NgxImageCompressService) {
+  constructor(private router: Router, private route: ActivatedRoute, private blogService: BlogService, private snackBar: MatSnackBar, private authService: AuthService, private imageCompress: NgxImageCompressService, private seoService: StaticSeoService) {
       this.user = {
           fullname: '',
           email: '',
@@ -99,6 +100,7 @@ export class WriteNewsComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.seoService.updateMetaTags('WRITE-NEW.PAGETITLE', 'WRITE-NEW.PAGEDESCRIPTION', ['NEWS', 'IEEE', 'ITBA']);
       this.blogService.getDoc(this.newsReference).subscribe(news => {
           if (news) {
               this.newsContent = news;

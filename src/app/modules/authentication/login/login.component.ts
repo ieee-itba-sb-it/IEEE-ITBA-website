@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiResponse} from '../../../shared/models/data-types';
-import { AppConfigService } from '../../../core/services/configuration/app-config.service';
 import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { AlertModalComponent, AlertModalType } from 'src/app/shared/components/alert-modal/alert-modal.component';
+import {StaticSeoService} from "../../../core/services/seo/seo-static.service";
 
 function getErrorMessage(code) {
     switch (code) {
@@ -28,7 +28,7 @@ function getErrorMessage(code) {
 })
 export class LoginComponent  implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router, private modalService: MDBModalService, private route: ActivatedRoute, private appConfigService: AppConfigService) {
+    constructor(private authService: AuthService, private router: Router, private modalService: MDBModalService, private route: ActivatedRoute, private seoService: StaticSeoService) {
         scroll(0, 0);
     }
 
@@ -52,8 +52,7 @@ export class LoginComponent  implements OnInit {
                 this.router.navigate([this.redirectTo ?? "home"]);
             }
         })
-
-        this.appConfigService.setTitle('LOGIN.PAGETITLE');
+        this.seoService.updateMetaTags('LOGIN.PAGETITLE', 'LOGIN.PAGEDESCRIPTION', ['LOGIN', 'IEEE', 'ITBA']);
         // Consts
         this.signupForm = document.getElementById('account-form');
 

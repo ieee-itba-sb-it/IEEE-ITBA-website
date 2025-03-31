@@ -17,13 +17,17 @@ import {
     query,
     Query,
     QueryDocumentSnapshot,
-    Timestamp,
     updateDoc,
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
 import {catchError, from, map, Observable, of} from "rxjs";
 import {UserService} from "../user/user.service";
+import {
+    getArgentineDate,
+    getArgentineTime,
+    parseArgentineDate
+} from "../../../shared/argentina-time";
 
 @Injectable({
     providedIn: 'root'
@@ -40,13 +44,17 @@ export class EventService {
         const dates: Event['dates'] = {} as Event['dates'];
         for (const date in eventDoc.dates) {
             if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
+                const isoDate = eventDoc.dates[date].date;
+                const time = eventDoc.dates[date].time;
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: new Date(eventDoc.dates[date].date),
+                    date: parseArgentineDate(isoDate, time),
                     isPeriod: false
                 }
                 if (eventDoc.dates[date].lastDate) {
-                    dates[date].lastDate = new Date(eventDoc.dates[date].lastDate);
+                    const isoLastDate = eventDoc.dates[date].lastDate;
+                    const lastTime = eventDoc.dates[date].lastTime;
+                    dates[date].lastDate = parseArgentineDate(isoLastDate, lastTime);
                     dates[date].isPeriod = true;
                 }
             } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
@@ -93,7 +101,7 @@ export class EventService {
     }
 
     private isEventDateUpcoming(eventDate: Event['dates'][EventDate]): boolean {
-        const now = Timestamp.now().toDate();
+        const now = new Date();
         if (eventDate.status === EventStatus.CONFIRMED) {
             return eventDate.date >= now || (eventDate.isPeriod && eventDate.lastDate >= now);
         }
@@ -121,7 +129,7 @@ export class EventService {
 
     private getFakeDate(eventDate: Event['dates'][EventDate]): Date {
         if (eventDate.status === EventStatus.CONFIRMED) {
-            const now = Timestamp.now().toDate();
+            const now = new Date();
             if (eventDate.isPeriod && eventDate.date < now) {
                 return eventDate.lastDate;
             }
@@ -167,32 +175,32 @@ export class EventService {
     }
 
     public isEventDateCurrent(eventDate: Event['dates'][EventDate]): boolean {
-        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        const today = new Date();
         if (eventDate.status === EventStatus.CONFIRMED) {
             if (eventDate.isPeriod) {
-                return eventDate.date.getTime() <= todayUtc.getTime() && eventDate.lastDate.getTime() >= todayUtc.getTime();
+                return eventDate.date.getTime() <= today.getTime() && eventDate.lastDate.getTime() >= today.getTime();
             }
-            return eventDate.date.getTime() === todayUtc.getTime();
+            return eventDate.date.getTime() === today.getTime();
         }
         if (eventDate.status === EventStatus.TENTATIVE) {
-            return eventDate.month === todayUtc.getUTCMonth();
+            return eventDate.month === today.getUTCMonth();
         }
         if (eventDate.status === EventStatus.UPCOMING) {
-            return eventDate.year === todayUtc.getUTCFullYear();
+            return eventDate.year === today.getUTCFullYear();
         }
         return false;
     }
 
     public hasEventDateEnded(eventDate: Event['dates'][EventDate]): boolean {
-        const todayUtc = new Date(this.getIsoDate(Timestamp.now().toDate()));
+        const today = new Date();
         if (eventDate.status === EventStatus.CONFIRMED) {
-            return eventDate.date.getTime() < todayUtc.getTime() && (!eventDate.isPeriod || eventDate.lastDate.getTime() < todayUtc.getTime());
+            return eventDate.date.getTime() < today.getTime() && (!eventDate.isPeriod || eventDate.lastDate.getTime() < today.getTime());
         }
         if (eventDate.status === EventStatus.TENTATIVE) {
-            return eventDate.month < todayUtc.getUTCMonth();
+            return eventDate.month < today.getUTCMonth();
         }
         if (eventDate.status === EventStatus.UPCOMING) {
-            return eventDate.year < todayUtc.getUTCFullYear();
+            return eventDate.year < today.getUTCFullYear();
         }
         return false;
     }
@@ -231,26 +239,21 @@ export class EventService {
         })
     }
 
-    private getIsoDate(date: Date): string {
-        const isoTimeStamp = date.toISOString();
-        return isoTimeStamp.split('T')[0];
-    }
-
     private mapEventDates(event: Event): EventDoc['dates'] {
-        const now = Timestamp.now().toDate();
+        const now = new Date();
         const dates: EventDoc['dates'] = {} as EventDoc['dates'];
         for (const date in event.dates) {
             if (event.dates[date].status === EventStatus.CONFIRMED) {
-                const today = new Date(this.getIsoDate.bind(this)(now));
                 if (event.dates[date].date === null) {
                     throw new Error(`updateEventDocDates failed: date ${date} is null`);
                 }
-                if (!event.dates[date].isPeriod && event.dates[date].date < today) {
+                if (!event.dates[date].isPeriod && event.dates[date].date < now) {
                     throw new Error(`updateEventDocDates failed: date ${date} is in the past`);
                 }
                 dates[date] = {
                     status: EventStatus.CONFIRMED,
-                    date: this.getIsoDate.bind(this)(event.dates[date].date),
+                    date: getArgentineDate(event.dates[date].date),
+                    time: getArgentineTime(event.dates[date].date)
                 }
                 if (event.dates[date].isPeriod) {
                     if (event.dates[date].lastDate === null) {
@@ -259,7 +262,8 @@ export class EventService {
                     if (event.dates[date].lastDate < event.dates[date].date) {
                         throw new Error(`updateEventDocDates failed: lastDate ${date} is before date`);
                     }
-                    dates[date].lastDate = this.getIsoDate.bind(this)(event.dates[date].lastDate);
+                    dates[date].lastDate = getArgentineDate(event.dates[date].lastDate);
+                    dates[date].lastTime = getArgentineTime(event.dates[date].lastDate);
                 }
             } else if (event.dates[date].status === EventStatus.TENTATIVE) {
                 if (event.dates[date].month === null) {

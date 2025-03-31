@@ -14,79 +14,13 @@
   </app-event-section>
 
   <!-- Cards Temario -->
-
-  <div class="content-card-list">
-    <app-event-content-card
-      [disabled]="!week1ContentOpen"
-      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 1"
-      [imageUrl]="pythonImageUrl"
-    >
-      <span content>{{ 'PYTHONCOURSES.CLASSES.C1' | translate }}</span>
-      <mat-card-actions actions align="center">
-        <app-button
-          [href]="week1ContentOpen ? week1ContentLink : ''"
-          (click)="check($event, week1ContentOpen)"
-          [disabled]="!week1ContentOpen"
-        >
-          {{'PYTHONCOURSES.CONTENTBUTTON' | translate}}
-        </app-button>
-        <app-button
-          [href]="week2ContentOpen ? week1SolutionsLink : ''"
-          (click)="check($event, week2ContentOpen)"
-          [disabled]="!week2ContentOpen"
-        >
-          {{'PYTHONCOURSES.SOLUTIONBUTTON' | translate}}
-        </app-button>
-      </mat-card-actions>
-    </app-event-content-card>
-    <app-event-content-card
-      [disabled]="!week2ContentOpen"
-      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 2"
-      [imageUrl]="pythonImageUrl"
-    >
-      <span content>{{ 'PYTHONCOURSES.CLASSES.C2' | translate }}</span>
-      <mat-card-actions actions align="center">
-        <app-button
-          [href]="week2ContentOpen ? week2ContentLink : ''"
-          (click)="check($event, week2ContentOpen)"
-          [disabled]="!week2ContentOpen"
-        >
-          {{'PYTHONCOURSES.CONTENTBUTTON' | translate}}
-        </app-button>
-        <app-button
-          [href]="week3ContentOpen ? week2SolutionsLink : ''"
-          (click)="check($event, week3ContentOpen)"
-          [disabled]="!week3ContentOpen"
-        >
-          {{'PYTHONCOURSES.SOLUTIONBUTTON' | translate}}
-        </app-button>
-      </mat-card-actions>
-    </app-event-content-card>
-    <app-event-content-card
-      [disabled]="!week3ContentOpen"
-      title="{{'PYTHONCOURSES.CLASSES.TITLE' | translate }} 3"
-      [imageUrl]="pythonImageUrl"
-    >
-      <span content>{{ 'PYTHONCOURSES.CLASSES.C3' | translate }}</span>
-      <mat-card-actions actions align="center">
-        <app-button
-          [href]="week3ContentOpen ? week3ContentLink : ''"
-          (click)="check($event, week3ContentOpen)"
-          [disabled]="!week3ContentOpen"
-        >
-          {{'PYTHONCOURSES.CONTENTBUTTON' | translate}}
-        </app-button>
-        <app-button
-          [href]="week4ContentOpen ? week3SolutionsLink : ''"
-          (click)="check($event, week4ContentOpen)"
-          [disabled]="!week4ContentOpen"
-        >
-          {{'PYTHONCOURSES.SOLUTIONBUTTON' | translate}}
-        </app-button>
-      </mat-card-actions>
-    </app-event-content-card>
-
-  </div>
+  <app-event-course-detail
+    [imageUrl]="pythonImageUrl"
+    [isTitleCodeAPrefix]="true"
+    [contentButtonCode]="'PYTHONCOURSES.CONTENTBUTTON'"
+    [solutionButtonCode]="'PYTHONCOURSES.SOLUTIONBUTTON'"
+    [event]="event"
+  />
 
   <!-- Consultas -->
   <!-- <div>

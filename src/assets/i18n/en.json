@@ -1,7 +1,8 @@
 {
   "NULL":"NULL",
   "DEFAULT": {
-    "PAGETITLE": "ITBA IEEE Stud. Branch"
+    "PAGETITLE": "ITBA IEEE Stud. Branch",
+    "PAGEDESCRIPTION": "Official website of the IEEE ITBA Student Branch",
   },
   "HOME": {
     "TITLE": "Student Branch",
@@ -194,6 +195,9 @@
         "OPEN": "Inscriptions are open!",
         "CLICK": "Enroll now!"
       },
+      "TIME": {
+          "TITLE": "Time"
+      },
       "DATE": {
           "TITLE": "Dates",
           "UNIQUE": "Date",
@@ -244,9 +248,11 @@
           "DATES": "Event dates",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
+              "TIME_REQUIRED": "The start time is required",
               "DATE_REQUIRED": "The date is required",
               "DATE_INVALID": "The date format is invalid, it should be dd/mm/yyyy",
               "DATE_PAST": "The date cannot be in the past",
+              "LAST_TIME_REQUIRED": "The ending time is required",
               "LAST_DATE_REQUIRED": "The last date is required",
               "LAST_DATE_INVALID": "The last date format is invalid, it should be dd/mm/yyyy",
               "LAST_DATE_PAST": "The last date cannot be in the past",
@@ -330,6 +336,7 @@
   },
   "ABOUTUS": {
     "PAGETITLE": "ITBA IEEE | About us",
+    "PAGEDESCRIPTION": "IEEE ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires.",
     "US": {
       "TITLE": "Who we are",
       "TEXT": "IEEE-ITBA is a non-profit student organization that represents the IEEE at the Technological Institute of Buenos Aires."
@@ -344,10 +351,14 @@
     }
   },
   "TEAM": {
+    "PAGETITLE": "ITBA IEEE | Team",
+    "PAGEDESCRIPTION": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them.",
     "TITLE": "Team",
     "SUBTITLE": "IEEE ITBA is based on the hard work of our members in their different fields, get to know them."
   },
   "NEWS": {
+    "PAGETITLE": "ITBA IEEE | News",
+    "PAGEDESCRIPTION": "Find out the latest technological and scientific news!",
     "OF": "of",
     "MORENEWS": "View more news",
     "RECOMMENDED": "Recommended news",
@@ -355,6 +366,8 @@
     "EDIT-NEW": "Edit news"
   },
   "IEEEXTREME": {
+    "PAGETITLE": "ITBA IEEE | IEEExtreme",
+    "PAGEDESCRIPTION": "IEEExtreme is an international programming competition that lasts 24 hours. It is organized by IEEE-ITBA and is the most important in the country.",
     "FACTS": {
       "EDITIONS": "Past editions",
       "HOURS": "long",
@@ -380,6 +393,8 @@
     }
   },
   "BITCUP": {
+    "PAGETITLE": "ITBA IEEE | Bit Cup",
+    "PAGEDESCRIPTION": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time.",
     "DESCRIPTION": "Description",
     "DESCRIPTION-TEXT": "The Bit Cup is an open and free programming competition organized by IEEE ITBA where participants attempt to solve several challenges within a limited time. You can use it as practice for the IEEEXtreme and enter the world of competitive programming!",
     "FORMAT": "Format",
@@ -411,6 +426,8 @@
         "SOCIAL": "Social Media"
     },
   "PYTHONCOURSES": {
+    "PAGETITLE": "ITBA IEEE | Introductory Python Course",
+    "PAGEDESCRIPTION": "Introductory Python course organized by IEEE ITBA. Learn the basic concepts of programming and take your first steps in Python.",
     "CLASSES": {
       "C1": "Introduction to Python programming, Variables, Operators, Control Flow (if-else, while and for loop), Functions",
       "C2": "Data Types:(int, float, string, boolean), Data type operations, Lists, List operations, Text file manipulation",
@@ -500,6 +517,8 @@
     }
   },
   "DATAANALYSIS": {
+    "PAGETITLE": "ITBA IEEE | Data Analysis in Python Course",
+    "PAGEDESCRIPTION": "Data Analysis in Python course organized by IEEE ITBA. Learn how to use Python for data analysis and visualization.",
     "CLASSES": {
       "C1": "Introduction to libraries (review), Writing and reading of Excel and CSV files and Data manipulation with Pandas",
       "C2": "Introduction to matplotlib, Data visualization, Customization of plots and graphs and Application cases",
@@ -556,6 +575,8 @@
     "ACTUAL": "CURRENT"
   },
   "CONTACT": {
+    "PAGETITLE": "ITBA IEEE | Contact",
+    "PAGEDESCRIPTION": "Contact us for any questions or inquiries. We will get back to you as soon as possible.",
     "TITLE": "Contact",
     "SUBTITLE": "Complete the following information, we will contact you shortly.",
     "DESTINATION": "Send to",
@@ -589,6 +610,8 @@
     "CONTACTUS": "Contact us"
   },
   "WRITE-NEW": {
+    "PAGETITLE": "ITBA IEEE | Write News",
+    "PAGEDESCRIPTION": "Write news for IEEE ITBA. Share your knowledge with the community.",
     "TITLE": "Write News",
     "TITLE2": "Title",
     "POMPADOUR": "Pompadour",
@@ -603,6 +626,10 @@
     "FIRST_PARAGRAPH": "First paragraph over image",
     "PUBLISH_NOW": "Publish now",
     "PROGRAM_DATE": "Program publish date"
+  },
+  "EDIT-NEW": {
+    "PAGETITLE": "ITBA IEEE | Edit News",
+    "PAGEDESCRIPTION": "Edit news for IEEE ITBA."
   },
     "AUTH": {
         "LOGIN": {
@@ -627,9 +654,12 @@
       "DISABLED_USER": "User has been disabled"
     },
     "SUCCESS": "Welcome to IEEE!",
-    "PAGETITLE": "Log in to IEEE"
+    "PAGETITLE": "Log in to IEEE",
+    "PAGEDESCRIPTION": "Log in to IEEE ITBA."
   },
   "REGISTER": {
+    "PAGETITLE": "ITBA IEEE | Register",
+    "PAGEDESCRIPTION": "Register to IEEE ITBA. Join our community!",
     "TITLE": "Register",
     "FULL_NAME": "Full Name",
     "EMAIL": "Email",
@@ -660,6 +690,7 @@
   "RAS": {
     "TITLE": "IEEE ITBA",
     "PAGETITLE": "ITBA IEEE | RAS Student Branch Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA RAS Student Branch Chapter",
     "SUBTITLE": "RAS Student Branch Chapter",
     "EVENTS": "Events",
     "TEAM": {
@@ -686,6 +717,8 @@
   },
 
   "EMB": {
+    "PAGETITLE": "ITBA IEEE | EMB Student Branch Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA EMB Student Branch Chapter",
     "TITLE": "IEEE ITBA",
     "SUBTITLE": "EMB Student Branch Chapter",
     "EVENTS": "Events",
@@ -710,6 +743,8 @@
     }
   },
   "ERROR404": {
+    "PAGETITLE": "ITBA IEEE | Page not found",
+    "PAGEDESCRIPTION": "Page not found - IEEE ITBA",
     "TITLE": "Page not found",
     "APOLOGY": "We're sorry, the page you requested doesn't exist or some other error occurred",
     "INDICATION": "Please go back to the home page",
@@ -717,6 +752,8 @@
   },
   "WIP": "Site under construction",
   "IOT": {
+    "PAGETITLE": "ITBA IEEE | IoT Workshop",
+    "PAGEDESCRIPTION": "IoT Workshop organized by IEEE ITBA. Learn to control a robotic arm using Internet of Things (IoT) and apply your knowledge in practice.",
     "TITLE": "IoT Workshop",
     "ENROLL": "Enroll now!",
     "DESC": {
@@ -746,6 +783,7 @@
   "ASIMOVCUP": {
     "TITLE": "Asimov Cup",
     "PAGETITLE": "ITBA IEEE | Asimov CUP",
+    "PAGEDESCRIPTION": "Asimov Cup is a robotics competition open to the general public that takes place at ITBA.",
     "ENROLLBUTTON": "Enroll now!",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {
@@ -845,6 +883,8 @@
     "SPONSORS": "Sponsors"
   },
   "TYPESCRIPT": {
+    "PAGETITLE": "ITBA IEEE | Typescript Course",
+    "PAGEDESCRIPTION": "Typescript Course organized by IEEE ITBA. Learn the basics of programming with the TypeScript language.",
     "TITLE": "Typescript Course",
     "DESCRIPTION": {
       "TITLE": "Description",
@@ -854,46 +894,19 @@
       "TITLE": "Syllabus",
       "1": {
         "TEXT" : "First class - Introduction",
-        "BULLET_PTS": {
-          "1": "Advantages and Disadvantages of TypeScript",
-          "2": "Tools to use",
-          "3": "Our first program",
-          "4": "Variables and data types",
-          "5": "Loops and Conditionals"
-        }
+        "DESCRIPTION": "Advantages and Disadvantages of TypeScript, Tools to use, Our first program, Variables and data types, Loops and Conditionals."
       },
       "2": {
         "TEXT": "Second class - Objects",
-        "BULLET_PTS": {
-          "1": "Arrays",
-          "2": "Our first function",
-          "3": "What is an Object?",
-          "4": "Special types of data",
-          "5": "Types of comparison",
-          "6": "Enums",
-          "7": "JSON",
-          "8": "Interfaces",
-          "9": "Classes",
-          "10": "Organization and separation of files"
-        }
+        "DESCRIPTION": "Arrays, Our first function, What is an Object?, Special types of data, Types of comparison, Enums, JSON, Interfaces, Classes, Organization and separation of files."
       },
       "3": {
         "TEXT": "Third Class - Generics, Exceptions and Files",
-        "BULLET_PTS": {
-          "1": "Extension of classes",
-          "2": "Generics",
-          "3": "Recursion",
-          "4": "Exceptions",
-          "5": "File Reading"
-        }
+        "DESCRIPTION": "Extension of classes, Generics, Recursion, Exceptions, File Reading."
       },
       "4": {
-      "TEXT": "Fourth Class - Consultation Programs",
-        "BULLET_PTS": {
-          "1": "A look at Functional Programming",
-          "2": "HTTP Methods and HTTP Status Codes",
-          "3": "Development of a basic API"
-        }
+        "TEXT": "Fourth Class - Consultation Programs",
+        "DESCRIPTION": "A look at Functional Programming, HTTP Methods and HTTP Status Codes, Development of a basic API."
       }
     },
     "INSCRIPTION_FORM": "Inscription",
@@ -989,6 +1002,7 @@
   },
   "WIE": {
     "PAGETITLE": "ITBA IEEE | WIE Branch Student Chapter",
+    "PAGEDESCRIPTION": "IEEE ITBA WIE Branch Student Chapter",
     "WHATIS": {
       "TITLE": "What is IEEE WIE ITBA?",
       "CONTENT": "IEEE WIE ITBA is the IEEE ITBA Student Branch's WIE Affinity Group",
@@ -1056,6 +1070,8 @@
     "ABOUT": "A technology-focused organization made up of students and alumni of ITBA, dedicated to inspiring and educating in various areas of technology related to software engineering and technology."
   },
   "ADMIN": {
+    "PAGETITLE": "ITBA IEEE | Admin panel",
+    "PAGEDESCRIPTION": "IEEE ITBA Admin panel",
     "TITLE": "Admin panel",
     "USERTAB": {
       "TITLE": "Users",
@@ -1139,6 +1155,14 @@
     "REQUESTS_CLOSE": "Team requests are closed",
     "REQUESTS_CLOSE_MESSAGE": "Wait until team requests are open to send one"
   },
+  "SPONSORS": {
+    "PAGETITLE": "ITBA IEEE | Sponsors",
+    "PAGEDESCRIPTION": "IEEE ITBA Sponsors"
+  },
+  "EVENTS": {
+     "PAGETITLE": "ITBA IEEE | Events",
+     "PAGEDESCRIPTION": "IEEE ITBA Events"
+  },
   "MONTH": {
     "0": "January",
     "1": "February",
@@ -1154,6 +1178,8 @@
     "11": "December"
     },
   "PROFILE": {
+    "PAGETITLE": "ITBA IEEE | Profile",
+    "PAGEDESCRIPTION": "IEEE ITBA Profile",
     "TABS": {
         "GENERAL": "General",
         "SECURITY": "Security"

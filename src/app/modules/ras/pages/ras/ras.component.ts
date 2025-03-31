@@ -6,6 +6,7 @@ import {TeamService} from '../../../../core/services/team/team.service';
 import {AppConfigService} from '../../../../core/services/configuration/app-config.service';
 import {map, Observable, zip} from 'rxjs';
 import {IEEEMember} from "../../../../shared/models/team-member";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-ras',
@@ -18,7 +19,7 @@ export class RasComponent implements OnInit {
     loadingEvents: boolean = true;
     team: Commission = null;
 
-    constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService) {
+    constructor(private eventService: EventService, private teamService: TeamService, private appConfigService: AppConfigService, private seoService: StaticSeoService) {
         zip([
             this.teamService.getCommissionByID("RAS"),
             this.teamService.getMembersByCommission("RAS")
@@ -31,13 +32,13 @@ export class RasComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags('RAS.PAGETITLE', 'RAS.PAGEDESCRIPTION', ['RAS', 'IEEE', 'ITBA'], 'ras/IEEE_RAS_logo_4C_stacked-HiRes.png');
         this.getRasEvents();
         this.appConfigService.setAppColors({
             background: '#862633',
             underlying: '#C83D59FF',
             hover: '#9E4C67FF'
         });
-        this.appConfigService.setTitle('RAS.PAGETITLE');
     }
 
     getRasEvents(): void {

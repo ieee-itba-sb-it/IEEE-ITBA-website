@@ -73,7 +73,6 @@
                     <div *ngIf="user !== null; else notLogged">
                         <div class="account">{{'NAVBAR.WELCOME' | translate}} {{ user.fullname.split(" ")[0] }}</div>
                     </div>
-
                 </ng-container>
                 <ng-template #notLogged>
                     <div class="text-white">{{ 'NAVBAR.LOGIN' | translate }}</div>

@@ -7,6 +7,7 @@ import {PageScrollService} from 'ngx-page-scroll-core';
 import {DOCUMENT} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import { MatChipEvent, MatChipListboxChange } from '@angular/material/chips';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-noticias',
@@ -32,7 +33,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
 
     selectedTags: string[] = [];
 
-    constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, private route: ActivatedRoute) {
+    constructor(private blogService: BlogService, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any, private route: ActivatedRoute, private seoService: StaticSeoService) {
         this.blogService.setCollectionName(blogCollectionName);
         this.blogService.setDocsPageSize(this.pageSize + 1);
         this.newsCountObs = this.blogService.listedDocsSizeObs();
@@ -41,6 +42,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags('NEWS.PAGETITLE', 'NEWS.PAGEDESCRIPTION', ['NEWS', 'IEEE', 'ITBA']);
         this.newsCountObs.subscribe(listedCount => this.pageCount = Math.floor((listedCount - 1) / this.pageSize) + 1);
         this.newsSub = this.newsDataObs.subscribe((data: NewsItem[]) => {
             // cuando hay nuevas noticias se llama este codigo

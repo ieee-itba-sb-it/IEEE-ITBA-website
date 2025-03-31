@@ -12,6 +12,22 @@ export class SponsorsService {
         {
             name: 'Innovid',
             img: this.imgSrcPrefix + 'innovid.png'
+        },
+        {
+            name: 'DevRev',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fdevrev-logo_black.png?alt=media&token=d5eb5bc7-3862-4af7-98f1-2223d4920625'
+        },
+        {
+            name: 'Yokogawa',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.jpg?alt=media&token=300f278f-2e30-4964-b875-84ddccfdb2b0'
+        },
+        {
+            name: 'Le Wagon',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon2.png?alt=media&token=4096d5dd-f51e-4c59-bcab-043a8eaeb500'
+        },
+        {
+            name: 'Karpatkey',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fkarpatkey.png?alt=media&token=6ed477da-b0ff-471d-8936-b40bec4c848d'
         }
     ];
 
@@ -66,6 +82,22 @@ export class SponsorsService {
         {
             name: 'Innovid',
             img: this.imgSrcPrefix + 'innovid.png'
+        },
+        {
+            name: 'DevRev',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fdevrev-logo_black.png?alt=media&token=d5eb5bc7-3862-4af7-98f1-2223d4920625'
+        },
+        {
+            name: 'Yokogawa',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.png?alt=media&token=4cad97a1-6525-431b-a9a4-3576c130efe5'
+        },
+        {
+            name: 'Le Wagon',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon2.png?alt=media&token=4096d5dd-f51e-4c59-bcab-043a8eaeb500'
+        },
+        {
+            name: 'Karpatkey',
+            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fkarpatkey.png?alt=media&token=6ed477da-b0ff-471d-8936-b40bec4c848d'
         }
     ];
 

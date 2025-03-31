@@ -10,6 +10,7 @@ import {Event} from '../../../../shared/models/event/event';
 import { StudentChaptersService } from '../../../../core/services/student-chapters/student-chapters.service';
 import { StudentChapter } from '../../../../shared/models/student-chapters/student-chapter.types';
 import { Sponsor } from '../../../../shared/models/sponsors';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 const generalSwiperOptions = {
     preloadImages: false,
@@ -88,14 +89,19 @@ export class MainpageComponent implements OnInit {
         ...generalSwiperOptions
     };
 
-    constructor(private blogService: BlogService,
-              private sponsorsService: SponsorsService,
-              private eventService: EventService,
-              private studentChapterService: StudentChaptersService) {
+    constructor(
+        private blogService: BlogService,
+        private sponsorsService: SponsorsService,
+        private eventService: EventService,
+        private studentChapterService: StudentChaptersService,
+        private seoService: StaticSeoService
+    ) {
 
     }
 
     ngOnInit(): void {
+        this.seoService.updateMetaTags('DEFAULT.PAGETITLE', 'DEFAULT.PAGEDESCRIPTION', ['IEEE', 'ITBA']);
+
         this.blogService.setCollectionName(blogCollectionName);
         this.blogService.getDocs();
 

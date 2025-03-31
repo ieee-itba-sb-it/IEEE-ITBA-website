@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
   selector: 'app-admin',
@@ -31,9 +32,10 @@ export class AdminComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private seoService: StaticSeoService) {}
 
   ngOnInit(): void {
+    this.seoService.updateMetaTags('ADMIN.PAGETITLE', 'ADMIN.PAGEDESCRIPTION', ['ADMIN', 'IEEE', 'ITBA'])
     this.url = this.router.url;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd)

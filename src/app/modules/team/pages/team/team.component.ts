@@ -5,6 +5,7 @@ import {Commission} from '../../../../shared/models/commission';
 import {forkJoin, Observable, zipWith} from 'rxjs';
 import {IEEEMember} from "../../../../shared/models/team-member";
 import {zip} from "rxjs/internal/operators/zip";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-team',
@@ -18,12 +19,13 @@ export class TeamComponent implements OnInit {
 
     team: Commission[];
 
-    constructor(private teamService: TeamService) {
+    constructor(private teamService: TeamService, private seoService: StaticSeoService) {
         this.commissions$ = this.teamService.getTeamCommissions()
         this.members$ = this.teamService.getAllMembers()
     }
 
     ngOnInit() {
+        this.seoService.updateMetaTags('TEAM.PAGETITLE', 'TEAM.PAGEDESCRIPTION', ['TEAM', 'IEEE', 'ITBA']);
         forkJoin([this.commissions$, this.members$]).subscribe({
             next: ([commissions, members]) => {
                 this.team = commissions;

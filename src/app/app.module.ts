@@ -18,6 +18,7 @@ import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angul
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { connectDatabaseEmulator, getDatabase, provideDatabase } from '@angular/fire/database';
+import {getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService} from "@angular/fire/analytics";
 
 import {CardsModule, IconsModule} from 'angular-bootstrap-md';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
@@ -92,6 +93,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
             if (!environment.production) connectStorageEmulator(firestorage, 'localhost', 9199);
             return firestorage;
         }),
+        provideAnalytics(() => getAnalytics()),
         HttpClientModule,
         CardsModule,
         EmojiModule,
@@ -108,6 +110,10 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         IconsModule,
         MatSelectModule,
         IconsModule
+    ],
+    providers: [
+        UserTrackingService,
+        ScreenTrackingService,
     ],
     bootstrap: [AppComponent]
 })

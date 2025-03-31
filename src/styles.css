@@ -27,6 +27,12 @@ p { line-height: 1.5; }
   line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+    .main-container {
+        padding: 10rem 3% 5rem 3%;
+    }
+}
+
 .carrousel-card {
   width: fit-content !important;
 }

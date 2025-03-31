@@ -5,6 +5,7 @@ import {Timestamp} from '@angular/fire/firestore';
 import {CourseWithTests} from '../../../../shared/models/courses/course-with-tests';
 import {Event, IeeeEvent} from "../../../../shared/models/event/event";
 import {EventService} from "../../../../core/services/event/event.service";
+import {StaticSeoService} from "../../../../core/services/seo/seo-static.service";
 
 @Component({
     selector: 'app-data-analysis',
@@ -72,6 +73,7 @@ export class DataAnalysisComponent implements OnInit {
 
     constructor(private sponsorsService: SponsorsService,
                 private eventService: EventService,
+                private seoService: StaticSeoService
     ) {
         this.sponsorsServiceVar = sponsorsService;
         scroll(0, 0);
@@ -102,12 +104,6 @@ export class DataAnalysisComponent implements OnInit {
         return '';
     }
 
-    weekContentOpen(weekIdx: number) {
-        return (weekIdx < this.courseData.courseClasses.length && this.isOldDate(this.courseData.courseClasses[weekIdx].openDate)
-              || this.isOldDate(this.courseData.endDate))
-          && !this.isOldDate(this.courseData.contentCloseDate);
-    }
-
     isContentClosed() {
         return this.isOldDate(this.courseData.contentCloseDate);
     }
@@ -125,13 +121,8 @@ export class DataAnalysisComponent implements OnInit {
         return this.isBetweenDates(this.courseData.enrollDates.open, this.courseData.enrollDates.close);
     }
 
-    check = (event, isReady) => {
-        if (!isReady) {
-            event.preventDefault();
-        }
-    }
-
     ngOnInit(): void {
+        this.seoService.updateMetaTags("DATAANALYSIS.PAGETITLE", "DATAANALYSIS.PAGEDESCRIPTION", ["DATA ANALYSIS", "IEEE", "ITBA", "PYTHON"], 'events/data-analysis/data-analysis-event.png');
         this.getEvent();
     }
 
