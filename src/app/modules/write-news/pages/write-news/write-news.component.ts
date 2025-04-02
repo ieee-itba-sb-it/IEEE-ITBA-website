@@ -38,6 +38,9 @@ export class WriteNewsComponent implements OnInit {
     publishNow = true;
     maxTags = 3;
 
+    // Upload image
+    imageUrl: string;
+    imageType: string;
     error$ = new BehaviorSubject<string>(null)
 
     visible = true;
@@ -242,22 +245,22 @@ export class WriteNewsComponent implements OnInit {
   }
 
   uploadImage(event: Event): void {
-      const sizeLimit: number = 2;
-      const extensions: string[] = ['png', 'jpg', 'jpeg'];
+      const sizeLimit: number = 10;
+      const extensions: string[] = ['png', 'jpg', 'jpeg', 'webp'];
       const picture: File = event.target['files'][0];
       const type: string = picture.type.split('/')[1];
       if (!picture) return;
       if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
       if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
-      this.imageCompress.getOrientation(picture)
-          .then(async orientation => {
-              const base = await ImageUtils.toBase64(picture);
-              return this.imageCompress.compressFile(base, orientation, undefined, undefined, 1024, 1024);
-          })
+
+      this.imageCompress
+
+      ImageUtils.toBase64(picture)
           .then(res => {
               if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");
-              //this.photoURLChange.emit(res);
-              //this.pictureTypeChange.emit(picture.type.split('/')[1]);
+              this.imageUrl = res;
+              console.log(res);
+              this.imageType = type;
           })
           .catch(err => {
               this.error$.next("COMPRESSION_FAILED");
