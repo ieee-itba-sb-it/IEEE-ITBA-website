@@ -9,7 +9,7 @@ import { blogCollectionName } from '../../../../secrets';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sanitizeString } from '../../utils';
 import {AuthService} from '../../../../core/services/authorization/auth.service';
-import {BehaviorSubject, Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, concatMap, Observable, switchMap} from 'rxjs';
 import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -214,22 +214,35 @@ export class WriteNewsComponent implements OnInit {
   }
 
   submitNews() {
-      if (this.newsReference) {
-          this.blogService.setDoc(
-              this.newsContent
-          ).subscribe(sent => {
-              if (sent) {
-                  this.router.navigate([`/noticias/${this.newsContent.reference}`]);
-              }
-          });
-          return;
+      // if (this.newsReference) {
+      //     this.blogService.setDoc(
+      //         this.newsContent
+      //     ).subscribe(sent => {
+      //         if (sent) {
+      //             this.router.navigate([`/noticias/${this.newsContent.reference}`]);
+      //         }
+      //     });
+      //     return;
+      // }
+
+      if (!this.newsReference){
+          this.newsContent.author = this.getAuthorName();
+          this.newsContent.reference = encodeURIComponent(sanitizeString(this.newsContent.title) + '-' + this.blogService.docsSize.getValue());
+          this.newsContent.tags = this.currentTags();
       }
-      this.newsContent.author = this.getAuthorName();
-      this.newsContent.reference = encodeURIComponent(sanitizeString(this.newsContent.title) + '-' + this.blogService.docsSize.getValue());
-      this.newsContent.tags = this.currentTags();
+
       if (this.newsContent.title !== '') {
-          this.blogService.setDoc(
-              this.newsContent
+          this.blogService.uploadImage(
+              this.imageUrl,
+              this.imageType,
+              this.newsContent.reference
+          ).pipe(
+              concatMap((url) =>
+                  this.blogService.setDoc({
+                      ...this.newsContent,
+                      imageUrl: url
+                  })
+              )
           ).subscribe(sent => {
               if (sent) {
                   this.router.navigate([`/noticias/${this.newsContent.reference}`]);

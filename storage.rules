@@ -5,11 +5,12 @@ service firebase.storage {
     return request.auth.uid != null;
   }
 
-  // Not tested
-  function hasRole(role) {
-    let roles = {"admin": 1, "writer": 2};
-    return isSignedIn() && roles[role] == firestore.get(/databases/$(database)/documents/sensitive-user-data/$(request.auth.token.email)).data.role;
-  }
+//Not tested
+ function hasRole(role) {
+      let roles = {"admin": 1, "writer": 2, "member": 3};
+      return isSignedIn() && roles[role] in firestore.get(/databases/(default)/documents/sensitive-user-data/$(request.auth.token.email)).data.roles;
+    }
+
 
   function isFileOwner(imagename) {
     return isSignedIn() && imagename.matches(request.auth.uid + "\\..*");
@@ -35,5 +36,14 @@ service firebase.storage {
         hasExtension(imagename, "jpg|jpeg|png");
       allow create, update: if sizeLessThan(2);
     }
-  }
+
+    match /news-images/{documents=**}{
+        allow read;
+        allow write: if
+            hasRole("admin") || hasRole("writer");
+    }
+   }
+
+
+
 }
