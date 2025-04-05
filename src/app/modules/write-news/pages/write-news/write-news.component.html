@@ -48,19 +48,15 @@
             </mat-list-item>
             <mat-list-item>
               <!-- Image -->
-<!--                <div class="w-100 d-flex flex-column mb-3 justify-content-center">-->
-<!--                    <p class="m-2">{{ 'WRITE-NEW.COVERIMG' | translate }}</p>-->
-<!--                    <input #pictureInput (change)="uploadImage($event)" type="file" accept="image/png, image/jpeg, image/jpg"-->
-<!--                           class="d-none">-->
-<!--                    <button mat-raised-button (click)="pictureInput.click()" color="primary" type="button">-->
-<!--                        <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>-->
-<!--                        {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}-->
-<!--                    </button>-->
-<!--                </div>-->
-              <mat-form-field class="w-100">
-                <mat-label>{{ 'WRITE-NEW.COVERIMG' | translate }}</mat-label>
-                <input id="imageUrl" matInput [(ngModel)]="newsContent.imageUrl">
-              </mat-form-field>
+                <div class="w-100 d-flex flex-column mb-3 justify-content-center">
+                    <p class="m-2">{{ 'WRITE-NEW.COVERIMG' | translate }}</p>
+                    <input #pictureInput (change)="uploadImage($event)" type="file" accept="image/png, image/jpeg, image/jpg, image/webp"
+                           class="d-none">
+                    <button mat-raised-button (click)="pictureInput.click()" color="primary" type="button">
+                        <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
+                        {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}
+                    </button>
+                </div>
             </mat-list-item>
             <mat-list-item>
               <!-- Epigrafe -->
@@ -104,7 +100,7 @@
         <h2 class="word-break short-intro-text" style="margin-bottom: 1rem">{{ getAuthorName() || "Author" }}</h2>
         <h1 class="word-break preview-title">{{ newsContent.title || "Título" }}</h1>
         <span class="word-break short-intro-text" [innerHTML]="newsContent.shortIntro || ''"></span>
-        <img class="preview-image" src="{{ newsContent.imageUrl || '' }}" alt="Imagen de portada" [width]="600">
+        <img class="preview-image" [src]="imageUrl" alt="Imagen de portada" [width]="600">
         <span class="preview-epigraph">{{ newsContent.imageText || "Epígrafe" }}</span>
         <div class="content-text word-break">
           <br>

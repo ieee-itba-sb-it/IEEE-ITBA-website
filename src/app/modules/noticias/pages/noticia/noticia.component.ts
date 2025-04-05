@@ -6,7 +6,7 @@ import {NewsItem} from '../../../../shared/models/news-item/news-item';
 import {BlogService} from '../../../../core/services/blog/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
-import {combineLatestWith, map, Observable, switchMap, tap} from 'rxjs';
+import {combineLatest, combineLatestWith, forkJoin, map, merge, Observable, switchMap, tap, zip} from 'rxjs';
 import {AuthService} from '../../../../core/services/authorization/auth.service';
 import {IEEEuser} from '../../../../shared/models/ieee-user/ieee-user';
 import {roles} from '../../../../shared/models/roles/roles.enum';
@@ -53,13 +53,7 @@ export class NoticiaComponent implements OnInit {
         this.blogService.setCollectionName(blogCollectionName);
 
         this.blogService.retrieveListedDocsSize();
-    }
 
-    useLanguage(language: string) {
-        this.translate.use(language);
-    }
-
-    ngOnInit(): void {
         this.newsData$ = this.route.paramMap
             .pipe(
                 tap(
@@ -81,18 +75,25 @@ export class NoticiaComponent implements OnInit {
                     this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
                 })
             );
-        this.authService.getCurrentUser().pipe(
-            combineLatestWith(this.newsData$)
-        ).subscribe(values => {
-            let user = values[0];
-            this.userData = user;
-            const news = values[1];
-            if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
-            if (user != null)
-                this.isUserAuthorOrAdmin = (user.fullname == news.author && user.roles.includes(roles.contentCreator)) || user.roles.includes(roles.admin);
-            else
-                this.isUserAuthorOrAdmin = false;
-        })
+
+    }
+
+    useLanguage(language: string) {
+        this.translate.use(language);
+    }
+
+    ngOnInit(): void {
+        this.newsData$.subscribe(news => {console.log(news)});
+        combineLatest([this.authService.getCurrentUser(), this.newsData$]).subscribe(
+            ([user, news]) => {
+                console.log(news);
+                this.userData = user;
+                if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
+                if (user != null && news != null)
+                    this.isUserAuthorOrAdmin = (user.fullname == news.author && user.roles.includes(roles.contentCreator)) || user.roles.includes(roles.admin);
+                else
+                    this.isUserAuthorOrAdmin = false;
+            })
     }
 
     rateNews(emoji: string, rating: number) {
