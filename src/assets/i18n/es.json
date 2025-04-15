@@ -844,18 +844,13 @@
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "CATEGORIES": {
       "SUMO": {
-        "NAME": "Sumo",
-        "IMAGE_ALT_TEXT": "Ícono de la categoria de Sumo",
+        "NAME": "Sumo, Mini Sumo, Mini Sumo Pro, Micro Sumo",
+        "IMAGE_ALT_TEXT": "Ícono de las categorias de Sumo",
         "DESC": "Dos robots de equipos distintos luchan de acuerdo a un conjunto de reglas. Quien obtenga más puntos gana."
       },
-      "MINISUMO": {
-        "NAME": "Mini sumo",
-        "IMAGE_ALT_TEXT": "Ícono de la categoria de Mini Sumo",
-        "DESC": "Las reglas básicas son las mismas que la categoría Sumo, pero con limitaciones en aspectos como ancho y peso de los robots."
-      },
       "RACING": {
-        "NAME": "Carreras",
-        "IMAGE_ALT_TEXT": "Ícono de la categoria de Carreras",
+        "NAME": "Carreras, Carreras Pro",
+        "IMAGE_ALT_TEXT": "Ícono de las categorias de Carreras",
         "DESC": "Dos robots recorren dos circuitos de iguales características al mismo tiempo, siguiendo una línea blanca sobre un fondo negro. Quien logre llegar primero a la meta gana."
       },
       "FOOTBALL": {
@@ -877,7 +872,7 @@
           }
         },
         "2": {
-          "TEXT": "Hay 4 categorías diferentes y cada una se desarrolla se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. Los reglamentos están adaptados de la Liga Nacional de Robótica Argentina, y pueden ser descargados de su sección correspondiente.",
+          "TEXT": "Hay 7 categorías diferentes y cada una se desarrolla en forma independiente de las otras, transcurriendo todas en simultáneo el día del evento. El evento forma parte de la Liga Nacional de Robótica Argentina. Abajo pueden encontrar los reglamentos para cada una de las categorías.",
           "LINKS": {
             "1": "Reglamento de Sumo/Minisumo",
             "2": "Reglamento de Carreras"
@@ -894,9 +889,9 @@
       "TEXT_1": "La competencia se desarrollará en la ",
       "TEXT_2": " (Lavardén 315, CABA, Argentina) el día Sábado 29 de Julio.",
       "DATE": "Sábado 3 de Agosto",
-      "LOCATION": "ITBA Sede Distrito Tecnológico",
-      "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
-      "TIME": "9:00hs - 19:00hs"
+      "LOCATION": "A confirmar",
+      "LOCATION_ADDRESS": "",
+      "TIME": "A confirmar"
     },
     "SCHEDULE_TITLE": "Cronograma estimado",
     "SCHEDULE": {

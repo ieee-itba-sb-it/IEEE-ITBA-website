@@ -9,5 +9,6 @@ export class EventContentCardComponent {
     @Input() title: string;
     @Input() imageUrl: string;
     @Input() image: Boolean= true;
+    @Input() disableImageOnMobile: Boolean = false;
     @Input() disabled: Boolean = false;
 }

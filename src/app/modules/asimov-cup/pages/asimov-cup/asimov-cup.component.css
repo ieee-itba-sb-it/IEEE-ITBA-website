@@ -37,8 +37,8 @@
 
 .aboutus-container {
   display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-evenly;
   gap: 1rem;
 }
 

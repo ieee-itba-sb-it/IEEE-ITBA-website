@@ -19,6 +19,7 @@
     background-color: inherit;
     border-width: 3px;
     transition: all 175ms ease-in-out;
+    height: auto;
 }
 
 .ieeecard-button:hover {

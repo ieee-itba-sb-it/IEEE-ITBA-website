@@ -22,6 +22,7 @@
           <app-event-content-card
             title="{{category.textCode | translate}}"
             imageUrl="{{category.imgLink}}"
+            [disableImageOnMobile]="true"
           >
             <p content class="category-card-description">
               {{ category.descriptionTextCode | translate }}
@@ -64,19 +65,19 @@
           </ng-container>
           <div class="aboutus-section">
             <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
-            <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://goo.gl/maps/CpRVKJ5bJUc4AzJj7">{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
+            <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a>{{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}}</a></span>
           </div>
           <div class="aboutus-section">
             <i class="fa-regular fa-clock" [style.color]="(this.getAppColors() | async).background"></i>
             <span>{{ 'ASIMOVCUP.D_AND_L.TIME' | translate }}</span>
           </div>
         </div>
-        <div class="image-section">
-          <img
-            src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"
-            alt="PlanoITBA2"
-          />
-        </div>
+<!--        <div class="image-section">-->
+<!--          <img-->
+<!--            src="../../../../../assets/image/events/asimov-cup/PlanoITBA2.png"-->
+<!--            alt="PlanoITBA2"-->
+<!--          />-->
+<!--        </div>-->
       </div>
     </div>
      <!--
