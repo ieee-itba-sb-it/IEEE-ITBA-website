@@ -24,3 +24,9 @@ mat-card {
 .not-available-background-color{
     background-color: lightgrey;
 }
+
+@media (max-width: 600px) {
+    .disabledOnMobile {
+        display: none;
+    }
+}

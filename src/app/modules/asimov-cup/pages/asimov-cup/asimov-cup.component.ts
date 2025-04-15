@@ -37,12 +37,6 @@ export class AsimovCupComponent implements OnInit {
             altTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.IMAGE_ALT_TEXT',
             descriptionTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.DESC'
         },
-        { textCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.NAME',
-            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Sumo.pdf?alt=media&token=15542ea0-42ad-4df7-a098-361848b3cead',
-            imgLink: '../../../../../assets/image/events/asimov-cup/mini-sumo.svg',
-            altTextCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.IMAGE_ALT_TEXT',
-            descriptionTextCode: 'ASIMOVCUP.CATEGORIES.MINISUMO.DESC'
-        },
         { textCode: 'ASIMOVCUP.CATEGORIES.RACING.NAME',
             rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Carrera.pdf?alt=media&token=05ff1614-16a3-44df-93bb-4f9564720f4d',
             imgLink: '../../../../../assets/image/events/asimov-cup/racing.svg',

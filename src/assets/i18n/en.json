@@ -788,17 +788,12 @@
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {
       "SUMO": {
-        "NAME": "Sumo",
+        "NAME": "Sumo, Mini Sumo, Pro Mini Sumo, Micro Sumo",
         "IMAGE_ALT_TEXT": "Sumo category icon",
         "DESC": "Two robots from two different teams fight according to a set of rules. Whoever gets more points wins."
       },
-      "MINISUMO": {
-        "NAME": "Mini sumo",
-        "IMAGE_ALT_TEXT": "Mini Sumo category icon",
-        "DESC": "The basic rules are the same as the Sumo category, but with limitations such as robot width and weight."
-      },
       "RACING": {
-        "NAME": "Racing",
+        "NAME": "Racing, Pro Racing",
         "IMAGE_ALT_TEXT": "Racing category icon",
         "DESC": "Two robots race around two tracks of equal dimensions at the same time, following a white line over a black surface. Whoever gets to the line first wins."
       },
@@ -821,7 +816,7 @@
           }
         },
         "2": {
-          "TEXT": "There are 4 different categories, each one developed independently of the others, all running simultaneously on the day of the event. The regulations are adapted from the Argentine National Robotics League (LNR), and can be downloaded from its corresponding section.",
+          "TEXT": "There are 7 different categories, each one developed independently of the others, all running simultaneously on the day of the event. The event is part of the Argentine National Robotics League (LNR). Here below you can find the rules for each category.",
           "LINKS": {
             "1": "Sumo/Minisumo regulations",
             "2": "Racing regulations"
@@ -838,9 +833,9 @@
       "TEXT_1": "The competition will take place at the ",
       "TEXT_2": " (Lavardén 315, CABA, Argentina) on Saturday, July 29.",
       "DATE": "Saturday, August 3rd",
-      "LOCATION": "ITBA Sede Distrito Tecnológico",
-      "LOCATION_ADDRESS": "Lavardén 315, CABA, Argentina",
-      "TIME": "9:00hs - 19:00hs"
+      "LOCATION": "To be confirmed",
+      "LOCATION_ADDRESS": "",
+      "TIME": "To be confirmed"
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
