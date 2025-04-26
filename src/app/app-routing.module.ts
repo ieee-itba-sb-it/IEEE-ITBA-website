@@ -185,6 +185,13 @@ const routes: Routes = [
         },
     },
     {
+        path: 'asimov',
+        loadChildren: () =>
+            import('./modules/asimov-dashboard/asimov-dashboard.module').then(
+                (m) => m.AsimovDashboardModule
+            ),
+    },
+    {
         path: 'team-request',
         loadChildren: () =>
             import('./modules/team-request/team-request.module').then(

@@ -9,7 +9,7 @@
 
 .text-container {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -107,7 +107,6 @@
     }
 
     .text-container {
-        flex-direction: column;
         margin-bottom: 1rem;
         margin-top: 1rem;
         justify-content: center;

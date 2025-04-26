@@ -7,6 +7,5 @@
 }
 
 .course-detail-container > app-event-content-card {
-    width: 40%;
-    min-width: min-content;
+    max-width: 30rem;
 }
