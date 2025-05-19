@@ -1,8 +1,9 @@
+
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {DOCUMENT} from '@angular/common';
 import {blogCollectionName} from '../../../../secrets';
-import {NewsItem} from '../../../../shared/models/news-item/news-item';
+import {NewsComment, NewsItem} from '../../../../shared/models/news-item/news-item';
 import {BlogService} from '../../../../core/services/blog/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -13,6 +14,8 @@ import {roles} from '../../../../shared/models/roles/roles.enum';
 import {MDBModalRef, MDBModalService} from 'angular-bootstrap-md';
 import {AuthActionModalComponent} from '../../../../shared/components/auth-action-modal/auth-action-modal.component';
 import {DynamicSeoService} from "../../../../core/services/seo/seo-dynamic.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {addDoc, collection, doc} from "@angular/fire/firestore";
 
 @Component({
     selector: 'app-noticia',
@@ -20,6 +23,7 @@ import {DynamicSeoService} from "../../../../core/services/seo/seo-dynamic.servi
     styleUrls: ['./noticia.component.css']
 })
 export class NoticiaComponent implements OnInit {
+    user$: Observable<IEEEuser | null>;
     newsData$: Observable<NewsItem>;
     userData: IEEEuser;
     isVisible: boolean = false;
@@ -29,8 +33,12 @@ export class NoticiaComponent implements OnInit {
     emojisList: string[] = ['thumbsdown', 'confused', 'grin', 'joy', 'heart_eyes'];
     recommendedNews$: Observable<NewsItem[]>;
     isUserAuthorOrAdmin: boolean;
-
+    comments$: Observable<NewsComment[]>;
+    comments: NewsComment[];
     modalRef: MDBModalRef | null = null;
+    commentForm: FormGroup;
+    loading = false;
+    readonly MAX_COMMENT_LENGTH = 300;
 
     @Input('id') newsReference: string = '';
 
@@ -75,7 +83,7 @@ export class NoticiaComponent implements OnInit {
                     this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
                 })
             );
-
+        this.commentForm = new FormGroup({content: new FormControl('', [Validators.required, Validators.maxLength(300)])});
     }
 
     useLanguage(language: string) {
@@ -83,17 +91,19 @@ export class NoticiaComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.newsData$.subscribe(news => {console.log(news)});
         combineLatest([this.authService.getCurrentUser(), this.newsData$]).subscribe(
             ([user, news]) => {
-                console.log(news);
                 this.userData = user;
                 if (news && news.date) this.recommendedNews$ = this.blogService.getRecommendedNews(news.date);
                 if (user != null && news != null)
                     this.isUserAuthorOrAdmin = (user.fullname == news.author && user.roles.includes(roles.contentCreator)) || user.roles.includes(roles.admin);
                 else
                     this.isUserAuthorOrAdmin = false;
-            })
+            });
+        this.blogService.getNewsComments(this.newsReference).subscribe(comments => {
+            this.comments = comments;
+        });
+        this.user$ = this.authService.getCurrentUser();
     }
 
     rateNews(emoji: string, rating: number) {
@@ -132,5 +142,55 @@ export class NoticiaComponent implements OnInit {
         this.modalRef = this.modalService.show(AuthActionModalComponent, {
             class: 'modal-dialog-centered'
         });
+    }
+
+    submitComment() {
+        if (this.commentForm.invalid) return;
+
+        this.loading = true;
+        const content = this.commentForm.value.content.trim();
+        this.user$.subscribe(user => {
+            if(!user) {        console.log(this.comments);
+
+                this.openModal();
+                return;
+            }
+            const newComment = {
+                userId: user.uID,
+                userFullname: user.fullname,
+                content,
+                timestamp: new Date(),
+                id: null
+            };
+
+            this.blogService.addComment(newComment, this.newsReference);
+            this.comments.push(newComment);
+        });
+    }
+
+    canDelete(comment: NewsComment): boolean {
+        let toReturn: boolean;
+        this.user$.subscribe(user => {
+            toReturn = comment.userId === user.uID || user.roles.includes(roles.contentCreator)
+                || user.roles.includes(roles.admin);
+        });
+        return toReturn;
+    }
+
+    deleteComment(comment: NewsComment) {
+        this.blogService.deleteComment(comment.id, this.newsReference);
+        this.comments.splice(this.comments.indexOf(comment), 1);
+    }
+
+    formatDate(timestamp: any): string {
+        const date: Date = timestamp instanceof Date ? timestamp : timestamp.toDate();
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
     }
 }

@@ -39,6 +39,48 @@
                         {{newsData.ratings[i]}} <ngx-emoji [emoji]="{ id: emoji, skin: 3 }" size="15"></ngx-emoji>
                     </mat-chip>
                 </mat-chip-listbox>
+                <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Write a comment</mat-label>
+                        <textarea
+                            matInput
+                            formControlName="content"
+                            rows="3"
+                            placeholder="Share your thoughts..."
+                            maxlength="300"
+                            matTextareaAutosize
+                            matAutosizeMinRows="3"
+                            matAutosizeMaxRows="5"
+                        ></textarea>
+
+                        <mat-hint align="end">{{ commentForm.get('content')?.value?.length || 0 }}/300</mat-hint>
+
+                        <mat-error *ngIf="commentForm.get('content')?.hasError('required')">
+                            Comment is required
+                        </mat-error>
+                        <mat-error *ngIf="commentForm.get('content')?.hasError('maxlength')">
+                            Comment cannot exceed 300 characters
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button class="comment-button" mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid || loading">
+                        {{ loading ? 'Posting...' : 'Post Comment' }}
+                    </button>
+                </form>
+            </div>
+            <div class="comments-container">
+                <div *ngFor="let comment of comments" class="mb-2">
+                    <mat-card class="comment">
+                        <mat-card-header>
+                            <mat-card-title>{{ comment.userFullname }}</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="py-2">{{ comment.content }}</mat-card-content>
+                        <mat-card-footer class="align-self-end p-2">{{ formatDate(comment.timestamp) }}</mat-card-footer>
+                    </mat-card>
+                    <button *ngIf="canDelete(comment)" class="delete-comment-button btn btn-danger" (click)="deleteComment(comment)">
+                        {{ "NEWS.DELETE_COMMENT" | translate}}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="recomended-news" fxLayout="column" fxLayoutAlign="start center">

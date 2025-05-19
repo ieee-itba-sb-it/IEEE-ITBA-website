@@ -419,7 +419,8 @@
     "MORENEWS": "Ver más noticias",
     "RECOMMENDED": "Noticias recomendadas",
     "RATING": "¿Que te pareció la noticia?",
-    "EDIT-NEW": "Editar noticia"
+    "EDIT-NEW": "Editar noticia",
+    "DELETE_COMMENT": "Borrar Comentario"
   },
   "IEEEXTREME": {
     "PAGETITLE": "ITBA IEEE | IEEExtreme",

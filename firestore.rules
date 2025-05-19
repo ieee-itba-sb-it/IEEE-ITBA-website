@@ -64,5 +64,11 @@ service cloud.firestore {
     match /sensitive-user-data/{document=**} {
       allow read, write: if hasRole("admin");
     }
+
+    match /{path=**}/comments/{comment} {
+        allow read;
+        allow create;
+        allow delete: if hasRole("admin") || hasRole("writer") || isDataOwner();
+    }
   }
 }
