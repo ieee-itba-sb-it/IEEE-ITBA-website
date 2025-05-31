@@ -421,13 +421,13 @@ hr {
 .comment-form {
     display: flex;
     flex-direction: column;
-    margin-top: 0.5rem;
+    margin-top: 1.75rem;
     margin-bottom: 2rem;
-    width: 60%;
+    width: 100%;
 }
 
 .comment-button {
-    width: 35%;
+    width: 15%;
 }
 
 .delete-comment-button {

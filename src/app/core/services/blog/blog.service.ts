@@ -366,20 +366,28 @@ export class BlogService {
 
     // Add a comment to the referenced new
     addComment(comment: NewsComment, reference: string) {
+        const call = new BehaviorSubject<boolean>(false);
         const commentsCollectionRef = collection(this.afs, this.collectionName, reference, BlogService.COMMENTS_COLLECTION_NAME);
         const newCommentRef = doc(commentsCollectionRef);
         comment.id = newCommentRef.id;
-        setDoc(newCommentRef, comment);
+        setDoc(newCommentRef, comment)
+            .then(snapshot => call.next(true))
+            .catch(err => call.next(false));
+        return call.asObservable();
     }
 
     // Delete a comment from the referenced new
     deleteComment(comment_id: string, reference: string) {
+        const call = new BehaviorSubject<boolean>(false);
         const toDeleteDoc = doc(this.afs, this.collectionName, reference, BlogService.COMMENTS_COLLECTION_NAME, comment_id);
         getDoc(toDeleteDoc).then(snap => {
             if (!snap.exists) return;
             else {
-                deleteDoc(toDeleteDoc);
+                deleteDoc(toDeleteDoc)
+                    .then(snap => call.next(true))
+                    .catch(err => call.next(false));
             }
         });
+        return call.asObservable();
     }
 }

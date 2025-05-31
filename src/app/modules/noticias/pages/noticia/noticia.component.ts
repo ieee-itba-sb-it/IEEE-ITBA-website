@@ -163,9 +163,11 @@ export class NoticiaComponent implements OnInit {
                 id: null
             };
 
-            this.blogService.addComment(newComment, this.newsReference);
-            this.comments.push(newComment);
+            const added = this.blogService.addComment(newComment, this.newsReference);
+            if(added)
+                this.comments.push(newComment);
         });
+        this.loading = false;
     }
 
     canDelete(comment: NewsComment): boolean {
@@ -178,8 +180,9 @@ export class NoticiaComponent implements OnInit {
     }
 
     deleteComment(comment: NewsComment) {
-        this.blogService.deleteComment(comment.id, this.newsReference);
-        this.comments.splice(this.comments.indexOf(comment), 1);
+        const deleted = this.blogService.deleteComment(comment.id, this.newsReference);
+        if(deleted)
+            this.comments.splice(this.comments.indexOf(comment), 1);
     }
 
     formatDate(timestamp: any): string {

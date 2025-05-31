@@ -71,15 +71,21 @@
             <div class="comments-container">
                 <div *ngFor="let comment of comments" class="mb-2">
                     <mat-card class="comment">
-                        <mat-card-header>
-                            <mat-card-title>{{ comment.userFullname }}</mat-card-title>
+                        <mat-card-header class="flex flex-row justify-content-between">
+                            <mat-card-title>{{ "NEWS.COMMENT_BY" | translate}}  {{ comment.userFullname }}</mat-card-title>
+                            <div class="btn-group" dropdown>
+                                <button id="button-basic" dropdownToggle class="btn">...</button>
+                                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                                    role="menu" aria-labelledby="button-basic">
+                                    <li role="menuitem">
+                                        <a class="dropdown-item" (click)="deleteComment(comment)">{{ "NEWS.DELETE_COMMENT" | translate}}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </mat-card-header>
                         <mat-card-content class="py-2">{{ comment.content }}</mat-card-content>
                         <mat-card-footer class="align-self-end p-2">{{ formatDate(comment.timestamp) }}</mat-card-footer>
                     </mat-card>
-                    <button *ngIf="canDelete(comment)" class="delete-comment-button btn btn-danger" (click)="deleteComment(comment)">
-                        {{ "NEWS.DELETE_COMMENT" | translate}}
-                    </button>
                 </div>
             </div>
         </div>

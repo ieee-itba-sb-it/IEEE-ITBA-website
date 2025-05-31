@@ -420,7 +420,8 @@
     "RECOMMENDED": "Noticias recomendadas",
     "RATING": "¿Que te pareció la noticia?",
     "EDIT-NEW": "Editar noticia",
-    "DELETE_COMMENT": "Borrar Comentario"
+    "DELETE_COMMENT": "Borrar Comentario",
+    "COMMENT_BY": "Comentario realizado por"
   },
   "IEEEXTREME": {
     "PAGETITLE": "ITBA IEEE | IEEExtreme",
