@@ -192,6 +192,17 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'admin/asimov',
+        loadChildren: () =>
+            import('./modules/asimov-admin/asimov-admin.module').then(
+                (m) => m.AsimovAdminModule
+            ),
+        canActivate: [AuthGuardService],
+        data: {
+            expectedRole: [roles.admin]
+        },
+    },
+    {
         path: 'team-request',
         loadChildren: () =>
             import('./modules/team-request/team-request.module').then(
