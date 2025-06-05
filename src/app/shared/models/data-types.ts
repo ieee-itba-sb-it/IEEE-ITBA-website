@@ -35,6 +35,10 @@ export function createNewsItemWithDate(
     return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
 }
 
+export function createNewsComments(userId: string, userFullname: string, content: string, timestamp: Date, id: string) {
+    return { userId, userFullname, content, timestamp, id };
+}
+
 export function createRegularUser(fullname: string, email: string, photoURL: string, roles: number[], uID: string, verifiedEmail?: boolean, linkedin?: string) {
     let newUser: IEEEuser;
     if (!linkedin) linkedin = null;
