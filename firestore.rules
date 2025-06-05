@@ -67,7 +67,7 @@ service cloud.firestore {
 
     match /{path=**}/comments/{comment} {
         allow read;
-        allow create;
+        allow create: if isSignedIn();
         allow delete: if hasRole("admin") || hasRole("writer") || isDataOwner();
     }
   }
