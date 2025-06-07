@@ -1,9 +1,9 @@
 import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
 
 import { IEEEuser } from './ieee-user/ieee-user';
 import { roles } from './roles/roles.enum';
 import { NewsItem } from './news-item/news-item';
+import {Timestamp} from "@angular/fire/firestore";
 
 export function createNewsItem(
     title: string,
@@ -17,7 +17,16 @@ export function createNewsItem(
     listed: boolean,
     tags: string[],
     ratings: number[]): NewsItem {
-    return { title, content, imageUrl, date: date.toDate(), author, reference, imageText, shortIntro, listed, tags, ratings };
+    return { title, content, imageUrl, date: parseTimestamp(date), author, reference, imageText, shortIntro, listed, tags, ratings };
+}
+
+const parseTimestamp = (date: Date | Timestamp | { _seconds: number, _nanoseconds: number }): Date => {
+    if (date instanceof Date) return date;
+    if (date instanceof Timestamp) return date.toDate();
+    if (date && typeof date === 'object' && '_seconds' in date && '_nanoseconds' in date) {
+        return new Date(date._seconds * 1000 + date._nanoseconds / 1000000);
+    }
+    return new Date();
 }
 
 export function createNewsItemWithDate(
