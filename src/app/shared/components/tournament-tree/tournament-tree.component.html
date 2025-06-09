@@ -1,0 +1,43 @@
+<div class="bracket-container" *ngIf="bracketLevels.size > 0">
+
+    <div *ngFor="let level of [].constructor(finalLevel + 1); let i = index" class="bracket-level">
+        <div class="lines-wrapper" *ngIf="i !== 0">
+            <div class="line" *ngFor="let line of [].constructor(Math.pow(2, finalLevel-i))"></div>
+        </div>
+
+        <div class="match-column">
+            <div *ngFor="let encounter of bracketLevels.get(finalLevel - i)" class="match-wrapper">
+
+                <div class="match" [class.match-decided]="encounter.winner">
+                    <div
+                        class="robot"
+                        [class.winner]="encounter.winner === 1"
+                        [class.loser]="encounter.winner === 2"
+                        (click)="votation(encounter, 1)">
+                        <ng-container *ngIf="getRobot(encounter.robot1) as robot; else tbd">
+                            <img [src]="robot.photo" [alt]="robot.name" class="robot-photo">
+                            <span class="robot-name">{{ robot.name }}</span>
+                        </ng-container>
+                    </div>
+
+                    <div
+                        class="robot"
+                        [class.winner]="encounter.winner === 2"
+                        [class.loser]="encounter.winner === 1"
+                        (click)="votation(encounter, 2)">
+                        <ng-container *ngIf="getRobot(encounter.robot2) as robot; else tbd">
+                            <img [src]="robot.photo" [alt]="robot.name" class="robot-photo">
+                            <span class="robot-name">{{ robot.name }}</span>
+                        </ng-container>
+                    </div>
+
+                    <ng-template #tbd>
+                        <span class="robot-name tbd">Por definir</span>
+                    </ng-template>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

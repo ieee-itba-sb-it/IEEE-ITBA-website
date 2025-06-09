@@ -6,7 +6,7 @@ import {AppConfigService} from "../../../core/services/configuration/app-config.
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit{
     constructor(private appConfigService: AppConfigService) {
 
     }

@@ -1,0 +1,157 @@
+:host {
+    display: block;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+}
+
+.bracket-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.bracket-level {
+    display: flex;
+    flex-direction: row;
+}
+
+.match-column {
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-shrink: 0;
+    min-width: 250px;
+    padding: 0 45px;
+}
+
+.level-title {
+    text-align: center;
+    color: #5c6ac4;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.match-wrapper {
+    position: relative;
+&:last-child {
+    margin-bottom: 0;
+}
+}
+
+.match {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #dfe3e8;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.robot {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f4f8;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: #f0f4f8;
+    }
+}
+
+.robot-photo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.robot-name {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.tbd {
+    color: #999;
+    font-style: italic;
+}
+
+/* --- Estados de Votación --- */
+.match-decided {
+    .robot {
+        cursor: not-allowed;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+    .loser {
+        opacity: 0.5;
+    }
+    .winner {
+        background-color: #e6f4e6;
+        .robot-name {
+            font-weight: 700;
+            color: #2e7d32;
+        }
+        .robot-photo {
+            border-color: #2e7d32;
+        }
+    }
+}
+
+/* --- Conectores Corregidos --- */
+.bracket-level:not(:last-of-type) .match-wrapper {
+&::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 45px;
+    height: 2px;
+    background-color: #ced4da;
+    transform: translateY(-50%);
+}
+}
+
+
+   .bracket-level:not(:first-of-type) .match-wrapper {
+       &::before {
+           content: '';
+           position: absolute;
+           top: 50%;
+           right: 100%;
+           width: 45px;
+           height: 2px;
+           background-color: #ced4da;
+           transform: translateY(-50%);
+       }
+   }
+
+   .lines-wrapper {
+       display: flex;
+       flex-flow: column;
+       justify-content: space-around;
+       flex-shrink: 0;
+       gap: 50px;
+   }
+
+   .line {
+       position: relative;
+       height: 88px;
+       width: 2px;
+       background-color: #ced4da;
+       transform: scaleY(2);
+   }

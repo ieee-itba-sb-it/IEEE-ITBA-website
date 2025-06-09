@@ -790,7 +790,7 @@
     "DOWNLOAD_RULEBOOK": "Download rulebook",
     "CATEGORIES": {
       "SUMO": {
-        "NAME": "Sumo, Mini Sumo, Pro Mini Sumo, Micro Sumo",
+        "NAME": "Sumo, Mini Sumo, Pro Mini Sumo, Micro Sumo, Sumo RC",
         "IMAGE_ALT_TEXT": "Sumo category icon",
         "DESC": "Two robots from two different teams fight according to a set of rules. Whoever gets more points wins."
       },

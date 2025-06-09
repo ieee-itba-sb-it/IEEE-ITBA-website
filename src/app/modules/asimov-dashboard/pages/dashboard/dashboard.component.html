@@ -1,1 +1,7 @@
 <p>dashboard works!</p>
+
+<app-tournament-tree
+    [initialEncounters]="myEncounters"
+    [robots]="myRobots"
+    (vote)="handleVote($event)">
+</app-tournament-tree>
