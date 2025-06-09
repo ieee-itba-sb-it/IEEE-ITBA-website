@@ -64,7 +64,7 @@ service cloud.firestore {
     match /sensitive-user-data/{document=**} {
       allow read, write: if hasRole("admin");
     }
-
+    
     // Asimov
     match /asimov_robots/{document=**}  {
       allow read;
@@ -76,7 +76,7 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-    match /asimov_scores/{document=**}  {
+    match /asimov_scores/{score}  {
       allow read;
       allow write: if hasRole("admin");
     }
@@ -90,6 +90,12 @@ service cloud.firestore {
     match /asimov_encounters/{document=**}  {
       allow read;
       allow write: if hasRole("admin");
+    }
+    
+    match /{path=**}/comments/{comment} {
+        allow read;
+        allow create: if isSignedIn();
+        allow delete: if hasRole("admin") || hasRole("writer") || isDataOwner();
     }
   }
 }

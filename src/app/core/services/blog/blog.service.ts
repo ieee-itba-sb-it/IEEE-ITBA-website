@@ -1,8 +1,34 @@
 import { Injectable } from '@angular/core';
-import {Firestore, collection, CollectionReference, query, doc, getDoc, deleteDoc, getDocs, where, orderBy, limit, QuerySnapshot, getCountFromServer, startAt, Query, endAt, limitToLast, QueryConstraint, setDoc, addDoc, updateDoc, QueryFieldFilterConstraint, Timestamp, QueryDocumentSnapshot} from '@angular/fire/firestore';
+import {
+    Firestore,
+    collection,
+    CollectionReference,
+    query,
+    doc,
+    getDoc,
+    deleteDoc,
+    getDocs,
+    where,
+    orderBy,
+    limit,
+    QuerySnapshot,
+    getCountFromServer,
+    startAt,
+    Query,
+    endAt,
+    limitToLast,
+    QueryConstraint,
+    setDoc,
+    addDoc,
+    updateDoc,
+    QueryFieldFilterConstraint,
+    Timestamp,
+    QueryDocumentSnapshot,
+    DocumentData, writeBatch
+} from '@angular/fire/firestore';
 // import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { NewsItem } from '../../../shared/models/news-item/news-item';
-import { createNewsItem, createNewsItemWithDate } from '../../../shared/models/data-types';
+import {NewsComment, NewsItem} from '../../../shared/models/news-item/news-item';
+import {createNewsComments, createNewsItem, createNewsItemWithDate} from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
 import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
@@ -14,6 +40,8 @@ import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
     providedIn: 'root'
 })
 export class BlogService {
+
+    private static readonly COMMENTS_COLLECTION_NAME = 'comments';
 
     // ----------Variables----------
     blogData: BehaviorSubject<NewsItem[]> = new BehaviorSubject([]);
@@ -322,4 +350,44 @@ export class BlogService {
         return this.changeRating(news, rating, -1);
     }
 
+    // Get a collection of comments from the referenced new
+    getNewsComments(reference: string) {
+        const call = new BehaviorSubject<NewsComment[]>([]);
+        const blogDocRef = doc(this.afs, this.collectionName, reference);
+        const commentsCollectionRef = collection(blogDocRef, BlogService.COMMENTS_COLLECTION_NAME);
+        getDocs(query(commentsCollectionRef)).then(snapshot => {
+            const docs = snapshot.docs.map((doc: QueryDocumentSnapshot) => doc.data()).map((doc: any) => (
+                createNewsComments(doc.userId, doc.userFullname, doc.content, doc.timestamp, doc.id))
+            );
+            call.next(docs);
+        });
+        return call.asObservable();
+    }
+
+    // Add a comment to the referenced new
+    addComment(comment: NewsComment, reference: string) {
+        const call = new BehaviorSubject<boolean>(false);
+        const commentsCollectionRef = collection(this.afs, this.collectionName, reference, BlogService.COMMENTS_COLLECTION_NAME);
+        const newCommentRef = doc(commentsCollectionRef);
+        comment.id = newCommentRef.id;
+        setDoc(newCommentRef, comment)
+            .then(snapshot => call.next(true))
+            .catch(err => call.next(false));
+        return call.asObservable();
+    }
+
+    // Delete a comment from the referenced new
+    deleteComment(comment_id: string, reference: string) {
+        const call = new BehaviorSubject<boolean>(false);
+        const toDeleteDoc = doc(this.afs, this.collectionName, reference, BlogService.COMMENTS_COLLECTION_NAME, comment_id);
+        getDoc(toDeleteDoc).then(snap => {
+            if (!snap.exists) return;
+            else {
+                deleteDoc(toDeleteDoc)
+                    .then(snap => call.next(true))
+                    .catch(err => call.next(false));
+            }
+        });
+        return call.asObservable();
+    }
 }

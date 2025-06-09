@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase-admin/app";
-import {multipleRoleMigration} from "./migrations/multiple-role-support";
+import { saveDocs } from "./migrations/upload_docs";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -20,7 +20,7 @@ initializeApp({
 });
 
 async function main() {
-    await multipleRoleMigration();
+    await saveDocs();
 }
 
 main();

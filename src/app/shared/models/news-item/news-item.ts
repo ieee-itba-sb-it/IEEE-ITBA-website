@@ -11,3 +11,11 @@ export interface NewsItem {
   tags: string[];
   ratings: number[];
 }
+
+export interface NewsComment {
+    userFullname: string;
+    userId: string;
+    content: string;
+    timestamp: Date;
+    id: string;
+}

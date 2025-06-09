@@ -16,6 +16,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 const routes: Routes = [
     { path: '',  component: NoticiasComponent },
@@ -46,7 +50,11 @@ export const routing = RouterModule.forChild(routes);
         EmojiModule,
         MatGridListModule,
         NgOptimizedImage,
-        NgxSkeletonLoaderModule
+        NgxSkeletonLoaderModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule
     ],
     providers: [ CookieService ]
 })
