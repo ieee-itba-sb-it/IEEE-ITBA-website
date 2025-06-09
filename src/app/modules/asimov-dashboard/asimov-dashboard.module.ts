@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PredictionComponent } from './pages/prediction/prediction.component';
+import {SharedModule} from "../../shared/shared.module";
 
 // Tab manager
 const routes: Routes = [{
@@ -24,9 +25,10 @@ export const routing = RouterModule.forChild(routes);
     DashboardComponent,
     PredictionComponent
   ],
-  imports: [
-    routing,
-    CommonModule
-  ]
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule
+    ]
 })
 export class AsimovDashboardModule { }

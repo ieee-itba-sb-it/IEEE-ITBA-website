@@ -844,7 +844,7 @@
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "CATEGORIES": {
       "SUMO": {
-        "NAME": "Sumo, Mini Sumo, Mini Sumo Pro, Micro Sumo",
+        "NAME": "Sumo, Mini Sumo, Mini Sumo Pro, Micro Sumo, Sumo RC",
         "IMAGE_ALT_TEXT": "Ícono de las categorias de Sumo",
         "DESC": "Dos robots de equipos distintos luchan de acuerdo a un conjunto de reglas. Quien obtenga más puntos gana."
       },

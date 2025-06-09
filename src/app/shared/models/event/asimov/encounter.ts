@@ -7,5 +7,5 @@ export type Encounter = {
     category: Category
     robot1: string
     robot2: string
-    winner: string
+    winner?: number
 }
