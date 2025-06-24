@@ -2,6 +2,7 @@ import {Category} from "./category";
 
 export type Score = {
     uID: string
+    fullname: string
     score: number
 }
 
