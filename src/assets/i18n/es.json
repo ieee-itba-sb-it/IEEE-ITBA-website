@@ -888,12 +888,11 @@
     },
     "D_AND_L_TITLE": "Fecha y lugar",
     "D_AND_L": {
-      "TEXT_1": "La competencia se desarrollará en la ",
-      "TEXT_2": " (Lavardén 315, CABA, Argentina) el día Sábado 29 de Julio.",
-      "DATE": "Sábado 3 de Agosto",
-      "LOCATION": "A confirmar",
-      "LOCATION_ADDRESS": "",
-      "TIME": "A confirmar"
+      "LOCATION_TITLE": "Ubicación",
+      "LOCATION": "ITBA Sede Distrito Tecnológico",
+      "LOCATION_ADDRESS": "Lavardén 315, CABA",
+      "TIME_TITLE": "Horario",
+      "TIME": "9:00 a 18:00"
     },
     "SCHEDULE_TITLE": "Cronograma estimado",
     "SCHEDULE": {

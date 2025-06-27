@@ -832,12 +832,11 @@
     },
     "D_AND_L_TITLE": "Date and location",
     "D_AND_L": {
-      "TEXT_1": "The competition will take place at the ",
-      "TEXT_2": " (Lavardén 315, CABA, Argentina) on Saturday, July 29.",
-      "DATE": "Saturday, August 3rd",
-      "LOCATION": "To be confirmed",
-      "LOCATION_ADDRESS": "",
-      "TIME": "To be confirmed"
+      "LOCATION_TITLE": "Location",
+      "LOCATION": "ITBA Sede Distrito Tecnológico",
+      "LOCATION_ADDRESS": "Lavardén 315, CABA",
+      "TIME_TITLE": "Time",
+      "TIME": "9:00 to 18:00"
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
