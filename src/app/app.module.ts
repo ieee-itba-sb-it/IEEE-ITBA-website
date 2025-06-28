@@ -36,8 +36,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+<<<<<<< HEAD
 import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+=======
+import { EventPopupComponent } from './modules/popups/event-popup.component';
+>>>>>>> 67c9a18 (feat:implement pop-up service)
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -60,7 +64,11 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     declarations: [
         AppComponent,
         TeamRequestComponent,
+<<<<<<< HEAD
         RobotFormDialogComponent
+=======
+        EventPopupComponent
+>>>>>>> 67c9a18 (feat:implement pop-up service)
     ],
     imports: [
         AppRoutingModule,
