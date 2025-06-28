@@ -1,0 +1,14 @@
+<div *ngIf="showPopup" class="popup-container">
+  <div class="popup">
+    <span class="close-icon" (click)="closePopup()">✖</span>
+    <h2>🤖 ¡Próximos Eventos!</h2>
+    <ul>
+      <li *ngFor="let event of events">
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.description }}</p>
+        <p><strong>Fecha:</strong> {{ event.date ? (event.date | date: 'medium') : 'No disponible' }}</p>
+        <img [src]="event.imageUrl" alt="Imagen del evento" />
+      </li>
+    </ul>
+  </div>
+</div>

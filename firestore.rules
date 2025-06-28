@@ -64,5 +64,10 @@ service cloud.firestore {
     match /sensitive-user-data/{document=**} {
       allow read, write: if hasRole("admin");
     }
+
+    match /pop-ups/{document=**}  {
+    allow read;
+    allow write: if hasRole("admin");
+    }
   }
 }
