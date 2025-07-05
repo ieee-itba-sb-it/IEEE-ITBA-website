@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <button (click)="saveEncounters((robots$ | async) || [])" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
+    <button (click)="saveEncounters(robotsList)" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
     <div *ngIf="loading">Guardando...</div>
     <div *ngIf="error" class="error">{{ error }}</div>
   </div>
