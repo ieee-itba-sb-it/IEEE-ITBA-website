@@ -21,11 +21,11 @@ export class AsimovService {
     private static readonly ROBOT_COLLECTION_NAME = 'asimov-robots';
     private robotsCollection: CollectionReference = collection(this.afs, AsimovService.ROBOT_COLLECTION_NAME);
 
+    private static readonly CATEGORY_COLLECTION_NAME = 'asimov-categories';
+    private categoriesCollection: CollectionReference = collection(this.afs, AsimovService.CATEGORY_COLLECTION_NAME);
+
     private static readonly PREDICTIONS_COLLECTION_NAME = 'predictions';
     private predictionsCollection: Query = collectionGroup(this.afs, AsimovService.PREDICTIONS_COLLECTION_NAME);
-
-    private static readonly CATEGORY_COLLECTION_NAME = 'asimov_categories';
-    private categoriesCollection: CollectionReference = collection(this.afs, AsimovService.CATEGORY_COLLECTION_NAME);
 
     private static readonly PAGE_SIZE = 10;
 

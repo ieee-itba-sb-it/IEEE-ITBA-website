@@ -12,7 +12,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "options": {z
+          "options": {
             "allowedCommonJsDependencies": [
               "firebase",
               "@firebase/app",
