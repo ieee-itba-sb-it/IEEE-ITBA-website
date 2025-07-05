@@ -932,7 +932,15 @@
         "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ras.ieee@itba.edu.ar"
       }
     },
-    "SPONSORS": "Sponsors"
+    "SPONSORS": "Sponsors",
+      "ADMIN": {
+          "ROBOTSMANAGERTAB": {
+              "TITLE": "Administración de Robots"
+          },
+          "ENCOUNTERSTAB": {
+              "TITLE": "Enfrentamientos"
+          }
+      }
   },
   "TYPESCRIPT": {
     "PAGETITLE": "ITBA IEEE | Curso de Typescript",

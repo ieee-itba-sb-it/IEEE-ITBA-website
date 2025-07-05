@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
-import {
-    collection,
-    collectionGroup,
-    CollectionReference, doc,
-    Firestore,
-    getDocs,
-    Query,
-    query, runTransaction, writeBatch
-} from "@angular/fire/firestore";
-import {Encounter} from "../../../shared/models/event/asimov/encounter";
-import {Robot} from "../../../shared/models/event/asimov/robot";
-import {flatMap, map, mergeMap, Observable, take} from "rxjs";
-import {fromPromise} from "rxjs/internal/observable/innerFrom";
-import {Prediction, Score} from "../../../shared/models/event/asimov/score";
+import { collection, collectionGroup, CollectionReference, doc, DocumentData, Firestore, getDocs, limit, orderBy, Query, query, QueryConstraint, QuerySnapshot, startAfter, writeBatch} from "@angular/fire/firestore";
+import { Encounter } from "../../../shared/models/event/asimov/encounter";
+import { Robot } from "../../../shared/models/event/asimov/robot";
+import { map, Observable, take } from "rxjs";
+import { fromPromise } from "rxjs/internal/observable/innerFrom";
+import { Prediction, Score } from "../../../shared/models/event/asimov/score";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 
@@ -20,13 +12,13 @@ import { v4 as uuid } from 'uuid';
     providedIn: 'root'
 })
 export class AsimovService {
-    private static readonly ENCOUNTERS_COLLECTION_NAME = 'asimov_encounters';
+    private static readonly ENCOUNTERS_COLLECTION_NAME = 'asimov-encounters';
     private encountersCollection: CollectionReference = collection(this.afs, AsimovService.ENCOUNTERS_COLLECTION_NAME);
 
-    private static readonly SCORE_COLLECTION_NAME = 'asimov_scores';
+    private static readonly SCORE_COLLECTION_NAME = 'asimov-scores';
     private scoresCollection: CollectionReference = collection(this.afs, AsimovService.SCORE_COLLECTION_NAME);
 
-    private static readonly ROBOT_COLLECTION_NAME = 'asimov_robots';
+    private static readonly ROBOT_COLLECTION_NAME = 'asimov-robots';
     private robotsCollection: CollectionReference = collection(this.afs, AsimovService.ROBOT_COLLECTION_NAME);
 
     private static readonly PREDICTIONS_COLLECTION_NAME = 'predictions';
@@ -34,6 +26,8 @@ export class AsimovService {
 
     private static readonly CATEGORY_COLLECTION_NAME = 'asimov_categories';
     private categoriesCollection: CollectionReference = collection(this.afs, AsimovService.CATEGORY_COLLECTION_NAME);
+
+    private static readonly PAGE_SIZE = 10;
 
     constructor(private afs: Firestore) {}
 
@@ -73,6 +67,40 @@ export class AsimovService {
         return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
             map(snap => snap.docs.map(doc => doc.data() as Category))
         );
+    }
+
+    public getRobotsPage(query: Query): Observable<Robot[]> {
+        return fromPromise(getDocs(query)).pipe(
+            map((snap: QuerySnapshot<DocumentData>) => {
+                return snap.docs.map(doc => (doc.data() as Robot));
+            })
+        );
+    }
+
+    public getRobotsNextPage(last: Robot | null): Observable<Robot[]> {
+        const constraints: QueryConstraint[] = [limit(AsimovService.PAGE_SIZE), orderBy('id'), startAfter(last.id)];
+        return this.getRobotsPage(query(this.robotsCollection, ...constraints));
+    }
+
+    public getRobotsFirstPage(): Observable<Robot[]> {
+        const constraints: QueryConstraint[] = [limit(AsimovService.PAGE_SIZE)];
+        return this.getRobotsPage(query(this.robotsCollection, ...constraints));
+    }
+
+    public addRobots(robots: Robot[]): Observable<Robot[]> {
+        return new Observable(obs => {
+            const batch = writeBatch(this.afs);
+            robots.forEach(robot => {
+                batch.set(doc(this.robotsCollection, robot.id), robot);
+            });
+            batch.commit().then(res => {
+                obs.next(robots);
+            }).catch(err => {
+                obs.error(err);
+            }).finally(() => {
+                obs.complete();
+            });
+        });
     }
 
     private checkEncounter(encounter: Encounter, robots: Robot[]): void {
