@@ -4,6 +4,12 @@ import { LayoutComponent } from './layout/layout.component';
 import { RobotManagerComponent } from './pages/robot-manager/robot-manager.component';
 import { EncountersComponent } from './pages/encounters/encounters.component';
 import {RouterModule, Routes} from "@angular/router";
+import {SharedModule} from "../../shared/shared.module";
+import {MatTableModule} from "@angular/material/table";
+import {CdkScrollable} from "@angular/cdk/overlay";
+import { CsvUploadBoxComponent } from './pages/robot-manager/csv-upload-box/csv-upload-box.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 // Tab manager
 const routes: Routes = [{
@@ -22,11 +28,16 @@ export const routing = RouterModule.forChild(routes);
   declarations: [
     LayoutComponent,
     RobotManagerComponent,
-    EncountersComponent
+    EncountersComponent,
+    CsvUploadBoxComponent
   ],
-  imports: [
-    routing,
-    CommonModule
-  ]
+    imports: [
+        routing,
+        CommonModule,
+        SharedModule,
+        MatTableModule,
+        CdkScrollable,
+        MatSnackBarModule
+    ]
 })
 export class AsimovAdminModule {}

@@ -876,7 +876,15 @@
         "ANSWER": "For any questions you can contact us at ras.ieee@itba.edu.ar"
       }
     },
-    "SPONSORS": "Sponsors"
+    "SPONSORS": "Sponsors",
+    "ADMIN": {
+        "ROBOTSMANAGERTAB": {
+            "TITLE": "Robots Manager"
+        },
+        "ENCOUNTERSTAB": {
+            "TITLE": "Encounters"
+        }
+    }
   },
   "TYPESCRIPT": {
     "PAGETITLE": "ITBA IEEE | Typescript Course",
