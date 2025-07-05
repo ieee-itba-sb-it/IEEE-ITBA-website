@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Encounter } from '../../../../shared/models/event/asimov/encounter';
 import { Observable } from 'rxjs';
 import { Robot } from '../../../../shared/models/event/asimov/robot';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import { Category } from '../../../../shared/models/event/asimov/category';
 
@@ -54,7 +54,7 @@ export class EncountersComponent {
     addInitialEncounter(robot1: Robot, robot2: Robot) {
         if (!this.selectedCategory) return;
         const newEncounter: Encounter = {
-            id: uuidv4(),
+            id: uuid(),
             robot1: robot1.id,
             robot2: robot2.id,
             winner: null,
@@ -78,7 +78,7 @@ export class EncountersComponent {
             const nextLevelCount = Math.floor(prevLevelCount / 2);
             for (let i = 0; i < nextLevelCount; i++) {
                 newEncounters.push({
-                    id: uuidv4(),
+                    id: uuid(),
                     robot1: null,
                     robot2: null,
                     winner: null,
@@ -117,6 +117,8 @@ export class EncountersComponent {
     saveEncounters(robots: Robot[]) {
         this.loading = true;
         this.error = null;
+        // Generar automáticamente las siguientes rondas antes de guardar
+        this.generateNextRounds();
         // Guardar solo los encuentros de la categoría seleccionada
         this.encounterService.setEncounters(this.encountersList, robots).subscribe({
             next: () => this.loading = false,

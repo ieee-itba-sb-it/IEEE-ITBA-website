@@ -883,6 +883,9 @@
         },
         "ENCOUNTERSTAB": {
             "TITLE": "Encounters"
+        },
+        "CATEGORIESTAB": {
+            "TITLE": "Categories"
         }
     }
   },
@@ -1142,7 +1145,10 @@
       "TABLE": {
         "COMMISSION": "Commission to join"
       }
-    }
+    },
+      "ASIMOVADMINTAB": {
+          "TITLE": "Asimov Cup Admin"
+      }
   },
   "TEAM_REQUEST": {
     "TITLE": "Register as an IEEE ITBA member",

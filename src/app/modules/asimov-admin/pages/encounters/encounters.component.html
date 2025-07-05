@@ -1,33 +1,31 @@
-<p>encounters works!</p>
 <div class="encounters-admin">
-  <h2>Administrador de enfrentamientos</h2>
-
-  <label>Seleccionar categoría:
-    <select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)" name="category" #categorySelect="ngModel">
-      <option [ngValue]="null">-- Selecciona una categoría --</option>
-      <option *ngFor="let cat of (categories$ | async)" [ngValue]="cat">{{ cat.name }}</option>
-    </select>
-  </label>
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccionar categoría</mat-label>
+    <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange($event.value)" name="category">
+      <mat-option [value]="null">-- Selecciona una categoría --</mat-option>
+      <mat-option *ngFor="let cat of (categories$ | async)" [value]="cat">{{ cat.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div *ngIf="selectedCategory">
     <h3>Enfrentamientos iniciales para {{ selectedCategory.name }}</h3>
-    <form #addEncounterForm="ngForm" (ngSubmit)="addInitialEncounter(selectedRobot1, selectedRobot2)">
-      <label>Robot 1:
-        <select [ngModel]="selectedRobot1" (ngModelChange)="selectedRobot1 = $event" name="robot1" #robot1Select="ngModel" required>
-          <option [ngValue]="null">-- Selecciona un robot --</option>
-          <option *ngFor="let robot of (robots$ | async)" [ngValue]="robot">{{ robot.name }}</option>
-        </select>
-      </label>
-      <label>Robot 2:
-        <select [ngModel]="selectedRobot2" (ngModelChange)="selectedRobot2 = $event" name="robot2" #robot2Select="ngModel" required>
-          <option [ngValue]="null">-- Selecciona un robot --</option>
-          <option *ngFor="let robot of (robots$ | async)" [ngValue]="robot">{{ robot.name }}</option>
-        </select>
-      </label>
-      <button type="submit" [disabled]="!selectedRobot1 || !selectedRobot2 || selectedRobot1.id === selectedRobot2.id">Agregar enfrentamiento</button>
+    <form #addEncounterForm="ngForm" (ngSubmit)="addInitialEncounter(selectedRobot1, selectedRobot2)" class="encounter-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Robot 1</mat-label>
+        <mat-select [(ngModel)]="selectedRobot1" name="robot1" required>
+          <mat-option [value]="null">-- Selecciona un robot --</mat-option>
+          <mat-option *ngFor="let robot of (robots$ | async)" [value]="robot">{{ robot.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="ml-4" appearance="fill">
+        <mat-label>Robot 2</mat-label>
+        <mat-select [(ngModel)]="selectedRobot2" name="robot2" required>
+          <mat-option [value]="null">-- Selecciona un robot --</mat-option>
+          <mat-option *ngFor="let robot of (robots$ | async)" [value]="robot">{{ robot.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!selectedRobot1 || !selectedRobot2 || selectedRobot1.id === selectedRobot2.id">Agregar enfrentamiento</button>
     </form>
-
-    <button (click)="generateNextRounds()" [disabled]="encountersList.length === 0">Generar siguientes rondas</button>
 
     <div *ngIf="encountersList.length > 0">
       <h4>Enfrentamientos por ronda</h4>
@@ -67,7 +65,7 @@
       </div>
     </div>
 
-    <button (click)="saveEncounters(robotsList)" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
+    <button mat-stroked-button color="primary" class="ml-4" (click)="saveEncounters(robotsList)" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
     <div *ngIf="loading">Guardando...</div>
     <div *ngIf="error" class="error">{{ error }}</div>
   </div>

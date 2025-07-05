@@ -103,6 +103,32 @@ export class AsimovService {
         });
     }
 
+    public addCategory(category: Partial<Category>): Observable<Category> {
+        const id = uuid();
+        const newCategory: Category = { id, name: category.name || '' };
+        return new Observable<Category>(observer => {
+            const ref = doc(this.categoriesCollection, id);
+            writeBatch(this.afs).set(ref, newCategory).commit()
+                .then(() => {
+                    observer.next(newCategory);
+                    observer.complete();
+                })
+                .catch(err => observer.error(err));
+        });
+    }
+
+    public deleteCategory(category: Category): Observable<void> {
+        return new Observable<void>(observer => {
+            const ref = doc(this.categoriesCollection, category.id);
+            writeBatch(this.afs).delete(ref).commit()
+                .then(() => {
+                    observer.next();
+                    observer.complete();
+                })
+                .catch(err => observer.error(err));
+        });
+    }
+
     private checkEncounter(encounter: Encounter, robots: Robot[]): void {
         if (robots.find(r => r.id == encounter.robot1) == null) throw new Error();
         if (robots.find(r => r.id == encounter.robot2) == null) throw new Error();

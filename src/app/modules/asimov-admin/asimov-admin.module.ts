@@ -10,6 +10,13 @@ import {MatTableModule} from "@angular/material/table";
 import {CdkScrollable} from "@angular/cdk/overlay";
 import { CsvUploadBoxComponent } from './pages/robot-manager/csv-upload-box/csv-upload-box.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
+import { CategoriesComponent } from './pages/categories/categories.component';
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
 
 
 // Tab manager
@@ -20,6 +27,7 @@ const routes: Routes = [{
         { path: '', redirectTo: 'robots', pathMatch: 'full' },
         { path: 'robots', component: RobotManagerComponent },
         { path: 'encounters', component: EncountersComponent },
+        { path: 'categories', component: CategoriesComponent },
     ]
 }];
 
@@ -30,16 +38,23 @@ export const routing = RouterModule.forChild(routes);
     LayoutComponent,
     RobotManagerComponent,
     EncountersComponent,
-    CsvUploadBoxComponent
+    CsvUploadBoxComponent,
+    CategoriesComponent
   ],
     imports: [
         routing,
         CommonModule,
         FormsModule,
+        MatFormFieldModule,
         SharedModule,
         MatTableModule,
         CdkScrollable,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatListModule,
+        MatIconModule,
+        MatInputModule
     ]
 })
 export class AsimovAdminModule {}
