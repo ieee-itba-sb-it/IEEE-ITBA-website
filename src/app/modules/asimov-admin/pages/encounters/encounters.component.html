@@ -1,1 +1,74 @@
 <p>encounters works!</p>
+<div class="encounters-admin">
+  <h2>Administrador de enfrentamientos</h2>
+
+  <label>Seleccionar categoría:
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)" name="category" #categorySelect="ngModel">
+      <option [ngValue]="null">-- Selecciona una categoría --</option>
+      <option *ngFor="let cat of (categories$ | async)" [ngValue]="cat">{{ cat.name }}</option>
+    </select>
+  </label>
+
+  <div *ngIf="selectedCategory">
+    <h3>Enfrentamientos iniciales para {{ selectedCategory.name }}</h3>
+    <form #addEncounterForm="ngForm" (ngSubmit)="addInitialEncounter(selectedRobot1, selectedRobot2)">
+      <label>Robot 1:
+        <select [ngModel]="selectedRobot1" (ngModelChange)="selectedRobot1 = $event" name="robot1" #robot1Select="ngModel" required>
+          <option [ngValue]="null">-- Selecciona un robot --</option>
+          <option *ngFor="let robot of (robots$ | async)" [ngValue]="robot">{{ robot.name }}</option>
+        </select>
+      </label>
+      <label>Robot 2:
+        <select [ngModel]="selectedRobot2" (ngModelChange)="selectedRobot2 = $event" name="robot2" #robot2Select="ngModel" required>
+          <option [ngValue]="null">-- Selecciona un robot --</option>
+          <option *ngFor="let robot of (robots$ | async)" [ngValue]="robot">{{ robot.name }}</option>
+        </select>
+      </label>
+      <button type="submit" [disabled]="!selectedRobot1 || !selectedRobot2 || selectedRobot1.id === selectedRobot2.id">Agregar enfrentamiento</button>
+    </form>
+
+    <button (click)="generateNextRounds()" [disabled]="encountersList.length === 0">Generar siguientes rondas</button>
+
+    <div *ngIf="encountersList.length > 0">
+      <h4>Enfrentamientos por ronda</h4>
+      <div *ngFor="let level of getLevels()">
+        <h5>Ronda {{ level }}</h5>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Robot 1</th>
+              <th>Robot 2</th>
+              <th>Ganador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let encounter of getEncountersByLevel(level)">
+              <td>{{ encounter.order }}</td>
+              <td>{{ getRobotName(encounter.robot1) }}</td>
+              <td>{{ getRobotName(encounter.robot2) }}</td>
+              <td>
+                <ng-container *ngIf="encounter.robot1 && encounter.robot2; else pendiente">
+                  <button [disabled]="encounter.winner === 1" (click)="setWinner(encounter, encounter.robot1)">
+                    {{ getRobotName(encounter.robot1) }}
+                  </button>
+                  <button [disabled]="encounter.winner === 2" (click)="setWinner(encounter, encounter.robot2)">
+                    {{ getRobotName(encounter.robot2) }}
+                  </button>
+                  <span *ngIf="encounter.winner">Ganador: {{ getRobotName(encounter.winner === 1 ? encounter.robot1 : encounter.robot2) }}</span>
+                </ng-container>
+                <ng-template #pendiente>
+                  <span>Pendiente</span>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <button (click)="saveEncounters((robots$ | async) || [])" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
+    <div *ngIf="loading">Guardando...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </div>
+</div>

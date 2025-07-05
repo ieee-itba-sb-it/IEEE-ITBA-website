@@ -10,9 +10,10 @@ import {
 } from "@angular/fire/firestore";
 import {Encounter} from "../../../shared/models/event/asimov/encounter";
 import {Robot} from "../../../shared/models/event/asimov/robot";
-import {flatMap, map, mergeMap, Observable} from "rxjs";
+import {flatMap, map, mergeMap, Observable, take} from "rxjs";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
+import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 
 @Injectable({
@@ -30,6 +31,9 @@ export class AsimovService {
 
     private static readonly PREDICTIONS_COLLECTION_NAME = 'predictions';
     private predictionsCollection: Query = collectionGroup(this.afs, AsimovService.PREDICTIONS_COLLECTION_NAME);
+
+    private static readonly CATEGORY_COLLECTION_NAME = 'asimov_categories';
+    private categoriesCollection: CollectionReference = collection(this.afs, AsimovService.CATEGORY_COLLECTION_NAME);
 
     constructor(private afs: Firestore) {}
 
@@ -62,6 +66,12 @@ export class AsimovService {
             map(snap =>
                 snap.docs.map(doc => doc.data() as Robot)
             ),
+        );
+    }
+
+    public getCategories(): Observable<Category[]> {
+        return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
+            map(snap => snap.docs.map(doc => doc.data() as Category))
         );
     }
 
@@ -125,12 +135,12 @@ export class AsimovService {
         return new Observable<void>(subscriber => {
             try {
                 this.checkEncounters(encounters, robots);
-                this.getPredictions().subscribe(async predictions => {
-                    let predictionsByUser: Map<string, Prediction[]> = new Map();
+                this.getPredictions().pipe(take(1)).subscribe(async predictions => {
+                    let predictionsByUser = new Map<string, Prediction[]>();
                     let scores: Score[] = [];
                     predictions.forEach(prediction => {
-                        if (predictionsByUser[prediction.uID] == null) predictionsByUser[prediction.uID] = [];
-                        predictionsByUser[prediction.uID].push(prediction);
+                        if (predictionsByUser.get(prediction.uID) == null) predictionsByUser.set(prediction.uID, []);
+                        predictionsByUser.get(prediction.uID).push(prediction);
                     });
                     predictionsByUser.forEach((userPredictions, uID) => {
                         scores.push({

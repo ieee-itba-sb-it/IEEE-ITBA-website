@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { RobotManagerComponent } from './pages/robot-manager/robot-manager.component';
 import { EncountersComponent } from './pages/encounters/encounters.component';
 import {RouterModule, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 // Tab manager
 const routes: Routes = [{
@@ -24,9 +25,10 @@ export const routing = RouterModule.forChild(routes);
     RobotManagerComponent,
     EncountersComponent
   ],
-  imports: [
-    routing,
-    CommonModule
-  ]
+    imports: [
+        routing,
+        CommonModule,
+        FormsModule
+    ]
 })
 export class AsimovAdminModule {}
