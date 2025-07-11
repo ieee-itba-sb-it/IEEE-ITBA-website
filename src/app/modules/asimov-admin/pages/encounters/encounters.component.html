@@ -1,72 +1,196 @@
 <div class="encounters-admin">
-  <mat-form-field appearance="fill">
-    <mat-label>Seleccionar categoría</mat-label>
-    <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange($event.value)" name="category">
-      <mat-option [value]="null">-- Selecciona una categoría --</mat-option>
-      <mat-option *ngFor="let cat of (categories$ | async)" [value]="cat">{{ cat.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-card class="category-selection-card">
+    <mat-card-header>
+      <mat-card-title>Gestión de Enfrentamientos - Asimov Cup</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Tabs para selección de categoría -->
+      <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabChange($event)">
+        <mat-tab *ngFor="let category of (categories$ | async)" [label]="category.name">
+          <div class="tab-content">
+            <h3>Enfrentamientos para {{ category.name }}</h3>
 
-  <div *ngIf="selectedCategory">
-    <h3>Enfrentamientos iniciales para {{ selectedCategory.name }}</h3>
-    <form #addEncounterForm="ngForm" (ngSubmit)="addInitialEncounter(selectedRobot1, selectedRobot2)" class="encounter-form">
-      <mat-form-field appearance="fill">
-        <mat-label>Robot 1</mat-label>
-        <mat-select [(ngModel)]="selectedRobot1" name="robot1" required>
-          <mat-option [value]="null">-- Selecciona un robot --</mat-option>
-          <mat-option *ngFor="let robot of (robots$ | async)" [value]="robot">{{ robot.name }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="ml-4" appearance="fill">
-        <mat-label>Robot 2</mat-label>
-        <mat-select [(ngModel)]="selectedRobot2" name="robot2" required>
-          <mat-option [value]="null">-- Selecciona un robot --</mat-option>
-          <mat-option *ngFor="let robot of (robots$ | async)" [value]="robot">{{ robot.name }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!selectedRobot1 || !selectedRobot2 || selectedRobot1.id === selectedRobot2.id">Agregar enfrentamiento</button>
-    </form>
+            <!-- Formulario para agregar enfrentamientos iniciales -->
+            <mat-card class="encounter-form-card">
+              <mat-card-header>
+                <mat-card-title class="mb-2">Agregar Enfrentamiento Inicial</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <form #addEncounterForm="ngForm" (ngSubmit)="addInitialEncounter(selectedRobot1, selectedRobot2)" class="encounter-form">
+                  <div class="robot-selection-row">
+                    <!-- Robot 1 con búsqueda -->
+                    <mat-form-field appearance="outline" class="robot-select">
+                      <mat-label>Robot 1</mat-label>
+                      <input matInput [(ngModel)]="robot1SearchText" name="robot1SearchText" placeholder="Buscar robot...">
+                      <mat-select [(ngModel)]="selectedRobot1" name="robot1" required>
+                        <mat-option [value]="null">-- Selecciona un robot --</mat-option>
+                        <mat-option *ngFor="let robot of getFilteredRobots(robot1SearchText)" [value]="robot">
+                          {{ robot.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
 
-    <div *ngIf="encountersList.length > 0">
-      <h4>Enfrentamientos por ronda</h4>
-      <div *ngFor="let level of getLevels()">
-        <h5>Ronda {{ level }}</h5>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Robot 1</th>
-              <th>Robot 2</th>
-              <th>Ganador</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let encounter of getEncountersByLevel(level)">
-              <td>{{ encounter.order }}</td>
-              <td>{{ getRobotName(encounter.robot1) }}</td>
-              <td>{{ getRobotName(encounter.robot2) }}</td>
-              <td>
-                <ng-container *ngIf="encounter.robot1 && encounter.robot2; else pendiente">
-                  <button [disabled]="encounter.winner === 1" (click)="setWinner(encounter, encounter.robot1)">
-                    {{ getRobotName(encounter.robot1) }}
+                    <div class="vs-divider">
+                      <span>VS</span>
+                    </div>
+
+                    <!-- Robot 2 con búsqueda -->
+                    <mat-form-field appearance="outline" class="robot-select">
+                      <mat-label>Robot 2</mat-label>
+                      <input matInput [(ngModel)]="robot2SearchText" name="robot2SearchText" placeholder="Buscar robot...">
+                      <mat-select [(ngModel)]="selectedRobot2" name="robot2" required>
+                        <mat-option [value]="null">-- Selecciona un robot --</mat-option>
+                        <mat-option *ngFor="let robot of getFilteredRobots(robot2SearchText)" [value]="robot">
+                          {{ robot.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-actions">
+                    <button mat-raised-button
+                            color="primary"
+                            type="submit"
+                            [disabled]="!selectedRobot1 || !selectedRobot2 || selectedRobot1.id === selectedRobot2.id">
+                      <mat-icon>add</mat-icon>
+                      Agregar Enfrentamiento
+                    </button>
+                  </div>
+                </form>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- Lista de enfrentamientos por ronda -->
+            <div *ngIf="encountersList.length > 0" class="encounters-section">
+              <mat-card class="encounters-card">
+                <mat-card-header>
+                  <mat-card-title>Enfrentamientos por Ronda</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div *ngFor="let level of getLevels()" class="round-section">
+                    <div class="round-header">
+                      <h4>Ronda {{ level + 1 }}</h4>
+                      <mat-divider></mat-divider>
+                    </div>
+
+                    <mat-table [dataSource]="getEncountersByLevel(level)" class="encounters-table mat-elevation-2">
+                      <!-- Número de enfrentamiento -->
+                      <ng-container matColumnDef="number">
+                        <mat-header-cell *matHeaderCellDef class="table-header text-center">#</mat-header-cell>
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          <mat-chip color="primary">{{ encounter.order + 1 }}</mat-chip>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Robot 1 -->
+                      <ng-container matColumnDef="robot1">
+                          <mat-header-cell *matHeaderCellDef class="table-header text-center">Robot 1</mat-header-cell>
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          <button mat-raised-button
+                                  [color]="encounter.winner === getRobotById(encounter.robot1)?.id ? 'accent' : 'primary'"
+                                  [disabled]="encounter.winner"
+                                  (click)="selectWinner(encounter, getRobotById(encounter.robot1))"
+                                  class="robot-button">
+                            <i class="fas fa-robot"></i>
+                            {{ getRobotById(encounter.robot1)?.name || 'Robot no encontrado' }}
+                          </button>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- VS Divider -->
+                      <ng-container matColumnDef="vs">
+                        <mat-header-cell *matHeaderCellDef class="table-header text-center">VS</mat-header-cell>
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          VS
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Robot 2 -->
+                      <ng-container matColumnDef="robot2">
+                        <mat-header-cell *matHeaderCellDef class="table-header text-center">Robot 2</mat-header-cell>
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          <button mat-raised-button
+                                  [color]="encounter.winner === getRobotById(encounter.robot2)?.id ? 'accent' : 'primary'"
+                                  [disabled]="encounter.winner"
+                                  (click)="selectWinner(encounter, getRobotById(encounter.robot2))"
+                                  class="robot-button">
+                            <i class="fas fa-robot"></i>
+                            {{ getRobotById(encounter.robot2)?.name || 'Robot no encontrado' }}
+                          </button>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Ganador -->
+                      <ng-container matColumnDef="winner">
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          <div *ngIf="encounter.winner; else noWinner" class="winner-display">
+                            <mat-chip color="accent"
+                                     class="winner-chip clickable-chip"
+                                     (click)="resetWinner(encounter)"
+                                     matTooltip="Click para resetear ganador">
+                              <i class="fas fa-trophy"></i>
+                              {{ getRobotById(encounter.winner == 1 ? encounter.robot1 : encounter.robot2)?.name || 'Robot no encontrado' }}
+                            </mat-chip>
+                          </div>
+                          <ng-template #noWinner>
+                            <mat-chip color="warn" class="pending-chip">
+                              <i class="fas fa-clock"></i>
+                              Pendiente
+                            </mat-chip>
+                          </ng-template>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Acciones -->
+                      <ng-container matColumnDef="actions">
+                        <mat-cell *matCellDef="let encounter" class="table-cell text-center">
+                          <div class="action-buttons">
+                            <button mat-icon-button
+                                    color="warn"
+                                    (click)="deleteEncounter(encounter)"
+                                    matTooltip="Eliminar enfrentamiento"
+                                    class="action-btn"
+                                    *ngIf="encounter.level === 0">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row> -->
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" class="data-row"></mat-row>
+                    </mat-table>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+            <!-- Estado vacío -->
+            <div *ngIf="encountersList.length === 0" class="empty-state">
+              <mat-card class="empty-card">
+                <mat-card-content>
+                  <div class="empty-content">
+                    <mat-icon class="empty-icon">sports_mma</mat-icon>
+                    <h3>No hay enfrentamientos</h3>
+                    <p>Agrega enfrentamientos iniciales para comenzar las predicciones</p>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+              <!-- Botón para guardar estado -->
+              <div class="save-section">
+                  <button mat-raised-button
+                          color="accent"
+                          (click)="saveCurrentState()"
+                          class="save-button">
+                      <mat-icon>save</mat-icon>
+                      Guardar Estado Actual
                   </button>
-                  <button [disabled]="encounter.winner === 2" (click)="setWinner(encounter, encounter.robot2)">
-                    {{ getRobotName(encounter.robot2) }}
-                  </button>
-                  <span *ngIf="encounter.winner">Ganador: {{ getRobotName(encounter.winner === 1 ? encounter.robot1 : encounter.robot2) }}</span>
-                </ng-container>
-                <ng-template #pendiente>
-                  <span>Pendiente</span>
-                </ng-template>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <button mat-stroked-button color="primary" class="ml-4" (click)="saveEncounters(robotsList)" [disabled]="loading || encountersList.length === 0">Guardar enfrentamientos</button>
-    <div *ngIf="loading">Guardando...</div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-  </div>
+              </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
 </div>

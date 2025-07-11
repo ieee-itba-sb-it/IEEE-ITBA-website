@@ -17,6 +17,10 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatChipsModule} from "@angular/material/chips";
 
 
 // Tab manager
@@ -54,7 +58,11 @@ export const routing = RouterModule.forChild(routes);
         MatButtonModule,
         MatListModule,
         MatIconModule,
-        MatInputModule
+        MatInputModule,
+        MatCardModule,
+        MatTabsModule,
+        MatTooltipModule,
+        MatChipsModule
     ]
 })
 export class AsimovAdminModule {}
