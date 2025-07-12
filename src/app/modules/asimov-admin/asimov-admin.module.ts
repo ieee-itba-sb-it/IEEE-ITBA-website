@@ -9,9 +9,15 @@ import {MatTableModule} from "@angular/material/table";
 import {CdkScrollable} from "@angular/cdk/overlay";
 import { CsvUploadBoxComponent } from './pages/robot-manager/csv-upload-box/csv-upload-box.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
-// Tab manager
 const routes: Routes = [{
     path: '',
     component: LayoutComponent,
@@ -25,19 +31,27 @@ const routes: Routes = [{
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    RobotManagerComponent,
-    EncountersComponent,
-    CsvUploadBoxComponent
-  ],
+    declarations: [
+        LayoutComponent,
+        RobotManagerComponent,
+        EncountersComponent,
+        CsvUploadBoxComponent,
+        RobotManagerComponent,
+    ],
     imports: [
         routing,
         CommonModule,
         SharedModule,
         MatTableModule,
         CdkScrollable,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        ReactiveFormsModule,
     ]
 })
 export class AsimovAdminModule {}

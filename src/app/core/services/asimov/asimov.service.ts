@@ -2,11 +2,22 @@ import { Injectable } from '@angular/core';
 import {
     collection,
     collectionGroup,
-    CollectionReference, doc, DocumentData,
-    Firestore, getDoc,
-    getDocs, limit, orderBy,
+    CollectionReference,
+    doc,
+    DocumentData,
+    Firestore,
+    getDoc,
+    getDocs,
+    limit,
+    orderBy,
     Query,
-    query, QueryConstraint, QueryDocumentSnapshot, QuerySnapshot, runTransaction, startAfter, startAt, writeBatch
+    query,
+    QueryConstraint,
+    QueryDocumentSnapshot,
+    QuerySnapshot,
+    runTransaction, setDoc,
+    startAfter,
+    writeBatch
 } from "@angular/fire/firestore";
 import {Encounter} from "../../../shared/models/event/asimov/encounter";
 import {Robot} from "../../../shared/models/event/asimov/robot";
@@ -97,6 +108,36 @@ export class AsimovService {
             }).finally(() => {
                 obs.complete();
             });
+        });
+    }
+
+    public addRobot(robot: Robot): Observable<Robot> {
+        return new Observable(obs => {
+            setDoc(
+                doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, robot.id),
+                robot
+            )
+                .then(() => obs.next(robot))
+                .catch((err) => obs.error(err));
+        });
+    }
+
+    public deleteRobots(robots: Robot[]): Observable<boolean> {
+        return new Observable(obs => {
+            let batch = writeBatch(this.afs);
+            for(let robot of robots) {
+                batch.delete(
+                    doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, robot.id)
+                );
+            }
+            batch.commit()
+                .then(() => {
+                    obs.next(true);
+                })
+                .catch((err) => {
+                    obs.next(false);
+                    obs.error(err);
+                });
         });
     }
 

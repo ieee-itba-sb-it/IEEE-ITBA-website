@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="robotForm" class="robot-form-grid">
+        <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" required>
+            <mat-error *ngIf="robotForm.controls['id'].hasError('required')">ID is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error *ngIf="robotForm.controls['name'].hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Photo URL</mat-label>
+            <input matInput formControlName="photo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" required>
+                <mat-option *ngFor="let category of categories" [value]="category">
+                    {{ category.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="robotForm.controls['category'].hasError('required')">Category is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Team</mat-label>
+            <mat-select formControlName="team" required>
+                <mat-option *ngFor="let team of teams" [value]="team">
+                    {{ team }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="robotForm.controls['team'].hasError('required')">Team is required</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="robotForm.invalid">Add Robot</button>
+</mat-dialog-actions>

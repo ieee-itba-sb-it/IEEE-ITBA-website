@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import * as Papa from 'papaparse';
-import {Robot} from "../../../../../shared/models/event/asimov/robot";
+import { Robot } from "../../../../../shared/models/event/asimov/robot";
+import { Papa } from "ngx-papaparse";
 
 @Component({
     selector: 'app-csv-upload-box',
@@ -12,7 +12,7 @@ export class CsvUploadBoxComponent {
     @Output() csvParsed = new EventEmitter<any[]>();
     isDragging = false;
 
-    constructor(private _snackBar: MatSnackBar) { }
+    constructor(private _snackBar: MatSnackBar, private papa: Papa) { }
 
     onDragOver(event: DragEvent): void {
         event.preventDefault();
@@ -54,9 +54,8 @@ export class CsvUploadBoxComponent {
             this.showNotification('Por favor, selecciona un archivo CSV (.csv).', 'error');
             return;
         }
-        // TODO: Check first parameter type error
-        // @ts-ignore
-        Papa.parse(file, {
+
+        this.papa.parse(file, {
             header: true,
             skipEmptyLines: true,
             complete: (result) => {
@@ -69,7 +68,7 @@ export class CsvUploadBoxComponent {
                 this.csvParsed.emit(result.data as Robot[]);
                 this.showNotification('Archivo CSV cargado y procesado con éxito.', 'success');
             },
-            error: (err: Papa.ParseError) => {
+            error: (err: any) => {
                 console.error('Error general de Papa Parse:', err);
                 this.showNotification(`Error al procesar el archivo CSV: ${err.message}`, 'error');
             }
