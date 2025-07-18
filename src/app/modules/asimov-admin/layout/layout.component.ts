@@ -17,12 +17,17 @@ export class LayoutComponent implements OnInit{
             title: "ASIMOVCUP.ADMIN.ROBOTSMANAGERTAB.TITLE",
             link: "robots",
             isActive: true,
-            icon: "user",
+            icon: "robot",
         }, {
             title: "ASIMOVCUP.ADMIN.ENCOUNTERSTAB.TITLE",
             link: "encounters",
             isActive: true,
             icon: "user"
+        }, {
+            title: "ASIMOVCUP.ADMIN.CATEGORIESTAB.TITLE",
+            link: "categories",
+            isActive: true,
+            icon: "layer-group"
         }
     ]
 

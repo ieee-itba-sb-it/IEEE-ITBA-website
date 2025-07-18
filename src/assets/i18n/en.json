@@ -836,7 +836,7 @@
       "LOCATION": "ITBA Sede Distrito Tecnológico",
       "LOCATION_ADDRESS": "Lavardén 315, CABA",
       "TIME_TITLE": "Time",
-      "TIME": "9:00 to 18:00"
+      "TIME": "8:00 to 18:00"
     },
     "SCHEDULE_TITLE": "Estimated schedule",
     "SCHEDULE": {
@@ -883,6 +883,9 @@
         },
         "ENCOUNTERSTAB": {
             "TITLE": "Encounters"
+        },
+        "CATEGORIESTAB": {
+            "TITLE": "Categories"
         }
     }
   },
@@ -1142,7 +1145,10 @@
       "TABLE": {
         "COMMISSION": "Commission to join"
       }
-    }
+    },
+      "ASIMOVADMINTAB": {
+          "TITLE": "Asimov Cup Admin"
+      }
   },
   "TEAM_REQUEST": {
     "TITLE": "Register as an IEEE ITBA member",

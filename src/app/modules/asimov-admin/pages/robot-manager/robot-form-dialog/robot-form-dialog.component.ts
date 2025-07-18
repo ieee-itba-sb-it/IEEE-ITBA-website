@@ -6,6 +6,7 @@ import { Category } from '../../../../../shared/models/event/asimov/category';
 
 export interface RobotFormDialogData {
     title: string;
+    categories: Category[];
 }
 
 @Component({
@@ -15,22 +16,8 @@ export interface RobotFormDialogData {
 })
 export class RobotFormDialogComponent {
     robotForm: FormGroup;
-    categories: Category[] = [
-        { id: 'C001', name: 'Líder' },
-        { id: 'C002', name: 'Explorador' },
-        { id: 'C003', name: 'Comandante Aéreo' },
-        { id: 'C004', name: 'Guerrero' },
-        { id: 'C005', name: 'Comunicador' },
-        { id: 'C006', name: 'Científico' },
-        { id: 'C007', name: 'Médico' },
-        { id: 'C008', name: 'Combinador' },
-        { id: 'C009', name: 'Estratega' },
-        { id: 'C010', name: 'Dinobot' },
-        { id: 'C011', name: 'Joven Guerrero' },
-        { id: 'C012', name: 'Mensajero Rápido' },
-    ];
-
     teams: string[] = ['Autobots', 'Decepticons'];
+    categories: Category[];
 
     constructor(
         public dialogRef: MatDialogRef<RobotFormDialogComponent>,
@@ -44,6 +31,7 @@ export class RobotFormDialogComponent {
             category: [null, Validators.required],
             team: ['', Validators.required]
         });
+        this.categories = data.categories;
     }
 
     onCancel(): void {

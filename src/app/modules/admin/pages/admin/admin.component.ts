@@ -26,6 +26,12 @@ export class AdminComponent {
             link: "team-requests",
             isActive: true,
             icon: "door-open",
+        },
+        {
+            title: "ADMIN.ASIMOVADMINTAB.TITLE",
+            link: "asimov",
+            isActive: true,
+            icon: "robot",
         }
     ]
 

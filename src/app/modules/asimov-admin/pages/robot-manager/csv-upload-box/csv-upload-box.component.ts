@@ -56,7 +56,7 @@ export class CsvUploadBoxComponent {
         }
 
         this.papa.parse(file, {
-            header: true,
+            header: false,
             skipEmptyLines: true,
             complete: (result) => {
                 if (result.errors.length > 0) {
@@ -64,8 +64,7 @@ export class CsvUploadBoxComponent {
                     this.showNotification('Hubo errores al procesar el archivo CSV.', 'error');
                     return;
                 }
-
-                this.csvParsed.emit(result.data as Robot[]);
+                this.csvParsed.emit(result.data.splice(1 - result.data.length));
                 this.showNotification('Archivo CSV cargado y procesado con éxito.', 'success');
             },
             error: (err: any) => {

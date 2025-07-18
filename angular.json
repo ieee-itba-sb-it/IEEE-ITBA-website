@@ -12,7 +12,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "options": {z
+          "options": {
             "allowedCommonJsDependencies": [
               "firebase",
               "@firebase/app",
@@ -23,7 +23,8 @@
               "@firebase/performance",
               "@firebase/remote-config",
               "@firebase/component",
-              "quill"
+              "quill",
+              "papaparse"
             ],
             "outputPath": "dist/ITBA-IEEE-Website-A9",
             "index": "src/index.html",
