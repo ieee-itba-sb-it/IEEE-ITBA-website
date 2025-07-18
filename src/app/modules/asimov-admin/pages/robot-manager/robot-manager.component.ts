@@ -18,7 +18,7 @@ import {MDBModalService} from "angular-bootstrap-md";
     styleUrls: ['./robot-manager.component.css']
 })
 export class RobotManagerComponent implements OnInit, AfterViewInit {
-    displayedColumns = ['selected', 'id', 'name', 'category', 'team'];
+    displayedColumns = ['selected', 'id', 'name', 'category'];
     dataSource = new MatTableDataSource<Robot>([]);
 
     public isLoading$ = new BehaviorSubject<boolean>(false);
