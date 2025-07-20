@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let player of sortedLeaderboard; let i = index"
+                    <tr *ngFor="let player of (leaderboard$|async); let i = index"
                         [class.top-three]="i < 3"
                         [class.gold]="i === 0"
                         [class.silver]="i === 1"
