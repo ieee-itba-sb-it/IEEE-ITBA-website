@@ -1,12 +1,31 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionGroup, CollectionReference, doc, DocumentData, Firestore, getDocs, limit, orderBy, Query, query, QueryConstraint, QuerySnapshot, startAfter, writeBatch, WriteBatch} from "@angular/fire/firestore";
+import {
+    collection,
+    collectionGroup,
+    CollectionReference,
+    doc,
+    DocumentData,
+    Firestore,
+    getDocs,
+    limit,
+    orderBy,
+    Query,
+    query,
+    QueryConstraint,
+    QuerySnapshot,
+    setDoc,
+    startAfter,
+    writeBatch
+} from "@angular/fire/firestore";
+import {flatMap, from, mergeMap} from "rxjs";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
 import { map, Observable, take } from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
-import { Prediction, Score } from "../../../shared/models/event/asimov/score";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
+import {Prediction, Score} from "../../../shared/models/event/asimov/score";
+
 
 @Injectable({
     providedIn: 'root'
@@ -91,6 +110,7 @@ export class AsimovService {
         return new Observable(obs => {
             const batch = writeBatch(this.afs);
             robots.forEach(robot => {
+                robot.id = uuid();
                 batch.set(doc(this.robotsCollection, robot.id), robot);
             });
             batch.commit().then(res => {
@@ -100,6 +120,37 @@ export class AsimovService {
             }).finally(() => {
                 obs.complete();
             });
+        });
+    }
+
+    public addRobot(robot: Robot): Observable<Robot> {
+        robot.id = uuid();
+        return new Observable(obs => {
+            setDoc(
+                doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, robot.id),
+                robot
+            )
+                .then(() => obs.next(robot))
+                .catch((err) => obs.error(err));
+        });
+    }
+
+    public deleteRobots(robots: Robot[]): Observable<boolean> {
+        return new Observable(obs => {
+            let batch = writeBatch(this.afs);
+            for(let robot of robots) {
+                batch.delete(
+                    doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, robot.id)
+                );
+            }
+            batch.commit()
+                .then(() => {
+                    obs.next(true);
+                })
+                .catch((err) => {
+                    obs.next(false);
+                    obs.error(err);
+                });
         });
     }
 
