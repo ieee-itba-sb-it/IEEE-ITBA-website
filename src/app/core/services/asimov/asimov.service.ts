@@ -6,16 +6,14 @@ import {
     doc,
     DocumentData,
     Firestore,
-    getDoc,
     getDocs,
     limit,
     orderBy,
     Query,
     query,
     QueryConstraint,
-    QueryDocumentSnapshot,
     QuerySnapshot,
-    runTransaction, setDoc,
+    setDoc,
     startAfter,
     writeBatch
 } from "@angular/fire/firestore";
@@ -204,8 +202,8 @@ export class AsimovService {
             let winner = this.getEncounterWinnerId(encounter);
             if (lastRobotId != null && winner != lastRobotId) throw new Error();
         }
-        this.checkEncountersRecursive(encounters, robots, hasStarted, level + 1, order * 2, encounter.robot1);
-        this.checkEncountersRecursive(encounters, robots, hasStarted, level + 1, order * 2 + 1, encounter.robot2);
+        this.checkEncountersRecursive(encounters, robots, hasStarted, level + 1, order * 2, encounter ? encounter.robot1 : null);
+        this.checkEncountersRecursive(encounters, robots, hasStarted, level + 1, order * 2 + 1, encounter ? encounter.robot2 : null);
     }
 
     private checkEncounters(encounters: Encounter[], robots: Robot[]) {
@@ -226,19 +224,19 @@ export class AsimovService {
         return score;
     }
 
-    private async multiWriteBatch<T>(objects: T[], collection: CollectionReference, identifier: (object: T) => string, ...path: string[]): Promise<void> {
+    private async multiWriteBatch<T>(objects: T[], iterator: (batch: WriteBatch, object: T) => void): Promise<void> {
         const chunkSize: number = 500;
         let batches: Promise<void>[] = [];
         for (let i = 0; i < objects.length; i += chunkSize) {
             const chunk = objects.slice(i, i + chunkSize);
             const batch = writeBatch(this.afs);
-            chunk.forEach((object) => batch.set(doc(collection, ...path, identifier(object)), object));
+            chunk.forEach((object) => iterator(batch, object));
             batches.push(batch.commit());
         }
         return Promise.all(batches).then();
     }
 
-    public setEncounters(encounters: Encounter[], robots: Robot[]): Observable<void> {
+    public setEncounters(encounters: Encounter[], deletedEncounters: Encounter[], robots: Robot[]): Observable<void> {
         return new Observable<void>(subscriber => {
             try {
                 this.checkEncounters(encounters, robots);
@@ -260,8 +258,15 @@ export class AsimovService {
                         if (encounter.id == null) encounter.id = uuid();
                     });
                     await Promise.all([
-                        this.multiWriteBatch(scores, this.scoresCollection, s => s.uID),
-                        this.multiWriteBatch(encounters, this.encountersCollection, e => e.id)
+                        this.multiWriteBatch(scores, (batch, score) => {
+                            batch.set(doc(this.scoresCollection, score.uID), score);
+                        }),
+                        this.multiWriteBatch(encounters, (batch, encounter) => {
+                            batch.set(doc(this.encountersCollection, encounter.id), encounter);
+                        }),
+                        this.multiWriteBatch(deletedEncounters, (batch, encounter) => {
+                            batch.delete(doc(this.encountersCollection, encounter.id));
+                        }),
                     ])
                     subscriber.next();
                 })

@@ -20,6 +20,7 @@ export class EncountersComponent implements OnInit {
     robot1SearchText = '';
     robot2SearchText = '';
     encountersList: Encounter[] = [];
+    deletedEncounters: Encounter[] = []; // Lista para almacenar enfrentamientos eliminados
     displayedColumns: string[] = ['number', 'robot1', 'vs', 'robot2', 'winner', 'actions'];
 
     private robots: Robot[] = []; // Lista completa de robots
@@ -87,7 +88,7 @@ export class EncountersComponent implements OnInit {
         if (encounter.level === 0) {
             const index = this.encountersList.findIndex(e => e.id === encounter.id);
             if (index > -1) {
-                this.encountersList.splice(index, 1);
+                this.deletedEncounters.push(...this.encountersList.splice(index, 1));
                 this.deleteDescendantBranch(encounter);
             }
         }
@@ -103,7 +104,7 @@ export class EncountersComponent implements OnInit {
         const reorganizedEncounters = this.reorganizeLevelsForSaving(this.encountersList);
 
         // Guardar los enfrentamientos reorganizados
-        this.asimovService.setEncounters(reorganizedEncounters, this.robots).subscribe({
+        this.asimovService.setEncounters(reorganizedEncounters, this.deletedEncounters, this.robots).subscribe({
             next: () => {
                 console.log('Enfrentamientos guardados correctamente');
             },
@@ -117,7 +118,8 @@ export class EncountersComponent implements OnInit {
         if (encounters.length === 0) return [];
 
         // Encontrar el nivel máximo actual
-        const maxLevel = Math.max(...encounters.map(e => e.level));
+        const baseLength = encounters.filter(e => e.level === 0).length;
+        const maxLevel = Math.floor(Math.log2(baseLength));
 
         // Crear una copia de los enfrentamientos con niveles invertidos
         return encounters.map(encounter => ({
@@ -159,8 +161,23 @@ export class EncountersComponent implements OnInit {
 
     private loadEncountersForCategory(): void {
         this.asimovService.getEncounters().subscribe(encounters => {
-            this.encountersList = encounters.filter(encounter => encounter.category.id === this.currentCategoryId);
+            this.encountersList = this.reorganizeEncountersForLoading(
+                encounters.filter(encounter => encounter.category.id === this.currentCategoryId)
+            );
         });
+    }
+
+    private reorganizeEncountersForLoading(encounters: Encounter[]): Encounter[] {
+        if (encounters.length === 0) return [];
+
+        // Encontrar el nivel máximo actual
+        const maxLevel = Math.max(...encounters.map(e => e.level));
+
+        // Crear una copia de los enfrentamientos con niveles invertidos
+        return encounters.map(encounter => ({
+            ...encounter,
+            level: maxLevel - encounter.level // Invertir los niveles
+        }));
     }
 
     private resetForm(): void {
@@ -244,7 +261,7 @@ export class EncountersComponent implements OnInit {
             // Eliminar el descendiente
             const descendantIndex = this.encountersList.findIndex(e => e.id === descendant.id);
             if (descendantIndex > -1) {
-                this.encountersList.splice(descendantIndex, 1);
+                this.deletedEncounters.push(...this.encountersList.splice(descendantIndex, 1));
             }
         }
     }
