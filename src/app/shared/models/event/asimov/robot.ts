@@ -5,5 +5,4 @@ export type Robot = {
     name: string
     photo: string
     category: Category
-    team: string
 }

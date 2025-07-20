@@ -1,0 +1,60 @@
+.upload-box {
+    border: 2px dashed #cccccc;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    color: #666;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    margin: 20px 0;
+}
+
+.upload-box.is-dragging {
+    border-color: #2196F3;
+    background-color: #e3f2fd;
+    color: #2196F3;
+}
+
+.upload-box p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.upload-box input[type="file"] {
+    display: none;
+}
+
+.upload-box input[type="file"] + p:nth-of-type(2)::before {
+    content: 'Seleccionar archivo';
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.upload-box input[type="file"]:hover + p:nth-of-type(2)::before {
+    background-color: #0056b3;
+}
+
+
+.file-type-hint {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 5px;
+}
+
+.snackbar-success {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.snackbar-error {
+    background-color: #F44336 !important;
+    color: white !important;
+}

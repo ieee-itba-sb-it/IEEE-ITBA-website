@@ -1,0 +1,10 @@
+.robot-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+}
+
+.robot-form-grid mat-form-field:nth-child(3) {
+    grid-column: span 2;
+}

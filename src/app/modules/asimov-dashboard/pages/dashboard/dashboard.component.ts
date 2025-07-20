@@ -43,24 +43,24 @@ export class DashboardComponent implements AfterViewInit {
         tree.style.transformOrigin = 'top left';
     }
     public myRobots: Robot[] = [
-        { id: 'R01', name: 'Vortex', photo: 'https://placehold.co/100x100/F44336/FFFFFF?text=V', category: { name: "heavy", id: "asd" }, team: 'A' },
-        { id: 'R02', name: 'Blade', photo: 'https://placehold.co/100x100/2196F3/FFFFFF?text=B', category: { name: "heavy", id: "asd" }, team: 'B' },
-        { id: 'R03', name: 'Hammer', photo: 'https://placehold.co/100x100/FFC107/FFFFFF?text=H', category: { name: "heavy", id: "asd" }, team: 'C' },
-        { id: 'R04', name: 'Saw', photo: 'https://placehold.co/100x100/4CAF50/FFFFFF?text=S', category: { name: "heavy", id: "asd" }, team: 'D' },
-        { id: 'R05', name: 'Crusher', photo: 'https://placehold.co/100x100/9C27B0/FFFFFF?text=C', category: { name: "heavy", id: "asd" }, team: 'E' },
-        { id: 'R06', name: 'Spike', photo: 'https://placehold.co/100x100/FF5722/FFFFFF?text=S', category: { name: "heavy", id: "asd" }, team: 'F' },
-        { id: 'R07', name: 'Titan', photo: 'https://placehold.co/100x100/607D8B/FFFFFF?text=T', category: { name: "heavy", id: "asd" }, team: 'G' },
-        { id: 'R08', name: 'Goliath', photo: 'https://placehold.co/100x100/795548/FFFFFF?text=G', category: { name: "heavy", id: "asd" }, team: 'H' },
+        { id: 'R01', name: 'Vortex', photo: 'https://placehold.co/100x100/F44336/FFFFFF?text=V', category: { name: "heavy", id: "asd" }},
+        { id: 'R02', name: 'Blade', photo: 'https://placehold.co/100x100/2196F3/FFFFFF?text=B', category: { name: "heavy", id: "asd" }},
+        { id: 'R03', name: 'Hammer', photo: 'https://placehold.co/100x100/FFC107/FFFFFF?text=H', category: { name: "heavy", id: "asd" }},
+        { id: 'R04', name: 'Saw', photo: 'https://placehold.co/100x100/4CAF50/FFFFFF?text=S', category: { name: "heavy", id: "asd" }},
+        { id: 'R05', name: 'Crusher', photo: 'https://placehold.co/100x100/9C27B0/FFFFFF?text=C', category: { name: "heavy", id: "asd" }},
+        { id: 'R06', name: 'Spike', photo: 'https://placehold.co/100x100/FF5722/FFFFFF?text=S', category: { name: "heavy", id: "asd" },},
+        { id: 'R07', name: 'Titan', photo: 'https://placehold.co/100x100/607D8B/FFFFFF?text=T', category: { name: "heavy", id: "asd" },},
+        { id: 'R08', name: 'Goliath', photo: 'https://placehold.co/100x100/795548/FFFFFF?text=G', category: { name: "heavy", id: "asd" },},
 
         // Nuevos robots para Nivel 4
-        { id: 'R09', name: 'Phantom', photo: 'https://placehold.co/100x100/00BCD4/FFFFFF?text=P', category: { name: "heavy", id: "asd" }, team: 'I' },
-        { id: 'R10', name: 'Juggernaut', photo: 'https://placehold.co/100x100/8BC34A/FFFFFF?text=J', category: { name: "heavy", id: "asd" }, team: 'J' },
-        { id: 'R11', name: 'Cyclone', photo: 'https://placehold.co/100x100/E91E63/FFFFFF?text=C', category: { name: "heavy", id: "asd" }, team: 'K' },
-        { id: 'R12', name: 'Inferno', photo: 'https://placehold.co/100x100/FF9800/FFFFFF?text=I', category: { name: "heavy", id: "asd" }, team: 'L' },
-        { id: 'R13', name: 'Rampage', photo: 'https://placehold.co/100x100/3F51B5/FFFFFF?text=R', category: { name: "heavy", id: "asd" }, team: 'M' },
-        { id: 'R14', name: 'Oblivion', photo: 'https://placehold.co/100x100/009688/FFFFFF?text=O', category: { name: "heavy", id: "asd" }, team: 'N' },
-        { id: 'R15', name: 'Blizzard', photo: 'https://placehold.co/100x100/CDDC39/FFFFFF?text=B', category: { name: "heavy", id: "asd" }, team: 'O' },
-        { id: 'R16', name: 'Destructor', photo: 'https://placehold.co/100x100/673AB7/FFFFFF?text=D', category: { name: "heavy", id: "asd" }, team: 'P' }
+        { id: 'R09', name: 'Phantom', photo: 'https://placehold.co/100x100/00BCD4/FFFFFF?text=P', category: { name: "heavy", id: "asd" },},
+        { id: 'R10', name: 'Juggernaut', photo: 'https://placehold.co/100x100/8BC34A/FFFFFF?text=J', category: { name: "heavy", id: "asd" },},
+        { id: 'R11', name: 'Cyclone', photo: 'https://placehold.co/100x100/E91E63/FFFFFF?text=C', category: { name: "heavy", id: "asd" }, },
+        { id: 'R12', name: 'Inferno', photo: 'https://placehold.co/100x100/FF9800/FFFFFF?text=I', category: { name: "heavy", id: "asd" }, },
+        { id: 'R13', name: 'Rampage', photo: 'https://placehold.co/100x100/3F51B5/FFFFFF?text=R', category: { name: "heavy", id: "asd" }, },
+        { id: 'R14', name: 'Oblivion', photo: 'https://placehold.co/100x100/009688/FFFFFF?text=O', category: { name: "heavy", id: "asd" },},
+        { id: 'R15', name: 'Blizzard', photo: 'https://placehold.co/100x100/CDDC39/FFFFFF?text=B', category: { name: "heavy", id: "asd" }, },
+        { id: 'R16', name: 'Destructor', photo: 'https://placehold.co/100x100/673AB7/FFFFFF?text=D', category: { name: "heavy", id: "asd" }, }
     ];
 
     public myEncounters: Encounter[] = [
