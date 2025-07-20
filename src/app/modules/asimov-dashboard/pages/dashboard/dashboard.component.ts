@@ -1,13 +1,47 @@
 import { Component } from '@angular/core';
 import {Encounter} from "../../../../shared/models/event/asimov/encounter";
 import {Robot} from "../../../../shared/models/event/asimov/robot";
+import { AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+
+export type Score = {
+    uID: string
+    fullname: string
+    score: number
+}
+
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit {
+
+    @ViewChild('treeWrapper', { static: false }) treeWrapper!: ElementRef;
+
+    ngAfterViewInit(): void {
+        this.autoScaleTree();
+        window.addEventListener('resize', () => this.autoScaleTree()); //  reescala si cambia el tamaño de la ventana
+    }
+
+    autoScaleTree(): void {
+        const wrapper = this.treeWrapper.nativeElement as HTMLElement;
+        const tree = wrapper.querySelector('app-tournament-tree') as HTMLElement;
+
+        if (!tree) return;
+
+        const wrapperWidth = wrapper.clientWidth;
+        const wrapperHeight = wrapper.clientHeight;
+        const treeWidth = tree.scrollWidth;
+        const treeHeight = tree.scrollHeight;
+
+        const scaleX = wrapperWidth / treeWidth;
+        const scaleY = wrapperHeight / treeHeight;
+        const scale = Math.min(scaleX, scaleY, 1); // nunca escales más de 100%
+
+        tree.style.transform = `scale(${scale})`;
+        tree.style.transformOrigin = 'top left';
+    }
     public myRobots: Robot[] = [
         { id: 'R01', name: 'Vortex', photo: 'https://placehold.co/100x100/F44336/FFFFFF?text=V', category: { name: "heavy", id: "asd" }, team: 'A' },
         { id: 'R02', name: 'Blade', photo: 'https://placehold.co/100x100/2196F3/FFFFFF?text=B', category: { name: "heavy", id: "asd" }, team: 'B' },
@@ -71,6 +105,24 @@ export class DashboardComponent {
         // --- Nivel 0 (Final) ---
         { id: 'E031', level: 0, order: 0, category: { name: "heavy", id: "asd" }, robot1: '', robot2: '' },
     ];
+
+    // Sample leaderboard data - replace with your actual data source
+    public leaderboard: Score[] = [
+        { uID: '001', fullname: 'Alice Johnson', score: 0 },
+        { uID: '002', fullname: 'Bob Smith', score: 0 },
+        { uID: '003', fullname: 'Charlie Brown', score: 0 },
+        { uID: '004', fullname: 'Diana Prince', score: 0 },
+        { uID: '005', fullname: 'Edward Norton', score: 0 },
+        { uID: '006', fullname: 'Fiona Green', score: 0 },
+        { uID: '007', fullname: 'George Wilson', score: 0 },
+        { uID: '008', fullname: 'Helen Davis', score: 0 },
+        { uID: '009', fullname: 'Ian Mitchell', score: 0 },
+        { uID: '010', fullname: 'Julia Roberts', score: 0 }
+    ];
+
+    get sortedLeaderboard(): Score[] {
+        return [...this.leaderboard].sort((a, b) => b.score - a.score);
+    }
 
     handleVote(votedEncounter: Encounter) {
         console.log('Se ha votado en el enfrentamiento:', votedEncounter.id);

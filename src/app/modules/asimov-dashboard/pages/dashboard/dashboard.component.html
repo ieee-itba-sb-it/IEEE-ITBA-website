@@ -1,7 +1,46 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <h1>Robot Tournament Dashboard</h1>
 
-<app-tournament-tree
-    [initialEncounters]="myEncounters"
-    [robots]="myRobots"
-    (vote)="handleVote($event)">
-</app-tournament-tree>
+    <div class="dashboard-content">
+        <!-- Tournament Tree Section -->
+        <div class="tree-wrapper" #treeWrapper>
+            <app-tournament-tree
+                [initialEncounters]="myEncounters"
+                [robots]="myRobots"
+                (vote)="handleVote($event)">
+            </app-tournament-tree>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="leaderboard-section">
+            <h2>Leaderboard</h2>
+            <div class="leaderboard-container">
+                <table class="leaderboard-table">
+                    <thead>
+                    <tr>
+                        <th class="rank-column">#</th>
+                        <th class="name-column">Name</th>
+                        <th class="score-column">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let player of sortedLeaderboard; let i = index"
+                        [class.top-three]="i < 3"
+                        [class.gold]="i === 0"
+                        [class.silver]="i === 1"
+                        [class.bronze]="i === 2">
+                        <td class="rank-column">
+                            <span class="rank-number">{{ i + 1 }}</span>
+                            <span *ngIf="i === 0" class="medal gold-medal">🥇</span>
+                            <span *ngIf="i === 1" class="medal silver-medal">🥈</span>
+                            <span *ngIf="i === 2" class="medal bronze-medal">🥉</span>
+                        </td>
+                        <td class="name-column">{{ player.fullname }}</td>
+                        <td class="score-column">{{ player.score | number }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

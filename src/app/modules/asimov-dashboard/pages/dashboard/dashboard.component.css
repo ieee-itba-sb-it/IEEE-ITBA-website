@@ -1,0 +1,169 @@
+.dashboard-container {
+    padding: 20px;
+    height: 100vh;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.2em;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    align-items: flex-start;
+    flex: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.tree-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    padding: 10px;
+    height: 100%;
+    min-width:0;
+    border: 2px dashed red; /* for debugging */
+}
+
+app-tournament-tree {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 2px dashed blue; /* for debugging */
+}
+
+.leaderboard-section {
+    flex: 0 0 300px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.leaderboard-section h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 3px solid #FF9800;
+    padding-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.leaderboard-container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.leaderboard-table th {
+    background: #667eea;
+        /*linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+    color: white;
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.leaderboard-table td {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.rank-column {
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.name-column {
+    width: 60%;
+    font-weight: 500;
+}
+
+.score-column {
+    width: 30%;
+    text-align: right;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+.top-three {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3d4 100%);
+}
+
+.gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+}
+
+.silver {
+    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+}
+
+.bronze {
+    background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+}
+
+.medal {
+    font-size: 1em;
+    margin-left: 3px;
+}
+/* Additional responsive adjustments */
+@media (max-width: 1200px) {
+    .leaderboard-section {
+        flex: 0 0 280px; /* Slightly smaller on smaller screens */
+    }
+
+    .dashboard-content {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tree-wrapper {
+        flex: 1;
+        height: 60vh; /* Fixed height when stacked */
+    }
+
+    .leaderboard-section {
+        flex: 0 0 auto;
+        height: 40vh; /* Fixed height when stacked */
+    }
+}
