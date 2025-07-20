@@ -15,6 +15,7 @@ import {
     QuerySnapshot,
     setDoc,
     startAfter,
+    WriteBatch,
     writeBatch
 } from "@angular/fire/firestore";
 import {flatMap, from, mergeMap} from "rxjs";
