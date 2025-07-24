@@ -1,0 +1,33 @@
+<div class="prediction-container">
+  <div class="content-section">
+    <h1 class="centered-title">Predicción – {{ category | titlecase }}</h1>
+
+    <div class="tournament-section">
+      <app-tournament-tree
+        [initialEncounters]="categoryEncounters"
+        [robots]="categoryRobots"
+        (vote)="handleVote($event)">
+      </app-tournament-tree>
+      <div *ngIf="getChampionRobot()" class="champion-container">
+        <div class="champion-image-wrapper">
+          <img class="crown-img" src="../../../../../assets/image/events/asimov-cup/corona.png" alt="Corona de campeón">
+          <img class="champion-img" [src]="getChampionRobot()?.photo" [alt]="getChampionRobot()?.name">
+        </div>
+        <div class="champion-name">
+          {{ getChampionRobot()?.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-section">
+    <app-button
+      [href]=nextCategory()
+      [asimov]="true"
+      (click)="onNext()"
+      icon="play_arrow"
+      [disabled]="!isFinalPredicted()">
+      Siguiente
+    </app-button>
+  </div>
+</div>

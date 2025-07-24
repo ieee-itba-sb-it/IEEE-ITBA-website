@@ -7,6 +7,7 @@ export type Score = {
 }
 
 export type Prediction = {
+    id: string
     uID: string
     level: number
     order: number

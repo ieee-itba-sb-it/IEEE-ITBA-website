@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
     collection,
     collectionGroup,
-    CollectionReference,
+    CollectionReference, doc,
     Firestore,
     getDocs,
     Query,
@@ -72,6 +72,24 @@ export class AsimovService {
         return new Observable<void>(subscriber => {
 
         })
+    }
+    public savePredictions(predictions: Prediction[]): Observable<Prediction[]> {
+        return new Observable(subscriber => {
+            const batch = writeBatch(this.afs);
+
+            predictions.forEach(prediction => {
+                console.log('🧪 Prediction a guardar:', prediction);
+                const userDocRef = doc(this.scoresCollection, prediction.uID);
+                const predictionsSubcollection = collection(userDocRef, AsimovService.PREDICTIONS_COLLECTION_NAME);
+                const predictionRef = doc(predictionsSubcollection, prediction.id);
+
+                batch.set(predictionRef, prediction);
+            });
+            batch.commit().then(() => {
+                subscriber.next(predictions);
+                subscriber.complete();
+            }).catch(err => subscriber.error(err));
+        });
     }
 
 }
