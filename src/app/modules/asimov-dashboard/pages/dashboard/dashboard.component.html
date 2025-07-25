@@ -2,16 +2,6 @@
     <h1>Robot Tournament Dashboard</h1>
 
     <div class="dashboard-content">
-        <!-- Tournament Tree Section -->
-        <div class="tree-wrapper" #treeWrapper>
-            <app-tournament-tree
-                [initialEncounters]="myEncounters"
-                [robots]="myRobots"
-                (vote)="handleVote($event)">
-            </app-tournament-tree>
-        </div>
-
-        <!-- Leaderboard Section -->
         <div class="leaderboard-section">
             <h2>Leaderboard</h2>
             <div class="leaderboard-container">
@@ -30,10 +20,12 @@
                         [class.silver]="i === 1"
                         [class.bronze]="i === 2">
                         <td class="rank-column">
-                            <span class="rank-number">{{ i + 1 }}</span>
-                            <span *ngIf="i === 0" class="medal gold-medal">🥇</span>
-                            <span *ngIf="i === 1" class="medal silver-medal">🥈</span>
-                            <span *ngIf="i === 2" class="medal bronze-medal">🥉</span>
+                            <ng-container [ngSwitch]="i">
+                                <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
+                                <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
+                                <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
+                                <span *ngSwitchDefault class="rank-number">{{ i + 1 }}</span>
+                            </ng-container>
                         </td>
                         <td class="name-column">{{ player.fullname }}</td>
                         <td class="score-column">{{ player.score | number }}</td>

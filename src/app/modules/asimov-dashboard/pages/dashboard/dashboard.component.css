@@ -1,15 +1,16 @@
 .dashboard-container {
     padding: 20px;
-    height: 100vh;
+    height: 100%;
     background-color: #f5f5f5;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .dashboard-container h1 {
     text-align: center;
-    color: #333;
+    color: rgb(0, 40, 85);
     margin-bottom: 20px;
     font-size: 2.2em;
     font-weight: bold;
@@ -17,57 +18,36 @@
 }
 
 .dashboard-content {
+    flex:1;
     display: flex;
     flex-direction: row;
-    gap: 20px;
-    max-width: 100%;
-    margin: 0 auto;
-    align-items: flex-start;
-    flex: 1;
-    overflow: hidden;
     width: 100%;
     height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
 }
-
-.tree-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow: auto;
-    padding: 10px;
-    height: 100%;
-    min-width:0;
-    border: 2px dashed red; /* for debugging */
-}
-
-app-tournament-tree {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border: 2px dashed blue; /* for debugging */
-}
-
 .leaderboard-section {
-    flex: 0 0 300px;
     background: white;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: 100%;
     display: flex;
     flex-direction: column;
+    flex: 1;
     overflow: hidden;
+    border: 2px solid rgb(134, 31, 65);
+    height: 100%;
 }
 
+
 .leaderboard-section h2 {
-    color: #333;
+    color: rgb(134, 31, 65);
     margin-bottom: 15px;
     font-size: 1.5em;
-    border-bottom: 3px solid #FF9800;
     padding-bottom: 8px;
     flex-shrink: 0;
+    text-align: center;
 }
 
 .leaderboard-container {
@@ -79,11 +59,11 @@ app-tournament-tree {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9em;
+    table-layout: fixed;
 }
 
 .leaderboard-table th {
-    background: #667eea;
-        /*linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+    background: rgb(134, 31, 65);
     color: white;
     padding: 10px 8px;
     text-align: left;
@@ -95,11 +75,11 @@ app-tournament-tree {
 
 .leaderboard-table td {
     padding: 8px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgb(227, 228, 229);
 }
 
 .leaderboard-table tr:hover {
-    background-color: #f8f9fa;
+    background-color: rgb(231, 210, 217);
 }
 
 .rank-column {
@@ -117,29 +97,33 @@ app-tournament-tree {
     width: 30%;
     text-align: right;
     font-weight: bold;
-    color: #2196F3;
+    color: rgb(0, 40, 85);
 }
 
 .top-three {
-    background: linear-gradient(135deg, #fff9e6 0%, #fff3d4 100%);
+    background: linear-gradient(135deg, rgb(255, 244, 213) 0%, rgb(255, 233, 171) 100%);
 }
 
 .gold {
-    background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+    background: linear-gradient(135deg, rgb(255, 199, 44) 0%, rgb(255, 210, 86) 100%);
+    color: rgb(0, 40, 85); /* IEEE dark blue text */
 }
 
 .silver {
-    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+    background: linear-gradient(135deg, rgb(172, 174, 176) 0%, rgb(200, 201, 202) 100%);
+    color: rgb(0, 40, 85); /* IEEE dark blue text */
 }
 
 .bronze {
-    background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+    background: linear-gradient(135deg, rgb(232, 119, 34) 0%, rgb(237, 146, 78) 100%);
+    color: white;
 }
 
 .medal {
     font-size: 1em;
     margin-left: 3px;
 }
+
 /* Additional responsive adjustments */
 @media (max-width: 1200px) {
     .leaderboard-section {
