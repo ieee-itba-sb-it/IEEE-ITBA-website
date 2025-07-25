@@ -13,8 +13,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let player of (leaderboard$|async); let i = index">
-                        <td class="rank-column">
+<!--                <tr *ngFor="let player of (leaderboard$|async); let i = index"> -->
+                    <tr *ngFor="let player of leaderboard; trackBy: trackByUid; let i = index" #row>
+                    <td class="rank-column">
                             <ng-container [ngSwitch]="i">
                                 <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
                                 <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
