@@ -11,8 +11,8 @@
 .dashboard-container h1 {
     text-align: center;
     color: rgb(0, 40, 85);
-    margin-bottom: 20px;
-    font-size: 2.2em;
+    margin-bottom: 10px;
+    font-size: 1.8em;
     font-weight: bold;
     flex-shrink: 0;
 }
@@ -40,15 +40,14 @@
     height: 100%;
 }
 
-
-.leaderboard-section h2 {
-    color: rgb(134, 31, 65);
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    padding-bottom: 8px;
-    flex-shrink: 0;
-    text-align: center;
+thead th:first-child {
+    border-top-left-radius: 10px; /* ajustá según el border-radius del contenedor */
 }
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
 
 .leaderboard-container {
     flex: 1;
@@ -66,7 +65,7 @@
     background: rgb(134, 31, 65);
     color: white;
     padding: 10px 8px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     position: sticky;
     top: 0;
@@ -83,7 +82,7 @@
 }
 
 .rank-column {
-    width: 50px;
+    width: 10%;
     text-align: center;
     font-weight: bold;
 }
@@ -91,33 +90,16 @@
 .name-column {
     width: 60%;
     font-weight: 500;
+    text-align: center;
 }
 
 .score-column {
     width: 30%;
-    text-align: right;
+    text-align: center;
     font-weight: bold;
     color: rgb(0, 40, 85);
 }
 
-.top-three {
-    background: linear-gradient(135deg, rgb(255, 244, 213) 0%, rgb(255, 233, 171) 100%);
-}
-
-.gold {
-    background: linear-gradient(135deg, rgb(255, 199, 44) 0%, rgb(255, 210, 86) 100%);
-    color: rgb(0, 40, 85); /* IEEE dark blue text */
-}
-
-.silver {
-    background: linear-gradient(135deg, rgb(172, 174, 176) 0%, rgb(200, 201, 202) 100%);
-    color: rgb(0, 40, 85); /* IEEE dark blue text */
-}
-
-.bronze {
-    background: linear-gradient(135deg, rgb(232, 119, 34) 0%, rgb(237, 146, 78) 100%);
-    color: white;
-}
 
 .medal {
     font-size: 1em;
@@ -126,10 +108,6 @@
 
 /* Additional responsive adjustments */
 @media (max-width: 1200px) {
-    .leaderboard-section {
-        flex: 0 0 280px; /* Slightly smaller on smaller screens */
-    }
-
     .dashboard-content {
         gap: 15px;
     }
@@ -141,13 +119,4 @@
         gap: 20px;
     }
 
-    .tree-wrapper {
-        flex: 1;
-        height: 60vh; /* Fixed height when stacked */
-    }
-
-    .leaderboard-section {
-        flex: 0 0 auto;
-        height: 40vh; /* Fixed height when stacked */
-    }
 }

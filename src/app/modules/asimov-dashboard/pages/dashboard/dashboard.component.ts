@@ -114,6 +114,7 @@ export class DashboardComponent implements AfterViewInit {
     ];
 
 
+
     handleVote(votedEncounter: Encounter) {
         console.log('Se ha votado en el enfrentamiento:', votedEncounter.id);
         console.log('El ganador es el robot:', votedEncounter.winner);
