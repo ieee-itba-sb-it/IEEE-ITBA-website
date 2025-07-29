@@ -45,10 +45,8 @@
   "emulators": {
     "singleProjectMode": false,
     "firestore": {
-      "port": 8585
-    }, "database": {
-          "port": 9500
-        },
+      "port": 8080
+    },
     "ui": {
       "enabled": true,
       "port": 4000

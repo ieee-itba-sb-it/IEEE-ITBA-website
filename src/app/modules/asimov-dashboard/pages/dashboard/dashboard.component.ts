@@ -3,7 +3,6 @@ import {Encounter} from "../../../../shared/models/event/asimov/encounter";
 import {Robot} from "../../../../shared/models/event/asimov/robot";
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import {Observable} from "rxjs";
-import {MockAsimovService} from "./mock-asimov.service";
 
 export type Score = {
     uID: string
