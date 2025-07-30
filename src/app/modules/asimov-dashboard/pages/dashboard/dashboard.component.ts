@@ -1,13 +1,101 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import {Encounter} from "../../../../shared/models/event/asimov/encounter";
 import {Robot} from "../../../../shared/models/event/asimov/robot";
+import {AsimovService} from "../../../../core/services/asimov/asimov.service";
+import {Observable} from "rxjs";
+
+export type Score = {
+    uID: string
+    fullname: string
+    score: number
+}
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+
+export class DashboardComponent implements OnInit {
+
+    leaderboard$: Observable<Score[]>;
+    leaderboard: Score[] = [];
+    @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
+
+    constructor(private asimovService: AsimovService){}
+    // @ViewChild('treeWrapper', { static: false }) treeWrapper!: ElementRef;
+
+    // ngAfterViewInit(): void {
+    //     // this.autoScaleTree();
+    //     // window.addEventListener('resize', () => this.autoScaleTree()); //  reescala si cambia el tamaño de la ventana
+    //     this.leaderboard$ = this.asimovService.getScores();
+    //
+    // }
+
+    ngOnInit(): void {
+        this.leaderboard$ = this.asimovService.getScores();
+
+        this.leaderboard$.subscribe((newScores) => {
+            const prevRects = new Map<string, DOMRect>();
+
+            // guardo posiciones anteriores
+            this.rows?.forEach((row, index) => {
+                const id = this.leaderboard[index]?.uID;
+                if (id) {
+                    prevRects.set(id, row.nativeElement.getBoundingClientRect());
+                }
+            });
+
+            // actualizo los datos
+            this.leaderboard = [...newScores].sort((a, b) => b.score - a.score);
+
+            // esperamos al siguiente ciclo de detección de cambios
+            requestAnimationFrame(() => {
+                this.rows?.forEach((row, index) => {
+                    const id = this.leaderboard[index]?.uID;
+                    const prevRect = prevRects.get(id);
+                    const newRect = row.nativeElement.getBoundingClientRect();
+
+                    if (prevRect) {
+                        const deltaY = prevRect.top - newRect.top;
+                        if (deltaY !== 0) {
+                            const el = row.nativeElement;
+                            el.style.transition = 'none';
+                            el.style.transform = `translateY(${deltaY}px)`;
+
+                            requestAnimationFrame(() => {
+                                el.style.transition = 'transform 300ms ease';
+                                el.style.transform = '';
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    }
+
+    trackByUid(index: number, player: Score): string {
+        return player.uID;
+    }
+
+    // autoScaleTree(): void {
+    //     const wrapper = this.treeWrapper.nativeElement as HTMLElement;
+    //     const tree = wrapper.querySelector('app-tournament-tree') as HTMLElement;
+    //
+    //     if (!tree) return;
+    //
+    //     const wrapperWidth = wrapper.clientWidth;
+    //     const wrapperHeight = wrapper.clientHeight;
+    //     const treeWidth = tree.scrollWidth;
+    //     const treeHeight = tree.scrollHeight;
+    //
+    //     const scaleX = wrapperWidth / treeWidth;
+    //     const scaleY = wrapperHeight / treeHeight;
+    //     const scale = Math.min(scaleX, scaleY, 1); // nunca escales más de 100%
+    //
+    //     tree.style.transform = `scale(${scale})`;
+    //     tree.style.transformOrigin = 'top left';
+    // }
     public myRobots: Robot[] = [
         { id: 'R01', name: 'Vortex', photo: 'https://placehold.co/100x100/F44336/FFFFFF?text=V', category: { name: "heavy", id: "asd" }},
         { id: 'R02', name: 'Blade', photo: 'https://placehold.co/100x100/2196F3/FFFFFF?text=B', category: { name: "heavy", id: "asd" }},
@@ -71,6 +159,7 @@ export class DashboardComponent {
         // --- Nivel 0 (Final) ---
         { id: 'E031', level: 0, order: 0, category: { name: "heavy", id: "asd" }, robot1: '', robot2: '' },
     ];
+
 
     handleVote(votedEncounter: Encounter) {
         console.log('Se ha votado en el enfrentamiento:', votedEncounter.id);

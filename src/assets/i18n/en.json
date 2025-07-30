@@ -788,6 +788,11 @@
     "PAGEDESCRIPTION": "Asimov Cup is a robotics competition open to the general public that takes place at ITBA.",
     "ENROLLBUTTON": "Enroll now!",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
+    "LEADERBOARD": {
+      "TITLE": "Predictions Ranking",
+      "NAMEHEADER": "Name",
+      "SCOREHEADER": "Score"
+    },
     "CATEGORIES": {
       "SUMO": {
         "NAME": "Sumo, Mini Sumo, Pro Mini Sumo, Micro Sumo, Sumo RC",
@@ -1238,4 +1243,5 @@
         "WARNING": "Warning"
       }
   }
+
 }
