@@ -27,6 +27,7 @@ import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
 
+type WinnerEncounters = Encounter[];
 
 @Injectable({
     providedIn: 'root'
@@ -57,6 +58,22 @@ export class AsimovService {
                 snap.docs.map(doc => doc.data() as Encounter)
             ),
         );
+    }
+
+    // This is a live observable. Should explicitely unsuscribe after non usage
+    public getLiveEncounters(): Observable<{ all: Encounter[], winnerChanges: WinnerEncounters }> {
+        return new Observable<{ all: Encounter[], winnerChanges: WinnerEncounters }>((sub) => {
+            const unsub = onSnapshot(query(this.encountersCollection), (snapshot) => {
+                console.log(snapshot);
+                sub.next({ 
+                    all: snapshot.docs.map(doc => doc.data() as Encounter),
+                    winnerChanges: snapshot.docChanges().filter((docChange) => docChange.type === 'modified').map((doc) => doc.doc.data() as Encounter) ?? [] 
+                });
+            });
+            return () => {
+                unsub();
+            };
+        })
     }
 
     public getScores(): Observable<Score[]> {
