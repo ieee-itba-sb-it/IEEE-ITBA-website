@@ -66,17 +66,17 @@ service cloud.firestore {
     }
 
     // Asimov
-    match /asimov_robots/{document=**}  {
+    match /asimov-robots/{document=**}  {
+      allow read;
+      allow write;
+    }
+
+    match /asimov-categories/{document=**}  {
       allow read;
       allow write: if hasRole("admin");
     }
 
-    match /asimov_categories/{document=**}  {
-      allow read;
-      allow write: if hasRole("admin");
-    }
-
-    match /asimov_scores/{score}  {
+    match /asimov-scores/{score}  {
       allow read;
       allow write: if hasRole("admin");
     }
@@ -88,7 +88,7 @@ service cloud.firestore {
       allow update: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open;
     }
 
-    match /asimov_encounters/{document=**}  {
+    match /asimov-encounters/{document=**}  {
       allow read;
       allow write: if hasRole("admin");
     }

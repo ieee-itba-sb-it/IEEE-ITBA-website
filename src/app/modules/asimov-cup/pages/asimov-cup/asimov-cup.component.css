@@ -141,6 +141,18 @@
   font-weight: bolder;
 }
 
+.event-date-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color);
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.event-date-title.asimov {
+    font-size: 15px;
+}
+
 .sponsor-section {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,12 @@
+.table-container {
+    max-height: 550px;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+}
