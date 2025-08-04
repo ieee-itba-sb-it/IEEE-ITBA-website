@@ -43,8 +43,7 @@ export class PredictionFormComponent implements OnInit {
                 this.category = paramCategory;
                 this.loadCategoryData(paramCategory);
             } else {
-                // redirigir a una página de error o a la primera categoría
-                this.router.navigate(['/asimov/prediction', this.allCategories[0]]);
+                this.router.navigate(['/asimov/dashboard']);
             }
         });
     }
@@ -80,7 +79,8 @@ export class PredictionFormComponent implements OnInit {
                 level: encounter.level,
                 order: encounter.order,
                 category: encounter.category,
-                winner: winnerId
+                winner: winnerId,
+                fullname: this.currentUser.fullname,
             });
         }
     }

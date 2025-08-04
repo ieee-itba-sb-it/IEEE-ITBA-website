@@ -24,9 +24,8 @@
 .tournament-section {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     justify-content: center;
-    gap: 2rem;
+    align-items: center;
 }
 
 .button-section {
@@ -45,19 +44,26 @@
 }
 
 @media (max-width: 900px) {
+  .content-section {
+    overflow-x: auto;
+    align-items: flex-start;
+  }
   .tournament-section {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+    min-width: max-content;
+    padding: 0 10px;
   }
   .champion-container {
-    margin-top: 2rem;
+    margin-top: 0;
   }
 }
 
 .champion-image-wrapper {
   position: relative;
   width: 120px;
-  height: 140px; /* Aumenta el alto para dar más espacio arriba */
+  height: 140px;
 }
 
 .crown-img {

@@ -81,7 +81,7 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-    match /asimov_scores/{userId}/predictions/{predictionId}  {
+    match /asimov-scores/{userId}/predictions/{predictionId}  {
       allow read;
       // Solo se pueden crear predicciones si estan abiertas.
       allow create: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open;

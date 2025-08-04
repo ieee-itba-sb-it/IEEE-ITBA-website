@@ -15,7 +15,8 @@ import {
     QuerySnapshot,
     setDoc,
     startAfter,
-    writeBatch
+    writeBatch,
+    WriteBatch
 } from "@angular/fire/firestore";
 import {flatMap, from, mergeMap} from "rxjs";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
@@ -279,7 +280,6 @@ export class AsimovService {
             const batch = writeBatch(this.afs);
 
             predictions.forEach(prediction => {
-                console.log('🧪 Prediction a guardar:', prediction);
                 const userDocRef = doc(this.scoresCollection, prediction.uID);
                 const predictionsSubcollection = collection(userDocRef, AsimovService.PREDICTIONS_COLLECTION_NAME);
                 const predictionRef = doc(predictionsSubcollection, prediction.id);
