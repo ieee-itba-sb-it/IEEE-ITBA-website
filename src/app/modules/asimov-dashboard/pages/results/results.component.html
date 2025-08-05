@@ -1,0 +1,12 @@
+<h1>Resultados en tiempo real</h1>
+<mat-tab-group *ngIf="allLiveEncounters$ | async as encounters">
+  <mat-tab *ngFor="let category of (categories$ | async)" 
+    [label]="category.name"
+  >
+    <app-tournament-tree
+      [initialEncounters]="encounters | appfilterByCategory: category | appCompleteEncounterLevels"
+      [robots]="(robots$ | async) ?? []">
+
+    </app-tournament-tree> 
+  </mat-tab>
+</mat-tab-group>
