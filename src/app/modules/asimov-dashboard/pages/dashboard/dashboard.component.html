@@ -1,4 +1,4 @@
-    <app-event-banner
+<!--     <app-event-banner
         url="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.png"
         alt="Asimov Cup - Competencia de Robótica"
     ></app-event-banner>
@@ -24,5 +24,39 @@
             icon="play_arrow">
             Comenzar Prode
         </app-button>
-    </div>
+    </div> -->
 
+<div class="dashboard-container">
+    <h1>{{ 'ASIMOVCUP.LEADERBOARD.TITLE' | translate }}</h1>
+
+    <div class="dashboard-content">
+        <div class="leaderboard-section">
+            <div class="leaderboard-container">
+                <table class="leaderboard-table">
+                    <thead>
+                    <tr>
+                        <th class="rank-column">#</th>
+                        <th class="name-column">{{ 'ASIMOVCUP.LEADERBOARD.NAMEHEADER' | translate }}</th>
+                        <th class="score-column">{{ 'ASIMOVCUP.LEADERBOARD.SCOREHEADER' | translate }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<!--                <tr *ngFor="let player of (leaderboard$|async); let i = index"> -->
+                    <tr *ngFor="let player of leaderboard; trackBy: trackByUid; let i = index" #row>
+                    <td class="rank-column">
+                            <ng-container [ngSwitch]="i">
+                                <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
+                                <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
+                                <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
+                                <span *ngSwitchDefault class="rank-number">{{ i + 1 }}</span>
+                            </ng-container>
+                        </td>
+                        <td class="name-column">{{ player.fullname }}</td>
+                        <td class="score-column">{{ player.score | number }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

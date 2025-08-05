@@ -7,7 +7,7 @@ import {
     DocumentData,
     Firestore,
     getDocs,
-    limit,
+    limit, onSnapshot,
     orderBy,
     Query,
     query,
@@ -59,11 +59,11 @@ export class AsimovService {
     }
 
     public getScores(): Observable<Score[]> {
-        return fromPromise(getDocs(query(this.scoresCollection))).pipe(
-            map(snap =>
-                snap.docs.map(doc => doc.data() as Score)
-            ),
-        );
+        return new Observable((subscriber) => {
+            onSnapshot(query(this.scoresCollection, orderBy("score")), (snap)=>{
+                subscriber.next(snap.docs.map(doc => doc.data() as Score))
+            })
+        })
     }
 
     public getPredictions(): Observable<Prediction[]> {

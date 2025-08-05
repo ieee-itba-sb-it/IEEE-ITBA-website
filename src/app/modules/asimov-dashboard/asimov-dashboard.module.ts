@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {SharedModule} from "../../shared/shared.module";
 import {PredictionFormComponent} from "./pages/prediction-form/predictionForm.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 // Tab manager
 const routes: Routes = [{
@@ -27,7 +28,8 @@ export const routing = RouterModule.forChild(routes);
     imports: [
         routing,
         CommonModule,
-        SharedModule
+        SharedModule,
+        TranslateModule
     ]
 })
 export class AsimovDashboardModule { }
