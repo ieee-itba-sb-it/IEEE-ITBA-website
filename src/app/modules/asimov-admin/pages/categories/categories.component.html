@@ -10,7 +10,7 @@
 
   <div class="categories-table-container">
     <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-    <table mat-table [dataSource]="categories" class="mat-elevation-z2" *ngIf="categories.length > 0">
+    <table mat-table [dataSource]="categories" class="mat-elevation-z2" *ngIf="categories.length > 0 && !loading">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let category">{{ category.name }}</td>

@@ -1,0 +1,99 @@
+.prediction-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+
+.content-section {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+}
+
+.centered-title {
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.tournament-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-section {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.champion-container {
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .content-section {
+    overflow-x: auto;
+    align-items: flex-start;
+  }
+  .tournament-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: max-content;
+    padding: 0 10px;
+  }
+  .champion-container {
+    margin-top: 0;
+  }
+}
+
+.champion-image-wrapper {
+  position: relative;
+  width: 120px;
+  height: 140px;
+}
+
+.crown-img {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.champion-img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid gold;
+  object-fit: cover;
+  background: #fff;
+  z-index: 1;
+}
+
+.champion-name {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d4af37;
+  text-shadow: 0 2px 4px #0002;
+}
