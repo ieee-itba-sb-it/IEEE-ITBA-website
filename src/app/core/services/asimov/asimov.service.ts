@@ -14,7 +14,7 @@ import {
     QueryConstraint,
     QuerySnapshot,
     setDoc,
-    startAfter,
+    startAfter, where,
     writeBatch,
     WriteBatch
 } from "@angular/fire/firestore";
@@ -58,6 +58,14 @@ export class AsimovService {
         );
     }
 
+    public getEncountersByCategoryId(categoryId): Observable<Encounter[]> {
+        return fromPromise(getDocs(query(this.encountersCollection, where("category.id", "==", categoryId)))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Encounter)
+            ),
+        );
+    }
+
     public getScores(): Observable<Score[]> {
         return new Observable((subscriber) => {
             onSnapshot(query(this.scoresCollection, orderBy("score")), (snap)=>{
@@ -74,8 +82,24 @@ export class AsimovService {
         );
     }
 
+    public getUserPredictions(userId: string): Observable<Prediction[]> {
+        return fromPromise(getDocs(query(this.predictionsCollection, where("uID", "==", userId)))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Prediction)
+            ),
+        );
+    }
+
     public getRobots(): Observable<Robot[]> {
         return fromPromise(getDocs(query(this.robotsCollection))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Robot)
+            ),
+        );
+    }
+
+    public getRobotsByCategoryId(categoryId: string): Observable<Robot[]> {
+        return fromPromise(getDocs(query(this.robotsCollection, where("category.id", "==", categoryId)))).pipe(
             map(snap =>
                 snap.docs.map(doc => doc.data() as Robot)
             ),
@@ -278,7 +302,11 @@ export class AsimovService {
     public savePredictions(predictions: Prediction[]): Observable<Prediction[]> {
         return new Observable(subscriber => {
             const batch = writeBatch(this.afs);
-
+            batch.set(doc(this.scoresCollection, predictions[0].uID), {
+                uID: predictions[0].uID,
+                fullname: predictions[0].fullname,
+                score: 0 // Initial score, will be calculated later
+            });
             predictions.forEach(prediction => {
                 const userDocRef = doc(this.scoresCollection, prediction.uID);
                 const predictionsSubcollection = collection(userDocRef, AsimovService.PREDICTIONS_COLLECTION_NAME);

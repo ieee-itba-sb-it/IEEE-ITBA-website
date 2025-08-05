@@ -10,6 +10,8 @@ import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 import { AsimovService } from 'src/app/core/services/asimov/asimov.service';
 import {Category} from "../../../../shared/models/event/asimov/category";
 import { v4 as uuid } from 'uuid';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @Component({
@@ -19,7 +21,9 @@ import { v4 as uuid } from 'uuid';
     imports: [
         SharedModule,
         TitleCasePipe,
-        NgIf
+        NgIf,
+        MatIconModule,
+        MatButtonModule
     ],
     styleUrls: ['./predictionForm.component.css']
 })
@@ -37,9 +41,6 @@ export class PredictionFormComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private asimovService: AsimovService) {}
 
     ngOnInit(): void {
-        this.authService.getCurrentUser().subscribe(user => {
-            this.currentUser = user;
-        });
         this.asimovService.getCategories().subscribe(categories => {
             this.allCategories = categories;
             this.route.paramMap.subscribe(params => {
@@ -61,12 +62,72 @@ export class PredictionFormComponent implements OnInit {
         this.categoryEncounters = [];
         this.predictions = [];
 
-        this.asimovService.getRobots().subscribe(robots => {
-            this.categoryRobots = robots.filter(r => r.category.id === categoryId);
+        this.asimovService.getRobotsByCategoryId(categoryId).subscribe(robots => {
+            this.categoryRobots = robots;
         });
 
-        this.asimovService.getEncounters().subscribe(encounters => {
-            this.categoryEncounters = encounters.filter(e => e.category.id === categoryId);
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUser = user;
+            this.asimovService.getUserPredictions(user.uID).subscribe(predictions => {
+                if (predictions.find(pred => pred.category.id === categoryId)) {
+                    this.onNext();
+                }
+            })
+        });
+
+        this.asimovService.getEncountersByCategoryId(categoryId).subscribe(encounters => {
+            this.categoryEncounters = encounters;
+            this.categoryEncounters = this.completeEncounters(encounters);
+        });
+    }
+
+    completeEncounters(encounters: Encounter[]): Encounter[] {
+        if (!encounters.length || !this.category) return encounters;
+
+        // Encontrar el nivel máximo (más lejano de la final)
+        const maxLevel = Math.max(...encounters.map(e => e.level));
+
+        // Calcular cuántos robots deberían haber en total (debe ser potencia de 2)
+        const robotsInMaxLevel = encounters.filter(e => e.level === maxLevel).length * 2;
+        const totalLevels = Math.log2(robotsInMaxLevel);
+
+        // Crear un mapa de enfrentamientos existentes
+        const existingEncounters = new Map<string, Encounter>();
+        encounters.forEach(encounter => {
+            const key = `${encounter.level}-${encounter.order}`;
+            existingEncounters.set(key, encounter);
+        });
+
+        const completeEncountersList: Encounter[] = [...encounters];
+
+        // Rellenar enfrentamientos faltantes desde el nivel actual hasta la final (nivel 0)
+        for (let level = maxLevel - 1; level >= 0; level--) {
+            const encountersInLevel = Math.pow(2, level);
+
+            for (let order = 0; order < encountersInLevel; order++) {
+                const key = `${level}-${order}`;
+
+                if (!existingEncounters.has(key)) {
+                    // Crear enfrentamiento vacío
+                    const newEncounter: Encounter = {
+                        id: uuid(),
+                        level: level,
+                        order: order,
+                        category: this.category,
+                        robot1: '', // Vacío hasta que se determine el ganador del nivel anterior
+                        robot2: '', // Vacío hasta que se determine el ganador del nivel anterior
+                        winner: undefined
+                    };
+
+                    completeEncountersList.push(newEncounter);
+                    existingEncounters.set(key, newEncounter);
+                }
+            }
+        }
+
+        return completeEncountersList.sort((a, b) => {
+            if (a.level !== b.level) return b.level - a.level; // Ordenar por nivel (mayor primero)
+            return a.order - b.order; // Luego por orden
         });
     }
 
@@ -120,12 +181,22 @@ export class PredictionFormComponent implements OnInit {
 
     onNext() {
         if (!this.currentUser) return;
+        if (this.predictions.length === 0) return this.navigateToNext();
         this.asimovService.savePredictions(this.predictions).subscribe({
-            next: () => {},
+            next: () => {
+                // Redirigir a la siguiente categoría o al dashboard
+                console.log("Predicciones guardadas correctamente");
+                this.navigateToNext();
+            },
             error: (err) => {
                 // Manejo de error simple
                 alert('Error al guardar predicciones: ' + err);
             }
         });
+    }
+
+    navigateToNext() {
+        const nextCategory = this.nextCategory();
+        this.router.navigate([nextCategory]);
     }
 }

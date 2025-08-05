@@ -68,7 +68,7 @@ service cloud.firestore {
     // Asimov
     match /asimov-robots/{document=**}  {
       allow read;
-      allow write;
+      allow write: if hasRole("admin");
     }
 
     match /asimov-categories/{document=**}  {
@@ -78,14 +78,17 @@ service cloud.firestore {
 
     match /asimov-scores/{score}  {
       allow read;
-      allow write: if hasRole("admin");
+      allow write: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open || hasRole("admin");
+    }
+
+    match /{path=**}/predictions/{prediction}  {
+      allow read;
     }
 
     match /asimov-scores/{userId}/predictions/{predictionId}  {
       allow read;
       // Solo se pueden crear predicciones si estan abiertas.
-      allow create: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open;
-      allow update: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open;
+      allow write: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open || hasRole("admin");
     }
 
     match /asimov-encounters/{document=**}  {

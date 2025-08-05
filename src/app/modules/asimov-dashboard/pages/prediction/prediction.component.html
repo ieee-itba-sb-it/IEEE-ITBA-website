@@ -1,0 +1,44 @@
+<ng-container *ngIf="!loading; else loadingTemplate">
+    <app-event-banner
+        url="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.jpg"
+        alt="Asimov Cup - Competencia de Robótica"
+    ></app-event-banner>
+    <app-event-title [asimov]="true" > Página de Predicciones – Asimov up 2025</app-event-title>
+    <ng-container *ngIf="firstCategory; else alreadyVotedTemplate">
+
+        <app-event-section [asimov]="true"  title="¡Bienvenido al Prode oficial de la AsimovCup!">
+            <p>
+                ¡Divertite anticipando los resultados de los enfrentamientos de robots! Armá tu bracket,
+                eligiendo los ganadores de cada ronda de Sumo, Minisumo, Carreras y Fútbol.
+            </p>
+            <h2>¿Como funciona?</h2>
+            <p> 1. <strong>Seleccioná los ganadores</strong> de cada enfrentamiento en el árbol de torneo.<br>
+                2. <strong>Sumá puntos</strong>: 1pt por ronda de grupos, 2pts en cuartos, 3 en semifinales y 5 en la final.<br>
+                3. <strong>Ranking en tiempo real</strong>: podés ver cómo estás posicionado frente al resto.<br>
+                4. <strong>Actualizaciones en vivo</strong>: resultados se actualizan apenas finaliza cada enfrentamiento.
+            </p>
+        </app-event-section>
+
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+            <button mat-raised-button class="ieeecard-button me-3" (click)="goToNextCategory()">
+                <mat-icon class="align-middle">play_arrow</mat-icon>
+                Comenzar predicciones
+            </button>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #alreadyVotedTemplate>
+    <app-event-section [asimov]="true" title="¡Ya has votado!">
+        <p>
+            Ya has realizado tus predicciones para la AsimovCup. ¡Gracias por participar!
+        </p>
+        <p>
+            Podés ver el ranking de participantes y sus predicciones <a href="/asimov/dashboard">aquí</a>.
+        </p>
+    </app-event-section>
+</ng-template>
+
+<ng-template #loadingTemplate>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>

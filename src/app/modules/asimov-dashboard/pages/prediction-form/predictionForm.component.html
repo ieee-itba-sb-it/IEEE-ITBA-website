@@ -3,7 +3,7 @@
 
   <div class="content-section">
 
-    <div class="tournament-section">
+    <div class="tournament-section asimov-variation">
       <app-tournament-tree
         [initialEncounters]="categoryEncounters"
         [robots]="categoryRobots"
@@ -22,13 +22,9 @@
   </div>
 
   <div class="button-section">
-    <app-button
-      [href]=nextCategory()
-      [asimov]="true"
-      (click)="onNext()"
-      icon="play_arrow"
-      [disabled]="!isFinalPredicted()">
-      Siguiente
-    </app-button>
+      <button mat-raised-button class="ieeecard-button me-3" (click)="onNext()">
+          <mat-icon class="align-middle">play_arrow</mat-icon>
+            Siguiente categoría
+      </button>
   </div>
 </div>
