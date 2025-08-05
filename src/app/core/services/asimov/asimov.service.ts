@@ -14,9 +14,9 @@ import {
     QueryConstraint,
     QuerySnapshot,
     setDoc,
-    startAfter,
-    WriteBatch,
-    writeBatch
+    startAfter, where,
+    writeBatch,
+    WriteBatch
 } from "@angular/fire/firestore";
 import {flatMap, from, mergeMap} from "rxjs";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
@@ -26,7 +26,6 @@ import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
-
 
 @Injectable({
     providedIn: 'root'
@@ -59,6 +58,14 @@ export class AsimovService {
         );
     }
 
+    public getEncountersByCategoryId(categoryId): Observable<Encounter[]> {
+        return fromPromise(getDocs(query(this.encountersCollection, where("category.id", "==", categoryId)))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Encounter)
+            ),
+        );
+    }
+
     public getScores(): Observable<Score[]> {
         return new Observable((subscriber) => {
             onSnapshot(query(this.scoresCollection, orderBy("score")), (snap)=>{
@@ -75,8 +82,24 @@ export class AsimovService {
         );
     }
 
+    public getUserPredictions(userId: string): Observable<Prediction[]> {
+        return fromPromise(getDocs(query(this.predictionsCollection, where("uID", "==", userId)))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Prediction)
+            ),
+        );
+    }
+
     public getRobots(): Observable<Robot[]> {
         return fromPromise(getDocs(query(this.robotsCollection))).pipe(
+            map(snap =>
+                snap.docs.map(doc => doc.data() as Robot)
+            ),
+        );
+    }
+
+    public getRobotsByCategoryId(categoryId: string): Observable<Robot[]> {
+        return fromPromise(getDocs(query(this.robotsCollection, where("category.id", "==", categoryId)))).pipe(
             map(snap =>
                 snap.docs.map(doc => doc.data() as Robot)
             ),
@@ -217,7 +240,7 @@ export class AsimovService {
         for (let prediction of predictions) {
             if (uid != prediction.uID) throw new Error();
             if (predictions.filter(p => p.level == prediction.level && p.order == prediction.order).length != 1) return 0;
-            let encounter = encounters.find(e => e.level == prediction.level && prediction.order == prediction.order);
+            let encounter = encounters.find(e => e.level == prediction.level && e.order == prediction.order);
             if (encounter != null) {
                 if (this.getEncounterWinnerId(encounter) == prediction.winner) score += Math.max(10 - encounter.level * 2, 2);
             }
@@ -241,7 +264,7 @@ export class AsimovService {
         return new Observable<void>(subscriber => {
             try {
                 this.checkEncounters(encounters, robots);
-                this.getPredictions().pipe(take(1)).subscribe(async predictions => {
+                this.getPredictions().subscribe(async predictions => {
                     let predictionsByUser = new Map<string, Prediction[]>();
                     let scores: Score[] = [];
                     predictions.forEach(prediction => {
@@ -275,6 +298,27 @@ export class AsimovService {
                 subscriber.error(error);
             }
         })
+    }
+    public savePredictions(predictions: Prediction[]): Observable<Prediction[]> {
+        return new Observable(subscriber => {
+            const batch = writeBatch(this.afs);
+            batch.set(doc(this.scoresCollection, predictions[0].uID), {
+                uID: predictions[0].uID,
+                fullname: predictions[0].fullname,
+                score: 0 // Initial score, will be calculated later
+            });
+            predictions.forEach(prediction => {
+                const userDocRef = doc(this.scoresCollection, prediction.uID);
+                const predictionsSubcollection = collection(userDocRef, AsimovService.PREDICTIONS_COLLECTION_NAME);
+                const predictionRef = doc(predictionsSubcollection, prediction.id);
+
+                batch.set(predictionRef, prediction);
+            });
+            batch.commit().then(() => {
+                subscriber.next(predictions);
+                subscriber.complete();
+            }).catch(err => subscriber.error(err));
+        });
     }
 
 }

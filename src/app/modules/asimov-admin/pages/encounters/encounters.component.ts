@@ -21,6 +21,7 @@ export class EncountersComponent implements OnInit {
     robot2SearchText = '';
     encountersList: Encounter[] = [];
     deletedEncounters: Encounter[] = []; // Lista para almacenar enfrentamientos eliminados
+
     displayedColumns: string[] = ['number', 'robot1', 'vs', 'robot2', 'winner', 'actions'];
 
     private robots: Robot[] = []; // Lista completa de robots
@@ -38,6 +39,7 @@ export class EncountersComponent implements OnInit {
 
     onTabChange(event: any): void {
         this.selectedTabIndex = event.index;
+        this.deletedEncounters = [];
         // Actualizar la categoría actual y cargar robots correspondientes
         this.loadRobotsForCurrentCategory();
         this.resetForm();

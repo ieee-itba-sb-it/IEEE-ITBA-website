@@ -190,6 +190,7 @@ const routes: Routes = [
             import('./modules/asimov-dashboard/asimov-dashboard.module').then(
                 (m) => m.AsimovDashboardModule
             ),
+        canActivate: [AuthGuardService]
     },
     {
         path: 'admin/asimov',

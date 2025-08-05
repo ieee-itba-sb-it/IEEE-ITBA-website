@@ -36,5 +36,8 @@ export const routing = RouterModule.forChild(routes);
         FlexLayoutModule
     ],
     declarations: [AsimovCupComponent],
+    exports: [
+        AsimovCupComponent
+    ]
 })
 export class AsimovCupModule { }
