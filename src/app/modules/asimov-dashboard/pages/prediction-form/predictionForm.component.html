@@ -1,5 +1,5 @@
-<div class="prediction-container">
-    <h1 class="centered-title">Predicción – {{ category | titlecase }}</h1>
+<div class="prediction-container" *ngIf="category">
+    <h1 class="centered-title">Predicción – {{ category.name | titlecase }}</h1>
 
   <div class="content-section">
 

@@ -8,6 +8,8 @@ import { Prediction } from '../../../../shared/models/event/asimov/score';
 import { AuthService } from 'src/app/core/services/authorization/auth.service';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 import { AsimovService } from 'src/app/core/services/asimov/asimov.service';
+import {Category} from "../../../../shared/models/event/asimov/category";
+import { v4 as uuid } from 'uuid';
 
 
 @Component({
@@ -23,13 +25,14 @@ import { AsimovService } from 'src/app/core/services/asimov/asimov.service';
 })
 
 export class PredictionFormComponent implements OnInit {
-    public category: string = '';
-    public categoryEncounters: Encounter[] = [];
-    public categoryRobots: Robot[] = [];
-    public predictions: Prediction[] = [];
-    public currentUser: IEEEuser | null = null;
 
-    allCategories = ['carreras', 'sumo', 'minisumo', 'futbol'];
+    category: Category = null;
+    categoryEncounters: Encounter[] = [];
+    categoryRobots: Robot[] = [];
+    predictions: Prediction[] = [];
+    currentUser: IEEEuser | null = null;
+
+    allCategories: Category[];
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private asimovService: AsimovService) {}
 
@@ -37,28 +40,33 @@ export class PredictionFormComponent implements OnInit {
         this.authService.getCurrentUser().subscribe(user => {
             this.currentUser = user;
         });
-        this.route.paramMap.subscribe(params => {
-            const paramCategory = params.get('categoria');
-            if (paramCategory && this.allCategories.includes(paramCategory)) {
-                this.category = paramCategory;
-                this.loadCategoryData(paramCategory);
-            } else {
-                this.router.navigate(['/asimov/dashboard']);
-            }
+        this.asimovService.getCategories().subscribe(categories => {
+            this.allCategories = categories;
+            this.route.paramMap.subscribe(params => {
+                const paramCategory = params.get('categoria');
+                const category = this.allCategories.find(c => c.name.toLowerCase() === paramCategory?.toLowerCase());
+                if (paramCategory && category) {
+                    this.category = category;
+                    this.loadCategoryData(category.id);
+                } else {
+                    this.router.navigate(['/asimov/dashboard']);
+                }
+            });
         });
     }
 
-    loadCategoryData(categoria: string) {
+    loadCategoryData(categoryId: string) {
         // Limpiar datos previos
         this.categoryRobots = [];
         this.categoryEncounters = [];
         this.predictions = [];
+
         this.asimovService.getRobots().subscribe(robots => {
-            this.categoryRobots = robots.filter(r => r.category.name.toLowerCase() === categoria.toLowerCase());
+            this.categoryRobots = robots.filter(r => r.category.id === categoryId);
         });
 
         this.asimovService.getEncounters().subscribe(encounters => {
-            this.categoryEncounters = encounters.filter(e => e.category.name.toLowerCase() === categoria.toLowerCase());
+            this.categoryEncounters = encounters.filter(e => e.category.id === categoryId);
         });
     }
 
@@ -74,7 +82,7 @@ export class PredictionFormComponent implements OnInit {
             this.predictions[idx].winner = winnerId;
         } else {
             this.predictions.push({
-                id: encounter.id.concat(this.currentUser.uID),
+                id: uuid(),
                 uID: this.currentUser.uID,
                 level: encounter.level,
                 order: encounter.order,
@@ -90,7 +98,7 @@ export class PredictionFormComponent implements OnInit {
         const siguienteCategoria = this.allCategories[actualIndex + 1];
 
         if (siguienteCategoria) {
-            return '/asimov/prediction/'.concat(siguienteCategoria);
+            return '/asimov/prediction/'.concat(siguienteCategoria.name);
         } else {
             return '/asimov/dashboard';
         }
