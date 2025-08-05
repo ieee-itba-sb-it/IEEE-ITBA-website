@@ -1,4 +1,4 @@
-<div class="prediction-container" *ngIf="category">
+<div class="prediction-container" *ngIf="!loading; else loadingTemplate">
     <h1 class="centered-title">Predicción – {{ category.name | titlecase }}</h1>
 
   <div class="content-section">
@@ -28,3 +28,7 @@
       </button>
   </div>
 </div>
+
+<ng-template #loadingTemplate>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

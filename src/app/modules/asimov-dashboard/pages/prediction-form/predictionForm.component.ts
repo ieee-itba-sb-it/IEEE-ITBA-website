@@ -12,6 +12,7 @@ import {Category} from "../../../../shared/models/event/asimov/category";
 import { v4 as uuid } from 'uuid';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {zip} from "rxjs";
 
 
 @Component({
@@ -29,6 +30,8 @@ import {MatButtonModule} from "@angular/material/button";
 })
 
 export class PredictionFormComponent implements OnInit {
+
+    loading: boolean = true;
 
     category: Category = null;
     categoryEncounters: Encounter[] = [];
@@ -62,23 +65,24 @@ export class PredictionFormComponent implements OnInit {
         this.categoryEncounters = [];
         this.predictions = [];
 
-        this.asimovService.getRobotsByCategoryId(categoryId).subscribe(robots => {
-            this.categoryRobots = robots;
-        });
+        this.loading = true;
 
-        this.authService.getCurrentUser().subscribe(user => {
+        zip(
+            this.authService.getCurrentUser(),
+            this.asimovService.getRobotsByCategoryId(categoryId),
+            this.asimovService.getEncountersByCategoryId(categoryId)
+
+        ).subscribe(([user, robots, encounters]) => {
+            this.categoryRobots = robots;
+            this.categoryEncounters = this.completeEncounters(encounters);
             this.currentUser = user;
             this.asimovService.getUserPredictions(user.uID).subscribe(predictions => {
+                this.loading = false;
                 if (predictions.find(pred => pred.category.id === categoryId)) {
                     this.onNext();
                 }
             })
-        });
-
-        this.asimovService.getEncountersByCategoryId(categoryId).subscribe(encounters => {
-            this.categoryEncounters = encounters;
-            this.categoryEncounters = this.completeEncounters(encounters);
-        });
+        })
     }
 
     completeEncounters(encounters: Encounter[]): Encounter[] {

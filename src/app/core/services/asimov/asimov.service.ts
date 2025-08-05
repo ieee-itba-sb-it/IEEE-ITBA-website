@@ -240,7 +240,7 @@ export class AsimovService {
         for (let prediction of predictions) {
             if (uid != prediction.uID) throw new Error();
             if (predictions.filter(p => p.level == prediction.level && p.order == prediction.order).length != 1) return 0;
-            let encounter = encounters.find(e => e.level == prediction.level && prediction.order == prediction.order);
+            let encounter = encounters.find(e => e.level == prediction.level && e.order == prediction.order);
             if (encounter != null) {
                 if (this.getEncounterWinnerId(encounter) == prediction.winner) score += Math.max(10 - encounter.level * 2, 2);
             }
@@ -264,7 +264,7 @@ export class AsimovService {
         return new Observable<void>(subscriber => {
             try {
                 this.checkEncounters(encounters, robots);
-                this.getPredictions().pipe(take(1)).subscribe(async predictions => {
+                this.getPredictions().subscribe(async predictions => {
                     let predictionsByUser = new Map<string, Prediction[]>();
                     let scores: Score[] = [];
                     predictions.forEach(prediction => {
