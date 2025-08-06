@@ -5,7 +5,7 @@ import {
     CollectionReference,
     doc,
     DocumentData,
-    Firestore,
+    Firestore, getDoc,
     getDocs,
     limit, onSnapshot,
     orderBy,
@@ -48,9 +48,24 @@ export class AsimovService {
     private static readonly PREDICTIONS_COLLECTION_NAME = 'predictions';
     private predictionsCollection: Query = collectionGroup(this.afs, AsimovService.PREDICTIONS_COLLECTION_NAME);
 
+    private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
+    private metadataCollection: CollectionReference = collection(this.afs, AsimovService.METADATA_COLLECTION_NAME);
+
     private static readonly PAGE_SIZE = 10;
 
     constructor(private afs: Firestore, private firebaseStorage: Storage) {}
+
+    public getPredictionsStatus(): Observable<boolean> {
+        return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME))).pipe(
+            map(docSnap => (docSnap.data() as { open: boolean }).open)
+        );
+    }
+
+    public setPredictionsStatus(status: boolean): Observable<void> {
+        return fromPromise(setDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME), {
+            open: status
+        }));
+    }
 
     public getEncounters(): Observable<Encounter[]> {
         return fromPromise(getDocs(query(this.encountersCollection))).pipe(

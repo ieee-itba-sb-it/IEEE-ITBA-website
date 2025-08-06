@@ -6,13 +6,13 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {SharedModule} from "../../shared/shared.module";
 import {PredictionFormComponent} from "./pages/prediction-form/predictionForm.component";
 import {TranslateModule} from "@ngx-translate/core";
-import { ResultsComponent } from './pages/results/results.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { FilterByCategory } from './pages/results/components/filter-by-category.pipe';
-import { CompleteEncounterLevelsPipe } from './pages/results/components/complete-encounter-levels.pipe';
 import { PredictionComponent } from './pages/prediction/prediction.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {ResultsComponent} from "./pages/results/results.component";
+import {CompleteEncounterLevelsPipe} from "./pages/results/components/complete-encounter-levels.pipe";
+import {FilterByCategory} from "./pages/results/components/filter-by-category.pipe";
 
 // Tab manager
 const routes: Routes = [{
