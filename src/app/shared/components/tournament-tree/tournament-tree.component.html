@@ -15,7 +15,7 @@
                         [class.loser]="encounter.winner === 2"
                         (click)="votation(encounter, 1)">
                         <ng-container *ngIf="getRobot(encounter.robot1) as robot; else tbd">
-                            <img [src]="robot.photo" [alt]="robot.name" class="robot-photo">
+                            <img [src]="robot.photo || '../../../../../assets/image/events/asimov-cup/robot-placeholder.png'" [alt]="robot.name" class="robot-photo">
                             <span class="robot-name">{{ robot.name }}</span>
                         </ng-container>
                     </div>
@@ -26,7 +26,7 @@
                         [class.loser]="encounter.winner === 1"
                         (click)="votation(encounter, 2)">
                         <ng-container *ngIf="getRobot(encounter.robot2) as robot; else tbd">
-                            <img [src]="robot.photo" [alt]="robot.name" class="robot-photo">
+                            <img [src]="robot.photo || '../../../../../assets/image/events/asimov-cup/robot-placeholder.png'" [alt]="robot.name" class="robot-photo">
                             <span class="robot-name">{{ robot.name }}</span>
                         </ng-container>
                     </div>

@@ -12,6 +12,7 @@ import {Encounter} from "../../../../shared/models/event/asimov/encounter";
     styleUrls: ['./encounters.component.css']
 })
 export class EncountersComponent implements OnInit {
+    status$: Observable<boolean>;
     categories$: Observable<Category[]>;
     robots$: Observable<Robot[]>;
     selectedTabIndex = 0;
@@ -32,10 +33,19 @@ export class EncountersComponent implements OnInit {
     ) {
         this.robots$ = this.asimovService.getRobots();
         this.categories$ = this.asimovService.getCategories();
+        this.status$ = this.asimovService.getPredictionsStatus();
         this.robots$.subscribe(robots => this.robots = robots);
     }
 
     ngOnInit(): void {}
+
+    toggleStatus(): void {
+        this.status$.subscribe(status => {
+            this.asimovService.setPredictionsStatus(!status).subscribe(() => {
+                this.status$ = this.asimovService.getPredictionsStatus();
+            });
+        })
+    }
 
     onTabChange(event: any): void {
         this.selectedTabIndex = event.index;

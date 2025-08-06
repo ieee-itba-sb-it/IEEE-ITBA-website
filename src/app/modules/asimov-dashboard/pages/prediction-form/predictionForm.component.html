@@ -12,7 +12,7 @@
       <div *ngIf="getChampionRobot()" class="champion-container">
         <div class="champion-image-wrapper">
           <img class="crown-img" src="../../../../../assets/image/events/asimov-cup/corona.png" alt="Corona de campeón">
-          <img class="champion-img" [src]="getChampionRobot()?.photo" [alt]="getChampionRobot()?.name">
+          <img class="champion-img" [src]="getChampionRobot()?.photo || '../../../../../assets/image/events/asimov-cup/robot-placeholder.png'" [alt]="getChampionRobot()?.name">
         </div>
         <div class="champion-name">
           {{ getChampionRobot()?.name }}
@@ -22,7 +22,7 @@
   </div>
 
   <div class="button-section">
-      <button mat-raised-button class="ieeecard-button me-3" (click)="onNext()">
+      <button mat-raised-button class="ieeecard-button me-3" (click)="onNext()" [disabled]="!isFinalPredicted()">
           <mat-icon class="align-middle">play_arrow</mat-icon>
             Siguiente categoría
       </button>
