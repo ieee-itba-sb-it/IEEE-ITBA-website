@@ -23,6 +23,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatChipsModule} from "@angular/material/chips";
+import {IconsModule, MDBBootstrapModule, WavesModule} from "angular-bootstrap-md";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 // Tab manager
@@ -73,7 +75,11 @@ export const routing = RouterModule.forChild(routes);
         MatCardModule,
         MatTabsModule,
         MatTooltipModule,
-        MatChipsModule
+        MatChipsModule,
+        IconsModule,
+        TranslateModule,
+        WavesModule,
+        MDBBootstrapModule
     ]
 })
 export class AsimovAdminModule {}

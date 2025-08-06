@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Robot } from "../../../../../shared/models/event/asimov/robot";
 import { Papa } from "ngx-papaparse";
@@ -10,6 +10,7 @@ import { Papa } from "ngx-papaparse";
 })
 export class CsvUploadBoxComponent {
     @Output() csvParsed = new EventEmitter<any[]>();
+    @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
     isDragging = false;
 
     constructor(private _snackBar: MatSnackBar, private papa: Papa) { }
@@ -37,6 +38,11 @@ export class CsvUploadBoxComponent {
         } else {
             this.showNotification('No se detectó ningún archivo.', 'error');
         }
+    }
+
+    onContainerClick(): void {
+        // Siempre activa el input de archivo al hacer clic en el contenedor
+        this.fileInput.nativeElement.click();
     }
 
     onFileSelected(event: Event): void {

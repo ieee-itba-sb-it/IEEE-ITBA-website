@@ -42,8 +42,11 @@ service firebase.storage {
         allow write: if
             hasRole("admin") || hasRole("writer");
     }
+
+    match /asimov/{documents=**} {
+        allow read;
+        allow write: if
+            hasRole("admin");
+    }
    }
-
-
-
 }

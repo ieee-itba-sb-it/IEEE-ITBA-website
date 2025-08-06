@@ -16,7 +16,6 @@ export interface RobotFormDialogData {
 })
 export class RobotFormDialogComponent {
     robotForm: FormGroup;
-    teams: string[] = ['Autobots', 'Decepticons'];
     categories: Category[];
 
     constructor(
@@ -25,11 +24,8 @@ export class RobotFormDialogComponent {
         private fb: FormBuilder
     ) {
         this.robotForm = this.fb.group({
-            id: ['', Validators.required],
             name: ['', Validators.required],
-            photo: [''], // Optional
             category: [null, Validators.required],
-            team: ['', Validators.required]
         });
         this.categories = data.categories;
     }

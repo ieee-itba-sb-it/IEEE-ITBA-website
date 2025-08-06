@@ -10,3 +10,53 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.search-bar {
+    margin: 1rem;
+    width: 70%;
+    height: 3rem;
+    background-color: #DEDEDE;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+
+.search-bar .search-icon {
+    color:gray;
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input#user {
+    width: 100%;
+    height: 100%;
+    margin: 0 1rem;
+    background: none;
+    border: none;
+}
+
+.search-bar input#user:focus {
+    outline: none;
+}
+
+@media (max-width: 779px) {
+    .table-container {
+        max-height: 300px;
+        max-width: 72.5%;
+        overflow: auto;
+    }
+
+    .table-actions {
+        display: flex;
+        justify-content: center;
+        width: 72.5%;
+    }
+
+    .table-title {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+}

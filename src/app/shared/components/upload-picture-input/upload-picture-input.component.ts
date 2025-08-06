@@ -18,6 +18,7 @@ export class UploadPictureInputComponent {
     @Output() photoURLChange = new EventEmitter<string>();
     @Input() pictureType: string;
     @Output() pictureTypeChange = new EventEmitter<string>();
+    @Input() rowDisplay: boolean = false;
     error$: BehaviorSubject<string>;
     errorModalRef: MDBModalRef | null = null;
 

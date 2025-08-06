@@ -18,8 +18,13 @@ import {MDBModalService} from "angular-bootstrap-md";
     styleUrls: ['./robot-manager.component.css']
 })
 export class RobotManagerComponent implements OnInit, AfterViewInit {
-    displayedColumns = ['selected', 'id', 'name', 'category'];
-    dataSource = new MatTableDataSource<Robot>([]);
+    displayedColumns = ['selected', 'name', 'category', 'id', 'picture', 'photoDisplay'];
+    dataSource: Robot[] = [];
+    displayedDataSource = new MatTableDataSource<Robot>([]);
+    images: Map<string, {base64?: string, type?: string}> = new Map();
+
+    filter: string = "";
+    searchBarTimeout: NodeJS.Timeout;
 
     public isLoading$ = new BehaviorSubject<boolean>(false);
     private endCursor$ = new BehaviorSubject<Robot | null>(null);
@@ -31,6 +36,8 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     private readonly NAME_COLUMN_INDEX = 2;
     private readonly PHOTO_COLUMN_INDEX = 6;
     private readonly CATEGORY_COLUMN_INDEX = 3;
+
+    readonly searchBarPlaceholder = "Buscar Robots por Nombre";
 
     @ViewChild(CdkScrollable) scrollable: CdkScrollable;
 
@@ -44,7 +51,7 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
         this.loadData();
         this.asimovService.getCategories().subscribe(categories => {
             let nextValue = new Map<string, Category>;
-            categories.forEach(category => nextValue.set(category.name, category));
+            categories.forEach(category => nextValue.set(category.name.toLowerCase(), category));
             this.categories$.next(nextValue);
         });
     }
@@ -67,6 +74,37 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
         }
     }
 
+    handleSearchbarEvent(e: any) {
+        if(this.searchBarTimeout) clearTimeout(this.searchBarTimeout);
+        this.searchBarTimeout = setTimeout(() => {
+            this.filter = e.target.value.trim();
+            this.applyFilters();
+        }, 1000)
+    }
+
+    private waitingForPictureData(pictureData: {base64?: string, type?: string}) {
+        return (!pictureData.base64 && pictureData.type) || (!pictureData.type && pictureData.base64);
+    }
+
+    updateRobotPic(robot: Robot) {
+        const pictureData = this.images.get(robot.id);
+        if(this.waitingForPictureData(pictureData)) return;
+        this.asimovService.updateRobotPic(robot, this.images).subscribe(newURL => {
+            robot.photo = newURL;
+            this.asimovService.updateRobot(robot).subscribe(updated => {
+                if(!updated) {
+                    console.error('Error updating robot photo');
+                }
+            });
+        });
+    }
+
+    private applyFilters() {
+        this.displayedDataSource.data = this.dataSource.filter(robot => {
+            return robot.name.toLowerCase().includes(this.filter.toLowerCase());
+        });
+    }
+
     loadData(): void {
         if(this.isLoading$.getValue() || !this.hasMoreData$.getValue()) {
             return;
@@ -81,11 +119,13 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
         obs.subscribe({
             next: robots => {
                 if (robots.length > 0) {
-                    this.dataSource.data = this.dataSource.data.concat(robots);
-                    this.endCursor$.next(this.dataSource.data[this.dataSource.data.length - 1]);
+                    this.dataSource = this.dataSource.concat(robots);
+                    this.dataSource.forEach((robot: Robot) => {this.images.set(robot.id, {base64: null, type: null})});
+                    this.endCursor$.next(this.dataSource[this.dataSource.length - 1]);
                 } else {
                     this.hasMoreData$.next(false);
                 }
+                this.applyFilters();
             },
             error: error => {
                 console.log(error);
@@ -97,7 +137,9 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     addRobots(robots: Robot[]) {
         this.asimovService.addRobots(robots).subscribe({
             next: addedRobots => {
-                this.dataSource.data = this.dataSource.data.concat(this.dataSource.data, addedRobots);
+                this.dataSource = this.dataSource.concat(this.dataSource, addedRobots);
+                this.dataSource.forEach((robot) => {this.images.set(robot.id, {base64: null, type: null})});
+                this.applyFilters();
             },
             error: error => {
                 console.log(error);
@@ -108,7 +150,9 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     addRobot(robot: Robot) {
         this.asimovService.addRobot(robot).subscribe({
             next: addedRobot => {
-                this.dataSource.data = this.dataSource.data.concat(this.dataSource.data, [addedRobot]);
+                this.dataSource.push(addedRobot);
+                this.images.set(addedRobot.id, {base64: null, type: null});
+                this.applyFilters();
             },
             error: error => {
                 console.log(error);
@@ -127,8 +171,8 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
         ).subscribe({
             next: (deletedSuccessfully) => {
                 if (deletedSuccessfully) {
-                    const currentData = this.dataSource.data;
-                    this.dataSource.data = currentData.filter(robot =>
+                    const currentData = this.dataSource;
+                    this.dataSource = currentData.filter(robot =>
                         !robotsToDelete.some(deletedRobot => deletedRobot.id === robot.id)
                     );
 
@@ -138,6 +182,7 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
                         duration: 3000,
                         panelClass: ['success-snackbar']
                     });
+                    this.applyFilters();
                 } else {
                     this.snackBar.open('Deletion failed or partially completed. Please check server logs.', 'Dismiss', {
                         duration: 5000,
@@ -157,7 +202,7 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     }
 
     private csvToRobot(parsedCsvRow: any): Robot {
-        const category = this.categories$.getValue().get(parsedCsvRow[this.CATEGORY_COLUMN_INDEX]);
+        const category = this.categories$.getValue().get(parsedCsvRow[this.CATEGORY_COLUMN_INDEX].trim().toLowerCase());
         if(!category)
             throw new Error(`Category ${parsedCsvRow[this.CATEGORY_COLUMN_INDEX]} for Robot ${parsedCsvRow[this.NAME_COLUMN_INDEX]} not found`);
         const catId = category.id;
@@ -189,14 +234,14 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
 
     isAllSelected() {
         const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
+        const numRows = this.displayedDataSource.data.length;
         return numSelected === numRows;
     }
 
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
-            this.dataSource.data.forEach(row => this.selection.select(row));
+            this.dataSource.forEach(row => this.selection.select(row));
     }
 
     openAddRobotDialog(): void {
@@ -207,9 +252,9 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
             data: { title: 'Add New Robot', categories: categories }
         });
 
-        dialogRef.afterClosed().subscribe((newRobotData: Robot | null) => {
-            if (newRobotData) {
-                this.addRobot(newRobotData);
+        dialogRef.afterClosed().subscribe((newData) => {
+            if (newData) {
+                this.addRobot(newData);
             } else {
                 this.snackBar.open('Robot creation cancelled.', 'Dismiss', { duration: 2000 });
             }

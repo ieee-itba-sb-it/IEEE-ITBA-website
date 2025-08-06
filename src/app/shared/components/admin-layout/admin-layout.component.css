@@ -58,13 +58,41 @@ a.selected {
     }
 
     .content {
-        border-left: none;
-        margin-left: 0;
+        margin: 0;
+        padding: 1rem;
+        max-width: 85%;
+    }
+
+    .tab-container {
+        padding-top: 0;
     }
 }
 
 @media (max-width: 550px) {
     .main-container {
-        padding: 10rem .2rem 0 .2rem;
+        padding: 7.5rem .2rem 0 .2rem;
+        width: 100%;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .content {
+        margin: 0;
+        padding: 1rem;
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 420px) {
+    .content {
+        max-width: 75%;
+    }
+}
+
+@media (max-width: 385px) {
+    .content {
+        max-width: 72.5%;
     }
 }

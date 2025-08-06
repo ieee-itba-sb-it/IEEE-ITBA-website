@@ -13,8 +13,8 @@ import {
     query,
     QueryConstraint,
     QuerySnapshot,
-    setDoc,
-    startAfter, where,
+    runTransaction, setDoc,
+    startAfter, updateDoc, where,
     writeBatch,
     WriteBatch
 } from "@angular/fire/firestore";
@@ -25,6 +25,7 @@ import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
+import {deleteObject, getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
 
 type WinnerEncounters = Encounter[];
 
@@ -49,7 +50,7 @@ export class AsimovService {
 
     private static readonly PAGE_SIZE = 10;
 
-    constructor(private afs: Firestore) {}
+    constructor(private afs: Firestore, private firebaseStorage: Storage) {}
 
     public getEncounters(): Observable<Encounter[]> {
         return fromPromise(getDocs(query(this.encountersCollection))).pipe(
@@ -64,9 +65,9 @@ export class AsimovService {
         return new Observable<{ all: Encounter[], winnerChanges: WinnerEncounters }>((sub) => {
             const unsub = onSnapshot(query(this.encountersCollection), (snapshot) => {
                 console.log(snapshot);
-                sub.next({ 
+                sub.next({
                     all: snapshot.docs.map(doc => doc.data() as Encounter),
-                    winnerChanges: snapshot.docChanges().filter((docChange) => docChange.type === 'modified').map((doc) => doc.doc.data() as Encounter) ?? [] 
+                    winnerChanges: snapshot.docChanges().filter((docChange) => docChange.type === 'modified').map((doc) => doc.doc.data() as Encounter) ?? []
                 });
             });
             return () => {
@@ -192,6 +193,50 @@ export class AsimovService {
                     obs.next(false);
                     obs.error(err);
                 });
+        });
+    }
+
+    public updateRobot(newRobot: Robot): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            let data = { ...newRobot };
+            updateDoc(doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, newRobot.id), data)
+                .then(() => {
+                    subscriber.next(true);
+                })
+                .catch((err) => {
+                    subscriber.next(false);
+                    subscriber.error(err);
+                })
+                .finally(() => subscriber.complete());
+        })
+    }
+
+    public updateRobotPic(robot: Robot, images: Map<string, {base64?: string, type?: string}>) : Observable<string> {
+        const pictureData = images.get(robot.id);
+        return new Observable<string>((subscriber) => {
+            if(!pictureData.base64 || pictureData.base64.trim() == "" || !pictureData.type) {
+                deleteObject(ref(this.firebaseStorage, robot.photo))
+                    .then(() => {
+                        subscriber.next(null);
+                    })
+                    .catch((err) => {
+                        subscriber.error(err);
+                    })
+                    .finally(() => subscriber.complete());
+            } else {
+                const serverpath = `asimov/${robot.id}.${pictureData.type}`;
+                fetch(pictureData.base64)
+                    .then(image => image.blob())
+                    .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                    .then(res => getDownloadURL(res.ref))
+                    .then(newURL => {
+                        subscriber.next(newURL);
+                    })
+                    .catch(err => {
+                        subscriber.error(err);
+                    })
+                    .finally(() => subscriber.complete());
+            }
         });
     }
 
