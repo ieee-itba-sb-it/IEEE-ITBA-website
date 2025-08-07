@@ -1,0 +1,14 @@
+<div
+    class="upload-box"
+    [class.is-dragging]="isDragging"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="onContainerClick()">
+
+    <p>Arrastra y suelta tu archivo CSV aquí (o haga click)</p>
+    <p>o</p>
+    <input type="file" (change)="onFileSelected($event)" accept=".csv">
+    <p class="file-type-hint">Solo archivos .csv son soportados</p>
+    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" multiple>
+</div>

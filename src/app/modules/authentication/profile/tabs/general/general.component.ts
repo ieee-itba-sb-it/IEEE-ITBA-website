@@ -55,7 +55,7 @@ export class GeneralComponent implements OnInit {
         if (!this.hasChange()) return;
         this.loading = true;
         let hasPhotoChanged = this.changes.photoURL && this.changes.photoURL != this.actual.photoURL && this.picturetype;
-
+        console.log(this.changes.photoURL);
         let operation$: Observable<string> = hasPhotoChanged ?
             this.authService.updateProfilePic(this.changes.photoURL, this.picturetype) :
             of(undefined);

@@ -1,0 +1,21 @@
+.row-display {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.row-display-icon {
+    max-width: 1% !important;
+    max-height: 1% !important;
+}
+
+@media(max-width: 800px) {
+    .row-display {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+
+    .row-display-button {
+        font-size: 12px !important;
+        min-height: 3.5rem !important;
+    }
+}

@@ -844,6 +844,11 @@
     "PAGEDESCRIPTION": "Asimov Cup es una competencia de robótica abierta al público general que se desarrolla en ITBA.",
     "ENROLLBUTTON": "¡Anotate ahora!",
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
+    "LEADERBOARD": {
+     "TITLE": "Ranking de Predicciones",
+     "NAMEHEADER": "Nombre",
+     "SCOREHEADER": "Puntaje"
+    },
     "CATEGORIES": {
       "SUMO": {
         "NAME": "Sumo, Mini Sumo, Mini Sumo Pro, Micro Sumo, Sumo RC",
@@ -932,7 +937,18 @@
         "ANSWER": "Para cualquier pregunta pueden contactarnos a través de la casilla ras.ieee@itba.edu.ar"
       }
     },
-    "SPONSORS": "Sponsors"
+    "SPONSORS": "Sponsors",
+      "ADMIN": {
+          "ROBOTSMANAGERTAB": {
+              "TITLE": "Administración de Robots"
+          },
+          "ENCOUNTERSTAB": {
+              "TITLE": "Enfrentamientos"
+          },
+          "CATEGORIESTAB": {
+              "TITLE": "Categorías"
+          }
+      }
   },
   "TYPESCRIPT": {
     "PAGETITLE": "ITBA IEEE | Curso de Typescript",
@@ -1187,7 +1203,10 @@
       "TABLE": {
         "COMMISSION": "Comisión a entrar"
       }
-    }
+    },
+      "ASIMOVADMINTAB": {
+          "TITLE": "Administración de Asimov Cup"
+      }
   },
   "TEAM_REQUEST": {
     "TITLE": "Registrate como miembro de IEEE ITBA",

@@ -32,10 +32,12 @@ import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fir
 import { TeamRequestComponent } from './modules/team-request/pages/team-request.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -57,7 +59,8 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
 @NgModule({
     declarations: [
         AppComponent,
-        TeamRequestComponent
+        TeamRequestComponent,
+        RobotFormDialogComponent
     ],
     imports: [
         AppRoutingModule,
@@ -109,6 +112,9 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         MatInputModule,
         IconsModule,
         MatSelectModule,
+        IconsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
         IconsModule
     ],
     providers: [

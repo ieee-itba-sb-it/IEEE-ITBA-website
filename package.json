@@ -51,6 +51,7 @@
     "ngx-image-compress": "^18.1.5",
     "ngx-page-scroll": "^11.0.0",
     "ngx-page-scroll-core": "^11.0.0",
+    "ngx-papaparse": "8",
     "ngx-quill": "^22.0.0",
     "ngx-skeleton-loader": "^8.1.0",
     "node": "18.16.1",

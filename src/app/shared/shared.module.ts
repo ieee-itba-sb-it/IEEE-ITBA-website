@@ -57,6 +57,8 @@ import {UploadPictureInputComponent} from "./components/upload-picture-input/upl
 import {MatButtonModule} from "@angular/material/button";
 import { EventCourseDetailComponent } from './components/event-course-detail/event-course-detail.component';
 import { TournamentTreeComponent } from './components/tournament-tree/tournament-tree.component';
+import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
+import {MatListModule} from "@angular/material/list";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -72,7 +74,7 @@ export const routing = RouterModule.forChild(routes);
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
-        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent],
+        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent, AdminLayoutComponent],
     imports: [
         routing,
         CommonModule,
@@ -102,6 +104,7 @@ export const routing = RouterModule.forChild(routes);
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
+        MatListModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
@@ -110,6 +113,7 @@ export const routing = RouterModule.forChild(routes);
         EventSectionComponent, ImageCarouselComponent, EventFactsBannerComponent, ButtonComponent,
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
-        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent],
+        EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent,
+        TournamentTreeComponent, AdminLayoutComponent],
 })
 export class SharedModule { }

@@ -1,13 +1,13 @@
 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4">
-    <app-profile-picture size="150px" [src]="photoURL"/>
-    <div class="picture-buttons d-flex flex-column justify-content-center gap-4">
+    <app-profile-picture *ngIf="!rowDisplay" [class.row-display-icon]="rowDisplay" size="150px" [src]="photoURL"/>
+    <div class="picture-buttons d-flex flex-column justify-content-center gap-4" [class.row-display]="rowDisplay">
         <input #pictureInput type="file" (change)="uploadPicture($event)" accept="image/png, image/jpeg, image/jpg"
                class="d-none">
-        <button mat-raised-button (click)="pictureInput.click()" class="save-button" color="secondary" type="button">
+        <button mat-raised-button (click)="pictureInput.click()" class="save-button" [class.row-display-button]="rowDisplay" color="secondary" type="button">
             <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
             {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}
         </button>
-        <button mat-raised-button (click)="deletePicture()" color="warn" type="button">
+        <button mat-raised-button (click)="deletePicture()" color="warn" [class.row-display-button]="rowDisplay" type="button">
             <mdb-icon fas icon="times" class="mr-1"></mdb-icon>
             {{ 'PROFILE.BUTTONS.PICTURE_DELETE' | translate }}
         </button>

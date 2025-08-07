@@ -1,0 +1,23 @@
+<h2 class="title">Ganadores</h2>
+
+<div class="encounter-list">
+  <div class="encounter" *ngFor="let e of winners">
+    <div class="robot-card" [class.winner]="e.winner === 1">
+      <img [src]="e.robot1.photo" alt="{{ e.robot1.name }}" />
+      <div class="info">
+        <h3>{{ e.robot1.name }}</h3>
+        <p class="category">{{ e.robot1.category.name }}</p>
+      </div>
+    </div>
+
+    <div class="vs-text">VS</div>
+
+    <div class="robot-card" [class.winner]="e.winner === 2">
+      <img [src]="e.robot2.photo" alt="{{ e.robot2.name }}" />
+      <div class="info">
+        <h3>{{ e.robot2.name }}</h3>
+        <p class="category">{{ e.robot2.category.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

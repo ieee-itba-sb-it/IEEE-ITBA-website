@@ -1,1 +1,90 @@
-<p>robot-manager works!</p>
+<div class="table-actions">
+    <div class="mb-3 mr-3">
+        <button mat-raised-button color="primary" (click)="openAddRobotDialog()">
+            <mat-icon>cloud_upload</mat-icon> Upload Robot
+        </button>
+    </div>
+    <div class="mb-3">
+        <button mat-raised-button color="warn" (click)="deleteRobots()" [disabled]="selection.isEmpty()">
+            <mat-icon>delete</mat-icon>
+            Delete Selected ({{ selection.selected.length }})
+        </button>
+    </div>
+</div>
+<h1 class="table-title">Robots Inscriptos</h1>
+<div class="search-bar">
+    <mdb-icon fas icon="search" class="search-icon" mdbWavesEffect />
+    <input (keyup)="handleSearchbarEvent($event)"
+           (submit)="handleSearchbarEvent($event)"
+           type="text" name="user" id="user"
+           autocomplete="off"
+           [placeholder]="this.searchBarPlaceholder">
+    <mdb-icon fas icon="chevron-right" class="search-icon" mdbWavesEffect />
+</div>
+<div class="table-container" cdkScrollable>
+    <table mat-table [dataSource]="displayedDataSource" class="mat-elevation-z2">
+
+        <ng-container matColumnDef="selected">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                    (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    color="warn"
+                    aria-label="Select all rows">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox
+                    (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(element) : null"
+                    [checked]="selection.isSelected(element)"
+                    color="warn"
+                    aria-label="Select row {{element.id}}">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="picture">
+            <th mat-header-cell *matHeaderCellDef>Actualizar Imágen</th>
+            <td mat-cell *matCellDef="let element">
+                <app-upload-picture-input
+                    [(photoURL)]="images.get(element.id).base64"
+                    [(pictureType)]="images.get(element.id).type"
+                    (photoURLChange)="updateRobotPic(element)"
+                    (pictureTypeChange)="updateRobotPic(element)"
+                    rowDisplay="true"
+                />
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="photoDisplay">
+            <th mat-header-cell *matHeaderCellDef>Foto</th>
+            <td mat-cell *matCellDef="let element">
+                <app-profile-picture [src]="element.photo" size="42px"></app-profile-picture>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)"> </tr>
+    </table>
+
+    <app-loading-spinner *ngIf="isLoading$.getValue()"/>
+</div>
+<app-csv-upload-box (csvParsed)="onCsvFileParsed($event)"></app-csv-upload-box>
