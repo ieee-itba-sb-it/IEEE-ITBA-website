@@ -69,6 +69,8 @@
 /* Sección de enfrentamientos */
 .encounters-section {
   margin-top: 32px;
+    max-width: 100vw;
+    overflow-x: auto; /* Permite scroll horizontal si es necesario */
 }
 
 .encounters-card {
@@ -418,11 +420,6 @@
   .robot-selection-row {
     flex-direction: column;
     gap: 16px;
-  }
-
-  .vs-divider {
-    order: 2;
-    transform: rotate(90deg);
   }
 
   .robot-select {

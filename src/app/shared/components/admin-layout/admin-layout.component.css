@@ -32,6 +32,7 @@ aside {
     padding: 1rem;
     margin-left: 1rem;
     border-left: 1px solid #DEDEDE;
+    max-width: 100vw;
 }
 
 .wrapper {
@@ -59,8 +60,7 @@ a.selected {
 
     .content {
         margin: 0;
-        padding: 1rem;
-        max-width: 85%;
+        padding: .5rem;
     }
 
     .tab-container {
@@ -80,19 +80,6 @@ a.selected {
 
     .content {
         margin: 0;
-        padding: 1rem;
-        max-width: 85%;
-    }
-}
-
-@media (max-width: 420px) {
-    .content {
-        max-width: 75%;
-    }
-}
-
-@media (max-width: 385px) {
-    .content {
-        max-width: 72.5%;
+        padding: .25rem;
     }
 }
