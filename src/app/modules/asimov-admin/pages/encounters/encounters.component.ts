@@ -5,6 +5,8 @@ import {AsimovService} from '../../../../core/services/asimov/asimov.service';
 import {Category} from "../../../../shared/models/event/asimov/category";
 import {Robot} from "../../../../shared/models/event/asimov/robot";
 import {Encounter} from "../../../../shared/models/event/asimov/encounter";
+import {MDBModalRef, MDBModalService} from "angular-bootstrap-md";
+import {AlertModalComponent} from "../../../../shared/components/alert-modal/alert-modal.component";
 
 @Component({
     selector: 'app-encounters',
@@ -25,11 +27,15 @@ export class EncountersComponent implements OnInit {
 
     displayedColumns: string[] = ['number', 'robot1', 'vs', 'robot2', 'winner', 'actions'];
 
+    modalRef: MDBModalRef | null = null;
+    uploading: boolean = false;
+
     private robots: Robot[] = []; // Lista completa de robots
     private currentCategoryId: string = '';
 
     constructor(
-    private asimovService: AsimovService
+        private asimovService: AsimovService,
+        private modalService: MDBModalService
     ) {
         this.robots$ = this.asimovService.getRobots();
         this.categories$ = this.asimovService.getCategories();
@@ -115,13 +121,23 @@ export class EncountersComponent implements OnInit {
         // Reorganizar los niveles antes de guardar (invertir la numeración)
         const reorganizedEncounters = this.reorganizeLevelsForSaving(this.encountersList);
 
+        this.uploading = true;
         // Guardar los enfrentamientos reorganizados
         this.asimovService.setEncounters(reorganizedEncounters, this.deletedEncounters, this.robots).subscribe({
             next: () => {
                 console.log('Enfrentamientos guardados correctamente');
+                this.uploading = false;
             },
             error: (error) => {
                 console.error('Error al guardar los enfrentamientos:', error);
+                this.uploading = false;
+                this.modalRef = this.modalService.show(AlertModalComponent, {
+                    data: {
+                        type: "error",
+                        message: 'Error al guardar los enfrentamientos: ' + error.message
+                    },
+                    class: 'modal-dialog-centered',
+                });
             }
         });
     }

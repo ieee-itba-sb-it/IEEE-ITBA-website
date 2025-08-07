@@ -316,8 +316,8 @@ export class AsimovService {
         let score: number = 0;
         for (let prediction of predictions) {
             if (uid != prediction.uID) throw new Error();
-            if (predictions.filter(p => p.level == prediction.level && p.order == prediction.order).length != 1) return 0;
-            let encounter = encounters.find(e => e.level == prediction.level && e.order == prediction.order);
+            if (predictions.filter(p => p.level == prediction.level && p.order == prediction.order && p.category.id == prediction.category.id).length != 1) return 0;
+            let encounter = encounters.find(e => e.level == prediction.level && e.order == prediction.order && e.category.id == prediction.category.id);
             if (encounter != null) {
                 if (this.getEncounterWinnerId(encounter) == prediction.winner) score += Math.max(10 - encounter.level * 2, 2);
             }

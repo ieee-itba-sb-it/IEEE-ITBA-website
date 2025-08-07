@@ -82,6 +82,10 @@ export class PredictionFormComponent implements OnInit {
             this.categoryRobots = robots;
             this.categoryEncounters = this.completeEncounters(encounters);
             this.currentUser = user;
+            if (encounters.length < 1) {
+                this.loading = false;
+                return this.onNext();
+            }
             this.asimovService.getUserPredictions(user.uID).subscribe(predictions => {
                 this.loading = false;
                 if (predictions.find(pred => pred.category.id === categoryId)) {
@@ -190,8 +194,7 @@ export class PredictionFormComponent implements OnInit {
     }
 
     onNext() {
-        if (!this.currentUser) return;
-        if (this.predictions.length === 0) return this.navigateToNext();
+        if (this.predictions.length === 0 || !this.currentUser) return this.navigateToNext();
         this.asimovService.savePredictions(this.predictions).subscribe({
             next: () => {
                 // Redirigir a la siguiente categoría o al dashboard
