@@ -20,7 +20,7 @@ import {
 } from "@angular/fire/firestore";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
-import { map, Observable, take } from "rxjs";
+import {map, Observable, switchMap, take, zip} from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
@@ -338,43 +338,44 @@ export class AsimovService {
     }
 
     public setEncounters(encounters: Encounter[], deletedEncounters: Encounter[], robots: Robot[]): Observable<void> {
-        return new Observable<void>(subscriber => {
-            try {
-                this.checkEncounters(encounters, robots);
-                this.getPredictions().subscribe(async predictions => {
-                    let predictionsByUser = new Map<string, Prediction[]>();
-                    let scores: Score[] = [];
-                    predictions.forEach(prediction => {
-                        if (predictionsByUser.get(prediction.uID) == null) predictionsByUser.set(prediction.uID, []);
-                        predictionsByUser.get(prediction.uID).push(prediction);
-                    });
-                    predictionsByUser.forEach((userPredictions, uID) => {
-                        scores.push({
-                            uID,
-                            fullname: userPredictions[0].fullname,
-                            score: this.calculateScore(encounters, userPredictions)
-                        });
-                    })
-                    encounters.map(encounter => {
-                        if (encounter.id == null) encounter.id = uuid();
-                    });
-                    await Promise.all([
-                        this.multiWriteBatch(scores, (batch, score) => {
-                            batch.set(doc(this.scoresCollection, score.uID), score);
-                        }),
-                        this.multiWriteBatch(encounters, (batch, encounter) => {
-                            batch.set(doc(this.encountersCollection, encounter.id), encounter);
-                        }),
-                        this.multiWriteBatch(deletedEncounters, (batch, encounter) => {
-                            batch.delete(doc(this.encountersCollection, encounter.id));
-                        }),
-                    ])
-                    subscriber.next();
+        // Validamos los encuentros y les asignamos un ID si no lo tienen
+        this.checkEncounters(encounters, robots);
+        encounters.map(encounter => {
+            if (encounter.id == null) encounter.id = uuid();
+        });
+        return fromPromise(
+            // Guardamos los encuentros y eliminamos los que se hayan marcado como borrados (de una sola categoría)
+            Promise.all([
+                this.multiWriteBatch(encounters, (batch, encounter) => {
+                    batch.set(doc(this.encountersCollection, encounter.id), encounter);
+                }),
+                this.multiWriteBatch(deletedEncounters, (batch, encounter) => {
+                    batch.delete(doc(this.encountersCollection, encounter.id));
                 })
-            } catch (error) {
-                subscriber.error(error);
-            }
-        })
+            ])
+        ).pipe(
+            // Traemos TODOS los encuentros y predicciones
+            switchMap(() => zip(this.getPredictions(), this.getEncounters())),
+            // Calculamos los puntajes de cada usuario y los actualizamos
+            switchMap(([predictions, totalEncounters]) => {
+                let predictionsByUser = new Map<string, Prediction[]>();
+                let scores: Score[] = [];
+                predictions.forEach(prediction => {
+                    if (predictionsByUser.get(prediction.uID) == null) predictionsByUser.set(prediction.uID, []);
+                    predictionsByUser.get(prediction.uID).push(prediction);
+                });
+                predictionsByUser.forEach((userPredictions, uID) => {
+                    scores.push({
+                        uID,
+                        fullname: userPredictions[0].fullname,
+                        score: this.calculateScore(totalEncounters, userPredictions)
+                    });
+                });
+                return fromPromise(this.multiWriteBatch(scores, (batch, score) => {
+                    batch.set(doc(this.scoresCollection, score.uID), score);
+                }));
+            })
+        );
     }
     public savePredictions(predictions: Prediction[]): Observable<Prediction[]> {
         return new Observable(subscriber => {

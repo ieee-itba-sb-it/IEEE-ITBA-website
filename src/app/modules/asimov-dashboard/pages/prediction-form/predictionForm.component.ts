@@ -12,7 +12,7 @@ import {Category} from "../../../../shared/models/event/asimov/category";
 import { v4 as uuid } from 'uuid';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {zip} from "rxjs";
+import {Observable, zip} from "rxjs";
 
 
 @Component({
@@ -44,18 +44,24 @@ export class PredictionFormComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private asimovService: AsimovService) {}
 
     ngOnInit(): void {
-        this.asimovService.getCategories().subscribe(categories => {
-            this.allCategories = categories;
-            this.route.paramMap.subscribe(params => {
-                const paramCategory = params.get('categoria');
-                const category = this.allCategories.find(c => c.name.toLowerCase() === paramCategory?.toLowerCase());
-                if (paramCategory && category) {
-                    this.category = category;
-                    this.loadCategoryData(category.id);
-                } else {
-                    this.router.navigate(['/asimov/dashboard']);
-                }
-            });
+        this.asimovService.getPredictionsStatus().subscribe(status => {
+            if (!status) {
+                this.router.navigate(['/asimov/dashboard']);
+            } else {
+                this.asimovService.getCategories().subscribe(categories => {
+                    this.allCategories = categories;
+                    this.route.paramMap.subscribe(params => {
+                        const paramCategory = params.get('categoria');
+                        const category = this.allCategories.find(c => c.name.toLowerCase() === paramCategory?.toLowerCase());
+                        if (paramCategory && category) {
+                            this.category = category;
+                            this.loadCategoryData(category.id);
+                        } else {
+                            this.router.navigate(['/asimov/dashboard']);
+                        }
+                    });
+                });
+            }
         });
     }
 

@@ -18,6 +18,7 @@ export class PredictionComponent implements OnInit {
 
     predictions$: Observable<Prediction[]>;
     categories$: Observable<Category[]>;
+    status$: Observable<boolean>;
 
     constructor(private authService: AuthService, private asimovService: AsimovService, private router: Router) {
 
@@ -25,6 +26,7 @@ export class PredictionComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = true;
+        this.status$ = this.asimovService.getPredictionsStatus();
         this.authService.getCurrentUser().subscribe(user => {
             this.predictions$ = this.asimovService.getUserPredictions(user.uID);
             this.categories$ = this.asimovService.getCategories();
