@@ -17,7 +17,7 @@ import {MDBModalService} from "angular-bootstrap-md";
     templateUrl: './robot-manager.component.html',
     styleUrls: ['./robot-manager.component.css']
 })
-export class RobotManagerComponent implements OnInit, AfterViewInit {
+export class RobotManagerComponent implements OnInit {
     displayedColumns = ['selected', 'name', 'category', 'id', 'picture', 'photoDisplay'];
     dataSource: Robot[] = [];
     displayedDataSource = new MatTableDataSource<Robot>([]);
@@ -39,8 +39,6 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
 
     readonly searchBarPlaceholder = "Buscar Robots por Nombre";
 
-    @ViewChild(CdkScrollable) scrollable: CdkScrollable;
-
     constructor(private asimovService: AsimovService,
                 private dialog: MatDialog,
                 private snackBar: MatSnackBar,
@@ -48,30 +46,16 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit(): void {
-        this.loadData();
+        this.asimovService.getRobots().subscribe(robots => {
+            this.dataSource = robots;
+            this.applyFilters();
+            this.dataSource.forEach((robot: Robot) => {this.images.set(robot.id, {base64: null, type: null})});
+        });
         this.asimovService.getCategories().subscribe(categories => {
             let nextValue = new Map<string, Category>;
             categories.forEach(category => nextValue.set(category.name.toLowerCase(), category));
             this.categories$.next(nextValue);
         });
-    }
-
-    ngAfterViewInit(): void {
-        if (this.scrollable) {
-            this.scrollable.elementScrolled()
-                .pipe(
-                    debounceTime(200),
-                    filter(() => !this.isLoading$.getValue() && this.hasMoreData$.getValue()),
-                    takeUntil(this.destroy$))
-                .subscribe(() => {
-                    const viewport = this.scrollable.getElementRef().nativeElement;
-
-                    const threshold = 400;
-                    if (viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - threshold) {
-                        this.loadData();
-                    }
-                });
-        }
     }
 
     handleSearchbarEvent(e: any) {
@@ -103,35 +87,6 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
         this.displayedDataSource.data = this.dataSource.filter(robot => {
             return robot.name.toLowerCase().includes(this.filter.toLowerCase());
         });
-    }
-
-    loadData(): void {
-        if(this.isLoading$.getValue() || !this.hasMoreData$.getValue()) {
-            return;
-        }
-        this.isLoading$.next(true);
-        let obs: Observable<Robot[]>
-        if(this.endCursor$.getValue()) {
-            obs = this.asimovService.getRobotsNextPage(this.endCursor$.getValue())
-        } else {
-            obs = this.asimovService.getRobotsFirstPage()
-        }
-        obs.subscribe({
-            next: robots => {
-                if (robots.length > 0) {
-                    this.dataSource = this.dataSource.concat(robots);
-                    this.dataSource.forEach((robot: Robot) => {this.images.set(robot.id, {base64: null, type: null})});
-                    this.endCursor$.next(this.dataSource[this.dataSource.length - 1]);
-                } else {
-                    this.hasMoreData$.next(false);
-                }
-                this.applyFilters();
-            },
-            error: error => {
-                console.log(error);
-            }
-        });
-        this.isLoading$.next(false);
     }
 
     addRobots(robots: Robot[]) {
@@ -241,7 +196,7 @@ export class RobotManagerComponent implements OnInit, AfterViewInit {
     masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
-            this.dataSource.forEach(row => this.selection.select(row));
+            this.displayedDataSource.data.forEach(row => this.selection.select(row));
     }
 
     openAddRobotDialog(): void {
