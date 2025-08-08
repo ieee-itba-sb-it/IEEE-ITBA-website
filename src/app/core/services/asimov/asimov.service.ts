@@ -308,6 +308,7 @@ export class AsimovService {
     }
 
     private checkEncounters(encounters: Encounter[], robots: Robot[]) {
+        if (encounters.length < 1) return;
         this.checkEncountersRecursive(encounters, robots, false, 0, 0, null);
     }
 
@@ -317,10 +318,9 @@ export class AsimovService {
         for (let prediction of predictions) {
             if (uid != prediction.uID) throw new Error();
             if (predictions.filter(p => p.level == prediction.level && p.order == prediction.order && p.category.id == prediction.category.id).length != 1) return 0;
-            let encounter = encounters.find(e => e.level == prediction.level && e.order == prediction.order && e.category.id == prediction.category.id);
-            if (encounter != null) {
-                if (this.getEncounterWinnerId(encounter) == prediction.winner) score += Math.max(10 - encounter.level * 2, 2);
-            }
+            let filteredEncounters = encounters.filter(e => e.level == prediction.level && e.category.id == prediction.category.id);
+            let winners = filteredEncounters.map(e => this.getEncounterWinnerId(e));
+            if (winners.includes(prediction.winner)) score += Math.max(10 - prediction.level * 2, 2);
         }
         return score;
     }
