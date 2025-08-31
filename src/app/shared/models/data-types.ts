@@ -65,3 +65,8 @@ export type InternationalText = {
   es: string;
   en: string;
 }
+
+export type GenderInternationalText = {
+    M: InternationalText;
+    F: InternationalText;
+}

@@ -2,7 +2,7 @@
     <div class="modal-header">
         <div *ngIf="editMode(); else addHeader">
             <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.POSITION_EDITOR.EDIT_TITLE" | translate }} {{ commission.title | customTranslate }}</span></h2>
-            <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title | customTranslate }}</h4>
+            <h4 class="modal-subtitle">{{ commission.positions[positionIdx].title.M | customTranslate }}</h4>
         </div>
         <ng-template #addHeader>
             <h2 class="modal-title"><span>{{ "ADMIN.COMMISSIONSTAB.MODALS.POSITION_EDITOR.ADD_TITLE" | translate }} {{ commission.title | customTranslate }}</span></h2>
@@ -21,22 +21,43 @@
                        formControlName="id">
             </mat-form-field>
             <div formGroupName="title" class="mt-2">
-                <label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.TITLE" | translate }}</label>
-                <mat-form-field class="w-100">
-                    <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.SPANISH_TITLE" | translate }}</mat-label>
-                    <input matInput
-                           type="text"
-                           id="es"
-                           formControlName="es"
-                           >
-                </mat-form-field>
-                <mat-form-field class="w-100">
-                    <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.ENGLISH_TITLE" | translate }}</mat-label>
-                    <input matInput
-                           type="text"
-                           id="en"
-                           formControlName="en">
-                </mat-form-field>
+                <div formGroupName="M">
+                    <label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.TITLE" | translate }}</label>
+                    <mat-form-field class="w-100">
+                        <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.GENDER_SPANISH_TITLE.M" | translate }}</mat-label>
+                        <input matInput
+                               type="text"
+                               id="m_es"
+                               formControlName="es"
+                        >
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.GENDER_ENGLISH_TITLE.M" | translate }}</mat-label>
+                        <input matInput
+                               type="text"
+                               id="m_en"
+                               formControlName="en">
+                    </mat-form-field>
+                </div>
+                <div formGroupName="F">
+                    <label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.TITLE" | translate }}</label>
+                    <mat-form-field class="w-100">
+                        <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.GENDER_SPANISH_TITLE.F" | translate }}</mat-label>
+                        <input matInput
+                               type="text"
+                               id="f_es"
+                               formControlName="es"
+                        >
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                        <mat-label>{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.GENDER_ENGLISH_TITLE.F" | translate }}</mat-label>
+                        <input matInput
+                               type="text"
+                               id="f_en"
+                               formControlName="en">
+                    </mat-form-field>
+                </div>
+
             </div>
             <div *ngIf="error" class="error-container">
                 <p class="error">

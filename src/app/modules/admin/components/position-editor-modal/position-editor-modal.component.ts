@@ -24,7 +24,7 @@ import {ThemePalette} from "@angular/material/core";
 export class PositionEditorModalComponent implements OnInit {
     @Input() commission: Commission;
     @Input() positionIdx: number;
-    @Output() update: EventEmitter<Position> = new EventEmitter();
+    @Output() update: EventEmitter<Commission> = new EventEmitter();
     @Output() updateMembers: EventEmitter<IEEEMember[]> = new EventEmitter();
 
     addingUser: BehaviorSubject<boolean>;
@@ -53,8 +53,14 @@ export class PositionEditorModalComponent implements OnInit {
         this.positionForm = new FormGroup({
             id: new FormControl('', Validators.required),
             title: new FormGroup({
-                en: new FormControl('', Validators.required),
-                es: new FormControl('', Validators.required)
+                M: new FormGroup({
+                    en: new FormControl('', Validators.required),
+                    es: new FormControl('', Validators.required),
+                }),
+                F: new FormGroup({
+                    en: new FormControl('', Validators.required),
+                    es: new FormControl('', Validators.required),
+                })
             })
         });
         adminService.setCollectionName('users');

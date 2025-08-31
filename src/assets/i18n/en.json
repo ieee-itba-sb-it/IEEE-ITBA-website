@@ -1124,8 +1124,16 @@
           "EDIT_TITLE": "Edit commission",
           "ADD_TITLE": "Create commission",
           "TITLE_LABEL": "Title",
-          "SPANISH_TITLE": "Spanish title",
-          "ENGLISH_TITLE": "English title",
+            "ENGLISH_TITLE": "English title",
+            "SPANISH_TITLE": "Spanish title",
+            "GENDER_SPANISH_TITLE": {
+                "M": "Male Spanish title",
+                "F": "Female Spanish title"
+            },
+            "GENDER_ENGLISH_TITLE": {
+                "M": "Male English title",
+                "F": "Female English title"
+            },
           "LOADING": "Loading..."
         },
         "POSITION_EDITOR": {

@@ -14,4 +14,5 @@ export class CustomTranslatePipe implements PipeTransform {
     private locale(): string {
         return this.translate.currentLang;
     }
+
 }

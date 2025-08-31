@@ -1177,8 +1177,16 @@
           "EDIT_TITLE": "Editar comisión",
           "ADD_TITLE": "Crear comisión",
           "TITLE_LABEL": "Título",
-          "SPANISH_TITLE": "Título en español",
-          "ENGLISH_TITLE": "Título en inglés",
+            "ENGLISH_TITLE": "Titulo en ingles",
+            "SPANISH_TITLE": "Titulo en español",
+          "GENDER_SPANISH_TITLE": {
+              "M": "Titulo en español masculino",
+              "F": "Titulo en español femenino"
+          },
+            "GENDER_ENGLISH_TITLE": {
+                "M": "Titulo en ingles masculino",
+                "F": "Titulo en ingles femenino"
+            },
           "LOADING": "Cargando..."
         },
         "POSITION_EDITOR": {

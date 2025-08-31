@@ -32,7 +32,7 @@
                     <tbody>
                         <tr *ngFor="let position of commission.positions; index as i" (click)="openPositionModal(commission, i)" class="position-row">
                             <td>{{ position.id }}</td>
-                            <td>{{ position.title | customTranslate }}</td>
+                            <td>{{ position.title.M | customTranslate }}</td>
                             <td class="d-flex justify-content-center p-0" *ngIf="position && position.members && position.members.length > 0; else membersEmpty">
                                 <app-profile-picture-stack>
                                     <div class="stack-item" *ngFor="let member of position.members">
