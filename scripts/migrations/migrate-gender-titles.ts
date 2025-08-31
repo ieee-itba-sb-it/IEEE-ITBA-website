@@ -1,4 +1,4 @@
-import {getFirestore} from "firebase-admin/lib/firestore";
+import { getFirestore } from "firebase-admin/firestore";
 
 export const migrateGenderTitles = async () => {
     const commissionsCollection = getFirestore().collection("commissions");
@@ -15,9 +15,7 @@ export const migrateGenderTitles = async () => {
             }
 
         })
-        batch.update(commission.ref, {
-            data
-        });
+        batch.update(commission.ref, data);
     });
     await batch.commit();
 
