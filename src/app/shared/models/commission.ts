@@ -1,9 +1,10 @@
 import {InternationalText} from "./data-types";
+import {GenderInternationalText} from "./data-types";
 import { IEEEMember } from "./team-member";
 
 export interface Position {
     id: string;
-    title: InternationalText;
+    title: GenderInternationalText;
     order?: number;
     members?: IEEEMember[];
 }
@@ -16,3 +17,4 @@ export interface Commission {
     positions: Position[];
     members?: IEEEMember[];
 }
+

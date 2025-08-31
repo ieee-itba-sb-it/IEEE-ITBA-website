@@ -56,7 +56,7 @@
                         <div *ngIf="findCommission(user.commissionid) as commission">
                             <div *ngIf="findPosition(commission, user.positionid) as position">
                                 <p class="fw-bold mb-1">{{ commission.title | customTranslate }}</p>
-                                <p class="text-muted mb-0">{{ position.title | customTranslate }}</p>
+                                <p class="text-muted mb-0">{{ position.title[user.gender] | customTranslate }}</p>
                             </div>
                         </div>
                     </div>

@@ -30,12 +30,4 @@ export const migrateEventDates = async () => {
     const eventsCollection = getFirestore().collection(eventsCollectionName);
     const events = (await eventsCollection.get()).docs;
     const batch = getFirestore().batch();
-    events.forEach(event => {
-        const data = event.data();
-        const dates = mapOldDateToNewDates(data.dates);
-        batch.update(event.ref, {
-            dates
-        });
-    });
-    await batch.commit();
 }

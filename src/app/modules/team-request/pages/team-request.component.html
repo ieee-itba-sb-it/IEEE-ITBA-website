@@ -1,5 +1,5 @@
 <div class="main-container d-flex justify-content-center">
-    <mat-card class="p-3" *ngIf="!(areRequestsOpen$ | async); else form">
+    <mat-card class="p-3" *ngIf="(areRequestsOpen$ | async) === false; else form">
         <mat-card-title class="text-center">{{ "TEAM_REQUEST.REQUESTS_CLOSE" | translate }}</mat-card-title>
         <mat-card-content class="mt-2">
             <p>{{ "TEAM_REQUEST.REQUESTS_CLOSE_MESSAGE" | translate }}</p>
@@ -66,7 +66,7 @@
                             </mat-label>
                             <mat-select required [(value)]="selectedPosition">
                                 <mat-option *ngFor="let position of selectedCommission.positions" [value]="position">
-                                    {{ position.title | customTranslate }}
+                                    {{ position.title[gender || "M"] | customTranslate }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>

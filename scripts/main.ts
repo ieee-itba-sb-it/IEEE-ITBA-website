@@ -1,5 +1,6 @@
 import {initializeApp} from "firebase-admin/app";
 import { saveDocs } from "./migrations/upload_docs";
+import {migrateGenderTitles} from "./migrations/migrate-gender-titles";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -9,8 +10,8 @@ import { saveDocs } from "./migrations/upload_docs";
 
 // USO EN LOCAL (Descomentar el correspondiente)
 // WINDOWS
-// process.env.FIREBASE_AUTH_EMULATOR_HOST='localhost:9099'
-// process.env.FIRESTORE_EMULATOR_HOST='localhost:8080'
+process.env.FIREBASE_AUTH_EMULATOR_HOST='localhost:9099'
+process.env.FIRESTORE_EMULATOR_HOST='localhost:8080'
 // LINUX
 // export FIREBASE_AUTH_EMULATOR_HOST='localhost:9099' for local
 // export FIRESTORE_EMULATOR_HOST='localhost:8080' for local
@@ -20,7 +21,7 @@ initializeApp({
 });
 
 async function main() {
-    await saveDocs();
+    await migrateGenderTitles();
 }
 
 main();
