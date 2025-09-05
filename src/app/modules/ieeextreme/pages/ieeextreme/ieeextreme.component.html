@@ -11,25 +11,33 @@
 
   <!-- INSCRIPTION section -->
   <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <div class="d-flex flex-row">
+      <div class="w-50">
+          <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
+              <app-image-carousel [imageLinks]="imageLinks"/>
+          </app-event-section>
+      </div>
+      <div class="d-flex flex-column w-50 ml-auto">
+        <!-- Resolve problemas en equipo -->
+        <div class="info">
+            <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}">
+              <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
+            </app-event-section>
+            <div>
+              <img src="../../../../../assets/image/events/ieeextreme/teamdisc_black.png" height="160vmin" alt="Logo ITBA-IEEE">
+            </div>
+          </div>
 
-    <!-- Resolve problemas en equipo -->
-  <div class="info">
-    <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}">
-      <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
-    </app-event-section>
-    <div>
-      <img src="../../../../../assets/image/events/ieeextreme/teamdisc_black.png" height="160vmin" alt="Logo ITBA-IEEE">
-    </div>
-  </div>
-
-  <!-- Queres participar -->
-  <div class="info-reversed">
-    <div style="padding-right:3rem;">
-      <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
-    </div>
-    <app-event-section title="{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}">
-      <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
-    </app-event-section>
+          <!-- Queres participar -->
+          <div class="info-reversed">
+            <div style="padding-right:3rem;">
+              <img src="../../../../../assets/image/events/ieeextreme/tournament_black.png" height="160vmin" alt="Logo ITBA-IEEE">
+            </div>
+            <app-event-section title="{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}">
+              <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
+            </app-event-section>
+          </div>
+        </div>
   </div>
 
   <app-event-date-section [dates]="event?.dates" />
