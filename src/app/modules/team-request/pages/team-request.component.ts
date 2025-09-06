@@ -49,7 +49,7 @@ export class TeamRequestComponent implements OnInit {
     ngOnInit() {
         this.user$.subscribe(user => {
             this.actualUser = {...user};
-            this.changedUser = {...user};
+            if (!this.changedUser) this.changedUser = {...user};
         });
         this.route.queryParams.subscribe({
             next: (params) => {
@@ -89,12 +89,12 @@ export class TeamRequestComponent implements OnInit {
         let userChanged = JSON.stringify(this.actualUser) != JSON.stringify(this.changedUser);
         let operation$: Observable<string> = photoChanged ?
             this.authService.updateProfilePic(this.changedUser.photoURL, this.pictureType) :
-            of(null);
+            of(this.actualUser.photoURL);
 
         operation$.pipe(
             concatMap((newPath) => {
                 if (userChanged) {
-                    return this.authService.updateProfile({ photoURL: newPath ?? this.changedUser.photoURL, ...this.changedUser })
+                    return this.authService.updateProfile({ ...this.changedUser, photoURL: newPath })
                         .pipe(map(() => newPath));
                 }
                 return of(newPath);
@@ -102,7 +102,7 @@ export class TeamRequestComponent implements OnInit {
             concatMap((newPath) => {
                 return this.teamService.createTeamRequest(
                     IEEEMember.fromUser(
-                        { photoURL: newPath ?? this.changedUser.photoURL, ...this.changedUser },
+                        { ...this.changedUser, photoURL: newPath },
                         this.gender,
                         this.selectedCommission.id,
                         this.selectedPosition.id
