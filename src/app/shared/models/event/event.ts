@@ -67,6 +67,8 @@ export type Event = Readonly<{
         status: EventStatus.UNSCHEDULED;
     }>;
     course?: EventCourse;
+    location: string | null;
+    locationLink: string | null;
 }>;
 
 export type EventDoc = Omit<Event, 'dates'> & {
