@@ -12,7 +12,11 @@ export class IndividualCardComponent implements OnInit {
   @Input() person: IEEEMember;
   @Input() position: InternationalText;
 
-  constructor() { }
+  constructor() {
+      if (!this.person.linkedin.startsWith('https://')) {
+            this.person.linkedin = 'https://' + this.person.linkedin;
+      }
+  }
 
   ngOnInit(): void {
   }
