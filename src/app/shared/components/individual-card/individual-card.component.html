@@ -29,7 +29,7 @@
 
           <div class="iconContainer">
             <!-- Linkedin -->
-            <a class="cardIcon" href="{{person.linkedin}}" target="_blank">
+            <a class="cardIcon" *ngIf="person.linkedin && person.linkedin.trim() !== ''" href="{{person.linkedin}}" target="_blank">
               <i class="fab fa-lg fa-linkedin"></i>
             </a>
             <!-- Mail -->

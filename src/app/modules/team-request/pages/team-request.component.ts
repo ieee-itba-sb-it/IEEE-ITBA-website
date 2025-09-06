@@ -75,7 +75,6 @@ export class TeamRequestComponent implements OnInit {
 
     canSendTeamRequest(): boolean {
         return  this.isFieldPresent(this.changedUser.fullname) &&
-                this.isFieldPresent(this.changedUser.linkedin) &&
                 this.selectedCommission != null &&
                 this.selectedPosition != null &&
                 this.actualUser.verifiedEmail;
@@ -84,6 +83,8 @@ export class TeamRequestComponent implements OnInit {
     sendTeamRequest(): void {
         if (!this.canSendTeamRequest()) return;
         this.loading = true;
+
+        if (!this.changedUser.linkedin) this.changedUser.linkedin = null;
 
         let photoChanged = this.actualUser.photoURL != this.changedUser.photoURL;
         let userChanged = JSON.stringify(this.actualUser) != JSON.stringify(this.changedUser);
