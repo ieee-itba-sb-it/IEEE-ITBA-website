@@ -17,7 +17,7 @@ export class IndividualCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      if (this.person != null && !this.person.linkedin.startsWith('https://')) {
+      if (this.person != null && this.person.linkedin && !this.person.linkedin.startsWith('https://')) {
           this.person.linkedin = 'https://' + this.person.linkedin;
       }
   }
