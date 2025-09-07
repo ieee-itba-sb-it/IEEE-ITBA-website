@@ -13,12 +13,13 @@ export class IndividualCardComponent implements OnInit {
   @Input() position: InternationalText;
 
   constructor() {
-      if (!this.person.linkedin.startsWith('https://')) {
-            this.person.linkedin = 'https://' + this.person.linkedin;
-      }
+
   }
 
   ngOnInit(): void {
+      if (this.person != null && !this.person.linkedin.startsWith('https://')) {
+          this.person.linkedin = 'https://' + this.person.linkedin;
+      }
   }
 
   shouldNotShowPerson() {
