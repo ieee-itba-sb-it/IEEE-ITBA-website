@@ -16,13 +16,16 @@ export class IeeextremeComponent implements OnInit {
     sponsorsServiceVar: SponsorsService;
 
     imageLinks: string[] = [
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FDSC_5040.webp?alt=media&token=230dcff9-01bb-4d71-8a62-e2d7241c7112',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FDSC_5042.webp?alt=media&token=ec9e7982-a5df-417d-bb48-393085860590',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FIMG_4429.webp?alt=media&token=e6f19f8e-c707-41d0-8dfc-702b1681346f',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FIMG_4449.webp?alt=media&token=36dc7cbc-6be4-4a24-aafc-cd4dc2eb3447',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FIMG_4451.webp?alt=media&token=dbdbb96e-2221-4ad1-b240-bdb6c16bc930',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FIMG_4444.jpg?alt=media&token=42bf91ac-c23b-46ff-8647-94669d86db7a',
-    //     'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FIMG_4425.jpg?alt=media&token=08d4fc1d-d8e1-401a-be85-302985f33587'
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC00117.jpg?alt=media&token=92744a2c-ec00-4e16-bee6-fcf242d0e853',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC00172.jpg?alt=media&token=122fa106-c8b2-4737-ba83-70732864df02',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC00189.jpg?alt=media&token=3a94f8a1-fa40-45d3-b935-49f5e429bbe8',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC00257.jpg?alt=media&token=00941145-d9cd-42d7-923a-ee058ce4c3e4',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC00331.jpg?alt=media&token=475b1a54-d68e-45fd-9774-30a001a32d8d',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC_6038.jpg?alt=media&token=273e4835-ecfe-4ab8-8646-5cc55815db46',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC_6048.jpg?alt=media&token=cd6a06a3-4695-4b5c-8c4f-1de5f1853d23',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC_6054.jpg?alt=media&token=c9afdd94-0418-4ea4-8f13-d644cc091e7e',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC_6140.jpg?alt=media&token=8d75885d-561e-4cb6-9013-d178aab7ebd5',
+        'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/ieeextreme%2FDSC_6404.jpg?alt=media&token=8a582c4f-80e0-4a43-966c-ffda8341a695'
     ];
 
     contacts = [
