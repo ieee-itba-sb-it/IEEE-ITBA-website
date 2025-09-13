@@ -8,26 +8,26 @@ export type LocationEventForm = {
 };
 
 export class LocationEventEditorForm {
-    private readonly initialName: string | null;
-    private readonly initialUrl: string | null;
+    private readonly initialName: string;
+    private readonly initialUrl: string;
     private readonly form: LocationEventForm;
     public static readonly LOCATION_NAME_MAX_LENGTH = 255;
     public static readonly LOCATION_URL_MAX_LENGTH = 255;
 
     constructor(event: Event) {
-        this.initialName = event.location ?? null;
-        this.initialUrl = event.locationLink ?? null;
+        this.initialName = (event.location ?? '').trim();
+        this.initialUrl = (event.locationLink ?? '').trim();
 
         this.form = {
             location: new FormControl(this.initialName, LocationEventEditorForm.nameValidator),
             locationLink: new FormControl(this.initialUrl, LocationEventEditorForm.urlValidator),
-            locationConfirmed: new FormControl(this.initialName != null && this.initialUrl != null)
+            locationConfirmed: new FormControl(this.initialName.length > 0 && this.initialUrl.length > 0)
         };
 
         this.form.locationConfirmed.valueChanges.subscribe((confirmed) => {
             if (!confirmed) {
-                this.form.location.setValue(null);
-                this.form.locationLink.setValue(null);
+                this.form.location.setValue('');
+                this.form.locationLink.setValue('');
             }
         });
     }
@@ -83,8 +83,8 @@ export class LocationEventEditorForm {
     }
 
     clear(): void {
-        this.form.location.setValue(null);
-        this.form.locationLink.setValue(null);
+        this.form.location.setValue("");
+        this.form.locationLink.setValue("");
     }
 
     isEmpty(): boolean {
