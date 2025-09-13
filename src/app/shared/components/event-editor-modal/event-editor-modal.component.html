@@ -1,175 +1,211 @@
-<div class="modal-header">
-    <div>
-        <h2 class="modal-title mb-0">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
-        <h4 class="modal-subtitle mb-0">{{ event.titleCode | translate }}</h4>
+    <div class="modal-header">
+        <div>
+            <h2 class="modal-title mb-0">{{ "HOME.EVENTS.EDIT.TITLE" | translate }}</h2>
+            <h4 class="modal-subtitle mb-0">{{ event.titleCode | translate }}</h4>
+        </div>
+        <button type="button" (click)="modalRef.hide()" class="btn">
+            <mdb-icon
+                fas
+                icon="times"
+                size="lg"
+            ></mdb-icon>
+        </button>
     </div>
-    <button type="button" (click)="modalRef.hide()" class="btn">
-        <mdb-icon
-            fas
-            icon="times"
-            size="lg"
-        ></mdb-icon>
-    </button>
-</div>
-<form [formGroup]="form.formGroup" (ngSubmit)="updateEvent()">
-    <div class="modal-body">
-        <div class="form-input">
-            <label class="form-input-label">{{ "HOME.EVENTS.EDIT.LINK" | translate }}</label>
-            <div class="input-group">
-                <input
-                    type="url"
-                    id="inscriptionLink"
-                    class="form-control"
-                    formControlName="inscriptionLink"
-                >
-                <button
-                    type="button"
-                    class="btn clear-btn"
-                    (click)="clearInscriptionLink()"
-                    *ngIf="!isInscriptionLinkEmpty()"
-                    [style.--color]="(getAppColors() | async).background"
-                >
-                    <mdb-icon
-                        fas
-                        icon="trash"
-                    ></mdb-icon>
-                </button>
+    <form [formGroup]="form.formGroup" (ngSubmit)="updateEvent()">
+        <div class="modal-body">
+            <div class="form-input">
+                <label class="form-input-label">{{ "HOME.EVENTS.EDIT.LINK" | translate }}</label>
+                <div class="input-group">
+                    <input
+                        type="url"
+                        id="inscriptionLink"
+                        class="form-control"
+                        formControlName="inscriptionLink"
+                    >
+                    <button
+                        type="button"
+                        class="btn clear-btn"
+                        (click)="clearInscriptionLink()"
+                        *ngIf="!isInscriptionLinkEmpty()"
+                        [style.--color]="(getAppColors() | async).background"
+                    >
+                        <mdb-icon
+                            fas
+                            icon="trash"
+                        ></mdb-icon>
+                    </button>
+                </div>
+                <div *ngIf="hasFormChanged() && hasFormInscriptionLinkErrors" class="error-container">
+                    <p *ngFor="let error of this.getFormInscriptionLinkErrors()" class="error">
+                        {{ error }}
+                    </p>
+                </div>
             </div>
-            <div *ngIf="hasFormChanged() && hasFormInscriptionLinkErrors" class="error-container">
-                <p *ngFor="let error of this.getFormInscriptionLinkErrors()" class="error">
-                    {{ error }}
+            <div class="form-input">
+                <label class="form-input-label">{{ "HOME.EVENTS.EDIT.DATES" | translate }}</label>
+                <mat-tab-group dynamicHeight class="event-dates-tabs" [style.--color]="(getAppColors() | async).background" animationDuration="0ms">
+                    <mat-tab *ngFor="let eventDate of eventDates">
+                        <ng-template mat-tab-label>
+                            <span class="event-date-tab" [style.--color]="(getAppColors() | async).background">{{ ("HOME.EVENTS.DATE." + eventDate) | translate }}</span>
+                        </ng-template>
+                        <div class="event-date-container" formGroupName="{{eventDate}}">
+                            <div class="event-date-info">
+                                <label class="event-date-label" for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
+                                <div class="status-container">
+                                    <div *ngFor="let eventStatus of eventStatuses" class="status-item">
+                                    <span class="status-tooltip" [class.hidden]="!isTooltipVisible(eventStatus)">
+                                        {{ ("HOME.EVENTS.STATUS." + eventStatus + ".DESCRIPTION") | translate }}
+                                    </span>
+                                        <div class="status-input" (mouseover)="toggleTooltip(eventStatus)" (mouseout)="toggleTooltip(eventStatus)">
+                                            <input
+                                                type="hidden"
+                                                id="{{eventDate + '-status'}}"
+                                                formControlName="status"
+                                                value="{{eventStatus}}"
+                                                required
+                                            >
+                                            <button type="button" class="btn status-btn" [style.--color]="(getAppColors() | async).background"
+                                                    [class.active]="isEventDateStatus(eventDate, eventStatus)"
+                                                    (click)="setEventDateStatus(eventDate, eventStatus)"
+                                            >
+                                                <span>{{ ("HOME.EVENTS.STATUS." + eventStatus + ".TITLE") | translate }}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="isEventDateConfirmed(eventDate)" class="event-date">
+                                    <div class="event-date-input-container">
+                                        <div class="event-date-input">
+                                            <label class="event-date-label" for="{{eventDate + '-isPeriod'}}">{{ "HOME.EVENTS.IS_PERIOD.TITLE" | translate }}</label>
+                                            <input
+                                                type="checkbox"
+                                                id="{{eventDate + '-isPeriod'}}"
+                                                formControlName="isPeriod"
+                                                class="form-check-input-checkbox"
+                                                [style.--color]="(getAppColors() | async).background"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="event-date-input-container">
+                                        <div class="event-date-input">
+                                            <label class="event-date-label" for="{{eventDate + '-date'}}">{{ isEventDateAPeriod(eventDate) ? ('HOME.EVENTS.DATE.FIRST' | translate) : ('HOME.EVENTS.DATE.UNIQUE' | translate) }}</label>
+                                            <input
+                                                type="date"
+                                                id="{{eventDate + '-date'}}"
+                                                class="form-control"
+                                                formControlName="date"
+                                                required
+                                            >
+                                        </div>
+                                        <div class="event-date-input">
+                                            <label class="event-date-label" for="{{eventDate + '-time'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
+                                            <input
+                                                type="time"
+                                                id="{{eventDate + '-time'}}"
+                                                class="form-control"
+                                                formControlName="time"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="event-date-input-container" *ngIf="isEventDateAPeriod(eventDate)">
+                                        <div class="event-date-input">
+                                            <label class="event-date-label" for="{{eventDate + '-lastDate'}}">{{ "HOME.EVENTS.LAST_DATE.TITLE" | translate }}</label>
+                                            <input
+                                                type="date"
+                                                id="{{eventDate + '-lastDate'}}"
+                                                class="form-control"
+                                                formControlName="lastDate"
+                                            >
+                                        </div>
+                                        <div class="event-date-input">
+                                            <label class="event-date-label" for="{{eventDate + '-lastTime'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
+                                            <input
+                                                type="time"
+                                                id="{{eventDate + '-lastTime'}}"
+                                                class="form-control"
+                                                formControlName="lastTime"
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="isEventDateTentative(eventDate)" class="event-month">
+                                    <label class="event-date-label" for="{{eventDate + '-month'}}">{{ "HOME.EVENTS.MONTH.TITLE" | translate }}</label>
+                                    <select
+                                        id="{{eventDate + '-month'}}"
+                                        class="form-select"
+                                        formControlName="month"
+                                    >
+                                        <option [value]="defaultMonthValue">{{ "HOME.EVENTS.MONTH.PLACEHOLDER" | translate }}</option>
+                                        <option *ngFor="let month of months" [value]="month">{{ ('MONTH.' + month) | translate }}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="isEventDateUpcoming(eventDate)" class="event-year"><label for="{{eventDate + '-year'}}">{{ "HOME.EVENTS.YEAR.TITLE" | translate }}</label>
+                                    <input
+                                        type="number"
+                                        id="{{eventDate + '-year'}}"
+                                        class="form-control"
+                                        formControlName="year"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+                <div *ngIf="hasFormChanged() && hasFormEventDateErrors" class="error-container">
+                    <ng-container *ngFor="let eventDate of eventDates">
+                        <p *ngFor="let error of this.getFormEventDateErrors(eventDate)" class="error">
+                            {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ error }}
+                        </p>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="form-input">
+                <label class="form-input-label">{{ "HOME.EVENTS.EDIT.LOCATION" | translate }}</label>
+                <div class="input-group">
+                    <mat-slide-toggle
+                        formControlName="locationConfirmed"
+                        color="primary"
+                    >
+                        ¿Está confirmada la ubicación del evento?
+                    </mat-slide-toggle>
+                </div>
+
+                <div *ngIf="form.formGroup.get('locationConfirmed')?.value">
+                    <div class="form-group mb-2">
+                        <label for="location">{{ "HOME.EVENTS.EDIT.LOCATION_NAME" | translate }}</label>
+                        <input
+                            type="text"
+                            id="location"
+                            class="form-control"
+                            formControlName="location"
+                            placeholder="Nombre del lugar"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="locationLink">{{ "HOME.EVENTS.EDIT.LOCATION_LINK" | translate }}</label>
+                        <input
+                            type="url"
+                            id="locationLink"
+                            class="form-control"
+                            formControlName="locationLink"
+                            placeholder="https://maps.google.com..."
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!!errorI18n" class="error-container">
+                <p class="error">
+                    {{ errorI18n | translate }}
                 </p>
             </div>
         </div>
-        <div class="form-input">
-            <label class="form-input-label">{{ "HOME.EVENTS.EDIT.DATES" | translate }}</label>
-            <mat-tab-group dynamicHeight class="event-dates-tabs" [style.--color]="(getAppColors() | async).background" animationDuration="0ms">
-                <mat-tab *ngFor="let eventDate of eventDates">
-                    <ng-template mat-tab-label>
-                        <span class="event-date-tab" [style.--color]="(getAppColors() | async).background">{{ ("HOME.EVENTS.DATE." + eventDate) | translate }}</span>
-                    </ng-template>
-                    <div class="event-date-container" formGroupName="{{eventDate}}">
-                        <div class="event-date-info">
-                            <label class="event-date-label" for="{{eventDate + '-status'}}">{{ "HOME.EVENTS.STATUS.TITLE" | translate }}</label>
-                            <div class="status-container">
-                                <div *ngFor="let eventStatus of eventStatuses" class="status-item">
-                                <span class="status-tooltip" [class.hidden]="!isTooltipVisible(eventStatus)">
-                                    {{ ("HOME.EVENTS.STATUS." + eventStatus + ".DESCRIPTION") | translate }}
-                                </span>
-                                    <div class="status-input" (mouseover)="toggleTooltip(eventStatus)" (mouseout)="toggleTooltip(eventStatus)">
-                                        <input
-                                            type="hidden"
-                                            id="{{eventDate + '-status'}}"
-                                            formControlName="status"
-                                            value="{{eventStatus}}"
-                                            required
-                                        >
-                                        <button type="button" class="btn status-btn" [style.--color]="(getAppColors() | async).background"
-                                                [class.active]="isEventDateStatus(eventDate, eventStatus)"
-                                                (click)="setEventDateStatus(eventDate, eventStatus)"
-                                        >
-                                            <span>{{ ("HOME.EVENTS.STATUS." + eventStatus + ".TITLE") | translate }}</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf="isEventDateConfirmed(eventDate)" class="event-date">
-                                <div class="event-date-input-container">
-                                    <div class="event-date-input">
-                                        <label class="event-date-label" for="{{eventDate + '-isPeriod'}}">{{ "HOME.EVENTS.IS_PERIOD.TITLE" | translate }}</label>
-                                        <input
-                                            type="checkbox"
-                                            id="{{eventDate + '-isPeriod'}}"
-                                            formControlName="isPeriod"
-                                            class="form-check-input-checkbox"
-                                            [style.--color]="(getAppColors() | async).background"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="event-date-input-container">
-                                    <div class="event-date-input">
-                                        <label class="event-date-label" for="{{eventDate + '-date'}}">{{ isEventDateAPeriod(eventDate) ? ('HOME.EVENTS.DATE.FIRST' | translate) : ('HOME.EVENTS.DATE.UNIQUE' | translate) }}</label>
-                                        <input
-                                            type="date"
-                                            id="{{eventDate + '-date'}}"
-                                            class="form-control"
-                                            formControlName="date"
-                                            required
-                                        >
-                                    </div>
-                                    <div class="event-date-input">
-                                        <label class="event-date-label" for="{{eventDate + '-time'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
-                                        <input
-                                            type="time"
-                                            id="{{eventDate + '-time'}}"
-                                            class="form-control"
-                                            formControlName="time"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="event-date-input-container" *ngIf="isEventDateAPeriod(eventDate)">
-                                    <div class="event-date-input">
-                                        <label class="event-date-label" for="{{eventDate + '-lastDate'}}">{{ "HOME.EVENTS.LAST_DATE.TITLE" | translate }}</label>
-                                        <input
-                                            type="date"
-                                            id="{{eventDate + '-lastDate'}}"
-                                            class="form-control"
-                                            formControlName="lastDate"
-                                        >
-                                    </div>
-                                    <div class="event-date-input">
-                                        <label class="event-date-label" for="{{eventDate + '-lastTime'}}">{{ "HOME.EVENTS.TIME.TITLE" | translate }}</label>
-                                        <input
-                                            type="time"
-                                            id="{{eventDate + '-lastTime'}}"
-                                            class="form-control"
-                                            formControlName="lastTime"
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf="isEventDateTentative(eventDate)" class="event-month">
-                                <label class="event-date-label" for="{{eventDate + '-month'}}">{{ "HOME.EVENTS.MONTH.TITLE" | translate }}</label>
-                                <select
-                                    id="{{eventDate + '-month'}}"
-                                    class="form-select"
-                                    formControlName="month"
-                                >
-                                    <option [value]="defaultMonthValue">{{ "HOME.EVENTS.MONTH.PLACEHOLDER" | translate }}</option>
-                                    <option *ngFor="let month of months" [value]="month">{{ ('MONTH.' + month) | translate }}</option>
-                                </select>
-                            </div>
-                            <div *ngIf="isEventDateUpcoming(eventDate)" class="event-year"><label for="{{eventDate + '-year'}}">{{ "HOME.EVENTS.YEAR.TITLE" | translate }}</label>
-                                <input
-                                    type="number"
-                                    id="{{eventDate + '-year'}}"
-                                    class="form-control"
-                                    formControlName="year"
-                                    required
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-            <div *ngIf="hasFormChanged() && hasFormEventDateErrors" class="error-container">
-                <ng-container *ngFor="let eventDate of eventDates">
-                    <p *ngFor="let error of this.getFormEventDateErrors(eventDate)" class="error">
-                        {{ ("HOME.EVENTS.DATE." + eventDate) | translate }}: {{ error }}
-                    </p>
-                </ng-container>
-            </div>
+
+        <div class="modal-footer" [style.--color]="(getAppColors() | async).background">
+            <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
+            <button type="submit" class="btn save-btn" [disabled]="loading || !hasFormChanged() || !isFormValid()">
+                {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
+            </button>
         </div>
-        <div *ngIf="!!errorI18n" class="error-container">
-            <p class="error">
-                {{ errorI18n | translate }}
-            </p>
-        </div>
-    </div>
-    <div class="modal-footer" [style.--color]="(getAppColors() | async).background">
-        <button type="button" class="btn close-btn" (click)="modalRef.hide()">{{ "HOME.EVENTS.EDIT.CANCEL" | translate }}</button>
-        <button type="submit" class="btn save-btn" [disabled]="loading || !hasFormChanged() || !isFormValid()">
-            {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
-        </button>
-    </div>
-</form>
+    </form>

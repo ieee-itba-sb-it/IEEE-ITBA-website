@@ -246,6 +246,7 @@
           "UPDATE": "Update",
           "LINK": "Inscription link",
           "DATES": "Event dates",
+          "LOCATION": "Event location",
           "ERROR": {
               "UPDATE": "An error occurred while updating the event",
               "TIME_REQUIRED": "The start time is required",
