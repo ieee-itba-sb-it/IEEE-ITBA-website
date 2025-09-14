@@ -158,8 +158,8 @@ export class BlogService {
     }
 
     getDocsTagsAsObservable() {
-        getDocs(query(collection(this.afs, metadataCollectionName))).then((snap: QuerySnapshot) => {
-            this.docsTags.next(snap.docs[0].data().extra.tags);
+        getDoc(doc(this.afs, metadataCollectionName, "blog-entries")).then((snap) => {
+            this.docsTags.next(snap.data().extra.tags);
         })
         return this.docsTags.asObservable();
     }
