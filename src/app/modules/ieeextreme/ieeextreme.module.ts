@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {IeeextremeComponent} from './pages/ieeextreme/ieeextreme.component';
 import {SharedModule} from '../../shared/shared.module';
@@ -29,7 +29,8 @@ export const routing = RouterModule.forChild(routes);
             },
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
             extend: true
-        })
+        }),
+        NgOptimizedImage
     ],
     declarations: [ IeeextremeComponent ]
 })
