@@ -1,9 +1,9 @@
 <div class="main-container event">
-  <app-event-facts-banner
-    imageUrl="../../../../../assets/image/events/bitcup/bitcup.png"
-    imageAlt="Logo Bitcup"
+  <app-event-banner
+    url="events/bitcup/bitcup.png"
+    alt="Logo Bitcup"
   >
-  </app-event-facts-banner>
+  </app-event-banner>
 
   <app-event-title [dates]="event?.dates">
     {{ 'HOME.BITCUP.TITLE' | translate }}
@@ -12,39 +12,47 @@
   <!-- INSCRIPTION section -->
   <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
 
-    <!-- bitcup -->
-  <div class="info">
-    <app-event-section
-      style="padding-right:3rem;"
-      title="{{ 'BITCUP.DESCRIPTION' | translate }}">
-      <p>{{ 'BITCUP.DESCRIPTION-TEXT' | translate }}</p>
-    </app-event-section>
-    <div>
-      <img src="../../../../../assets/image/logos/data.png" height="160vmin" alt="Logo ITBA-IEEE">
+  <div class="d-flex flex-row">
+    <div class="d-flex flex-column max-w-1/2 align-self-end">
+      <!-- bitcup -->
+      <div class="info">
+        <app-event-section
+          style="padding-right:3rem;"
+          title="{{ 'BITCUP.DESCRIPTION' | translate }}">
+          <p>{{ 'BITCUP.DESCRIPTION-TEXT' | translate }}</p>
+        </app-event-section>
+        <div>
+          <img src="../../../../../assets/image/events/bitcup/description.png" height="160vmin" alt="Logo ITBA-IEEE">
+        </div>
+      </div>
+
+      <!-- formato -->
+      <div class="info reversed">
+        <div style="padding-right:3rem;">
+          <img src="../../../../../assets/image/events/bitcup/format.png" height="160vmin" alt="Logo ITBA-IEEE">
+        </div>
+        <app-event-section
+          title="{{ 'BITCUP.FORMAT' | translate }}">
+          <p>{{ 'BITCUP.FORMAT-TEXT' | translate }}</p>
+        </app-event-section>
+      </div>
+
+      <!-- nivel -->
+      <div class="info mb-10">
+        <app-event-section
+          title="{{ 'BITCUP.LEVEL' | translate }}">
+          <p>{{ 'BITCUP.LEVEL-TEXT' | translate }}</p>
+        </app-event-section>
+        <div>
+          <img src="../../../../../assets/image/events/bitcup/level.png" height="160vmin" alt="Logo ITBA-IEEE">
+        </div>
+      </div>
+    </div>
+    <div class="w-1/2">
+      <img src="../../../../../assets/image/events/bitcup/logo-bitcup.png"/>
     </div>
   </div>
 
-  <!-- formato -->
-  <div class="info reversed">
-    <div style="padding-right:3rem;">
-      <img src="../../../../../assets/image/events/bitcup/competencia.png" height="160vmin" alt="Logo ITBA-IEEE">
-    </div>
-    <app-event-section
-      title="{{ 'BITCUP.FORMAT' | translate }}">
-      <p>{{ 'BITCUP.FORMAT-TEXT' | translate }}</p>
-    </app-event-section>
-  </div>
-
-  <!-- nivel -->
-  <div class="info">
-    <app-event-section
-      title="{{ 'BITCUP.LEVEL' | translate }}">
-      <p>{{ 'BITCUP.LEVEL-TEXT' | translate }}</p>
-    </app-event-section>
-    <div>
-      <img src="../../../../../assets/image/events/bitcup/level.png" height="160vmin" alt="Logo ITBA-IEEE">
-    </div>
-  </div>
 
   <app-event-date-section [dates]="event?.dates" />
 
