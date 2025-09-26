@@ -370,6 +370,8 @@
   "IEEEXTREME": {
     "PAGETITLE": "ITBA IEEE | IEEExtreme",
     "PAGEDESCRIPTION": "IEEExtreme is an international programming competition that lasts 24 hours. It is organized by IEEE-ITBA and is the most important in the country.",
+    "MORE_INFO": "For more information, ",
+    "CLICK_ME": "click me!",
     "FACTS": {
       "EDITIONS": "Past editions",
       "HOURS": "long",
