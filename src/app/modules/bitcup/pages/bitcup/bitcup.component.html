@@ -12,8 +12,8 @@
   <!-- INSCRIPTION section -->
   <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
 
-  <div class="d-flex flex-row">
-    <div class="d-flex flex-column max-w-1/2 align-self-end">
+  <div class="row">
+    <div class="col col-xl-6 col-12 max-w-1/2 align-self-end">
       <!-- bitcup -->
       <div class="info">
         <app-event-section
@@ -48,8 +48,8 @@
         </div>
       </div>
     </div>
-    <div class="w-1/2">
-      <img src="../../../../../assets/image/events/bitcup/logo-bitcup.png"/>
+    <div class="col col-xl-6 col-12">
+      <img src="../../../../../assets/image/events/bitcup/logo-bitcup.png" style="max-width: 100%; max-height: 100%; object-fit: contain;"/>
     </div>
   </div>
 
