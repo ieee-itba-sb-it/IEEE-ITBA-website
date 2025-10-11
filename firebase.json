@@ -4,7 +4,15 @@
   },
   "hosting": {
     "headers": [
-      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+      {
+        "source": "/service-worker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
     ],
     "public": "dist/ITBA-IEEE-Website-A9",
     "ignore": [
@@ -30,8 +38,8 @@
         "destination": "/index.html"
       },
       {
-          "source": "/public/**",
-          "destination": "/public.html"
+        "source": "/public/**",
+        "destination": "/public.html"
       }
     ]
   },
@@ -55,6 +63,17 @@
     "auth": {
       "port": 9099
     }
-  }
-
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "venv",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ]
 }
