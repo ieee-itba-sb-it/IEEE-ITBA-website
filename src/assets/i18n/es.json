@@ -302,6 +302,7 @@
          "UPDATE": "Actualizar",
          "LINK": "Link de inscripción",
          "DATES": "Fechas del evento",
+         "LOCATION": "Ubicacion del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
              "TIME_REQUIRED": "El horario de inicio es requerido",

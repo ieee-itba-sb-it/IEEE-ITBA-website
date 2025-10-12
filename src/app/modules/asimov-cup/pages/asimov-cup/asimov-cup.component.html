@@ -63,11 +63,13 @@
               <app-event-date [dates]="eventData?.dates" [eventDate]="eventDate" [isAsimov]="true" />
             </div>
           </ng-container>
-          <div class="aboutus-section" [style.--color]="(getAppColors() | async).background">
-            <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
-            <p class="event-date-title asimov">{{ 'ASIMOVCUP.D_AND_L.LOCATION_TITLE' | translate }}</p>
-            <span>{{ 'ASIMOVCUP.D_AND_L.LOCATION' | translate }}<br><a href="https://maps.app.goo.gl/d8FNCX5wkysD3HxH6">({{'ASIMOVCUP.D_AND_L.LOCATION_ADDRESS' | translate}})</a></span>
-          </div>
+            <div class="aboutus-section" *ngIf="eventData?.location" [style.--color]="(getAppColors() | async).background">
+                <i class="fa fa-location-dot" [style.color]="(this.getAppColors() | async).background"></i>
+                <p class="event-date-title asimov">{{ 'ASIMOVCUP.D_AND_L.LOCATION_TITLE' | translate }}</p>
+                {{ eventData?.location }}
+                <br>
+                <a *ngIf="eventData?.locationLink" [href]="eventData?.locationLink" target="_blank">(Ver en mapa)</a>
+            </div>
           <div class="aboutus-section" [style.--color]="(getAppColors() | async).background">
             <i class="fa-regular fa-clock" [style.color]="(this.getAppColors() | async).background"></i>
             <p class="event-date-title asimov">{{ 'ASIMOVCUP.D_AND_L.TIME_TITLE' | translate }}</p>
