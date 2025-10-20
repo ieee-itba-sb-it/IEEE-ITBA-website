@@ -37,6 +37,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'ieeextreme-ranking',
+        loadChildren: () =>
+            import('./modules/ieeextreme-ranking/ieeextreme-ranking.module').then(
+                (m) => m.IeeextremeRankingModule
+            ),
+    },
+    {
         path: 'cursospython',
         loadChildren: () =>
             import('./modules/curso-python/curso-python.module').then(

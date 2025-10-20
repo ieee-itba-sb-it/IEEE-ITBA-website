@@ -1,0 +1,43 @@
+<div class="main-container event">
+    <div class="dashboard-container">
+        <h1>{{ 'IEEEXTREME.RANKING.TITLE' | translate }}</h1>
+
+        <div class="dashboard-content">
+            <div class="leaderboard-section">
+                <div class="leaderboard-container">
+                    <table class="leaderboard-table">
+                        <thead>
+                        <tr>
+                            <th class="itba-rank-column">{{ 'IEEEXTREME.RANKING.ITBA-RANK' | translate }}</th>
+                            <th class="team-name-column">{{ 'IEEEXTREME.RANKING.TEAM-NAME' | translate }}</th>
+                            <th class="country-rank-column">{{ 'IEEEXTREME.RANKING.COUNTRY-RANK' | translate }}</th>
+                            <th class="global-rank-column">{{ 'IEEEXTREME.RANKING.GLOBAL-RANK' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Sample data - todo: replace with actual data binding -->
+                        <tr *ngFor="let team of sampleTeams; let i = index">
+                            <td class="itba-rank-column">
+                                <ng-container [ngSwitch]="i">
+                                    <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
+                                    <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
+                                    <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
+                                    <span *ngSwitchDefault class="rank-number">{{ team.itbaRank }}</span>
+                                </ng-container>
+                            </td>
+                            <td class="team-name-column">{{ team.name }}</td>
+                            <td class="country-rank-column">{{ team.countryRank }}</td>
+                            <td class="global-rank-column">{{ team.globalRank }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-event-facts-banner
+        imageUrl="../../../../../assets/image/events/ieeextreme/XtremeLogo.png"
+        imageAlt="Logo IEEEXtreme"
+    ></app-event-facts-banner>
+</div>

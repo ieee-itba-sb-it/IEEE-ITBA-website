@@ -9,6 +9,10 @@
     {{ 'HOME.IEEEXTREME.TITLE' | translate }}
   </app-event-title>
 
+  <div>
+        <app-ranking-page-button [rankingPath]="'/ieeextreme-ranking'" />
+  </div>
+
   <!-- INSCRIPTION section -->
   <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
   <div class="event-invitation-container">
