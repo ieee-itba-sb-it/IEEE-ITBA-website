@@ -60,11 +60,11 @@ export class EventCourseDetailComponent {
     }
 
     shouldClassContentBeAvailable(classIdx: number): boolean {
-        return this.shouldBeAvailable(classIdx, classIdx);
+        return this.shouldBeAvailable(classIdx, classIdx) || this.event.course[classIdx].alwaysAvailable;
     }
 
     shouldClassSolutionBeAvailable(classIdx: number): boolean {
-        return this.shouldBeAvailable(classIdx, classIdx + 1);
+        return this.shouldBeAvailable(classIdx, classIdx + 1) || this.event.course[classIdx].alwaysAvailable;
     }
 
     getCourseIndexes(): number[] {

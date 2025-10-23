@@ -44,6 +44,7 @@ export type EventCourseClass = {
     descriptionCode: string;
     contentLink?: string;
     solutionsLink?: string;
+    alwaysAvailable?: boolean;
 }
 
 export type EventCourse = EventCourseClass[];
