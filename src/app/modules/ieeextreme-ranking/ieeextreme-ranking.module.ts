@@ -7,6 +7,7 @@ import { CustomMissingTranslationHandler } from '../../shared/CustomMissingTrans
 import { HttpLoaderFactory } from '../../shared/translation-helpers';
 import { SharedModule } from '../../shared/shared.module';
 import { RankingComponent } from './pages/ranking/ranking.component';
+import { IeeextremeService } from '../../core/services/ieeextreme/ieeextreme.service';
 
 const routes: Routes = [
     { path: '', component: RankingComponent }

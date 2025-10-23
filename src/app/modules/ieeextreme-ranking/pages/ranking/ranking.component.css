@@ -94,6 +94,13 @@ thead th:last-child {
     padding-left: 15px;
 }
 
+.regional-rank-column {
+    width: 20%;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(0, 40, 85);
+}
+
 .country-rank-column {
     width: 20%;
     font-weight: bold;

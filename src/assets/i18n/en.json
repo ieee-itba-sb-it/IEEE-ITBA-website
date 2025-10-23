@@ -379,6 +379,7 @@
         "TITLE": "IEEExtreme ITBA Ranking",
         "TEAM-NAME": "Team",
         "ITBA-RANK": "ITBA Rank",
+        "REGIONAL-RANK": "Regional Rank",
         "COUNTRY-RANK": "Country Rank",
         "GLOBAL-RANK": "Global Rank"
     },
