@@ -1,4 +1,3 @@
-
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {DOCUMENT} from '@angular/common';
@@ -16,6 +15,7 @@ import {AuthActionModalComponent} from '../../../../shared/components/auth-actio
 import {DynamicSeoService} from "../../../../core/services/seo/seo-dynamic.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {addDoc, collection, doc} from "@angular/fire/firestore";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-noticia',
@@ -57,7 +57,8 @@ export class NoticiaComponent implements OnInit {
                 @Inject(DOCUMENT) private document: any, public translate: TranslateService,
                 private blogService: BlogService, private cookieService: CookieService,
                 private authService: AuthService, private router: Router,
-                private modalService: MDBModalService, private seoService: DynamicSeoService) {
+                private modalService: MDBModalService, private seoService: DynamicSeoService,
+                private sanitizer: DomSanitizer) {
         this.blogService.setCollectionName(blogCollectionName);
 
         this.blogService.retrieveListedDocsSize();
@@ -195,5 +196,9 @@ export class NoticiaComponent implements OnInit {
         const minutes = String(date.getMinutes()).padStart(2, '0');
 
         return `${day}/${month}/${year} ${hours}:${minutes}`;
+    }
+
+    getSanitizedContent(content: string): SafeHtml {
+        return this.sanitizer.bypassSecurityTrustHtml(content);
     }
 }

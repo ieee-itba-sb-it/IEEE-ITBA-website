@@ -32,6 +32,7 @@ import {createNewsComments, createNewsItem, createNewsItemWithDate} from '../../
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
 import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
+import {listAll, deleteObject} from "@angular/fire/storage";
 
 /* This file make interface with databe to get blog data */
 
@@ -319,6 +320,124 @@ export class BlogService {
                 .then(res => getDownloadURL(res.ref))
                 .then(url => subscriber.next(url))
         })
+    }
+
+    // Nueva función para subir imágenes adicionales con un ID único
+    uploadAdditionalImage(imageUrl: string, extension: string, newsReference: string): Observable<string> {
+        return new Observable(subscriber => {
+            const timestamp = Date.now();
+            const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
+            fetch(imageUrl)
+                .then(image => image.blob())
+                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                .then(res => getDownloadURL(res.ref))
+                .then(url => {
+                    subscriber.next(url);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Nuevo método para subir blob directamente a Firebase Storage
+    uploadBlobImage(blob: Blob, extension: string, newsReference: string): Observable<string> {
+        return new Observable(subscriber => {
+            const timestamp = Date.now();
+            const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
+            uploadBytes(ref(this.firebaseStorage, serverpath), blob)
+                .then(res => getDownloadURL(res.ref))
+                .then(url => {
+                    subscriber.next(url);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Método para subir múltiples blobs y retornar un mapa de URLs locales a URLs de Firebase
+    uploadMultipleBlobImages(blobMap: Map<string, {blob: Blob, extension: string}>, newsReference: string): Observable<Map<string, string>> {
+        return new Observable(subscriber => {
+            const uploadPromises: Promise<{localUrl: string, firebaseUrl: string}>[] = [];
+
+            blobMap.forEach((blobData, localUrl) => {
+                const timestamp = Date.now() + Math.random(); // Evitar colisiones
+                const serverpath = `news-images/${newsReference}/additional_${timestamp}.${blobData.extension}`;
+
+                const uploadPromise = uploadBytes(ref(this.firebaseStorage, serverpath), blobData.blob)
+                    .then(res => getDownloadURL(res.ref))
+                    .then(firebaseUrl => ({localUrl, firebaseUrl}));
+
+                uploadPromises.push(uploadPromise);
+            });
+
+            Promise.all(uploadPromises)
+                .then(results => {
+                    const urlMap = new Map<string, string>();
+                    results.forEach(result => {
+                        urlMap.set(result.localUrl, result.firebaseUrl);
+                    });
+                    subscriber.next(urlMap);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Función para obtener todas las imágenes de una noticia
+    getNewsImages(newsReference: string): Observable<string[]> {
+        return new Observable(subscriber => {
+            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
+            listAll(folderRef)
+                .then(result => {
+                    const imagePromises = result.items.map(imageRef => getDownloadURL(imageRef));
+                    return Promise.all(imagePromises);
+                })
+                .then(urls => {
+                    subscriber.next(urls);
+                    subscriber.complete();
+                })
+                .catch(error => {
+                    // Si la carpeta no existe, devolver array vacío
+                    subscriber.next([]);
+                    subscriber.complete();
+                });
+        });
+    }
+
+    // Función para limpiar imágenes no utilizadas
+    cleanUnusedImages(newsReference: string, htmlContent: string, mainImageUrl: string): Observable<boolean> {
+        return new Observable(subscriber => {
+            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
+
+            listAll(folderRef)
+                .then(result => {
+                    const deletePromises = result.items
+                        .filter(imageRef => {
+                            // No eliminar la imagen principal
+                            return !imageRef.fullPath.includes(newsReference + '.') &&
+                                   !imageRef.fullPath.includes('main.');
+                        })
+                        .map(async imageRef => {
+                            const url = await getDownloadURL(imageRef);
+                            // Si la URL no está en el contenido HTML, eliminarla
+                            if (!htmlContent.includes(url)) {
+                                return deleteObject(imageRef);
+                            }
+                            return Promise.resolve();
+                        });
+
+                    return Promise.all(deletePromises);
+                })
+                .then(() => {
+                    subscriber.next(true);
+                    subscriber.complete();
+                })
+                .catch(error => {
+                    console.error('Error cleaning unused images:', error);
+                    subscriber.next(false);
+                    subscriber.complete();
+                });
+        });
     }
 
     // Gets a collection observable

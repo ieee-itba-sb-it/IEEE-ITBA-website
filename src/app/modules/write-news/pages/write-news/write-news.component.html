@@ -18,6 +18,7 @@
                 <input id="title" matInput [(ngModel)]="newsContent.title">
               </mat-form-field>
             </mat-list-item>
+
             <mat-list-item>
               <!-- Tags -->
               <mat-form-field class="w-100">
@@ -46,43 +47,45 @@
                 </mat-autocomplete>
               </mat-form-field>
             </mat-list-item>
-            <mat-list-item>
-              <!-- Image -->
-                <div class="w-100 d-flex flex-column mb-3 justify-content-center">
-                    <p class="m-2">{{ 'WRITE-NEW.COVERIMG' | translate }}</p>
-                    <input #pictureInput (change)="uploadImage($event)" type="file" accept="image/png, image/jpeg, image/jpg, image/webp"
-                           class="d-none">
-                    <button mat-raised-button (click)="pictureInput.click()" color="primary" type="button">
-                        <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
-                        {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}
-                    </button>
-                </div>
-            </mat-list-item>
-            <mat-list-item>
-              <!-- Epigrafe -->
-              <mat-form-field class="w-100">
-                <mat-label>{{ 'WRITE-NEW.EPIGRAPH' | translate }}</mat-label>
-                <input id="imageText" matInput [(ngModel)]="newsContent.imageText">
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-checkbox class="has-paragraph-checkbox" [(ngModel)]="hasShortIntro" (ngModelChange)="splitContent()" aria-labelledby="firstParagraphCheckboxLabel">
-              </mat-checkbox>
-              <label id="firstParagraphCheckboxLabel" class="mb-0">
-                {{ 'WRITE-NEW.FIRST_PARAGRAPH' | translate }}
-              </label>
-            </mat-list-item>
+
             <mat-list-item>
               <!-- Body -->
               <form>
                 <div class="form-group mt-3">
                   <h4><label for="text-editor">{{ 'WRITE-NEW.BODY' | translate }}</label></h4>
-                  <quill-editor id="text-editor" (onContentChanged)="updateNewsText($event)" [(ngModel)]="textContent" [ngModelOptions]="{ standalone: true }">
-
+                  <quill-editor
+                    id="text-editor"
+                    [modules]="quillConfig"
+                    (onContentChanged)="updateNewsText($event)"
+                    (onEditorCreated)="onEditorCreated($event)"
+                    [(ngModel)]="textContent"
+                    [ngModelOptions]="{ standalone: true }">
                   </quill-editor>
                 </div>
               </form>
             </mat-list-item>
+
+            <!-- Selector de imagen principal -->
+            <mat-list-item *ngIf="getAvailableImages().length > 0">
+                <div class="w-100">
+                    <mat-form-field class="w-100">
+                        <mat-label>Imagen principal (aparecerá en la lista de noticias)</mat-label>
+                        <mat-select [(value)]="selectedMainImageUrl" (selectionChange)="selectAsMainImage($event.value)">
+                            <mat-option value="">Sin imagen principal</mat-option>
+                            <mat-option *ngFor="let imageUrl of getAvailableImages()" [value]="imageUrl">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img [src]="imageUrl" style="width: 40px; height: 30px; object-fit: cover; border-radius: 4px;" alt="Preview">
+                                    <span>{{ imageUrl.split('/').pop()?.split('?')[0] || 'Imagen' }}</span>
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">
+                      Esta imagen aparecerá como miniatura en la lista de noticias. Si no seleccionas ninguna, se usará la primera imagen del contenido.
+                    </p>
+                </div>
+            </mat-list-item>
+
             <mat-list-item>
               <button mat-raised-button class="upload-button" id="submitNews" color="primary" (click)="submitNews()">
                   <span *ngIf="newsReference === undefined; else noReferenceBlock">
@@ -99,13 +102,9 @@
       <div class="preview-container">
         <h2 class="word-break short-intro-text" style="margin-bottom: 1rem">{{ getAuthorName() || "Author" }}</h2>
         <h1 class="word-break preview-title">{{ newsContent.title || "Título" }}</h1>
-        <span class="word-break short-intro-text" [innerHTML]="newsContent.shortIntro || ''"></span>
-        <img class="preview-image" [src]="imageUrl" alt="Imagen de portada" [width]="600">
-        <span class="preview-epigraph">{{ newsContent.imageText || "Epígrafe" }}</span>
-        <div class="content-text word-break">
-          <br>
-          <span [innerHTML]="newsContent.content || ''"></span>
-        </div>
+
+        <!-- Todo el contenido del editor se muestra aquí directamente -->
+        <div class="content-text word-break" [innerHTML]="safeTextContent || 'Escribe tu contenido en el editor...'"></div>
       </div>
     </mat-card>
   </div>

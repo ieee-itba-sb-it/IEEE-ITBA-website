@@ -21,16 +21,8 @@
                 </div>
             </div>
             <hr class="header-divider">
-            <div class="news-intro py-3">
-                <p class="word-break text-justify" [innerHtml]="newsData.shortIntro"></p>
-            </div>
-            <div class="news-image">
-                <img mat-card-image ngSrc="{{newsData.imageUrl}}" width="1000" height="500"
-                     alt="Foto de noticia" style="top: 0; width: 100%; height: 100%;" />
-                <p class="pt-1">{{newsData.imageText}}</p>
-            </div>
-            <div class="news-content word-break py-5">
-                <div [innerHTML]="newsData.content"></div>
+            <div class="news-content word-break pb-5">
+                <div [innerHTML]="getSanitizedContent(newsData.content)"></div>
             </div>
             <div class="news-ratings">
                 <h2>{{"NEWS.RATING" | translate}}</h2>
