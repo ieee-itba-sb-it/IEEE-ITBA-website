@@ -1,4 +1,0 @@
-playwright
-firebase_functions~=0.1.0
-beautifulsoup4==4.12.3
-requests==2.32.3
