@@ -527,6 +527,8 @@
       "C1": "Introduction to libraries (review), Writing and reading of Excel and CSV files and Data manipulation with Pandas",
       "C2": "Introduction to matplotlib, Data visualization, Customization of plots and graphs and Application cases",
       "C3": "Introduction to artificial intelligence and related concepts, Regression and classification models, Datasets and metrics, Polynomial regression, Naive Bayes and Neural networks.",
+        "EVALUATION": "Test your knowledge with final daily quizzes.",
+        "EVALUATION_TITLE":  "Evaluation: Class ",
       "TITLE": "Class "
     },
     "SOLUTION": "Solutionary",

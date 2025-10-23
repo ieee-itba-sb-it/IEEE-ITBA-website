@@ -583,6 +583,8 @@
       "C1": "Introducción a librerías (repaso), Lectura y escritura de archivos formato Excel y CSV y Manipulación de datos con Pandas",
       "C2": "Introducción a matplotlib, Visualización de datos, Personalización de los gráficos y Casos de aplicación",
       "C3": "Introducción a inteligencia artificial y conceptos relacionados, Modelos de regresión y clasificación, Datasets y Métricas, Regresión polinómica, Naive bayes y Redes neuronales.",
+      "EVALUATION": "Pon a prueba tus conocimientos con los exámenes diarios.",
+        "EVALUATION_TITLE":  "Evaluación: Clase ",
       "TITLE": "Clase "
     },
     "SOLUTION": "Solucionario",
