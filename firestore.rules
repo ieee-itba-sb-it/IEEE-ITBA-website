@@ -96,6 +96,12 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
+   
+    match /ieeextreme-teams/{document=**} {
+      allow read: if true;
+      allow write: if hasRole("admin");
+    }
+
     match /{path=**}/comments/{comment} {
         allow read;
         allow create: if isSignedIn();

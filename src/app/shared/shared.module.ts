@@ -59,6 +59,7 @@ import { EventCourseDetailComponent } from './components/event-course-detail/eve
 import { TournamentTreeComponent } from './components/tournament-tree/tournament-tree.component';
 import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
 import {MatListModule} from "@angular/material/list";
+import { RankingPageButtonComponent } from "./components/ranking-page-button/ranking-page-button.component";
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -74,7 +75,7 @@ export const routing = RouterModule.forChild(routes);
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
-        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent, AdminLayoutComponent],
+        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent],
     imports: [
         routing,
         CommonModule,
@@ -114,6 +115,6 @@ export const routing = RouterModule.forChild(routes);
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
         EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent,
-        TournamentTreeComponent, AdminLayoutComponent],
+        TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent],
 })
 export class SharedModule { }

@@ -1,0 +1,43 @@
+<div class="main-container event">
+    <div class="dashboard-container">
+        <h1>{{ 'IEEEXTREME.RANKING.TITLE' | translate }}</h1>
+        <div class="dashboard-content">
+            <div class="leaderboard-section">
+                <div class="leaderboard-container">
+                    <table class="leaderboard-table">
+                        <thead>
+                        <tr>
+                            <th class="itba-rank-column">{{ 'IEEEXTREME.RANKING.ITBA-RANK' | translate }}</th>
+                            <th class="team-name-column">{{ 'IEEEXTREME.RANKING.TEAM-NAME' | translate }}</th>
+                            <th class="regional-rank-column">{{ 'IEEEXTREME.RANKING.REGIONAL-RANK' | translate }}</th>
+                            <th class="country-rank-column">{{ 'IEEEXTREME.RANKING.COUNTRY-RANK' | translate }}</th>
+                            <th class="global-rank-column">{{ 'IEEEXTREME.RANKING.GLOBAL-RANK' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr #row *ngFor="let team of teams; let i = index; trackBy: trackByTeam">
+                            <td class="itba-rank-column">
+                                <ng-container [ngSwitch]="i">
+                                    <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
+                                    <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
+                                    <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
+                                    <span *ngSwitchDefault class="rank-number">{{ team.university_rank }}</span>
+                                </ng-container>
+                            </td>
+                            <td class="team-name-column">{{ team.team_name }}</td>
+                            <td class="regional-rank-column">{{ team.region_rank }}</td>
+                            <td class="country-rank-column">{{ team.country_rank }}</td>
+                            <td class="global-rank-column">{{ team.global_rank }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-event-facts-banner
+        imageUrl="../../../../../assets/image/events/ieeextreme/XtremeLogo.png"
+        imageAlt="Logo IEEEXtreme"
+    ></app-event-facts-banner>
+</div>

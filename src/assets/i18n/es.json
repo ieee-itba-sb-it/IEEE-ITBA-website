@@ -251,6 +251,9 @@
         "OPEN": "¡Inscripciones abiertas!",
         "CLICK": "¡Anotate ahora!"
       },
+      "RANKING": {
+        "CLICK": "¡Ver tabla de posiciones!"
+      },
       "TIME": {
          "TITLE": "Horario"
       },
@@ -428,6 +431,14 @@
     "PAGEDESCRIPTION": "IEEExtreme es una competencia de programación internacional que dura 24 horas. Es organizada por IEEE-ITBA y es la más importante del país.",
     "MORE_INFO": "Para más información, ",
     "CLICK_ME": "clickeame!",
+      "RANKING": {
+          "TITLE": "Ranking IEEExtreme ITBA",
+        "TEAM-NAME": "Equipo",
+        "ITBA-RANK": "Ranking ITBA",
+        "REGIONAL-RANK": "Ranking Regional",
+        "COUNTRY-RANK": "Ranking País",
+        "GLOBAL-RANK": "Ranking Global"
+      },
     "FACTS": {
       "EDITIONS": "Ediciones realizadas",
       "HOURS": "de competencia",
