@@ -21,13 +21,13 @@
                                     <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
                                     <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
                                     <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
-                                    <span *ngSwitchDefault class="rank-number">{{ team.universityRank }}</span>
+                                    <span *ngSwitchDefault class="rank-number">{{ team.university_rank }}</span>
                                 </ng-container>
                             </td>
-                            <td class="team-name-column">{{ team.name }}</td>
-                            <td class="regional-rank-column">{{ team.regionRank }}</td>
-                            <td class="country-rank-column">{{ team.countryRank }}</td>
-                            <td class="global-rank-column">{{ team.globalRank }}</td>
+                            <td class="team-name-column">{{ team.team_name }}</td>
+                            <td class="regional-rank-column">{{ team.region_rank }}</td>
+                            <td class="country-rank-column">{{ team.country_rank }}</td>
+                            <td class="global-rank-column">{{ team.global_rank }}</td>
                         </tr>
                         </tbody>
                     </table>

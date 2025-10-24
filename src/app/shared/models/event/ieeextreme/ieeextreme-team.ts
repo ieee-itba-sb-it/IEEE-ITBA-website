@@ -1,9 +1,9 @@
 
 export type IeeextremeTeam = {
-    name: string
+    team_name: string
     university: string
-    globalRank: number
-    regionRank: number
-    countryRank: number
-    universityRank: number
+    global_rank: number
+    region_rank: number
+    country_rank: number
+    university_rank: number
 }

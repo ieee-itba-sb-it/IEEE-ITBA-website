@@ -22,17 +22,17 @@ export class RankingComponent implements OnInit, OnDestroy {
         // capture previous DOM positions
         const prevRects = new Map<string, DOMRect>();
         this.rows?.forEach((row, index) => {
-          const id = this.teams[index]?.name;
+          const id = this.teams[index]?.team_name;
           if (id) prevRects.set(id, row.nativeElement.getBoundingClientRect());
         });
 
         // update and sort teams
-        this.teams = [...data].sort((a, b) => (a.universityRank ?? 0) - (b.universityRank ?? 0));
+        this.teams = [...data].sort((a, b) => (a.university_rank ?? 0) - (b.university_rank ?? 0));
 
         // animate position changes on next frame
         requestAnimationFrame(() => {
           this.rows?.forEach((row, index) => {
-            const id = this.teams[index]?.name;
+            const id = this.teams[index]?.team_name;
             const prevRect = prevRects.get(id);
             const newRect = row.nativeElement.getBoundingClientRect();
             if (prevRect) {
@@ -58,7 +58,7 @@ export class RankingComponent implements OnInit, OnDestroy {
   }
 
   trackByTeam(index: number, team: IeeextremeTeam): string {
-    return team.name;
+    return team.team_name;
   }
 
   ngOnDestroy(): void {
