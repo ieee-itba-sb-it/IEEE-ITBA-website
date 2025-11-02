@@ -410,21 +410,41 @@ export class BlogService {
             const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
 
             listAll(folderRef)
-                .then(result => {
-                    const deletePromises = result.items
-                        .filter(imageRef => {
-                            // No eliminar la imagen principal
-                            return !imageRef.fullPath.includes(newsReference + '.') &&
-                                   !imageRef.fullPath.includes('main.');
-                        })
-                        .map(async imageRef => {
+                .then(async result => {
+                    const deletePromises = await Promise.all(
+                        result.items.map(async imageRef => {
+                            // Nunca eliminar archivos de cabecera conocidos
+                            const fullPath = imageRef.fullPath || '';
+                            const name = imageRef.name || '';
+                            const isKnownHeader = fullPath.includes(`${newsReference}.`) || fullPath.includes('main.');
+                            if (isKnownHeader) {
+                                return Promise.resolve(undefined);
+                            }
+
+                            // URL pública del archivo
                             const url = await getDownloadURL(imageRef);
-                            // Si la URL no está en el contenido HTML, eliminarla
-                            if (!htmlContent.includes(url)) {
+
+                            // Normalizar contenido para búsquedas simples
+                            const content = htmlContent || '';
+
+                            // Comprobaciones para decidir si está en uso
+                            const usedByUrl = content.includes(url);
+                            const usedByName = name && content.includes(name);
+                            const usedByEncodedName = name && (content.includes(encodeURIComponent(name)) || content.includes(encodeURIComponent(`/${name}`)));
+                            const usedByEncodedPath = content.includes(encodeURIComponent(`news-images/${newsReference}/${name}`));
+
+                            // Proteger la imagen principal si coincide por URL o por nombre de archivo
+                            const isMainByUrl = !!mainImageUrl && mainImageUrl === url;
+                            const isMainByName = !!mainImageUrl && name && (mainImageUrl.includes(name));
+
+                            const isUsed = usedByUrl || usedByName || usedByEncodedName || usedByEncodedPath || isMainByUrl || isMainByName;
+
+                            if (!isUsed) {
                                 return deleteObject(imageRef);
                             }
-                            return Promise.resolve();
-                        });
+                            return Promise.resolve(undefined);
+                        })
+                    );
 
                     return Promise.all(deletePromises);
                 })
