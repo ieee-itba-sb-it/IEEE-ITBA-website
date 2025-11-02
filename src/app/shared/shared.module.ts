@@ -57,6 +57,7 @@ import {UploadPictureInputComponent} from "./components/upload-picture-input/upl
 import {MatButtonModule} from "@angular/material/button";
 import { EventCourseDetailComponent } from './components/event-course-detail/event-course-detail.component';
 import { TournamentTreeComponent } from './components/tournament-tree/tournament-tree.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
 import {MatListModule} from "@angular/material/list";
 import { RankingPageButtonComponent } from "./components/ranking-page-button/ranking-page-button.component";
@@ -106,6 +107,7 @@ export const routing = RouterModule.forChild(routes);
         MatInputModule,
         MatButtonModule,
         MatListModule,
+        MatSlideToggleModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
