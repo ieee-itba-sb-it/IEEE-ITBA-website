@@ -52,6 +52,31 @@ export class NoticiaComponent implements OnInit {
     onClick() {
         this.router.navigate([`/write-news/${this.newsReference}`])
     }
+    
+    getFirstParagraph(content: string): string {
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = content;
+
+        const paragraphs = tempContainer.querySelectorAll('p');
+        const LONGITUD_MINIMA_CONTENIDO = 30;
+
+        paragraphs.forEach(p => {
+            const containsImage = p.querySelector('img') !== null;
+            if (containsImage) return;
+
+            let cleanText = p.textContent.trim();
+            cleanText = cleanText.replace(/\s+/g, ' ');
+            if (cleanText.length < LONGITUD_MINIMA_CONTENIDO) {
+                const esEpigrafe = cleanText.toLowerCase().startsWith('créditos:') || cleanText.length < 5;
+
+                if (esEpigrafe) return;
+            }
+
+            return cleanText;
+        });
+
+        return '';
+    }
 
     constructor(private route: ActivatedRoute,
                 @Inject(DOCUMENT) private document: any, public translate: TranslateService,
@@ -80,8 +105,8 @@ export class NoticiaComponent implements OnInit {
                     if (!blog) {
                         return;
                     }
-                    const {title, shortIntro, tags, imageUrl} = blog;
-                    this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
+                    const {title, tags, imageUrl, content} = blog;
+                    this.seoService.updateMetaTags(title, this.getFirstParagraph(content),  tags, imageUrl);
                 })
             );
         this.commentForm = new FormGroup({content: new FormControl('', [Validators.required, Validators.maxLength(300)])});

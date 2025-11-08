@@ -96,12 +96,10 @@ export class BlogService {
                         createNewsItem(
                             doc.title,
                             doc.content,
-                            doc.shortIntro,
                             doc.imageUrl,
                             // @ts-ignore
                             doc.date,
                             doc.author,
-                            doc.imageText,
                             doc.reference,
                             doc.listed,
                             doc.tags,
@@ -128,11 +126,9 @@ export class BlogService {
                 createNewsItemWithDate(
                     doc.title,
                     doc.content,
-                    doc.shortIntro,
                     doc.imageUrl,
                     doc.date,
                     doc.author,
-                    doc.imageText,
                     doc.reference,
                     doc.listed,
                     doc.tags,
@@ -179,11 +175,9 @@ export class BlogService {
                         createNewsItem(
                             doc.title,
                             doc.content,
-                            doc.shortIntro,
                             doc.imageUrl,
                             doc.date,
                             doc.author,
-                            doc.imageText,
                             doc.reference,
                             doc.listed,
                             doc.tags,
@@ -248,12 +242,10 @@ export class BlogService {
                 createNewsItem(
                     newsItem.title,
                     newsItem.content,
-                    newsItem.shortIntro,
                     newsItem.imageUrl,
                     // @ts-ignore
                     newsItem.date,
                     newsItem.author,
-                    newsItem.imageText,
                     newsItem.reference,
                     newsItem.listed,
                     newsItem.tags,
@@ -273,11 +265,9 @@ export class BlogService {
                 createNewsItemWithDate(
                     doc.title,
                     doc.content,
-                    doc.shortIntro,
                     doc.imageUrl,
                     doc.date,
                     doc.author,
-                    doc.imageText,
                     doc.reference,
                     doc.listed,
                     doc.tags,

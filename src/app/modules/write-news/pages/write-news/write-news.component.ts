@@ -99,13 +99,11 @@ export class WriteNewsComponent implements OnInit, OnDestroy {
         };
         this.newsContent = {
             title: '',
-            shortIntro: '',
             content: '',
             imageUrl: '',
             author: '',
             reference: '',
             date: this.today,
-            imageText: '',
             listed: true,
             tags: [],
             ratings: [0, 0, 0, 0, 0],
@@ -283,25 +281,25 @@ export class WriteNewsComponent implements OnInit, OnDestroy {
                 img.classList.add(`ql-align-${alignment}`);
                 // También aplicar el estilo directamente para asegurar que funcione
                 switch (alignment) {
-                    case 'center':
-                        img.style.display = 'block';
-                        img.style.marginLeft = 'auto';
-                        img.style.marginRight = 'auto';
-                        break;
-                    case 'right':
-                        img.style.display = 'block';
-                        img.style.marginLeft = 'auto';
-                        img.style.marginRight = '0';
-                        break;
-                    case 'left':
-                        img.style.display = 'block';
-                        img.style.marginLeft = '0';
-                        img.style.marginRight = 'auto';
-                        break;
-                    default:
-                        img.style.display = '';
-                        img.style.marginLeft = '';
-                        img.style.marginRight = '';
+                case 'center':
+                    img.style.display = 'block';
+                    img.style.marginLeft = 'auto';
+                    img.style.marginRight = 'auto';
+                    break;
+                case 'right':
+                    img.style.display = 'block';
+                    img.style.marginLeft = 'auto';
+                    img.style.marginRight = '0';
+                    break;
+                case 'left':
+                    img.style.display = 'block';
+                    img.style.marginLeft = '0';
+                    img.style.marginRight = 'auto';
+                    break;
+                default:
+                    img.style.display = '';
+                    img.style.marginLeft = '';
+                    img.style.marginRight = '';
                 }
             }
 
@@ -750,8 +748,7 @@ export class WriteNewsComponent implements OnInit, OnDestroy {
                     concatMap(() =>
                         this.blogService.setDoc({
                             ...this.newsContent,
-                            imageUrl: mainImageUrl,
-                            shortIntro: '' // Siempre vacío ahora
+                            imageUrl: mainImageUrl
                         })
                     )
                 ).subscribe(sent => {
@@ -887,7 +884,6 @@ export class WriteNewsComponent implements OnInit, OnDestroy {
             text = this.textContent;
         }
 
-        this.newsContent.shortIntro = '';
         this.newsContent.content = text;
 
         this.safeTextContent = this.sanitizer.bypassSecurityTrustHtml(text);
