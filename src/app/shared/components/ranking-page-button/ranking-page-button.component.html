@@ -1,0 +1,9 @@
+<ng-container *ngIf="showRankingButton()">
+    <app-event-section [asimov]="isAsimov">
+        <div class="ranking-button-container">
+            <button class="btn ranking-button" [style.--color]="(getAppColors() | async).background" [routerLink]="[rankingPath]">
+                <span>{{ 'HOME.EVENTS.RANKING.CLICK' | translate }}</span>
+            </button>
+        </div>
+    </app-event-section>
+</ng-container>

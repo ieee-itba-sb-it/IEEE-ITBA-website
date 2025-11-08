@@ -251,6 +251,9 @@
         "OPEN": "¡Inscripciones abiertas!",
         "CLICK": "¡Anotate ahora!"
       },
+      "RANKING": {
+        "CLICK": "¡Ver tabla de posiciones!"
+      },
       "TIME": {
          "TITLE": "Horario"
       },
@@ -302,6 +305,7 @@
          "UPDATE": "Actualizar",
          "LINK": "Link de inscripción",
          "DATES": "Fechas del evento",
+         "LOCATION": "Ubicacion del evento",
          "ERROR": {
              "UPDATE": "Ocurrió un error al actualizar el evento",
              "TIME_REQUIRED": "El horario de inicio es requerido",
@@ -428,6 +432,14 @@
     "PAGEDESCRIPTION": "IEEExtreme es una competencia de programación internacional que dura 24 horas. Es organizada por IEEE-ITBA y es la más importante del país.",
     "MORE_INFO": "Para más información, ",
     "CLICK_ME": "clickeame!",
+      "RANKING": {
+          "TITLE": "Ranking IEEExtreme ITBA",
+        "TEAM-NAME": "Equipo",
+        "ITBA-RANK": "Ranking ITBA",
+        "REGIONAL-RANK": "Ranking Regional",
+        "COUNTRY-RANK": "Ranking País",
+        "GLOBAL-RANK": "Ranking Global"
+      },
     "FACTS": {
       "EDITIONS": "Ediciones realizadas",
       "HOURS": "de competencia",
@@ -583,6 +595,8 @@
       "C1": "Introducción a librerías (repaso), Lectura y escritura de archivos formato Excel y CSV y Manipulación de datos con Pandas",
       "C2": "Introducción a matplotlib, Visualización de datos, Personalización de los gráficos y Casos de aplicación",
       "C3": "Introducción a inteligencia artificial y conceptos relacionados, Modelos de regresión y clasificación, Datasets y Métricas, Regresión polinómica, Naive bayes y Redes neuronales.",
+      "EVALUATION": "Pon a prueba tus conocimientos con los exámenes diarios.",
+        "EVALUATION_TITLE":  "Evaluación: Clase ",
       "TITLE": "Clase "
     },
     "SOLUTION": "Solucionario",

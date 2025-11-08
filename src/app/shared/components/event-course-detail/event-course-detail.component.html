@@ -11,6 +11,7 @@
                 [href]="shouldClassContentBeAvailable(courseIdx) ? getClassContentLink(courseIdx) : ''"
                 (click)="check($event, shouldClassContentBeAvailable(courseIdx))"
                 [disabled]="!shouldClassContentBeAvailable(courseIdx) ? true : null"
+                *ngIf="getClassContentLink(courseIdx)"
             >
                 {{ contentButtonCode | translate }}
             </app-button>
@@ -18,6 +19,7 @@
                 [href]="shouldClassSolutionBeAvailable(courseIdx) ? getClassSolutionsLink(courseIdx) : ''"
                 (click)="check($event, shouldClassSolutionBeAvailable(courseIdx))"
                 [disabled]="!shouldClassSolutionBeAvailable(courseIdx) ? true : null"
+                *ngIf="getClassSolutionsLink(courseIdx)"
             >
                 {{ solutionButtonCode | translate }}
             </app-button>

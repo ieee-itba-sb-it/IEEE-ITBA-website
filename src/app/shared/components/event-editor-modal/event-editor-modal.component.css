@@ -14,6 +14,9 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .form-input {

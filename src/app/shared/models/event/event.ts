@@ -44,6 +44,7 @@ export type EventCourseClass = {
     descriptionCode: string;
     contentLink?: string;
     solutionsLink?: string;
+    alwaysAvailable?: boolean;
 }
 
 export type EventCourse = EventCourseClass[];
@@ -67,6 +68,8 @@ export type Event = Readonly<{
         status: EventStatus.UNSCHEDULED;
     }>;
     course?: EventCourse;
+    location: string;
+    locationLink: string;
 }>;
 
 export type EventDoc = Omit<Event, 'dates'> & {

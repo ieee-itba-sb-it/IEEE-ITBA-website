@@ -2,8 +2,9 @@ import {FormGroup, ValidationErrors} from "@angular/forms";
 import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-date";
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
+import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
 
-type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm;
+type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm & LocationEventForm;
 
 type EventForm = FormGroup<EventFormGroup>;
 
@@ -26,16 +27,20 @@ export class EventEditorForm {
     private readonly eventInitialState: Event;
     private readonly eventDateEventEditorForm: EventDateEventEditorForm;
     private readonly inscriptionLinkEventEditorForm: InscriptionLinkEventEditorForm;
+    private readonly locationEventEditorForm: LocationEventEditorForm;
 
     constructor(event: Event) {
         this.eventInitialState = EventEditorForm.cloneEvent(event);
         this.eventDateEventEditorForm = new EventDateEventEditorForm(event);
         this.inscriptionLinkEventEditorForm = new InscriptionLinkEventEditorForm(event);
+        this.locationEventEditorForm = new LocationEventEditorForm(event);
         const eventDateFormGroup: EventDateEventForm = this.eventDateEventEditorForm.getForm();
         const inscriptionLinkFormGroup: InscriptionLinkEventForm = this.inscriptionLinkEventEditorForm.getForm();
+        const locationFormGroup: LocationEventForm = this.locationEventEditorForm.getForm();
         this.eventForm = new FormGroup({
             ...eventDateFormGroup,
-            ...inscriptionLinkFormGroup
+            ...inscriptionLinkFormGroup,
+            ...locationFormGroup
         });
     }
 
@@ -47,10 +52,13 @@ export class EventEditorForm {
         const newEvent = EventEditorForm.cloneEvent(this.eventInitialState);
         const newEventDates = this.eventDateEventEditorForm.getCurrentState();
         const newInscriptionLink = this.inscriptionLinkEventEditorForm.getCurrentState();
+        const newLocationEvent = this.locationEventEditorForm.getCurrentState();
         return {
             ...newEvent,
             dates: newEventDates,
-            inscriptionLink: newInscriptionLink
+            inscriptionLink: newInscriptionLink,
+            location: newLocationEvent.location,
+            locationLink: newLocationEvent.locationLink
         };
     }
 
@@ -65,7 +73,8 @@ export class EventEditorForm {
     isValid(): boolean {
         const areEventDatesValid = this.eventDateEventEditorForm.isValid();
         const isEventInscriptionLinkValid = this.inscriptionLinkEventEditorForm.isValid();
-        return areEventDatesValid && isEventInscriptionLinkValid;
+        const isLocationValid = this.locationEventEditorForm.isValid()
+        return areEventDatesValid && isEventInscriptionLinkValid && isLocationValid;
     }
 
     getEventDateError(eventDate: EventDate, errorName: string): ValidationErrors | null {
@@ -84,8 +93,12 @@ export class EventEditorForm {
         return this.inscriptionLinkEventEditorForm.hasChanged();
     }
 
+    private hasLocationChanged(): boolean {
+        return this.locationEventEditorForm.hasChanged();
+    }
+
     hasChanged(): boolean {
-        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged();
+        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged() || this.hasLocationChanged();
     }
 
     isEventDateAPeriod(eventDate: EventDate): boolean {
