@@ -32,6 +32,7 @@ import {createNewsComments, createNewsItem, createNewsItemWithDate} from '../../
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
 import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
+import {listAll, deleteObject} from "@angular/fire/storage";
 
 /* This file make interface with databe to get blog data */
 
@@ -95,12 +96,10 @@ export class BlogService {
                         createNewsItem(
                             doc.title,
                             doc.content,
-                            doc.shortIntro,
                             doc.imageUrl,
                             // @ts-ignore
                             doc.date,
                             doc.author,
-                            doc.imageText,
                             doc.reference,
                             doc.listed,
                             doc.tags,
@@ -127,11 +126,9 @@ export class BlogService {
                 createNewsItemWithDate(
                     doc.title,
                     doc.content,
-                    doc.shortIntro,
                     doc.imageUrl,
                     doc.date,
                     doc.author,
-                    doc.imageText,
                     doc.reference,
                     doc.listed,
                     doc.tags,
@@ -178,11 +175,9 @@ export class BlogService {
                         createNewsItem(
                             doc.title,
                             doc.content,
-                            doc.shortIntro,
                             doc.imageUrl,
                             doc.date,
                             doc.author,
-                            doc.imageText,
                             doc.reference,
                             doc.listed,
                             doc.tags,
@@ -247,12 +242,10 @@ export class BlogService {
                 createNewsItem(
                     newsItem.title,
                     newsItem.content,
-                    newsItem.shortIntro,
                     newsItem.imageUrl,
                     // @ts-ignore
                     newsItem.date,
                     newsItem.author,
-                    newsItem.imageText,
                     newsItem.reference,
                     newsItem.listed,
                     newsItem.tags,
@@ -272,11 +265,9 @@ export class BlogService {
                 createNewsItemWithDate(
                     doc.title,
                     doc.content,
-                    doc.shortIntro,
                     doc.imageUrl,
                     doc.date,
                     doc.author,
-                    doc.imageText,
                     doc.reference,
                     doc.listed,
                     doc.tags,
@@ -319,6 +310,144 @@ export class BlogService {
                 .then(res => getDownloadURL(res.ref))
                 .then(url => subscriber.next(url))
         })
+    }
+
+    // Nueva función para subir imágenes adicionales con un ID único
+    uploadAdditionalImage(imageUrl: string, extension: string, newsReference: string): Observable<string> {
+        return new Observable(subscriber => {
+            const timestamp = Date.now();
+            const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
+            fetch(imageUrl)
+                .then(image => image.blob())
+                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
+                .then(res => getDownloadURL(res.ref))
+                .then(url => {
+                    subscriber.next(url);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Nuevo método para subir blob directamente a Firebase Storage
+    uploadBlobImage(blob: Blob, extension: string, newsReference: string): Observable<string> {
+        return new Observable(subscriber => {
+            const timestamp = Date.now();
+            const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
+            uploadBytes(ref(this.firebaseStorage, serverpath), blob)
+                .then(res => getDownloadURL(res.ref))
+                .then(url => {
+                    subscriber.next(url);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Método para subir múltiples blobs y retornar un mapa de URLs locales a URLs de Firebase
+    uploadMultipleBlobImages(blobMap: Map<string, {blob: Blob, extension: string}>, newsReference: string): Observable<Map<string, string>> {
+        return new Observable(subscriber => {
+            const uploadPromises: Promise<{localUrl: string, firebaseUrl: string}>[] = [];
+
+            blobMap.forEach((blobData, localUrl) => {
+                const timestamp = Date.now() + Math.random(); // Evitar colisiones
+                const serverpath = `news-images/${newsReference}/additional_${timestamp}.${blobData.extension}`;
+
+                const uploadPromise = uploadBytes(ref(this.firebaseStorage, serverpath), blobData.blob)
+                    .then(res => getDownloadURL(res.ref))
+                    .then(firebaseUrl => ({localUrl, firebaseUrl}));
+
+                uploadPromises.push(uploadPromise);
+            });
+
+            Promise.all(uploadPromises)
+                .then(results => {
+                    const urlMap = new Map<string, string>();
+                    results.forEach(result => {
+                        urlMap.set(result.localUrl, result.firebaseUrl);
+                    });
+                    subscriber.next(urlMap);
+                    subscriber.complete();
+                })
+                .catch(error => subscriber.error(error));
+        });
+    }
+
+    // Función para obtener todas las imágenes de una noticia
+    getNewsImages(newsReference: string): Observable<string[]> {
+        return new Observable(subscriber => {
+            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
+            listAll(folderRef)
+                .then(result => {
+                    const imagePromises = result.items.map(imageRef => getDownloadURL(imageRef));
+                    return Promise.all(imagePromises);
+                })
+                .then(urls => {
+                    subscriber.next(urls);
+                    subscriber.complete();
+                })
+                .catch(error => {
+                    // Si la carpeta no existe, devolver array vacío
+                    subscriber.next([]);
+                    subscriber.complete();
+                });
+        });
+    }
+
+    // Función para limpiar imágenes no utilizadas
+    cleanUnusedImages(newsReference: string, htmlContent: string, mainImageUrl: string): Observable<boolean> {
+        return new Observable(subscriber => {
+            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
+
+            listAll(folderRef)
+                .then(async result => {
+                    const deletePromises = await Promise.all(
+                        result.items.map(async imageRef => {
+                            // Nunca eliminar archivos de cabecera conocidos
+                            const fullPath = imageRef.fullPath || '';
+                            const name = imageRef.name || '';
+                            const isKnownHeader = fullPath.includes(`${newsReference}.`) || fullPath.includes('main.');
+                            if (isKnownHeader) {
+                                return Promise.resolve(undefined);
+                            }
+
+                            // URL pública del archivo
+                            const url = await getDownloadURL(imageRef);
+
+                            // Normalizar contenido para búsquedas simples
+                            const content = htmlContent || '';
+
+                            // Comprobaciones para decidir si está en uso
+                            const usedByUrl = content.includes(url);
+                            const usedByName = name && content.includes(name);
+                            const usedByEncodedName = name && (content.includes(encodeURIComponent(name)) || content.includes(encodeURIComponent(`/${name}`)));
+                            const usedByEncodedPath = content.includes(encodeURIComponent(`news-images/${newsReference}/${name}`));
+
+                            // Proteger la imagen principal si coincide por URL o por nombre de archivo
+                            const isMainByUrl = !!mainImageUrl && mainImageUrl === url;
+                            const isMainByName = !!mainImageUrl && name && (mainImageUrl.includes(name));
+
+                            const isUsed = usedByUrl || usedByName || usedByEncodedName || usedByEncodedPath || isMainByUrl || isMainByName;
+
+                            if (!isUsed) {
+                                return deleteObject(imageRef);
+                            }
+                            return Promise.resolve(undefined);
+                        })
+                    );
+
+                    return Promise.all(deletePromises);
+                })
+                .then(() => {
+                    subscriber.next(true);
+                    subscriber.complete();
+                })
+                .catch(error => {
+                    console.error('Error cleaning unused images:', error);
+                    subscriber.next(false);
+                    subscriber.complete();
+                });
+        });
     }
 
     // Gets a collection observable

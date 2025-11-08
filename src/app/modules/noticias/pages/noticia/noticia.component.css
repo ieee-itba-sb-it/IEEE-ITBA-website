@@ -51,7 +51,6 @@
     background: rgba(245, 245, 245, 0.2);
     padding: 3vmin;
     border-radius: 5vmin;
-    text-align: justify;
     line-height: 50px;
 }
 
@@ -433,3 +432,198 @@ hr {
     width: fit-content;
 }
 
+/* Estilos para el contenido del editor - Alineación de texto e imágenes */
+/* Usar ::ng-deep para que los estilos se apliquen al contenido dinámico [innerHTML] */
+
+/* Resetear estilos base del contenedor para evitar interferencias */
+::ng-deep .news-content {
+  text-align: initial !important;
+  text-justify: initial !important;
+}
+
+/* Preservar espacios y tabs */
+::ng-deep .news-content * {
+  white-space: pre-wrap !important;
+}
+
+::ng-deep .news-content .ql-align-center {
+  text-align: center !important;
+  text-justify: none !important;
+}
+
+::ng-deep .news-content .ql-align-right {
+  text-align: right !important;
+  text-justify: none !important;
+}
+
+::ng-deep .news-content .ql-align-left {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+}
+
+::ng-deep .news-content .ql-align-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+}
+
+/* Estilos más específicos para párrafos */
+::ng-deep .news-content p.ql-align-center {
+  text-align: center !important;
+  text-justify: none !important;
+}
+
+::ng-deep .news-content p.ql-align-right {
+  text-align: right !important;
+  text-justify: none !important;
+}
+
+::ng-deep .news-content p.ql-align-left {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+  word-spacing: normal !important;
+}
+
+::ng-deep .news-content p.ql-align-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  word-spacing: normal !important;
+}
+
+/* Comportamiento por defecto para elementos sin clase específica */
+::ng-deep .news-content p:not([class*="ql-align"]) {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+}
+
+/* Forzar reset completo para elementos con alineación izquierda */
+::ng-deep .news-content .ql-align-left,
+::ng-deep .news-content [class*="ql-align-left"] {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-text-align-last: left !important;
+  text-align-last: left !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Específicamente para listas alineadas a la izquierda */
+::ng-deep .news-content ol.ql-align-left,
+::ng-deep .news-content ul.ql-align-left {
+  text-align: left !important;
+}
+
+::ng-deep .news-content ol.ql-align-left li,
+::ng-deep .news-content ul.ql-align-left li {
+  text-align: left !important;
+}
+
+/* Estilos específicos para imágenes centradas */
+::ng-deep .news-content p.ql-align-center img,
+::ng-deep .news-content .ql-align-center img {
+  display: block;
+  margin: 0 auto !important;
+}
+
+::ng-deep .news-content p.ql-align-right img,
+::ng-deep .news-content .ql-align-right img {
+  display: block;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+::ng-deep .news-content p.ql-align-left img,
+::ng-deep .news-content .ql-align-left img {
+  display: block;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+/* Asegurar que las imágenes mantengan su estilo responsive y redimensionamiento personalizado */
+::ng-deep .news-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para sangrías de Quill */
+::ng-deep .news-content .ql-indent-1 {
+  padding-left: 3em !important;
+}
+
+::ng-deep .news-content .ql-indent-2 {
+  padding-left: 6em !important;
+}
+
+::ng-deep .news-content .ql-indent-3 {
+  padding-left: 9em !important;
+}
+
+::ng-deep .news-content .ql-indent-4 {
+  padding-left: 12em !important;
+}
+
+::ng-deep .news-content .ql-indent-5 {
+  padding-left: 15em !important;
+}
+
+::ng-deep .news-content .ql-indent-6 {
+  padding-left: 18em !important;
+}
+
+::ng-deep .news-content .ql-indent-7 {
+  padding-left: 21em !important;
+}
+
+::ng-deep .news-content .ql-indent-8 {
+  padding-left: 24em !important;
+}
+
+/* Estilos para listas con sangrías */
+::ng-deep .news-content ol.ql-indent-1,
+::ng-deep .news-content ul.ql-indent-1 {
+  padding-left: 3em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-2,
+::ng-deep .news-content ul.ql-indent-2 {
+  padding-left: 6em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-3,
+::ng-deep .news-content ul.ql-indent-3 {
+  padding-left: 9em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-4,
+::ng-deep .news-content ul.ql-indent-4 {
+  padding-left: 12em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-5,
+::ng-deep .news-content ul.ql-indent-5 {
+  padding-left: 15em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-6,
+::ng-deep .news-content ul.ql-indent-6 {
+  padding-left: 18em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-7,
+::ng-deep .news-content ul.ql-indent-7 {
+  padding-left: 21em !important;
+}
+
+::ng-deep .news-content ol.ql-indent-8,
+::ng-deep .news-content ul.ql-indent-8 {
+  padding-left: 24em !important;
+}

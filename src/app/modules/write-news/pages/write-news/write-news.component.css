@@ -93,11 +93,10 @@
   /* color:#ffffff; */
   color: rgb(102.4, 102.4, 102.4);
   width: 90%;
-  text-align: justify;
-  text-justify: inter-word;
   line-height: 30px;
   max-width: 850px;
   font-size: 20px;
+  /* Removemos text-align y text-justify para que no interfieran */
 }
 
 .add-margin{
@@ -268,4 +267,327 @@ h2 {
 
 .whiteLink {
     color: whitesmoke;
+}
+
+/* Estilos para el contenido del editor - Alineación de texto e imágenes */
+/* Usar ::ng-deep para que los estilos se apliquen al contenido dinámico [innerHTML] */
+
+/* Resetear estilos base del contenedor para evitar interferencias */
+::ng-deep .content-text {
+  text-align: initial !important;
+  text-justify: initial !important;
+}
+
+/* Preservar espacios y tabs */
+::ng-deep .content-text * {
+  white-space: pre-wrap !important;
+}
+
+::ng-deep .content-text .ql-align-center {
+  text-align: center !important;
+  text-justify: none !important;
+}
+
+::ng-deep .content-text .ql-align-right {
+  text-align: right !important;
+  text-justify: none !important;
+}
+
+::ng-deep .content-text .ql-align-left {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+}
+
+::ng-deep .content-text .ql-align-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+}
+
+/* Estilos más específicos para párrafos */
+::ng-deep .content-text p.ql-align-center {
+  text-align: center !important;
+  text-justify: none !important;
+}
+
+::ng-deep .content-text p.ql-align-right {
+  text-align: right !important;
+  text-justify: none !important;
+}
+
+::ng-deep .content-text p.ql-align-left {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+  word-spacing: normal !important;
+}
+
+::ng-deep .content-text p.ql-align-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  word-spacing: normal !important;
+}
+
+/* Comportamiento por defecto para elementos sin clase específica */
+::ng-deep .content-text p:not([class*="ql-align"]) {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+}
+
+/* Forzar reset completo para elementos con alineación izquierda */
+::ng-deep .content-text .ql-align-left,
+::ng-deep .content-text [class*="ql-align-left"] {
+  text-align: left !important;
+  text-justify: none !important;
+  -webkit-text-align-last: left !important;
+  text-align-last: left !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Estilos específicos para imágenes centradas */
+::ng-deep .content-text p.ql-align-center img,
+::ng-deep .content-text .ql-align-center img {
+  display: block;
+  margin: 0 auto !important;
+}
+
+::ng-deep .content-text p.ql-align-right img,
+::ng-deep .content-text .ql-align-right img {
+  display: block;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+::ng-deep .content-text p.ql-align-left img,
+::ng-deep .content-text .ql-align-left img {
+  display: block;
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+/* Asegurar que las imágenes mantengan su estilo responsive */
+::ng-deep .content-text img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para sangrías de Quill */
+::ng-deep .content-text .ql-indent-1 {
+  padding-left: 3em !important;
+}
+
+::ng-deep .content-text .ql-indent-2 {
+  padding-left: 6em !important;
+}
+
+::ng-deep .content-text .ql-indent-3 {
+  padding-left: 9em !important;
+}
+
+::ng-deep .content-text .ql-indent-4 {
+  padding-left: 12em !important;
+}
+
+::ng-deep .content-text .ql-indent-5 {
+  padding-left: 15em !important;
+}
+
+::ng-deep .content-text .ql-indent-6 {
+  padding-left: 18em !important;
+}
+
+::ng-deep .content-text .ql-indent-7 {
+  padding-left: 21em !important;
+}
+
+::ng-deep .content-text .ql-indent-8 {
+  padding-left: 24em !important;
+}
+
+/* Estilos para listas con sangrías */
+::ng-deep .content-text ol.ql-indent-1,
+::ng-deep .content-text ul.ql-indent-1 {
+  padding-left: 3em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-2,
+::ng-deep .content-text ul.ql-indent-2 {
+  padding-left: 6em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-3,
+::ng-deep .content-text ul.ql-indent-3 {
+  padding-left: 9em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-4,
+::ng-deep .content-text ul.ql-indent-4 {
+  padding-left: 12em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-5,
+::ng-deep .content-text ul.ql-indent-5 {
+  padding-left: 15em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-6,
+::ng-deep .content-text ul.ql-indent-6 {
+  padding-left: 18em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-7,
+::ng-deep .content-text ul.ql-indent-7 {
+  padding-left: 21em !important;
+}
+
+::ng-deep .content-text ol.ql-indent-8,
+::ng-deep .content-text ul.ql-indent-8 {
+  padding-left: 24em !important;
+}
+
+/* Estilos para epígrafes centrados */
+::ng-deep .content-text .image-caption.ql-align-center,
+::ng-deep .content-text p.ql-align-center .image-caption {
+  text-align: center !important;
+}
+
+::ng-deep .content-text .image-caption.ql-align-right,
+::ng-deep .content-text p.ql-align-right .image-caption {
+  text-align: right !important;
+}
+
+::ng-deep .content-text .image-caption.ql-align-left,
+::ng-deep .content-text p.ql-align-left .image-caption {
+  text-align: left !important;
+}
+
+/* Estilos para imágenes con tamaños personalizados por porcentaje */
+::ng-deep .content-text img[style*="width"] {
+  height: auto !important;
+  max-width: 100% !important;
+}
+
+/* Estilos para epígrafes de imágenes */
+::ng-deep .content-text .image-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #666;
+  margin: 10px 0;
+}
+
+/* Asegurar que las clases de tamaño dinámicas funcionen correctamente */
+::ng-deep .content-text img[class*="img-size-"] {
+  height: auto !important;
+  max-width: 100% !important;
+}
+
+/* Asegurar que el contenido del preview respete las clases de Quill */
+::ng-deep .content-text * {
+  margin: inherit;
+  padding: inherit;
+}
+
+/* Estilos para el botón de redimensionar imagen */
+::ng-deep .ql-toolbar .ql-image-resize {
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 2px;
+}
+
+::ng-deep .ql-toolbar .ql-image-resize:hover {
+  background: #e9ecef;
+}
+
+::ng-deep .ql-toolbar .ql-image-resize:active {
+  background: #dee2e6;
+}
+
+/* Estilos para el editor de Quill - Asegurar word wrap */
+::ng-deep .ql-editor {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+::ng-deep .ql-editor p {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+  max-width: 100% !important;
+}
+
+::ng-deep .ql-editor * {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Asegurar que las líneas largas se rompan en el editor */
+::ng-deep .ql-editor div,
+::ng-deep .ql-editor span,
+::ng-deep .ql-editor h1,
+::ng-deep .ql-editor h2,
+::ng-deep .ql-editor h3,
+::ng-deep .ql-editor h4,
+::ng-deep .ql-editor h5,
+::ng-deep .ql-editor h6 {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+/* Mantener el comportamiento de las listas */
+::ng-deep .ql-editor ol,
+::ng-deep .ql-editor ul {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+::ng-deep .ql-editor li {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+/* Asegurar que el contenedor del editor no se desborde */
+::ng-deep quill-editor {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+::ng-deep .ql-container {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Mantener las imágenes responsivas en el editor */
+::ng-deep .ql-editor img {
+  max-width: 100% !important;
+  height: auto !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
 }

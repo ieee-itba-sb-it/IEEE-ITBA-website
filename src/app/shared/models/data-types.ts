@@ -8,16 +8,14 @@ import {Timestamp} from "@angular/fire/firestore";
 export function createNewsItem(
     title: string,
     content: string,
-    shortIntro: string,
     imageUrl: string,
     date: Timestamp,
     author: string,
-    imageText: string,
     reference: string,
     listed: boolean,
     tags: string[],
     ratings: number[]): NewsItem {
-    return { title, content, imageUrl, date: parseTimestamp(date), author, reference, imageText, shortIntro, listed, tags, ratings };
+    return { title, content, imageUrl, date: parseTimestamp(date), author, reference, listed, tags, ratings };
 }
 
 const parseTimestamp = (date: Date | Timestamp | { _seconds: number, _nanoseconds: number }): Date => {
@@ -32,16 +30,14 @@ const parseTimestamp = (date: Date | Timestamp | { _seconds: number, _nanosecond
 export function createNewsItemWithDate(
     title: string,
     content: string,
-    shortIntro: string,
     imageUrl: string,
     date: Date,
     author: string,
-    imageText: string,
     reference: string,
     listed: boolean,
     tags: string[],
     ratings: number[]): NewsItem {
-    return { title, content, imageUrl, date, author, reference, imageText, shortIntro, listed, tags, ratings };
+    return { title, content, imageUrl, date, author, reference, listed, tags, ratings };
 }
 
 export function createNewsComments(userId: string, userFullname: string, content: string, timestamp: Date, id: string) {

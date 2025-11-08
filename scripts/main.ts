@@ -1,7 +1,5 @@
 import {initializeApp} from "firebase-admin/app";
-import { saveDocs } from "./migrations/upload_docs";
-import {migrateGenderTitles} from "./migrations/migrate-gender-titles";
-import {scrapingIeeextreme} from "./extreme/rankingScraper";
+import {migrateNewsToNewFormat} from "./migrations/migrate-news-to-new-format";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -22,7 +20,8 @@ initializeApp({
 });
 
 async function main() {
-    await scrapingIeeextreme();
+    // Ejecutar migración de noticias al nuevo formato
+    await migrateNewsToNewFormat();
 }
 
 main();

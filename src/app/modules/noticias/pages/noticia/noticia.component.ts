@@ -1,4 +1,3 @@
-
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {DOCUMENT} from '@angular/common';
@@ -16,6 +15,7 @@ import {AuthActionModalComponent} from '../../../../shared/components/auth-actio
 import {DynamicSeoService} from "../../../../core/services/seo/seo-dynamic.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {addDoc, collection, doc} from "@angular/fire/firestore";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-noticia',
@@ -52,12 +52,38 @@ export class NoticiaComponent implements OnInit {
     onClick() {
         this.router.navigate([`/write-news/${this.newsReference}`])
     }
+    
+    getFirstParagraph(content: string): string {
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = content;
+
+        const paragraphs = tempContainer.querySelectorAll('p');
+        const LONGITUD_MINIMA_CONTENIDO = 30;
+
+        paragraphs.forEach(p => {
+            const containsImage = p.querySelector('img') !== null;
+            if (containsImage) return;
+
+            let cleanText = p.textContent.trim();
+            cleanText = cleanText.replace(/\s+/g, ' ');
+            if (cleanText.length < LONGITUD_MINIMA_CONTENIDO) {
+                const esEpigrafe = cleanText.toLowerCase().startsWith('créditos:') || cleanText.length < 5;
+
+                if (esEpigrafe) return;
+            }
+
+            return cleanText;
+        });
+
+        return '';
+    }
 
     constructor(private route: ActivatedRoute,
                 @Inject(DOCUMENT) private document: any, public translate: TranslateService,
                 private blogService: BlogService, private cookieService: CookieService,
                 private authService: AuthService, private router: Router,
-                private modalService: MDBModalService, private seoService: DynamicSeoService) {
+                private modalService: MDBModalService, private seoService: DynamicSeoService,
+                private sanitizer: DomSanitizer) {
         this.blogService.setCollectionName(blogCollectionName);
 
         this.blogService.retrieveListedDocsSize();
@@ -79,8 +105,8 @@ export class NoticiaComponent implements OnInit {
                     if (!blog) {
                         return;
                     }
-                    const {title, shortIntro, tags, imageUrl} = blog;
-                    this.seoService.updateMetaTags(title, shortIntro, tags, imageUrl);
+                    const {title, tags, imageUrl, content} = blog;
+                    this.seoService.updateMetaTags(title, this.getFirstParagraph(content),  tags, imageUrl);
                 })
             );
         this.commentForm = new FormGroup({content: new FormControl('', [Validators.required, Validators.maxLength(300)])});
@@ -195,5 +221,9 @@ export class NoticiaComponent implements OnInit {
         const minutes = String(date.getMinutes()).padStart(2, '0');
 
         return `${day}/${month}/${year} ${hours}:${minutes}`;
+    }
+
+    getSanitizedContent(content: string): SafeHtml {
+        return this.sanitizer.bypassSecurityTrustHtml(content);
     }
 }

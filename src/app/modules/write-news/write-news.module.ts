@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {WriteNewsComponent} from './pages/write-news/write-news.component';
-import {EditarAnuncioComponent} from './pages/editar-anuncio/editar-anuncio.component';
 import {SharedModule} from '../../shared/shared.module';
 import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
@@ -27,6 +26,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
     { path: '',  component: WriteNewsComponent },
@@ -36,7 +36,7 @@ const routes: Routes = [
 export const routing = RouterModule.forChild(routes);
 
 @NgModule({
-    declarations: [ WriteNewsComponent, EditarAnuncioComponent ],
+    declarations: [ WriteNewsComponent ],
     imports: [
         routing,
         CommonModule,
@@ -71,7 +71,8 @@ export const routing = RouterModule.forChild(routes);
         MatNativeDateModule,
         MatRadioModule,
         NgxSkeletonLoaderModule,
-        IconsModule
+        IconsModule,
+        MatSelectModule
     ]
 })
 export class WriteNewsModule { }
