@@ -37,11 +37,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 =======
 import { EventPopupComponent } from './modules/popups/event-popup.component';
 >>>>>>> 67c9a18 (feat:implement pop-up service)
+=======
+import { EventPopupComponent } from './shared/components/popups/event-popup.component';
+>>>>>>> 257fde4 (refactor: moved pop-ups component to components dir)
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
