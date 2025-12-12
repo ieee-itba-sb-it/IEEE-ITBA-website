@@ -36,7 +36,7 @@ import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import { EventPopupComponent } from './modules/popups/event-popup.component';
+import { EventPopupComponent } from './shared/components/popups/event-popup.component';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing

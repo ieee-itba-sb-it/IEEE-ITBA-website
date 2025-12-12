@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../core/services/pop-ups/popup.service'; 
+import { EventService } from '../../../core/services/pop-ups/popup.service';
 
 @Component({
   selector: 'app-event-popup',
