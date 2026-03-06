@@ -31,8 +31,14 @@
                 <mat-label for="passConf">{{ 'REGISTER.REPEAT_PASSWORD' | translate }}:</mat-label>
                 <input type="password" id="passConf" required matInput>
               </mat-form-field>
+              <div class="d-flex justify-content-center mt-3 mb-3">
+                <ngx-turnstile
+                  siteKey="1x00000000000000000000AA"
+                  (resolved)="onTurnstileResolved($event)">
+                </ngx-turnstile>
+              </div>
               <div class="d-flex justify-content-center">
-                <button mat-raised-button class="login-button" color="primary" type="submit">{{ 'REGISTER.BUTTON' | translate }}</button>
+                <button mat-raised-button class="login-button" color="primary" type="submit" [disabled]="!turnstileToken">{{ 'REGISTER.BUTTON' | translate }}</button>
               </div>
               <div class="divider-line">
                 <span></span>

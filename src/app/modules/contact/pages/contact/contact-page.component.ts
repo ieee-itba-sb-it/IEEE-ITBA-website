@@ -20,6 +20,7 @@ export class ContactPageComponent implements OnInit {
     submitted = false; // show and hide the success message
     isLoading = false; // disable the submit button if we're loading
     responseMessage: string; // the response message to show to the user
+    turnstileToken: string = '';
 
     response_ok: string;
     response_error: string;
@@ -47,13 +48,14 @@ export class ContactPageComponent implements OnInit {
     }
 
     onSubmit() {
-        if (this.form.status === 'VALID' && this.honeypot.value === '') {
+        if (this.form.status === 'VALID' && this.honeypot.value === '' && this.turnstileToken !== '') {
             this.form.disable(); // disable the form if it's valid to disable multiple submissions
             const formData: any = {};
             formData.name = this.form.get('name').value;
             formData.email = this.form.get('email').value;
             formData.message = this.form.get('message').value;
             formData.destination = this.form.get('destination').value;
+            formData.turnstileToken = this.turnstileToken;
             this.isLoading = true; // sending the post request async so it's in progress
             this.submitted = false; // hide the response message on multiple submits
             this.http.post('https://script.google.com/macros/s/AKfycbxCPfeG0wtqMTwLdYwI2WMAJNLjHVpjYJ9Jlr_rG6tgy4XuwaGoZcH5ShtrQRmL8HsbWQ/exec', JSON.stringify(formData), {
@@ -76,6 +78,10 @@ export class ContactPageComponent implements OnInit {
                     },
                 });
         }
+    }
+
+    onTurnstileResolved(token: string) {
+        this.turnstileToken = token;
     }
 
 }

@@ -42,6 +42,7 @@ export class LoginComponent  implements OnInit {
     pass: string;
 
     loginResponse: ApiResponse = null;
+    turnstileToken: string = '';
 
     alertModalRef: MDBModalRef | null = null;
 
@@ -64,6 +65,14 @@ export class LoginComponent  implements OnInit {
             // Get data
             this.email = this.signupForm.email.value;
             this.pass = this.signupForm.pass.value;
+
+            if (!this.turnstileToken) {
+                this.loginResponse = {
+                    message: 'REGISTER.ERROR.MISSING_CAPTCHA',
+                    success: false,
+                };
+                return;
+            }
 
             // Login
             this.loginResponse = null;
@@ -100,6 +109,10 @@ export class LoginComponent  implements OnInit {
                 queryParamsHandling: 'merge'
             })
         });
+    }
+
+    onTurnstileResolved(token: string) {
+        this.turnstileToken = token;
     }
 
     signupWithGoogle() {

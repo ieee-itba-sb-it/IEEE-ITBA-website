@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     pass: string;
     passConf: string;
     registerResponse: ApiResponse = null;
+    turnstileToken: string = '';
 
     // On Init
     ngOnInit(): void {
@@ -72,6 +73,14 @@ export class RegisterComponent implements OnInit {
             this.pass = this.signupForm.pass.value;
             this.passConf = this.signupForm.passConf.value;
             this.fullname = this.signupForm.fullname.value;
+
+            if (!this.turnstileToken) {
+                this.registerResponse = {
+                    message: 'REGISTER.ERROR.MISSING_CAPTCHA',
+                    success: false,
+                };
+                return;
+            }
 
             this.isHidden3 = false;
             if (this.pass === this.passConf){
@@ -112,6 +121,10 @@ export class RegisterComponent implements OnInit {
 
         });
 
+    }
+
+    onTurnstileResolved(token: string) {
+        this.turnstileToken = token;
     }
 
     // Change Pass

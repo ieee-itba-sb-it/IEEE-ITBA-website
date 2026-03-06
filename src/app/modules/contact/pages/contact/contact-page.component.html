@@ -45,7 +45,12 @@
               <mat-radio-button [value]="destinations[1]">{{ 'CONTACT.COURSES' | translate}}</mat-radio-button>
             </mat-radio-group>
 
-            <button [ngClass]="!submitted? 'visible': 'hidden' " [disabled]="isLoading" class="submit" type="submit">{{ 'CONTACT.SEND' | translate }}</button>
+            <ngx-turnstile
+              siteKey="1x00000000000000000000AA"
+              (resolved)="onTurnstileResolved($event)">
+            </ngx-turnstile>
+
+            <button [ngClass]="!submitted? 'visible': 'hidden' " [disabled]="isLoading || !turnstileToken" class="submit" type="submit">{{ 'CONTACT.SEND' | translate }}</button>
             <input [formControl]="honeypot" class="hidden" type="text" />
             <div [ngClass]="!submitted? 'hidden' : 'visible'" class="center-text">
               <span>{{responseMessage}}</span>

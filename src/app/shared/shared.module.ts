@@ -61,6 +61,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
 import {MatListModule} from "@angular/material/list";
 import { RankingPageButtonComponent } from "./components/ranking-page-button/ranking-page-button.component";
+import { NgxTurnstileModule } from 'ngx-turnstile';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -108,6 +109,7 @@ export const routing = RouterModule.forChild(routes);
         MatButtonModule,
         MatListModule,
         MatSlideToggleModule,
+        NgxTurnstileModule,
     ],
     exports: [NavbarComponent, FooterComponent, LoadingSpinnerComponent, Error401Component,
         EventCardComponent, NewsCardComponent, SponsorComponentComponent, IndividualCardComponent,
@@ -117,6 +119,6 @@ export const routing = RouterModule.forChild(routes);
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
         EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent,
-        TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent],
+        TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent, NgxTurnstileModule],
 })
 export class SharedModule { }
