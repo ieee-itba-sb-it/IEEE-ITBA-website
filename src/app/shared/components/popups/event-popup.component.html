@@ -1,14 +1,19 @@
-<div *ngIf="showPopup" class="popup-container">
+<div *ngIf="showPopup" class="popup-container fade-in">
   <div class="popup">
     <span class="close-icon" (click)="closePopup()">✖</span>
-    <h2>🤖 ¡Próximos Eventos!</h2>
-    <ul>
-      <li *ngFor="let event of events">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.description }}</p>
-        <p><strong>Fecha:</strong> {{ event.date ? (event.date | date: 'medium') : 'No disponible' }}</p>
-        <img [src]="event.imageUrl" alt="Imagen del evento" />
-      </li>
-    </ul>
+    <h2>📅 ¡Tenemos próximos eventos!</h2>
+    <p class="subtitle">No te pierdas de las últimas novedades de ITBA IEEE.</p>
+    <div class="event-cards-container">
+      <app-event-card-short
+        *ngFor="let event of events; let i = index"
+        [event]="event"
+        [index]="i"
+        class="popup-event-card"
+        (click)="closePopup()"
+      ></app-event-card-short>
+    </div>
+    <div class="cta-container">
+      <button mat-raised-button color="primary" routerLink="/events" (click)="closePopup()" class="cta-button">Ver todos los eventos</button>
+    </div>
   </div>
 </div>
