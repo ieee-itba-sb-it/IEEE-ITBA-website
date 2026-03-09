@@ -36,7 +36,7 @@ export class EventPopupComponent implements OnInit {
     const now = new Date().getTime();
     const hoursSinceLastShow = (now - lastTime) / (1000 * 60 * 60);
 
-    return hoursSinceLastShow >= 24;
+    return hoursSinceLastShow >= 24 * 7;
   }
 
   setLastPopupTime(): void {
