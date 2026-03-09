@@ -1,8 +1,8 @@
 <div *ngIf="showPopup" class="popup-container fade-in">
   <div class="popup">
     <span class="close-icon" (click)="closePopup()">✖</span>
-    <h2>📅 ¡Tenemos próximos eventos!</h2>
-    <p class="subtitle">No te pierdas de las últimas novedades de ITBA IEEE.</p>
+    <h2>📅 {{ "HOME.POPUPS.UPCOMING_EVENTS" | translate }}</h2>
+    <p class="subtitle">{{ "HOME.POPUPS.LAST_NEWS" | translate }}</p>
     <div class="event-cards-container">
       <app-event-card-short
         *ngFor="let event of events; let i = index"
@@ -13,7 +13,7 @@
       ></app-event-card-short>
     </div>
     <div class="cta-container">
-      <button mat-raised-button color="primary" routerLink="/events" (click)="closePopup()" class="cta-button">Ver todos los eventos</button>
+      <button mat-raised-button color="primary" routerLink="/events" (click)="closePopup()" class="cta-button">{{ "HOME.POPUPS.SEE_ALL" | translate }}</button>
     </div>
   </div>
 </div>

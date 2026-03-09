@@ -11,13 +11,16 @@ export class EventPopupComponent implements OnInit {
   showPopup: boolean = false;
   private readonly STORAGE_KEY = 'lastEventPopupTime';
 
+  private readonly MAX_EVENTS_SHOWN = 2;
+  private readonly MIN_EVENTS_SHOWN = 0;
+
   constructor(private popup: EventService) { }
 
   ngOnInit(): void {
     if (this.shouldShowPopup()) {
       this.popup.getUpcomingEvents().subscribe((data) => {
-        if (data && data.length > 0) {
-          this.events = data.slice(0, 2);
+        if (data && data.length > this.MIN_EVENTS_SHOWN) {
+          this.events = data.slice(0, this.MAX_EVENTS_SHOWN);
 
           setTimeout(() => {
             this.showPopup = true;

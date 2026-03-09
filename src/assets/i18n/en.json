@@ -336,6 +336,11 @@
     "WIE": {
       "TEXT": "Our objective is to promote gender diversity in tech through education and representation.",
       "TITLE": "Women in Engineering"
+    },
+    "POPUPS": {
+      "UPCOMING_EVENTS": "We have upcoming events!",
+      "LAST_NEWS": "Don't miss out on the latest updates from ITBA IEEE.",
+      "SEE_ALL": "View all events"
     }
   },
   "ABOUTUS": {
