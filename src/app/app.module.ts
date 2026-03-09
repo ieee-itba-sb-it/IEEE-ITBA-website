@@ -12,15 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { firebaseConfig } from './secrets';
 import { environment } from '../environments/environment';
 
-import {CustomMissingTranslationHandler} from './shared/CustomMissingTranslationHandler';
+import { CustomMissingTranslationHandler } from './shared/CustomMissingTranslationHandler';
 
 import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { connectDatabaseEmulator, getDatabase, provideDatabase } from '@angular/fire/database';
-import {getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService} from "@angular/fire/analytics";
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
 
-import {CardsModule, IconsModule} from 'angular-bootstrap-md';
+import { CardsModule, IconsModule } from 'angular-bootstrap-md';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { FlexModule } from '@angular/flex-layout';
 import { MatChipsModule } from '@angular/material/chips';
@@ -30,14 +30,14 @@ import { NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
 import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 import { TeamRequestComponent } from './modules/team-request/pages/team-request.component';
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatSelectModule} from "@angular/material/select";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -60,11 +60,11 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     declarations: [
         AppComponent,
         TeamRequestComponent,
-        RobotFormDialogComponent
+        RobotFormDialogComponent,
     ],
     imports: [
         AppRoutingModule,
-        NgxPageScrollCoreModule.forRoot({duration: 500, easingLogic: myEasing}),
+        NgxPageScrollCoreModule.forRoot({ duration: 500, easingLogic: myEasing }),
         BrowserAnimationsModule,
         TranslateModule.forRoot({
             loader: {
@@ -72,7 +72,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler},
+            missingTranslationHandler: { provide: MissingTranslationHandler, useClass: CustomMissingTranslationHandler },
             defaultLanguage: 'es'
         }),
         provideFirebaseApp(() => initializeApp(firebaseConfig)),

@@ -392,6 +392,11 @@
     "WIE": {
       "TEXT": "Nuestro objetivo es promover la diversidad de género en la tecnología mediante la educación y representación.",
       "TITLE": "Women In Engineering"
+    },
+    "POPUPS": {
+      "UPCOMING_EVENTS": "¡Tenemos próximos eventos!",
+      "LAST_NEWS": "No te pierdas de las últimas novedades de ITBA IEEE.",
+      "SEE_ALL": "Ver todos los eventos"
     }
   },
   "ABOUTUS": {

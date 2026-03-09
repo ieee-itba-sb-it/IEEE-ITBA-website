@@ -1,0 +1,19 @@
+<div *ngIf="showPopup" class="popup-container fade-in">
+  <div class="popup">
+    <span class="close-icon" (click)="closePopup()">✖</span>
+    <h2>📅 {{ "HOME.POPUPS.UPCOMING_EVENTS" | translate }}</h2>
+    <p class="subtitle">{{ "HOME.POPUPS.LAST_NEWS" | translate }}</p>
+    <div class="event-cards-container">
+      <app-event-card-short
+        *ngFor="let event of events; let i = index"
+        [event]="event"
+        [index]="i"
+        class="popup-event-card"
+        (click)="closePopup()"
+      ></app-event-card-short>
+    </div>
+    <div class="cta-container">
+      <button mat-raised-button color="primary" routerLink="/events" (click)="closePopup()" class="cta-button">{{ "HOME.POPUPS.SEE_ALL" | translate }}</button>
+    </div>
+  </div>
+</div>
