@@ -1,0 +1,60 @@
+<div class="main-container">
+    <div class="row" style="height: 100%">
+
+        <div class="sticky-top col-lg-4 col-md-6 col-sm-0 vh-100 d-none d-md-flex d-lg-flex align-items-center justify-content-center mt-4"
+             style="background-color: #00629B">
+            <img alt="itbot" src="../../../../assets/image/login/itbot.png" class="h-50"/>
+        </div>
+
+        <div class="mainFrame col-lg-8 col-md-6 col-12" style="padding-top: 160px">
+            <div class="row d-flex flex-column align-items-center justify-content-center">
+
+                <mat-card class="d-flex flex-column align-items-center mb-5"
+                          style="max-width: 75%; width: fit-content;">
+
+                    <mat-card-header>
+                        <mat-card-title>Examen de Python</mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content class="login-card-content mt-2">
+                        <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+
+                            <div formArrayName="answers">
+
+                                <div *ngFor="let q of questions; let i = index"
+                                     [formGroupName]="i"
+                                     class="mb-4">
+                                    <p><b>Pregunta {{ i + 1 }}:</b> {{ q.statement }}</p>
+
+                                    <!-- MULTIPLE CHOICE -->
+                                    <div *ngIf="q.type === 'multiple-choice'" class="mt-2">
+                                        <mat-radio-group formControlName="answer" class="d-flex flex-column">
+                                            <mat-radio-button *ngFor="let opt of q.options"
+                                                              [value]="opt"
+                                                              class="mb-2">
+                                                {{ opt }}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <button mat-raised-button
+                                        color="primary"
+                                        type="submit">
+                                    Enviar examen
+                                </button>
+                            </div>
+                        </form>
+
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+
+    </div>
+</div>

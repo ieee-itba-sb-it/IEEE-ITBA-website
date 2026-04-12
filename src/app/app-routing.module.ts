@@ -7,7 +7,6 @@ import {
     redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { roles } from './shared/models/roles/roles.enum';
-
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
@@ -219,6 +218,13 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
     },
     {
+        path: 'exam',
+        loadChildren: () =>
+            import('./modules/data-analysis/pages/exam/exam.module').then(
+                (m) => m.ExamModule
+            ),
+    },
+    {
         path: '**',
         loadChildren: () =>
             import('./modules/error404/error404.module').then(
@@ -231,7 +237,7 @@ const routes: Routes = [
             import('./modules/sponsors/sponsors.module').then(
                 (m) => m.SponsorsModule
             ),
-    },
+    }
 ];
 
 @NgModule({
