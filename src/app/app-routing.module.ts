@@ -220,7 +220,7 @@ const routes: Routes = [
     {
         path: 'exam',
         loadChildren: () =>
-            import('./modules/data-analysis/pages/exam/exam.module').then(
+            import('./modules/data-analysis/pages/embedded-exam/exam.module').then(
                 (m) => m.ExamModule
             ),
     },

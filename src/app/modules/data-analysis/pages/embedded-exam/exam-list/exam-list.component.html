@@ -1,0 +1,34 @@
+<div class="main-container event">
+    <h1>Mis exámenes de Python</h1>
+
+    <div title="Descripción">
+        <p class="description-texto">
+            A continuación encontrarás los exámenes disponibles. Se habilita uno por día hasta aprobar.
+        </p>
+    </div>
+
+    <div title="Exámenes disponibles">
+        <div class="exam-grid">
+            <mat-card *ngFor="let exam of exams" class="exam-card">
+                <div class="card-header">
+                    <h3 class="exam-title">{{exam.title}}</h3>
+                    <span *ngIf="exam.passed" class="badge success">Aprobado</span>
+                </div>
+
+
+                <mat-card-actions>
+                    <button
+                        class="ieeecard-button"
+                        [disabled]="!exam.available"
+                        [routerLink]="[exam.id]"
+                    >Iniciar examen</button>
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+
+    </div>
+
+
+</div>

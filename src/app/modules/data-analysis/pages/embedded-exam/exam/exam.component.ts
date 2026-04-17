@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import {ActivatedRoute} from "@angular/router";
 
 interface Question {
     id: number;
@@ -16,9 +17,13 @@ interface Answer {
 
 @Component({
     selector: 'app-exam',
-    templateUrl: './exam.component.html'
+    templateUrl: './exam.component.html',
+    styleUrls: ["./exam.component.css"]
+
 })
 export class ExamComponent implements OnInit {
+
+    examId: number | null=null;
 
     examForm!: FormGroup;
     questions: Question[] = [];
@@ -45,8 +50,14 @@ export class ExamComponent implements OnInit {
             correctAnswer: "archivo['Categoría'].value_counts().idxmax()"
         },
     ];
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private route: ActivatedRoute,
+        private fb: FormBuilder
+    ) {}
+
     ngOnInit(): void {
+        this.examId = Number(this.route.snapshot.paramMap.get('id'));
+        console.log('Examen cargado', this.examId);
         this.initForm();
         this.loadQuestions();
     }

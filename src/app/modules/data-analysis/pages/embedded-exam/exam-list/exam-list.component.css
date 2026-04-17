@@ -1,0 +1,70 @@
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+mat-card {
+    width: 100%;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.exam-title{
+    padding: 0.4em 0.7em;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.text-success {
+    color: green;
+}
+
+.text-muted {
+    color: gray;
+}
+
+.ieeecard-button {
+    font-size: 1.2em;
+    padding: 0.4em 0.7em;
+    font-weight: 600;
+    margin-top: 0.25rem;
+
+    border: solid var(--bs-ieee-bright-blue);
+    color: var(--bs-ieee-bright-blue) !important;
+    border-radius: 5px;
+    background-color: transparent;
+    border-width: 3px;
+    transition: all 175ms ease-in-out;
+}
+.ieeecard-button:hover:not(:disabled) {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white !important;
+    background-color: var(--bs-ieee-bright-blue);
+    border-color: white;
+}
+
+.ieeecard-button:disabled {
+    background-color: lightgrey;
+    border: 3px solid gray;
+    color: gray !important;
+}
+
+.exam-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+
