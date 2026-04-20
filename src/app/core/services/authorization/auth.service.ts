@@ -30,7 +30,7 @@ import {
     ActionCodeSettings,
     getIdToken, signInWithCustomToken
 } from '@angular/fire/auth';
-import { SupabaseStorageService } from '../storage/supabase-storage.service';
+import { StorageService } from '../storage/storage.service';
 import {get} from "@angular/fire/database";
 import {getAll} from "@angular/fire/remote-config";
 import {IEEEMember} from "../../../shared/models/team-member";
@@ -50,7 +50,7 @@ export class AuthService {
     googleProvider: GoogleAuthProvider;
 
     // Constructor
-    constructor(private firebaseAuth: Auth, private supabaseStorage: SupabaseStorageService, private afs: Firestore) {
+    constructor(private firebaseAuth: Auth, private supabaseStorage: StorageService, private afs: Firestore) {
         this.googleProvider = new GoogleAuthProvider();
         this.user = firebaseAuth.currentUser;
         // Seteamos observer

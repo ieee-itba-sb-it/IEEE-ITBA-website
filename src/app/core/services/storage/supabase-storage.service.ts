@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { supabaseUrl, supabaseAnonKey, supabaseBucket } from '../../../secrets';
+import { StorageService, StorageFileInfo } from './storage.service';
 
-export interface SupabaseFileInfo {
-    name: string;
-    id: string;
-    fullPath: string;
-    publicUrl: string;
-}
-
-@Injectable({
-    providedIn: 'root'
-})
-export class SupabaseStorageService {
+@Injectable()
+export class SupabaseStorageService extends StorageService {
 
     private readonly supabase: SupabaseClient;
     private readonly bucket = supabaseBucket;
 
     constructor() {
+        super();
         this.supabase = createClient(supabaseUrl, supabaseAnonKey);
     }
 
     /**
      * Uploads a Blob to Supabase Storage and returns the permanent public URL.
-     * @param path - Storage path including folder, e.g. 'news-images/ref/img.jpg'
-     * @param blob - The file Blob to upload
-     * @param mimeType - MIME type of the file (e.g. 'image/jpeg')
+     * @param path     Storage path including folder, e.g. 'news-images/ref/main.jpg'
+     * @param blob     The file Blob to upload
+     * @param mimeType MIME type of the file (e.g. 'image/jpeg')
      */
     async upload(path: string, blob: Blob, mimeType?: string): Promise<string> {
         const { error } = await this.supabase.storage
@@ -69,7 +62,7 @@ export class SupabaseStorageService {
      * Lists all files under a given prefix/folder.
      * Returns file info including the public URL for each file.
      */
-    async list(prefix: string): Promise<SupabaseFileInfo[]> {
+    async list(prefix: string): Promise<StorageFileInfo[]> {
         const { data, error } = await this.supabase.storage
             .from(this.bucket)
             .list(prefix, { limit: 1000, sortBy: { column: 'name', order: 'asc' } });

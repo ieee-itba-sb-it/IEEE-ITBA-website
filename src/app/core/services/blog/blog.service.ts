@@ -31,7 +31,7 @@ import {NewsComment, NewsItem} from '../../../shared/models/news-item/news-item'
 import {createNewsComments, createNewsItem, createNewsItemWithDate} from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
-import { SupabaseStorageService } from '../storage/supabase-storage.service';
+import { StorageService } from '../storage/storage.service';
 
 /* This file make interface with databe to get blog data */
 
@@ -54,7 +54,7 @@ export class BlogService {
     listedDocsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     docsPageSize = 10;
 
-    constructor(private afs: Firestore, private supabaseStorage: SupabaseStorageService) { }
+    constructor(private afs: Firestore, private supabaseStorage: StorageService) { }
 
     // ----------Methods----------
 
@@ -302,7 +302,7 @@ export class BlogService {
 
     uploadImage(imageUrl: string, extension: string, title: string): Observable<string> {
         return new Observable(subscriber => {
-            const serverpath = `news-images/${title}.${extension}`;
+            const serverpath = `news-images/${title}/main.${extension}`;
             fetch(imageUrl)
                 .then(image => image.blob())
                 .then(blob => this.supabaseStorage.upload(serverpath, blob, `image/${extension}`))

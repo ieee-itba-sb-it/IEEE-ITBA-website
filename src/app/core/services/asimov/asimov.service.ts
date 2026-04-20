@@ -25,7 +25,7 @@ import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
-import { SupabaseStorageService } from '../storage/supabase-storage.service';
+import { StorageService } from '../storage/storage.service';
 
 type WinnerEncounters = Encounter[];
 
@@ -53,7 +53,7 @@ export class AsimovService {
 
     private static readonly PAGE_SIZE = 10;
 
-    constructor(private afs: Firestore, private supabaseStorage: SupabaseStorageService) {}
+    constructor(private afs: Firestore, private supabaseStorage: StorageService) {}
 
     public getPredictionsStatus(): Observable<boolean> {
         return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME))).pipe(

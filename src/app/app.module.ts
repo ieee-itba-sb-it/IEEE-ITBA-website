@@ -11,6 +11,9 @@ import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { firebaseConfig } from './secrets';
 import { environment } from '../environments/environment';
+import { StorageService } from './core/services/storage/storage.service';
+import { SupabaseStorageService } from './core/services/storage/supabase-storage.service';
+import { LocalStorageService } from './core/services/storage/local-storage.service';
 
 import { CustomMissingTranslationHandler } from './shared/CustomMissingTranslationHandler';
 
@@ -114,6 +117,10 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     providers: [
         UserTrackingService,
         ScreenTrackingService,
+        {
+            provide: StorageService,
+            useClass: environment.production ? SupabaseStorageService : LocalStorageService,
+        },
     ],
     bootstrap: [AppComponent]
 })
