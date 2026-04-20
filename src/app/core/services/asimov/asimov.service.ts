@@ -25,7 +25,7 @@ import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
-import {deleteObject, getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
+import { SupabaseStorageService } from '../storage/supabase-storage.service';
 
 type WinnerEncounters = Encounter[];
 
@@ -53,7 +53,7 @@ export class AsimovService {
 
     private static readonly PAGE_SIZE = 10;
 
-    constructor(private afs: Firestore, private firebaseStorage: Storage) {}
+    constructor(private afs: Firestore, private supabaseStorage: SupabaseStorageService) {}
 
     public getPredictionsStatus(): Observable<boolean> {
         return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME))).pipe(
@@ -230,7 +230,7 @@ export class AsimovService {
         const pictureData = images.get(robot.id);
         return new Observable<string>((subscriber) => {
             if(!pictureData.base64 || pictureData.base64.trim() == "" || !pictureData.type) {
-                deleteObject(ref(this.firebaseStorage, robot.photo))
+                this.supabaseStorage.delete(robot.photo)
                     .then(() => {
                         subscriber.next(null);
                     })
@@ -242,8 +242,7 @@ export class AsimovService {
                 const serverpath = `asimov/${robot.id}.${pictureData.type}`;
                 fetch(pictureData.base64)
                     .then(image => image.blob())
-                    .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
-                    .then(res => getDownloadURL(res.ref))
+                    .then(blob => this.supabaseStorage.upload(serverpath, blob, `image/${pictureData.type}`))
                     .then(newURL => {
                         subscriber.next(newURL);
                     })

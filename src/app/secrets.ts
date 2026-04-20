@@ -1,3 +1,7 @@
+export const supabaseUrl = 'https://mqipggrhfgjyfgnzgphy.supabase.co';
+export const supabaseAnonKey = 'sb_publishable_8yVWXGaQyYBHf09Q5SOz5A_BP_sBNMe';
+export const supabaseBucket = 'IEEE-ITBA-website';
+
 export const firebaseConfig = {
     apiKey: 'AIzaSyBaKSmVMAISnT9vXTZXWKaJw1sXwlW8-ys',
     authDomain: 'ieeeitba.firebaseapp.com',

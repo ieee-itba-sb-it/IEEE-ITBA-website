@@ -28,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
 import { NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
-import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 import { TeamRequestComponent } from './modules/team-request/pages/team-request.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
@@ -90,11 +89,6 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
             const firedatabase = getDatabase();
             if (!environment.production) connectDatabaseEmulator(firedatabase, 'localhost', 9000)
             return firedatabase;
-        }),
-        provideStorage(() => {
-            const firestorage = getStorage();
-            if (!environment.production) connectStorageEmulator(firestorage, 'localhost', 9199);
-            return firestorage;
         }),
         provideAnalytics(() => getAnalytics()),
         HttpClientModule,
