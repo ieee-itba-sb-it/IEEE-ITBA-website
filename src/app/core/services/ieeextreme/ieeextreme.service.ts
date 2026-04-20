@@ -1,5 +1,4 @@
 import {collection, CollectionReference, Firestore, query, onSnapshot} from "@angular/fire/firestore";
-import {Storage} from "@angular/fire/storage";
 import {IeeextremeTeam} from "../../../shared/models/event/ieeextreme/ieeextreme-team";
 import {map, Observable} from "rxjs";
 import {Injectable} from "@angular/core";
@@ -14,7 +13,7 @@ export class IeeextremeService{
         return collection(this.afs, IeeextremeService.TEAMS_COLLECTION_NAME);
     }
 
-    constructor(private afs: Firestore, private firebaseStorage: Storage) {}
+    constructor(private afs: Firestore) {}
 
     public getAllTeams(): Observable<IeeextremeTeam[]> {
         const q = query(this.teamsCollection);

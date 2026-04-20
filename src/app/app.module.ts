@@ -11,6 +11,9 @@ import { EasingLogic, NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { firebaseConfig } from './secrets';
 import { environment } from '../environments/environment';
+import { StorageService } from './core/services/storage/storage.service';
+import { SupabaseStorageService } from './core/services/storage/supabase-storage.service';
+import { LocalStorageService } from './core/services/storage/local-storage.service';
 
 import { CustomMissingTranslationHandler } from './shared/CustomMissingTranslationHandler';
 
@@ -28,7 +31,6 @@ import { SharedModule } from './shared/shared.module';
 import { HttpLoaderFactory } from './shared/translation-helpers';
 import { NgOptimizedImage } from '@angular/common';
 import { connectAuthEmulator } from '@angular/fire/auth';
-import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 import { TeamRequestComponent } from './modules/team-request/pages/team-request.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
@@ -91,11 +93,6 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
             if (!environment.production) connectDatabaseEmulator(firedatabase, 'localhost', 9000)
             return firedatabase;
         }),
-        provideStorage(() => {
-            const firestorage = getStorage();
-            if (!environment.production) connectStorageEmulator(firestorage, 'localhost', 9199);
-            return firestorage;
-        }),
         provideAnalytics(() => getAnalytics()),
         HttpClientModule,
         CardsModule,
@@ -120,6 +117,10 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
     providers: [
         UserTrackingService,
         ScreenTrackingService,
+        {
+            provide: StorageService,
+            useClass: environment.production ? SupabaseStorageService : LocalStorageService,
+        },
     ],
     bootstrap: [AppComponent]
 })

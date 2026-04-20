@@ -31,8 +31,7 @@ import {NewsComment, NewsItem} from '../../../shared/models/news-item/news-item'
 import {createNewsComments, createNewsItem, createNewsItemWithDate} from '../../../shared/models/data-types';
 import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { metadataCollectionName } from '../../../secrets';
-import {getDownloadURL, ref, Storage, uploadBytes} from "@angular/fire/storage";
-import {listAll, deleteObject} from "@angular/fire/storage";
+import { StorageService } from '../storage/storage.service';
 
 /* This file make interface with databe to get blog data */
 
@@ -55,7 +54,7 @@ export class BlogService {
     listedDocsSize: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     docsPageSize = 10;
 
-    constructor(private afs: Firestore, private firebaseStorage: Storage) { }
+    constructor(private afs: Firestore, private supabaseStorage: StorageService) { }
 
     // ----------Methods----------
 
@@ -303,13 +302,16 @@ export class BlogService {
 
     uploadImage(imageUrl: string, extension: string, title: string): Observable<string> {
         return new Observable(subscriber => {
-            const serverpath = `news-images/${title}.${extension}`
+            const serverpath = `news-images/${title}/main.${extension}`;
             fetch(imageUrl)
                 .then(image => image.blob())
-                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
-                .then(res => getDownloadURL(res.ref))
-                .then(url => subscriber.next(url))
-        })
+                .then(blob => this.supabaseStorage.upload(serverpath, blob, `image/${extension}`))
+                .then(url => {
+                    subscriber.next(url);
+                    subscriber.complete();
+                })
+                .catch(err => subscriber.error(err));
+        });
     }
 
     // Nueva función para subir imágenes adicionales con un ID único
@@ -319,8 +321,7 @@ export class BlogService {
             const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
             fetch(imageUrl)
                 .then(image => image.blob())
-                .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
-                .then(res => getDownloadURL(res.ref))
+                .then(blob => this.supabaseStorage.upload(serverpath, blob, `image/${extension}`))
                 .then(url => {
                     subscriber.next(url);
                     subscriber.complete();
@@ -329,13 +330,12 @@ export class BlogService {
         });
     }
 
-    // Nuevo método para subir blob directamente a Firebase Storage
+    // Nuevo método para subir blob directamente a Supabase Storage
     uploadBlobImage(blob: Blob, extension: string, newsReference: string): Observable<string> {
         return new Observable(subscriber => {
             const timestamp = Date.now();
             const serverpath = `news-images/${newsReference}/additional_${timestamp}.${extension}`;
-            uploadBytes(ref(this.firebaseStorage, serverpath), blob)
-                .then(res => getDownloadURL(res.ref))
+            this.supabaseStorage.upload(serverpath, blob, `image/${extension}`)
                 .then(url => {
                     subscriber.next(url);
                     subscriber.complete();
@@ -344,18 +344,18 @@ export class BlogService {
         });
     }
 
-    // Método para subir múltiples blobs y retornar un mapa de URLs locales a URLs de Firebase
+    // Método para subir múltiples blobs y retornar un mapa de URLs locales a URLs de Supabase
     uploadMultipleBlobImages(blobMap: Map<string, {blob: Blob, extension: string}>, newsReference: string): Observable<Map<string, string>> {
         return new Observable(subscriber => {
-            const uploadPromises: Promise<{localUrl: string, firebaseUrl: string}>[] = [];
+            const uploadPromises: Promise<{localUrl: string, storageUrl: string}>[] = [];
 
             blobMap.forEach((blobData, localUrl) => {
                 const timestamp = Date.now() + Math.random(); // Evitar colisiones
                 const serverpath = `news-images/${newsReference}/additional_${timestamp}.${blobData.extension}`;
 
-                const uploadPromise = uploadBytes(ref(this.firebaseStorage, serverpath), blobData.blob)
-                    .then(res => getDownloadURL(res.ref))
-                    .then(firebaseUrl => ({localUrl, firebaseUrl}));
+                const uploadPromise = this.supabaseStorage
+                    .upload(serverpath, blobData.blob, `image/${blobData.extension}`)
+                    .then(storageUrl => ({localUrl, storageUrl}));
 
                 uploadPromises.push(uploadPromise);
             });
@@ -364,7 +364,7 @@ export class BlogService {
                 .then(results => {
                     const urlMap = new Map<string, string>();
                     results.forEach(result => {
-                        urlMap.set(result.localUrl, result.firebaseUrl);
+                        urlMap.set(result.localUrl, result.storageUrl);
                     });
                     subscriber.next(urlMap);
                     subscriber.complete();
@@ -376,17 +376,13 @@ export class BlogService {
     // Función para obtener todas las imágenes de una noticia
     getNewsImages(newsReference: string): Observable<string[]> {
         return new Observable(subscriber => {
-            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
-            listAll(folderRef)
-                .then(result => {
-                    const imagePromises = result.items.map(imageRef => getDownloadURL(imageRef));
-                    return Promise.all(imagePromises);
-                })
+            this.supabaseStorage.list(`news-images/${newsReference}`)
+                .then(files => files.map(f => f.publicUrl))
                 .then(urls => {
                     subscriber.next(urls);
                     subscriber.complete();
                 })
-                .catch(error => {
+                .catch(() => {
                     // Si la carpeta no existe, devolver array vacío
                     subscriber.next([]);
                     subscriber.complete();
@@ -397,46 +393,42 @@ export class BlogService {
     // Función para limpiar imágenes no utilizadas
     cleanUnusedImages(newsReference: string, htmlContent: string, mainImageUrl: string): Observable<boolean> {
         return new Observable(subscriber => {
-            const folderRef = ref(this.firebaseStorage, `news-images/${newsReference}/`);
+            this.supabaseStorage.list(`news-images/${newsReference}`)
+                .then(async files => {
+                    const content = htmlContent || '';
+                    const toDelete: string[] = [];
 
-            listAll(folderRef)
-                .then(async result => {
-                    const deletePromises = await Promise.all(
-                        result.items.map(async imageRef => {
-                            // Nunca eliminar archivos de cabecera conocidos
-                            const fullPath = imageRef.fullPath || '';
-                            const name = imageRef.name || '';
-                            const isKnownHeader = fullPath.includes(`${newsReference}.`) || fullPath.includes('main.');
-                            if (isKnownHeader) {
-                                return Promise.resolve(undefined);
-                            }
+                    for (const file of files) {
+                        const { name, fullPath, publicUrl } = file;
 
-                            // URL pública del archivo
-                            const url = await getDownloadURL(imageRef);
+                        // Nunca eliminar archivos de cabecera conocidos
+                        const isKnownHeader = fullPath.includes(`${newsReference}.`) || fullPath.includes('main.');
+                        if (isKnownHeader) continue;
 
-                            // Normalizar contenido para búsquedas simples
-                            const content = htmlContent || '';
+                        // Comprobaciones para decidir si está en uso
+                        const usedByUrl = content.includes(publicUrl);
+                        const usedByName = name && content.includes(name);
+                        const usedByEncodedName = name && (
+                            content.includes(encodeURIComponent(name)) ||
+                            content.includes(encodeURIComponent(`/${name}`))
+                        );
+                        const usedByEncodedPath = content.includes(
+                            encodeURIComponent(`news-images/${newsReference}/${name}`)
+                        );
 
-                            // Comprobaciones para decidir si está en uso
-                            const usedByUrl = content.includes(url);
-                            const usedByName = name && content.includes(name);
-                            const usedByEncodedName = name && (content.includes(encodeURIComponent(name)) || content.includes(encodeURIComponent(`/${name}`)));
-                            const usedByEncodedPath = content.includes(encodeURIComponent(`news-images/${newsReference}/${name}`));
+                        // Proteger la imagen principal
+                        const isMainByUrl = !!mainImageUrl && mainImageUrl === publicUrl;
+                        const isMainByName = !!mainImageUrl && name && mainImageUrl.includes(name);
 
-                            // Proteger la imagen principal si coincide por URL o por nombre de archivo
-                            const isMainByUrl = !!mainImageUrl && mainImageUrl === url;
-                            const isMainByName = !!mainImageUrl && name && (mainImageUrl.includes(name));
+                        const isUsed = usedByUrl || usedByName || usedByEncodedName ||
+                                       usedByEncodedPath || isMainByUrl || isMainByName;
 
-                            const isUsed = usedByUrl || usedByName || usedByEncodedName || usedByEncodedPath || isMainByUrl || isMainByName;
+                        if (!isUsed) toDelete.push(fullPath);
+                    }
 
-                            if (!isUsed) {
-                                return deleteObject(imageRef);
-                            }
-                            return Promise.resolve(undefined);
-                        })
-                    );
-
-                    return Promise.all(deletePromises);
+                    if (toDelete.length > 0) {
+                        await this.supabaseStorage.delete(toDelete);
+                    }
                 })
                 .then(() => {
                     subscriber.next(true);

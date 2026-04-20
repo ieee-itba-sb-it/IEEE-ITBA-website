@@ -30,7 +30,7 @@ import {
     ActionCodeSettings,
     getIdToken, signInWithCustomToken
 } from '@angular/fire/auth';
-import {ref, uploadBytes, Storage, getDownloadURL, deleteObject} from '@angular/fire/storage';
+import { StorageService } from '../storage/storage.service';
 import {get} from "@angular/fire/database";
 import {getAll} from "@angular/fire/remote-config";
 import {IEEEMember} from "../../../shared/models/team-member";
@@ -50,7 +50,7 @@ export class AuthService {
     googleProvider: GoogleAuthProvider;
 
     // Constructor
-    constructor(private firebaseAuth: Auth, private firebaseStorage: Storage, private afs: Firestore) {
+    constructor(private firebaseAuth: Auth, private supabaseStorage: StorageService, private afs: Firestore) {
         this.googleProvider = new GoogleAuthProvider();
         this.user = firebaseAuth.currentUser;
         // Seteamos observer
@@ -190,17 +190,19 @@ export class AuthService {
             if (!this.account)
                 return subscriber.error(AuthErrorCodes.USER_SIGNED_OUT);
             if (!imageurl || imageurl.trim() == "" || !extension) {
-                deleteObject(ref(this.firebaseStorage, this.account.photoURL)).then(() => {
-                    this.account.photoURL = null;
-                    subscriber.next(null);
-                });
+                this.supabaseStorage.delete(this.account.photoURL)
+                    .then(() => {
+                        this.account.photoURL = null;
+                        subscriber.next(null);
+                    })
+                    .catch(err => subscriber.error(err))
+                    .finally(() => subscriber.complete());
             } else {
                 const uid = this.account.uID;
                 const serverpath = `profile-pics/${uid}.${extension}`;
                 fetch(imageurl)
                     .then(image => image.blob())
-                    .then(blob => uploadBytes(ref(this.firebaseStorage, serverpath), blob))
-                    .then(res => getDownloadURL(res.ref))
+                    .then(blob => this.supabaseStorage.upload(serverpath, blob, `image/${extension}`))
                     .then(newpath => {
                         this.account.photoURL = newpath;
                         this.accountObs.next(this.account);
