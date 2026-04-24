@@ -15,14 +15,29 @@ mat-card {
     align-items: center;
 }
 .badge {
-    padding: 4px 10px;
+    padding: 4px 5px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: bold;
+    justify-content: center;
+    margin: 0.5rem;
+    white-space: nowrap;
 }
+
+.badge.success {
+    background-color: var(--bs-ieee-bright-darker-green);
+    color: var(--bs-ieee-bright-green-20);
+}
+
+.badge.failed{
+    background-color: var(--bs-ieee-bright-red-60);
+    color: #ffffff;
+}
+
 
 .exam-title{
     padding: 0.4em 0.7em;
+    margin: 0;
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -62,9 +77,9 @@ mat-card {
 }
 
 .exam-grid{
+    border: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
 }
-
 
