@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="!hideChrome">
   <app-navbar [navbarColors]="getAppColors() | async"></app-navbar>
 </header>
 <div class="router-content" *ngIf="!loading">
@@ -7,4 +7,4 @@
 <div *ngIf="loading" class="main-container">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<app-footer [color]="(getAppColors() | async).background" *ngIf="!loading"></app-footer>
+<app-footer [color]="(getAppColors() | async).background" *ngIf="!loading && !hideChrome"></app-footer>

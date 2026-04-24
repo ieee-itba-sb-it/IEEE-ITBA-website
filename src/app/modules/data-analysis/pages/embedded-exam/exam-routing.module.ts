@@ -5,7 +5,7 @@ import {ExamListComponent} from "./exam-list/exam-list.component";
 
 const routes: Routes = [
     { path: '', component: ExamListComponent },
-    {path: ':id', component: ExamComponent }
+    {path: ':id', component: ExamComponent, data: {hideChrome:true}}
 ];
 
 @NgModule({

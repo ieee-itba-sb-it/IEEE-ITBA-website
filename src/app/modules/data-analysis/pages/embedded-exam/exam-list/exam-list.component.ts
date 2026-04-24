@@ -14,9 +14,9 @@ interface Exam{
 })
 export class ExamListComponent{
     exams:Exam[] = [
-        { id: 1, title: 'Día 1', available: true, attempts: 0, passed: false },
-        { id: 2, title: 'Día 2', available: false, attempts: 0, passed: false },
-        { id: 3, title: 'Día 3', available: false, attempts: 0, passed: false },
+        { id: 1, title: 'Día 1', available: true, attempts: 1, passed: false },
+        { id: 2, title: 'Día 2', available: true, attempts: 2, passed: false },
+        { id: 3, title: 'Día 3', available: true, attempts: 1, passed: true },
         { id: 4, title: 'Día 4', available: false, attempts: 0, passed: false },
         { id: 5, title: 'Día 5', available: false, attempts: 0, passed: false },
         { id: 6, title: 'Día 6', available: false, attempts: 0, passed: false },

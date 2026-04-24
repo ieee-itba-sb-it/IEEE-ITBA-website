@@ -12,16 +12,21 @@
             <mat-card *ngFor="let exam of exams" class="exam-card">
                 <div class="card-header">
                     <h3 class="exam-title">{{exam.title}}</h3>
-                    <span *ngIf="exam.passed" class="badge success">Aprobado</span>
+                    <div class="badge success" *ngIf="exam.passed">Aprobado</div>
+                    <div class="badge failed" *ngIf="!exam.passed && exam.attempts >0 ">Desaprobado</div>
                 </div>
 
 
                 <mat-card-actions>
-                    <button
+                    <button *ngIf="!exam.passed && exam.attempts === 0"
                         class="ieeecard-button"
                         [disabled]="!exam.available"
                         [routerLink]="[exam.id]"
                     >Iniciar examen</button>
+                    <button *ngIf="exam.attempts > 0"
+                        class="ieeecard-button"
+                        [routerLink]="[exam.id]">
+                        Revisar examen</button>
                 </mat-card-actions>
 
             </mat-card>
