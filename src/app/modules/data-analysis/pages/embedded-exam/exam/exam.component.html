@@ -12,22 +12,22 @@
                     </mat-card-header>
 
                     <mat-card-content class="exam-card-content mt-2">
-                        <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+                        <form *ngIf="!reviewMode" [formGroup]="examForm" (ngSubmit)="onSubmit()">
 
-                            <div formArrayName="answers" class="questions-container">
+                            <div formArrayName="answers" class="questions-container" >
 
                                 <div *ngFor="let q of questions; let i = index"
                                      [formGroupName]="i"
                                      class="question-card">
-                                    <p><b>Pregunta {{ i + 1 }}:</b> {{ q.statement }}</p>
+                                    <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
 
-                                    <div *ngIf="q.type === 'multiple-choice'" class="options-container">
+                                    <div class="options-container">
                                         <mat-radio-group formControlName="answer" class="d-flex flex-column">
-                                            <mat-radio-button *ngFor="let opt of q.options"
-                                                              [value]="opt"
+                                            <mat-radio-button *ngFor="let opt of q.answers"
+                                                              [value]="opt.answer"
                                                               class="option"
                                                               color="primary">
-                                                {{ opt }}
+                                                {{ opt.answer }}
                                             </mat-radio-button>
                                         </mat-radio-group>
                                     </div>
@@ -42,8 +42,25 @@
                                     Enviar examen
                                 </button>
                             </div>
-                        </form>
 
+                        </form>
+                        <div  *ngIf="reviewMode" class="questions-container" >
+                            <div *ngFor="let q of submittedExam.questions; let i=index" class="question-card">
+                                <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
+                                <div class="options-container">
+                                    <mat-radio-group [value]="getSelectedAnswer(q.answers)" class="d-flex flex-column">
+                                        <mat-radio-button *ngFor="let opt of q.answers" class="option"
+                                                 [value] = "opt.answer"
+                                                 [disabled]="true"
+                                                 [class.correct]="opt.selected && opt.isCorrect"
+                                                 [class.wrong]="opt.selected && !opt.isCorrect"
+                                                 [class.selected]="opt.selected">
+                                                {{ opt.answer }}
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
                     </mat-card-content>
                 </mat-card>
 
