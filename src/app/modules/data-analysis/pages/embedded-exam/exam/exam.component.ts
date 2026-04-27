@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
+import {Question, Answer, SubmittedExam} from "src/app/shared/models/event/data_analysis/exams"
 
-interface Question {
-    id: number;
-    statement: string;
-    type: 'multiple-choice' | 'code';
-    options?: string[];
-    correctAnswer: string;
-}
-
-interface Answer {
+interface FormAnswer {
     questionId: number;
     answer: string;
 }
@@ -24,7 +17,9 @@ interface Answer {
 export class ExamComponent implements OnInit {
 
     examId: number | null=null;
+    reviewMode = false;
 
+    submittedExam: SubmittedExam | null = null;
     examForm!: FormGroup;
     questions: Question[] = [];
 
@@ -32,22 +27,23 @@ export class ExamComponent implements OnInit {
     private mockQuestions: Question[] = [
         {
             id: 1,
-            statement: '¿Cuál de las siguientes opciones te permite conocer las columnas de un DataFrame?',
-            type: 'multiple-choice',
-            options: ['df.shape', 'df.head', 'df.keys()', 'df.values'],
-            correctAnswer: 'df.keys()'
+            question: '¿Cuál de las siguientes opciones te permite conocer las columnas de un DataFrame?',
+            answers: [
+                {answer: 'df.shape', isCorrect:false, selected:false},
+                {answer: 'df.head', isCorrect:false, selected:false},
+                {answer: 'df.keys', isCorrect:true, selected:false},
+                {answer: 'df.values', isCorrect:false, selected:false}
+            ],
         },
         {
             id: 2,
-            statement: '¿Cuál comando obtiene la categoría más frecuente?',
-            type: 'multiple-choice',
-            options: [
-                "archivo['Categoría'].value_counts().idxmax()",
-                "archivo['Categoría'].value_counts().max()",
-                "archivo['Categoría'].idxmax().value_counts()",
-                "archivo['Categoría'].max().value_counts()"
+            question: '¿Cuál comando obtiene la categoría más frecuente?',
+            answers: [
+                {answer: 'archivo[\'Categoría\'].value_counts().idxmax()', isCorrect:false, selected:false},
+                {answer: 'archivo[\'Categoría\'].value_counts().max()', isCorrect:false, selected:false},
+                {answer: 'archivo[\'Categoría\'].idxmax().value_counts()', isCorrect:true, selected:false},
+                {answer: 'archivo[\'Categoría\'].max().value_counts()', isCorrect:false, selected:false}
             ],
-            correctAnswer: "archivo['Categoría'].value_counts().idxmax()"
         },
     ];
     constructor(
@@ -89,32 +85,45 @@ export class ExamComponent implements OnInit {
     }
 
     onSubmit() {
-        const answers: Answer[] = this.examForm.value.answers;
-
-        const result = this.correctExam(answers);
-
-        console.log('Respuestas:', answers);
-        console.log('Resultado:', result);
-
-        alert(result ? 'Aprobaste !' : 'Desaprobado :\'p');
-    }
-
-    correctExam(answers: Answer[]): boolean {
-        let correctCount = 0;
-
-        answers.forEach(ans => {
-            const q = this.questions.find(q => q.id === ans.questionId);
-            if (!q) return;
-
-            if (this.compare(ans.answer, q.correctAnswer)) {
-                correctCount++;
-            }
+        const reviewQuestions: Question[] = this.questions.map((q, i) => {
+            const selectedAnswer = this.answersArray.controls[i].value.answer;
+            console.log(`Pregunta ${i}:`, selectedAnswer);
+            return {
+                ...q,
+                answers: q.answers.map(a => ({
+                    ...a,
+                    selected: a.answer === selectedAnswer
+                }))
+            };
         });
 
-        return correctCount >= 1; //se aprueba con una bien
+        this.submittedExam = {
+            user: '',
+            passed: this.correctExam(reviewQuestions),
+            submitted: true,
+            started: new Date(),
+            questions: reviewQuestions
+        };
+        this.reviewMode = true;
+        //alert(result ? 'Aprobaste !' : 'Desaprobado :\'p');
+    }
+
+    correctExam(questions: Question[]): boolean {
+        let correctCount = 0;
+        questions.forEach(q => {
+            const selected = q.answers.find(a => a.selected)?.answer ?? '';
+            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
+            if (this.compare(selected, correct)) correctCount++;
+        });
+        return correctCount >= 1;
+
     }
 
     compare(user: string, correct: string): boolean {
-        return user?.trim().toLowerCase().includes(correct.toLowerCase());
+        return String(user ?? '').trim().toLowerCase().includes(correct.toLowerCase());
+    }
+
+    getSelectedAnswer(answers: Answer[]): string {
+        return answers.find(a => a.selected)?.answer ?? '';
     }
 }

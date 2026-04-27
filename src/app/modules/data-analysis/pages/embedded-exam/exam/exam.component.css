@@ -16,13 +16,10 @@
     margin: 1.5rem;
 }
 .exam-title{
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
-.exam-card-content{
-    font-size: 1rem;
-}
 
 .questions-container {
     display: flex;
@@ -36,25 +33,29 @@
 }
 
 .question-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
 }
 
-.question-number {
-    font-weight: bold;
-    color: var(--bs-ieee-bright-blue);
-    margin-right: 6px;
-}
 
 .options-container {
     margin-top: 0.5rem;
-    font-size: 1.2rem;
 }
 
 .option {
     display: flex;
     margin-bottom: 0.5rem;
     align-items: center;
+}
+
+.correct {
+    background-color: var(--bs-ieee-bright-darker-green-20);
+}
+.wrong {
+    background-color: var(--bs-ieee-bright-red-20);
+}
+.selected {
+    font-weight: bold;
 }
 
 .submit-container {
