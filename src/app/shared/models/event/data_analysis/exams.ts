@@ -10,9 +10,9 @@ export type Question = {
     answers: Answer[];
 }
 
-export type SubmittedExam = {
+export type UserExam = {
     user: string;
-    passed?: boolean;
+    passed: boolean;
     submitted: boolean;
     started: Date;
     questions: Question[];

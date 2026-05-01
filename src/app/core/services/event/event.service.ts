@@ -16,7 +16,7 @@ import {
     getDocs,
     query,
     Query,
-    QueryDocumentSnapshot,
+    QueryDocumentSnapshot, runTransaction,
     updateDoc,
     where
 } from '@angular/fire/firestore';
@@ -28,15 +28,21 @@ import {
     getArgentineTime,
     parseArgentineDate
 } from "../../../shared/argentina-time";
+import {Question, UserExam} from "../../../shared/models/event/data_analysis/exams";
+import {AuthService} from "../authorization/auth.service";
+import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 
 @Injectable({
     providedIn: 'root'
 })
 export class EventService {
     private static readonly collectionName = eventsCollectionName;
+    private static readonly questionsCollectionName = "questions";
+    private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
+    private static readonly userExamsCollectionName = "user_exams";
     private readonly collection: CollectionReference;
 
-    constructor(private afs: Firestore, private userService: UserService) {
+    constructor(private afs: Firestore, private userService: UserService, private authService: AuthService) {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
@@ -306,5 +312,38 @@ export class EventService {
             dates,
             inscriptionLink: event.inscriptionLink?.trim() || null
         }
+    }
+
+    // DATA_ANALYSIS SECTION
+    public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
+        let exam: UserExam;
+        return new Observable(obs => {
+            runTransaction(this.afs, async (transaction) => {
+                const  questions = await getDocs(query(
+                    collection(this.afs, EventService.collectionName, EventService.dataAnalysisDocumentName, EventService.questionsCollectionName)
+                )).then((data) => {
+                    return data.docs.map((question) => {
+                        return question.data() as Question;
+                    });
+                });
+                exam = {user: user.email, passed: false, submitted: false, started: new Date(), questions: this.selectRandom(questions, questionCount)};
+                transaction.set(doc(this.afs, EventService.collectionName, EventService.dataAnalysisDocumentName, EventService.userExamsCollectionName, user.email), {... exam});
+            }).then((res) => {
+                obs.next(exam)
+            }).catch((err) => {
+                obs.error(err);
+            })
+        })
+    }
+
+    private selectRandom(questions: Question[], questionCount: number): Question[] {
+        const toReturn: Question[] = [];
+        while(questionCount > 0) {
+            const randInt = Math.random() % questions.length;
+            toReturn.push(questions[randInt]);
+            questions.splice(randInt, 1);
+            questionCount--;
+        }
+        return toReturn;
     }
 }
