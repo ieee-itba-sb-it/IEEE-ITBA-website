@@ -16,7 +16,7 @@ import {
     getDocs,
     query,
     Query,
-    QueryDocumentSnapshot, runTransaction,
+    QueryDocumentSnapshot, runTransaction, setDoc,
     updateDoc,
     where
 } from '@angular/fire/firestore';
@@ -37,9 +37,6 @@ import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 })
 export class EventService {
     private static readonly collectionName = eventsCollectionName;
-    private static readonly questionsCollectionName = "questions";
-    private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
-    private static readonly userExamsCollectionName = "user_exams";
     private readonly collection: CollectionReference;
 
     constructor(private afs: Firestore, private userService: UserService, private authService: AuthService) {
@@ -315,31 +312,53 @@ export class EventService {
     }
 
     // DATA_ANALYSIS SECTION
+
+    private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
+    private static readonly questionsCollectionName = "questions";
+    private static readonly userExamsCollectionName = "user_exams";
+
     public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
-        let exam: UserExam;
         return new Observable(obs => {
-            runTransaction(this.afs, async (transaction) => {
-                const  questions = await getDocs(query(
-                    collection(this.afs, EventService.collectionName, EventService.dataAnalysisDocumentName, EventService.questionsCollectionName)
-                )).then((data) => {
-                    return data.docs.map((question) => {
-                        return question.data() as Question;
-                    });
-                });
-                exam = {user: user.email, passed: false, submitted: false, started: new Date(), questions: this.selectRandom(questions, questionCount)};
-                transaction.set(doc(this.afs, EventService.collectionName, EventService.dataAnalysisDocumentName, EventService.userExamsCollectionName, user.email), {... exam});
-            }).then((res) => {
-                obs.next(exam)
-            }).catch((err) => {
-                obs.error(err);
-            })
-        })
+            const questionsRef = collection(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.questionsCollectionName
+            );
+
+            getDocs(questionsRef)
+                .then(async snapshot => {
+                    const questions = snapshot.docs.map(doc => doc.data() as Question);
+
+                    const exam: UserExam = {
+                        user: user.email,
+                        passed: false,
+                        submitted: false,
+                        started: new Date(),
+                        questions: this.selectRandom(questions, questionCount)
+                    };
+
+                    const examRef = doc(
+                        this.afs,
+                        EventService.collectionName,
+                        EventService.dataAnalysisDocumentName,
+                        EventService.userExamsCollectionName,
+                        user.email
+                    );
+
+                    await setDoc(examRef, exam);
+                    return exam;
+                })
+                .then(exam => obs.next(exam))
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
     }
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {
         const toReturn: Question[] = [];
         while(questionCount > 0) {
-            const randInt = Math.random() % questions.length;
+            const randInt = Math.floor(Math.random() % questions.length);
             toReturn.push(questions[randInt]);
             questions.splice(randInt, 1);
             questionCount--;

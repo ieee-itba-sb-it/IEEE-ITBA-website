@@ -29,6 +29,11 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
+    match /events/{eventId}/user_exams/{examId=**} {
+        allow read;
+        allow write;
+    }
+
     match /collection-metadata/{document=**}   {
       allow read;
       allow write: if hasRole("admin");
@@ -96,7 +101,7 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-   
+
     match /ieeextreme-teams/{document=**} {
       allow read: if true;
       allow write: if hasRole("admin");

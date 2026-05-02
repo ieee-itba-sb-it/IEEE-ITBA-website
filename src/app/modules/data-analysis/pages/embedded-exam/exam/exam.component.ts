@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
-import {Question, Answer, SubmittedExam} from "src/app/shared/models/event/data_analysis/exams"
+import {Question, Answer, UserExam} from "src/app/shared/models/event/data_analysis/exams"
 
 interface FormAnswer {
     questionId: number;
@@ -19,7 +19,7 @@ export class ExamComponent implements OnInit {
     examId: number | null=null;
     reviewMode = false;
 
-    submittedExam: SubmittedExam | null = null;
+    submittedExam: UserExam | null = null;
     examForm!: FormGroup;
     questions: Question[] = [];
 
