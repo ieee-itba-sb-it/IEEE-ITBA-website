@@ -21,7 +21,7 @@ import {
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of} from "rxjs";
+import {catchError, from, map, Observable, of, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
@@ -328,7 +328,7 @@ export class EventService {
 
             getDocs(questionsRef)
                 .then(async snapshot => {
-                    const questions = snapshot.docs.map(doc => doc.data() as Question);
+                    const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
 
                     const exam: UserExam = {
                         user: user.email,
@@ -358,11 +358,59 @@ export class EventService {
     private selectRandom(questions: Question[], questionCount: number): Question[] {
         const toReturn: Question[] = [];
         while(questionCount > 0) {
-            const randInt = Math.floor(Math.random() % questions.length);
+            const randInt = Math.floor(Math.random() * questions.length);
             toReturn.push(questions[randInt]);
             questions.splice(randInt, 1);
             questionCount--;
         }
         return toReturn;
+    }
+
+    public getUserExam(user: IEEEuser): Observable<UserExam | null> {       // puede ser un promise ?
+        return new Observable(obs => {
+            console.log(
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.userExamsCollectionName,
+                user.email
+            );
+            const examRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.userExamsCollectionName,
+                user.email
+            );
+
+            getDoc(examRef)
+                .then(snap => {
+                    obs.next(snap.exists() ? snap.data() as UserExam : null);
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public submitExam(exam: UserExam): Observable<void> {
+        return new Observable(obs => {
+            console.log('submitExam user:', exam.user);
+            const examRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.userExamsCollectionName,
+                exam.user
+            );
+
+            setDoc(examRef, exam)
+                .then(() => obs.next())
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+    public isReviewAvailable(exam: UserExam): boolean {
+        const started = new Date(exam.started);
+        const now = new Date();
+        return started.getDate() === now.getDate();
     }
 }
