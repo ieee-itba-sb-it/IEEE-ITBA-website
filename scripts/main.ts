@@ -1,5 +1,6 @@
 import {initializeApp} from "firebase-admin/app";
 import {migrateNewsToNewFormat} from "./migrations/migrate-news-to-new-format";
+import {seedQuestions} from "./seed";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -21,7 +22,8 @@ initializeApp({
 
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
-    await migrateNewsToNewFormat();
+    //await migrateNewsToNewFormat();
+    await seedQuestions();
 }
 
 main();

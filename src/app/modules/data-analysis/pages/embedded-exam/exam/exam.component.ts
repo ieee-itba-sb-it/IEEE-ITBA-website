@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
+import {ActivatedRoute, Router} from "@angular/router";
 import {Question, Answer, UserExam} from "src/app/shared/models/event/data_analysis/exams"
+import {AuthService} from "../../../../../core/services/authorization/auth.service";
+import {EventService} from "../../../../../core/services/event/event.service";
+import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
+import {take, filter} from "rxjs";
 
-interface FormAnswer {
-    questionId: number;
-    answer: string;
-}
 
 @Component({
     selector: 'app-exam',
@@ -15,58 +15,59 @@ interface FormAnswer {
 
 })
 export class ExamComponent implements OnInit {
+    cantQuestions = 3;
+    user: IEEEuser | null = null;
 
-    examId: number | null=null;
+    examId: number | null = null;
     reviewMode = false;
 
     submittedExam: UserExam | null = null;
     examForm!: FormGroup;
     questions: Question[] = [];
 
-    //sacadas de Banco de Preguntas - Quiz
-    private mockQuestions: Question[] = [
-        {
-            id: 1,
-            question: '¿Cuál de las siguientes opciones te permite conocer las columnas de un DataFrame?',
-            answers: [
-                {answer: 'df.shape', isCorrect:false, selected:false},
-                {answer: 'df.head', isCorrect:false, selected:false},
-                {answer: 'df.keys', isCorrect:true, selected:false},
-                {answer: 'df.values', isCorrect:false, selected:false}
-            ],
-        },
-        {
-            id: 2,
-            question: '¿Cuál comando obtiene la categoría más frecuente?',
-            answers: [
-                {answer: 'archivo[\'Categoría\'].value_counts().idxmax()', isCorrect:false, selected:false},
-                {answer: 'archivo[\'Categoría\'].value_counts().max()', isCorrect:false, selected:false},
-                {answer: 'archivo[\'Categoría\'].idxmax().value_counts()', isCorrect:true, selected:false},
-                {answer: 'archivo[\'Categoría\'].max().value_counts()', isCorrect:false, selected:false}
-            ],
-        },
-    ];
     constructor(
         private route: ActivatedRoute,
-        private fb: FormBuilder
-    ) {}
+        private fb: FormBuilder,
+        private eventService: EventService,
+        private authService: AuthService,
+        private router: Router
+    ) {
+    }
 
     ngOnInit(): void {
         this.examId = Number(this.route.snapshot.paramMap.get('id'));
-        console.log('Examen cargado', this.examId);
         this.initForm();
-        this.loadQuestions();
+
+        this.authService.getCurrentUser().subscribe(user => {
+            if (!user) return;
+            this.user = user;
+
+            this.eventService.getUserExam(user).subscribe(exam => {
+                console.log('exam:', exam);
+                if (exam && exam.submitted) {
+                    console.log('review mode');
+                    this.submittedExam = exam;
+                    this.reviewMode = true;
+                } else if (exam && !exam.submitted) {
+                    console.log('exam exists, not submitted');
+                    this.questions = exam.questions;
+                    this.buildForm();
+                /*} else {
+                    this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
+                        console.log('new exam:', newExam);
+                        this.questions = newExam.questions;
+                        this.buildForm();
+                    });*/
+                }
+            });
+        });
     }
+
 
     initForm() {
         this.examForm = this.fb.group({
             answers: this.fb.array([])
         });
-    }
-
-    loadQuestions() {
-        this.questions = this.mockQuestions;
-        this.buildForm();
     }
 
     buildForm() {
@@ -85,9 +86,11 @@ export class ExamComponent implements OnInit {
     }
 
     onSubmit() {
+        console.log('user:', this.user);
+        console.log('submittedExam user:', this.submittedExam?.user);
+
         const reviewQuestions: Question[] = this.questions.map((q, i) => {
             const selectedAnswer = this.answersArray.controls[i].value.answer;
-            console.log(`Pregunta ${i}:`, selectedAnswer);
             return {
                 ...q,
                 answers: q.answers.map(a => ({
@@ -98,13 +101,16 @@ export class ExamComponent implements OnInit {
         });
 
         this.submittedExam = {
-            user: '',
+            user: this.user.email ?? '',
             passed: this.correctExam(reviewQuestions),
             submitted: true,
             started: new Date(),
             questions: reviewQuestions
         };
-        this.reviewMode = true;
+
+        this.eventService.submitExam(this.submittedExam).subscribe(() => {
+            this.reviewMode = true;
+        });
         //alert(result ? 'Aprobaste !' : 'Desaprobado :\'p');
     }
 
@@ -119,8 +125,8 @@ export class ExamComponent implements OnInit {
 
     }
 
-    compare(user: string, correct: string): boolean {
-        return String(user ?? '').trim().toLowerCase().includes(correct.toLowerCase());
+    compare(selected: string, correct: string): boolean {
+        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
     }
 
     getSelectedAnswer(answers: Answer[]): string {
