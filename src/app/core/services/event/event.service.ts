@@ -368,12 +368,6 @@ export class EventService {
 
     public getUserExam(user: IEEEuser): Observable<UserExam | null> {       // puede ser un promise ?
         return new Observable(obs => {
-            console.log(
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.userExamsCollectionName,
-                user.email
-            );
             const examRef = doc(
                 this.afs,
                 EventService.collectionName,
@@ -393,7 +387,6 @@ export class EventService {
 
     public submitExam(exam: UserExam): Observable<void> {
         return new Observable(obs => {
-            console.log('submitExam user:', exam.user);
             const examRef = doc(
                 this.afs,
                 EventService.collectionName,
