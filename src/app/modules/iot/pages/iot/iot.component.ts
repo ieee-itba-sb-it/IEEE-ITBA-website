@@ -40,7 +40,6 @@ export class IotComponent implements OnInit {
     constructor(private eventService: EventService, private seoService: StaticSeoService) { }
 
     ngOnInit(): void {
-        console.log("hi");
         this.seoService.updateMetaTags('IOT.PAGETITLE', 'IOT.PAGEDESCRIPTION', ['IOT', 'IEEE', 'ITBA'], "events/iot/iot-banner.jpeg");
         this.getEvent();
     }

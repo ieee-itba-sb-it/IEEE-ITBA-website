@@ -43,21 +43,17 @@ export class ExamComponent implements OnInit {
             this.user = user;
 
             this.eventService.getUserExam(user).subscribe(exam => {
-                console.log('exam:', exam);
                 if (exam && exam.submitted) {
-                    console.log('review mode');
                     this.submittedExam = exam;
                     this.reviewMode = true;
                 } else if (exam && !exam.submitted) {
-                    console.log('exam exists, not submitted');
                     this.questions = exam.questions;
                     this.buildForm();
-                /*} else {
+                } else {
                     this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
-                        console.log('new exam:', newExam);
                         this.questions = newExam.questions;
                         this.buildForm();
-                    });*/
+                    });
                 }
             });
         });
@@ -86,8 +82,6 @@ export class ExamComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log('user:', this.user);
-        console.log('submittedExam user:', this.submittedExam?.user);
 
         const reviewQuestions: Question[] = this.questions.map((q, i) => {
             const selectedAnswer = this.answersArray.controls[i].value.answer;
