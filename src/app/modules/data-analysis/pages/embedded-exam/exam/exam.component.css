@@ -1,7 +1,20 @@
 .exam-container {
+    width: 60%;
+    margin: 2rem auto;
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding: 1.2rem;
+}
+
+.exam-page {
+    min-height: 100vh;
+    display: flex;
+    background-color: white;
+}
+
+.side-panel {
+    flex: 1;
+    background-color: var(--bs-ieee-bright-blue-80);
 }
 
 .exam-card {
