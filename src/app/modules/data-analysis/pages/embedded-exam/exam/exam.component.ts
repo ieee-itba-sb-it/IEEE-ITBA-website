@@ -5,7 +5,6 @@ import {Question, Answer, UserExam} from "src/app/shared/models/event/data_analy
 import {AuthService} from "../../../../../core/services/authorization/auth.service";
 import {EventService} from "../../../../../core/services/event/event.service";
 import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
-import {take, filter} from "rxjs";
 
 
 @Component({
@@ -25,6 +24,8 @@ export class ExamComponent implements OnInit {
     examForm!: FormGroup;
     questions: Question[] = [];
 
+    examNumber: number = 1;
+
     constructor(
         private route: ActivatedRoute,
         private fb: FormBuilder,
@@ -34,9 +35,19 @@ export class ExamComponent implements OnInit {
     ) {
     }
 
+    calculateExamNumber(): void {
+
+        const startDate = new Date('2026-05-11'); // mock por ahora
+
+        const diffMs = new Date().getTime() - startDate.getTime();
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        this.examNumber = diffDays + 1;
+    }
+
     ngOnInit(): void {
         this.examId = Number(this.route.snapshot.paramMap.get('id'));
         this.initForm();
+        this.calculateExamNumber();
 
         this.authService.getCurrentUser().subscribe(user => {
             if (!user) return;

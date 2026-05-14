@@ -1,71 +1,77 @@
-<div class="main-container">
-    <div class="row" style="height: 100%">
+<div class="exam-page">
 
-        <div class="mainFrame" style="padding-top: 90px">
-            <div class="row d-flex flex-column align-items-center justify-content-center">
+    <div class="side-panel left-panel"></div>
+    <div class="exam-container">
+        <div class="row">
 
-                <mat-card class="d-flex flex-column align-items-center mb-5"
-                          style="max-width: 75%; width: fit-content;">
+            <div class="mainFrame">
+                <div class="row d-flex flex-column align-items-center justify-content-center">
 
-                    <mat-card-header class="exam-header">
-                        <mat-card-title class="exam-title">Examen de Python</mat-card-title>
-                    </mat-card-header>
+                    <mat-card class="d-flex flex-column align-items-center mb-5">
 
-                    <mat-card-content class="exam-card-content mt-2">
-                        <form *ngIf="!reviewMode" [formGroup]="examForm" (ngSubmit)="onSubmit()">
+                        <mat-card-header class="exam-header">
+                            <mat-card-title class="exam-title">Examen N°{{examNumber}} - Data Analysis</mat-card-title>
+                        </mat-card-header>
 
-                            <div formArrayName="answers" class="questions-container" >
+                        <mat-card-content class="exam-card-content mt-2">
+                            <form *ngIf="!reviewMode" [formGroup]="examForm" (ngSubmit)="onSubmit()">
 
-                                <div *ngFor="let q of questions; let i = index"
-                                     [formGroupName]="i"
-                                     class="question-card">
-                                    <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
+                                <div formArrayName="answers" class="questions-container">
 
-                                    <div class="options-container">
-                                        <mat-radio-group formControlName="answer" class="d-flex flex-column">
-                                            <mat-radio-button *ngFor="let opt of q.answers"
-                                                              [value]="opt.answer"
-                                                              class="option"
-                                                              color="primary">
-                                                {{ opt.answer }}
-                                            </mat-radio-button>
-                                        </mat-radio-group>
+                                    <div *ngFor="let q of questions; let i = index"
+                                         [formGroupName]="i"
+                                         class="question-card">
+                                        <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
+
+                                        <div class="options-container">
+                                            <mat-radio-group formControlName="answer" class="d-flex flex-column">
+                                                <mat-radio-button *ngFor="let opt of q.answers"
+                                                                  [value]="opt.answer"
+                                                                  class="option"
+                                                                  color="primary">
+                                                    {{ opt.answer }}
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+
                                     </div>
 
                                 </div>
 
-                            </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="submit-exam-button"
+                                            type="submit">
+                                        Enviar examen
+                                    </button>
+                                </div>
 
-                            <div class="d-flex justify-content-center">
-                                <button class="submit-exam-button"
-                                        type="submit">
-                                    Enviar examen
-                                </button>
-                            </div>
-
-                        </form>
-                        <div  *ngIf="reviewMode" class="questions-container" >
-                            <div *ngFor="let q of submittedExam.questions; let i=index" class="question-card">
-                                <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
-                                <div class="options-container">
-                                    <mat-radio-group [value]="getSelectedAnswer(q.answers)" class="d-flex flex-column">
-                                        <mat-radio-button *ngFor="let opt of q.answers" class="option"
-                                                 [value] = "opt.answer"
-                                                 [disabled]="true"
-                                                 [class.correct]="opt.selected && opt.isCorrect"
-                                                 [class.wrong]="opt.selected && !opt.isCorrect"
-                                                 [class.selected]="opt.selected">
+                            </form>
+                            <div *ngIf="reviewMode" class="questions-container">
+                                <div *ngFor="let q of submittedExam.questions; let i=index" class="question-card">
+                                    <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
+                                    <div class="options-container">
+                                        <mat-radio-group [value]="getSelectedAnswer(q.answers)"
+                                                         class="d-flex flex-column">
+                                            <mat-radio-button *ngFor="let opt of q.answers" class="option"
+                                                              [value]="opt.answer"
+                                                              [disabled]="true"
+                                                              [class.correct]="opt.selected && opt.isCorrect"
+                                                              [class.wrong]="opt.selected && !opt.isCorrect"
+                                                              [class.selected]="opt.selected">
                                                 {{ opt.answer }}
-                                        </mat-radio-button>
-                                    </mat-radio-group>
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
+                        </mat-card-content>
+                    </mat-card>
 
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
+
+    <div class="side-panel right-panel"></div>
 </div>

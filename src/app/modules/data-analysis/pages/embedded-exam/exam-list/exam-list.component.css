@@ -9,6 +9,19 @@ h2{
 mat-card {
     width: 100%;
 }
+.exam-grid{
+    border: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
+    gap: 0.8rem;
+}
+.exam-card{
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -74,12 +87,5 @@ mat-card {
     background-color: lightgrey;
     border: 3px solid gray;
     color: gray !important;
-}
-
-.exam-grid{
-    border: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
 }
 
