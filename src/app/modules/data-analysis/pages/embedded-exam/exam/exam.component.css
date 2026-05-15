@@ -3,7 +3,10 @@
     margin: 2rem auto;
     display: flex;
     justify-content: center;
-    padding: 1.2rem;
+    padding-inline: 1.2rem;
+    padding-block: 3rem;
+    background: #00629BFF;
+    border-radius: 5px;
 }
 
 .exam-page {
@@ -14,7 +17,7 @@
 
 .side-panel {
     flex: 1;
-    background-color: var(--bs-ieee-bright-blue-80);
+    background-color: white;
 }
 
 .exam-card {
