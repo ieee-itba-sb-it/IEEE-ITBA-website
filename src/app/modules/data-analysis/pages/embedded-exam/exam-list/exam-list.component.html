@@ -8,33 +8,34 @@
     </div>
 
     <div title="Exámenes disponibles">
-        <div class="exam-grid">
-            <mat-card *ngFor="let exam of exams" class="exam-card">
-                <h3 class="exam-title">{{ exam.title }}</h3>
-                <div class="card-header" *ngIf="exam.submitted">
-                    <div class="badge success" *ngIf="exam.passed">Aprobado</div>
-                    <div class="badge failed" *ngIf="!exam.passed">Desaprobado</div>
-                </div>
-                <div class="card-header" *ngIf="!exam.submitted">
-                    <div class="badge not-submitted">No entregado</div>
-                </div>
+        <div class="row gy-4 gx-4">
+            <div *ngFor="let exam of exams" class="col-lg-4 col-md-6 col-12">
+                <mat-card class="exam-card">
+                    <div class="card-header" >
+                        <h3 class="exam-title">{{ exam.title }}</h3>
+                        <div *ngIf="exam.id <= currentDay">
+                            <div class="badge success" *ngIf="exam.passed">Aprobado</div>
+                            <div class="badge failed" *ngIf="!exam.passed">Desaprobado</div>
+                        </div>
+                    </div>
 
-                <mat-card-actions>
-                    <button *ngIf="!exam.submitted"
-                            class="ieeecard-button"
-                            [disabled]="!exam.available"
-                            (click)="startExam(exam.id)"
-                    >Iniciar examen
-                    </button>
-                    <button *ngIf="exam.submitted"
-                            class="ieeecard-button"
-                            [disabled]="isReviewAvailable()"
-                            [routerLink]="[exam.id]">
-                        Revisar examen
-                    </button>
-                </mat-card-actions>
+                    <mat-card-actions>
+                        <button *ngIf="!exam.submitted"
+                                class="ieeecard-button"
+                                [disabled]="!exam.available"
+                                (click)="startExam(exam.id)"
+                        >Iniciar examen
+                        </button>
+                        <button *ngIf="exam.submitted"
+                                class="ieeecard-button"
+                                [disabled]="isReviewAvailable()"
+                                [routerLink]="[exam.id]">
+                            Revisar examen
+                        </button>
+                    </mat-card-actions>
 
-            </mat-card>
+                </mat-card>
+            </div>
         </div>
 
 

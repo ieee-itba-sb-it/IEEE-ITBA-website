@@ -6,17 +6,8 @@ h1 {
 h2{
     font-size: 1.5rem;
 }
-mat-card {
-    width: 100%;
-}
-.exam-grid{
-    border: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
-    gap: 0.8rem;
-}
+
 .exam-card{
-    width: 100%;
     min-height: 150px;
     display: flex;
     flex-direction: column;
@@ -24,7 +15,7 @@ mat-card {
 }
 .card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
 }
 .badge {
@@ -69,6 +60,7 @@ mat-card {
 }
 
 .ieeecard-button {
+    width: 100%;
     font-size: 1.2em;
     padding: 0.4em 0.7em;
     font-weight: 600;
