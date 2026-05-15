@@ -35,7 +35,6 @@ export class ExamComponent implements OnInit {
     ngOnInit(): void {
         this.examId = Number(this.route.snapshot.paramMap.get('id'));
         this.initForm();
-        console.log('examid:',this.examId);
 
         this.authService.getCurrentUser().subscribe(user => {
             if (!user) return;
