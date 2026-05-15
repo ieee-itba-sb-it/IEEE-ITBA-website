@@ -47,6 +47,11 @@ mat-card {
     color: #ffffff;
 }
 
+.badge.not-submitted{
+    background-color: var(--bs-ieee-bright-blue-80);
+    color:#ffffff;
+}
+
 
 .exam-title{
     padding: 0.4em 0.7em;

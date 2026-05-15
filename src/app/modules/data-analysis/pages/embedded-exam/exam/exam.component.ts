@@ -24,40 +24,31 @@ export class ExamComponent implements OnInit {
     examForm!: FormGroup;
     questions: Question[] = [];
 
-    examNumber: number = 1;
-
     constructor(
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private eventService: EventService,
         private authService: AuthService,
-        private router: Router
     ) {
-    }
-
-    calculateExamNumber(): void {
-
-        const startDate = new Date('2026-05-11'); // mock por ahora
-
-        const diffMs = new Date().getTime() - startDate.getTime();
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        this.examNumber = diffDays + 1;
     }
 
     ngOnInit(): void {
         this.examId = Number(this.route.snapshot.paramMap.get('id'));
         this.initForm();
-        this.calculateExamNumber();
+        console.log('examid:',this.examId);
 
         this.authService.getCurrentUser().subscribe(user => {
             if (!user) return;
             this.user = user;
 
             this.eventService.getUserExam(user).subscribe(exam => {
-                if (exam && exam.submitted) {
+                const started = (exam.started as any).toDate();
+                const isToday = exam && this.isToday(started);
+
+                if (exam && isToday && exam.submitted) {
                     this.submittedExam = exam;
                     this.reviewMode = true;
-                } else if (exam && !exam.submitted) {
+                } else if (exam && isToday && !exam.submitted) {
                     this.questions = exam.questions;
                     this.buildForm();
                 } else {
@@ -68,6 +59,13 @@ export class ExamComponent implements OnInit {
                 }
             });
         });
+    }
+
+    isToday(date: Date): boolean {
+        const now = new Date();
+        return date.getDate() === now.getDate() &&
+            date.getMonth() === now.getMonth() &&
+            date.getFullYear() === now.getFullYear();
     }
 
 

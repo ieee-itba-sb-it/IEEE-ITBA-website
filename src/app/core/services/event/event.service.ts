@@ -357,7 +357,7 @@ export class EventService {
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {
         const toReturn: Question[] = [];
-        while(questionCount > 0) {
+        while (questionCount > 0) {
             const randInt = Math.floor(Math.random() * questions.length);
             toReturn.push(questions[randInt]);
             questions.splice(randInt, 1);
@@ -401,9 +401,38 @@ export class EventService {
                 .finally(() => obs.complete());
         });
     }
+
     public isReviewAvailable(exam: UserExam): boolean {
         const started = new Date(exam.started);
         const now = new Date();
         return started.getDate() === now.getDate();
+    }
+
+    public getDataAnalysisStartDate(): Observable<Date | null> {
+        return new Observable(obs => {
+            const docRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName
+            );
+
+            getDoc(docRef)
+                .then(snap => {
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        obs.next(data['startDate'].toDate());
+                    } else {
+                        obs.next(null);
+                    }
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public calculateExamDay(startDate: Date): number {
+        const diffMs = new Date().getTime() - startDate.getTime();
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        return diffDays + 1;
     }
 }
