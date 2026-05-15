@@ -41,15 +41,16 @@ export class ExamComponent implements OnInit {
             this.user = user;
 
             this.eventService.getUserExam(user).subscribe(exam => {
-                const started = (exam.started as any).toDate();
-                const isToday = exam && this.isToday(started);
-
-                if (exam && isToday && exam.submitted) {
-                    this.submittedExam = exam;
-                    this.reviewMode = true;
-                } else if (exam && isToday && !exam.submitted) {
-                    this.questions = exam.questions;
-                    this.buildForm();
+                if (exam) {
+                    const started = (exam.started as any).toDate();
+                    const isToday = exam && this.isToday(started);
+                    if (isToday && exam.submitted) {
+                        this.submittedExam = exam;
+                        this.reviewMode = true;
+                    } else if (isToday && !exam.submitted) {
+                        this.questions = exam.questions;
+                        this.buildForm();
+                    }
                 } else {
                     this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
                         this.questions = newExam.questions;
