@@ -10,7 +10,7 @@
                     <mat-card class="d-flex flex-column align-items-center mb-5">
 
                         <mat-card-header class="exam-header">
-                            <mat-card-title class="exam-title">Examen N°{{examNumber}} - Data Analysis</mat-card-title>
+                            <mat-card-title class="exam-title">Examen N°{{examId}} - Data Analysis</mat-card-title>
                         </mat-card-header>
 
                         <mat-card-content class="exam-card-content mt-2">
@@ -40,8 +40,9 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button class="submit-exam-button"
-                                            type="submit">
-                                        Enviar examen
+                                            type="submit"
+                                            [disabled]="reviewMode"
+                                    > Enviar examen
                                     </button>
                                 </div>
 

@@ -10,8 +10,8 @@ interface Exam {
     id: number;
     title: string;
     available: boolean;
-    attempts: number;
     passed: boolean;
+    submitted: boolean;
 }
 
 @Component({
@@ -22,15 +22,7 @@ interface Exam {
 
 export class ExamListComponent implements OnInit {
     questionCant = 3;
-    exams: Exam[] = [
-        {id: 1, title: 'Día 1', available: true, attempts: 1, passed: false},
-        {id: 2, title: 'Día 2', available: true, attempts: 2, passed: false},
-        {id: 3, title: 'Día 3', available: true, attempts: 1, passed: false},
-        {id: 4, title: 'Día 4', available: true, attempts: 0, passed: false},
-        {id: 5, title: 'Día 5', available: false, attempts: 0, passed: false},
-        {id: 6, title: 'Día 6', available: false, attempts: 0, passed: false},
-        {id: 7, title: 'Día 7', available: false, attempts: 0, passed: false}
-    ];
+    exams: Exam[];
 
     constructor(
         private eventService: EventService,
@@ -45,20 +37,37 @@ export class ExamListComponent implements OnInit {
             filter(user => user !== null),
             take(1)
         ).subscribe(user => {
-            this.eventService.generateExam(this.questionCant, user).subscribe(() => {
-                this.router.navigate([examId], {relativeTo: this.route}).then(() => {
-                });
+            this.router.navigate([examId], {relativeTo: this.route}).then(() => {
             });
         });
     }
-    userExam:UserExam|null = null
+
+    userExam: UserExam | null = null
+
     ngOnInit() {
         this.authService.getCurrentUser().pipe(
             filter((user): user is IEEEuser => user !== null),
             take(1)
         ).subscribe(user => {
-            this.eventService.getUserExam(user).subscribe(exam => {
-                this.userExam = exam;
+            this.eventService.getDataAnalysisStartDate().subscribe(startDate => {
+                if (!startDate) return;
+
+                const currentDay = this.eventService.calculateExamDay(startDate);
+
+                this.eventService.getUserExam(user).subscribe(exam => {
+                    this.userExam = exam;
+                    const passed = exam?.passed ?? false;
+                    this.exams = Array.from({length: 7}, (_, i) => {
+                        const day = i + 1;
+                        return {
+                            id: day,
+                            title: `Día ${day}`,
+                            available: day == currentDay && !passed,
+                            passed: passed && day === currentDay,
+                            submitted: day === currentDay && (exam?.submitted ?? false)
+                        };
+                    });
+                });
             });
         });
     }
