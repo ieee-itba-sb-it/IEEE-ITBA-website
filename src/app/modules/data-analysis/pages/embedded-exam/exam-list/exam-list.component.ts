@@ -21,7 +21,6 @@ interface Exam {
 })
 
 export class ExamListComponent implements OnInit {
-    questionCant = 3;
     exams: Exam[];
 
     constructor(
@@ -43,6 +42,7 @@ export class ExamListComponent implements OnInit {
     }
 
     userExam: UserExam | null = null
+    currentDay: number = 1
 
     ngOnInit() {
         this.authService.getCurrentUser().pipe(
@@ -53,6 +53,7 @@ export class ExamListComponent implements OnInit {
                 if (!startDate) return;
 
                 const currentDay = this.eventService.calculateExamDay(startDate);
+                this.currentDay = currentDay;
 
                 this.eventService.getUserExam(user).subscribe(exam => {
                     this.userExam = exam;
@@ -62,7 +63,7 @@ export class ExamListComponent implements OnInit {
                         return {
                             id: day,
                             title: `Día ${day}`,
-                            available: day == currentDay && !passed,
+                            available: day == currentDay && (!passed || !exam?.submitted),
                             passed: passed && day === currentDay,
                             submitted: day === currentDay && (exam?.submitted ?? false)
                         };
