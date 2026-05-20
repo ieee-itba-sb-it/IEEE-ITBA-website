@@ -584,7 +584,23 @@
           "ANSWER": "Definitely! We encourage you to think of your own solutions to the challenges alongside your partners, ask for help if you’re stuck, and offer help to others in need. This will also be done through Discord."
         }
       ]
-    }
+    },
+      "EMBEDDED_EXAM": {
+          "EXAM": {
+              "TITLE": "Exam",
+              "QUESTION": "Question",
+              "BUTTON_SUBMIT_EXAM": "Send exam"
+          },
+          "EXAM_LIST": {
+              "TITLE": "My Python Exams",
+              "EXAM_TITLE": "Day",
+              "DESCRIPTION": "Here you will find your available exams. A new exam will be enabled each day for seven days until you pass.",
+              "BADGE_SUCCESS": "Passed",
+              "BADGE_FAILED": "Failed",
+              "BUTTON_START": "Start exam",
+              "BUTTON_REVIEW": "Review exam"
+          }
+      }
   },
   "IEEEMEETUP": {
     "TITLE": "IEEE - 2nd Meet Up",

@@ -10,7 +10,7 @@
                     <mat-card class="d-flex flex-column align-items-center mb-5">
 
                         <mat-card-header class="exam-header">
-                            <mat-card-title class="exam-title">Examen N°{{examId}} - Data Analysis</mat-card-title>
+                            <mat-card-title class="exam-title">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.TITLE' | translate }} N°{{examId}} - Data Analysis</mat-card-title>
                         </mat-card-header>
 
                         <mat-card-content class="exam-card-content mt-2">
@@ -21,7 +21,7 @@
                                     <div *ngFor="let q of questions; let i = index"
                                          [formGroupName]="i"
                                          class="question-card">
-                                        <p class="question-title"><b>Pregunta {{ i + 1 }}:</b> {{ q.question }}</p>
+                                        <p class="question-title"><b>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.QUESTION' | translate }} {{ i + 1 }}:</b> {{ q.question }}</p>
 
                                         <div class="options-container">
                                             <mat-radio-group formControlName="answer" class="d-flex flex-column">
@@ -42,7 +42,7 @@
                                     <button class="submit-exam-button"
                                             type="submit"
                                             [disabled]="reviewMode"
-                                    > Enviar examen
+                                    >{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.BUTTON_SUBMIT_EXAM' | translate }}
                                     </button>
                                 </div>
 

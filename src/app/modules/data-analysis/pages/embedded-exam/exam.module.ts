@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ExamRoutingModule} from "./exam-routing.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
+import {TranslateModule} from "@ngx-translate/core";
 @NgModule({
     declarations: [
         ExamComponent,
@@ -16,7 +17,8 @@ import {MatRadioModule} from "@angular/material/radio";
         ReactiveFormsModule,
         ExamRoutingModule,
         MatCardModule,
-        MatRadioModule
+        MatRadioModule,
+        TranslateModule
     ]
 })
 export class ExamModule {}
