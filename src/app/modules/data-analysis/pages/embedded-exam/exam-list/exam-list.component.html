@@ -30,7 +30,7 @@
                         <button *ngIf="exam.submitted"
                                 class="ieeecard-button"
                                 [disabled]="isReviewAvailable()"
-                                [routerLink]="[exam.id]">
+                                [routerLink]="['day', exam.id]">
                             {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_REVIEW' | translate }}
                         </button>
                     </mat-card-actions>

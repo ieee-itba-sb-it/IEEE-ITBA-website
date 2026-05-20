@@ -37,7 +37,7 @@ export class ExamListComponent implements OnInit {
             filter(user => user !== null),
             take(1)
         ).subscribe(user => {
-            this.router.navigate([examId], {relativeTo: this.route}).then(() => {
+            this.router.navigate(['day',examId], {relativeTo: this.route}).then(() => {
             });
         });
     }
