@@ -218,7 +218,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
     },
     {
-        path: 'exam',
+        path: 'data-analysis/exams',
         loadChildren: () =>
             import('./modules/data-analysis/pages/embedded-exam/exam.module').then(
                 (m) => m.ExamModule

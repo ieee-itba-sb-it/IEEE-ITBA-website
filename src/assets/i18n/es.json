@@ -643,9 +643,9 @@
     },
       "EMBEDDED_EXAM": {
           "EXAM": {
-              "TITLE": "Exámen",
+              "TITLE": "Examen",
               "QUESTION": "Pregunta",
-              "BUTTON_SUBMIT_EXAM": "Enviar exámen"
+              "BUTTON_SUBMIT_EXAM": "Enviar examen"
 
           },
           "EXAM_LIST": {
