@@ -38,6 +38,11 @@ h2{
     color: #ffffff;
 }
 
+.badge.pending{
+    background-color: var(--bs-ieee-bright-blue);
+    color: #ffffff;
+}
+
 .badge.not-submitted{
     background-color: var(--bs-ieee-bright-blue-80);
     color:#ffffff;
