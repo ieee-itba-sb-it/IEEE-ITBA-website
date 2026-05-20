@@ -12,6 +12,7 @@ interface Exam {
     available: boolean;
     passed: boolean;
     submitted: boolean;
+    expired: boolean;
 }
 
 @Component({
@@ -65,7 +66,8 @@ export class ExamListComponent implements OnInit {
                             title: `${day}`,
                             available: day == currentDay && (!passed || !exam?.submitted),
                             passed: passed && day === currentDay,
-                            submitted: day === currentDay && (exam?.submitted ?? false)
+                            submitted: day === currentDay && (exam?.submitted ?? false),
+                            expired: !exam?.submitted && day < currentDay
                         };
                     });
                 });

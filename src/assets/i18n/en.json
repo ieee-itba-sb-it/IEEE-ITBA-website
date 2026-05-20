@@ -598,6 +598,7 @@
               "BADGE_SUCCESS": "Passed",
               "BADGE_FAILED": "Failed",
               "BUTTON_START": "Start exam",
+              "BADGE_PENDING": "Pending",
               "BUTTON_REVIEW": "Review exam"
           }
       }

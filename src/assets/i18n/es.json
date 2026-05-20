@@ -655,6 +655,7 @@
               "BADGE_SUCCESS": "Aprobado",
               "BADGE_FAILED": "Desaprobado",
               "BUTTON_START": "Iniciar examen",
+              "BADGE_PENDING": "Pendiente",
               "BUTTON_REVIEW": "Revisar examen"
           }
       }
