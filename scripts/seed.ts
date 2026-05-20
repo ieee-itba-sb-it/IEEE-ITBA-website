@@ -55,10 +55,10 @@ const questions = [
 
 export async function seedQuestions() {
     const db = getFirestore()
-    
+
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .set({ startDate: new Date('2026-05-11') });
+        .set({ startDate: new Date('2026-05-15') });
 
     for (const q of questions) {
         await db.collection('events')

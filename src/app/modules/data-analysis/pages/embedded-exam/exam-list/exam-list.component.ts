@@ -62,7 +62,7 @@ export class ExamListComponent implements OnInit {
                         const day = i + 1;
                         return {
                             id: day,
-                            title: `Día ${day}`,
+                            title: `${day}`,
                             available: day == currentDay && (!passed || !exam?.submitted),
                             passed: passed && day === currentDay,
                             submitted: day === currentDay && (exam?.submitted ?? false)
