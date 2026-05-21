@@ -1,5 +1,19 @@
-.exam-container {
+
+.back-button {
+    align-items: center;
+    gap: 0.5rem;
+    display: flex;
+    margin: 2rem auto auto 0;
+    font-size: 1.2rem;
+}
+
+.exam-wrapper {
     width: 60%;
+    margin: 2rem auto;
+}
+
+.exam-container {
+    width: 100%;
     margin: 2rem auto;
     display: flex;
     justify-content: center;
@@ -11,12 +25,6 @@
 
 .exam-page {
     min-height: 100vh;
-    display: flex;
-    background-color: white;
-}
-
-.side-panel {
-    flex: 1;
     background-color: white;
 }
 
@@ -82,21 +90,42 @@
     margin-top: 2rem;
 }
 
-.submit-exam-button {
-    font-size: 1.1rem;
+.exam-button{
+    border: 2px solid var(--bs-ieee-bright-blue);
     padding: 0.6rem 1.5rem;
     font-weight: 600;
-    margin: 1.5rem;
-
     border-radius: 6px;
-    border: 2px solid var(--bs-ieee-bright-blue);
     background-color: transparent;
     color: var(--bs-ieee-bright-blue);
-
     transition: all 0.2s ease;
 }
 
-.submit-exam-button:hover {
+.dialog-button{
+    margin: 0.5rem 1rem;
+}
+.submit-exam-button {
+    font-size: 1.1rem;
+    margin: 1.5rem;
+}
+
+.exam-button:hover {
     background-color: var(--bs-ieee-bright-blue);
     color: white;
+}
+
+.confirm-button{
+    background-color: var(--bs-ieee-bright-blue);
+    color: white;
+}
+
+.confirm-button:hover{
+    background-color: var(--bs-ieee-bright-blue-20);
+    color: var(--bs-ieee-bright-blue);
+}
+
+.submit-exam-dialog{
+    border-radius: 5px;
+    border-color: var(--bs-ieee-bright-blue);
+    font-size: 1rem;
+    align-items: flex-end;
 }

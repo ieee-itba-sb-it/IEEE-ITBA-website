@@ -11,7 +11,6 @@ import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
     selector: 'app-exam',
     templateUrl: './exam.component.html',
     styleUrls: ["./exam.component.css"]
-
 })
 export class ExamComponent implements OnInit {
     cantQuestions = 3;
@@ -29,6 +28,7 @@ export class ExamComponent implements OnInit {
         private fb: FormBuilder,
         private eventService: EventService,
         private authService: AuthService,
+        private router: Router
     ) {
     }
 
@@ -39,7 +39,6 @@ export class ExamComponent implements OnInit {
         this.authService.getCurrentUser().subscribe(user => {
             if (!user) return;
             this.user = user;
-
             this.eventService.getUserExam(user).subscribe(exam => {
                 if (exam) {
                     const started = (exam.started as any).toDate();
@@ -50,6 +49,9 @@ export class ExamComponent implements OnInit {
                     } else if (isToday && !exam.submitted) {
                         this.questions = exam.questions;
                         this.buildForm();
+                    }
+                    else {
+                        // !isToday -> lo sentimos, tu examen ya no se encuentra disponible (?)
                     }
                 } else {
                     this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
@@ -134,5 +136,9 @@ export class ExamComponent implements OnInit {
 
     getSelectedAnswer(answers: Answer[]): string {
         return answers.find(a => a.selected)?.answer ?? '';
+    }
+    
+    goBack() {
+        this.router.navigate(['/data-analysis/exams']).then(() => {});
     }
 }

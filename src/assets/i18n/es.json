@@ -645,7 +645,10 @@
           "EXAM": {
               "TITLE": "Examen",
               "QUESTION": "Pregunta",
-              "BUTTON_SUBMIT_EXAM": "Enviar examen"
+              "BUTTON_SUBMIT_EXAM": "Enviar examen",
+              "BUTTON_CANCEL": "Cancelar",
+              "BUTTON_GO_BACK": "Volver a Mis exámenes",
+              "CONFIRMATION_TEXT": "¿Estás seguro que querés enviar el examen?"
 
           },
           "EXAM_LIST": {

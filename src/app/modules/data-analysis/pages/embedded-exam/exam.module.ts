@@ -7,6 +7,7 @@ import {ExamRoutingModule} from "./exam-routing.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatIconModule} from "@angular/material/icon";
 @NgModule({
     declarations: [
         ExamComponent,
@@ -18,7 +19,8 @@ import {TranslateModule} from "@ngx-translate/core";
         ExamRoutingModule,
         MatCardModule,
         MatRadioModule,
-        TranslateModule
+        TranslateModule,
+        MatIconModule
     ]
 })
 export class ExamModule {}

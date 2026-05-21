@@ -589,7 +589,10 @@
           "EXAM": {
               "TITLE": "Exam",
               "QUESTION": "Question",
-              "BUTTON_SUBMIT_EXAM": "Send exam"
+              "BUTTON_SUBMIT_EXAM": "Send exam",
+              "BUTTON_CANCEL": "Cancel",
+              "BUTTON_GO_BACK": "Go back to My exams",
+              "CONFIRMATION_TEXT": "Are you sure you want to submit the exam?"
           },
           "EXAM_LIST": {
               "TITLE": "My Python Exams",

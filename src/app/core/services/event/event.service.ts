@@ -366,7 +366,7 @@ export class EventService {
         return toReturn;
     }
 
-    public getUserExam(user: IEEEuser): Observable<UserExam | null> {       // puede ser un promise ?
+    public getUserExam(user: IEEEuser): Observable<UserExam | null> {
         return new Observable(obs => {
             const examRef = doc(
                 this.afs,
