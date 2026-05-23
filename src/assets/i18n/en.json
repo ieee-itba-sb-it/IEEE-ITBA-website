@@ -602,7 +602,9 @@
               "BADGE_FAILED": "Failed",
               "BUTTON_START": "Start exam",
               "BADGE_PENDING": "Pending",
-              "BUTTON_REVIEW": "Review exam"
+              "BUTTON_REVIEW": "Review exam",
+              "TITLE_PASSED_EXAM": "Congratulations, you passed the exam!",
+              "DESCRIPTION_PASSED_EXAM": "You completed the Data Analysis course."
           }
       }
   },

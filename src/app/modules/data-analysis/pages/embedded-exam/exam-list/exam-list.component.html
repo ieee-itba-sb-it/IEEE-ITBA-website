@@ -1,46 +1,72 @@
 <div class="main-container event">
-    <h1>{{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate}}</h1>
-
-    <div title="Descripción">
-        <p class="description-texto">
-            {{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate}}
-        </p>
+    <div class="loading-container" *ngIf="loading">
+        <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
     </div>
 
-    <div title="Exámenes disponibles">
-        <div class="row gy-4 gx-4">
-            <div *ngFor="let exam of exams" class="col-lg-4 col-md-6 col-12">
-                <mat-card class="exam-card">
-                    <div class="card-header" >
-                        <h3 class="exam-title">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.EXAM_TITLE'| translate }} {{exam.title}}</h3>
-                        <div *ngIf="exam.id <= currentDay">
-                            <div class="badge success" *ngIf="exam.submitted && exam.passed">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_SUCCESS' | translate }}</div>
-                            <div class="badge failed" *ngIf=" exam.expired || (exam.submitted && !exam.passed)">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_FAILED' | translate }}</div>
-                            <div class="badge pending" *ngIf=" !exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}</div>
-                        </div>
-                    </div>
+    <div *ngIf="!loading && userExam?.passed" class="passed-exam">
+        <div class="passed-exam-img">
+            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Passed Exam">
+        </div>
+        <div class="passed-exam-text">
+            <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_PASSED_EXAM' | translate }}</h1>
+            <p>{{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_PASSED_EXAM'| translate}}</p>
+            <button class="ieee-button">Ir a Home</button>
+        </div>
+    </div>
 
-                    <mat-card-actions>
-                        <button *ngIf="!exam.submitted"
-                                class="ieeecard-button"
-                                [disabled]="!exam.available"
-                                (click)="startExam(exam.id)"
-                        >{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_START' | translate }}
-                        </button>
-                        <button *ngIf="exam.submitted"
-                                class="ieeecard-button"
-                                [disabled]="isReviewAvailable()"
-                                [routerLink]="['day', exam.id]">
-                            {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_REVIEW' | translate }}
-                        </button>
-                    </mat-card-actions>
+    <div *ngIf="!loading && !userExam?.passed">
+        <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
 
-                </mat-card>
-            </div>
+        <div title="Descripción">
+            <p class="description-texto">
+                {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate }}
+            </p>
         </div>
 
+        <div title="Exámenes disponibles">
+            <div class="row gy-4 gx-4">
+                <div *ngFor="let exam of exams" class="col-lg-4 col-md-6 col-12">
+                    <mat-card class="exam-card">
+                        <div class="card-header">
+                            <h3 class="exam-title">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.EXAM_TITLE'| translate }} {{ exam.title }}</h3>
+                            <div *ngIf="exam.id <= currentDay">
+                                <div class="badge failed"
+                                     *ngIf=" exam.expired || (exam.submitted && !exam.passed)">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_FAILED' | translate }}
+                                </div>
+                                <div class="badge pending"
+                                     *ngIf=" !exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}
+                                </div>
+
+                                <!-- badge de exito
+                                <div class="badge success" *ngIf="exam.submitted && exam.passed">
+                                    {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_SUCCESS' | translate }}
+                                </div>
+                                badge de exito-->
+
+                            </div>
+                        </div>
+
+                        <mat-card-actions>
+                            <button *ngIf="!exam.submitted"
+                                    class="ieee-button ieee-card-button"
+                                    [disabled]="!exam.available"
+                                    (click)="startExam(exam.id)"
+                            >{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_START' | translate }}
+                            </button>
+                            <button *ngIf="exam.submitted"
+                                    class="ieee-button ieee-card-button"
+                                    [disabled]="isReviewAvailable()"
+                                    [routerLink]="['day', exam.id]">
+                                {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_REVIEW' | translate }}
+                            </button>
+                        </mat-card-actions>
+
+                    </mat-card>
+                </div>
+            </div>
+
+
+        </div>
 
     </div>
-
-
 </div>

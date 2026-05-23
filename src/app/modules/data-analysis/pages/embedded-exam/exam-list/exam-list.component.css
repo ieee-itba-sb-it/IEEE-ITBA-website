@@ -64,30 +64,55 @@ h2{
     color: gray;
 }
 
-.ieeecard-button {
-    width: 100%;
+.ieee-button{
     font-size: 1.2em;
     padding: 0.4em 0.7em;
     font-weight: 600;
-    margin-top: 0.25rem;
-
     border: solid var(--bs-ieee-bright-blue);
     color: var(--bs-ieee-bright-blue) !important;
     border-radius: 5px;
     background-color: transparent;
     border-width: 3px;
     transition: all 175ms ease-in-out;
+    width: 30%;
 }
-.ieeecard-button:hover:not(:disabled) {
+
+
+.ieee-card-button {
+    width: 100%;
+    margin-top: 0.25rem;
+}
+.ieee-button:hover:not(:disabled) {
     box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
     color: white !important;
     background-color: var(--bs-ieee-bright-blue);
     border-color: white;
 }
 
-.ieeecard-button:disabled {
+.ieee-button:disabled {
     background-color: lightgrey;
     border: 3px solid gray;
     color: gray !important;
 }
 
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.passed-exam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.passed-exam-text{
+    margin-left: 2rem;
+}
+
+.passed-exam-img img {
+    width: auto;
+    height: 600px;
+}
