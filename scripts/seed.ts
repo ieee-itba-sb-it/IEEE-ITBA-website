@@ -58,7 +58,7 @@ export async function seedQuestions() {
 
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .set({ startDate: new Date('2026-05-15') });
+        .set({ startDate: new Date('2026-05-20') });
 
     for (const q of questions) {
         await db.collection('events')

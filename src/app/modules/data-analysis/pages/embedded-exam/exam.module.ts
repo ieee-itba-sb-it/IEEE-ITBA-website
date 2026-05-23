@@ -8,6 +8,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatIconModule} from "@angular/material/icon";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 @NgModule({
     declarations: [
         ExamComponent,
@@ -20,7 +21,8 @@ import {MatIconModule} from "@angular/material/icon";
         MatCardModule,
         MatRadioModule,
         TranslateModule,
-        MatIconModule
+        MatIconModule,
+        MatProgressSpinnerModule
     ]
 })
 export class ExamModule {}

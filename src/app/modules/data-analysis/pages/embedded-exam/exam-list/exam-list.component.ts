@@ -44,6 +44,7 @@ export class ExamListComponent implements OnInit {
 
     userExam: UserExam | null = null
     currentDay: number = 1
+    loading = true
 
     ngOnInit() {
         this.authService.getCurrentUser().pipe(
@@ -70,6 +71,7 @@ export class ExamListComponent implements OnInit {
                             expired: !exam?.submitted && day < currentDay
                         };
                     });
+                    this.loading = false;
                 });
             });
         });
