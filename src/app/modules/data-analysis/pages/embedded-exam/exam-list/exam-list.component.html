@@ -28,13 +28,14 @@
                 <div *ngFor="let exam of exams" class="col-lg-4 col-md-6 col-12">
                     <mat-card class="exam-card">
                         <div class="card-header">
-                            <h3 class="exam-title">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.EXAM_TITLE'| translate }} {{ exam.title }}</h3>
+                            <h3 class="exam-title">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.EXAM_TITLE'| translate }} {{ exam.title }}
+                            </h3>
                             <div *ngIf="exam.id <= currentDay">
                                 <div class="badge failed"
-                                     *ngIf=" exam.expired || (exam.submitted && !exam.passed)">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_FAILED' | translate }}
+                                     *ngIf="exam.expired || (exam.submitted && !exam.passed)">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_FAILED' | translate }}
                                 </div>
                                 <div class="badge pending"
-                                     *ngIf=" !exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}
+                                     *ngIf="!exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}
                                 </div>
 
                                 <!-- badge de exito
