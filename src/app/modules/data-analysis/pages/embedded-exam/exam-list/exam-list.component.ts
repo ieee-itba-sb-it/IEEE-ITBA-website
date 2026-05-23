@@ -68,7 +68,7 @@ export class ExamListComponent implements OnInit {
                             available: day == currentDay && (!passed || !exam?.submitted),
                             passed: passed && day === currentDay,
                             submitted: day === currentDay && (exam?.submitted ?? false),
-                            expired: !exam?.submitted && day < currentDay
+                            expired: day < currentDay
                         };
                     });
                     this.loading = false;
