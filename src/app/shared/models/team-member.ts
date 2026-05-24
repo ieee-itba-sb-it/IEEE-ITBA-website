@@ -27,8 +27,8 @@ export class IEEEMember implements TeamMember {
         this.commissionid = commissionid;
         this.positionid = positionid;
         this.gender = gender;
-        this.photo = photo;
-        this.linkedin = linkedin;
+        this.photo = photo || null;
+        this.linkedin = linkedin || null;
     }
 
     static fromIeeeUserResponse({name, photo, linkedin, mail, commissionid, positionid}: IEEEUserResponse): IEEEMember {

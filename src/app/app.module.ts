@@ -112,7 +112,8 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         IconsModule,
         MatDialogModule,
         ReactiveFormsModule,
-        IconsModule
+        IconsModule,
+        TranslateModule
     ],
     providers: [
         UserTrackingService,

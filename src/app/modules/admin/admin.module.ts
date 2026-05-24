@@ -81,6 +81,7 @@ export const routing = RouterModule.forChild(routes);
         MatTableModule,
         MatCheckboxModule,
         MatCardModule,
+        TranslateModule,
     ]
 })
 export class AdminModule { }
