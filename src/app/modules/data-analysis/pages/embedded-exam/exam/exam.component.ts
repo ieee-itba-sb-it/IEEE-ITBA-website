@@ -47,8 +47,12 @@ export class ExamComponent implements OnInit {
                 }
                 this.dataAnalysisUser = student;
                 const exam = student.currentExam;
+
                 if (exam) {
-                    const started = (exam.started as any).toDate();
+                    const started = exam.started instanceof Date
+                        ? exam.started
+                        : (exam.started as any).toDate();
+
                     const isToday = exam && this.isToday(started);
                     if (isToday && exam.submitted) {
                         this.submittedExam = exam;

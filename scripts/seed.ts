@@ -58,7 +58,7 @@ export async function seedQuestions() {
 
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .set({ startDate: new Date('2026-05-20') });
+        .set({startDate: new Date('2026-05-20')});
 
     for (const q of questions) {
         await db.collection('events')
@@ -67,5 +67,49 @@ export async function seedQuestions() {
             .doc(q.id.toString()).set(q)
         console.log(`Pregunta ${q.id} cargada`);
     }
+    await db.collection('events')
+        .doc('DATA_ANALYSIS')
+        .collection('participants')
+        .doc('a@a.com')
+        .set({
+            email: 'a@a.com',
+            enrolledAt: new Date(),
+            passedCourse: false,
+            currentExam: {
+                passed: false,
+                submitted: false,
+                started: new Date(),
+                questions: [
+                    {
+                        id: 1,
+                        question: '¿Cuál de las siguientes opciones te permite conocer las columnas de un DataFrame?',
+                        answers: [
+                            {
+                                answer: 'df.shape',
+                                isCorrect: false,
+                                selected: false
+                            },
+                            {
+                                answer: 'df.head',
+                                isCorrect: false,
+                                selected: false
+                            },
+                            {
+                                answer: 'df.keys',
+                                isCorrect: true,
+                                selected: false
+                            },
+                            {
+                                answer: 'df.values',
+                                isCorrect: false,
+                                selected: false
+                            }
+                        ]
+                    }
+                ]
+            }
+        });
+
+    console.log('Participante de prueba cargado');
     console.log('Preguntas cargadas :p');
 }
