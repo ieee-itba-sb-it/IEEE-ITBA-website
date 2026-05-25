@@ -28,7 +28,7 @@ const questions = [
             {answer: "p3.a1", isCorrect: true, selected: false},
             {answer: "p3.a2", isCorrect: false, selected: false},
             {answer: "p3.a3", isCorrect: false, selected: false},
-            {answer: "p3.a3", isCorrect: false, selected: false}
+            {answer: "p3.a4", isCorrect: false, selected: false}
         ]
     },
     {
@@ -64,7 +64,7 @@ export async function seedQuestions() {
         await db.collection('events')
             .doc('DATA_ANALYSIS')
             .collection('questions')
-            .add(q);
+            .doc(q.id.toString()).set(q)
         console.log(`Pregunta ${q.id} cargada`);
     }
     console.log('Preguntas cargadas :p');
