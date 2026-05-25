@@ -11,9 +11,15 @@ export type Question = {
 }
 
 export type UserExam = {
-    user: string;
     passed: boolean;
     submitted: boolean;
     started: Date;
     questions: Question[];
+}
+
+export type DataAnalysisUser = {
+    user: string;
+    enrolledAt: Date;
+    currentExam?: UserExam;
+    passedCourse: boolean;
 }

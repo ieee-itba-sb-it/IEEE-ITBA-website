@@ -28,7 +28,7 @@ import {
     getArgentineTime,
     parseArgentineDate
 } from "../../../shared/argentina-time";
-import {Question, UserExam} from "../../../shared/models/event/data_analysis/exams";
+import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 
@@ -316,6 +316,61 @@ export class EventService {
     private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
     private static readonly questionsCollectionName = "questions";
     private static readonly userExamsCollectionName = "user_exams";
+    private static readonly participantsCollectionName = "participants";
+
+    public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
+        return new Observable(obs => {
+
+            const participantRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.participantsCollectionName,
+                user.email
+            );
+
+            const participant = {
+                email: user.email,
+                enrolledAt: new Date(),
+                passedCourse: false
+            };
+
+            setDoc(participantRef, participant)
+                .then(() => obs.next())
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public isUserEnrolledInDataAnalysis(user: IEEEuser): Observable<boolean> {
+        return this.getDataAnalysisUser(user).pipe(
+            map(student => student !== null)
+        );
+    }
+
+    public getDataAnalysisUser(user: IEEEuser
+    ): Observable<DataAnalysisUser | null> {
+        return new Observable(obs => {
+
+            const participantRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.participantsCollectionName,
+                user.email
+            );
+
+            getDoc(participantRef)
+                .then(snap => {
+                    obs.next(
+                        snap.exists() ? snap.data() as DataAnalysisUser : null
+                    );
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
 
     public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
         return new Observable(obs => {
@@ -331,22 +386,21 @@ export class EventService {
                     const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
 
                     const exam: UserExam = {
-                        user: user.email,
                         passed: false,
                         submitted: false,
                         started: new Date(),
                         questions: this.selectRandom(questions, questionCount)
                     };
 
-                    const examRef = doc(
+                    const participantRef = doc(
                         this.afs,
                         EventService.collectionName,
                         EventService.dataAnalysisDocumentName,
-                        EventService.userExamsCollectionName,
+                        EventService.participantsCollectionName,
                         user.email
                     );
 
-                    await setDoc(examRef, exam);
+                    await updateDoc(participantRef, { currentExam: exam });
                     return exam;
                 })
                 .then(exam => obs.next(exam))
@@ -367,35 +421,22 @@ export class EventService {
     }
 
     public getUserExam(user: IEEEuser): Observable<UserExam | null> {
-        return new Observable(obs => {
-            const examRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.userExamsCollectionName,
-                user.email
-            );
-
-            getDoc(examRef)
-                .then(snap => {
-                    obs.next(snap.exists() ? snap.data() as UserExam : null);
-                })
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+        return this.getDataAnalysisUser(user).pipe(
+            map(student => student?.currentExam ?? null)
+        );
     }
 
-    public submitExam(exam: UserExam): Observable<void> {
+    public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
         return new Observable(obs => {
-            const examRef = doc(
+            const participantRef = doc(
                 this.afs,
                 EventService.collectionName,
                 EventService.dataAnalysisDocumentName,
-                EventService.userExamsCollectionName,
-                exam.user
+                EventService.participantsCollectionName,
+                user.user
             );
 
-            setDoc(examRef, exam)
+            updateDoc(participantRef, { currentExam : exam, passedCourse : exam.passed })
                 .then(() => obs.next())
                 .catch(err => obs.error(err))
                 .finally(() => obs.complete());
