@@ -315,7 +315,6 @@ export class EventService {
 
     private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
     private static readonly questionsCollectionName = "questions";
-    private static readonly userExamsCollectionName = "user_exams";
     private static readonly participantsCollectionName = "participants";
 
     public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
@@ -340,12 +339,6 @@ export class EventService {
                 .catch(err => obs.error(err))
                 .finally(() => obs.complete());
         });
-    }
-
-    public isUserEnrolledInDataAnalysis(user: IEEEuser): Observable<boolean> {
-        return this.getDataAnalysisUser(user).pipe(
-            map(student => student !== null)
-        );
     }
 
     public getDataAnalysisUser(user: IEEEuser

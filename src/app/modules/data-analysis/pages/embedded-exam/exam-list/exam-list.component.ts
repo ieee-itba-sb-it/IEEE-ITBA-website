@@ -1,10 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {UserExam} from "src/app/shared/models/event/data_analysis/exams";
-import {filter, take} from "rxjs";
+import {DataAnalysisUser, UserExam} from "src/app/shared/models/event/data_analysis/exams";
+import {take} from "rxjs";
 import {Router, ActivatedRoute} from "@angular/router";
 import {EventService} from 'src/app/core/services/event/event.service';
 import {AuthService} from 'src/app/core/services/authorization/auth.service';
-import {IEEEuser} from "../../../../../shared/models/ieee-user/ieee-user";
 
 interface Exam {
     id: number;
@@ -23,6 +22,10 @@ interface Exam {
 
 export class ExamListComponent implements OnInit {
     exams: Exam[];
+    userExam: UserExam | null = null
+    currentDay: number = 1
+    loading = true
+    dataAnalysisUser: DataAnalysisUser | null = null;
 
     constructor(
         private eventService: EventService,
@@ -33,47 +36,55 @@ export class ExamListComponent implements OnInit {
     }
 
     startExam(examId: number) {
-        this.authService.getCurrentUser().pipe(
-            filter(user => user !== null),
-            take(1)
-        ).subscribe(user => {
-            this.router.navigate(['day',examId], {relativeTo: this.route}).then(() => {
-            });
+        this.router.navigate(['day', examId], {relativeTo: this.route}).then(() => {
         });
     }
 
-    userExam: UserExam | null = null
-    currentDay: number = 1
-    loading = true
-
     ngOnInit() {
-        this.authService.getCurrentUser().pipe(
-            filter((user): user is IEEEuser => user !== null),
-            take(1)
-        ).subscribe(user => {
-            this.eventService.getDataAnalysisStartDate().subscribe(startDate => {
-                if (!startDate) return;
-
-                const currentDay = this.eventService.calculateExamDay(startDate);
-                this.currentDay = currentDay;
-
-                this.eventService.getUserExam(user).subscribe(exam => {
-                    this.userExam = exam;
-                    const passed = exam?.passed ?? false;
-                    this.exams = Array.from({length: 7}, (_, i) => {
-                        const day = i + 1;
-                        return {
-                            id: day,
-                            title: `${day}`,
-                            available: day == currentDay && (!passed || !exam?.submitted),
-                            passed: passed && day === currentDay,
-                            submitted: day === currentDay && (exam?.submitted ?? false),
-                            expired: day < currentDay
-                        };
+        this.authService.getCurrentUser().pipe(take(1))
+            .subscribe(user => {
+                if (!user) {
+                    this.router.navigate(['/login']).then(() => {
                     });
-                    this.loading = false;
+                    return;
+                }
+                this.eventService.getDataAnalysisUser(user).subscribe(student => {
+                    if (!student) {
+                        console.log("No student data found for user", user);
+                        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {
+                        });
+                        return;
+                    }
+                    this.dataAnalysisUser = student;
+                    this.eventService.getDataAnalysisStartDate().subscribe(startDate => {
+                        if (!startDate) {
+                            this.loading = false;
+                            return;
+                        }
+                        this.currentDay = this.eventService.calculateExamDay(startDate);
+                        const exam = student.currentExam ?? null;
+                        this.userExam = exam ?? null;
+                        this.buildExamCards(exam);
+                        this.loading = false;
+                    })
                 });
             });
+    }
+
+    buildExamCards(exam: UserExam | undefined) {
+        const passed = exam?.passed ?? false;
+        const submitted = exam?.submitted ?? false;
+
+        this.exams = Array.from({length: 7}, (_, i) => {
+            const day = i + 1;
+            return {
+                id: day,
+                title: `${day}`,
+                available: day === this.currentDay && (!passed || !exam?.submitted),
+                passed: passed && day === this.currentDay,
+                submitted: day === this.currentDay && submitted,
+                expired: day < this.currentDay
+            };
         });
     }
 
