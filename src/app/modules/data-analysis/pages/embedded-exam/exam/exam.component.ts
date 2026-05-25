@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Question, Answer, UserExam} from "src/app/shared/models/event/data_analysis/exams"
+import {Question, Answer, UserExam, DataAnalysisUser} from "src/app/shared/models/event/data_analysis/exams"
 import {AuthService} from "../../../../../core/services/authorization/auth.service";
 import {EventService} from "../../../../../core/services/event/event.service";
 import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
@@ -15,6 +15,7 @@ import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
 export class ExamComponent implements OnInit {
     cantQuestions = 3;
     user: IEEEuser | null = null;
+    dataAnalysisUser: DataAnalysisUser | null = null;
 
     examId: number | null = null;
     reviewMode = false;
@@ -39,7 +40,13 @@ export class ExamComponent implements OnInit {
         this.authService.getCurrentUser().subscribe(user => {
             if (!user) return;
             this.user = user;
-            this.eventService.getUserExam(user).subscribe(exam => {
+            this.eventService.getDataAnalysisUser(user).subscribe(student=> {
+                if (!student) {
+                    this.router.navigate(['/login']).then(() => {});
+                    return;
+                }
+                this.dataAnalysisUser = student;
+                const exam = student.currentExam;
                 if (exam) {
                     const started = (exam.started as any).toDate();
                     const isToday = exam && this.isToday(started);
@@ -93,6 +100,7 @@ export class ExamComponent implements OnInit {
     }
 
     onSubmit() {
+        if(!this.dataAnalysisUser) return
 
         const reviewQuestions: Question[] = this.questions.map((q, i) => {
             const selectedAnswer = this.answersArray.controls[i].value.answer;
@@ -106,14 +114,13 @@ export class ExamComponent implements OnInit {
         });
 
         this.submittedExam = {
-            user: this.user.email ?? '',
             passed: this.correctExam(reviewQuestions),
             submitted: true,
             started: new Date(),
             questions: reviewQuestions
         };
 
-        this.eventService.submitExam(this.submittedExam).subscribe(() => {
+        this.eventService.submitExam(this.dataAnalysisUser, this.submittedExam).subscribe(() => {
             this.reviewMode = true;
         });
         //alert(result ? 'Aprobaste !' : 'Desaprobado :\'p');
@@ -137,7 +144,7 @@ export class ExamComponent implements OnInit {
     getSelectedAnswer(answers: Answer[]): string {
         return answers.find(a => a.selected)?.answer ?? '';
     }
-    
+
     goBack() {
         this.router.navigate(['/data-analysis/exams']).then(() => {});
     }
