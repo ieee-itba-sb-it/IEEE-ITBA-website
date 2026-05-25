@@ -18,7 +18,7 @@ export type UserExam = {
 }
 
 export type DataAnalysisUser = {
-    user: string;
+    email: string;
     enrolledAt: Date;
     currentExam?: UserExam;
     passedCourse: boolean;

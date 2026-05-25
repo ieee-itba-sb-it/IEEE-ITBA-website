@@ -428,12 +428,6 @@ export class EventService {
         return toReturn;
     }
 
-    public getUserExam(user: IEEEuser): Observable<UserExam | null> {
-        return this.getDataAnalysisUser(user).pipe(
-            map(student => student?.currentExam ?? null)
-        );
-    }
-
     public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
         return new Observable(obs => {
             const participantRef = doc(
@@ -441,7 +435,7 @@ export class EventService {
                 EventService.collectionName,
                 EventService.dataAnalysisDocumentName,
                 EventService.participantsCollectionName,
-                user.user
+                user.email
             );
 
             updateDoc(participantRef, { currentExam : exam, passedCourse : exam.passed })
