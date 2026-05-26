@@ -69,7 +69,7 @@ export async function seedQuestions() {
     }
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .collection('participants')
+        .collection('students')
         .doc('a@a.com')
         .set({
             email: 'a@a.com',
@@ -110,6 +110,6 @@ export async function seedQuestions() {
             }
         });
 
-    console.log('Participante de prueba cargado');
+    console.log('Estudiante de prueba cargado');
     console.log('Preguntas cargadas :p');
 }

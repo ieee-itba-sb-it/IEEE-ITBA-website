@@ -315,26 +315,26 @@ export class EventService {
 
     private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
     private static readonly questionsCollectionName = "questions";
-    private static readonly participantsCollectionName = "participants";
+    private static readonly studentsCollectionName = "students";
 
     public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
         return new Observable(obs => {
 
-            const participantRef = doc(
+            const studentRef = doc(
                 this.afs,
                 EventService.collectionName,
                 EventService.dataAnalysisDocumentName,
-                EventService.participantsCollectionName,
+                EventService.studentsCollectionName,
                 user.email
             );
 
-            const participant = {
+            const student = {
                 email: user.email,
                 enrolledAt: new Date(),
                 passedCourse: false
             };
 
-            setDoc(participantRef, participant)
+            setDoc(studentRef, student)
                 .then(() => obs.next())
                 .catch(err => obs.error(err))
                 .finally(() => obs.complete());
@@ -345,15 +345,15 @@ export class EventService {
     ): Observable<DataAnalysisUser | null> {
         return new Observable(obs => {
 
-            const participantRef = doc(
+            const studentRef = doc(
                 this.afs,
                 EventService.collectionName,
                 EventService.dataAnalysisDocumentName,
-                EventService.participantsCollectionName,
+                EventService.studentsCollectionName,
                 user.email
             );
 
-            getDoc(participantRef)
+            getDoc(studentRef)
                 .then(snap => {
                     obs.next(
                         snap.exists() ? snap.data() as DataAnalysisUser : null
@@ -385,15 +385,15 @@ export class EventService {
                         questions: this.selectRandom(questions, questionCount)
                     };
 
-                    const participantRef = doc(
+                    const studentRef = doc(
                         this.afs,
                         EventService.collectionName,
                         EventService.dataAnalysisDocumentName,
-                        EventService.participantsCollectionName,
+                        EventService.studentsCollectionName,
                         user.email
                     );
 
-                    await updateDoc(participantRef, { currentExam: exam });
+                    await updateDoc(studentRef, { currentExam: exam });
                     return exam;
                 })
                 .then(exam => obs.next(exam))
@@ -415,15 +415,15 @@ export class EventService {
 
     public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
         return new Observable(obs => {
-            const participantRef = doc(
+            const studentRef = doc(
                 this.afs,
                 EventService.collectionName,
                 EventService.dataAnalysisDocumentName,
-                EventService.participantsCollectionName,
+                EventService.studentsCollectionName,
                 user.email
             );
 
-            updateDoc(participantRef, { currentExam : exam, passedCourse : exam.passed })
+            updateDoc(studentRef, { currentExam : exam, passedCourse : exam.passed })
                 .then(() => obs.next())
                 .catch(err => obs.error(err))
                 .finally(() => obs.complete());

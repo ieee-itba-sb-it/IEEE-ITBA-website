@@ -50,7 +50,6 @@ export class ExamListComponent implements OnInit {
                 }
                 this.eventService.getDataAnalysisUser(user).subscribe(student => {
                     if (!student) {
-                        console.log("No student data found for user", user);
                         this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {
                         });
                         return;
