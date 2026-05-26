@@ -24,15 +24,21 @@ service cloud.firestore {
       allow write: if hasRole("writer") || hasRole("admin");
     }
 
+    // cada student accede solo a su propia informacion
+    match /events/{eventId}/students/{userEmail} {
+        allow read, write:
+        if isSignedIn() && request.auth.token.email == userEmail;
+    }
+
     match /events/{document=**} {
     	allow read;
       allow write: if hasRole("admin");
     }
 
-    match /events/{eventId}/user_exams/{examId=**} {
+    /*match /events/{eventId}/user_exams/{examId=**} {
         allow read;
         allow write;
-    }
+    }*/
 
     match /collection-metadata/{document=**}   {
       allow read;
