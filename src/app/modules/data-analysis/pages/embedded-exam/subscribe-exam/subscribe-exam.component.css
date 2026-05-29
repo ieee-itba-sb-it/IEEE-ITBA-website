@@ -1,7 +1,3 @@
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-}
 
 .subscribe-container{
     min-height: 100vh;
@@ -11,4 +7,51 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.subscribe-card{
+    min-width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
+.subscribe-form mat-form-field {
+    width: 100%;
+}
+
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+p{
+    font-size: 1rem;
+}
+.ieee-button:hover {
+    background-color: var(--bs-ieee-bright-blue);
+    color: white;
+}
+
+.ieee-button {
+    align-items: center;
+    gap: 0.5rem;
+    display: flex;
+    margin: 2rem auto auto 0;
+    font-size: 1.2rem;
+
+    border: 2px solid var(--bs-ieee-bright-blue);
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--bs-ieee-bright-blue);
+    transition: all 0.2s ease;
 }

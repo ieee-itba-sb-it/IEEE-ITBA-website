@@ -108,7 +108,7 @@
     margin: 1.5rem;
 }
 
-.exam-button:hover {
+.exam-button:hover, confirm-button:hover {
     background-color: var(--bs-ieee-bright-blue);
     color: white;
 }
@@ -116,11 +116,6 @@
 .confirm-button{
     background-color: var(--bs-ieee-bright-blue);
     color: white;
-}
-
-.confirm-button:hover{
-    background-color: var(--bs-ieee-bright-blue-20);
-    color: var(--bs-ieee-bright-blue);
 }
 
 .submit-exam-dialog{
