@@ -8,6 +8,13 @@
     justify-content: center;
 }
 
+.participants-count {
+    text-align: right;
+    padding: 6px 12px 10px;
+    font-size: 0.85em;
+    color: rgb(0, 40, 85);
+}
+
 .dashboard-container h1 {
     text-align: center;
     color: rgb(0, 40, 85);
@@ -124,4 +131,23 @@ thead th:last-child {
         gap: 20px;
     }
 
+}
+
+.search-container {
+    padding: 0 0 12px 0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 14px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;
+    font-size: 0.9em;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 200ms;
+}
+
+.search-input:focus {
+    border-color: rgb(134, 31, 65);
 }

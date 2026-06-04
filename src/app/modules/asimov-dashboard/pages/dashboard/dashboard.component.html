@@ -4,6 +4,19 @@
     <div class="dashboard-content">
         <div class="leaderboard-section">
             <div class="leaderboard-container">
+
+                <div class="search-container">
+                    <input
+                        type="text"
+                        [(ngModel)]="searchQuery"
+                        placeholder="Buscar participante..."
+                        class="search-input"
+                    />
+                </div>
+
+                <div class="participants-count">
+                    Participantes: <strong>{{ leaderboard.length }}</strong>
+                </div>
                 <table class="leaderboard-table">
                     <thead>
                     <tr>
@@ -14,13 +27,13 @@
                     </thead>
                     <tbody>
 <!--                <tr *ngFor="let player of (leaderboard$|async); let i = index"> -->
-                    <tr *ngFor="let player of leaderboard; trackBy: trackByUid; let i = index" #row>
+                    <tr *ngFor="let player of filteredLeaderboard; trackBy: trackByUid; let i = index" #row>
                     <td class="rank-column">
-                            <ng-container [ngSwitch]="i">
+                            <ng-container [ngSwitch]="leaderboard.indexOf(player)">
                                 <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
                                 <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
                                 <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
-                                <span *ngSwitchDefault class="rank-number">{{ i + 1 }}</span>
+                                <span *ngSwitchDefault class="rank-number">{{ leaderboard.indexOf(player) + 1 }}</span>
                             </ng-container>
                         </td>
                         <td class="name-column">{{ player.fullname }}</td>

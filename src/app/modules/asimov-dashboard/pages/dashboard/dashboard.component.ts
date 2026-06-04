@@ -2,6 +2,7 @@ import {Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import {Observable} from "rxjs";
 
+
 export type Score = {
     uID: string
     fullname: string
@@ -19,6 +20,15 @@ export class DashboardComponent implements OnInit {
     leaderboard$: Observable<Score[]>;
     leaderboard: Score[] = [];
     @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
+
+    searchQuery: string = '';
+
+    get filteredLeaderboard(): Score[] {
+        if (!this.searchQuery.trim()) return this.leaderboard;
+        return this.leaderboard.filter(p =>
+            p.fullname?.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+    }
 
     constructor(private asimovService: AsimovService){}
 
