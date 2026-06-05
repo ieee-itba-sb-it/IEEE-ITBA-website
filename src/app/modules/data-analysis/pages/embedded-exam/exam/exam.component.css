@@ -178,3 +178,10 @@
         opacity: 1;
     }
 }
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
