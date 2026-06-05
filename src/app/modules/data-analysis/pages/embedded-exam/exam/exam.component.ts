@@ -19,6 +19,7 @@ export class ExamComponent implements OnInit {
 
     examId: number | null = null;
     reviewMode = false;
+    showResult = false;
 
     submittedExam: UserExam | null = null;
     examForm!: FormGroup;
@@ -126,8 +127,8 @@ export class ExamComponent implements OnInit {
 
         this.eventService.submitExam(this.dataAnalysisUser, this.submittedExam).subscribe(() => {
             this.reviewMode = true;
+            this.showResult = true;
         });
-        //alert(result ? 'Aprobaste !' : 'Desaprobado :\'p');
     }
 
     correctExam(questions: Question[]): boolean {
