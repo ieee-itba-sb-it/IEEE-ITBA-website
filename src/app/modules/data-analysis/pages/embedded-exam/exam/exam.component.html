@@ -1,5 +1,9 @@
 <div class="exam-page">
-    <div class="exam-wrapper">
+    <div class="loading-container" *ngIf="loading">
+        <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+    </div>
+
+    <div *ngIf="!loading" class="exam-wrapper">
         <h1>
             <button class="exam-button back-button" type="button" (click)="goBack()">
                 <mat-icon>arrow_back</mat-icon>

@@ -463,4 +463,20 @@ export class EventService {
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
         return diffDays + 1;
     }
+
+    public evaluateExam(questions: Question[]): boolean {
+        let correctCount = 0;
+
+        questions.forEach(q => {
+            const selected = q.answers.find(a => a.selected)?.answer ?? '';
+            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
+
+            if (this.compare(selected, correct)) { correctCount++; }
+        });
+        return correctCount >= 1;
+    }
+
+    private compare(selected: string, correct: string): boolean {
+        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
+    }
 }

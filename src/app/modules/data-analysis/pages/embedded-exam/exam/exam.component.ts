@@ -13,6 +13,7 @@ import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
     styleUrls: ["./exam.component.css"]
 })
 export class ExamComponent implements OnInit {
+    loading: boolean = false;
     cantQuestions = 3;
     user: IEEEuser | null = null;
     dataAnalysisUser: DataAnalysisUser | null = null;
@@ -37,13 +38,19 @@ export class ExamComponent implements OnInit {
     ngOnInit(): void {
         this.examId = Number(this.route.snapshot.paramMap.get('id'));
         this.initForm();
+        this.loading = true;
 
         this.authService.getCurrentUser().subscribe(user => {
-            if (!user) return;
+            if (!user){
+                this.router.navigate(['/login']).then(() => {});
+                this.loading = false;
+                return;
+            }
             this.user = user;
             this.eventService.getDataAnalysisUser(user).subscribe(student=> {
                 if (!student) {
-                    this.router.navigate(['/login']).then(() => {});
+                    this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
+                    this.loading = false;
                     return;
                 }
                 this.dataAnalysisUser = student;
@@ -55,21 +62,27 @@ export class ExamComponent implements OnInit {
                         : (exam.started as any).toDate();
 
                     const isToday = exam && this.isToday(started);
-                    if (isToday && exam.submitted) {
-                        this.submittedExam = exam;
-                        this.reviewMode = true;
-                    } else if (isToday && !exam.submitted) {
-                        this.questions = exam.questions;
-                        this.buildForm();
-                    }
-                    else {
+                    if (isToday) {
+                        if(exam.submitted) {
+                            this.submittedExam = exam;
+                            this.reviewMode = true;
+                        }
+                        else{
+                            this.questions = exam.questions;
+                            this.buildForm();
+                        }
+                    } else {
                         // !isToday -> lo sentimos, tu examen ya no se encuentra disponible (?)
                     }
+                    this.loading = false;
                 } else {
+                    this.loading = true;
                     this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
                         this.questions = newExam.questions;
                         this.buildForm();
+                        this.loading = false;
                     });
+
                 }
             });
         });
@@ -107,7 +120,7 @@ export class ExamComponent implements OnInit {
     onSubmit() {
         if(!this.dataAnalysisUser) return
 
-        const reviewQuestions: Question[] = this.questions.map((q, i) => {
+        const submittedQuestions: Question[] = this.questions.map((q, i) => {
             const selectedAnswer = this.answersArray.controls[i].value.answer;
             return {
                 ...q,
@@ -118,32 +131,18 @@ export class ExamComponent implements OnInit {
             };
         });
 
+        const passed = this.eventService.evaluateExam(submittedQuestions);
         this.submittedExam = {
-            passed: this.correctExam(reviewQuestions),
+            passed,
             submitted: true,
             started: new Date(),
-            questions: reviewQuestions
+            questions: submittedQuestions
         };
 
         this.eventService.submitExam(this.dataAnalysisUser, this.submittedExam).subscribe(() => {
             this.reviewMode = true;
             this.showResult = true;
         });
-    }
-
-    correctExam(questions: Question[]): boolean {
-        let correctCount = 0;
-        questions.forEach(q => {
-            const selected = q.answers.find(a => a.selected)?.answer ?? '';
-            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
-            if (this.compare(selected, correct)) correctCount++;
-        });
-        return correctCount >= 1;
-
-    }
-
-    compare(selected: string, correct: string): boolean {
-        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
     }
 
     getSelectedAnswer(answers: Answer[]): string {
