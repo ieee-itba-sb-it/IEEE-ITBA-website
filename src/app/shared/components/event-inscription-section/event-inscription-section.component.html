@@ -1,8 +1,11 @@
-<ng-container *ngIf="showInscriptionButton()">
+<ng-container *ngIf="showInscriptionButton() || showSpectatorInscriptionButton()">
     <app-event-section title="{{ 'HOME.EVENTS.ENROLL.OPEN' | translate }}" [asimov]="isAsimov">
-        <div class="inscription-button-container">
-            <button class="btn inscription-button" [style.--color]="(getAppColors() | async).background" (click)="onInscriptionClick()">
-                <span>{{ 'HOME.EVENTS.ENROLL.CLICK' | translate }}</span>
+        <div class="inscription-button-container" [class.inscription-button-container-dual]="showInscriptionButton() && showSpectatorInscriptionButton()">
+            <button *ngIf="showInscriptionButton()" class="btn inscription-button w-25" [style.--color]="(getAppColors() | async).background" (click)="onInscriptionClick()">
+                <span>{{ hasSpectatorInscription() ? ('HOME.EVENTS.ENROLL.CLICK_COMPETE' | translate) : ('HOME.EVENTS.ENROLL.CLICK' | translate) }}</span>
+            </button>
+            <button *ngIf="showSpectatorInscriptionButton()" class="btn inscription-button spectator-inscription-button w-25" [style.--color]="(getAppColors() | async).background" (click)="onSpectatorInscriptionClick()">
+                <span>{{ 'HOME.EVENTS.ENROLL.CLICK_SPECTATE' | translate }}</span>
             </button>
         </div>
     </app-event-section>

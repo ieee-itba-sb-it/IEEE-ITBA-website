@@ -11,15 +11,22 @@ import {AppConfigService} from "../../../core/services/configuration/app-config.
 export class EventDateChipsComponent {
 
     @Input() dates?: Event['dates'];
+    @Input() spectatorInscriptionEnabled: boolean = true;
 
     iconClassByEventDate: Record<EventDate, string> = {
         [EventDate.EVENT]:  'fa-bullhorn',
         [EventDate.INSCRIPTION]: 'fa-file-pen',
+        [EventDate.SPECTATOR_INSCRIPTION]: 'fa-file-pen',
     }
 
     constructor(
-        private appConfigService: AppConfigService
+        private appConfigService: AppConfigService,
+        private translate: TranslateService
     ) { }
+
+    getTooltip(eventDate: EventDate): string {
+        return this.translate.instant(`HOME.EVENTS.DATE_HOVER.${eventDate}`);
+    }
 
     get eventDates() {
         return Object.keys(EventDate).filter((eventDate) => this.isShown(eventDate as EventDate)) as EventDate[];
@@ -32,6 +39,9 @@ export class EventDateChipsComponent {
         };
     }
     isShown(eventDate: EventDate): boolean {
+        if (eventDate === EventDate.SPECTATOR_INSCRIPTION && !this.spectatorInscriptionEnabled) {
+            return false;
+        }
         const date = this.dates[eventDate];
         return date.status !== EventStatus.UNSCHEDULED;
     }

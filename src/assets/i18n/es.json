@@ -247,9 +247,17 @@
       "MORE": "Ver más eventos",
       "EVENT": "Evento",
       "INSCRIPTION": "Inscripción",
+      "SPECTATOR_INSCRIPTION": "Inscripción de espectadores",
+      "DATE_HOVER": {
+        "EVENT": "Fecha del evento en sí",
+        "INSCRIPTION": "Inscripción como participante",
+        "SPECTATOR_INSCRIPTION": "Inscripción como espectador"
+      },
       "ENROLL": {
         "OPEN": "¡Inscripciones abiertas!",
-        "CLICK": "¡Anotate ahora!"
+        "CLICK": "¡Anotate ahora!",
+        "CLICK_COMPETE": "¡Anotate para competir!",
+        "CLICK_SPECTATE": "¡Anotate como espectador!"
       },
       "RANKING": {
         "CLICK": "¡Ver tabla de posiciones!"
@@ -263,6 +271,7 @@
          "FIRST": "Primera fecha",
          "EVENT": "Fecha del evento",
          "INSCRIPTION": "Fecha de inscripción",
+         "SPECTATOR_INSCRIPTION": "Fecha de inscripción de espectadores",
          "FINISH": "Fecha de cierre"
       },
       "IS_PERIOD": {
@@ -304,6 +313,9 @@
          "CANCEL": "Cancelar",
          "UPDATE": "Actualizar",
          "LINK": "Link de inscripción",
+         "SPECTATOR_TOGGLE": "Inscripción de espectadores",
+         "SPECTATOR_TOGGLE_LABEL": "Habilitar inscripción de espectadores",
+         "SPECTATOR_LINK": "Link de inscripción de espectadores",
          "DATES": "Fechas del evento",
          "LOCATION": "Ubicacion del evento",
          "ERROR": {
@@ -886,6 +898,11 @@
         "NAME": "Fútbol",
         "IMAGE_ALT_TEXT": "Ícono de la categoria de Fútbol",
         "DESC": "Dos equipos de robots juegan un partido de fútbol, ganando el que logre marcar más goles en un tiempo determinado."
+      },
+      "GENERAL": {
+          "NAME": "General",
+          "IMAGE_ALT_TEXT": "Ícono de categorías de robótica",
+          "DESC": "Explora las distintas categorías de la competencia de robótica, donde los equipos diseñan, construyen y programan robots para superar diversos desafíos que ponen a prueba la estrategia, la precisión, la velocidad y la innovación."
       }
     },
     "DESC": {

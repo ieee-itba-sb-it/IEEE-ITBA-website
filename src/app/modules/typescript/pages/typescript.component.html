@@ -2,10 +2,10 @@
   <!-- BANNER -->
   <app-event-banner url="events/typescript-course/big-banner.jpg"
     alt="{{ 'TYPESCRIPT.TITLE' | translate}}"></app-event-banner>
-  <app-event-title [dates]="event?.dates">{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
+  <app-event-title [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled">{{ 'TYPESCRIPT.TITLE' | translate}}</app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
 
   <!-- DESCRIPTION -->
   <app-event-section title="{{ 'TYPESCRIPT.DESCRIPTION.TITLE' | translate}}">
@@ -77,7 +77,7 @@
     <p> {{ 'TYPESCRIPT.FORMAT.4' | translate}}</p>
   </app-event-section>
   <!-- DATES -->
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" />
   <!-- FAQ -->
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

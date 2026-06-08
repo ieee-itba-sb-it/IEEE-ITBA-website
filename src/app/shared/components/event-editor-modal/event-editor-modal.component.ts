@@ -183,6 +183,17 @@ export class EventEditorModalComponent implements OnInit {
         return this.getFormInscriptionLinkErrors().length > 0;
     }
 
+    getFormSpectatorInscriptionLinkErrors(): string[] {
+        return this.getFormErrors(
+            this.i18nInscriptionLinkErrorByFormErrorName,
+            errorName => this.form.getSpectatorInscriptionLinkError(errorName),
+        );
+    }
+
+    get hasFormSpectatorInscriptionLinkErrors(): boolean {
+        return this.getFormSpectatorInscriptionLinkErrors().length > 0;
+    }
+
     hasFormChanged(): boolean {
         return this.form.hasChanged()
     }
@@ -197,6 +208,22 @@ export class EventEditorModalComponent implements OnInit {
 
     isInscriptionLinkEmpty(): boolean {
         return this.form.isInscriptionLinkEmpty();
+    }
+
+    isSpectatorInscriptionEnabled(): boolean {
+        return this.form.isSpectatorInscriptionEnabled();
+    }
+
+    clearSpectatorInscriptionLink() {
+        this.form.clearSpectatorInscriptionLink();
+    }
+
+    isSpectatorInscriptionLinkEmpty(): boolean {
+        return this.form.isSpectatorInscriptionLinkEmpty();
+    }
+
+    isSpectatorTabVisible(eventDate: EventDate): boolean {
+        return eventDate !== EventDate.SPECTATOR_INSCRIPTION || this.isSpectatorInscriptionEnabled();
     }
 
     async updateEvent() {

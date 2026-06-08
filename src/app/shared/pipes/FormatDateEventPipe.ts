@@ -28,7 +28,7 @@ export class FormatDateEventPipe implements PipeTransform {
         case EventStatus.CONFIRMED:
             const hasEnded = this.eventService.hasEventDateEnded(date);
             if (hasEnded) {
-                return this.translate.instant(eventDate === EventDate.INSCRIPTION ?
+                return this.translate.instant((eventDate === EventDate.INSCRIPTION || eventDate === EventDate.SPECTATOR_INSCRIPTION) ?
                     'HOME.EVENTS.STATUS.CONFIRMED.FINISHED_INSCRIPTION' :
                     'HOME.EVENTS.STATUS.CONFIRMED.FINISHED_EVENT');
             }
@@ -46,7 +46,44 @@ export class FormatDateEventPipe implements PipeTransform {
     }
 
     private formatConfirmedDate(date: Date): string {
-        return date.toLocaleDateString(this.locale(), {timeZone: '-03:00', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'});
+        const locale = this.locale() || 'es';
+        const parts = new Intl.DateTimeFormat(locale, {
+            timeZone: '-03:00',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        }).formatToParts(date);
+
+        const partMap: Record<string, string> = {};
+        for (const part of parts) {
+            partMap[part.type] = part.value;
+        }
+
+        const day = partMap['day'] || '';
+        const month = this.capitalizeFirstLetter(partMap['month'] || '');
+        const year = partMap['year'] || '';
+        let hour = partMap['hour'] || '00';
+        if (hour.length === 1) {
+            hour = '0' + hour;
+        }
+        const minute = partMap['minute'] || '00';
+
+        const hour24Parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: '-03:00',
+            hour: 'numeric',
+            hour12: false
+        }).formatToParts(date);
+        const hour24Val = parseInt(hour24Parts.find(p => p.type === 'hour')?.value || '0', 10);
+        const ampm = hour24Val >= 12 ? 'P.M' : 'A.M';
+
+        if (locale.startsWith('es')) {
+            return `${day} de ${month} de ${year}, ${hour}:${minute} ${ampm}`;
+        } else {
+            return `${month} ${day}, ${year}, ${hour}:${minute} ${ampm}`;
+        }
     }
 
     private locale(): string {

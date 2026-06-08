@@ -5,12 +5,12 @@
   >
   </app-event-banner>
 
-  <app-event-title [dates]="event?.dates">
+  <app-event-title [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled">
     {{ 'HOME.BITCUP.TITLE' | translate }}
   </app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
 
   <div class="row">
     <div class="col col-xl-6 col-12 max-w-1/2 align-self-end">
@@ -54,7 +54,7 @@
   </div>
 
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">

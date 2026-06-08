@@ -6,22 +6,57 @@
     font-weight: 600;
 }
 
+.chip-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.chip-tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background-color: var(--color);
+    color: var(--bs-light);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    box-shadow: 0 0 4px var(--color);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.chip-wrapper:hover .chip-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
 @media (max-width: 1199px) {
     .chip {
         font-size: 0.9rem;
     }
-
 }
 
 @media (max-width: 991px) {
     .chip {
         font-size: 0.8rem;
     }
+    .chip-tooltip {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 767px) {
     .chip {
         font-size: 0.75rem;
+    }
+    .chip-tooltip {
+        font-size: 0.8rem;
     }
 }
 

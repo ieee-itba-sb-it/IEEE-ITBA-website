@@ -42,30 +42,41 @@ export class EventService {
 
     private mapEventDocDates(eventDoc: EventDoc): Event['dates'] {
         const dates: Event['dates'] = {} as Event['dates'];
-        for (const date in eventDoc.dates) {
-            if (eventDoc.dates[date].status === EventStatus.CONFIRMED) {
-                const isoDate = eventDoc.dates[date].date;
-                const time = eventDoc.dates[date].time;
+        for (const date of Object.values(EventDate)) {
+            const eventDocDate = eventDoc.dates?.[date];
+            if (!eventDocDate || eventDocDate.status === EventStatus.UNSCHEDULED) {
                 dates[date] = {
-                    status: EventStatus.CONFIRMED,
-                    date: parseArgentineDate(isoDate, time),
-                    isPeriod: false
+                    status: EventStatus.UNSCHEDULED
+                };
+            } else if (eventDocDate.status === EventStatus.CONFIRMED) {
+                const isoDate = eventDocDate.date;
+                const time = eventDocDate.time;
+                const dateVal = parseArgentineDate(isoDate, time);
+                if (eventDocDate.lastDate) {
+                    const isoLastDate = eventDocDate.lastDate;
+                    const lastTime = eventDocDate.lastTime;
+                    dates[date] = {
+                        status: EventStatus.CONFIRMED,
+                        date: dateVal,
+                        isPeriod: true,
+                        lastDate: parseArgentineDate(isoLastDate, lastTime)
+                    };
+                } else {
+                    dates[date] = {
+                        status: EventStatus.CONFIRMED,
+                        date: dateVal,
+                        isPeriod: false
+                    };
                 }
-                if (eventDoc.dates[date].lastDate) {
-                    const isoLastDate = eventDoc.dates[date].lastDate;
-                    const lastTime = eventDoc.dates[date].lastTime;
-                    dates[date].lastDate = parseArgentineDate(isoLastDate, lastTime);
-                    dates[date].isPeriod = true;
-                }
-            } else if (eventDoc.dates[date].status === EventStatus.TENTATIVE) {
+            } else if (eventDocDate.status === EventStatus.TENTATIVE) {
                 dates[date] = {
                     status: EventStatus.TENTATIVE,
-                    month: parseInt(eventDoc.dates[date].month, 10)
+                    month: parseInt(eventDocDate.month as any, 10)
                 }
-            } else if (eventDoc.dates[date].status === EventStatus.UPCOMING) {
+            } else if (eventDocDate.status === EventStatus.UPCOMING) {
                 dates[date] = {
                     status: EventStatus.UPCOMING,
-                    year: parseInt(eventDoc.dates[date].year, 10)
+                    year: parseInt(eventDocDate.year as any, 10)
                 }
             } else {
                 dates[date] = {
@@ -82,7 +93,9 @@ export class EventService {
             ...eventDoc,
             id: eventSnapshot.id as IeeeEvent,
             dates: this.mapEventDocDates.bind(this)(eventDoc),
-            inscriptionLink: eventDoc.inscriptionLink || null
+            inscriptionLink: eventDoc.inscriptionLink || null,
+            spectatorInscriptionEnabled: eventDoc.spectatorInscriptionEnabled ?? false,
+            spectatorInscriptionLink: eventDoc.spectatorInscriptionLink || null
         };
     }
 
@@ -304,7 +317,9 @@ export class EventService {
         return {
             ...event,
             dates,
-            inscriptionLink: event.inscriptionLink?.trim() || null
+            inscriptionLink: event.inscriptionLink?.trim() || null,
+            spectatorInscriptionEnabled: event.spectatorInscriptionEnabled ?? false,
+            spectatorInscriptionLink: event.spectatorInscriptionLink?.trim() || null
         }
     }
 }

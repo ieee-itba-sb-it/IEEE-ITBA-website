@@ -5,7 +5,7 @@
     [facts]="facts"
   ></app-event-facts-banner>
 
-  <app-event-title [dates]="event?.dates">
+  <app-event-title [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled">
     {{ 'HOME.IEEEXTREME.TITLE' | translate }}
   </app-event-title>
 
@@ -14,7 +14,7 @@
   </div>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
   <div class="event-invitation-container">
       <div class="carousel-container">
           <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
@@ -49,7 +49,7 @@
       <h1>{{ 'IEEEXTREME.MORE_INFO' | translate }} <a href="https://ieeextreme.org/">{{ 'IEEEXTREME.CLICK_ME' | translate}}</a></h1>
   </div>
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" />
 
   <!-- Sponsors -->
   <app-event-section title="{{ 'IEEEXTREME.SPONSORSHIP.TITLE' | translate }}">

@@ -17,12 +17,14 @@ export enum EventStatus {
 
 export enum EventDate {
     INSCRIPTION = "INSCRIPTION",
+    SPECTATOR_INSCRIPTION = "SPECTATOR_INSCRIPTION",
     EVENT = "EVENT",
 }
 
 const EventDateByPriority: Record<EventDate, number> = {
     INSCRIPTION: 1,
-    EVENT: 2,
+    SPECTATOR_INSCRIPTION: 2,
+    EVENT: 3,
 };
 
 export const sortedEventDates = Object.entries(EventDateByPriority)
@@ -58,6 +60,8 @@ export type Event = Readonly<{
     descriptionCode: string;
     isRasEvent: boolean;
     inscriptionLink: string | null;
+    spectatorInscriptionEnabled: boolean;
+    spectatorInscriptionLink: string | null;
     dates: Record<EventDate, ConfirmedDateEvent | {
         status: EventStatus.TENTATIVE;
         month: number;

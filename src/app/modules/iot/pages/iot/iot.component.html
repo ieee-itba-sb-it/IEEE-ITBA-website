@@ -4,12 +4,12 @@
     alt="Banner IOT"
   >
   </app-event-banner>
-  <app-event-title [dates]="event?.dates">
+  <app-event-title [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled">
     {{ 'IOT.TITLE' | translate }}
   </app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
 
   <!-- Introductory text -->
   <app-event-section title="{{ 'IOT.DESC.TITLE' | translate }}">
@@ -19,7 +19,7 @@
     <p>{{ 'IOT.DESC.TEXT.4' | translate }}</p>
   </app-event-section>
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" />
 
   <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
     <app-image-carousel [imageLinks]="imageLinks"></app-image-carousel>
