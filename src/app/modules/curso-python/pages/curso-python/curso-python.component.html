@@ -1,8 +1,8 @@
 <div class="main-container event">
-  <app-event-title [dates]="event?.dates">{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
+  <app-event-title [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled">{{ 'PYTHONCOURSES.TITLE' | translate }}</app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink"/>
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
 
     <!-- Introductory text -->
   <app-event-section title="{{ 'PYTHONCOURSES.DESC_TITLE' | translate }}">
@@ -65,7 +65,7 @@
   </div>
   -->
 
-  <app-event-date-section [dates]="event?.dates" />
+  <app-event-date-section [dates]="event?.dates" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" />
 
   <app-event-section title="{{ 'PYTHONCOURSES.FAQ.TITLE' | translate}}">
     <app-event-faq-accordion [faq]="faq">

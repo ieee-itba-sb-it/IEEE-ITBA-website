@@ -27,6 +27,10 @@ export class EventDateComponent {
         [EventDate.INSCRIPTION]: {
             iconClass: 'fa-file-pen',
             i18nKey: 'HOME.EVENTS.INSCRIPTION'
+        },
+        [EventDate.SPECTATOR_INSCRIPTION]: {
+            iconClass: 'fa-file-pen',
+            i18nKey: 'HOME.EVENTS.SPECTATOR_INSCRIPTION'
         }
     }
 

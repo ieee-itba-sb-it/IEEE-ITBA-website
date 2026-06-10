@@ -8,6 +8,7 @@ import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/even
 })
 export class EventDateSectionComponent {
     @Input() dates: Event['dates'];
+    @Input() spectatorInscriptionEnabled: boolean = true;
 
     // Do not show section if there are no valid dates
     isShown(): boolean {
@@ -16,6 +17,9 @@ export class EventDateSectionComponent {
     }
 
     showEventDate(dateType: EventDate): boolean {
+        if (dateType === EventDate.SPECTATOR_INSCRIPTION && !this.spectatorInscriptionEnabled) {
+            return false;
+        }
         return this.dates[dateType].status !== EventStatus.UNSCHEDULED;
     }
 

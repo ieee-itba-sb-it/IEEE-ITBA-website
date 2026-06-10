@@ -9,5 +9,6 @@ import {Event, EventDate, EventStatus} from "../../models/event/event";
 export class EventTitleComponent {
     @Input() asimov: boolean = false;
     @Input() dates: Event['dates'];
+    @Input() spectatorInscriptionEnabled: boolean = true;
 }
 

@@ -17,6 +17,7 @@
     color: var(--primary-color);
     font-weight: 600;
     margin-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 p {

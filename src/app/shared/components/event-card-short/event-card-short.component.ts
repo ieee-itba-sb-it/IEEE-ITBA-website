@@ -27,6 +27,11 @@ export class EventCardShortComponent implements OnInit {
           default: 'fa-file-pen',
           lastDate: 'fa-file-circle-check',
           firstDate: 'fa-file-pen'
+      },
+      [EventDate.SPECTATOR_INSCRIPTION]: {
+          default: 'fa-file-pen',
+          lastDate: 'fa-file-circle-check',
+          firstDate: 'fa-file-pen'
       }
   }
 

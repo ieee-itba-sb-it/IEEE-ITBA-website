@@ -5,12 +5,12 @@
   >
   </app-event-banner>
 
-  <app-event-title [asimov]="true" [dates]="eventData?.dates">
+  <app-event-title [asimov]="true" [dates]="eventData?.dates" [spectatorInscriptionEnabled]="eventData?.spectatorInscriptionEnabled">
     {{ 'ASIMOVCUP.TITLE' | translate }}
   </app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="eventData?.dates" [inscriptionLink]="eventData?.inscriptionLink" [isAsimov]="true" />
+    <app-event-inscription-section [isAsimov]="true" [dates]="eventData?.dates" [inscriptionLink]="eventData?.inscriptionLink" [spectatorInscriptionEnabled]="eventData?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="eventData?.spectatorInscriptionLink" />
 
     <!-- DESCRIPTION section -->
   <app-event-section [asimov]="true" title="{{ 'ASIMOVCUP.DESC.TITLE' | translate }}">
@@ -18,19 +18,18 @@
       <p>{{ "ASIMOVCUP.DESC.SECTION.1.TEXT" | translate }}</p>
       <p>{{ "ASIMOVCUP.DESC.SECTION.2.TEXT" | translate }}</p>
       <ul class="category-cards-container">
-        <li class="category-grid-item" *ngFor="let category of categories">
           <app-event-content-card
-            title="{{category.textCode | translate}}"
-            imageUrl="{{category.imgLink}}"
+            title="{{rules.textCode | translate}}"
+            imageUrl="{{rules.imgLink}}"
             [disableImageOnMobile]="true"
           >
             <p content class="category-card-description">
-              {{ category.descriptionTextCode | translate }}
+              {{ rules.descriptionTextCode | translate }}
             </p>
             <mat-card-actions actions>
               <app-button
                   [asimov]="true"
-                  [href]="category.rulesLink"
+                  [href]="rules.rulesLink"
                   imageUrl="../../../../../assets/image/logos/download.svg"
                   imageAlt="Download icon"
                   icon="download"
@@ -39,7 +38,6 @@
               </app-button>
             </mat-card-actions>
           </app-event-content-card>
-        </li>
       </ul>
     <p>{{ "ASIMOVCUP.DESC.SECTION.3.TEXT" | translate }}</p>
     <div *ngIf="spectatorEnrollAvailable()">

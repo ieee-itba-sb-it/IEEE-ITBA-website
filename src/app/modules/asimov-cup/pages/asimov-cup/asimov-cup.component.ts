@@ -30,26 +30,13 @@ export class AsimovCupComponent implements OnInit {
         { q: 'ASIMOVCUP.FAQ.5.QUESTION', a: 'ASIMOVCUP.FAQ.5.ANSWER' }
     ];
 
-    categories = [
-        { textCode: 'ASIMOVCUP.CATEGORIES.SUMO.NAME',
-            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Sumo.pdf?alt=media&token=15542ea0-42ad-4df7-a098-361848b3cead',
+    rules =
+        { textCode: 'ASIMOVCUP.CATEGORIES.GENERAL.NAME',
+            rulesLink: 'https://sistema.lnr-argentina.com.ar/reglamentos',
             imgLink: '../../../../../assets/image/events/asimov-cup/sumo.svg',
-            altTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.IMAGE_ALT_TEXT',
-            descriptionTextCode: 'ASIMOVCUP.CATEGORIES.SUMO.DESC'
-        },
-        { textCode: 'ASIMOVCUP.CATEGORIES.RACING.NAME',
-            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Carrera.pdf?alt=media&token=05ff1614-16a3-44df-93bb-4f9564720f4d',
-            imgLink: '../../../../../assets/image/events/asimov-cup/racing.svg',
-            altTextCode: 'ASIMOVCUP.CATEGORIES.RACING.IMAGE_ALT_TEXT',
-            descriptionTextCode: 'ASIMOVCUP.CATEGORIES.RACING.DESC'
-        },
-        { textCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.NAME',
-            rulesLink: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2FReglamento%20Futbol.pdf?alt=media&token=bf0696c9-4302-453c-971b-531c86b3e185',
-            imgLink: '../../../../../assets/image/events/asimov-cup/football.svg',
-            altTextCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.IMAGE_ALT_TEXT',
-            descriptionTextCode: 'ASIMOVCUP.CATEGORIES.FOOTBALL.DESC'
-        }
-    ];
+            altTextCode: 'ASIMOVCUP.CATEGORIES.GENERAL.IMAGE_ALT_TEXT',
+            descriptionTextCode: 'ASIMOVCUP.CATEGORIES.GENERAL.DESC'
+        };
 
     schedule = [
         'ASIMOVCUP.SCHEDULE.1',
@@ -124,6 +111,9 @@ export class AsimovCupComponent implements OnInit {
     }
 
     showEventDate(eventDate: EventDate): boolean {
+        if (eventDate === EventDate.SPECTATOR_INSCRIPTION && this.eventData && !this.eventData.spectatorInscriptionEnabled) {
+            return false;
+        }
         return this.eventData && this.eventData.dates[eventDate] && this.eventData.dates[eventDate].status !== EventStatus.UNSCHEDULED;
     }
 }

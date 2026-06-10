@@ -191,9 +191,17 @@
       "MORE": "View more events",
       "EVENT": "Event",
       "INSCRIPTION": "Inscription",
+      "SPECTATOR_INSCRIPTION": "Spectator Inscription",
+      "DATE_HOVER": {
+        "EVENT": "Event date",
+        "INSCRIPTION": "Registration as participant",
+        "SPECTATOR_INSCRIPTION": "Registration as spectator"
+      },
       "ENROLL": {
         "OPEN": "Inscriptions are open!",
-        "CLICK": "Enroll now!"
+        "CLICK": "Enroll now!",
+        "CLICK_COMPETE": "Enroll to compete!",
+        "CLICK_SPECTATE": "Enroll as a spectator!"
       },
       "RANKING": {
         "CLICK": "View ranking table!"
@@ -207,6 +215,7 @@
           "FIRST": "First date",
           "EVENT": "Event date",
           "INSCRIPTION": "Inscription date",
+          "SPECTATOR_INSCRIPTION": "Spectator inscription date",
           "FINISH": "Finish date"
       },
       "IS_PERIOD": {
@@ -248,6 +257,9 @@
           "CANCEL": "Cancel",
           "UPDATE": "Update",
           "LINK": "Inscription link",
+          "SPECTATOR_TOGGLE": "Spectator inscription",
+          "SPECTATOR_TOGGLE_LABEL": "Enable spectator inscription",
+          "SPECTATOR_LINK": "Spectator inscription link",
           "DATES": "Event dates",
           "LOCATION": "Event location",
           "ERROR": {
@@ -830,6 +842,11 @@
         "NAME": "Football",
         "IMAGE_ALT_TEXT": "Football category icon",
         "DESC": "Two teams of robots play a football match, winning whoever scores more goals in a set amount of time."
+      },
+      "GENERAL": {
+          "NAME": "General",
+          "IMAGE_ALT_TEXT": "General Robots icon",
+          "DESC": "Explore the different robotics competition categories, where teams design, build, and program robots to overcome a variety of challenges that test strategy, precision, speed, and innovation."
       }
     },
     "DESC": {

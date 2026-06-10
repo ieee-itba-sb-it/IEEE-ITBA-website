@@ -23,6 +23,7 @@ import { EventCardShortComponent } from './components/event-card-short/event-car
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpLoaderFactory } from './translation-helpers';
 import { StudentChapterComponent } from './components/student-chapter-card/student-chapter.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -99,6 +100,7 @@ export const routing = RouterModule.forChild(routes);
         MatChipsModule,
         MatIconModule,
         MatProgressSpinnerModule,
+        MatTooltipModule,
         NgOptimizedImage,
         MatExpansionModule,
         SwiperModule,

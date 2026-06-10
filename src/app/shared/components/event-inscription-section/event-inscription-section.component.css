@@ -1,6 +1,6 @@
 .inscription-button-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     padding: 0 1.2rem;
 }
 

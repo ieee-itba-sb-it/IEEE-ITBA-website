@@ -1,8 +1,13 @@
 <mat-chip-set *ngIf="!!dates">
-    <mat-chip *ngFor="let eventDate of eventDates">
-        <div class="chip">
-            <i class="fa {{getIconClass(eventDate)}}" [style.color]="(getAppColors() | async).background"></i>
-            <span [style.color]="(getAppColors() | async).background">{{pipeInput(eventDate) | FormatDateEventPipe }}</span>
-        </div>
-    </mat-chip>
+    <div *ngFor="let eventDate of eventDates" class="chip-wrapper" [style.--color]="(getAppColors() | async).background">
+        <span class="chip-tooltip">
+            {{ getTooltip(eventDate) }}
+        </span>
+        <mat-chip>
+            <div class="chip">
+                <i class="fa {{getIconClass(eventDate)}}" [style.color]="(getAppColors() | async).background"></i>
+                <span [style.color]="(getAppColors() | async).background">{{pipeInput(eventDate) | FormatDateEventPipe }}</span>
+            </div>
+        </mat-chip>
+    </div>
 </mat-chip-set>

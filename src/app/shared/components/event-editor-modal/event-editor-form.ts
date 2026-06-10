@@ -51,12 +51,16 @@ export class EventEditorForm {
     get eventCurrentState(): Event {
         const newEvent = EventEditorForm.cloneEvent(this.eventInitialState);
         const newEventDates = this.eventDateEventEditorForm.getCurrentState();
-        const newInscriptionLink = this.inscriptionLinkEventEditorForm.getCurrentState();
+        const newInscriptionLink = this.inscriptionLinkEventEditorForm.getCurrentInscriptionLink();
+        const newSpectatorEnabled = this.inscriptionLinkEventEditorForm.getCurrentSpectatorEnabled();
+        const newSpectatorLink = this.inscriptionLinkEventEditorForm.getCurrentSpectatorLink();
         const newLocationEvent = this.locationEventEditorForm.getCurrentState();
         return {
             ...newEvent,
             dates: newEventDates,
             inscriptionLink: newInscriptionLink,
+            spectatorInscriptionEnabled: newSpectatorEnabled,
+            spectatorInscriptionLink: newSpectatorLink,
             location: newLocationEvent.location,
             locationLink: newLocationEvent.locationLink
         };
@@ -85,6 +89,10 @@ export class EventEditorForm {
         return this.inscriptionLinkEventEditorForm.getError(errorName);
     }
 
+    getSpectatorInscriptionLinkError(errorName: string): ValidationErrors | null {
+        return this.inscriptionLinkEventEditorForm.getSpectatorLinkError(errorName);
+    }
+
     private hasEventDatesChanged(): boolean {
         return this.eventDateEventEditorForm.hasChanged();
     }
@@ -111,6 +119,18 @@ export class EventEditorForm {
 
     isInscriptionLinkEmpty(): boolean {
         return this.inscriptionLinkEventEditorForm.isEmpty();
+    }
+
+    isSpectatorInscriptionEnabled(): boolean {
+        return this.inscriptionLinkEventEditorForm.getCurrentSpectatorEnabled();
+    }
+
+    clearSpectatorInscriptionLink(): void {
+        this.inscriptionLinkEventEditorForm.clearSpectatorLink();
+    }
+
+    isSpectatorInscriptionLinkEmpty(): boolean {
+        return this.inscriptionLinkEventEditorForm.isSpectatorLinkEmpty();
     }
 
     submit(): Event {

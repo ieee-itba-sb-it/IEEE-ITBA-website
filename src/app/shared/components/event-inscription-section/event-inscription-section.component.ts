@@ -13,6 +13,8 @@ export class EventInscriptionSectionComponent {
     @Input() inscriptionLink?: Event['inscriptionLink'];
     @Input() dates?: Event['dates'];
     @Input() isAsimov: boolean = false;
+    @Input() spectatorInscriptionEnabled?: Event['spectatorInscriptionEnabled'];
+    @Input() spectatorInscriptionLink?: Event['spectatorInscriptionLink'];
 
     constructor(
         private appConfigService: AppConfigService,
@@ -28,9 +30,29 @@ export class EventInscriptionSectionComponent {
             this.eventService.isEventDateCurrent(this.dates?.[EventDate.INSCRIPTION]);
     }
 
+    showSpectatorInscriptionButton(): boolean {
+        console.log(this)
+        return !!this.spectatorInscriptionEnabled
+            && !!this.spectatorInscriptionLink
+            && !!this.dates
+            && !!this.dates[EventDate.SPECTATOR_INSCRIPTION]
+            && this.dates[EventDate.SPECTATOR_INSCRIPTION].status === EventStatus.CONFIRMED
+            && this.eventService.isEventDateCurrent(this.dates[EventDate.SPECTATOR_INSCRIPTION]);
+    }
+
+    hasSpectatorInscription(): boolean {
+        return !!this.spectatorInscriptionEnabled;
+    }
+
     onInscriptionClick() {
         if (this.inscriptionLink) {
             window.open(this.inscriptionLink, '_blank');
+        }
+    }
+
+    onSpectatorInscriptionClick() {
+        if (this.spectatorInscriptionLink) {
+            window.open(this.spectatorInscriptionLink, '_blank');
         }
     }
 }
