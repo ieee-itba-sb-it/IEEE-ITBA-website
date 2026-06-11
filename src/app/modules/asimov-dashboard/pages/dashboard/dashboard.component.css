@@ -135,11 +135,22 @@ thead th:last-child {
 
 .search-container {
     padding: 0 0 12px 0;
+    position: relative;
+}
+
+.search-container::before {
+    content: '🔍';
+    position: absolute;
+    left: 10px;
+    top: 17px;
+    transform: translateY(-50%);
+    font-size: 0.9em;
+    pointer-events: none;
 }
 
 .search-input {
     width: 100%;
-    padding: 8px 14px;
+    padding: 8px 14px 8px 34px;
     border: 1px solid rgb(200, 200, 200);
     border-radius: 6px;
     font-size: 0.9em;
