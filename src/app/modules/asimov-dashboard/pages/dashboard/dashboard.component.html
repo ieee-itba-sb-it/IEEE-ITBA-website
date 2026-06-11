@@ -4,7 +4,9 @@
     <div class="dashboard-content">
         <div class="leaderboard-section">
             <div class="leaderboard-container">
-
+                <div class="participants-count">
+                    Participantes: <strong>{{ leaderboard.length }}</strong>
+                </div>
                 <div class="search-container">
                     <input
                         type="text"
@@ -12,10 +14,6 @@
                         placeholder="Buscar participante..."
                         class="search-input"
                     />
-                </div>
-
-                <div class="participants-count">
-                    Participantes: <strong>{{ leaderboard.length }}</strong>
                 </div>
                 <table class="leaderboard-table">
                     <thead>
