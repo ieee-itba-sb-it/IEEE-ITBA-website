@@ -167,7 +167,7 @@ thead th:last-child {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: rgb(0, 40, 85);
+    color: rgb(0, 0, 0);
     padding: 8px 0;
     font-size: 0.9em;
 }
@@ -182,10 +182,12 @@ thead th:last-child {
 
 .my-score-points {
     font-weight: bold;
-    color: rgb(0, 40, 85);
+    color: rgb(0, 0, 0);
 }
 
 .participants-count {
-    color: rgb(0, 40, 85);
+    color: rgb(0, 0, 0);
     white-space: nowrap;
+    align-items: center;
+    font-size: 0.9em;
 }
