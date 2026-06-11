@@ -4,9 +4,21 @@
     <div class="dashboard-content">
         <div class="leaderboard-section">
             <div class="leaderboard-container">
-                <div class="participants-count">
-                    Participantes: <strong>{{ leaderboard.length }}</strong>
+                <div class="leaderboard-header">
+                    <div class="participants-count">
+                        Participantes: <strong>{{ leaderboard.length }}</strong>
+                    </div>
+
+                    <div class="my-score-section" *ngIf="myScore">
+                        <span class="my-score-label">Puntaje:</span>
+                        <span class="my-score-points">{{ myScore.score | number }} pts</span>
+                        <span class="my-score-name">{{ myScore.fullname }}</span>
+                        <span class="my-score-rank">#{{ myRank }}</span>
+                    </div>
+
+
                 </div>
+
                 <div class="search-container">
                     <input
                         type="text"

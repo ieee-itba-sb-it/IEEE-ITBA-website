@@ -8,13 +8,6 @@
     justify-content: center;
 }
 
-.participants-count {
-    text-align: right;
-    padding: 6px 12px 10px;
-    font-size: 0.85em;
-    color: rgb(0, 0, 0);
-}
-
 .dashboard-container h1 {
     text-align: center;
     color: rgb(134, 31, 65);
@@ -161,4 +154,38 @@ thead th:last-child {
 
 .search-input:focus {
     border-color: rgb(134, 31, 65);
+}
+.leaderboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.my-score-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgb(0, 40, 85);
+    padding: 8px 0;
+    font-size: 0.9em;
+}
+
+.my-score-rank {
+    font-weight: bold;
+}
+
+.my-score-name {
+    font-weight: 500;
+}
+
+.my-score-points {
+    font-weight: bold;
+    color: rgb(0, 40, 85);
+}
+
+.participants-count {
+    color: rgb(0, 40, 85);
+    white-space: nowrap;
 }
