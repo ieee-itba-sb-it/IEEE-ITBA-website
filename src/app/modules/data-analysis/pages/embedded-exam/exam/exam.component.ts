@@ -26,6 +26,8 @@ export class ExamComponent implements OnInit {
     examForm!: FormGroup;
     questions: Question[] = [];
 
+    approved_threshold: number = 10 / 12;
+
     constructor(
         private route: ActivatedRoute,
         private fb: FormBuilder,
@@ -131,7 +133,7 @@ export class ExamComponent implements OnInit {
             };
         });
 
-        const passed = this.eventService.evaluateExam(submittedQuestions);
+        const passed = this.eventService.evaluateExam(submittedQuestions, this.approved_threshold);
         this.submittedExam = {
             passed,
             submitted: true,

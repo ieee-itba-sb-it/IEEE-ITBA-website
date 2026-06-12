@@ -447,7 +447,8 @@ export class EventService {
             getDoc(docRef)
                 .then(snap => {
                     if (snap.exists()) {
-                        const data = snap.data();
+                        const data = snap.data() as Event;
+                        // TODO: Check property access !!!
                         obs.next(data['startDate'].toDate());
                     } else {
                         obs.next(null);
@@ -464,7 +465,7 @@ export class EventService {
         return diffDays + 1;
     }
 
-    public evaluateExam(questions: Question[]): boolean {
+    public evaluateExam(questions: Question[], approved_threshold: number): boolean {
         let correctCount = 0;
 
         questions.forEach(q => {
@@ -473,7 +474,7 @@ export class EventService {
 
             if (this.compare(selected, correct)) { correctCount++; }
         });
-        return correctCount >= 1;
+        return (correctCount / questions.length) >= approved_threshold;
     }
 
     private compare(selected: string, correct: string): boolean {
