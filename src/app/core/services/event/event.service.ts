@@ -449,7 +449,7 @@ export class EventService {
                     if (snap.exists()) {
                         const data = snap.data() as Event;
                         // TODO: Check property access !!!
-                        obs.next(data['startDate'].toDate());
+                        obs.next(data.examStartDate ?? null);
                     } else {
                         obs.next(null);
                     }
@@ -459,10 +459,44 @@ export class EventService {
         });
     }
 
+    private normalizeDate(date: Date): Date {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
+
     public calculateExamDay(startDate: Date): number {
-        const diffMs = new Date().getTime() - startDate.getTime();
+        const start = this.normalizeDate(startDate);
+        const today = this.normalizeDate(new Date());
+
+        const diffMs = today.getTime() - start.getTime();
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
         return diffDays + 1;
+    }
+
+    public getDataAnalysisPassingScore(): Observable<number> {
+        return new Observable(obs => {
+            const docRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName
+            );
+
+            getDoc(docRef)
+                .then(snap => {
+                    if (snap.exists()) {
+                        const data = snap.data() as Event;
+                        obs.next(data.passingScore ?? (10 / 12));
+                    } else {
+                        obs.next(10 / 12);
+                    }
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
     }
 
     public evaluateExam(questions: Question[], approved_threshold: number): boolean {

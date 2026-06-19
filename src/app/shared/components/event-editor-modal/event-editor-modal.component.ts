@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
+import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
@@ -215,5 +215,9 @@ export class EventEditorModalComponent implements OnInit {
                 this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
             }
         })
+    }
+
+    get isDataAnalysis(): boolean {
+        return this.event.id === IeeeEvent.DATA_ANALYSIS;
     }
 }

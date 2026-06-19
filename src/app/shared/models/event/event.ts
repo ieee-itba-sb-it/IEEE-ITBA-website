@@ -70,6 +70,8 @@ export type Event = Readonly<{
     course?: EventCourse;
     location: string;
     locationLink: string;
+    examStartDate?: Date;
+    passingScore?: number;
 }>;
 
 export type EventDoc = Omit<Event, 'dates'> & {

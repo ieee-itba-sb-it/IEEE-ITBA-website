@@ -1,12 +1,17 @@
-import {FormGroup, ValidationErrors} from "@angular/forms";
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {Event, EventDate, EventStatus, IeeeEvent} from "../../models/event/event";
 import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-date";
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
 import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
 
-type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm & LocationEventForm;
+type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm &
+    LocationEventForm & Partial<DataAnalysisEventForm>;
 
 type EventForm = FormGroup<EventFormGroup>;
+type DataAnalysisEventForm = {
+    passingScore: FormControl<number>;
+    examStartDate: FormControl<Date | null>;
+};
 
 export class EventEditorForm {
 
@@ -42,6 +47,17 @@ export class EventEditorForm {
             ...inscriptionLinkFormGroup,
             ...locationFormGroup
         });
+        if (event.id === IeeeEvent.DATA_ANALYSIS) {
+            this.eventForm.addControl(
+                'passingScore',
+                new FormControl(event.passingScore ?? (10 / 12))
+            );
+
+            this.eventForm.addControl(
+                'examStartDate',
+                new FormControl(event.examStartDate ?? null)
+            );
+        }
     }
 
     get formGroup(): EventForm {
@@ -58,7 +74,9 @@ export class EventEditorForm {
             dates: newEventDates,
             inscriptionLink: newInscriptionLink,
             location: newLocationEvent.location,
-            locationLink: newLocationEvent.locationLink
+            locationLink: newLocationEvent.locationLink,
+            passingScore: this.eventForm.get('passingScore')?.value,
+            examStartDate: this.eventForm.get('examStartDate')?.value
         };
     }
 

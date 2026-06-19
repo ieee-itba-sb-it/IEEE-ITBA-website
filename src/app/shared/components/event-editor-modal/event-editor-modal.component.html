@@ -208,4 +208,14 @@
                 {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
             </button>
         </div>
+
+        <mat-form-field *ngIf="isDataAnalysis" class="w-100">
+            <mat-label>{{ "DATAANALYSIS.MODAL" | translate }}</mat-label>
+            <input
+                matInput
+                type="number"
+                min="0"
+                max="100"
+                formControlName="passingScore">
+        </mat-form-field>
     </form>

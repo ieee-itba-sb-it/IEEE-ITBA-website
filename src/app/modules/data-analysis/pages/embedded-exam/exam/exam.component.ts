@@ -5,6 +5,7 @@ import {Question, Answer, UserExam, DataAnalysisUser} from "src/app/shared/model
 import {AuthService} from "../../../../../core/services/authorization/auth.service";
 import {EventService} from "../../../../../core/services/event/event.service";
 import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
+import {IeeeEvent} from "../../../../../shared/models/event/event";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ExamComponent implements OnInit {
     examForm!: FormGroup;
     questions: Question[] = [];
 
-    approved_threshold: number = 10 / 12;
+    approved_threshold: number = 10/12;
 
     constructor(
         private route: ActivatedRoute,
@@ -42,19 +43,18 @@ export class ExamComponent implements OnInit {
         this.initForm();
         this.loading = true;
 
+        this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS)
+            .subscribe(event => {
+                this.approved_threshold = event.passingScore ?? (10 / 12);
+            });
+
         this.authService.getCurrentUser().subscribe(user => {
-            if (!user){
-                this.router.navigate(['/login']).then(() => {});
-                this.loading = false;
-                return;
-            }
+            if (!user) this.goToLogin()
+
             this.user = user;
             this.eventService.getDataAnalysisUser(user).subscribe(student=> {
-                if (!student) {
-                    this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
-                    this.loading = false;
-                    return;
-                }
+                if (!student) this.goToSubscribeExam()
+
                 this.dataAnalysisUser = student;
                 const exam = student.currentExam;
 
@@ -73,9 +73,8 @@ export class ExamComponent implements OnInit {
                             this.questions = exam.questions;
                             this.buildForm();
                         }
-                    } else {
-                        // !isToday -> lo sentimos, tu examen ya no se encuentra disponible (?)
-                    }
+                    } else this.goToExamList()
+
                     this.loading = false;
                 } else {
                     this.loading = true;
@@ -96,7 +95,6 @@ export class ExamComponent implements OnInit {
             date.getMonth() === now.getMonth() &&
             date.getFullYear() === now.getFullYear();
     }
-
 
     initForm() {
         this.examForm = this.fb.group({
@@ -153,5 +151,22 @@ export class ExamComponent implements OnInit {
 
     goBack() {
         this.router.navigate(['/data-analysis/exams']).then(() => {});
+    }
+
+    goToSubscribeExam():void{
+        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
+        this.loading = false;
+        return;
+    }
+    goToLogin():void{
+        this.router.navigate(['/login']).then(() => {});
+        this.loading = false;
+        return;
+    }
+
+    goToExamList():void{
+        this.router.navigate(['/data-analysis/exams']).then(() => {});
+        this.loading = false;
+        return;
     }
 }
