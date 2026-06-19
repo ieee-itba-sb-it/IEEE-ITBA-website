@@ -77,6 +77,8 @@ export class EventEditorForm {
             locationLink: newLocationEvent.locationLink,
             passingScore: this.eventForm.get('passingScore')?.value,
             examStartDate: this.eventForm.get('examStartDate')?.value
+                ? new Date(this.eventForm.get('examStartDate')?.value)
+                : null
         };
     }
 

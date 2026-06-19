@@ -436,8 +436,12 @@ export class EventService {
         return started.getDate() === now.getDate();
     }
 
-    public normalizeDate(date: Date): Date {
-        const aux = (date as any)?.toDate?.() ?? date;
+    public normalizeDate(date: any): Date {
+        let aux: Date;
+        if (date?.toDate) aux = date.toDate();
+        else if (date instanceof Date) aux = date;
+        else aux = new Date(date);
+
         return new Date(
             aux.getFullYear(),
             aux.getMonth(),

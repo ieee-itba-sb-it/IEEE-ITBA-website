@@ -196,10 +196,11 @@
             </div>
 
             <div *ngIf="isDataAnalysis" class="form-input">
-                <label class="form-input-label">Nota mínima para aprobar</label>
+                <label class="form-input-label">Porcentaje mínimo para aprobar</label>
                 <input
                     type="number"
                     min="0" max="100"
+                    step="1"
                     class="form-control"
                     formControlName="passingScore"
                 />

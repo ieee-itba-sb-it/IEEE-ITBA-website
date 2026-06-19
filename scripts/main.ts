@@ -22,7 +22,7 @@ initializeApp({
 
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
-    //await migrateNewsToNewFormat();
+    await migrateNewsToNewFormat();
     await seedQuestions();
 }
 
