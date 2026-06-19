@@ -23,9 +23,8 @@ initializeApp({
 
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
-    //await migrateNewsToNewFormat();
-    //await seedQuestions();
-    await deleteAsimovCollections();
+    await migrateNewsToNewFormat();
+    await seedQuestions();
 }
 
 main();
