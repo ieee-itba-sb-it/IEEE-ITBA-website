@@ -4,6 +4,7 @@ import {take} from "rxjs";
 import {Router, ActivatedRoute} from "@angular/router";
 import {EventService} from 'src/app/core/services/event/event.service';
 import {AuthService} from 'src/app/core/services/authorization/auth.service';
+import {IeeeEvent} from "../../../../../shared/models/event/event";
 
 interface Exam {
     id: number;
@@ -26,6 +27,7 @@ export class ExamListComponent implements OnInit {
     currentDay: number = 1
     loading = true
     dataAnalysisUser: DataAnalysisUser | null = null;
+    examStartDate:Date | null = null;
 
     constructor(
         private eventService: EventService,
@@ -55,17 +57,18 @@ export class ExamListComponent implements OnInit {
                         return;
                     }
                     this.dataAnalysisUser = student;
-                    this.eventService.getDataAnalysisStartDate().subscribe(startDate => {
-                        if (!startDate) {
+                    this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS).subscribe(event => {
+                        if (!event || !event.examStartDate) {
                             this.loading = false;
                             return;
                         }
-                        this.currentDay = this.eventService.calculateExamDay(startDate);
+                        this.examStartDate = event.examStartDate
+                        this.currentDay = this.eventService.calculateExamDay(event.examStartDate);
                         const exam = student.currentExam ?? null;
                         this.userExam = exam ?? null;
                         this.buildExamCards(exam);
                         this.loading = false;
-                    })
+                    });
                 });
             });
     }

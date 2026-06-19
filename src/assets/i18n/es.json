@@ -654,6 +654,7 @@
           },
           "EXAM_LIST": {
               "TITLE": "Mis exámenes de Python",
+              "START_DATE": "Fecha de inicio:",
               "EXAM_TITLE": "Día",
               "DESCRIPTION": "  A continuación encontrarás los exámenes disponibles. Se habilita uno por día hasta aprobar.",
               "BADGE_SUCCESS": "Aprobado",

@@ -597,6 +597,7 @@
           },
           "EXAM_LIST": {
               "TITLE": "My Python Exams",
+              "START_DATE": "Start date:",
               "EXAM_TITLE": "Day",
               "DESCRIPTION": "Here you will find your available exams. A new exam will be enabled each day for seven days until you pass.",
               "BADGE_SUCCESS": "Passed",

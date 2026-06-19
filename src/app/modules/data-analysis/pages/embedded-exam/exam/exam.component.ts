@@ -45,7 +45,7 @@ export class ExamComponent implements OnInit {
 
         this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS)
             .subscribe(event => {
-                this.approved_threshold = event.passingScore ?? (10 / 12);
+                this.approved_threshold = event.passingScore/100 ?? (10 / 12);
             });
 
         this.authService.getCurrentUser().subscribe(user => {

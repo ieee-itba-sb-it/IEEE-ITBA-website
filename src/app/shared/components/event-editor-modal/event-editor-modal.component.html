@@ -195,6 +195,15 @@
                 </div>
             </div>
 
+            <div *ngIf="isDataAnalysis" class="form-input">
+                <label class="form-input-label">Nota mínima para aprobar</label>
+                <input
+                    type="number"
+                    min="0" max="100"
+                    class="form-control"
+                    formControlName="passingScore">
+            </div>
+
             <div *ngIf="!!errorI18n" class="error-container">
                 <p class="error">
                     {{ errorI18n | translate }}
@@ -209,13 +218,4 @@
             </button>
         </div>
 
-        <mat-form-field *ngIf="isDataAnalysis" class="w-100">
-            <mat-label>{{ "DATAANALYSIS.MODAL" | translate }}</mat-label>
-            <input
-                matInput
-                type="number"
-                min="0"
-                max="100"
-                formControlName="passingScore">
-        </mat-form-field>
     </form>
