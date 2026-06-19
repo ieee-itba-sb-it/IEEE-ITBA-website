@@ -436,11 +436,12 @@ export class EventService {
         return started.getDate() === now.getDate();
     }
 
-    private normalizeDate(date: Date): Date {
+    public normalizeDate(date: Date): Date {
+        const aux = (date as any)?.toDate?.() ?? date;
         return new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate()
+            aux.getFullYear(),
+            aux.getMonth(),
+            aux.getDate()
         );
     }
 
