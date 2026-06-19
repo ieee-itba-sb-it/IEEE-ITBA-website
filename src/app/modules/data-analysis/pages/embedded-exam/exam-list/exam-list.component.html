@@ -16,7 +16,7 @@
 
     <div *ngIf="!loading && !userExam?.passed">
         <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
-
+        <h2>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.START_DATE' | translate }} {{examStartDate}}</h2>
         <div title="Descripción">
             <p class="description-texto">
                 {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate }}
