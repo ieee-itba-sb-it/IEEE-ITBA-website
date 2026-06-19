@@ -62,7 +62,7 @@ export class ExamListComponent implements OnInit {
                             this.loading = false;
                             return;
                         }
-                        this.examStartDate = event.examStartDate
+                        this.examStartDate = this.eventService.normalizeDate(event.examStartDate);
                         this.currentDay = this.eventService.calculateExamDay(event.examStartDate);
                         const exam = student.currentExam ?? null;
                         this.userExam = exam ?? null;

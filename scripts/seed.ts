@@ -58,7 +58,10 @@ export async function seedQuestions() {
 
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .set({startDate: new Date('2026-06-15T12:00:00')});
+        .set({
+            examStartDate: new Date('2026-06-15T12:00:00'),
+            passingScore: 10 / 12
+        }, { merge: true });
 
     for (const q of questions) {
         await db.collection('events')

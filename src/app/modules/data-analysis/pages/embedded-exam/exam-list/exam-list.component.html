@@ -16,7 +16,7 @@
 
     <div *ngIf="!loading && !userExam?.passed">
         <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
-        <h2>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.START_DATE' | translate }} {{examStartDate}}</h2>
+        <h2>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.START_DATE' | translate }} {{examStartDate | date:'dd/MM/yyyy'}}</h2>
         <div title="Descripción">
             <p class="description-texto">
                 {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate }}
@@ -37,12 +37,6 @@
                                 <div class="badge pending"
                                      *ngIf="!exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}
                                 </div>
-
-                                <!-- badge de exito
-                                <div class="badge success" *ngIf="exam.submitted && exam.passed">
-                                    {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_SUCCESS' | translate }}
-                                </div>
-                                badge de exito-->
 
                             </div>
                         </div>
