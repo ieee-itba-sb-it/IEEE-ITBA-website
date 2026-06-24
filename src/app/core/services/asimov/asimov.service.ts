@@ -51,6 +51,8 @@ export class AsimovService {
     private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
     private metadataCollection: CollectionReference = collection(this.afs, AsimovService.METADATA_COLLECTION_NAME);
 
+    private static readonly SCORE_DOCUMENT_NAME = AsimovService.SCORE_COLLECTION_NAME;
+
     private static readonly PAGE_SIZE = 10;
 
     private robotsCache$: Observable<Robot[]> | null = null;
@@ -73,8 +75,20 @@ export class AsimovService {
     }
 
     public setPredictionsStatus(status: boolean): Observable<void> {
-        return fromPromise(setDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME), {
+        return fromPromise(setDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME), {
             open: status
+        }));
+    }
+
+    public getCheckClicoAccountStatus(): Observable<boolean> {
+        return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME))).pipe(
+            map(docSnap => (docSnap.data() as { checkingClicoAccountStatus: boolean }).checkingClicoAccountStatus)
+        );
+    }
+
+    public setCheckClicoAccountStatus(status: boolean): Observable<void> {
+        return fromPromise(updateDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME), {
+            checkingClicoAccountStatus: status
         }));
     }
 
