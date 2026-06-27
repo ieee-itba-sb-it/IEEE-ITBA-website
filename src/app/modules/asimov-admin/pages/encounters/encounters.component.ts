@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {v4 as uuid} from 'uuid';
 import {AsimovService} from '../../../../core/services/asimov/asimov.service';
 import {Category} from "../../../../shared/models/event/asimov/category";
@@ -14,8 +14,8 @@ import {AlertModalComponent} from "../../../../shared/components/alert-modal/ale
     styleUrls: ['./encounters.component.css']
 })
 export class EncountersComponent implements OnInit {
-    status$: Observable<boolean>;
-    categories$: Observable<Category[]>;
+    private categoriesSubject = new BehaviorSubject<Category[]>([]);
+    categories$: Observable<Category[]> = this.categoriesSubject.asObservable();
     robots$: Observable<Robot[]>;
     selectedTabIndex = 0;
     selectedRobot1: Robot | null = null;
@@ -38,19 +38,23 @@ export class EncountersComponent implements OnInit {
         private modalService: MDBModalService
     ) {
         this.robots$ = this.asimovService.getRobots();
-        this.categories$ = this.asimovService.getCategories();
-        this.status$ = this.asimovService.getPredictionsStatus();
         this.robots$.subscribe(robots => this.robots = robots);
+        
+        this.asimovService.getCategories().subscribe(categories => {
+            this.categoriesSubject.next(categories);
+            this.loadRobotsForCurrentCategory();
+        });
     }
 
     ngOnInit(): void {}
 
-    toggleStatus(): void {
-        this.status$.subscribe(status => {
-            this.asimovService.setPredictionsStatus(!status).subscribe(() => {
-                this.status$ = this.asimovService.getPredictionsStatus();
+    toggleCategoryPredictionsStatus(category: Category): void {
+        const updatedCategory = { ...category, predictionsOpen: !category.predictionsOpen };
+        this.asimovService.updateCategory(updatedCategory).subscribe(() => {
+            this.asimovService.getCategories().subscribe(categories => {
+                this.categoriesSubject.next(categories);
             });
-        })
+        });
     }
 
     onTabChange(event: any): void {

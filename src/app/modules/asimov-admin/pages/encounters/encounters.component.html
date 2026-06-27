@@ -1,11 +1,4 @@
 <div class="encounters-admin">
-    <mat-card class="score-status-selection-card">
-        <mat-card-header class="mb-4">
-            <mat-card-title>Estado de las predicciones: <span>{{ (status$ | async) ? "Abiertas" : "Cerradas" }}</span></mat-card-title>
-            <button mat-raised-button class="ml-3" (click)="toggleStatus()">{{ (status$ | async) ? "Cerrar" : "Abrir" }}</button>
-        </mat-card-header>
-    </mat-card>
-
   <mat-card class="category-selection-card mt-2">
     <mat-card-header>
       <mat-card-title>Gestión de Enfrentamientos - Asimov Cup</mat-card-title>
@@ -17,8 +10,15 @@
           <div class="tab-content">
             <h3>Enfrentamientos para {{ category.name }}</h3>
 
+            <mat-card class="score-status-selection-card mb-3">
+                <mat-card-header class="d-flex align-items-center">
+                    <mat-card-title class="m-0">Estado de las predicciones de {{ category.name }}: <span>{{ category.predictionsOpen ? "Abiertas" : "Cerradas" }}</span></mat-card-title>
+                    <button mat-raised-button class="ml-3" (click)="toggleCategoryPredictionsStatus(category)">{{ category.predictionsOpen ? "Cerrar" : "Abrir" }}</button>
+                </mat-card-header>
+            </mat-card>
+
             <!-- Formulario para agregar enfrentamientos iniciales -->
-            <mat-card class="encounter-form-card" *ngIf="(status$ | async) === false">
+            <mat-card class="encounter-form-card" *ngIf="!category.predictionsOpen">
               <mat-card-header>
                 <mat-card-title class="mb-2">Agregar Enfrentamiento Inicial</mat-card-title>
               </mat-card-header>
@@ -95,7 +95,7 @@
                         <mat-cell *matCellDef="let encounter" class="table-cell text-center">
                           <button mat-raised-button
                                   [color]="encounter.winner === getRobotById(encounter.robot1)?.id ? 'accent' : 'primary'"
-                                  [disabled]="encounter.winner || (status$ | async) === true"
+                                  [disabled]="encounter.winner || category.predictionsOpen"
                                   (click)="selectWinner(encounter, getRobotById(encounter.robot1))"
                                   class="robot-button">
                             <i class="fas fa-robot"></i>
@@ -118,7 +118,7 @@
                         <mat-cell *matCellDef="let encounter" class="table-cell text-center">
                           <button mat-raised-button
                                   [color]="encounter.winner === getRobotById(encounter.robot2)?.id ? 'accent' : 'primary'"
-                                  [disabled]="encounter.winner || (status$ | async) === true"
+                                  [disabled]="encounter.winner || category.predictionsOpen"
                                   (click)="selectWinner(encounter, getRobotById(encounter.robot2))"
                                   class="robot-button">
                             <i class="fas fa-robot"></i>
@@ -157,7 +157,7 @@
                                     (click)="deleteEncounter(encounter)"
                                     matTooltip="Eliminar enfrentamiento"
                                     class="action-btn"
-                                    *ngIf="encounter.level === 0 && (status$ | async) === false">
+                                     *ngIf="encounter.level === 0 && !category.predictionsOpen">
                               <i class="fas fa-trash"></i>
                             </button>
                           </div>

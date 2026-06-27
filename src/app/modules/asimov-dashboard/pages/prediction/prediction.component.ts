@@ -31,7 +31,7 @@ export class PredictionComponent implements OnInit {
             this.predictions$ = this.asimovService.getUserPredictions(user.uID);
             this.categories$ = this.asimovService.getCategories();
             zip(this.categories$, this.predictions$).subscribe(([categories, predictions]) => {
-                const remainingCategories = categories.filter(c => !predictions.find(p => p.category.id === c.id));
+                const remainingCategories = categories.filter(c => c.predictionsOpen && !predictions.find(p => p.category.id === c.id));
                 if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
                 this.loading = false;
             })

@@ -44,24 +44,18 @@ export class PredictionFormComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private asimovService: AsimovService) {}
 
     ngOnInit(): void {
-        this.asimovService.getPredictionsStatus().subscribe(status => {
-            if (!status) {
-                this.router.navigate(['/asimov/dashboard']);
-            } else {
-                this.asimovService.getCategories().subscribe(categories => {
-                    this.allCategories = categories;
-                    this.route.paramMap.subscribe(params => {
-                        const paramCategory = params.get('categoria');
-                        const category = this.allCategories.find(c => c.name.toLowerCase() === paramCategory?.toLowerCase());
-                        if (paramCategory && category) {
-                            this.category = category;
-                            this.loadCategoryData(category.id);
-                        } else {
-                            this.router.navigate(['/asimov/dashboard']);
-                        }
-                    });
-                });
-            }
+        this.asimovService.getCategories().subscribe(categories => {
+            this.allCategories = categories;
+            this.route.paramMap.subscribe(params => {
+                const paramCategory = params.get('categoria');
+                const category = this.allCategories.find(c => c.name.toLowerCase() === paramCategory?.toLowerCase());
+                if (paramCategory && category && category.predictionsOpen) {
+                    this.category = category;
+                    this.loadCategoryData(category.id);
+                } else {
+                    this.router.navigate(['/asimov/dashboard']);
+                }
+            });
         });
     }
 
@@ -168,16 +162,7 @@ export class PredictionFormComponent implements OnInit {
         }
     }
 
-    nextCategory():string {
-        const actualIndex = this.allCategories.indexOf(this.category);
-        const siguienteCategoria = this.allCategories[actualIndex + 1];
 
-        if (siguienteCategoria) {
-            return '/asimov/prediction/'.concat(siguienteCategoria.name);
-        } else {
-            return '/asimov/dashboard';
-        }
-    }
 
     isFinalPredicted(): boolean {
         return this.predictions.length === this.categoryEncounters.length;
@@ -209,7 +194,6 @@ export class PredictionFormComponent implements OnInit {
     }
 
     navigateToNext() {
-        const nextCategory = this.nextCategory();
-        this.router.navigate([nextCategory]);
+        this.router.navigate(['/asimov/dashboard']);
     }
 }

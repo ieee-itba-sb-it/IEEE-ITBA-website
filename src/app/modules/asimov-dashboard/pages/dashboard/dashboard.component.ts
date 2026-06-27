@@ -2,6 +2,8 @@ import {Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
+import {Category} from "../../../../shared/models/event/asimov/category";
 
 
 export type Score = {
@@ -20,8 +22,15 @@ export class DashboardComponent implements OnInit {
 
     leaderboard$: Observable<Score[]>;
     leaderboard: Score[] = [];
+    categories$: Observable<Category[]>;
+    openCategories: Category[] = [];
     @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
 
+    constructor(
+        private asimovService: AsimovService,
+        private authService: AuthService,
+        private router: Router
+    ){}
     searchQuery: string = '';
     currentUid: string | null = null;
 
@@ -41,10 +50,6 @@ export class DashboardComponent implements OnInit {
         return this.myScore ? this.leaderboard.indexOf(this.myScore) + 1 : -1;
     }
 
-    constructor(
-        private asimovService: AsimovService,
-        private authService: AuthService   // 👈 lo inyectás
-    ){}
 
     ngOnInit(): void {
         // me suscribo al usuario actual para guardar su uID
@@ -53,6 +58,11 @@ export class DashboardComponent implements OnInit {
         });
 
         this.leaderboard$ = this.asimovService.getScores();
+
+        this.categories$ = this.asimovService.getCategories();
+        this.categories$.subscribe(categories => {
+            this.openCategories = categories.filter(c => c.predictionsOpen);
+        });
 
         this.leaderboard$.subscribe((newScores) => {
             const prevRects = new Map<string, DOMRect>();
@@ -95,5 +105,9 @@ export class DashboardComponent implements OnInit {
 
     trackByUid(index: number, player: Score): string {
         return player.uID;
+    }
+
+    goToPrediction(category: Category) {
+        this.router.navigate([`/asimov/prediction/${category.name}`]);
     }
 }

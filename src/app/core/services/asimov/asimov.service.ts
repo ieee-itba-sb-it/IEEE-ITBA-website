@@ -67,8 +67,8 @@ export class AsimovService {
     constructor(private afs: Firestore, private supabaseStorage: StorageService) {}
 
     public getPredictionsStatus(): Observable<boolean> {
-        return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME))).pipe(
-            map(docSnap => (docSnap.data() as { open: boolean }).open)
+        return this.getCategories().pipe(
+            map(categories => categories.some(category => category.predictionsOpen))
         );
     }
 
@@ -280,7 +280,7 @@ export class AsimovService {
     public addCategory(category: Partial<Category>): Observable<Category> {
         this.clearCategoriesCache();
         const id = uuid();
-        const newCategory: Category = { id, name: category.name || '' };
+        const newCategory: Category = { id, name: category.name || '', predictionsOpen: false };
         return new Observable<Category>(observer => {
             const ref = doc(this.categoriesCollection, id);
             writeBatch(this.afs).set(ref, newCategory).commit()
@@ -302,6 +302,21 @@ export class AsimovService {
                     observer.complete();
                 })
                 .catch(err => observer.error(err));
+        });
+    }
+
+    public updateCategory(category: Category): Observable<boolean> {
+        return new Observable<boolean>((subscriber) => {
+            let data = { ...category };
+            updateDoc(doc(this.afs, AsimovService.CATEGORY_COLLECTION_NAME, category.id), data)
+                .then(() => {
+                    subscriber.next(true);
+                })
+                .catch((err) => {
+                    subscriber.next(false);
+                    subscriber.error(err);
+                })
+                .finally(() => subscriber.complete());
         });
     }
 
