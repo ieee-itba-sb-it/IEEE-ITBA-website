@@ -3,7 +3,7 @@
 
     <div class="dashboard-content">
         <div class="predictions-section" *ngIf="openCategories.length > 0">
-            <h2>{{ 'ASIMOVCUP.PREDICTIONSTITTLE' | translate }}</h2>
+            <h2>{{ 'ASIMOVCUP.PREDICTIONSTITLE' | translate }}</h2>
             <div class="predictions-grid">
                 <div class="prediction-card" *ngFor="let category of openCategories" (click)="goToPrediction(category)">
                     <div class="card-icon">
