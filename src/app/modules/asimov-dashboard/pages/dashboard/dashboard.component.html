@@ -3,7 +3,7 @@
 
     <div class="dashboard-content">
         <div class="predictions-section" *ngIf="openCategories.length > 0">
-            <h2>Predicciones Disponibles</h2>
+            <h2>{{ 'ASIMOVCUP.PREDICTIONSTITTLE' | translate }}</h2>
             <div class="predictions-grid">
                 <div class="prediction-card" *ngFor="let category of openCategories" (click)="goToPrediction(category)">
                     <div class="card-icon">
@@ -11,10 +11,9 @@
                     </div>
                     <div class="card-content">
                         <h3>{{ category.name | titlecase }}</h3>
-                        <p>Las predicciones están abiertas. ¡Hacé tus apuestas y sumá puntos!</p>
                     </div>
                     <div class="card-action">
-                        <button mat-raised-button color="accent">VOTAR</button>
+                        <button mat-raised-button color="accent">{{ 'ASIMOVCUP.VOTEBUTTON' | translate }}</button>
                     </div>
                 </div>
             </div>

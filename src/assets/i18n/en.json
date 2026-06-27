@@ -298,7 +298,9 @@
     },
     "ASIMOVCUP": {
       "TEXT": "The Asimov Cup is a robotics competition open to the general public that takes place at ITBA. Competitors from any high school, university, or private team build their robots to compete with each other and find the winner in one of the three categories: Racing, Sumo and Minisumo.",
-      "TITLE": "Asimov Cup"
+      "TITLE": "Asimov Cup",
+        "PREDICTIONSTITLE": "Predictions available",
+        "VOTEBUTTON": "VOTE"
     },
     "CLASSES": {
       "TEXT": "In this course we teach our students the basic concepts of programming, and how to take the first steps using Python.  It’s aimed towards students, with or without experience in programming, and to everyone interested in learning one of the most popular programming languages.",

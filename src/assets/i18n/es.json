@@ -358,7 +358,9 @@
     },
     "ASIMOVCUP": {
       "TEXT": "La Asimov Cup es una competencia de robótica gratuita y abierta al público general que se desarrolla en el ITBA. Competidores de cualquier secundario, universidad, o equipo particular construyen sus robots para competir entre sí y encontrar al ganador en alguna de las tres modalidades: Carreras, Sumo y Minisumo.",
-      "TITLE": "Asimov Cup"
+      "TITLE": "Asimov Cup",
+        "PREDICTIONSTITLE": "Predicciones disponibles",
+        "VOTEBUTTON": "VOTAR"
     },
     "COMISIONS": {
       "DC": "CD",
