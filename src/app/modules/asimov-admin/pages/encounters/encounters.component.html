@@ -10,12 +10,17 @@
           <div class="tab-content">
             <h3>Enfrentamientos para {{ category.name }}</h3>
 
-            <mat-card class="score-status-selection-card mb-3">
-                <mat-card-header class="d-flex align-items-center">
-                    <mat-card-title class="m-0">Estado de las predicciones de {{ category.name }}: <span>{{ category.predictionsOpen ? "Abiertas" : "Cerradas" }}</span></mat-card-title>
-                    <button mat-raised-button class="ml-3" (click)="toggleCategoryPredictionsStatus(category)">{{ category.predictionsOpen ? "Cerrar" : "Abrir" }}</button>
-                </mat-card-header>
-            </mat-card>
+              <mat-card class="score-status-selection-card mb-3" style="box-shadow: none !important; border: 1px solid #e0e0e0;">
+                  <div class="d-flex align-items-center" style="padding: 16px;">
+                    <span style="font-size: 20px; font-weight: 500; margin: 0;">
+                        Estado de las predicciones de {{ category.name }}:
+                    <span>{{ category.predictionsOpen ? "Abiertas" : "Cerradas" }}</span>
+                    </span>
+                      <button mat-stroked-button class="ml-3" style="transform: translateY(-1px);" (click)="toggleCategoryPredictionsStatus(category)">
+                          {{ category.predictionsOpen ? "Cerrar" : "Abrir" }}
+                      </button>
+                  </div>
+              </mat-card>
 
             <!-- Formulario para agregar enfrentamientos iniciales -->
             <mat-card class="encounter-form-card" *ngIf="!category.predictionsOpen">
