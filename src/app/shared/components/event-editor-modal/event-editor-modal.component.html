@@ -196,7 +196,7 @@
             </div>
 
             <div *ngIf="isDataAnalysis" class="form-input">
-                <label class="form-input-label">Porcentaje mínimo para aprobar</label>
+                <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.MIN_PERCENTAGE' | translate }}</label>
                 <input
                     type="number"
                     min="0" max="100"
@@ -204,7 +204,7 @@
                     class="form-control"
                     formControlName="passingScore"
                 />
-                <label class="form-input-label">Fecha de inicio de exámenes</label>
+                <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.START_EXAMS_DATE' | translate }}</label>
                 <input
                     type="datetime-local"
                     class="form-control"

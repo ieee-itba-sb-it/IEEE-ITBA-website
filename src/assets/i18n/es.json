@@ -594,7 +594,10 @@
     }
   },
   "DATAANALYSIS": {
-      "MODAL": "Porcentaje mínimo para aprobar",
+      "MODAL": {
+          "MIN_PERCENTAGE": "Porcentaje mínimo para aprobar: ",
+          "START_EXAMS_DATE": "Fecha de inicio de los exámenes: "
+      },
     "PAGETITLE": "ITBA IEEE | Curso de Análisis de Datos en Python",
     "PAGEDESCRIPTION": "Curso de Análisis de Datos en Python organizado por IEEE ITBA. Aprende a usar herramientas de visualización y análisis de datos en Python.",
     "CLASSES": {
@@ -643,6 +646,7 @@
         ]
     },
       "EMBEDDED_EXAM": {
+          "GOTO_HOME": "Ir a Inicio",
           "EXAM": {
               "TITLE": "Examen",
               "QUESTION": "Pregunta",
