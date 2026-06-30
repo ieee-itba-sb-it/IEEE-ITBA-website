@@ -52,8 +52,7 @@ export class ExamListComponent implements OnInit {
                 }
                 this.eventService.getDataAnalysisUser(user).subscribe(student => {
                     if (!student) {
-                        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {
-                        });
+                        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
                         return;
                     }
                     this.dataAnalysisUser = student;
@@ -95,5 +94,8 @@ export class ExamListComponent implements OnInit {
         return this.eventService.isReviewAvailable(this.userExam);
     }
 
+    protected goToHome() {
+        this.router.navigate(['/home']).then(() => {})
+    }
 }
 
