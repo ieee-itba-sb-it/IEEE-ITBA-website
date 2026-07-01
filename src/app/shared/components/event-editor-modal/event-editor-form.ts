@@ -3,6 +3,7 @@ import {Event, EventDate, EventStatus, IeeeEvent} from "../../models/event/event
 import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-date";
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
 import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
+import {DataAnalysisEventEditorForm} from "./event-editor-form-data-analysis";
 
 type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm &
     LocationEventForm & Partial<DataAnalysisEventForm>;
@@ -33,6 +34,7 @@ export class EventEditorForm {
     private readonly eventDateEventEditorForm: EventDateEventEditorForm;
     private readonly inscriptionLinkEventEditorForm: InscriptionLinkEventEditorForm;
     private readonly locationEventEditorForm: LocationEventEditorForm;
+    private readonly dataAnalysisEventEditorForm?: DataAnalysisEventEditorForm;
 
     constructor(event: Event) {
         this.eventInitialState = EventEditorForm.cloneEvent(event);
@@ -48,15 +50,9 @@ export class EventEditorForm {
             ...locationFormGroup
         });
         if (event.id === IeeeEvent.DATA_ANALYSIS) {
-            this.eventForm.addControl(
-                'passingScore',
-                new FormControl(event.passingScore ?? (10 / 12))
-            );
-
-            this.eventForm.addControl(
-                'examStartDate',
-                new FormControl(event.examStartDate ?? null)
-            );
+            this.dataAnalysisEventEditorForm = new DataAnalysisEventEditorForm(event);
+            this.eventForm.addControl("passingScore", this.dataAnalysisEventEditorForm.getForm().passingScore);
+            this.eventForm.addControl("examStartDate", this.dataAnalysisEventEditorForm.getForm().examStartDate);
         }
     }
 
@@ -75,10 +71,7 @@ export class EventEditorForm {
             inscriptionLink: newInscriptionLink,
             location: newLocationEvent.location,
             locationLink: newLocationEvent.locationLink,
-            passingScore: this.eventForm.get('passingScore')?.value,
-            examStartDate: this.eventForm.get('examStartDate')?.value
-                ? new Date(this.eventForm.get('examStartDate')?.value)
-                : null
+            ...this.dataAnalysisEventEditorForm?.getCurrentState(),
         };
     }
 
@@ -94,7 +87,11 @@ export class EventEditorForm {
         const areEventDatesValid = this.eventDateEventEditorForm.isValid();
         const isEventInscriptionLinkValid = this.inscriptionLinkEventEditorForm.isValid();
         const isLocationValid = this.locationEventEditorForm.isValid()
-        return areEventDatesValid && isEventInscriptionLinkValid && isLocationValid;
+        const isDataAnalysisValid = this.dataAnalysisEventEditorForm?.isValid() ?? true;
+        return areEventDatesValid &&
+            isEventInscriptionLinkValid &&
+            isLocationValid &&
+            isDataAnalysisValid;
     }
 
     getEventDateError(eventDate: EventDate, errorName: string): ValidationErrors | null {
@@ -103,6 +100,10 @@ export class EventEditorForm {
 
     getInscriptionLinkError(errorName: string): ValidationErrors | null {
         return this.inscriptionLinkEventEditorForm.getError(errorName);
+    }
+
+    getDataAnalysisError(error:string): ValidationErrors | null {
+        return this.dataAnalysisEventEditorForm?.getError(error) ?? null;
     }
 
     private hasEventDatesChanged(): boolean {
@@ -117,8 +118,13 @@ export class EventEditorForm {
         return this.locationEventEditorForm.hasChanged();
     }
 
+    private hasDataAnalysisChanged(): boolean {
+        return this.dataAnalysisEventEditorForm?.hasChanged() ?? false;
+    }
+
     hasChanged(): boolean {
-        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged() || this.hasLocationChanged();
+        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged() ||
+            this.hasLocationChanged() || this.hasDataAnalysisChanged();
     }
 
     isEventDateAPeriod(eventDate: EventDate): boolean {

@@ -323,7 +323,11 @@
              "YEAR_REQUIRED": "El año es requerido",
              "YEAR_INVALID": "El año es inválido",
              "YEAR_PAST": "El año no puede ser anterior al año actual",
-             "INSCRIPTION_LINK_MAX_LENGTH": "El link de inscripción no puede tener más de {{ max }} caracteres (el ingresado tiene {{ length }} caracteres)"
+             "INSCRIPTION_LINK_MAX_LENGTH": "El link de inscripción no puede tener más de {{ max }} caracteres (el ingresado tiene {{ length }} caracteres)",
+             "PASSING_SCORE_MIN": "La puntuación de aprobación debe ser mayor o igual a 0",
+             "PASSING_SCORE_MAX": "La puntuación de aprobación debe ser menor o igual a 100",
+             "PASSING_SCORE_REQUIRED": "Ingresar un porcentaje mínimo de aprobación",
+             "EXAM_START_DATE_PAST": "La fecha de inicio del examen no puede ser en el pasado"
          }
       }
     },

@@ -81,6 +81,20 @@ export class EventEditorModalComponent implements OnInit {
             params: {max: InscriptionLinkEventEditorForm.INSCRIPTION_LINK_MAX_LENGTH.toString()}
         },
     }
+    i18nDataAnalysisErrorByFormErrorName: I18nErrorByFormErrorName = {
+        min: {
+            key: 'PASSING_SCORE_MIN'
+        },
+        max: {
+            key: 'PASSING_SCORE_MAX'
+        },
+        required: {
+            key: 'PASSING_SCORE_REQUIRED'
+        },
+        minDate: {
+            key: 'EXAM_START_DATE_PAST'
+        }
+    }
 
     constructor(
         private eventService: EventService,
@@ -219,5 +233,16 @@ export class EventEditorModalComponent implements OnInit {
 
     get isDataAnalysis(): boolean {
         return this.event.id === IeeeEvent.DATA_ANALYSIS;
+    }
+
+    getFormDataAnalysisErrors(): string[] {
+        return this.getFormErrors(
+            this.i18nDataAnalysisErrorByFormErrorName,
+            errorName => this.form.getDataAnalysisError(errorName)
+        );
+    }
+
+    get hasFormDataAnalysisErrors(): boolean {
+        return this.getFormDataAnalysisErrors().length > 0;
     }
 }

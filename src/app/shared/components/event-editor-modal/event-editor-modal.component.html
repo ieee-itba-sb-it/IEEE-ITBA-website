@@ -209,6 +209,14 @@
                     type="datetime-local"
                     class="form-control"
                     formControlName="examStartDate"/>
+
+                <div *ngIf="hasFormDataAnalysisErrors"
+                     class="error-container">
+                    <p *ngFor="let error of getFormDataAnalysisErrors()"
+                       class="error">
+                        {{ error }}
+                    </p>
+                </div>
             </div>
 
             <div *ngIf="!!errorI18n" class="error-container">
