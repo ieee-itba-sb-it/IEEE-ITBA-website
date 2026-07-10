@@ -11,6 +11,7 @@ export class TournamentTreeComponent implements OnInit, OnChanges {
 
     @Input() initialEncounters: Encounter[] = [];
     @Input() robots: Robot[] = [];
+    @Input() disabled: boolean = false;
     @Output() vote = new EventEmitter<Encounter>(); // Renombrado de onVote a vote
 
     public bracketLevels = new Map<number, Encounter[]>();
@@ -66,6 +67,9 @@ export class TournamentTreeComponent implements OnInit, OnChanges {
      * @param winnerNumber El robot ganador (1 o 2).
      */
     public votation(encounter: Encounter, winnerNumber: 1 | 2): void {
+        if (this.disabled) {
+            return;
+        }
         // 2. Verificar que ambos robots estén definidos
         if (!encounter.robot1 || !encounter.robot2) {
             return;

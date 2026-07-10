@@ -1,4 +1,4 @@
-<div class="bracket-container" *ngIf="bracketLevels.size > 0">
+<div class="bracket-container" *ngIf="bracketLevels.size > 0" [class.disabled-tree]="disabled">
 
     <div *ngFor="let level of [].constructor(finalLevel + 1); let i = index" class="bracket-level">
         <div class="lines-wrapper" *ngIf="i !== 0">

@@ -155,3 +155,11 @@
        background-color: #ced4da;
        transform: scaleY(2);
    }
+
+   .disabled-tree .robot {
+       cursor: default !important;
+   }
+   .disabled-tree .robot:hover {
+       background-color: transparent !important;
+   }
+

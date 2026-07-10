@@ -40,6 +40,7 @@ export class PredictionFormComponent implements OnInit {
     currentUser: IEEEuser | null = null;
 
     allCategories: Category[];
+    alreadyVoted: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private asimovService: AsimovService) {}
 
@@ -64,6 +65,7 @@ export class PredictionFormComponent implements OnInit {
         this.categoryRobots = [];
         this.categoryEncounters = [];
         this.predictions = [];
+        this.alreadyVoted = false;
 
         this.loading = true;
 
@@ -82,12 +84,66 @@ export class PredictionFormComponent implements OnInit {
             }
             this.asimovService.getUserPredictions(user.uID).subscribe(predictions => {
                 this.loading = false;
-                if (predictions.find(pred => pred.category.id === categoryId)) {
-                    this.onNext();
+                const categoryPredictions = predictions.filter(pred => pred.category.id === categoryId);
+                if (categoryPredictions.length > 0) {
+                    this.predictions = [...categoryPredictions];
+                    this.alreadyVoted = true;
+                    this.populatePredictions();
                 }
             })
         })
     }
+
+    populatePredictions() {
+        if (!this.categoryEncounters.length || !this.predictions.length) return;
+
+        // Crear mapa de enfrentamientos para acceso rápido
+        const encountersMap = new Map<string, Encounter>();
+        this.categoryEncounters.forEach(e => {
+            encountersMap.set(`${e.level}-${e.order}`, e);
+        });
+
+        // Ordenar niveles de mayor a menor para propagar ganadores correctamente de rondas iniciales a finales
+        const maxLevel = Math.max(...this.categoryEncounters.map(e => e.level));
+        for (let level = maxLevel; level >= 0; level--) {
+            const levelEncounters = this.categoryEncounters.filter(e => e.level === level);
+            for (const encounter of levelEncounters) {
+                // Buscamos una predicción para este nivel y orden. En caso de haber duplicados históricos en la BD,
+                // priorizamos aquella cuyo ganador coincida con uno de los robots participantes de esta ronda.
+                const pred = this.predictions.find(
+                    p => p.level === level && p.order === encounter.order && (p.winner === encounter.robot1 || p.winner === encounter.robot2)
+                );
+                
+                if (pred && pred.winner) {
+                    let matchedWinner: 1 | 2 | undefined = undefined;
+                    if (encounter.robot1 === pred.winner) {
+                        encounter.winner = 1;
+                        matchedWinner = 1;
+                    } else if (encounter.robot2 === pred.winner) {
+                        encounter.winner = 2;
+                        matchedWinner = 2;
+                    }
+
+                    // Propagar al siguiente nivel solamente si el ganador es válido para este enfrentamiento
+                    if (matchedWinner !== undefined) {
+                        const nextLevel = level - 1;
+                        if (nextLevel >= 0) {
+                            const nextOrder = Math.floor(encounter.order / 2);
+                            const nextEncounter = encountersMap.get(`${nextLevel}-${nextOrder}`);
+                            if (nextEncounter) {
+                                if (encounter.order % 2 === 0) {
+                                    nextEncounter.robot1 = pred.winner;
+                                } else {
+                                    nextEncounter.robot2 = pred.winner;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     completeEncounters(encounters: Encounter[]): Encounter[] {
         if (!encounters.length || !this.category) return encounters;
@@ -144,21 +200,28 @@ export class PredictionFormComponent implements OnInit {
         let winnerId = '';
         if (encounter.winner === 1) winnerId = encounter.robot1;
         else if (encounter.winner === 2) winnerId = encounter.robot2;
-        else return;
 
         const idx = this.predictions.findIndex(p => p.level === encounter.level && p.order === encounter.order && p.category.id === encounter.category.id);
-        if (idx !== -1) {
-            this.predictions[idx].winner = winnerId;
+        
+        if (winnerId) {
+            if (idx !== -1) {
+                this.predictions[idx].winner = winnerId;
+            } else {
+                this.predictions.push({
+                    id: `${encounter.category.id}_${encounter.level}_${encounter.order}`,
+                    uID: this.currentUser.uID,
+                    level: encounter.level,
+                    order: encounter.order,
+                    category: encounter.category,
+                    winner: winnerId,
+                    fullname: this.currentUser.fullname,
+                });
+            }
         } else {
-            this.predictions.push({
-                id: uuid(),
-                uID: this.currentUser.uID,
-                level: encounter.level,
-                order: encounter.order,
-                category: encounter.category,
-                winner: winnerId,
-                fullname: this.currentUser.fullname,
-            });
+            // Si el ganador es indefinido (desselección o propagación por cambios), eliminamos la predicción local
+            if (idx !== -1) {
+                this.predictions.splice(idx, 1);
+            }
         }
     }
 
