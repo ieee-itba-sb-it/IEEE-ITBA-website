@@ -21,6 +21,9 @@ export class PredictionComponent implements OnInit {
     predictions$: Observable<Prediction[]>;
     categories$: Observable<Category[]>;
     status$: Observable<boolean>;
+    existsClicoUser$: Observable<boolean>;
+
+    readonly CLICO_REF = "https://tryclico.com/";
 
     constructor(private authService: AuthService, private asimovService: AsimovService, private router: Router) {
 
@@ -43,6 +46,9 @@ export class PredictionComponent implements OnInit {
             } else {
                 this.loading = false;
             }
+        })
+        this.authService.getCurrentUser().subscribe(user => {
+            this.existsClicoUser$ = this.asimovService.checkClicoUserExists(user);
         });
     }
 

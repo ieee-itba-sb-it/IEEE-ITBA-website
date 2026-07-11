@@ -1,10 +1,11 @@
 
-    <ng-container *ngIf="!loading; else loadingTemplate">
-        <app-event-banner
+<ng-container *ngIf="!loading; else loadingTemplate">
+    <app-event-banner
             url="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.jpg"
             alt="Asimov Cup - Competencia de Robótica"
-        ></app-event-banner>
-        <app-event-title [asimov]="true" > Página de Predicciones – Asimov up 2025</app-event-title>
+    ></app-event-banner>
+    <app-event-title [asimov]="true" > Página de Predicciones – Asimov up 2025</app-event-title>
+    <ng-container *ngIf="(existsClicoUser$ | async); else clicoSignup">
         <ng-container *ngIf="(status$ | async) === true; else predictionsClosed">
             <ng-container *ngIf="firstCategory; else alreadyVotedTemplate">
 
@@ -44,9 +45,33 @@
                     </div>
                 </div>
             </div>
-
+        </ng-container>
     </ng-container>
 </ng-container>
+
+<ng-template #clicoSignup>
+    <app-event-content-card
+        title="Registrate en Clico para participar"
+        imageUrl="../../../../../assets/image/events/asimov-cup/clico_logo.png"
+        [disableImageOnMobile]="true"
+    >
+        <p content class="category-card-description">
+            Descubrí Clico, la extensión de IA gratuita que te ayuda a escribir, resumir, responder emails y mejorar cualquier texto directamente desde tu navegador.
+            Funciona donde ya trabajás, sin tener que copiar y pegar entre distintas herramientas. Creá tu cuenta gratis y empezá a ahorrar tiempo desde el primer día.
+        </p>
+        <mat-card-actions actions>
+            <app-button
+                [asimov]="true"
+                [href]="CLICO_REF"
+                imageUrl="../../../../../assets/image/logos/user.png"
+                imageAlt="User icon"
+                icon="person"
+            >
+                Registrarme en Clico
+            </app-button>
+        </mat-card-actions>
+    </app-event-content-card>
+</ng-template>
 
 <ng-template #predictionsClosed>
     <app-event-section [asimov]="true" title="¡Predicciones cerradas!">
