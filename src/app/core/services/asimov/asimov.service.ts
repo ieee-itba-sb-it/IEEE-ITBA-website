@@ -26,6 +26,8 @@ import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
 import { StorageService } from '../storage/storage.service';
+import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
+import axios from "axios";
 
 type WinnerEncounters = Encounter[];
 
@@ -90,6 +92,18 @@ export class AsimovService {
         return fromPromise(updateDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME), {
             checkingClicoAccountStatus: status
         }));
+    }
+
+    public checkClicoUserExists(user: IEEEuser): Observable<boolean> {
+        return fromPromise(axios.post(
+            "https://lan-makeup-commissioner-wheat.trycloudflare.com",
+            user.email
+        )).pipe(
+            map(axiosResponse => {
+                console.log(axiosResponse.data);
+                return axiosResponse.data.exists as boolean;
+            })
+        );
     }
 
     public getEncounters(): Observable<Encounter[]> {
