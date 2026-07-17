@@ -1,6 +1,8 @@
 import {Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/core';
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
+import {AuthService} from "../../../../core/services/authorization/auth.service";
 import {Observable} from "rxjs";
+
 
 export type Score = {
     uID: string
@@ -20,9 +22,36 @@ export class DashboardComponent implements OnInit {
     leaderboard: Score[] = [];
     @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
 
-    constructor(private asimovService: AsimovService){}
+    searchQuery: string = '';
+    currentUid: string | null = null;
+
+    get filteredLeaderboard(): Score[] {
+        if (!this.searchQuery.trim()) return this.leaderboard;
+        return this.leaderboard.filter(p =>
+            p.fullname?.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+    }
+
+    get myScore(): Score | undefined {
+        if (!this.currentUid) return undefined;
+        return this.leaderboard.find(p => p.uID === this.currentUid);
+    }
+
+    get myRank(): number {
+        return this.myScore ? this.leaderboard.indexOf(this.myScore) + 1 : -1;
+    }
+
+    constructor(
+        private asimovService: AsimovService,
+        private authService: AuthService   // 👈 lo inyectás
+    ){}
 
     ngOnInit(): void {
+        // me suscribo al usuario actual para guardar su uID
+        this.authService.getCurrentUser().subscribe(user => {
+            this.currentUid = user?.uID ?? null;
+        });
+
         this.leaderboard$ = this.asimovService.getScores();
 
         this.leaderboard$.subscribe((newScores) => {
