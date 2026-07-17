@@ -879,8 +879,13 @@
     "ENROLLBUTTON": "¡Anotate ahora!",
     "DOWNLOAD_RULEBOOK": "Descargar reglamento",
     "PREDICTIONSTITLE": "Predicciones disponibles",
-    "VOTEBUTTON": "VOTAR",
-    "LEADERBOARD": {
+    "CATEGORYCARD": {
+      "TEXT": "Las predicciones están abiertas. ¡Hacé tus apuestas y sumá puntos!",
+      "TEXT_VOTED": "Ya registraste tus predicciones para esta categoría. ¡Éxitos!",
+      "BUTTON_VOTE": "VOTAR",
+      "BUTTON_VOTED": "VER PREDICCION"
+    },
+      "LEADERBOARD": {
      "TITLE": "Ranking de Predicciones",
      "NAMEHEADER": "Nombre",
      "SCOREHEADER": "Puntaje"

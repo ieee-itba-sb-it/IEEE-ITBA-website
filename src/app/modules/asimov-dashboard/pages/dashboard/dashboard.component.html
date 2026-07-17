@@ -5,15 +5,20 @@
         <div class="predictions-section" *ngIf="openCategories.length > 0">
             <h2>{{ 'ASIMOVCUP.PREDICTIONSTITLE' | translate }}</h2>
             <div class="predictions-grid">
-                <div class="prediction-card" *ngFor="let category of openCategories" (click)="goToPrediction(category)">
+                <div class="prediction-card" *ngFor="let category of openCategories"
+                     (click)="goToPrediction(category)">
                     <div class="card-icon">
-                        <mat-icon>emoji_events</mat-icon>
+                        <mat-icon>{{ hasVoted(category) ? 'check_circle' : 'emoji_events' }}</mat-icon>
                     </div>
                     <div class="card-content">
                         <h3>{{ category.name | titlecase }}</h3>
+                        <p *ngIf="!hasVoted(category)">{{ 'ASIMOVCUP.CATEGORYCARD.TEXT' | translate }}</p>
+                        <p *ngIf="hasVoted(category)">{{ 'ASIMOVCUP.CATEGORYCARD.TEXT_VOTED' | translate }}</p>
                     </div>
                     <div class="card-action">
-                        <button mat-raised-button color="accent">{{ 'ASIMOVCUP.VOTEBUTTON' | translate }}</button>
+                        <button mat-raised-button color="accent">
+                            {{ (hasVoted(category) ? 'ASIMOVCUP.CATEGORYCARD.BUTTON_VOTED' : 'ASIMOVCUP.CATEGORYCARD.BUTTON_VOTE') | translate }}
+                        </button>
                     </div>
                 </div>
             </div>

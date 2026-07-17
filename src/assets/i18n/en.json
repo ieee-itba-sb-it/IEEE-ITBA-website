@@ -822,8 +822,13 @@
     "PAGEDESCRIPTION": "Asimov Cup is a robotics competition open to the general public that takes place at ITBA.",
     "ENROLLBUTTON": "Enroll now!",
     "PREDICTIONSTITLE": "Predictions available",
-    "VOTEBUTTON": "VOTE",
     "DOWNLOAD_RULEBOOK": "Download rulebook",
+    "CATEGORYCARD": {
+      "TEXT": "Predictions are open. Place your bets and earn points!",
+      "TEXT_VOTED": "You have already registered your predictions for this category. Good luck!",
+      "BUTTON_VOTE": "VOTE",
+      "BUTTON_VOTED": "ALREADY VOTED"
+    },
     "LEADERBOARD": {
       "TITLE": "Predictions Ranking",
       "NAMEHEADER": "Name",

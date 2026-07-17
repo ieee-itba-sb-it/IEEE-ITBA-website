@@ -156,6 +156,30 @@ thead th:last-child {
     background-color: rgb(253, 245, 247);
 }
 
+.prediction-card.voted {
+    border-color: #ccc;
+    cursor: default;
+    background-color: #fafafa;
+}
+
+.prediction-card.voted:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: #fafafa;
+}
+
+.prediction-card.voted .card-icon {
+    color: #4caf50;
+}
+
+.prediction-card.voted .card-content h3 {
+    color: #666;
+}
+
+.prediction-card.voted .card-content p {
+    color: #999;
+}
+
 .card-icon {
     font-size: 3em;
     color: rgb(134, 31, 65);
