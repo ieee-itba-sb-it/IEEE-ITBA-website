@@ -1,0 +1,109 @@
+.predictions-section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    align-items: center;
+    width: 100%;
+}
+
+.predictions-section h2 {
+    color: rgb(0, 40, 85);
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.predictions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 5px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.prediction-card {
+    width: 250px;
+    background: white;
+    border: 2px solid rgb(134, 31, 65);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.prediction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(134, 31, 65, 0.15);
+    background-color: rgb(253, 245, 247);
+}
+
+.prediction-card.voted {
+    border-color: #ccc;
+    cursor: default;
+    background-color: #fafafa;
+}
+
+.prediction-card.voted:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: #fafafa;
+}
+
+.prediction-card.voted .card-icon {
+    color: #4caf50;
+}
+
+.prediction-card.voted .card-content h3 {
+    color: #666;
+}
+
+.prediction-card.voted .card-content p {
+    color: #999;
+}
+
+.card-icon {
+    font-size: 3em;
+    color: rgb(134, 31, 65);
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-icon mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.card-content h3 {
+    margin: 0 0 8px 0;
+    color: rgb(0, 40, 85);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.card-content p {
+    margin: 0 0 16px 0;
+    color: #666;
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+.card-action {
+    width: 100%;
+}
+
+.card-action button {
+    width: 100%;
+    font-weight: bold;
+}

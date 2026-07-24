@@ -14,7 +14,9 @@ import {Router} from "@angular/router";
 export class PredictionComponent implements OnInit {
     loading: boolean = true;
 
-    firstCategory: Category = null;
+    firstCategory: Category | null = null;
+    openCategories: Category[] = [];
+    userPredictions: Prediction[] = [];
 
     predictions$: Observable<Prediction[]>;
     categories$: Observable<Category[]>;
@@ -28,17 +30,33 @@ export class PredictionComponent implements OnInit {
         this.loading = true;
         this.status$ = this.asimovService.getPredictionsStatus();
         this.authService.getCurrentUser().subscribe(user => {
-            this.predictions$ = this.asimovService.getUserPredictions(user.uID);
-            this.categories$ = this.asimovService.getCategories();
-            zip(this.categories$, this.predictions$).subscribe(([categories, predictions]) => {
-                const remainingCategories = categories.filter(c => c.predictionsOpen && !predictions.find(p => p.category.id === c.id));
-                if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
+            if (user) {
+                this.predictions$ = this.asimovService.getUserPredictions(user.uID);
+                this.categories$ = this.asimovService.getCategories();
+                zip(this.categories$, this.predictions$).subscribe(([categories, predictions]) => {
+                    this.openCategories = categories.filter(c => c.predictionsOpen);
+                    this.userPredictions = predictions;
+                    const remainingCategories = this.openCategories.filter(c => !predictions.find(p => p.category.id === c.id));
+                    if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
+                    this.loading = false;
+                });
+            } else {
                 this.loading = false;
-            })
-        })
+            }
+        });
     }
 
     goToNextCategory() {
-        this.router.navigate([`/asimov/prediction/${this.firstCategory.name}`]);
+        if (this.firstCategory) {
+            this.router.navigate([`/asimov/prediction/${this.firstCategory.name}`]);
+        }
+    }
+
+    goToPrediction(category: Category) {
+        this.router.navigate([`/asimov/prediction/${category.name}`]);
+    }
+
+    hasVoted(category: Category): boolean {
+        return this.userPredictions.some(p => p.category.id === category.id);
     }
 }

@@ -3,8 +3,6 @@ import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
-import {Category} from "../../../../shared/models/event/asimov/category";
-import {Prediction} from "../../../../shared/models/event/asimov/score";
 
 
 export type Score = {
@@ -23,9 +21,7 @@ export class DashboardComponent implements OnInit {
 
     leaderboard$: Observable<Score[]>;
     leaderboard: Score[] = [];
-    categories$: Observable<Category[]>;
-    openCategories: Category[] = [];
-    userPredictions: Prediction[] = [];
+
     @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
 
     constructor(
@@ -61,18 +57,7 @@ export class DashboardComponent implements OnInit {
 
         this.leaderboard$ = this.asimovService.getScores();
 
-        this.categories$ = this.asimovService.getCategories();
-        this.categories$.subscribe(categories => {
-            this.openCategories = categories.filter(c => c.predictionsOpen);
-        });
 
-        this.authService.getCurrentUser().subscribe(user => {
-            if (user) {
-                this.asimovService.getUserPredictions(user.uID).subscribe(predictions => {
-                    this.userPredictions = predictions;
-                });
-            }
-        });
 
         this.leaderboard$.subscribe((newScores) => {
             const prevRects = new Map<string, DOMRect>();
@@ -117,11 +102,4 @@ export class DashboardComponent implements OnInit {
         return player.uID;
     }
 
-    goToPrediction(category: Category) {
-        this.router.navigate([`/asimov/prediction/${category.name}`]);
-    }
-
-    hasVoted(category: Category): boolean {
-        return this.userPredictions.some(p => p.category.id === category.id);
-    }
 }

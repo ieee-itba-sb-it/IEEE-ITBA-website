@@ -54,7 +54,7 @@ export class PredictionFormComponent implements OnInit {
                     this.category = category;
                     this.loadCategoryData(category.id);
                 } else {
-                    this.router.navigate(['/asimov/dashboard']);
+                    this.router.navigate(['/asimov/prediction']);
                 }
             });
         });
@@ -257,6 +257,6 @@ export class PredictionFormComponent implements OnInit {
     }
 
     navigateToNext() {
-        this.router.navigate(['/asimov/dashboard']);
+        this.router.navigate(['/asimov/prediction']);
     }
 }

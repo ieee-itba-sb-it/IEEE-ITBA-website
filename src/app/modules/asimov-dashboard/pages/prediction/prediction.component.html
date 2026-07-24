@@ -20,14 +20,31 @@
                         4. <strong>Actualizaciones en vivo</strong>: resultados se actualizan cuando finaliza cada enfrentamiento.
                     </p>
                 </app-event-section>
-
-                <div style="display: flex; justify-content: center; margin-top: 2rem;">
-                    <button mat-raised-button class="ieeecard-button me-3" (click)="goToNextCategory()">
-                        <mat-icon class="align-middle">play_arrow</mat-icon>
-                        Comenzar predicciones
-                    </button>
-                </div>
             </ng-container>
+
+            <div class="predictions-section" *ngIf="openCategories.length > 0">
+                <h2 style="text-align: center;">{{ 'ASIMOVCUP.PREDICTIONSTITLE' | translate }}</h2>
+                <div class="predictions-grid">
+                    <div class="prediction-card" *ngFor="let category of openCategories"
+                         (click)="goToPrediction(category)"
+                         [class.voted]="hasVoted(category)">
+                        <div class="card-icon">
+                            <mat-icon>{{ hasVoted(category) ? 'check_circle' : 'emoji_events' }}</mat-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>{{ category.name | titlecase }}</h3>
+                            <p *ngIf="!hasVoted(category)">{{ 'ASIMOVCUP.CATEGORYCARD.TEXT' | translate }}</p>
+                            <p *ngIf="hasVoted(category)">{{ 'ASIMOVCUP.CATEGORYCARD.TEXT_VOTED' | translate }}</p>
+                        </div>
+                        <div class="card-action">
+                            <button mat-raised-button color="accent">
+                                {{ (hasVoted(category) ? 'ASIMOVCUP.CATEGORYCARD.BUTTON_VOTED' : 'ASIMOVCUP.CATEGORYCARD.BUTTON_VOTE') | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </ng-container>
 </ng-container>
 
