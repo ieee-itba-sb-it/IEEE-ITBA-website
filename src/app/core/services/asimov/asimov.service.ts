@@ -20,7 +20,7 @@ import {
 } from "@angular/fire/firestore";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
-import {map, Observable, shareReplay, switchMap, take, zip} from "rxjs";
+import {map, Observable, shareReplay, switchMap, take, tap, zip} from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
@@ -60,6 +60,7 @@ export class AsimovService {
 
     private robotsCache$: Observable<Robot[]> | null = null;
     private categoriesCache$: Observable<Category[]> | null = null;
+    private clicoUserExistsCache = new Map<string, Observable<boolean>>();
 
     private clearRobotsCache(): void {
         this.robotsCache$ = null;
@@ -96,17 +97,29 @@ export class AsimovService {
     }
 
     public checkClicoUserExists(user: IEEEuser): Observable<boolean> {
-        return fromPromise(axios.post(
-            `${environment.clicoApiUrl}/check-email`,
-            {
-                email: user.email
-            }
-        )).pipe(
-            map(axiosResponse => {
-                console.log(axiosResponse.data);
-                return axiosResponse.data.exists as boolean;
-            })
+        const email = user.email;
+
+        const cached = this.clicoUserExistsCache.get(email);
+        if (cached) {
+            return cached;
+        }
+
+        const request$ = fromPromise(
+            axios.post(
+                `${environment.clicoApiUrl}/check-email`,
+                { email }
+            )
+        ).pipe(
+            map(response => response.data.exists as boolean),
+            tap(exists => {
+                if (!exists) {
+                    this.clicoUserExistsCache.delete(email);
+                }
+            }),
+            shareReplay(1)
         );
+        this.clicoUserExistsCache.set(email, request$);
+        return request$;
     }
 
     public getEncounters(): Observable<Encounter[]> {
