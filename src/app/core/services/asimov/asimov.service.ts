@@ -20,7 +20,7 @@ import {
 } from "@angular/fire/firestore";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
-import {map, Observable, switchMap, take, zip} from "rxjs";
+import {map, Observable, shareReplay, switchMap, take, zip} from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
@@ -52,6 +52,17 @@ export class AsimovService {
     private metadataCollection: CollectionReference = collection(this.afs, AsimovService.METADATA_COLLECTION_NAME);
 
     private static readonly PAGE_SIZE = 10;
+
+    private robotsCache$: Observable<Robot[]> | null = null;
+    private categoriesCache$: Observable<Category[]> | null = null;
+
+    private clearRobotsCache(): void {
+        this.robotsCache$ = null;
+    }
+
+    private clearCategoriesCache(): void {
+        this.categoriesCache$ = null;
+    }
 
     constructor(private afs: Firestore, private supabaseStorage: StorageService) {}
 
@@ -124,11 +135,15 @@ export class AsimovService {
     }
 
     public getRobots(): Observable<Robot[]> {
-        return fromPromise(getDocs(query(this.robotsCollection))).pipe(
-            map(snap =>
-                snap.docs.map(doc => doc.data() as Robot)
-            ),
-        );
+        if (!this.robotsCache$) {
+            this.robotsCache$ = fromPromise(getDocs(query(this.robotsCollection))).pipe(
+                map(snap =>
+                    snap.docs.map(doc => doc.data() as Robot)
+                ),
+                shareReplay(1)
+            );
+        }
+        return this.robotsCache$;
     }
 
     public getRobotsByCategoryId(categoryId: string): Observable<Robot[]> {
@@ -140,9 +155,13 @@ export class AsimovService {
     }
 
     public getCategories(): Observable<Category[]> {
-        return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
-            map(snap => snap.docs.map(doc => doc.data() as Category))
-        );
+        if (!this.categoriesCache$) {
+            this.categoriesCache$ = fromPromise(getDocs(query(this.categoriesCollection))).pipe(
+                map(snap => snap.docs.map(doc => doc.data() as Category)),
+                shareReplay(1)
+            );
+        }
+        return this.categoriesCache$;
     }
 
     public getRobotsPage(query: Query): Observable<Robot[]> {
@@ -164,6 +183,7 @@ export class AsimovService {
     }
 
     public addRobots(robots: Robot[]): Observable<Robot[]> {
+        this.clearRobotsCache();
         return new Observable(obs => {
             const batch = writeBatch(this.afs);
             robots.forEach(robot => {
@@ -181,6 +201,7 @@ export class AsimovService {
     }
 
     public addRobot(robot: Robot): Observable<Robot> {
+        this.clearRobotsCache();
         robot.id = uuid();
         return new Observable(obs => {
             setDoc(
@@ -193,6 +214,7 @@ export class AsimovService {
     }
 
     public deleteRobots(robots: Robot[]): Observable<boolean> {
+        this.clearRobotsCache();
         return new Observable(obs => {
             let batch = writeBatch(this.afs);
             for(let robot of robots) {
@@ -212,6 +234,7 @@ export class AsimovService {
     }
 
     public updateRobot(newRobot: Robot): Observable<boolean> {
+        this.clearRobotsCache();
         return new Observable<boolean>((subscriber) => {
             let data = { ...newRobot };
             updateDoc(doc(this.afs, AsimovService.ROBOT_COLLECTION_NAME, newRobot.id), data)
@@ -255,6 +278,7 @@ export class AsimovService {
     }
 
     public addCategory(category: Partial<Category>): Observable<Category> {
+        this.clearCategoriesCache();
         const id = uuid();
         const newCategory: Category = { id, name: category.name || '' };
         return new Observable<Category>(observer => {
@@ -269,6 +293,7 @@ export class AsimovService {
     }
 
     public deleteCategory(category: Category): Observable<void> {
+        this.clearCategoriesCache();
         return new Observable<void>(observer => {
             const ref = doc(this.categoriesCollection, category.id);
             writeBatch(this.afs).delete(ref).commit()

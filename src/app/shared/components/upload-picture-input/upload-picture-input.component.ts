@@ -48,12 +48,19 @@ export class UploadPictureInputComponent {
         this.imageCompress.getOrientation(picture)
             .then(async orientation => {
                 const base = await ImageUtils.toBase64(picture);
-                return this.imageCompress.compressFile(base, orientation, 100, 100, 1024, 1024);
+                return this.imageCompress.compressFile(base, orientation, 50, 75, 800, 800);
             })
             .then(res => {
                 if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");
+                
+                let extension = picture.type.split('/')[1];
+                const matches = res.match(/^data:(image\/[a-z]+);base64,/i);
+                if (matches) {
+                    extension = matches[1].split('/')[1];
+                }
+                
                 this.photoURLChange.emit(res);
-                this.pictureTypeChange.emit(picture.type.split('/')[1]);
+                this.pictureTypeChange.emit(extension);
             })
             .catch(err => {
                 this.error$.next("COMPRESSION_FAILED");
