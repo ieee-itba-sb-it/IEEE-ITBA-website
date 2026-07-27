@@ -306,6 +306,7 @@ export class AsimovService {
     }
 
     public updateCategory(category: Category): Observable<boolean> {
+        this.clearCategoriesCache();
         return new Observable<boolean>((subscriber) => {
             let data = { ...category };
             updateDoc(doc(this.afs, AsimovService.CATEGORY_COLLECTION_NAME, category.id), data)
