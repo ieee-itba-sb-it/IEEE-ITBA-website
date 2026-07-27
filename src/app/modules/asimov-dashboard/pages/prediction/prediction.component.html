@@ -1,11 +1,11 @@
 
-<ng-container *ngIf="!loading; else loadingTemplate">
+<ng-container *ngIf="(loading$ | async) === false; else loadingTemplate">
     <app-event-banner
             url="../../../../../assets/image/events/asimov-cup/asimov-cup-banner.jpg"
             alt="Asimov Cup - Competencia de Robótica"
     ></app-event-banner>
     <app-event-title [asimov]="true" > Página de Predicciones – Asimov up 2025</app-event-title>
-    <ng-container *ngIf="(existsClicoUser$ | async); else clicoSignup">
+    <ng-container *ngIf="existsClicoUser; else clicoSignup">
         <ng-container *ngIf="(status$ | async) === true; else predictionsClosed">
             <ng-container *ngIf="firstCategory; else alreadyVotedTemplate">
 

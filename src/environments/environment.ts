@@ -4,6 +4,7 @@
 
 export const environment = {
     production: false,
+    clicoApiUrl: 'https://turbo-plans-helmet-gaming.trycloudflare.com',
 };
 
 /*
