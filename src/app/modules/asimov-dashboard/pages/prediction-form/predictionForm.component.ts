@@ -113,7 +113,7 @@ export class PredictionFormComponent implements OnInit {
                 const pred = this.predictions.find(
                     p => p.level === level && p.order === encounter.order && (p.winner === encounter.robot1 || p.winner === encounter.robot2)
                 );
-                
+
                 if (pred && pred.winner) {
                     let matchedWinner: 1 | 2 | undefined = undefined;
                     if (encounter.robot1 === pred.winner) {
@@ -202,7 +202,7 @@ export class PredictionFormComponent implements OnInit {
         else if (encounter.winner === 2) winnerId = encounter.robot2;
 
         const idx = this.predictions.findIndex(p => p.level === encounter.level && p.order === encounter.order && p.category.id === encounter.category.id);
-        
+
         if (winnerId) {
             if (idx !== -1) {
                 this.predictions[idx].winner = winnerId;
@@ -246,7 +246,6 @@ export class PredictionFormComponent implements OnInit {
         this.asimovService.savePredictions(this.predictions).subscribe({
             next: () => {
                 // Redirigir a la siguiente categoría o al dashboard
-                console.log("Predicciones guardadas correctamente");
                 this.navigateToNext();
             },
             error: (err) => {

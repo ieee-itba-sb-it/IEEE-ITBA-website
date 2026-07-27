@@ -13,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {ResultsComponent} from "./pages/results/results.component";
 import {CompleteEncounterLevelsPipe} from "./pages/results/components/complete-encounter-levels.pipe";
 import {FilterByCategory} from "./pages/results/components/filter-by-category.pipe";
+import {MatCardModule} from "@angular/material/card";
 import {FormsModule} from "@angular/forms";
 
 // Tab manager
@@ -46,7 +47,9 @@ export const routing = RouterModule.forChild(routes);
         CompleteEncounterLevelsPipe,
         TranslateModule,
         MatButtonModule,
-        MatIconModule, FormsModule
+        MatIconModule,
+        FormsModule,
+        MatCardModule
     ]
 })
 export class AsimovDashboardModule { }

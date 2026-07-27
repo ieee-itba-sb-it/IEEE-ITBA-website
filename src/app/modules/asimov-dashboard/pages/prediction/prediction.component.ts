@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
-import {Observable, zip} from "rxjs";
+import {BehaviorSubject, Observable, zip} from "rxjs";
 import {Prediction} from "../../../../shared/models/event/asimov/score";
 import {Category} from "../../../../shared/models/event/asimov/category";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
@@ -12,36 +12,42 @@ import {Router} from "@angular/router";
   styleUrls: ['./prediction.component.css']
 })
 export class PredictionComponent implements OnInit {
-    loading: boolean = true;
-
+    private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    loading$: Observable<boolean> = this.loadingSubject.asObservable();
     firstCategory: Category | null = null;
     openCategories: Category[] = [];
     userPredictions: Prediction[] = [];
+    existsClicoUser: boolean = false;
 
     predictions$: Observable<Prediction[]>;
     categories$: Observable<Category[]>;
     status$: Observable<boolean>;
+    clicoUser$: Observable<boolean>;
+
+    readonly CLICO_REF = "https://tryclico.com/";
 
     constructor(private authService: AuthService, private asimovService: AsimovService, private router: Router) {
 
     }
 
     ngOnInit(): void {
-        this.loading = true;
+        this.loadingSubject.next(true);
         this.status$ = this.asimovService.getPredictionsStatus();
         this.authService.getCurrentUser().subscribe(user => {
             if (user) {
                 this.predictions$ = this.asimovService.getUserPredictions(user.uID);
                 this.categories$ = this.asimovService.getCategories();
-                zip(this.categories$, this.predictions$).subscribe(([categories, predictions]) => {
+                this.clicoUser$ = this.asimovService.checkClicoUserExists(user);
+                zip(this.categories$, this.predictions$, this.clicoUser$).subscribe(([categories, predictions, existsClicoUser]) => {
+                    this.existsClicoUser = existsClicoUser
                     this.openCategories = categories.filter(c => c.predictionsOpen);
                     this.userPredictions = predictions;
                     const remainingCategories = this.openCategories.filter(c => !predictions.find(p => p.category.id === c.id));
                     if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
-                    this.loading = false;
+                    this.loadingSubject.next(false);
                 });
             } else {
-                this.loading = false;
+                this.loadingSubject.next(false);
             }
         });
     }

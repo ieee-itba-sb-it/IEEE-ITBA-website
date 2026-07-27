@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfigService } from './core/services/configuration/app-config.service';
-import { GuardsCheckEnd, GuardsCheckStart, NavigationCancel, Router } from '@angular/router';
+import {GuardsCheckEnd, GuardsCheckStart, NavigationCancel, NavigationEnd, Router} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +14,7 @@ import { GuardsCheckEnd, GuardsCheckStart, NavigationCancel, Router } from '@ang
 
 export class AppComponent implements OnInit {
     loading: boolean = false;
+    hideChrome = false;
 
     constructor(private pageScrollService: PageScrollService,
               @Inject(DOCUMENT) private document: any,
@@ -36,6 +37,12 @@ export class AppComponent implements OnInit {
             if (event instanceof GuardsCheckEnd || event instanceof NavigationCancel) {
                 this.loading = false;
             }
+            if (event instanceof NavigationEnd) {
+                const root = this.router.routerState.snapshot.root;
+                let route = root.firstChild;
+                while (route?.firstChild) route = route.firstChild;
+                this.hideChrome = route?.data?.['hideChrome'] ?? false;
+            }
         });
     }
 
@@ -48,4 +55,6 @@ export class AppComponent implements OnInit {
     useLanguage(language: string) {
         this.translate.use(language);
     }
+
 }
+

@@ -1,4 +1,11 @@
 <div class="encounters-admin">
+    <mat-card class="score-status-selection-card my-2">
+        <mat-card-header class="mb-4">
+            <mat-card-title>Chequeo cuenta Clico: <span>{{ (clicoAccountStatus$ | async) ? "Chequeando" : "No Chequeando" }}</span></mat-card-title>
+            <button mat-raised-button class="ml-3" (click)="toggleCheckClicoAccountStatus()">{{ (clicoAccountStatus$ | async) ? "No Chequear" : "Chequear" }}</button>
+        </mat-card-header>
+    </mat-card>
+
   <mat-card class="category-selection-card mt-2">
     <mat-card-header>
       <mat-card-title>Gestión de Enfrentamientos - Asimov Cup</mat-card-title>

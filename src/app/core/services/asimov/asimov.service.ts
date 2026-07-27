@@ -20,12 +20,15 @@ import {
 } from "@angular/fire/firestore";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
-import {map, Observable, shareReplay, switchMap, take, zip} from "rxjs";
+import {map, Observable, shareReplay, switchMap, take, tap, zip} from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
 import { StorageService } from '../storage/storage.service';
+import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
+import axios from "axios";
+import { environment } from "../../../../environments/environment";
 
 type WinnerEncounters = Encounter[];
 
@@ -51,10 +54,13 @@ export class AsimovService {
     private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
     private metadataCollection: CollectionReference = collection(this.afs, AsimovService.METADATA_COLLECTION_NAME);
 
+    private static readonly SCORE_DOCUMENT_NAME = AsimovService.SCORE_COLLECTION_NAME;
+
     private static readonly PAGE_SIZE = 10;
 
     private robotsCache$: Observable<Robot[]> | null = null;
     private categoriesCache$: Observable<Category[]> | null = null;
+    private clicoUserExistsCache = new Map<string, Observable<boolean>>();
 
     private clearRobotsCache(): void {
         this.robotsCache$ = null;
@@ -73,9 +79,47 @@ export class AsimovService {
     }
 
     public setPredictionsStatus(status: boolean): Observable<void> {
-        return fromPromise(setDoc(doc(this.metadataCollection, AsimovService.SCORE_COLLECTION_NAME), {
+        return fromPromise(setDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME), {
             open: status
         }));
+    }
+
+    public getCheckClicoAccountStatus(): Observable<boolean> {
+        return fromPromise(getDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME))).pipe(
+            map(docSnap => (docSnap.data() as { checkingClicoAccountStatus: boolean }).checkingClicoAccountStatus)
+        );
+    }
+
+    public setCheckClicoAccountStatus(status: boolean): Observable<void> {
+        return fromPromise(updateDoc(doc(this.metadataCollection, AsimovService.SCORE_DOCUMENT_NAME), {
+            checkingClicoAccountStatus: status
+        }));
+    }
+
+    public checkClicoUserExists(user: IEEEuser): Observable<boolean> {
+        const email = user.email;
+
+        const cached = this.clicoUserExistsCache.get(email);
+        if (cached) {
+            return cached;
+        }
+
+        const request$ = fromPromise(
+            axios.post(
+                `${environment.clicoApiUrl}/check-email`,
+                { email }
+            )
+        ).pipe(
+            map(response => response.data.exists as boolean),
+            tap(exists => {
+                if (!exists) {
+                    this.clicoUserExistsCache.delete(email);
+                }
+            }),
+            shareReplay(1)
+        );
+        this.clicoUserExistsCache.set(email, request$);
+        return request$;
     }
 
     public getEncounters(): Observable<Encounter[]> {

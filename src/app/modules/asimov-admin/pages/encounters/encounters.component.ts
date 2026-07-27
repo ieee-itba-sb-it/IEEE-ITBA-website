@@ -16,6 +16,7 @@ import {AlertModalComponent} from "../../../../shared/components/alert-modal/ale
 export class EncountersComponent implements OnInit {
     private categoriesSubject = new BehaviorSubject<Category[]>([]);
     categories$: Observable<Category[]> = this.categoriesSubject.asObservable();
+    clicoAccountStatus$: Observable<boolean>;
     robots$: Observable<Robot[]>;
     selectedTabIndex = 0;
     selectedRobot1: Robot | null = null;
@@ -39,11 +40,12 @@ export class EncountersComponent implements OnInit {
     ) {
         this.robots$ = this.asimovService.getRobots();
         this.robots$.subscribe(robots => this.robots = robots);
-        
+
         this.asimovService.getCategories().subscribe(categories => {
             this.categoriesSubject.next(categories);
             this.loadRobotsForCurrentCategory();
         });
+        this.clicoAccountStatus$ = this.asimovService.getCheckClicoAccountStatus();
     }
 
     ngOnInit(): void {}
@@ -53,6 +55,14 @@ export class EncountersComponent implements OnInit {
         this.asimovService.updateCategory(updatedCategory).subscribe(() => {
             this.asimovService.getCategories().subscribe(categories => {
                 this.categoriesSubject.next(categories);
+            });
+        });
+    }
+
+    toggleCheckClicoAccountStatus(): void {
+        this.clicoAccountStatus$.subscribe(status => {
+            this.asimovService.setCheckClicoAccountStatus(!status).subscribe(() => {
+                this.clicoAccountStatus$ = this.asimovService.getCheckClicoAccountStatus();
             });
         });
     }

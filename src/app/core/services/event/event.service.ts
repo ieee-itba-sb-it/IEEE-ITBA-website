@@ -16,18 +16,21 @@ import {
     getDocs,
     query,
     Query,
-    QueryDocumentSnapshot,
+    QueryDocumentSnapshot, runTransaction, setDoc,
     updateDoc,
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of} from "rxjs";
+import {catchError, from, map, Observable, of, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
     getArgentineTime,
     parseArgentineDate
 } from "../../../shared/argentina-time";
+import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
+import {AuthService} from "../authorization/auth.service";
+import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +39,7 @@ export class EventService {
     private static readonly collectionName = eventsCollectionName;
     private readonly collection: CollectionReference;
 
-    constructor(private afs: Firestore, private userService: UserService) {
+    constructor(private afs: Firestore, private userService: UserService, private authService: AuthService) {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
@@ -321,5 +324,175 @@ export class EventService {
             spectatorInscriptionEnabled: event.spectatorInscriptionEnabled ?? false,
             spectatorInscriptionLink: event.spectatorInscriptionLink?.trim() || null
         }
+    }
+
+    // DATA_ANALYSIS SECTION
+
+    private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
+    private static readonly questionsCollectionName = "questions";
+    private static readonly studentsCollectionName = "students";
+
+    public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
+        return new Observable(obs => {
+
+            const studentRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.studentsCollectionName,
+                user.email
+            );
+
+            const student = {
+                email: user.email,
+                enrolledAt: new Date(),
+                passedCourse: false
+            };
+
+            setDoc(studentRef, student)
+                .then(() => obs.next())
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public getDataAnalysisUser(user: IEEEuser
+    ): Observable<DataAnalysisUser | null> {
+        return new Observable(obs => {
+
+            const studentRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.studentsCollectionName,
+                user.email
+            );
+
+            getDoc(studentRef)
+                .then(snap => {
+                    obs.next(
+                        snap.exists() ? snap.data() as DataAnalysisUser : null
+                    );
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+
+    public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
+        return new Observable(obs => {
+            const questionsRef = collection(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.questionsCollectionName
+            );
+
+            getDocs(questionsRef)
+                .then(async snapshot => {
+                    const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
+
+                    const exam: UserExam = {
+                        passed: false,
+                        submitted: false,
+                        started: new Date(),
+                        questions: this.selectRandom(questions, questionCount)
+                    };
+
+                    const studentRef = doc(
+                        this.afs,
+                        EventService.collectionName,
+                        EventService.dataAnalysisDocumentName,
+                        EventService.studentsCollectionName,
+                        user.email
+                    );
+
+                    await updateDoc(studentRef, { currentExam: exam });
+                    return exam;
+                })
+                .then(exam => obs.next(exam))
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    private selectRandom(questions: Question[], questionCount: number): Question[] {
+        const toReturn: Question[] = [];
+        while (questionCount > 0) {
+            const randInt = Math.floor(Math.random() * questions.length);
+            toReturn.push(questions[randInt]);
+            questions.splice(randInt, 1);
+            questionCount--;
+        }
+        return toReturn;
+    }
+
+    public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
+        return new Observable(obs => {
+            const studentRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName,
+                EventService.studentsCollectionName,
+                user.email
+            );
+
+            updateDoc(studentRef, { currentExam : exam, passedCourse : exam.passed })
+                .then(() => obs.next())
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public isReviewAvailable(exam: UserExam): boolean {
+        const started = new Date(exam.started);
+        const now = new Date();
+        return started.getDate() === now.getDate();
+    }
+
+    public getDataAnalysisStartDate(): Observable<Date | null> {
+        return new Observable(obs => {
+            const docRef = doc(
+                this.afs,
+                EventService.collectionName,
+                EventService.dataAnalysisDocumentName
+            );
+
+            getDoc(docRef)
+                .then(snap => {
+                    if (snap.exists()) {
+                        const data = snap.data() as Event;
+                        // TODO: Check property access !!!
+                        obs.next(data['startDate'].toDate());
+                    } else {
+                        obs.next(null);
+                    }
+                })
+                .catch(err => obs.error(err))
+                .finally(() => obs.complete());
+        });
+    }
+
+    public calculateExamDay(startDate: Date): number {
+        const diffMs = new Date().getTime() - startDate.getTime();
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        return diffDays + 1;
+    }
+
+    public evaluateExam(questions: Question[], approved_threshold: number): boolean {
+        let correctCount = 0;
+
+        questions.forEach(q => {
+            const selected = q.answers.find(a => a.selected)?.answer ?? '';
+            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
+
+            if (this.compare(selected, correct)) { correctCount++; }
+        });
+        return (correctCount / questions.length) >= approved_threshold;
+    }
+
+    private compare(selected: string, correct: string): boolean {
+        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
     }
 }
