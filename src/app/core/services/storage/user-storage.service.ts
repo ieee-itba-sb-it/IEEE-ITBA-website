@@ -6,13 +6,15 @@ import {AuthService} from "../authorization/auth.service";
 })
 export class UserStorageService {
 
+    // This service asks for userId in order to stay synchronous
+    // keeping localStorage operations synchronous.
     constructor() {}
 
     private key(userId: string, key: string): string {
         return `${userId}:${key}`;
     }
 
-    get<T>(userId: string, key: string): T | null {
+    get(userId: string, key: string): unknown | null {
         return JSON.parse(localStorage.getItem(this.key(userId, key)) ?? 'null');
     }
 

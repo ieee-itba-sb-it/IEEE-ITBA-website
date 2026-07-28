@@ -20,15 +20,17 @@ import {
 } from "@angular/fire/firestore";
 import { Encounter } from "../../../shared/models/event/asimov/encounter";
 import { Robot } from "../../../shared/models/event/asimov/robot";
-import {map, Observable, shareReplay, switchMap, take, tap, zip} from "rxjs";
+import {filter, map, Observable, of, shareReplay, switchMap, take, tap, throwError, zip} from "rxjs";
 import { fromPromise } from "rxjs/internal/observable/innerFrom";
 import { Category } from '../../../shared/models/event/asimov/category';
 import { v4 as uuid } from 'uuid';
 import {Prediction, Score} from "../../../shared/models/event/asimov/score";
 import { StorageService } from '../storage/storage.service';
+import { UserStorageService } from '../storage/user-storage.service'
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 import axios from "axios";
 import { environment } from "../../../../environments/environment";
+import {AuthService} from "../authorization/auth.service";
 
 type WinnerEncounters = Encounter[];
 
@@ -58,19 +60,64 @@ export class AsimovService {
 
     private static readonly PAGE_SIZE = 10;
 
-    private robotsCache$: Observable<Robot[]> | null = null;
-    private categoriesCache$: Observable<Category[]> | null = null;
+    private static readonly ROBOTS_CACHE_KEY = "robots";
+    private static readonly CATEGORIES_CACHE_KEY = "categories";
+    private static readonly CLICO_USER_CACHE_KEY = "clico_user";
+    private static readonly PREDICTIONS_CACHE_KEY = "predictions";
+
+    private static readonly DEFAULT_USER_ID = "DEFAULT_UID";
+
+    // checked
+    private robotsCache = new Map<string, Observable<Robot[]>>();
+    // checked
+    private categoriesCache = new Map<string, Observable<Category[]>>();
+    //checked
     private clicoUserExistsCache = new Map<string, Observable<boolean>>();
 
+    private predictionCache = new Map<string, Observable<Prediction[]>>();
+
+    private cache = new Map<string, Map<string, Observable<unknown>>>([
+        [AsimovService.ROBOTS_CACHE_KEY, this.robotsCache],
+        [AsimovService.CATEGORIES_CACHE_KEY, this.categoriesCache],
+        [AsimovService.CLICO_USER_CACHE_KEY, this.clicoUserExistsCache],
+        [AsimovService.PREDICTIONS_CACHE_KEY, this.predictionCache],
+    ]);
+
     private clearRobotsCache(): void {
-        this.robotsCache$ = null;
+        this.cache.get(AsimovService.ROBOTS_CACHE_KEY).clear();
+        this.userStorage.remove(AsimovService.DEFAULT_USER_ID, AsimovService.ROBOTS_CACHE_KEY);
     }
 
     private clearCategoriesCache(): void {
-        this.categoriesCache$ = null;
+        this.cache.get(AsimovService.CATEGORIES_CACHE_KEY).clear();
+        this.userStorage.remove(AsimovService.DEFAULT_USER_ID, AsimovService.CATEGORIES_CACHE_KEY);
     }
 
-    constructor(private afs: Firestore, private supabaseStorage: StorageService) {}
+    private setCache(userId: string, value: unknown, cache_key: string): void {
+        this.cache.get(cache_key).set(userId, of(value).pipe(shareReplay(1)));
+        this.userStorage.set(userId, cache_key, value);
+    }
+
+    private getCache(userId: string, cache_key: string): Observable<unknown> | null {
+        const cache_entry = this.cache.get(cache_key);
+        // Check in-memory cache
+        if(cache_entry.get(userId)) {
+            return cache_entry.get(userId);
+        }
+
+        const cached = this.userStorage.get(userId, cache_key);
+
+        // Check localStorage cache
+        if(cached) {
+            cache_entry.set(userId, of(cached).pipe(
+                shareReplay(1)
+            ));
+            return cache_entry.get(userId);
+        }
+        return null;
+    }
+
+    constructor(private afs: Firestore, private authService: AuthService, private supabaseStorage: StorageService, private userStorage: UserStorageService) {}
 
     public getPredictionsStatus(): Observable<boolean> {
         return this.getCategories().pipe(
@@ -97,29 +144,27 @@ export class AsimovService {
     }
 
     public checkClicoUserExists(user: IEEEuser): Observable<boolean> {
-        const email = user.email;
+        if(!user)
+            throwError(() => new Error("No user logged in"));
 
-        const cached = this.clicoUserExistsCache.get(email);
-        if (cached) {
-            return cached;
+        const cached_value = this.getCache(user.uID, AsimovService.CLICO_USER_CACHE_KEY) as Observable<boolean>;
+        if(cached_value === null) {
+            return fromPromise(
+                axios.post(
+                    `${environment.clicoApiUrl}/check-email`,
+                    { email: user.email },
+                )
+            ).pipe(
+                map(response => response.data.exists as boolean),
+                tap(exists => {
+                    // False is never cached
+                    if(exists) {
+                        this.setCache(user.uID, exists, AsimovService.CLICO_USER_CACHE_KEY);
+                    }
+                }),
+                shareReplay(1));
         }
-
-        const request$ = fromPromise(
-            axios.post(
-                `${environment.clicoApiUrl}/check-email`,
-                { email }
-            )
-        ).pipe(
-            map(response => response.data.exists as boolean),
-            tap(exists => {
-                if (!exists) {
-                    this.clicoUserExistsCache.delete(email);
-                }
-            }),
-            shareReplay(1)
-        );
-        this.clicoUserExistsCache.set(email, request$);
-        return request$;
+        return cached_value;
     }
 
     public getEncounters(): Observable<Encounter[]> {
@@ -171,41 +216,60 @@ export class AsimovService {
     }
 
     public getUserPredictions(userId: string): Observable<Prediction[]> {
-        return fromPromise(getDocs(query(this.predictionsCollection, where("uID", "==", userId)))).pipe(
-            map(snap =>
-                snap.docs.map(doc => doc.data() as Prediction)
-            ),
+        return this.authService.getCurrentUser().pipe(
+            take(1),
+            switchMap(user => {
+                // Check if predictions are cached
+                const cached_value = this.getCache(user.uID, AsimovService.PREDICTIONS_CACHE_KEY) as Observable<Prediction[]>;
+                if(cached_value === null) {
+                    // If not, request backend and store predictions in cache
+                    return fromPromise(getDocs(query(this.predictionsCollection))).pipe(
+                        map(snap =>
+                            snap.docs.map(doc => doc.data() as Prediction)
+                        ),
+                        tap(predictions => this.setCache(userId, predictions, AsimovService.PREDICTIONS_CACHE_KEY)),
+                        shareReplay(1));
+                }
+                return cached_value;
+            })
         );
     }
 
     public getRobots(): Observable<Robot[]> {
-        if (!this.robotsCache$) {
-            this.robotsCache$ = fromPromise(getDocs(query(this.robotsCollection))).pipe(
+        // Check if robots are already cached
+        const cached_value = this.getCache(AsimovService.DEFAULT_USER_ID, AsimovService.ROBOTS_CACHE_KEY) as Observable<Robot[]>;
+        if(cached_value === null) {
+            // If not, request backend and store robots in cache
+            return fromPromise(getDocs(query(this.robotsCollection))).pipe(
                 map(snap =>
                     snap.docs.map(doc => doc.data() as Robot)
                 ),
-                shareReplay(1)
-            );
+                tap(robots => this.setCache(AsimovService.DEFAULT_USER_ID, robots, AsimovService.ROBOTS_CACHE_KEY)),
+                shareReplay(1));
         }
-        return this.robotsCache$;
+        return cached_value;
     }
 
     public getRobotsByCategoryId(categoryId: string): Observable<Robot[]> {
-        return fromPromise(getDocs(query(this.robotsCollection, where("category.id", "==", categoryId)))).pipe(
-            map(snap =>
-                snap.docs.map(doc => doc.data() as Robot)
-            ),
+        // This is an optimization for caching all robots at once
+        return this.getRobots().pipe(
+            map(robots => robots.filter(robot => robot.category.id === categoryId))
         );
     }
 
     public getCategories(): Observable<Category[]> {
-        if (!this.categoriesCache$) {
-            this.categoriesCache$ = fromPromise(getDocs(query(this.categoriesCollection))).pipe(
-                map(snap => snap.docs.map(doc => doc.data() as Category)),
-                shareReplay(1)
-            );
+        // Check if categories are already cached
+        const cached_value = this.getCache(AsimovService.DEFAULT_USER_ID, AsimovService.CATEGORIES_CACHE_KEY) as Observable<Category[]>;
+        if(cached_value === null) {
+            // If not, request backend and store categories in cache
+            return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
+                map(snap =>
+                    snap.docs.map(doc => doc.data() as Category)
+                ),
+                tap(categories => this.setCache(AsimovService.DEFAULT_USER_ID, categories, AsimovService.CATEGORIES_CACHE_KEY)),
+                shareReplay(1));
         }
-        return this.categoriesCache$;
+        return cached_value;
     }
 
     public getRobotsPage(query: Query): Observable<Robot[]> {
@@ -461,12 +525,15 @@ export class AsimovService {
             })
         );
     }
+
     public savePredictions(predictions: Prediction[]): Observable<Prediction[]> {
+        const userId: string = predictions[0].uID;
+        const fullname: string = predictions[0].fullname;
         return new Observable(subscriber => {
             const batch = writeBatch(this.afs);
-            batch.set(doc(this.scoresCollection, predictions[0].uID), {
-                uID: predictions[0].uID,
-                fullname: predictions[0].fullname,
+            batch.set(doc(this.scoresCollection, userId), {
+                uID: userId,
+                fullname: fullname,
                 score: 0 // Initial score, will be calculated later
             });
             predictions.forEach(prediction => {
@@ -479,8 +546,16 @@ export class AsimovService {
             batch.commit().then(() => {
                 subscriber.next(predictions);
                 subscriber.complete();
-            }).catch(err => subscriber.error(err));
+            }).catch(err => subscriber.error(err)
+            ).finally(() => {
+                const cache_value: Observable<Prediction[]> = this.getCache(userId, AsimovService.PREDICTIONS_CACHE_KEY) as Observable<Prediction[]>;
+                if (cache_value === null)
+                    this.setCache(userId, [], AsimovService.PREDICTIONS_CACHE_KEY);
+
+                this.getCache(userId, AsimovService.PREDICTIONS_CACHE_KEY).pipe(
+                    map(cachedPredictions => this.setCache(userId, [...cachedPredictions as Prediction[], ...predictions], AsimovService.PREDICTIONS_CACHE_KEY))
+                );
+            });
         });
     }
-
 }
