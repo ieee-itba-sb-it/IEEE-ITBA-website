@@ -61,24 +61,17 @@ export class AsimovService {
     private static readonly PAGE_SIZE = 10;
 
     private static readonly ROBOTS_CACHE_KEY = "robots";
-    private static readonly CATEGORIES_CACHE_KEY = "categories";
     private static readonly CLICO_USER_CACHE_KEY = "clico_user";
     private static readonly PREDICTIONS_CACHE_KEY = "predictions";
 
     private static readonly DEFAULT_USER_ID = "DEFAULT_UID";
 
-    // checked
     private robotsCache = new Map<string, Observable<Robot[]>>();
-    // checked
-    private categoriesCache = new Map<string, Observable<Category[]>>();
-    //checked
     private clicoUserExistsCache = new Map<string, Observable<boolean>>();
-
     private predictionCache = new Map<string, Observable<Prediction[]>>();
 
     private cache = new Map<string, Map<string, Observable<unknown>>>([
         [AsimovService.ROBOTS_CACHE_KEY, this.robotsCache],
-        [AsimovService.CATEGORIES_CACHE_KEY, this.categoriesCache],
         [AsimovService.CLICO_USER_CACHE_KEY, this.clicoUserExistsCache],
         [AsimovService.PREDICTIONS_CACHE_KEY, this.predictionCache],
     ]);
@@ -86,11 +79,6 @@ export class AsimovService {
     private clearRobotsCache(): void {
         this.cache.get(AsimovService.ROBOTS_CACHE_KEY).clear();
         this.userStorage.remove(AsimovService.DEFAULT_USER_ID, AsimovService.ROBOTS_CACHE_KEY);
-    }
-
-    private clearCategoriesCache(): void {
-        this.cache.get(AsimovService.CATEGORIES_CACHE_KEY).clear();
-        this.userStorage.remove(AsimovService.DEFAULT_USER_ID, AsimovService.CATEGORIES_CACHE_KEY);
     }
 
     private setCache(userId: string, value: unknown, cache_key: string): void {
@@ -258,18 +246,9 @@ export class AsimovService {
     }
 
     public getCategories(): Observable<Category[]> {
-        // Check if categories are already cached
-        const cached_value = this.getCache(AsimovService.DEFAULT_USER_ID, AsimovService.CATEGORIES_CACHE_KEY) as Observable<Category[]>;
-        if(cached_value === null) {
-            // If not, request backend and store categories in cache
-            return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
-                map(snap =>
-                    snap.docs.map(doc => doc.data() as Category)
-                ),
-                tap(categories => this.setCache(AsimovService.DEFAULT_USER_ID, categories, AsimovService.CATEGORIES_CACHE_KEY)),
-                shareReplay(1));
-        }
-        return cached_value;
+        return fromPromise(getDocs(query(this.categoriesCollection))).pipe(
+            map(snap => snap.docs.map(doc => doc.data() as Category))
+        );
     }
 
     public getRobotsPage(query: Query): Observable<Robot[]> {
@@ -386,7 +365,6 @@ export class AsimovService {
     }
 
     public addCategory(category: Partial<Category>): Observable<Category> {
-        this.clearCategoriesCache();
         const id = uuid();
         const newCategory: Category = { id, name: category.name || '', predictionsOpen: false };
         return new Observable<Category>(observer => {
@@ -401,7 +379,6 @@ export class AsimovService {
     }
 
     public deleteCategory(category: Category): Observable<void> {
-        this.clearCategoriesCache();
         return new Observable<void>(observer => {
             const ref = doc(this.categoriesCollection, category.id);
             writeBatch(this.afs).delete(ref).commit()
@@ -414,7 +391,6 @@ export class AsimovService {
     }
 
     public updateCategory(category: Category): Observable<boolean> {
-        this.clearCategoriesCache();
         return new Observable<boolean>((subscriber) => {
             let data = { ...category };
             updateDoc(doc(this.afs, AsimovService.CATEGORY_COLLECTION_NAME, category.id), data)
