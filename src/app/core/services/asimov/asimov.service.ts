@@ -211,7 +211,7 @@ export class AsimovService {
                 const cached_value = this.getCache(user.uID, AsimovService.PREDICTIONS_CACHE_KEY) as Observable<Prediction[]>;
                 if(cached_value === null) {
                     // If not, request backend and store predictions in cache
-                    return fromPromise(getDocs(query(this.predictionsCollection))).pipe(
+                    return fromPromise(getDocs(query(this.predictionsCollection, where("uID", "==", userId)))).pipe(
                         map(snap =>
                             snap.docs.map(doc => doc.data() as Prediction)
                         ),
@@ -524,13 +524,17 @@ export class AsimovService {
                 subscriber.complete();
             }).catch(err => subscriber.error(err)
             ).finally(() => {
-                const cache_value: Observable<Prediction[]> = this.getCache(userId, AsimovService.PREDICTIONS_CACHE_KEY) as Observable<Prediction[]>;
-                if (cache_value === null)
-                    this.setCache(userId, [], AsimovService.PREDICTIONS_CACHE_KEY);
-
                 this.getCache(userId, AsimovService.PREDICTIONS_CACHE_KEY).pipe(
-                    map(cachedPredictions => this.setCache(userId, [...cachedPredictions as Prediction[], ...predictions], AsimovService.PREDICTIONS_CACHE_KEY))
-                );
+                    take(1)
+                ).subscribe(cache => {
+                    const cachedPredictions = (cache as Prediction[] | null) ?? [];
+
+                    this.setCache(
+                        userId,
+                        [...cachedPredictions, ...predictions],
+                        AsimovService.PREDICTIONS_CACHE_KEY
+                    );
+                });
             });
         });
     }
