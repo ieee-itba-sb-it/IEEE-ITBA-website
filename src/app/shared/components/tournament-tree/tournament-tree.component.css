@@ -92,7 +92,6 @@
 /* --- Estados de Votación --- */
 .match-decided {
     .robot {
-        cursor: not-allowed;
         &:hover {
             background-color: transparent;
         }
