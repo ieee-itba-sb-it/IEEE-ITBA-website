@@ -107,7 +107,7 @@
                         <mat-cell *matCellDef="let encounter" class="table-cell text-center">
                           <button mat-raised-button
                                   [color]="encounter.winner === getRobotById(encounter.robot1)?.id ? 'accent' : 'primary'"
-                                  [disabled]="encounter.winner || category.predictionsOpen"
+                                  [disabled]="encounter.winner || !category.predictionsOpen"
                                   (click)="selectWinner(encounter, getRobotById(encounter.robot1))"
                                   class="robot-button">
                             <i class="fas fa-robot"></i>
@@ -130,7 +130,7 @@
                         <mat-cell *matCellDef="let encounter" class="table-cell text-center">
                           <button mat-raised-button
                                   [color]="encounter.winner === getRobotById(encounter.robot2)?.id ? 'accent' : 'primary'"
-                                  [disabled]="encounter.winner || category.predictionsOpen"
+                                  [disabled]="encounter.winner || !category.predictionsOpen"
                                   (click)="selectWinner(encounter, getRobotById(encounter.robot2))"
                                   class="robot-button">
                             <i class="fas fa-robot"></i>
