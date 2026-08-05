@@ -911,7 +911,8 @@
       "LEADERBOARD": {
      "TITLE": "Ranking de Predicciones",
      "NAMEHEADER": "Nombre",
-     "SCOREHEADER": "Puntaje"
+     "SCOREHEADER": "Puntaje",
+     "GOBACK": "Volver a las predicciones"
     },
     "CATEGORIES": {
       "SUMO": {

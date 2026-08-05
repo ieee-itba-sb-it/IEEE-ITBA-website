@@ -854,7 +854,8 @@
     "LEADERBOARD": {
       "TITLE": "Predictions Ranking",
       "NAMEHEADER": "Name",
-      "SCOREHEADER": "Score"
+      "SCOREHEADER": "Score",
+      "GOBACK": "Go back to Predictions"
     },
     "CATEGORIES": {
       "SUMO": {
