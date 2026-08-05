@@ -1,6 +1,7 @@
 import {initializeApp} from "firebase-admin/app";
 import {migrateNewsToNewFormat} from "./migrations/migrate-news-to-new-format";
 import {seedQuestions} from "./seed";
+import {deleteAsimovCollections} from "./asimov/delete-asimov-collections";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -23,7 +24,8 @@ initializeApp({
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
     //await migrateNewsToNewFormat();
-    await seedQuestions();
+    //await seedQuestions();
+    await deleteAsimovCollections();
 }
 
 main();
