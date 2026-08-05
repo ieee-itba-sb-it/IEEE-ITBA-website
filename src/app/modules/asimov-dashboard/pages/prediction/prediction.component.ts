@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
-import {BehaviorSubject, Observable, zip} from "rxjs";
+import {BehaviorSubject, Observable, zip, of, switchMap} from "rxjs";
 import {Prediction} from "../../../../shared/models/event/asimov/score";
 import {Category} from "../../../../shared/models/event/asimov/category";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
@@ -37,7 +37,14 @@ export class PredictionComponent implements OnInit {
             if (user) {
                 this.predictions$ = this.asimovService.getUserPredictions(user.uID);
                 this.categories$ = this.asimovService.getCategories();
-                this.clicoUser$ = this.asimovService.checkClicoUserExists(user);
+                this.clicoUser$ = this.asimovService.getCheckClicoAccountStatus().pipe(
+                    switchMap(status => {
+                        if (status) {
+                            return this.asimovService.checkClicoUserExists(user);
+                        }
+                        return of(true);
+                    })
+                );
                 zip(this.categories$, this.predictions$, this.clicoUser$).subscribe(([categories, predictions, existsClicoUser]) => {
                     this.existsClicoUser = existsClicoUser
                     this.openCategories = categories.filter(c => c.predictionsOpen);
