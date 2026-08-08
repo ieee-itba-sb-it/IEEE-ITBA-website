@@ -24,7 +24,7 @@ export class PredictionComponent implements OnInit {
     status$: Observable<boolean>;
     clicoUser$: Observable<boolean>;
 
-    readonly CLICO_REF = "https://tryclico.com/";
+    readonly CLICO_REF = "https://tryclico.link/ieee";
 
     constructor(private authService: AuthService, private asimovService: AsimovService, private router: Router) {
 
