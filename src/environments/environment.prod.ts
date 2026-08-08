@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    clicoApiUrl: 'https://your-prod-clico-api-domain.example.com',
+    clicoApiUrl: 'https://systems-shorts-complexity-nickname.trycloudflare.com',
 };
