@@ -2,6 +2,7 @@ import {Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 
 export type Score = {
@@ -20,8 +21,14 @@ export class DashboardComponent implements OnInit {
 
     leaderboard$: Observable<Score[]>;
     leaderboard: Score[] = [];
+
     @ViewChildren('row') rows!: QueryList<ElementRef<HTMLTableRowElement>>;
 
+    constructor(
+        private asimovService: AsimovService,
+        private authService: AuthService,
+        private router: Router
+    ){}
     searchQuery: string = '';
     currentUid: string | null = null;
 
@@ -41,10 +48,6 @@ export class DashboardComponent implements OnInit {
         return this.myScore ? this.leaderboard.indexOf(this.myScore) + 1 : -1;
     }
 
-    constructor(
-        private asimovService: AsimovService,
-        private authService: AuthService   // 👈 lo inyectás
-    ){}
 
     ngOnInit(): void {
         // me suscribo al usuario actual para guardar su uID
@@ -53,6 +56,8 @@ export class DashboardComponent implements OnInit {
         });
 
         this.leaderboard$ = this.asimovService.getScores();
+
+
 
         this.leaderboard$.subscribe((newScores) => {
             const prevRects = new Map<string, DOMRect>();
@@ -96,4 +101,5 @@ export class DashboardComponent implements OnInit {
     trackByUid(index: number, player: Score): string {
         return player.uID;
     }
+
 }

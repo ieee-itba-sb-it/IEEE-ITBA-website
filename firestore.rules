@@ -24,10 +24,21 @@ service cloud.firestore {
       allow write: if hasRole("writer") || hasRole("admin");
     }
 
+    // cada student accede solo a su propia informacion
+    match /events/{eventId}/students/{userEmail} {
+        allow read, write:
+        if isSignedIn() && request.auth.token.email == userEmail;
+    }
+
     match /events/{document=**} {
     	allow read;
       allow write: if hasRole("admin");
     }
+
+    /*match /events/{eventId}/user_exams/{examId=**} {
+        allow read;
+        allow write;
+    }*/
 
     match /collection-metadata/{document=**}   {
       allow read;
@@ -78,7 +89,9 @@ service cloud.firestore {
 
     match /asimov-scores/{score}  {
       allow read;
-      allow write: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open || hasRole("admin");
+      allow write;
+      // TODO: multiple-categories refactor needed
+//      allow write: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open || hasRole("admin");
     }
 
     match /{path=**}/predictions/{prediction}  {
@@ -87,8 +100,10 @@ service cloud.firestore {
 
     match /asimov-scores/{userId}/predictions/{predictionId}  {
       allow read;
-      // Solo se pueden crear predicciones si estan abiertas.
-      allow write: if get(/databases/$(database)/documents/collection-metadata/asimov-scores).data.open || hasRole("admin");
+      // Solo se pueden crear predicciones si la categoria especifica esta abierta.
+      allow write: if (isSignedIn() && request.auth.uid == userId
+              && get(/databases/$(database)/documents/asimov-categories/$(request.resource.data.category.id)).data.predictionsOpen == true)
+              || hasRole("admin");
     }
 
     match /asimov-encounters/{document=**}  {
@@ -96,7 +111,7 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-   
+
     match /ieeextreme-teams/{document=**} {
       allow read: if true;
       allow write: if hasRole("admin");

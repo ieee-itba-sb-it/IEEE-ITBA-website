@@ -111,6 +111,8 @@ thead th:last-child {
     will-change: transform;
 }
 
+
+
 /* Additional responsive adjustments */
 @media (max-width: 1200px) {
     .dashboard-content {
@@ -123,7 +125,6 @@ thead th:last-child {
         flex-direction: column;
         gap: 20px;
     }
-
 }
 
 .search-container {
@@ -190,4 +191,36 @@ thead th:last-child {
     white-space: nowrap;
     align-items: center;
     font-size: 0.9em;
+}
+
+.end-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.learn-more-button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding:  0.5rem 1.2rem;
+    border: solid rgb(134, 31, 65);
+    color: rgb(134, 31, 65) !important;
+    border-radius: 5px;
+    background-color: inherit;
+    border-width: 3px;
+    transition: all 175ms ease-in-out;
+    margin-bottom: .5rem;
+}
+
+.learn-more-button:hover {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white !important;
+    background-color: rgb(134, 31, 65);
+    border-color: white;
+}
+
+.learn-more-button >.button-text {
+    color: rgb(134, 31, 65) !important;
+}
+.learn-more-button:hover > .button-text{
+    color: white !important;
 }

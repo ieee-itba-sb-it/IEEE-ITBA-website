@@ -1,0 +1,118 @@
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+.exam-card{
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.badge {
+    padding: 4px 5px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    justify-content: center;
+    margin: 0.5rem;
+    white-space: nowrap;
+}
+
+.badge.success {
+    background-color: var(--bs-ieee-bright-darker-green);
+    color: var(--bs-ieee-bright-green-20);
+}
+
+.badge.failed{
+    background-color: var(--bs-ieee-bright-red-60);
+    color: #ffffff;
+}
+
+.badge.pending{
+    background-color: var(--bs-ieee-bright-blue);
+    color: #ffffff;
+}
+
+.badge.not-submitted{
+    background-color: var(--bs-ieee-bright-blue-80);
+    color:#ffffff;
+}
+
+
+.exam-title{
+    padding: 0.4em 0.7em;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.text-success {
+    color: green;
+}
+
+.text-muted {
+    color: gray;
+}
+
+.ieee-button{
+    font-size: 1.2em;
+    padding: 0.4em 0.7em;
+    font-weight: 600;
+    border: solid var(--bs-ieee-bright-blue);
+    color: var(--bs-ieee-bright-blue) !important;
+    border-radius: 5px;
+    background-color: transparent;
+    border-width: 3px;
+    transition: all 175ms ease-in-out;
+    width: 30%;
+}
+
+
+.ieee-card-button {
+    width: 100%;
+    margin-top: 0.25rem;
+}
+.ieee-button:hover:not(:disabled) {
+    box-shadow: 0 0 0px 3px rgba(0,0,0,0.2);
+    color: white !important;
+    background-color: var(--bs-ieee-bright-blue);
+    border-color: white;
+}
+
+.ieee-button:disabled {
+    background-color: lightgrey;
+    border: 3px solid gray;
+    color: gray !important;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.passed-exam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.passed-exam-text{
+    margin-left: 2rem;
+}
+
+.passed-exam-img img {
+    width: auto;
+    height: 600px;
+}

@@ -1,57 +1,68 @@
-<div class="dashboard-container">
-    <h1>{{ 'ASIMOVCUP.LEADERBOARD.TITLE' | translate }}</h1>
+<div>
+    <div class="dashboard-container">
+        <h1>{{ 'ASIMOVCUP.LEADERBOARD.TITLE' | translate }}</h1>
 
-    <div class="dashboard-content">
-        <div class="leaderboard-section">
-            <div class="leaderboard-container">
-                <div class="leaderboard-header">
-                    <div class="participants-count">
-                        Participantes: <strong>{{ leaderboard.length }}</strong>
+        <div class="dashboard-content">
+            <div class="leaderboard-section">
+                <div class="leaderboard-container">
+                    <div class="leaderboard-header">
+                        <div class="participants-count">
+                            Participantes: <strong>{{ leaderboard.length }}</strong>
+                        </div>
+
+                        <div class="my-score-section" *ngIf="myScore">
+                            <span class="my-score-label">Tu puntaje: </span>
+                            <span class="my-score-points">{{ myScore.score | number }} pts</span>
+                            <span class="my-score-name">{{ myScore.fullname }}</span>
+                            <span class="my-score-rank">#{{ myRank }}</span>
+                        </div>
+
+
                     </div>
 
-                    <div class="my-score-section" *ngIf="myScore">
-                        <span class="my-score-label">Tu puntaje: </span>
-                        <span class="my-score-points">{{ myScore.score | number }} pts</span>
-                        <span class="my-score-name">{{ myScore.fullname }}</span>
-                        <span class="my-score-rank">#{{ myRank }}</span>
+                    <div class="search-container">
+                        <input
+                            type="text"
+                            [(ngModel)]="searchQuery"
+                            placeholder="Buscar participante..."
+                            class="search-input"
+                        />
                     </div>
-
-
+                    <table class="leaderboard-table">
+                        <thead>
+                        <tr>
+                            <th class="rank-column">#</th>
+                            <th class="name-column">{{ 'ASIMOVCUP.LEADERBOARD.NAMEHEADER' | translate }}</th>
+                            <th class="score-column">{{ 'ASIMOVCUP.LEADERBOARD.SCOREHEADER' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--                <tr *ngFor="let player of (leaderboard$|async); let i = index"> -->
+                        <tr *ngFor="let player of filteredLeaderboard; trackBy: trackByUid; let i = index" #row>
+                            <td class="rank-column">
+                                <ng-container [ngSwitch]="leaderboard.indexOf(player)">
+                                    <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
+                                    <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
+                                    <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
+                                    <span *ngSwitchDefault class="rank-number">{{ leaderboard.indexOf(player) + 1 }}</span>
+                                </ng-container>
+                            </td>
+                            <td class="name-column">{{ player.fullname }}</td>
+                            <td class="score-column">{{ player.score | number }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="search-container">
-                    <input
-                        type="text"
-                        [(ngModel)]="searchQuery"
-                        placeholder="Buscar participante..."
-                        class="search-input"
-                    />
-                </div>
-                <table class="leaderboard-table">
-                    <thead>
-                    <tr>
-                        <th class="rank-column">#</th>
-                        <th class="name-column">{{ 'ASIMOVCUP.LEADERBOARD.NAMEHEADER' | translate }}</th>
-                        <th class="score-column">{{ 'ASIMOVCUP.LEADERBOARD.SCOREHEADER' | translate }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-<!--                <tr *ngFor="let player of (leaderboard$|async); let i = index"> -->
-                    <tr *ngFor="let player of filteredLeaderboard; trackBy: trackByUid; let i = index" #row>
-                    <td class="rank-column">
-                            <ng-container [ngSwitch]="leaderboard.indexOf(player)">
-                                <span *ngSwitchCase="0" class="medal gold-medal">🥇</span>
-                                <span *ngSwitchCase="1" class="medal silver-medal">🥈</span>
-                                <span *ngSwitchCase="2" class="medal bronze-medal">🥉</span>
-                                <span *ngSwitchDefault class="rank-number">{{ leaderboard.indexOf(player) + 1 }}</span>
-                            </ng-container>
-                        </td>
-                        <td class="name-column">{{ player.fullname }}</td>
-                        <td class="score-column">{{ player.score | number }}</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+    </div>
+    <div class="end-button-container">
+        <button class="learn-more-button" [routerLink]="['/asimov/prediction']"><mdb-icon
+            fas
+            icon="chevron-left"
+            class="waves-light"
+            mdbWavesEffect></mdb-icon>
+            {{ 'ASIMOVCUP.LEADERBOARD.GOBACK' | translate }}
+        </button>
     </div>
 </div>

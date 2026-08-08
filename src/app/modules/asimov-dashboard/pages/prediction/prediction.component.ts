@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AsimovService} from "../../../../core/services/asimov/asimov.service";
-import {Observable, zip} from "rxjs";
+import {BehaviorSubject, Observable, zip, of, switchMap} from "rxjs";
 import {Prediction} from "../../../../shared/models/event/asimov/score";
 import {Category} from "../../../../shared/models/event/asimov/category";
 import {AuthService} from "../../../../core/services/authorization/auth.service";
@@ -12,33 +12,64 @@ import {Router} from "@angular/router";
   styleUrls: ['./prediction.component.css']
 })
 export class PredictionComponent implements OnInit {
-    loading: boolean = true;
-
-    firstCategory: Category = null;
+    private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    loading$: Observable<boolean> = this.loadingSubject.asObservable();
+    firstCategory: Category | null = null;
+    openCategories: Category[] = [];
+    userPredictions: Prediction[] = [];
+    existsClicoUser: boolean = false;
 
     predictions$: Observable<Prediction[]>;
     categories$: Observable<Category[]>;
     status$: Observable<boolean>;
+    clicoUser$: Observable<boolean>;
+
+    readonly CLICO_REF = "https://tryclico.com/";
 
     constructor(private authService: AuthService, private asimovService: AsimovService, private router: Router) {
 
     }
 
     ngOnInit(): void {
-        this.loading = true;
+        this.loadingSubject.next(true);
         this.status$ = this.asimovService.getPredictionsStatus();
         this.authService.getCurrentUser().subscribe(user => {
-            this.predictions$ = this.asimovService.getUserPredictions(user.uID);
-            this.categories$ = this.asimovService.getCategories();
-            zip(this.categories$, this.predictions$).subscribe(([categories, predictions]) => {
-                const remainingCategories = categories.filter(c => !predictions.find(p => p.category.id === c.id));
-                if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
-                this.loading = false;
-            })
-        })
+            if (user) {
+                this.predictions$ = this.asimovService.getUserPredictions(user.uID);
+                this.categories$ = this.asimovService.getCategories();
+                this.clicoUser$ = this.asimovService.getCheckClicoAccountStatus().pipe(
+                    switchMap(status => {
+                        if (status) {
+                            return this.asimovService.checkClicoUserExists(user);
+                        }
+                        return of(true);
+                    })
+                );
+                zip(this.categories$, this.predictions$, this.clicoUser$).subscribe(([categories, predictions, existsClicoUser]) => {
+                    this.existsClicoUser = existsClicoUser
+                    this.openCategories = categories.filter(c => c.predictionsOpen);
+                    this.userPredictions = predictions;
+                    const remainingCategories = this.openCategories.filter(c => !predictions.find(p => p.category.id === c.id));
+                    if (remainingCategories.length > 0) this.firstCategory = remainingCategories[0];
+                    this.loadingSubject.next(false);
+                });
+            } else {
+                this.loadingSubject.next(false);
+            }
+        });
     }
 
     goToNextCategory() {
-        this.router.navigate([`/asimov/prediction/${this.firstCategory.name}`]);
+        if (this.firstCategory) {
+            this.router.navigate([`/asimov/prediction/${this.firstCategory.name}`]);
+        }
+    }
+
+    goToPrediction(category: Category) {
+        this.router.navigate([`/asimov/prediction/${category.name}`]);
+    }
+
+    hasVoted(category: Category): boolean {
+        return this.userPredictions.some(p => p.category.id === category.id);
     }
 }

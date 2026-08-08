@@ -7,6 +7,7 @@
       <app-tournament-tree
         [initialEncounters]="categoryEncounters"
         [robots]="categoryRobots"
+        [disabled]="alreadyVoted"
         (vote)="handleVote($event)">
       </app-tournament-tree>
       <div *ngIf="getChampionRobot()" class="champion-container">
@@ -22,11 +23,16 @@
   </div>
 
   <div class="button-section">
-      <button mat-raised-button class="ieeecard-button me-3" (click)="onNext()" [disabled]="!isFinalPredicted()">
-          <mat-icon class="align-middle">play_arrow</mat-icon>
-            Siguiente categoría
+      <button *ngIf="!alreadyVoted" mat-raised-button class="ieeecard-button me-3" (click)="onNext()" [disabled]="!isFinalPredicted()">
+          <mat-icon class="align-middle">save</mat-icon>
+            Guardar y Volver
+      </button>
+      <button *ngIf="alreadyVoted" mat-raised-button class="ieeecard-button me-3" (click)="navigateToNext()">
+          <mat-icon class="align-middle">arrow_back</mat-icon>
+            Volver
       </button>
   </div>
+
 </div>
 
 <ng-template #loadingTemplate>
