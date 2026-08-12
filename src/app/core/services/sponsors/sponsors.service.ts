@@ -12,6 +12,10 @@ export class SponsorsService {
         {
             name: 'Globant',
             img: 'https://mqipggrhfgjyfgnzgphy.supabase.co/storage/v1/object/public/IEEE-ITBA-website/sponsors/Globant-Original.png',
+        },
+        {
+            name: 'TecnoFrig',
+            img: 'https://mqipggrhfgjyfgnzgphy.supabase.co/storage/v1/object/public/IEEE-ITBA-website/sponsors/Logo_TecnoFrig_2.png'
         }
     ];
 
