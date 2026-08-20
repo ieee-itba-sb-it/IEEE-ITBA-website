@@ -9434,6 +9434,13 @@ ngx-image-compress@^18.1.5:
   dependencies:
     tslib "^2.6.3"
 
+ngx-image-cropper@^7.0.0:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-7.2.1.tgz#bf1864fc1512516c9a27a80db88ee66c47031b34"
+  integrity sha512-SRsY9ar+sGbdzQ1D37PQicSkqaMX7n2ADvz8FdHUjGMGYbLjKe0o6fKhy5QKfV7dS6aD1VqhNr0fr486B1r2NA==
+  dependencies:
+    tslib "^2.3.0"
+
 ngx-page-scroll-core@^11.0.0:
   version "11.0.0"
   resolved "https://registry.npmjs.org/ngx-page-scroll-core/-/ngx-page-scroll-core-11.0.0.tgz"

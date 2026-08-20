@@ -1,0 +1,54 @@
+.cropper-container {
+    max-height: 400px;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+image-cropper {
+    max-height: 380px;
+    width: 100%;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.cropper-controls {
+    background: #f8f9fa;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.zoom-control {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+}
+
+.custom-range {
+    cursor: pointer;
+}
+
+.action-buttons button {
+    color: #495057;
+}
+
+.modal-header .btn-close {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+}

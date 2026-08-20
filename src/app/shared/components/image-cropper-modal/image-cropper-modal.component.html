@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h5 class="modal-title">
+        <mdb-icon fas icon="crop-alt" class="mr-2"></mdb-icon>
+        {{ "PROFILE.CROPPER.TITLE" | translate }}
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+</div>
+
+<div class="modal-body text-center">
+    <p class="text-muted small mb-2">{{ "PROFILE.CROPPER.SUBTITLE" | translate }}</p>
+
+    <div class="cropper-container position-relative">
+        <image-cropper
+            [imageFile]="imageFile"
+            [imageBase64]="imageBase64"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="1"
+            [roundCropper]="true"
+            [transform]="transform"
+            [format]="'png'"
+            [autoCrop]="true"
+            [resizeToWidth]="800"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+
+        <div *ngIf="loading" class="loading-overlay">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <div *ngIf="loadFailed" class="alert alert-danger mt-2">
+            {{ "PROFILE.CROPPER.LOAD_ERROR" | translate }}
+        </div>
+    </div>
+
+    <!-- Controls toolbar -->
+    <div class="cropper-controls mt-3 d-flex flex-wrap align-items-center justify-content-center gap-3">
+        <!-- Zoom controls -->
+        <div class="d-flex align-items-center gap-2 zoom-control">
+            <button type="button" mat-icon-button (click)="zoomOut()" [disabled]="scale <= 0.5" title="{{ 'PROFILE.CROPPER.ZOOM_OUT' | translate }}">
+                <mdb-icon fas icon="search-minus"></mdb-icon>
+            </button>
+            <input
+                type="range"
+                class="form-range custom-range"
+                [min]="0.5"
+                [max]="3"
+                [step]="0.05"
+                [value]="scale"
+                (input)="onZoomChange($event)"
+            >
+            <button type="button" mat-icon-button (click)="zoomIn()" [disabled]="scale >= 3" title="{{ 'PROFILE.CROPPER.ZOOM_IN' | translate }}">
+                <mdb-icon fas icon="search-plus"></mdb-icon>
+            </button>
+        </div>
+
+        <!-- Rotation & Reset controls -->
+        <div class="d-flex align-items-center gap-1 action-buttons">
+            <button type="button" mat-icon-button (click)="rotateLeft()" title="{{ 'PROFILE.CROPPER.ROTATE_LEFT' | translate }}">
+                <mdb-icon fas icon="undo"></mdb-icon>
+            </button>
+            <button type="button" mat-icon-button (click)="rotateRight()" title="{{ 'PROFILE.CROPPER.ROTATE_RIGHT' | translate }}">
+                <mdb-icon fas icon="redo"></mdb-icon>
+            </button>
+            <button type="button" mat-icon-button (click)="reset()" title="{{ 'PROFILE.CROPPER.RESET' | translate }}">
+                <mdb-icon fas icon="sync-alt"></mdb-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="cancel()">
+        <mdb-icon fas icon="times" class="mr-1"></mdb-icon>
+        {{ "PROFILE.CROPPER.CANCEL" | translate }}
+    </button>
+    <button type="button" class="btn btn-primary" (click)="apply()" [disabled]="loading || loadFailed">
+        <mdb-icon fas icon="check" class="mr-1"></mdb-icon>
+        {{ "PROFILE.CROPPER.APPLY" | translate }}
+    </button>
+</div>
