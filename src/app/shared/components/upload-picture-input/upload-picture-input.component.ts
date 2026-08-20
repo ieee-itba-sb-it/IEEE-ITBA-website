@@ -6,6 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {AlertModalComponent} from "../alert-modal/alert-modal.component";
 import {MDBModalRef, MDBModalService} from "angular-bootstrap-md";
 import {ImageUtils} from "../../utils/imageUtils";
+import {ImageCropperModalComponent} from "../image-cropper-modal/image-cropper-modal.component";
 
 @Component({
     selector: 'app-upload-picture-input',
@@ -21,6 +22,7 @@ export class UploadPictureInputComponent {
     @Input() rowDisplay: boolean = false;
     error$: BehaviorSubject<string>;
     errorModalRef: MDBModalRef | null = null;
+    cropperModalRef: MDBModalRef | null = null;
 
     constructor(
         private imageCompress: NgxImageCompressService,
@@ -40,32 +42,48 @@ export class UploadPictureInputComponent {
     uploadPicture(event: Event): void {
         const sizeLimit: number = 10;
         const extensions: string[] = ['png', 'jpg', 'jpeg'];
-        const picture: File = event.target['files'][0];
-        const type: string = picture.type.split('/')[1];
+        const inputElement = event.target as HTMLInputElement;
+        const picture: File = inputElement?.files?.[0];
         if (!picture) return;
-        if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
-        if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
-        this.imageCompress.getOrientation(picture)
-            .then(async orientation => {
-                const base = await ImageUtils.toBase64(picture);
-                return this.imageCompress.compressFile(base, orientation, 50, 75, 800, 800);
-            })
-            .then(res => {
-                if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");
-                
-                let extension = picture.type.split('/')[1];
-                const matches = res.match(/^data:(image\/[a-z]+);base64,/i);
-                if (matches) {
-                    extension = matches[1].split('/')[1];
-                }
-                
-                this.photoURLChange.emit(res);
-                this.pictureTypeChange.emit(extension);
-            })
-            .catch(err => {
-                this.error$.next("COMPRESSION_FAILED");
-                console.log(err.image);
-            });
+
+        const type: string = picture.type.split('/')[1]?.toLowerCase();
+        if (picture.type.split('/')[0] != 'image') {
+            inputElement.value = '';
+            return this.error$.next("FILE_TYPE");
+        }
+        if (!extensions.includes(type)) {
+            inputElement.value = '';
+            return this.error$.next("FILE_EXTENSION");
+        }
+
+        this.cropperModalRef = this.modalService.show(ImageCropperModalComponent, {
+            data: {
+                imageFile: picture
+            },
+            class: 'modal-dialog-centered modal-lg'
+        });
+
+        this.cropperModalRef.content.croppedImage.subscribe((croppedBase64: string) => {
+            this.imageCompress.compressFile(croppedBase64, -1, 50, 75, 800, 800)
+                .then(res => {
+                    if (this.imageCompress.byteCount(res) > 1024 * 1024 * sizeLimit) throw new Error("Compression not enough");
+                    
+                    let extension = 'png';
+                    const matches = res.match(/^data:(image\/[a-z]+);base64,/i);
+                    if (matches) {
+                        extension = matches[1].split('/')[1];
+                    }
+                    
+                    this.photoURLChange.emit(res);
+                    this.pictureTypeChange.emit(extension);
+                })
+                .catch(err => {
+                    this.error$.next("COMPRESSION_FAILED");
+                    console.error(err);
+                });
+        });
+
+        inputElement.value = '';
     }
 
     deletePicture(): void {

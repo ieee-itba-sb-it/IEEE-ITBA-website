@@ -1311,6 +1311,18 @@
         "VERIFY_EMAIL": "Verify Email",
         "REQUEST_CHANGE": "Request Change",
         "DELETE_ACCOUNT": "Delete Account"
+    },
+    "CROPPER": {
+        "TITLE": "Frame Profile Picture",
+        "SUBTITLE": "Drag to reposition and use the controls to zoom or rotate your photo within the circular frame.",
+        "ZOOM_IN": "Zoom In",
+        "ZOOM_OUT": "Zoom Out",
+        "ROTATE_LEFT": "Rotate Left",
+        "ROTATE_RIGHT": "Rotate Right",
+        "RESET": "Reset",
+        "APPLY": "Apply & Crop",
+        "CANCEL": "Cancel",
+        "LOAD_ERROR": "Failed to load image for framing. Please try another file."
     }
   },
   "ALERT_MODAL": {

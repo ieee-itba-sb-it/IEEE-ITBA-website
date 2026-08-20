@@ -52,6 +52,7 @@
     "ngx-cookie-service": "^16.0.0",
     "ngx-countdown": "^16.0.0",
     "ngx-image-compress": "^18.1.5",
+    "ngx-image-cropper": "^7.0.0",
     "ngx-page-scroll": "^11.0.0",
     "ngx-page-scroll-core": "^11.0.0",
     "ngx-papaparse": "8",

@@ -1365,6 +1365,18 @@
           "VERIFY_EMAIL": "Verificar Email",
           "REQUEST_CHANGE": "Solicitar Cambio",
           "DELETE_ACCOUNT": "Eliminar Cuenta"
+      },
+      "CROPPER": {
+          "TITLE": "Encuadrar foto de perfil",
+          "SUBTITLE": "Arrastra la imagen y utiliza los controles para ajustar el zoom o rotar tu foto dentro del marco circular.",
+          "ZOOM_IN": "Acercar",
+          "ZOOM_OUT": "Alejar",
+          "ROTATE_LEFT": "Rotar a la izquierda",
+          "ROTATE_RIGHT": "Rotar a la derecha",
+          "RESET": "Restablecer",
+          "APPLY": "Aplicar y recortar",
+          "CANCEL": "Cancelar",
+          "LOAD_ERROR": "No se pudo cargar la imagen para encuadrar. Por favor prueba con otro archivo."
       }
   },
   "ALERT_MODAL": {
