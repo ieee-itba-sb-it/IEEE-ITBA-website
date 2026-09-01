@@ -15,6 +15,7 @@ import { CustomMissingTranslationHandler } from 'src/app/shared/CustomMissingTra
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { UploadPictureInputComponent } from '../../../shared/components/upload-picture-input/upload-picture-input.component';
@@ -45,6 +46,7 @@ export const routing = RouterModule.forChild(routes);
         MatButtonModule,
         MatListModule,
         MatFormFieldModule,
+        MatCheckboxModule,
         FormsModule,
         MatInputModule,
         MDBBootstrapModule.forRoot(),

@@ -35,8 +35,11 @@ export class GeneralComponent implements OnInit {
 
     ngOnInit(): void {
         this.user$.subscribe(data => {
-            this.actual = {...data};
-            this.changes = {...data};
+            if (data) {
+                const subscribedToNewsletter = data.subscribedToNewsletter ?? false;
+                this.actual = { ...data, subscribedToNewsletter };
+                this.changes = { ...data, subscribedToNewsletter };
+            }
         });
         this.error$.subscribe((error) => {
             if (!error) return delete this.errorModalRef;

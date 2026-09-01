@@ -8,6 +8,7 @@ export interface IEEEuser {
   uID: string;
   roles: roles[];
   linkedin?: string;
+  subscribedToNewsletter?: boolean;
 }
 export interface SensitiveUserData {
     roles: roles[];

@@ -32,6 +32,11 @@
                 </mat-label>
                 <input name="linkedin" [(ngModel)]="changes.linkedin" type="text" id="linkedin" [value]="(user$ | async).linkedin || ''" matInput>
             </mat-form-field>
+            <div class="mt-3">
+                <mat-checkbox name="subscribedToNewsletter" [(ngModel)]="changes.subscribedToNewsletter" id="subscribedToNewsletter">
+                    {{ 'PROFILE.LABELS.NEWSLETTER_OPT_IN' | translate }}
+                </mat-checkbox>
+            </div>
         </form>
     </mat-card-content>
 </mat-card>

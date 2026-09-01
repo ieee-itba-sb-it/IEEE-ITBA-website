@@ -44,10 +44,10 @@ export function createNewsComments(userId: string, userFullname: string, content
     return { userId, userFullname, content, timestamp, id };
 }
 
-export function createRegularUser(fullname: string, email: string, photoURL: string, roles: number[], uID: string, verifiedEmail?: boolean, linkedin?: string) {
+export function createRegularUser(fullname: string, email: string, photoURL: string, roles: number[], uID: string, verifiedEmail?: boolean, linkedin?: string, subscribedToNewsletter?: boolean) {
     let newUser: IEEEuser;
     if (!linkedin) linkedin = null;
-    newUser = { fullname, email, photoURL, uID, roles, linkedin };
+    newUser = { fullname, email, photoURL, uID, roles, linkedin, subscribedToNewsletter: subscribedToNewsletter ?? false };
     if (verifiedEmail) newUser.verifiedEmail = verifiedEmail;
     return newUser;
 }

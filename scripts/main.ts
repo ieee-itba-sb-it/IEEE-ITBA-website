@@ -1,5 +1,6 @@
 import {initializeApp} from "firebase-admin/app";
 import {migrateNewsToNewFormat} from "./migrations/migrate-news-to-new-format";
+import {migrateSubscribedToNewsletter} from "./migrations/migrate-subscribed-to-newsletter";
 import {seedQuestions} from "./seed";
 import {deleteAsimovCollections} from "./asimov/delete-asimov-collections";
 

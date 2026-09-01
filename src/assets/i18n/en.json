@@ -724,6 +724,7 @@
     "PASSWORD": "Password",
     "REPEAT_PASSWORD": "Repeat Password",
     "BUTTON": "Sign Up",
+    "NEWSLETTER_OPT_IN": "Subscribe to branch news and updates via email",
     "ALREADY_SIGNED_UP": "Already signed up?",
     "LOGIN": "Log In",
     "SUCCESS": "Sign up successful.",
@@ -1284,7 +1285,8 @@
         "ACCOUNT_ACTIONS": "Account Actions"
     },
     "LABELS": {
-        "LINKEDIN": "LinkedIn (URL)"
+        "LINKEDIN": "LinkedIn (URL)",
+        "NEWSLETTER_OPT_IN": "Subscribe to branch news emails"
     },
     "MESSAGES": {
       "VERIFIED_EMAIL": "Your Email has already been verified",

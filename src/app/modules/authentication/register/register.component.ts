@@ -72,12 +72,14 @@ export class RegisterComponent implements OnInit {
             this.pass = this.signupForm.pass.value;
             this.passConf = this.signupForm.passConf.value;
             this.fullname = this.signupForm.fullname.value;
+            const newsletterEl = (document.getElementById('newsletterOptIn') as any);
+            const newsletterOptIn = Boolean(newsletterEl?.checked || newsletterEl?.querySelector('input')?.checked || this.signupForm.newsletterOptIn?.checked);
 
             this.isHidden3 = false;
             if (this.pass === this.passConf){
                 this.registerResponse = null;
                 this.authService
-                    .signup(this.email, this.pass, this.fullname)
+                    .signup(this.email, this.pass, this.fullname, newsletterOptIn)
                     .pipe(
                         filter(resp => resp != null),
                         concatMap(() => this.authService.login(this.email, this.pass))

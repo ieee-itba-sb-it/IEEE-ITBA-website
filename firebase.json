@@ -35,6 +35,9 @@
       }
     ]
   },
+  "functions": {
+    "source": "functions"
+  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
@@ -48,6 +51,10 @@
       "port": 8080,
       "host": "localhost"
     },
+    "functions": {
+      "port": 5001,
+      "host": "localhost"
+    },
     "ui": {
       "enabled": true,
       "port": 4000
@@ -56,5 +63,4 @@
       "port": 9099
     }
   }
-
 }

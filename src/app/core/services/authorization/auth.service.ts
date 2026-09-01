@@ -61,7 +61,7 @@ export class AuthService {
                 this.user = usuario;
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const userData = data.data() as IEEEuser;
-                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.roles, userData.uID, usuario.emailVerified, userData.linkedin);
+                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.roles, userData.uID, usuario.emailVerified, userData.linkedin, userData.subscribedToNewsletter);
                     this.accountObs.next(this.account);
                 }).catch((err: FirestoreError) => {
                     // Caso en el que no exista el usuario en la base de datos (por ejemplo, si acaba de registrarse con google)
@@ -78,12 +78,12 @@ export class AuthService {
     // ---------------Methods---------------
 
     // Signup with email and password
-    signup(email: string, password: string, fullname: string): Observable<UserCredential> {
+    signup(email: string, password: string, fullname: string, subscribedToNewsletter: boolean = false): Observable<UserCredential> {
         return new Observable((subscriber) => {
             this.accountObs.next(null);
             createUserWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then((crededential: UserCredential) => {
-                    this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid);
+                    this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid, false, null, subscribedToNewsletter);
                     updateProfile(this.firebaseAuth.currentUser, {displayName: fullname});
                     this.accountObs.next(this.account);
                     subscriber.next(crededential);
@@ -120,11 +120,12 @@ export class AuthService {
         );
     }
 
-    createUserDoc(user: User): Observable<boolean> {
+    createUserDoc(user: User, subscribedToNewsletter?: boolean): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
             let displayName = user.displayName;
             if (!displayName) displayName = user.email.split("@")[0];
-            this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified);
+            const sub = this.account?.subscribedToNewsletter ?? subscribedToNewsletter ?? false;
+            this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified, null, sub);
             setDoc(doc(this.afs, 'users', user.email), this.account)
                 .then(res => this.accountObs.next(this.account))
                 .catch((err: FirestoreError) => subscriber.error(err))

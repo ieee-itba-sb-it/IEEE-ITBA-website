@@ -781,6 +781,7 @@
     "PASSWORD": "Contraseña",
     "REPEAT_PASSWORD": "Repetir Contraseña",
     "BUTTON": "Registrarse",
+    "NEWSLETTER_OPT_IN": "Suscribirse a las noticias y novedades del branch por email",
     "ALREADY_SIGNED_UP": "¿Ya estás registrado?",
     "LOGIN": "Iniciar Sesión",
     "SUCCESS": "Se registró correctamente.",
@@ -1338,7 +1339,8 @@
           "ACCOUNT_ACTIONS": "Acciones de la cuenta"
       },
       "LABELS": {
-        "LINKEDIN": "LinkedIn (URL)"
+        "LINKEDIN": "LinkedIn (URL)",
+        "NEWSLETTER_OPT_IN": "Suscribirse a las noticias y novedades del branch por email"
       },
       "MESSAGES": {
           "VERIFIED_EMAIL": "Tu Email ya ha sido verificado",

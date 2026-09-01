@@ -31,6 +31,11 @@
                 <mat-label for="passConf">{{ 'REGISTER.REPEAT_PASSWORD' | translate }}:</mat-label>
                 <input type="password" id="passConf" required matInput>
               </mat-form-field>
+              <div class="mb-3">
+                <mat-checkbox id="newsletterOptIn" name="newsletterOptIn">
+                  {{ 'REGISTER.NEWSLETTER_OPT_IN' | translate }}
+                </mat-checkbox>
+              </div>
               <div class="d-flex justify-content-center">
                 <button mat-raised-button class="login-button" color="primary" type="submit">{{ 'REGISTER.BUTTON' | translate }}</button>
               </div>
