@@ -34,6 +34,7 @@ import { StorageService } from '../storage/storage.service';
 import {get} from "@angular/fire/database";
 import {getAll} from "@angular/fire/remote-config";
 import {IEEEMember} from "../../../shared/models/team-member";
+import {SenderService} from "../mailing/sender.service";
 
 @Injectable({
     providedIn: 'root',
@@ -50,7 +51,7 @@ export class AuthService {
     googleProvider: GoogleAuthProvider;
 
     // Constructor
-    constructor(private firebaseAuth: Auth, private supabaseStorage: StorageService, private afs: Firestore) {
+    constructor(private firebaseAuth: Auth, private supabaseStorage: StorageService, private afs: Firestore, private senderService: SenderService) {
         this.googleProvider = new GoogleAuthProvider();
         this.user = firebaseAuth.currentUser;
         // Seteamos observer
@@ -85,6 +86,7 @@ export class AuthService {
                 .then((crededential: UserCredential) => {
                     this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid, false, null, subscribedToNewsletter);
                     updateProfile(this.firebaseAuth.currentUser, {displayName: fullname});
+                    this.senderService.syncSubscriber(email, fullname, subscribedToNewsletter).subscribe();
                     this.accountObs.next(this.account);
                     subscriber.next(crededential);
                 })
@@ -127,7 +129,10 @@ export class AuthService {
             const sub = this.account?.subscribedToNewsletter ?? subscribedToNewsletter ?? false;
             this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified, null, sub);
             setDoc(doc(this.afs, 'users', user.email), this.account)
-                .then(res => this.accountObs.next(this.account))
+                .then(res => {
+                    this.senderService.syncSubscriber(user.email, displayName, sub).subscribe();
+                    this.accountObs.next(this.account);
+                })
                 .catch((err: FirestoreError) => subscriber.error(err))
                 .finally(() => subscriber.complete());
         });
@@ -174,9 +179,13 @@ export class AuthService {
     updateProfile(newUser: IEEEuser): Observable<boolean> {
         return new Observable<boolean>((subscriber) => {
             let data = { ...newUser };
+            const subChanged = !this.account || this.account.subscribedToNewsletter !== newUser.subscribedToNewsletter;
             updateProfile(this.firebaseAuth.currentUser, {displayName: newUser.fullname})
                 .then(() => updateDoc(doc(this.afs, 'users', newUser.email), data))
                 .then(() => {
+                    if (subChanged) {
+                        this.senderService.syncSubscriber(newUser.email, newUser.fullname, newUser.subscribedToNewsletter).subscribe();
+                    }
                     this.account = newUser;
                     this.accountObs.next(this.account);
                     subscriber.next(true);

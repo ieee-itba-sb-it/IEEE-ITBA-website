@@ -13,7 +13,10 @@ export const firebaseConfig = {
     measurementId: 'G-LPGMGR1J3T'
 };
 
+export const senderApiKey = '';
+
 export const blogCollectionName = 'blog-entries';
 export const userCollectionName = 'users';
 export const metadataCollectionName = 'collection-metadata';
 export const eventsCollectionName = 'events';
+

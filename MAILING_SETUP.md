@@ -1,98 +1,67 @@
-# IEEE ITBA - Newsletter & Sender.net Integration Setup Guide
+# IEEE ITBA - Newsletter & Sender.net Direct Client Setup Guide
 
-This document explains the architecture, secret configuration, local emulator workflow, and testing procedures for the IEEE ITBA newsletter integration.
+This document explains the client-side architecture, secret configuration, and subscriber management for the IEEE ITBA newsletter integration without using Google Cloud Functions or Firestore backend triggers (avoiding paid Google Cloud infrastructure).
 
 ---
 
-## 1. Architecture Overview
+## 1. Architecture Overview (No Google Cloud / No Functions)
 
 ```
 [ Angular Client (Register/Profile) ] 
        │
-       ▼ Updates document
-[ Firestore: users/{email} ]
+       ├─► Updates Firestore user document (subscribedToNewsletter: boolean)
        │
-       ▼ Firestore Trigger (onUserWritten)
-[ Cloud Function: onUserWritten ]
-       │
-       ▼ REST API Call
-[ Sender.net API ] ──► (Sync Subscribers)
-
-─────────────────────────────────────────────────────────────
-
-[ Angular Client (Write News) ]
-       │
-       ▼ Sets listed: true
-[ Firestore: blog-entries/{ref} ]
-       │
-       ▼ Firestore Trigger (onBlogEntryWritten)
-[ Cloud Function: sendNewsAnnouncement ]
-       │
-       ├─► Queries users where subscribedToNewsletter == true
-       ├─► Renders responsive HTML template
-       ├─► Sends emails via Sender.net REST API
-       └─► Updates blog-entries/{ref} with newsletterSentAt timestamp (Duplicate Guard)
+       └─► SenderService (REST API Call)
+                 │
+                 ▼
+     [ Sender.net REST API ] ──► (Sync Subscribers)
 ```
+
+### Key Principles:
+- **Zero GCP Cost**: No Firebase Cloud Functions, Google Cloud Secret Manager, or serverless compute triggers are used.
+- **Client-Side Sync**: When a user opts in or out during registration (`RegisterComponent`) or profile edit (`GeneralComponent`), `SenderService` sends a direct API request to Sender.net.
+- **Resilient Fallback**: If `senderApiKey` is empty or the network request fails, user registration and profile updates complete smoothly without blocking the user.
 
 ---
 
-## 2. Configuring `SENDER_API_KEY`
+## 2. Configuring `senderApiKey`
 
-To communicate with Sender.net, a valid API Key from [Sender.net Dashboard](https://app.sender.net/settings/tokens) is required.
+To enable live synchronization with Sender.net:
 
-### Production Environment (Firebase Cloud Functions Secret)
+1. Obtain an API Key from your [Sender.net Dashboard](https://app.sender.net/settings/tokens).
+2. Open `src/app/secrets.ts`.
+3. Set the `senderApiKey` variable:
 
-Run the following command in the Firebase CLI:
-
-```bash
-firebase functions:secrets:set SENDER_API_KEY
+```typescript
+export const senderApiKey = 'your_sender_api_key_here';
 ```
 
-Enter your Sender.net API Key when prompted. Access is granted to functions automatically via Cloud Secret Manager.
-
-### Local Development / Emulator Environment
-
-Create a `.env.local` file inside the `functions/` directory:
-
-```env
-SENDER_API_KEY=your_sender_api_key_here
-```
-
-*Note: If `SENDER_API_KEY` is missing or empty, Cloud Functions will safely log a mock warning without interrupting client operations or failing user signups.*
+*Note: If `senderApiKey` is empty (`''`), `SenderService` will log a notice in the browser console and bypass the HTTP call.*
 
 ---
 
-## 3. Local Emulator Workflow
+## 3. Local Development Workflow
 
-Start the complete application stack including emulators:
+Start the Angular client and local emulators:
 
 ```bash
 npm run dev
 ```
 
-This command runs:
+This starts:
 - **Angular Client Dev Server**: `http://localhost:4200`
 - **Firestore Emulator**: Port `8080`
 - **Auth Emulator**: Port `9099`
-- **Cloud Functions Emulator**: Port `5001`
-- **Emulator Suite UI**: `http://localhost:4000`
 
 ---
 
-## 4. Automatic Email Announcement Features
+## 4. User Email Extraction (Batch Export)
 
-1. **Publication Trigger**: When a news entry in `blog-entries/{reference}` has `listed: true`, `onBlogEntryWritten` fires.
-2. **Duplicate Guard**: Once sent, the function sets `newsletterSentAt: timestamp` on the article document. Subsequent edits to the article will skip sending duplicate emails.
-3. **HTML Template**: Includes article title, author, cover image, clean plain-text excerpt, CTA button to `https://ieeeitba.org.ar/noticias/{reference}`, and unsubscribe instructions.
+If you need to export all user emails for bulk mailing or campaign imports in Sender.net without paid cloud functions:
 
----
-
-## 5. Existing User Migration
-
-To populate `subscribedToNewsletter: false` on pre-existing Firestore user documents:
-
-1. Edit `scripts/main.ts` to uncomment `await migrateSubscribedToNewsletter();`.
-2. Run the migration script:
+1. Edit `scripts/main.ts` and ensure `extractUserEmails()` is called.
+2. Execute the extraction script:
    ```bash
    npm run scripts
    ```
+3. A CSV and TXT file containing user emails will be generated in `scripts/mailing/output/`.
