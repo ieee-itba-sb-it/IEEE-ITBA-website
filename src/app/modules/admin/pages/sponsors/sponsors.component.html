@@ -1,0 +1,43 @@
+<ng-container *ngIf="(loading | async) === false; else spinner">
+    <mat-tab-group class="mt-2" mat-align-tabs="start" mat-stretch-tabs="false">
+        <mat-tab *ngFor="let tab of tabs" label="{{ tab.titleKey | translate }}">
+            <div class="sponsors-grid my-4">
+                <div class="sponsor-tile" *ngFor="let sponsor of tab.sponsors">
+                    <img [src]="sponsor.img" alt="Logo {{ sponsor.name }}" />
+                    <div class="sponsor-name">{{ sponsor.name }}</div>
+                    <button
+                        type="button"
+                        class="delete-btn"
+                        [disabled]="deletingSponsorImg === sponsor.img"
+                        (click)="deleteSponsor(tab.category, sponsor)">
+                        <mdb-icon fas icon="trash-alt"></mdb-icon>
+                    </button>
+                </div>
+
+                <label class="sponsor-tile add-tile" [class.disabled]="uploadingCategory === tab.category">
+                    <ng-container *ngIf="uploadingCategory !== tab.category; else uploadSpinner">
+                        <mdb-icon fas icon="add" size="2x"></mdb-icon>
+                        <span>{{ "ADMIN.SPONSORSTAB.ADD_SPONSOR" | translate }}</span>
+                    </ng-container>
+                    <ng-template #uploadSpinner>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">{{ "ADMIN.COMMISSIONSTAB.MODALS.COMMISSION_EDITOR.LOADING" | translate }}</span>
+                        </div>
+                    </ng-template>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        [disabled]="uploadingCategory === tab.category"
+                        (change)="onFileSelected(tab.category, $event)" />
+                </label>
+
+                <div class="empty-hint" *ngIf="tab.sponsors.length === 0">
+                    {{ "ADMIN.SPONSORSTAB.ERRORS.NO_SPONSORS" | translate }}
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</ng-container>
+<ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>

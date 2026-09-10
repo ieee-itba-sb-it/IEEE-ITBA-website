@@ -1,0 +1,77 @@
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+.sponsor-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--bs-light, #e0e0e0);
+    border-radius: 12px;
+    min-height: 140px;
+    background-color: #fff;
+}
+
+.sponsor-tile img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.sponsor-tile .sponsor-name {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #666;
+    word-break: break-word;
+}
+
+.sponsor-tile .delete-btn {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background: transparent;
+    border: none;
+    color: var(--bs-danger, #dc3545);
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.sponsor-tile .delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.add-tile {
+    cursor: pointer;
+    color: var(--bs-ieee-bright-blue);
+    border-style: dashed;
+    border-color: var(--bs-ieee-bright-blue);
+}
+
+.add-tile.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.add-tile span {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.add-tile input[type="file"] {
+    display: none;
+}
+
+.empty-hint {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 1rem 0;
+}

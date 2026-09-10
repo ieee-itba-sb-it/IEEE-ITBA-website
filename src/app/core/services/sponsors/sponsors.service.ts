@@ -1,125 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Sponsor } from 'src/app/shared/models/sponsors';
+import { Sponsor, SponsorCategory } from 'src/app/shared/models/sponsors';
+import { StorageService } from '../storage/storage.service';
+
+const CATEGORY_FOLDERS: Record<SponsorCategory, string> = {
+    current: 'sponsors/current',
+    previous: 'sponsors/previous',
+    ieeextreme: 'sponsors/ieeextreme',
+    asimov: 'sponsors/asimov',
+};
 
 @Injectable({
     providedIn: 'root'
 })
-
 export class SponsorsService {
-    imgSrcPrefix = '../../../assets/image/sponsors/';
 
-    currentSponsors: Sponsor[] = [
-        {
-            name: 'Globant',
-            img: 'https://mqipggrhfgjyfgnzgphy.supabase.co/storage/v1/object/public/IEEE-ITBA-website/sponsors/Globant-Original.png',
-        },
-        {
-            name: 'TecnoFrig',
-            img: 'https://mqipggrhfgjyfgnzgphy.supabase.co/storage/v1/object/public/IEEE-ITBA-website/sponsors/Logo_TecnoFrig_2.png'
-        }
-    ];
-
-    previousSponsors: Sponsor[] = [
-        {
-            name: 'Inclusion',
-            img: this.imgSrcPrefix + 'inclusion.png'
-        },
-        {
-            name: 'Hitachi Energy',
-            img: this.imgSrcPrefix + 'hitachi-energy.png'
-        },
-        {
-            name: 'Axion Energy',
-            img: this.imgSrcPrefix + 'axion-energy.png'
-        },
-        {
-            name: 'Eiwa',
-            img: this.imgSrcPrefix + 'eiwa.png'
-        },
-        {
-            name: 'Flowics',
-            img: this.imgSrcPrefix + 'flowics.png'
-        },
-        {
-            name: 'Mulesoft',
-            img: this.imgSrcPrefix + 'mulesoft.png'
-        },
-        {
-            name: 'Pampa Energia',
-            img: this.imgSrcPrefix + 'pampa.png'
-        },
-        {
-            name: 'Pan American Energy',
-            img: this.imgSrcPrefix + 'pan-american-energy.png'
-        },
-        {
-            name: 'TGS',
-            img: this.imgSrcPrefix + 'tgs.png'
-        },
-        {
-            name: 'JPMorgan',
-            img: this.imgSrcPrefix + 'jpmorgan.png'
-        },
-        {
-            name: 'Schneider Electric',
-            img: this.imgSrcPrefix + 'Schneider Logo.png'
-        },
-        {
-            name: 'Innovid',
-            img: this.imgSrcPrefix + 'innovid.png'
-        },
-        {
-            name: 'DevRev',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fdevrev-logo_black.png?alt=media&token=d5eb5bc7-3862-4af7-98f1-2223d4920625'
-        },
-        {
-            name: 'Yokogawa',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.jpg?alt=media&token=300f278f-2e30-4964-b875-84ddccfdb2b0'
-        },
-        {
-            name: 'Le Wagon',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon2.png?alt=media&token=4096d5dd-f51e-4c59-bcab-043a8eaeb500'
-        },
-        {
-            name: 'Karpatkey',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fkarpatkey.png?alt=media&token=6ed477da-b0ff-471d-8936-b40bec4c848d'
-        }
-    ];
-
-    ieextremeSponsors: Sponsor[] = [
-        {
-            name: 'Innovid',
-            img: this.imgSrcPrefix + 'innovid.png'
-        },
-        {
-            name: 'DevRev',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fdevrev-logo_black.png?alt=media&token=d5eb5bc7-3862-4af7-98f1-2223d4920625'
-        },
-        {
-            name: 'Yokogawa',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fyokogawa.png?alt=media&token=4cad97a1-6525-431b-a9a4-3576c130efe5'
-        },
-        {
-            name: 'Le Wagon',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Flewagon2.png?alt=media&token=4096d5dd-f51e-4c59-bcab-043a8eaeb500'
-        },
-        {
-            name: 'Karpatkey',
-            img: 'https://firebasestorage.googleapis.com/v0/b/ieeeitba.appspot.com/o/static%2Fkarpatkey.png?alt=media&token=6ed477da-b0ff-471d-8936-b40bec4c848d'
-        }
-    ];
-
+    // Populated asynchronously from Supabase Storage. Kept as stable array
+    // references (updated in place) so components/templates that hold onto
+    // these arrays see updates once the storage listing resolves.
+    currentSponsors: Sponsor[] = [];
+    previousSponsors: Sponsor[] = [];
+    ieextremeSponsors: Sponsor[] = [];
     asimovSponsors: Sponsor[] = [];
-    /*
-    {
-      name: 'Schneider Electric',
-      img: this.imgSrcPrefix + 'Schneider Logo.png'
+
+    constructor(private storageService: StorageService) {
+        this.refreshAll();
     }
-  ];
-   */
-
-
-    constructor() { }
 
     getCurrentSponsors() {
         return this.currentSponsors;
@@ -135,5 +40,52 @@ export class SponsorsService {
 
     getAsimovSponsors() {
         return this.asimovSponsors;
+    }
+
+    refreshAll(): Promise<void[]> {
+        return Promise.all([
+            this.refreshCategory('current'),
+            this.refreshCategory('previous'),
+            this.refreshCategory('ieeextreme'),
+            this.refreshCategory('asimov'),
+        ]);
+    }
+
+    async refreshCategory(category: SponsorCategory): Promise<void> {
+        const files = await this.storageService.list(CATEGORY_FOLDERS[category]);
+        const sponsors = files.map(file => ({
+            name: this.nameFromFilename(file.name),
+            img: file.publicUrl,
+        }));
+        const target = this.arrayFor(category);
+        target.splice(0, target.length, ...sponsors);
+    }
+
+    async uploadSponsor(category: SponsorCategory, file: File): Promise<void> {
+        const path = `${CATEGORY_FOLDERS[category]}/${Date.now()}-${this.sanitizeFilename(file.name)}`;
+        await this.storageService.upload(path, file, file.type);
+        await this.refreshCategory(category);
+    }
+
+    async deleteSponsor(category: SponsorCategory, sponsor: Sponsor): Promise<void> {
+        await this.storageService.delete(sponsor.img);
+        await this.refreshCategory(category);
+    }
+
+    private arrayFor(category: SponsorCategory): Sponsor[] {
+        switch (category) {
+        case 'current': return this.currentSponsors;
+        case 'previous': return this.previousSponsors;
+        case 'ieeextreme': return this.ieextremeSponsors;
+        case 'asimov': return this.asimovSponsors;
+        }
+    }
+
+    private nameFromFilename(filename: string): string {
+        return filename.replace(/\.[^/.]+$/, '').replace(/^\d+-/, '').replace(/[-_]+/g, ' ');
+    }
+
+    private sanitizeFilename(filename: string): string {
+        return filename.replace(/[^a-zA-Z0-9.\-_]+/g, '-');
     }
 }

@@ -27,6 +27,9 @@ import { TeamRequestsComponent } from './pages/team-requests/team-requests.compo
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { SponsorsAdminComponent } from './pages/sponsors/sponsors.component';
 
 // Tab manager
 const routes: Routes = [{
@@ -37,6 +40,7 @@ const routes: Routes = [{
         { path: 'users', component: UsersComponent },
         { path: 'commissions', component: CommissionsComponent },
         { path: 'team-requests', component: TeamRequestsComponent },
+        { path: 'sponsors', component: SponsorsAdminComponent },
     ]
 }];
 
@@ -49,7 +53,8 @@ export const routing = RouterModule.forChild(routes);
         CommissionsComponent,
         CommissionEditorModalComponent,
         PositionEditorModalComponent,
-        TeamRequestsComponent
+        TeamRequestsComponent,
+        SponsorsAdminComponent
     ],
     imports: [
         routing,
@@ -81,6 +86,8 @@ export const routing = RouterModule.forChild(routes);
         MatTableModule,
         MatCheckboxModule,
         MatCardModule,
+        MatTabsModule,
+        MatSnackBarModule,
         TranslateModule,
     ]
 })

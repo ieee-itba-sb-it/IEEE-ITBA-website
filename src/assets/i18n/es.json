@@ -1282,6 +1282,19 @@
         "COMMISSION": "Comisión a entrar"
       }
     },
+    "SPONSORSTAB": {
+      "TITLE": "Sponsors",
+      "ADD_SPONSOR": "Agregar sponsor",
+      "CATEGORIES": {
+        "CURRENT": "Actuales",
+        "PREVIOUS": "Anteriores",
+        "IEEEXTREME": "IEEEXtreme",
+        "ASIMOV": "Asimov Cup"
+      },
+      "ERRORS": {
+        "NO_SPONSORS": "No hay sponsors cargados en esta categoría"
+      }
+    },
       "ASIMOVADMINTAB": {
           "TITLE": "Administración de Asimov Cup"
       }

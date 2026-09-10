@@ -28,6 +28,12 @@ export class AdminComponent {
             icon: "door-open",
         },
         {
+            title: "ADMIN.SPONSORSTAB.TITLE",
+            link: "sponsors",
+            isActive: true,
+            icon: "handshake",
+        },
+        {
             title: "ADMIN.ASIMOVADMINTAB.TITLE",
             link: "asimov",
             isActive: true,

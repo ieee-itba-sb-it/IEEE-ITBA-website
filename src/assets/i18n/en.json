@@ -1228,6 +1228,19 @@
         "COMMISSION": "Commission to join"
       }
     },
+    "SPONSORSTAB": {
+      "TITLE": "Sponsors",
+      "ADD_SPONSOR": "Add sponsor",
+      "CATEGORIES": {
+        "CURRENT": "Current",
+        "PREVIOUS": "Previous",
+        "IEEEXTREME": "IEEEXtreme",
+        "ASIMOV": "Asimov Cup"
+      },
+      "ERRORS": {
+        "NO_SPONSORS": "There are no sponsors in this category"
+      }
+    },
       "ASIMOVADMINTAB": {
           "TITLE": "Asimov Cup Admin"
       }
