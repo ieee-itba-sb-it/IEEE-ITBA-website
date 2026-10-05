@@ -1,7 +1,8 @@
-<swiper [config]="swiperConfig" class="carousel-wrapper" *ngIf="swiperOn">
-    <ng-template swiperSlide class="carrousel-card" *ngFor="let image of imageLinks">
-      <img data-src="{{image}}"
-           class="img"
-           loading="lazy" />
+<swiper [config]="swiperConfig" class="carousel-wrapper" *ngIf="imageLinks?.length">
+    <ng-template swiperSlide *ngFor="let image of imageLinks">
+      <div class="slide">
+        <img [attr.data-src]="image" class="img swiper-lazy" alt="" />
+        <div class="swiper-lazy-preloader"></div>
+      </div>
     </ng-template>
 </swiper>
