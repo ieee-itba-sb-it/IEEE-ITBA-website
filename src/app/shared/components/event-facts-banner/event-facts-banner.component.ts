@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
 
+export interface EventFact {
+    value: string;
+    label: string;
+}
+
 @Component({
     selector: 'app-event-facts-banner',
     templateUrl: './event-facts-banner.component.html',
@@ -8,6 +13,6 @@ import { Component, Input } from '@angular/core';
 export class EventFactsBannerComponent {
     @Input() imageUrl: String
     @Input() imageAlt: String
-    @Input() facts: string[]
+    @Input() facts: EventFact[]
 
 }

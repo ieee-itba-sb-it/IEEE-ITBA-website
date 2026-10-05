@@ -31,7 +31,6 @@ export class EventInscriptionSectionComponent {
     }
 
     showSpectatorInscriptionButton(): boolean {
-        console.log(this)
         return !!this.spectatorInscriptionEnabled
             && !!this.spectatorInscriptionLink
             && !!this.dates

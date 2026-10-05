@@ -1,19 +1,10 @@
-@import url('https://unpkg.com/swiper/swiper-bundle.css');
-
-.info {
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-}
-
-.info-reversed {
-    display: flex;
-    flex-direction: row;
-}
-
-.event-invitation-container {
-    display: flex;
-    flex-direction: row;
+.ieeextreme-cards-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+    margin: 2rem 0 3rem;
 }
 
 .sponsor-team {
@@ -21,41 +12,9 @@
     justify-content:center;
 }
 
-.carousel-container {
-    width: 35%;
-    align-self: start;
-}
-
-.invitation-text-container {
-    display: flex;
-    flex-direction: column;
-    width: 65%;
-    margin-left: auto;
-}
-
-/* Flex */
 @media (max-width: 950px) {
     body {
         padding-top: 20%;
-    }
-    .event-invitation-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .carousel-container {
-        width: 100%;
-    }
-    .invitation-text-container {
-        width: 100%;
-    }
-        .info {
-        flex-direction: column;
-        margin-bottom: 3rem;
-    }
-    .info-reversed {
-        display: flex;
-        flex-direction: column-reverse;
-        margin-bottom: 3rem;
     }
     .sponsor-team {
         flex-direction: column;
@@ -68,5 +27,11 @@
     }
     .sponsor-team {
         font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .ieeextreme-cards-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 }

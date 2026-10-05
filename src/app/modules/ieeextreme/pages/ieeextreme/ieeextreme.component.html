@@ -15,35 +15,26 @@
 
   <!-- INSCRIPTION section -->
   <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" />
-  <div class="event-invitation-container">
-      <div class="carousel-container">
-          <app-event-section title="{{ 'IOT.GALLERY_TITLE' | translate }}">
-              <app-image-carousel [imageLinks]="imageLinks"/>
-          </app-event-section>
-          <span></span>
-      </div>
-      <div class="invitation-text-container">
-        <!-- Resolve problemas en equipo -->
-        <div class="info">
-            <app-event-section title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}">
-              <p>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
-            </app-event-section>
-            <div>
-              <img src="../../../../../assets/image/events/ieeextreme/tackle-problems-as-a-team.png" height="160vmin" alt="Logo ITBA-IEEE">
-            </div>
-          </div>
 
-          <!-- Queres participar -->
-          <div class="info-reversed">
-            <div style="padding-right:3rem;">
-              <img src="../../../../../assets/image/events/ieeextreme/want-to-participate.png" height="140vmin" alt="Logo ITBA-IEEE">
-            </div>
-            <app-event-section title="{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}">
-              <p>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
-            </app-event-section>
-          </div>
-        </div>
-  </div>
+  <ul class="ieeextreme-cards-grid">
+    <app-event-content-card
+      title="{{ 'IEEEXTREME.TEAM.TITLE' | translate }}"
+      imageUrl="../../../../../assets/image/events/ieeextreme/tackle-problems-as-a-team.png">
+      <p content>{{ 'IEEEXTREME.TEAM.TEXT' | translate }}</p>
+    </app-event-content-card>
+
+    <app-event-content-card
+      title="{{ 'IEEEXTREME.PARTICIPATE.TITLE' | translate }}"
+      imageUrl="../../../../../assets/image/events/ieeextreme/want-to-participate.png">
+      <p content>{{ 'IEEEXTREME.PARTICIPATE.TEXT' | translate }}</p>
+    </app-event-content-card>
+
+    <app-event-content-card
+      title="{{ 'IOT.GALLERY_TITLE' | translate }}"
+      [image]="false">
+      <app-image-carousel content [imageLinks]="imageLinks"/>
+    </app-event-content-card>
+  </ul>
 
   <div class="d-flex justify-content-center align-content-center">
       <h1>{{ 'IEEEXTREME.MORE_INFO' | translate }} <a href="https://ieeextreme.org/">{{ 'IEEEXTREME.CLICK_ME' | translate}}</a></h1>
