@@ -24,14 +24,22 @@ service cloud.firestore {
       allow write: if hasRole("writer") || hasRole("admin");
     }
 
-    // cada student accede solo a su propia informacion
+    // cada student accede solo a su propia informacion; los admins pueden leer todos
     match /events/{eventId}/students/{userEmail} {
-        allow read, write:
+        allow read:
+        if isSignedIn() && (request.auth.token.email == userEmail || hasRole("admin"));
+        allow write:
         if isSignedIn() && request.auth.token.email == userEmail;
     }
 
-    match /events/{document=**} {
-    	allow read;
+    match /events/{eventId} {
+      allow read;
+      allow write: if hasRole("admin");
+    }
+
+    // subcolecciones de eventos (ej: questions); students queda excluida de la lectura publica
+    match /events/{eventId}/{subcollection}/{document=**} {
+      allow read: if subcollection != "students";
       allow write: if hasRole("admin");
     }
 

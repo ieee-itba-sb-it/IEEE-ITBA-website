@@ -356,6 +356,26 @@ export class EventService {
         });
     }
 
+    public getDataAnalysisStudents(): Observable<DataAnalysisUser[]> {
+        const studentsRef = collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.studentsCollectionName
+        );
+
+        return from(getDocs(studentsRef)).pipe(
+            map(snap => snap.docs.map(d => {
+                const student = d.data() as DataAnalysisUser;
+                return {...student, enrolledAt: this.toDate(student.enrolledAt)};
+            }))
+        );
+    }
+
+    private toDate(date: any): Date {
+        return date?.toDate ? date.toDate() : new Date(date);
+    }
+
     public getDataAnalysisUser(user: IEEEuser
     ): Observable<DataAnalysisUser | null> {
         return new Observable(obs => {

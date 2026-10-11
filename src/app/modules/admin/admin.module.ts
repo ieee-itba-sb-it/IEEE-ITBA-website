@@ -30,6 +30,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { SponsorsAdminComponent } from './pages/sponsors/sponsors.component';
+import { ExamsAdminComponent } from './pages/exams/exams.component';
 
 // Tab manager
 const routes: Routes = [{
@@ -41,6 +42,7 @@ const routes: Routes = [{
         { path: 'commissions', component: CommissionsComponent },
         { path: 'team-requests', component: TeamRequestsComponent },
         { path: 'sponsors', component: SponsorsAdminComponent },
+        { path: 'exams', component: ExamsAdminComponent },
     ]
 }];
 
@@ -54,7 +56,8 @@ export const routing = RouterModule.forChild(routes);
         CommissionEditorModalComponent,
         PositionEditorModalComponent,
         TeamRequestsComponent,
-        SponsorsAdminComponent
+        SponsorsAdminComponent,
+        ExamsAdminComponent
     ],
     imports: [
         routing,

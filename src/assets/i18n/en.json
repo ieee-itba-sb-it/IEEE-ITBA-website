@@ -560,6 +560,7 @@
   "DATAANALYSIS": {
       "MODAL": {
           "MIN_PERCENTAGE": "Minimum percentage to pass the exam: ",
+          "MIN_PERCENTAGE_HINT": "Value between 0 and 100. E.g.: 83 means passing with at least 83% correct answers.",
           "START_EXAMS_DATE": "Start date of the exams: "
       },
     "PAGETITLE": "ITBA IEEE | Data Analysis in Python Course",
@@ -1241,6 +1242,17 @@
       "TABLE": {
         "COMMISSION": "Commission to join"
       }
+    },
+    "EXAMSTAB": {
+      "TITLE": "Exams",
+      "TABLE": {
+        "EMAIL": "Email",
+        "ENROLLED_AT": "Enrollment date",
+        "STATUS": "Status"
+      },
+      "PASSED": "Passed",
+      "FAILED": "Failed",
+      "NO_STUDENTS": "There are no enrolled students"
     },
     "SPONSORSTAB": {
       "TITLE": "Sponsors",

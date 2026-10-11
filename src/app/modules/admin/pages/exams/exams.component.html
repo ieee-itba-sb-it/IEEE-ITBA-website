@@ -1,0 +1,32 @@
+<ng-container *ngIf="students; else spinner">
+    <div class="table-wrapper">
+        <table class="table align-middle mb-0 mt-2 rounded">
+            <thead class="bg-light">
+            <tr>
+                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.EMAIL" | translate }}</th>
+                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.ENROLLED_AT" | translate }}</th>
+                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.STATUS" | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let student of students">
+                <td class="align-middle">{{ student.email }}</td>
+                <td class="align-middle">{{ student.enrolledAt | date:'dd/MM/yyyy' }}</td>
+                <td class="align-middle">
+                    <span class="status-badge" [class.passed]="student.passedCourse" [class.failed]="!student.passedCourse">
+                        {{ (student.passedCourse ? "ADMIN.EXAMSTAB.PASSED" : "ADMIN.EXAMSTAB.FAILED") | translate }}
+                    </span>
+                </td>
+            </tr>
+            <tr *ngIf="!students.length">
+                <td colspan="3" class="text-center">
+                    {{ "ADMIN.EXAMSTAB.NO_STUDENTS" | translate }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>

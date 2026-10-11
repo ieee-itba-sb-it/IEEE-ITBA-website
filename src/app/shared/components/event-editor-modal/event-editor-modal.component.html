@@ -238,13 +238,18 @@
 
             <div *ngIf="isDataAnalysis" class="form-input">
                 <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.MIN_PERCENTAGE' | translate }}</label>
-                <input
-                    type="number"
-                    min="0" max="100"
-                    step="1"
-                    class="form-control"
-                    formControlName="passingScore"
-                />
+                <div class="input-group">
+                    <input
+                        type="number"
+                        min="0" max="100"
+                        step="1"
+                        placeholder="83"
+                        class="form-control"
+                        formControlName="passingScore"
+                    />
+                    <span class="input-group-text">%</span>
+                </div>
+                <small class="text-muted">{{ 'DATAANALYSIS.MODAL.MIN_PERCENTAGE_HINT' | translate }}</small>
                 <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.START_EXAMS_DATE' | translate }}</label>
                 <input
                     type="datetime-local"

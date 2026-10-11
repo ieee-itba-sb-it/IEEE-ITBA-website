@@ -60,7 +60,7 @@ export async function seedQuestions() {
         .doc('DATA_ANALYSIS')
         .set({
             examStartDate: new Date('2026-06-15T12:00:00'),
-            passingScore: 10 / 12
+            passingScore: 83 // porcentaje (0-100)
         }, { merge: true });
 
     for (const q of questions) {
