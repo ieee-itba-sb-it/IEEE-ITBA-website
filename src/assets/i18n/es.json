@@ -259,6 +259,10 @@
         "CLICK_COMPETE": "¡Anotate para competir!",
         "CLICK_SPECTATE": "¡Anotate como espectador!"
       },
+      "EXAMS": {
+        "OPEN": "¡Los exámenes están disponibles!",
+        "CLICK": "¡Ir a los exámenes!"
+      },
       "RANKING": {
         "CLICK": "¡Ver tabla de posiciones!"
       },

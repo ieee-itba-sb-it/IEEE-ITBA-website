@@ -15,6 +15,8 @@ export class EventInscriptionSectionComponent {
     @Input() isAsimov: boolean = false;
     @Input() spectatorInscriptionEnabled?: Event['spectatorInscriptionEnabled'];
     @Input() spectatorInscriptionLink?: Event['spectatorInscriptionLink'];
+    @Input() examStartDate?: Event['examStartDate'];
+    @Input() examsRoute?: string;
 
     constructor(
         private appConfigService: AppConfigService,
@@ -37,6 +39,17 @@ export class EventInscriptionSectionComponent {
             && !!this.dates[EventDate.SPECTATOR_INSCRIPTION]
             && this.dates[EventDate.SPECTATOR_INSCRIPTION].status === EventStatus.CONFIRMED
             && this.eventService.isEventDateCurrent(this.dates[EventDate.SPECTATOR_INSCRIPTION]);
+    }
+
+    showExamsButton(): boolean {
+        if (!this.examsRoute || !this.examStartDate) return false;
+        const start = this.eventService.normalizeDate(this.examStartDate);
+        const today = this.eventService.normalizeDate(new Date());
+        return start <= today;
+    }
+
+    showEnrollSection(): boolean {
+        return this.showInscriptionButton() || this.showSpectatorInscriptionButton();
     }
 
     hasSpectatorInscription(): boolean {

@@ -203,6 +203,10 @@
         "CLICK_COMPETE": "Enroll to compete!",
         "CLICK_SPECTATE": "Enroll as a spectator!"
       },
+      "EXAMS": {
+        "OPEN": "Exams are open!",
+        "CLICK": "Go to exams!"
+      },
       "RANKING": {
         "CLICK": "View ranking table!"
       },

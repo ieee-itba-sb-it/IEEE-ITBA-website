@@ -95,7 +95,7 @@ export class ExamListComponent implements OnInit {
     }
 
     protected goToHome() {
-        this.router.navigate(['/home']).then(() => {})
+        this.router.navigate(['/data-analysis']).then(() => {})
     }
 }
 
