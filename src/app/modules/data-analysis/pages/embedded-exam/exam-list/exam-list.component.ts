@@ -52,7 +52,7 @@ export class ExamListComponent implements OnInit {
                 }
                 this.eventService.getDataAnalysisUser(user).subscribe(student => {
                     if (!student) {
-                        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
+                        this.router.navigate(['/data-analysis/inscription']).then(() => {});
                         return;
                     }
                     this.dataAnalysisUser = student;

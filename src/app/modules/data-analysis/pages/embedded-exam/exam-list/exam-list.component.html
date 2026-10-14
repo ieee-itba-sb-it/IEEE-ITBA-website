@@ -4,17 +4,28 @@
     </div>
 
     <div *ngIf="!loading && userExam?.passed" class="passed-exam">
-        <div class="passed-exam-img">
-            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Passed Exam"/>
-        </div>
         <div class="passed-exam-text">
             <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_PASSED_EXAM' | translate }}</h1>
             <p>{{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_PASSED_EXAM'| translate}}</p>
             <button (click)=goToHome() class="ieee-button">{{'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME'| translate}}</button>
         </div>
+        <div class="passed-exam-img">
+            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Passed Exam"/>
+        </div>
     </div>
 
-    <div *ngIf="!loading && !userExam?.passed">
+    <div *ngIf="!loading && !userExam?.passed && !examStartDate" class="passed-exam">
+        <div class="passed-exam-text">
+            <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_NO_START_DATE' | translate }}</h1>
+            <p>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_NO_START_DATE' | translate }}</p>
+            <button (click)=goToHome() class="ieee-button">{{ 'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME' | translate }}</button>
+        </div>
+        <div class="passed-exam-img">
+            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Data Analysis"/>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && !userExam?.passed && examStartDate">
         <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
         <h2>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.START_DATE' | translate }} {{examStartDate | date:'dd/MM/yyyy'}}</h2>
         <div title="Descripción">

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {Event, EventDate} from "../../models/event/event";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
 import {EventService} from "../../../core/services/event/event.service";
 
@@ -28,17 +28,13 @@ export class EventInscriptionSectionComponent {
     }
 
     showInscriptionButton(): boolean {
-        return !!this.inscriptionLink && !!this.dates && this.dates?.[EventDate.INSCRIPTION].status === EventStatus.CONFIRMED &&
-            this.eventService.isEventDateCurrent(this.dates?.[EventDate.INSCRIPTION]);
+        return !!this.inscriptionLink && this.eventService.isEventDateOpen(this.dates?.[EventDate.INSCRIPTION]);
     }
 
     showSpectatorInscriptionButton(): boolean {
         return !!this.spectatorInscriptionEnabled
             && !!this.spectatorInscriptionLink
-            && !!this.dates
-            && !!this.dates[EventDate.SPECTATOR_INSCRIPTION]
-            && this.dates[EventDate.SPECTATOR_INSCRIPTION].status === EventStatus.CONFIRMED
-            && this.eventService.isEventDateCurrent(this.dates[EventDate.SPECTATOR_INSCRIPTION]);
+            && this.eventService.isEventDateOpen(this.dates?.[EventDate.SPECTATOR_INSCRIPTION]);
     }
 
     showExamsButton(): boolean {

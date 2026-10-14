@@ -53,7 +53,7 @@ export class ExamComponent implements OnInit {
 
             this.user = user;
             this.eventService.getDataAnalysisUser(user).subscribe(student=> {
-                if (!student) this.goToSubscribeExam()
+                if (!student) return this.goToInscription();
 
                 this.dataAnalysisUser = student;
                 const exam = student.currentExam;
@@ -153,8 +153,8 @@ export class ExamComponent implements OnInit {
         this.router.navigate(['/data-analysis/exams']).then(() => {});
     }
 
-    goToSubscribeExam():void{
-        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
+    goToInscription():void{
+        this.router.navigate(['/data-analysis/inscription']).then(() => {});
         this.loading = false;
         return;
     }

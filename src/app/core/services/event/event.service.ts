@@ -21,7 +21,7 @@ import {
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of, switchMap, take, timeInterval} from "rxjs";
+import {catchError, forkJoin, from, map, Observable, of, switchMap, take, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
@@ -31,6 +31,7 @@ import {
 import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
+import {DataAnalysisInscriptionStatus} from "../../../shared/models/event/data_analysis/inscription";
 
 @Injectable({
     providedIn: 'root'
@@ -399,6 +400,51 @@ export class EventService {
         });
     }
 
+
+    public isUserEnrolledInDataAnalysis(user: IEEEuser): Observable<boolean> {
+        return this.getDataAnalysisUser(user).pipe(
+            take(1),
+            map(student => !!student),
+            catchError(err => {
+                console.error(`isUserEnrolledInDataAnalysis failed: ${err}`);
+                return of(false);
+            })
+        );
+    }
+
+    // A date is open when it is confirmed and today falls within it
+    public isEventDateOpen(eventDate: Event['dates'][EventDate] | null | undefined): boolean {
+        return !!eventDate
+            && eventDate.status === EventStatus.CONFIRMED
+            && this.isEventDateCurrent(eventDate);
+    }
+
+    public isInscriptionOpen(event: Event | null): boolean {
+        return this.isEventDateOpen(event?.dates?.[EventDate.INSCRIPTION]);
+    }
+
+    public getInscriptionEnd(event: Event | null): Date | null {
+        const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
+        return inscriptionDate?.status === EventStatus.CONFIRMED && inscriptionDate.isPeriod
+            ? inscriptionDate.lastDate
+            : null;
+    }
+
+    // Current user, whether they are already enrolled and whether the inscription period is open
+    public getDataAnalysisInscriptionStatus(): Observable<DataAnalysisInscriptionStatus> {
+        return this.authService.getCurrentUser().pipe(
+            take(1),
+            switchMap(user => forkJoin({
+                enrolled: user ? this.isUserEnrolledInDataAnalysis(user) : of(false),
+                event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+            }).pipe(map(({enrolled, event}) => ({
+                user,
+                enrolled,
+                open: this.isInscriptionOpen(event),
+                end: this.getInscriptionEnd(event)
+            }))))
+        );
+    }
 
     public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
         return new Observable(obs => {

@@ -667,6 +667,188 @@
             }
         ]
     },
+      "INSCRIPTION": {
+        "TITLE": "Inscripción al curso",
+        "DESCRIPTION": "Para inscribirte al curso completá el siguiente formulario. Una vez inscripto vas a poder acceder a los exámenes.",
+        "CLOSING_DATE": "Las inscripciones cierran el",
+        "TITLE_CLOSED": "Las inscripciones están cerradas",
+        "DESCRIPTION_CLOSED": "En este momento no estamos dentro del período de inscripción al curso de Data Analysis.",
+        "STEPS": {
+          "PERSONAL": "Datos personales",
+          "STUDIES": "Estudios",
+          "WORK": "Trabajo",
+          "INTERESTS": "Intereses",
+          "CONFIRMATION": "Confirmación"
+        },
+        "FIELDS": {
+          "EMAIL": "Correo",
+          "FIRST_NAME": "Nombre/s",
+          "LAST_NAME": "Apellido/s",
+          "AGE": "Edad",
+          "GENDER": "Género",
+          "COUNTRY": "País de residencia",
+          "STUDENT_TYPE": "¿Sos estudiante?",
+          "SCHOOL_NAME": "¿En qué colegio estudiás?",
+          "SCHOOL_YEAR": "¿En qué año estás?",
+          "DEGREE": "¿Qué estudiás?",
+          "CAREER_CATEGORY": "¿En qué categoría ubicarías tu carrera?",
+          "UNIVERSITY": "¿Dónde estudiás?",
+          "UNIVERSITY_OTHER": "¿Cuál?",
+          "STUDENT_ID": "Legajo",
+          "ITBA_CAREER": "¿Qué carrera estudiás?",
+          "ITBA_YEAR": "¿En qué año estás? (aproximadamente)",
+          "WORKS": "¿Trabajás?",
+          "INDUSTRY": "¿En qué rubro trabajás?",
+          "REFERRAL_SOURCE": "¿Cómo te enteraste del curso?",
+          "MOTIVATION": "¿Por qué te interesó el curso?",
+          "PROGRAMMING_LANGUAGE": "¿Tenés experiencia previa en alguno de estos lenguajes?",
+          "PYTHON_INTEREST": "¿Qué aplicaciones de Python te interesaría aprender en el futuro?",
+          "OTHER": "Otro",
+          "LINKEDIN": "Perfil de LinkedIn",
+          "TERMS_PREFIX": "Leí y acepto los",
+          "TERMS_LINK": "términos y condiciones",
+          "SPONSOR_DATA_SHARING": "Acepto que IEEE ITBA comparta mis datos de contacto con los sponsors del curso."
+        },
+        "HINTS": {
+          "MIN_AGE": "La edad mínima para participar es de {{age}} años.",
+          "MAX_OPTIONS": "Elegí {{max}} como máximo.",
+          "OPTIONAL": "Opcional"
+        },
+        "ERRORS": {
+          "REQUIRED": "Este campo es obligatorio.",
+          "INVALID": "El valor ingresado no es válido.",
+          "MIN_AGE": "La edad mínima es de {{age}} años.",
+          "COUNTRY": "Elegí un país de la lista.",
+          "NUMERIC": "Ingresá solo números.",
+          "AT_LEAST_ONE": "Elegí al menos una opción.",
+          "MAX_OPTIONS": "Podés elegir {{max}} opciones como máximo.",
+          "LINKEDIN": "Ingresá la URL de tu perfil de LinkedIn.",
+          "TERMS": "Tenés que aceptar los términos y condiciones para inscribirte."
+        },
+        "BUTTONS": {
+          "NEXT": "Siguiente",
+          "BACK": "Atrás",
+          "SUBMIT": "Inscribirme"
+        },
+        "OPTIONS": {
+          "YES": "Sí",
+          "NO": "No",
+          "GENDER": {
+            "FEMALE": "Femenino",
+            "MALE": "Masculino",
+            "OTHER": "Otro",
+            "PREFER_NOT_TO_SAY": "Prefiero no decirlo"
+          },
+          "STUDENT_TYPE": {
+            "ITBA": "Sí, estudio en ITBA",
+            "SCHOOL": "Sí, soy estudiante de secundario / primario",
+            "UNIVERSITY": "Sí, soy estudiante de otra universidad",
+            "NONE": "No"
+          },
+          "SCHOOL_YEAR": {
+            "PRIMARY_6": "6to de Primaria",
+            "PRIMARY_7": "7mo de Primaria",
+            "SECONDARY_1": "1ro (5 años) / 2do (6 años)",
+            "SECONDARY_2": "2do (5 años) / 3ro (6 años)",
+            "SECONDARY_3": "3ro (5 años) / 4to (6 años)",
+            "SECONDARY_4": "4to (5 años) / 5to (6 años)",
+            "SECONDARY_5": "5to (5 años) / 6to (6 años)"
+          },
+          "CAREER_CATEGORY": {
+            "ADMINISTRATION": "Administración",
+            "AGRONOMY": "Agronomía",
+            "ARCHITECTURE": "Arquitectura",
+            "ARTS": "Artes",
+            "BIOLOGY": "Biología",
+            "EXACT_SCIENCES": "Ciencias Exactas",
+            "SOCIAL_SCIENCES": "Ciencias Sociales",
+            "COMPUTING": "Computación",
+            "COMMUNICATION": "Comunicación",
+            "LAW": "Derecho",
+            "DESIGN": "Diseño",
+            "ECONOMICS": "Economía",
+            "EDUCATION": "Educación",
+            "PHILOSOPHY": "Filosofía",
+            "ENGINEERING": "Ingeniería",
+            "LITERATURE": "Letras",
+            "MEDICINE": "Medicina",
+            "DENTISTRY": "Odontología",
+            "PSYCHOLOGY": "Psicología",
+            "CHEMISTRY": "Química",
+            "VETERINARY": "Veterinaria",
+            "OTHER": "Otra"
+          },
+          "UNIVERSITY": {
+            "OTHER": "Otra"
+          },
+          "ITBA_YEAR": {
+            "ADMISSION": "Ingreso",
+            "FIRST": "Primero",
+            "SECOND": "Segundo",
+            "THIRD": "Tercero",
+            "FOURTH": "Cuarto",
+            "FIFTH": "Quinto"
+          },
+          "WORK_INDUSTRY": {
+            "ADMINISTRATION": "Administración",
+            "AGRICULTURE": "Agropecuario",
+            "FOOD": "Alimentos",
+            "ARTS_CULTURE_ENTERTAINMENT": "Arte, Cultura y Entretenimiento",
+            "CUSTOMER_SERVICE": "Atención al Cliente",
+            "AUTOMOTIVE": "Automotriz",
+            "CONSTRUCTION": "Construcción",
+            "ACCOUNTING": "Contabilidad",
+            "DEFENSE": "Defensa",
+            "LAW": "Derecho",
+            "DIPLOMACY": "Diplomacia",
+            "EDUCATION": "Educación",
+            "IT": "Informática",
+            "REAL_ESTATE": "Inmobiliario",
+            "MANUFACTURING": "Manufacturas",
+            "ELECTRICAL_MACHINERY": "Maquinaria y Aparatos Eléctricos",
+            "MARKETING": "Marketing",
+            "MATERIALS": "Materiales",
+            "ENVIRONMENT": "Medio Ambiente",
+            "JOURNALISM": "Periodismo",
+            "CHEMICAL": "Químico",
+            "HEALTH": "Sanidad",
+            "TEXTILE": "Textil",
+            "TRANSPORT_TOURISM": "Transporte y Turismo",
+            "SALES": "Ventas",
+            "OTHER": "Otro"
+          },
+          "REFERRAL_SOURCE": {
+            "FRIEND": "Amigo/Conocido",
+            "INSTAGRAM": "Instagram",
+            "REDDIT": "Reddit",
+            "LINKEDIN": "LinkedIn",
+            "FACEBOOK": "Facebook",
+            "WHATSAPP": "WhatsApp",
+            "MAIL": "Mail",
+            "UNIVERSITY": "En la universidad",
+            "WORK": "En el trabajo",
+            "IEEE_ENOTICE": "IEEE eNotice",
+            "OTHER": "Otro"
+          },
+          "MOTIVATION": {
+            "CURRENT_JOB": "Para poder aplicarlo en mi trabajo actual",
+            "PERSONAL_INTEREST": "Interés personal o hobby",
+            "PROFESSIONAL_DEVELOPMENT": "Formación profesional"
+          },
+          "PROGRAMMING_LANGUAGE": {
+            "NONE": "No tengo experiencia programando"
+          },
+          "PYTHON_INTEREST": {
+            "DATA_ANALYSIS": "Análisis y manipulación de datos",
+            "MACHINE_LEARNING": "Machine Learning",
+            "WEB_DEVELOPMENT": "Desarrollo Web",
+            "GAME_DESIGN": "Diseñar videojuegos",
+            "CIRCUIT_DESIGN": "Introducción al diseño de circuitos electrónicos",
+            "COMPUTER_VISION": "Computer Vision",
+            "DESIGN_3D": "Diseño 3D"
+          }
+        }
+      },
       "EMBEDDED_EXAM": {
           "GOTO_HOME": "Ir a Inicio",
           "EXAM": {
@@ -689,7 +871,9 @@
               "BADGE_PENDING": "Pendiente",
               "BUTTON_REVIEW": "Revisar examen",
               "TITLE_PASSED_EXAM": "¡Felicitaciones, aprobaste el examen!",
-              "DESCRIPTION_PASSED_EXAM": "Completaste el curso de Data Analysis."
+              "DESCRIPTION_PASSED_EXAM": "Completaste el curso de Data Analysis.",
+              "TITLE_NO_START_DATE": "Los exámenes todavía no tienen fecha de inicio",
+              "DESCRIPTION_NO_START_DATE": "Ya estás inscripto. Te avisaremos cuando se habiliten los exámenes; mientras tanto podés volver a esta página para ver la fecha de inicio."
           }
       }
   },
