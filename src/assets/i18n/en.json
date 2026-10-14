@@ -287,6 +287,7 @@
               "PASSING_SCORE_MIN": "The passing score cannot be less than {{ min }}",
               "PASSING_SCORE_MAX": "The passing score cannot be more than {{ max }}",
               "PASSING_SCORE_REQUIRED": "The passing score is required",
+              "EXAM_START_DATE_REQUIRED": "The exam start date is required",
               "EXAM_START_DATE_PAST": "The exam start date cannot be in the past"
           }
       }

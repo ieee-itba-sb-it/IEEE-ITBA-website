@@ -91,6 +91,9 @@ export class EventEditorModalComponent implements OnInit {
         required: {
             key: 'PASSING_SCORE_REQUIRED'
         },
+        examStartDateRequired: {
+            key: 'EXAM_START_DATE_REQUIRED'
+        },
         minDate: {
             key: 'EXAM_START_DATE_PAST'
         }
@@ -260,6 +263,10 @@ export class EventEditorModalComponent implements OnInit {
 
     get isDataAnalysis(): boolean {
         return this.event.id === IeeeEvent.DATA_ANALYSIS;
+    }
+
+    get isDataAnalysisEnabled(): boolean {
+        return this.form.isDataAnalysisEnabled();
     }
 
     getFormDataAnalysisErrors(): string[] {

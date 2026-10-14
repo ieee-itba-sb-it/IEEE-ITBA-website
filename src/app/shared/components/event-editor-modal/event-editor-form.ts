@@ -1,18 +1,14 @@
-import {FormControl, FormGroup, ValidationErrors} from "@angular/forms";
+import {FormGroup, ValidationErrors} from "@angular/forms";
 import {Event, EventDate, EventStatus, IeeeEvent} from "../../models/event/event";
 import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-date";
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
 import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
-import {DataAnalysisEventEditorForm} from "./event-editor-form-data-analysis";
+import {DataAnalysisEventEditorForm, DataAnalysisEventForm} from "./event-editor-form-data-analysis";
 
 type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm &
     LocationEventForm & Partial<DataAnalysisEventForm>;
 
 type EventForm = FormGroup<EventFormGroup>;
-type DataAnalysisEventForm = {
-    passingScore: FormControl<number>;
-    examStartDate: FormControl<Date | null>;
-};
 
 export class EventEditorForm {
 
@@ -53,6 +49,13 @@ export class EventEditorForm {
             this.dataAnalysisEventEditorForm = new DataAnalysisEventEditorForm(event);
             this.eventForm.addControl("passingScore", this.dataAnalysisEventEditorForm.getForm().passingScore);
             this.eventForm.addControl("examStartDate", this.dataAnalysisEventEditorForm.getForm().examStartDate);
+
+            // The exam settings only apply once the event date is confirmed
+            const eventStatus = eventDateFormGroup[EventDate.EVENT].controls.status;
+            this.dataAnalysisEventEditorForm.setEnabled(eventStatus.value === EventStatus.CONFIRMED);
+            eventStatus.valueChanges.subscribe(status =>
+                this.dataAnalysisEventEditorForm.setEnabled(status === EventStatus.CONFIRMED)
+            );
         }
     }
 
@@ -108,6 +111,10 @@ export class EventEditorForm {
 
     getSpectatorInscriptionLinkError(errorName: string): ValidationErrors | null {
         return this.inscriptionLinkEventEditorForm.getSpectatorLinkError(errorName);
+    }
+
+    isDataAnalysisEnabled(): boolean {
+        return this.dataAnalysisEventEditorForm?.isEnabled() ?? false;
     }
 
     getDataAnalysisError(error:string): ValidationErrors | null {
