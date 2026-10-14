@@ -21,7 +21,7 @@ import {
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of, timeInterval} from "rxjs";
+import {catchError, from, map, Observable, of, switchMap, take, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
@@ -235,7 +235,7 @@ export class EventService {
     }
 
     updateEvent(event: Event): Observable<boolean> {
-        return this.userService.isCurrentUserAdmin().pipe((isAdmin) => {
+        return this.userService.isCurrentUserAdmin().pipe(take(1), switchMap((isAdmin) => {
             if (!isAdmin) {
                 console.error('updateEvent failed: user is not admin');
                 return of(false);
@@ -252,7 +252,7 @@ export class EventService {
                 console.error(`updateEvent ${event.id} failed: ${error}`);
                 return of(false);
             }
-        })
+        }));
     }
 
     private mapEventDates(event: Event): EventDoc['dates'] {
