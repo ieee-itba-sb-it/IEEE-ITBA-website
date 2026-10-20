@@ -156,5 +156,4 @@ export type DataAnalysisInscription = {
         termsAccepted: boolean;
         sponsorDataSharing: boolean;
     };
-    submittedAt: Date;
 };

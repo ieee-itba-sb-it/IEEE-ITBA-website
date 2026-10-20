@@ -210,10 +210,15 @@
                             {{ 'DATAANALYSIS.INSCRIPTION.FIELDS.SPONSOR_DATA_SHARING' | translate }}
                         </mat-checkbox>
 
+                        <p class="field-error submit-error" *ngIf="submitError">
+                            {{ 'DATAANALYSIS.INSCRIPTION.ERRORS.SUBMIT' | translate }}
+                        </p>
+
                         <div class="step-actions">
-                            <button class="ieee-button secondary" type="button" matStepperPrevious>{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.BACK' | translate }}</button>
+                            <button class="ieee-button secondary" type="button" matStepperPrevious [disabled]="submitting">{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.BACK' | translate }}</button>
                             <button class="ieee-button" type="button" (click)="enroll()" [disabled]="submitting">
-                                {{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.SUBMIT' | translate }}
+                                <mat-progress-spinner *ngIf="submitting" mode="indeterminate" diameter="18"></mat-progress-spinner>
+                                {{ (submitting ? 'DATAANALYSIS.INSCRIPTION.BUTTONS.SUBMITTING' : 'DATAANALYSIS.INSCRIPTION.BUTTONS.SUBMIT') | translate }}
                             </button>
                         </div>
                     </form>

@@ -655,12 +655,14 @@
           "AT_LEAST_ONE": "Choose at least one option.",
           "MAX_OPTIONS": "You can choose up to {{max}} options.",
           "LINKEDIN": "Enter your LinkedIn profile URL.",
-          "TERMS": "You must accept the terms and conditions to sign up."
+          "TERMS": "You must accept the terms and conditions to sign up.",
+          "SUBMIT": "We couldn't complete your inscription. Please try again in a few minutes."
         },
         "BUTTONS": {
           "NEXT": "Next",
           "BACK": "Back",
-          "SUBMIT": "Sign up"
+          "SUBMIT": "Sign up",
+          "SUBMITTING": "Signing up..."
         },
         "OPTIONS": {
           "GENDER": {

@@ -9,9 +9,11 @@ import {EventService} from 'src/app/core/services/event/event.service';
 import {AuthService} from 'src/app/core/services/authorization/auth.service';
 import {IEEEuser} from "../../../../shared/models/ieee-user/ieee-user";
 import {
+    AlreadyEnrolledError,
     COUNTRY_CODES,
     DataAnalysisInscription,
     INSCRIPTION_OPTIONS,
+    InscriptionClosedError,
     InscriptionOption,
     InscriptionOptionGroup,
     MAX_PYTHON_INTERESTS,
@@ -92,6 +94,7 @@ export class InscriptionComponent implements OnInit {
     user: IEEEuser | null = null;
     loading = true;
     submitting = false;
+    submitError = false;
     inscriptionOpen = false;
     inscriptionEnd: Date | null = null;
 
@@ -273,8 +276,7 @@ export class InscriptionComponent implements OnInit {
                 pythonInterestOther: optionalText(interests.pythonInterest.other),
                 linkedin: optionalText(interests.linkedin)
             },
-            consents: this.consentsForm.getRawValue(),
-            submittedAt: new Date()
+            consents: this.consentsForm.getRawValue()
         };
     }
 
@@ -288,11 +290,32 @@ export class InscriptionComponent implements OnInit {
         if (!this.user || !this.inscriptionOpen || !this.formValid || this.submitting) return;
 
         this.submitting = true;
+        this.submitError = false;
         this.eventService.enrollInDataAnalysis(this.buildInscription())
             .subscribe({
-                next: () => this.router.navigate(['/data-analysis/exams']).then(),
-                error: () => this.submitting = false
+                next: () => this.goToExams(),
+                error: error => this.handleEnrollError(error)
             });
+    }
+
+    private handleEnrollError(error: unknown): void {
+        this.submitting = false;
+        // Enrolled meanwhile (e.g. from another tab): the inscription already exists
+        if (error instanceof AlreadyEnrolledError) {
+            this.goToExams();
+            return;
+        }
+        // The inscription period ended while the form was being filled
+        if (error instanceof InscriptionClosedError) {
+            this.inscriptionOpen = false;
+            return;
+        }
+        console.error(`enroll failed: ${error}`);
+        this.submitError = true;
+    }
+
+    private goToExams(): void {
+        this.router.navigate(['/data-analysis/exams']).then();
     }
 
     goToHome() {

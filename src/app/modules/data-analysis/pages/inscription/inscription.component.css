@@ -99,6 +99,10 @@ p{
     margin: 0;
 }
 
+.submit-error{
+    margin-top: 1rem;
+}
+
 .step-actions{
     display: flex;
     justify-content: flex-end;
