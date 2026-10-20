@@ -31,13 +31,22 @@ import {
     getArgentineTime,
     parseArgentineDate
 } from "../../../shared/argentina-time";
-import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
+import {
+    DataAnalysisStudentRow,
+    DataAnalysisUser,
+    getExamsEnd,
+    getStudentStatus,
+    Question,
+    UserExam
+} from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 import {
     AlreadyEnrolledError,
+    DataAnalysisEditions,
     DataAnalysisInscription,
     DataAnalysisInscriptionStatus,
+    DataAnalysisMetrics,
     getEditionId,
     getInscriptionMetricValues,
     InscriptionClosedError
@@ -464,15 +473,44 @@ export class EventService {
         return {total: increment(1), ...counters};
     }
 
-    public getDataAnalysisStudents(): Observable<DataAnalysisUser[]> {
-        return this.getCurrentDataAnalysisEditionId().pipe(
-            switchMap(editionId => editionId
-                ? from(getDocs(this.getDataAnalysisStudentsRef(editionId)))
-                : of(null)),
-            map(snap => (snap?.docs ?? []).map(d => {
-                const student = d.data() as DataAnalysisUser;
-                return {...student, enrolledAt: this.toDate(student.enrolledAt)};
-            }))
+    // Editions with at least one student plus the current one (which may have none yet), most recent first.
+    // Only the edition documents are read, not their students
+    public getDataAnalysisEditions(): Observable<DataAnalysisEditions> {
+        return forkJoin({
+            snapshot: from(getDocs(this.getDataAnalysisEditionsRef())),
+            current: this.getCurrentDataAnalysisEditionId()
+        }).pipe(
+            map(({snapshot, current}) => {
+                const editionIds = snapshot.docs.map(edition => edition.id);
+                const editions = Array.from(new Set(current ? [...editionIds, current] : editionIds))
+                    .sort((a, b) => b.localeCompare(a));
+                return {editions, current};
+            })
+        );
+    }
+
+    // Students of an edition with their status: passed, still taking exams, or failed once the exams closed
+    public getDataAnalysisEditionStudents(editionId: string): Observable<DataAnalysisStudentRow[]> {
+        return forkJoin({
+            snapshot: from(getDocs(this.getDataAnalysisStudentsRef(editionId))),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            map(({snapshot, event}) => {
+                const isCurrentEdition = this.getEditionId(event) === editionId;
+                const examsEnd = getExamsEnd(event?.examStartDate ? this.toDate(event.examStartDate) : null);
+                return snapshot.docs.map(studentDoc => {
+                    const student = studentDoc.data() as DataAnalysisUser;
+                    const row = {...student, enrolledAt: this.toDate(student.enrolledAt)};
+                    return {...row, status: getStudentStatus(row, isCurrentEdition, examsEnd)};
+                });
+            })
+        );
+    }
+
+    // Anonymous counters of an edition, or null when nobody enrolled in it yet
+    public getDataAnalysisMetrics(editionId: string): Observable<DataAnalysisMetrics | null> {
+        return from(getDoc(this.getDataAnalysisMetricsRef(editionId))).pipe(
+            map(snapshot => snapshot.exists() ? snapshot.data() as DataAnalysisMetrics : null)
         );
     }
 

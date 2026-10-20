@@ -154,6 +154,12 @@ export class AlreadyEnrolledError extends Error {
     }
 }
 
+export type DataAnalysisEditions = {
+    // Edition ids, most recent first
+    editions: string[];
+    current: string | null;
+};
+
 export type DataAnalysisInscriptionStatus = {
     user: IEEEuser | null;
     enrolled: boolean;

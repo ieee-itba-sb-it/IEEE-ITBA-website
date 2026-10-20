@@ -1408,14 +1408,49 @@
     },
     "EXAMSTAB": {
       "TITLE": "Exámenes",
+      "EDITION": "Edición",
+      "CURRENT_EDITION": "actual",
+      "NO_EDITIONS": "Todavía no hay ediciones con alumnos inscriptos",
+      "TABS": {
+        "STUDENTS": "Alumnos",
+        "METRICS": "Métricas"
+      },
       "TABLE": {
+        "NAME": "Nombre",
         "EMAIL": "Email",
         "ENROLLED_AT": "Fecha de inscripción",
         "STATUS": "Estado"
       },
-      "PASSED": "Aprobado",
-      "FAILED": "Desaprobado",
-      "NO_STUDENTS": "No hay alumnos inscriptos"
+      "STATUS": {
+        "PASSED": "Aprobado",
+        "IN_PROGRESS": "Cursando",
+        "FAILED": "Desaprobado"
+      },
+      "NO_STUDENTS": "No hay alumnos inscriptos",
+      "METRICS": {
+        "TOTAL": "Inscriptos",
+        "NO_DATA": "No hay métricas para esta edición",
+        "MULTIPLE_CHOICE": "Respuesta múltiple: los porcentajes pueden sumar más de 100%",
+        "ITBA_ONLY": "Porcentaje sobre los alumnos del ITBA",
+        "BAR_TOOLTIP": "{{label}}: {{count}} ({{percentage}}%)",
+        "FIELDS": {
+          "occupation": "Situación actual",
+          "itbaCareer": "Carrera (alumnos del ITBA)",
+          "ageRange": "Edad",
+          "gender": "Género",
+          "country": "País de residencia",
+          "referralSource": "Cómo se enteraron del curso",
+          "motivation": "Por qué les interesó el curso",
+          "programmingLanguage": "Experiencia previa en lenguajes",
+          "pythonInterest": "Aplicaciones de Python de interés"
+        }
+      },
+      "ERRORS": {
+        "EDITIONS": "No se pudieron cargar las ediciones",
+        "STUDENTS": "No se pudieron cargar los alumnos de la edición",
+        "METRICS": "No se pudieron cargar las métricas de la edición"
+      },
+      "CLOSE": "Cerrar"
     },
     "SPONSORSTAB": {
       "TITLE": "Sponsors",

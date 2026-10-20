@@ -1354,14 +1354,49 @@
     },
     "EXAMSTAB": {
       "TITLE": "Exams",
+      "EDITION": "Edition",
+      "CURRENT_EDITION": "current",
+      "NO_EDITIONS": "There are no editions with enrolled students yet",
+      "TABS": {
+        "STUDENTS": "Students",
+        "METRICS": "Metrics"
+      },
       "TABLE": {
+        "NAME": "Name",
         "EMAIL": "Email",
         "ENROLLED_AT": "Enrollment date",
         "STATUS": "Status"
       },
-      "PASSED": "Passed",
-      "FAILED": "Failed",
-      "NO_STUDENTS": "There are no enrolled students"
+      "STATUS": {
+        "PASSED": "Passed",
+        "IN_PROGRESS": "In progress",
+        "FAILED": "Failed"
+      },
+      "NO_STUDENTS": "There are no enrolled students",
+      "METRICS": {
+        "TOTAL": "Enrolled",
+        "NO_DATA": "There are no metrics for this edition",
+        "MULTIPLE_CHOICE": "Multiple answers: percentages can add up to more than 100%",
+        "ITBA_ONLY": "Percentage of ITBA students",
+        "BAR_TOOLTIP": "{{label}}: {{count}} ({{percentage}}%)",
+        "FIELDS": {
+          "occupation": "Current situation",
+          "itbaCareer": "Degree (ITBA students)",
+          "ageRange": "Age",
+          "gender": "Gender",
+          "country": "Country of residence",
+          "referralSource": "How they heard about the course",
+          "motivation": "Why they were interested",
+          "programmingLanguage": "Previous programming experience",
+          "pythonInterest": "Python applications of interest"
+        }
+      },
+      "ERRORS": {
+        "EDITIONS": "The editions could not be loaded",
+        "STUDENTS": "The students of the edition could not be loaded",
+        "METRICS": "The metrics of the edition could not be loaded"
+      },
+      "CLOSE": "Close"
     },
     "SPONSORSTAB": {
       "TITLE": "Sponsors",
