@@ -1,5 +1,5 @@
 import {Event, EventDate, EventStatus} from "../../models/event/event";
-import {getArgentineDate} from "../../argentina-time";
+import {getArgentineDate, getArgentineTime, parseArgentineDate} from "../../argentina-time";
 import {getEditionId} from "../../models/event/data_analysis/inscription";
 import {DATA_ANALYSIS_EXAM_DAYS} from "../../models/event/data_analysis/exams";
 
@@ -38,6 +38,9 @@ const addDays = (isoDate: string, days: number): string => {
 // "yyyy-mm-dd" -> "dd/mm/yyyy"
 const display = (isoDate: string): string => isoDate.split('-').reverse().join('/');
 
+// "dd/mm/yyyy hh:mm"
+const displayDateTime = (date: Date): string => `${display(getArgentineDate(date))} ${getArgentineTime(date)}`;
+
 const confirmedDate = (input: ScheduleInput, eventDate: EventDate) => {
     const date = input.dates[eventDate];
     return date.status === EventStatus.CONFIRMED && input.isEventDateValid(eventDate) ? date : null;
@@ -71,17 +74,21 @@ function getExamErrors(input: ScheduleInput): ScheduleError[] {
     return errors;
 }
 
-// The inscription must close before or on the day the course starts
+// The inscription can stay open during the theory classes at the start of the course, so it can be extended when
+// there are few students, but it must close before the exams start
 function getInscriptionErrors(input: ScheduleInput): ScheduleError[] {
     const inscription = confirmedDate(input, EventDate.INSCRIPTION);
-    const event = confirmedDate(input, EventDate.EVENT);
-    if (!inscription || !event) return [];
+    if (!inscription || !input.examStartDate) return [];
 
-    const inscriptionEnd = getArgentineDate(inscription.isPeriod ? inscription.lastDate : inscription.date);
-    const eventStart = getArgentineDate(event.date);
-    if (inscriptionEnd <= eventStart) return [];
+    const inscriptionEnd = inscription.isPeriod ? inscription.lastDate : inscription.date;
+    const [examDate, examTime] = input.examStartDate.split('T');
+    const examStart = parseArgentineDate(examDate, examTime);
+    if (inscriptionEnd.getTime() < examStart.getTime()) return [];
 
-    return [{key: 'INSCRIPTION_ENDS_AFTER_EVENT_START', params: {inscriptionEnd: display(inscriptionEnd), eventStart: display(eventStart)}}];
+    return [{
+        key: 'INSCRIPTION_ENDS_AFTER_EXAMS_START',
+        params: {inscriptionEnd: displayDateTime(inscriptionEnd), examStart: displayDateTime(examStart)}
+    }];
 }
 
 // The edition comes from the inscription start date. Moving it to another semester (or unconfirming it) while the

@@ -208,17 +208,20 @@ async function writeEdition(editionRef: FirebaseFirestore.DocumentReference, ins
 
 // Leaves DATA_ANALYSIS with a consistent timeline, the current edition and the previous one with sample students
 // and their metrics:
-// - inscription open from a week ago until the end of today
-// - event (the course) confirmed from today, when exams start, until the last exam day
+// - event (the course) confirmed from two days ago, with theory classes until the exams start today at noon, until the
+//   last exam day
+// - inscription open from a week before the event until just before the exams start (it may stay open during the
+//   theory classes)
 // Re-running it resets both editions
 export async function seedDataAnalysisEdition() {
     const db = getFirestore();
     const eventRef = db.collection('events').doc('DATA_ANALYSIS');
 
     const today = new Date();
-    const inscriptionStart = new Date(today.getTime() - 7 * DAY_MS);
     const examStart = new Date(today);
     examStart.setHours(12, 0, 0, 0);
+    const eventStart = new Date(examStart.getTime() - 2 * DAY_MS);
+    const inscriptionStart = new Date(eventStart.getTime() - 7 * DAY_MS);
     const eventEnd = new Date(examStart.getTime() + (DATA_ANALYSIS_EXAM_DAYS - 1) * DAY_MS);
 
     await eventRef.set({
@@ -227,12 +230,12 @@ export async function seedDataAnalysisEdition() {
                 status: 'CONFIRMED',
                 date: toIsoDate(inscriptionStart),
                 time: '00:00',
-                lastDate: toIsoDate(today),
-                lastTime: '23:59'
+                lastDate: toIsoDate(examStart),
+                lastTime: '11:59'
             },
             EVENT: {
                 status: 'CONFIRMED',
-                date: toIsoDate(examStart),
+                date: toIsoDate(eventStart),
                 time: '12:00',
                 lastDate: toIsoDate(eventEnd),
                 lastTime: '23:59'
@@ -250,6 +253,6 @@ export async function seedDataAnalysisEdition() {
     await writeEdition(editionsRef.doc(pastEditionId), pastInscriptions, ['diego.lopez@example.com']);
     console.log(`Edición anterior ${pastEditionId} cargada`);
 
-    console.log(`Edición ${editionId} cargada: inscripción del ${toIsoDate(inscriptionStart)} al ${toIsoDate(today)}, `
-        + `curso y exámenes del ${toIsoDate(examStart)} al ${toIsoDate(eventEnd)}`);
+    console.log(`Edición ${editionId} cargada: inscripción del ${toIsoDate(inscriptionStart)} al ${toIsoDate(examStart)} 11:59, `
+        + `curso del ${toIsoDate(eventStart)} al ${toIsoDate(eventEnd)} y exámenes desde el ${toIsoDate(examStart)} 12:00`);
 }

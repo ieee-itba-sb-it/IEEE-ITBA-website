@@ -292,7 +292,7 @@
               "EVENT_NOT_PERIOD": "The event must be a period (with start and end dates): the exams last {{days}} days and must fall within the event dates.",
               "EXAMS_START_BEFORE_EVENT": "The exams start on {{examStart}}, before the event ({{eventStart}}). Move the exam start date within the event or move the event earlier.",
               "EXAMS_END_AFTER_EVENT": "The {{days}} exam days go from {{examStart}} to {{examEnd}}, but the event ends on {{eventEnd}}. Extend the event until {{examEnd}} or move the exam start earlier.",
-              "INSCRIPTION_ENDS_AFTER_EVENT_START": "The inscription closes on {{inscriptionEnd}}, after the event starts ({{eventStart}}). The inscription must close before or on the day the course starts.",
+              "INSCRIPTION_ENDS_AFTER_EXAMS_START": "The inscription closes on {{inscriptionEnd}}, after the exams start ({{examStart}}). The inscription can stay open during the event classes, but it must close before the exams start.",
               "EDITION_CHECK_LOADING": "Checking whether edition {{edition}} has enrolled students...",
               "EDITION_CHECK_FAILED": "Could not check whether edition {{edition}} has enrolled students, so the edition cannot be changed. Close and reopen the editor to try again, or keep the inscription start in the same semester.",
               "EDITION_CHANGE_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. With this inscription start date the edition would become {{newEdition}} and those students would lose access to their exams. Keep the inscription start in the same semester or wait until the course ends.",
