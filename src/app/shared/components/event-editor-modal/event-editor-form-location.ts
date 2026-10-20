@@ -79,7 +79,8 @@ export class LocationEventEditorForm {
 
     hasChanged(): boolean {
         const current = this.getCurrentState();
-        return this.initialName !== current.location || this.initialUrl !== current.locationLink;
+        // An empty location is stored as null but starts as '' in the form
+        return this.initialName !== (current.location ?? '') || this.initialUrl !== (current.locationLink ?? '');
     }
 
     clear(): void {

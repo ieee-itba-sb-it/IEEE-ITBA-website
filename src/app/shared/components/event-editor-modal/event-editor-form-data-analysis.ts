@@ -1,4 +1,4 @@
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Event} from "../../models/event/event";
 import {getArgentineDate, getArgentineTime, parseArgentineDate} from "../../argentina-time";
 import {DATA_ANALYSIS_DEFAULT_PASSING_SCORE} from "../../models/event/data_analysis/exams";
@@ -15,7 +15,6 @@ export class DataAnalysisEventEditorForm {
 
     private readonly passingScore: FormControl<number>;
     private readonly examStartDate: FormControl<string | null>;
-    private readonly form: FormGroup<DataAnalysisEventForm>;
 
     constructor(private readonly event: Event) {
         this.passingScore = new FormControl(
@@ -39,10 +38,12 @@ export class DataAnalysisEventEditorForm {
                 ]
             }
         );
-        this.form = new FormGroup({
-            passingScore: this.passingScore,
-            examStartDate: this.examStartDate
-        });
+    }
+
+    // The controls are added to the event form, which becomes their parent: their state is read from them directly
+    // because a FormGroup of their own would not be updated when they change
+    private get controls(): AbstractControl[] {
+        return [this.passingScore, this.examStartDate];
     }
 
     getForm(): DataAnalysisEventForm {
@@ -54,7 +55,7 @@ export class DataAnalysisEventEditorForm {
 
     // While disabled, the exam fields are left untouched in the event
     getCurrentState(): Partial<Pick<Event, 'passingScore' | 'examStartDate'>> {
-        if (this.form.disabled) return {};
+        if (!this.isEnabled()) return {};
         return {
             passingScore: this.passingScore.value,
             examStartDate: DataAnalysisEventEditorForm.fromInputValue(this.examStartDate.value)
@@ -66,11 +67,11 @@ export class DataAnalysisEventEditorForm {
     }
 
     setEnabled(enabled: boolean): void {
-        enabled ? this.form.enable() : this.form.disable();
+        this.controls.forEach(control => enabled ? control.enable() : control.disable());
     }
 
     isEnabled(): boolean {
-        return this.form.enabled;
+        return this.examStartDate.enabled;
     }
 
     getError(errorName: string): ValidationErrors | null {
@@ -79,12 +80,12 @@ export class DataAnalysisEventEditorForm {
     }
 
     isValid(): boolean {
-        // A disabled FormGroup is never "valid", so check it is not invalid instead
-        return !this.form.invalid;
+        // A disabled control is never "valid", so check it is not invalid instead
+        return this.controls.every(control => !control.invalid);
     }
 
     hasChanged(): boolean {
-        return this.form.dirty;
+        return this.controls.some(control => control.dirty);
     }
 
     // Firestore returns a Timestamp, while the event may also hold a Date or an ISO string
