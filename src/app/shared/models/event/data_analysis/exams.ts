@@ -17,9 +17,17 @@ export type UserExam = {
     questions: Question[];
 }
 
+// Stored in events/DATA_ANALYSIS/editions/{edition}/students/{email}
 export type DataAnalysisUser = {
     email: string;
+    edition: string;
+    firstName: string;
+    lastName: string;
     enrolledAt: Date;
+    termsAcceptedAt: Date;
+    sponsorDataSharing: boolean;
+    // Only stored when the user agreed to share their data with sponsors
+    linkedin?: string;
     currentExam?: UserExam;
     passedCourse: boolean;
 }

@@ -84,6 +84,44 @@ export const COUNTRY_CODES = [
     'ZW'
 ];
 
+// Ages are only stored as ranges in the metrics
+export const AGE_RANGES: { label: string; max: number }[] = [
+    {label: '12-17', max: 17},
+    {label: '18-24', max: 24},
+    {label: '25-34', max: 34},
+    {label: '35-44', max: 44},
+    {label: '45+', max: Infinity}
+];
+
+export const getAgeRange = (age: number): string =>
+    AGE_RANGES.find(range => age <= range.max).label;
+
+// Anonymous counters of an edition: each field maps an option code to the amount of people that chose it
+export type DataAnalysisMetrics = {
+    total: number;
+    gender: Record<string, number>;
+    ageRange: Record<string, number>;
+    country: Record<string, number>;
+    occupation: Record<string, number>;
+    itbaCareer: Record<string, number>;
+    referralSource: Record<string, number>;
+    motivation: Record<string, number>;
+    programmingLanguage: Record<string, number>;
+    pythonInterest: Record<string, number>;
+};
+
+export class InscriptionClosedError extends Error {
+    constructor() {
+        super('The data analysis inscription is closed');
+    }
+}
+
+export class AlreadyEnrolledError extends Error {
+    constructor() {
+        super('The user is already enrolled in this edition');
+    }
+}
+
 export type DataAnalysisInscriptionStatus = {
     user: IEEEuser | null;
     enrolled: boolean;

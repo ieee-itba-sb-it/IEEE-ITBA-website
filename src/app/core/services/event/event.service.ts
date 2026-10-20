@@ -11,17 +11,19 @@ import {
     collection,
     CollectionReference,
     doc,
+    DocumentReference,
     Firestore,
     getDoc,
     getDocs,
+    increment,
     query,
     Query,
-    QueryDocumentSnapshot, runTransaction, setDoc,
+    QueryDocumentSnapshot, runTransaction, serverTimestamp,
     updateDoc,
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, forkJoin, from, map, Observable, of, switchMap, take, timeInterval} from "rxjs";
+import {catchError, forkJoin, from, map, Observable, of, switchMap, take, throwError, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
@@ -31,7 +33,14 @@ import {
 import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
-import {DataAnalysisInscriptionStatus} from "../../../shared/models/event/data_analysis/inscription";
+import {
+    AlreadyEnrolledError,
+    DataAnalysisInscription,
+    DataAnalysisInscriptionStatus,
+    getAgeRange,
+    InscriptionClosedError,
+    OTHER
+} from "../../../shared/models/event/data_analysis/inscription";
 
 @Injectable({
     providedIn: 'root'
@@ -331,42 +340,138 @@ export class EventService {
 
     private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
     private static readonly questionsCollectionName = "questions";
+    private static readonly editionsCollectionName = "editions";
     private static readonly studentsCollectionName = "students";
+    private static readonly metricsCollectionName = "metrics";
+    private static readonly metricsSummaryDocumentName = "summary";
 
-    public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
-        return new Observable(obs => {
+    // The edition is derived from the inscription start date: January-July is "YYYY-1C", August-December "YYYY-2C"
+    public getEditionId(event: Event | null): string | null {
+        const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
+        if (inscriptionDate?.status !== EventStatus.CONFIRMED) return null;
 
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
-
-            const student = {
-                email: user.email,
-                enrolledAt: new Date(),
-                passedCourse: false
-            };
-
-            setDoc(studentRef, student)
-                .then(() => obs.next())
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+        const start = inscriptionDate.date;
+        const semester = start.getMonth() < 7 ? '1C' : '2C';
+        return `${start.getFullYear()}-${semester}`;
     }
 
-    public getDataAnalysisStudents(): Observable<DataAnalysisUser[]> {
-        const studentsRef = collection(
+    private getCurrentDataAnalysisEditionId(): Observable<string | null> {
+        return this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(
+            take(1),
+            map(event => this.getEditionId(event))
+        );
+    }
+
+    private getDataAnalysisStudentsRef(editionId: string): CollectionReference {
+        return collection(
             this.afs,
             EventService.collectionName,
             EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName,
+            editionId,
             EventService.studentsCollectionName
         );
+    }
 
-        return from(getDocs(studentsRef)).pipe(
-            map(snap => snap.docs.map(d => {
+    private getDataAnalysisStudentRef(editionId: string, email: string): DocumentReference {
+        return doc(this.getDataAnalysisStudentsRef(editionId), email);
+    }
+
+    private getDataAnalysisMetricsRef(editionId: string): DocumentReference {
+        return doc(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName,
+            editionId,
+            EventService.metricsCollectionName,
+            EventService.metricsSummaryDocumentName
+        );
+    }
+
+    private getDataAnalysisStudent(editionId: string, email: string): Observable<DataAnalysisUser | null> {
+        return from(getDoc(this.getDataAnalysisStudentRef(editionId, email))).pipe(
+            map(snap => snap.exists() ? snap.data() as DataAnalysisUser : null)
+        );
+    }
+
+    // Creates the student and adds the anonymous answers to the edition metrics in a single transaction,
+    // so a student is never counted twice nor left without their metrics
+    public enrollInDataAnalysis(inscription: DataAnalysisInscription): Observable<void> {
+        return this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(
+            take(1),
+            switchMap(event => {
+                const editionId = this.getEditionId(event);
+                if (!editionId || !this.isInscriptionOpen(event)) {
+                    return throwError(() => new InscriptionClosedError());
+                }
+                if (!inscription.consents.termsAccepted) {
+                    return throwError(() => new Error('enrollInDataAnalysis failed: terms and conditions not accepted'));
+                }
+
+                const studentRef = this.getDataAnalysisStudentRef(editionId, inscription.email);
+                const metricsRef = this.getDataAnalysisMetricsRef(editionId);
+
+                return from(runTransaction(this.afs, async transaction => {
+                    const studentSnap = await transaction.get(studentRef);
+                    if (studentSnap.exists()) throw new AlreadyEnrolledError();
+
+                    transaction.set(studentRef, this.buildDataAnalysisStudent(inscription, editionId));
+                    transaction.set(metricsRef, this.buildDataAnalysisMetricsIncrements(inscription), {merge: true});
+                }));
+            })
+        );
+    }
+
+    private buildDataAnalysisStudent(inscription: DataAnalysisInscription, editionId: string) {
+        const {personal, consents, interests} = inscription;
+        return {
+            email: inscription.email,
+            edition: editionId,
+            firstName: personal.firstName,
+            lastName: personal.lastName,
+            enrolledAt: serverTimestamp(),
+            termsAcceptedAt: serverTimestamp(),
+            sponsorDataSharing: consents.sponsorDataSharing,
+            ...(consents.sponsorDataSharing && interests.linkedin && {linkedin: interests.linkedin}),
+            passedCourse: false
+        };
+    }
+
+    // Only option codes are counted: exact ages and "other" texts are never stored
+    private buildDataAnalysisMetricsIncrements(inscription: DataAnalysisInscription) {
+        const {personal, occupation, interests} = inscription;
+        const countOf = (...values: (string | null)[]) => values
+            .filter(value => !!value)
+            .reduce((counters, value) => ({...counters, [value]: increment(1)}), {});
+        const withOther = (selected: string[], other: string | null) => other ? [...selected, OTHER] : selected;
+
+        const counters: Record<string, object> = {
+            gender: countOf(personal.gender),
+            ageRange: countOf(getAgeRange(personal.age)),
+            country: countOf(personal.country),
+            occupation: countOf(occupation.occupation),
+            itbaCareer: countOf(occupation.itbaCareer),
+            referralSource: countOf(interests.referralSource),
+            motivation: countOf(...withOther(interests.motivations, interests.motivationOther)),
+            programmingLanguage: countOf(...withOther(interests.programmingLanguages, interests.programmingLanguageOther)),
+            pythonInterest: countOf(...withOther(interests.pythonInterests, interests.pythonInterestOther))
+        };
+
+        // With merge, an empty map would replace the stored one and wipe its counters, so empty ones are left out
+        const nonEmptyCounters = Object.keys(counters)
+            .filter(field => Object.keys(counters[field]).length > 0)
+            .reduce((result, field) => ({...result, [field]: counters[field]}), {});
+
+        return {total: increment(1), ...nonEmptyCounters};
+    }
+
+    public getDataAnalysisStudents(): Observable<DataAnalysisUser[]> {
+        return this.getCurrentDataAnalysisEditionId().pipe(
+            switchMap(editionId => editionId
+                ? from(getDocs(this.getDataAnalysisStudentsRef(editionId)))
+                : of(null)),
+            map(snap => (snap?.docs ?? []).map(d => {
                 const student = d.data() as DataAnalysisUser;
                 return {...student, enrolledAt: this.toDate(student.enrolledAt)};
             }))
@@ -377,38 +482,10 @@ export class EventService {
         return date?.toDate ? date.toDate() : new Date(date);
     }
 
-    public getDataAnalysisUser(user: IEEEuser
-    ): Observable<DataAnalysisUser | null> {
-        return new Observable(obs => {
-
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
-
-            getDoc(studentRef)
-                .then(snap => {
-                    obs.next(
-                        snap.exists() ? snap.data() as DataAnalysisUser : null
-                    );
-                })
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
-    }
-
-
-    public isUserEnrolledInDataAnalysis(user: IEEEuser): Observable<boolean> {
-        return this.getDataAnalysisUser(user).pipe(
-            take(1),
-            map(student => !!student),
-            catchError(err => {
-                console.error(`isUserEnrolledInDataAnalysis failed: ${err}`);
-                return of(false);
-            })
+    // The user's student document in the current edition, or null if they are not enrolled in it
+    public getDataAnalysisUser(user: IEEEuser): Observable<DataAnalysisUser | null> {
+        return this.getCurrentDataAnalysisEditionId().pipe(
+            switchMap(editionId => editionId ? this.getDataAnalysisStudent(editionId, user.email) : of(null))
         );
     }
 
@@ -430,33 +507,46 @@ export class EventService {
             : null;
     }
 
-    // Current user, whether they are already enrolled and whether the inscription period is open
+    // Current user, whether they are already enrolled in the current edition and whether the inscription is open
     public getDataAnalysisInscriptionStatus(): Observable<DataAnalysisInscriptionStatus> {
-        return this.authService.getCurrentUser().pipe(
-            take(1),
-            switchMap(user => forkJoin({
-                enrolled: user ? this.isUserEnrolledInDataAnalysis(user) : of(false),
-                event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
-            }).pipe(map(({enrolled, event}) => ({
-                user,
-                enrolled,
-                open: this.isInscriptionOpen(event),
-                end: this.getInscriptionEnd(event)
-            }))))
+        return forkJoin({
+            user: this.authService.getCurrentUser().pipe(take(1)),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            switchMap(({user, event}) => {
+                const editionId = this.getEditionId(event);
+                const enrolled$ = user && editionId
+                    ? this.getDataAnalysisStudent(editionId, user.email).pipe(
+                        map(student => !!student),
+                        catchError(err => {
+                            console.error(`getDataAnalysisInscriptionStatus failed: ${err}`);
+                            return of(false);
+                        }))
+                    : of(false);
+
+                return enrolled$.pipe(map(enrolled => ({
+                    user,
+                    enrolled,
+                    open: this.isInscriptionOpen(event),
+                    end: this.getInscriptionEnd(event)
+                })));
+            })
         );
     }
 
     public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
-        return new Observable(obs => {
-            const questionsRef = collection(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.questionsCollectionName
-            );
+        const questionsRef = collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.questionsCollectionName
+        );
 
-            getDocs(questionsRef)
-                .then(async snapshot => {
+        return this.getCurrentDataAnalysisEditionId().pipe(
+            switchMap(editionId => {
+                if (!editionId) return throwError(() => new Error('generateExam failed: there is no current edition'));
+
+                return from(getDocs(questionsRef).then(async snapshot => {
                     const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
 
                     const exam: UserExam = {
@@ -466,21 +556,11 @@ export class EventService {
                         questions: this.selectRandom(questions, questionCount)
                     };
 
-                    const studentRef = doc(
-                        this.afs,
-                        EventService.collectionName,
-                        EventService.dataAnalysisDocumentName,
-                        EventService.studentsCollectionName,
-                        user.email
-                    );
-
-                    await updateDoc(studentRef, { currentExam: exam });
+                    await updateDoc(this.getDataAnalysisStudentRef(editionId, user.email), {currentExam: exam});
                     return exam;
-                })
-                .then(exam => obs.next(exam))
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+                }));
+            })
+        );
     }
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {
@@ -494,21 +574,12 @@ export class EventService {
         return toReturn;
     }
 
+    // The student document already knows its edition, so the exam is saved there even if a new edition starts meanwhile
     public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
-        return new Observable(obs => {
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
-
-            updateDoc(studentRef, { currentExam : exam, passedCourse : exam.passed })
-                .then(() => obs.next())
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+        return from(updateDoc(
+            this.getDataAnalysisStudentRef(user.edition, user.email),
+            {currentExam: exam, passedCourse: exam.passed}
+        ));
     }
 
     public isReviewAvailable(exam: UserExam): boolean {

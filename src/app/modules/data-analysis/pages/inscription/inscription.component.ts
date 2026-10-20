@@ -287,11 +287,8 @@ export class InscriptionComponent implements OnInit {
         this.consentsForm.markAllAsTouched();
         if (!this.user || !this.inscriptionOpen || !this.formValid || this.submitting) return;
 
-        // TODO: persist the inscription data once its storage is defined
-        const inscription = this.buildInscription();
-
         this.submitting = true;
-        this.eventService.enrollUserInDataAnalysis(this.user)
+        this.eventService.enrollInDataAnalysis(this.buildInscription())
             .subscribe({
                 next: () => this.router.navigate(['/data-analysis/exams']).then(),
                 error: () => this.submitting = false
