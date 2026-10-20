@@ -1,9 +1,7 @@
 import {Event, EventDate, EventStatus} from "../../models/event/event";
 import {getArgentineDate} from "../../argentina-time";
 import {getEditionId} from "../../models/event/data_analysis/inscription";
-
-// One exam per day during the course (see ExamListComponent)
-export const DATA_ANALYSIS_EXAM_DAYS = 7;
+import {DATA_ANALYSIS_EXAM_DAYS} from "../../models/event/data_analysis/exams";
 
 export type ScheduleError = {
     key: string;

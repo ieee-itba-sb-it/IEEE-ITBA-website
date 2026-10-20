@@ -73,6 +73,16 @@ service cloud.firestore {
         && isCountedInMetrics(eventId, editionId);
     }
 
+    // El documento de la edicion solo guarda su id, para que los admins puedan listar las ediciones sin leer alumnos.
+    // Lo escribe el alumno en el mismo commit en que se inscribe
+    match /events/{eventId}/editions/{editionId} {
+      allow create, update: if isSignedIn()
+        && request.resource.data.keys().hasOnly(['id'])
+        && request.resource.data.id == editionId
+        && !exists(studentPath(eventId, editionId, request.auth.token.email))
+        && existsAfter(studentPath(eventId, editionId, request.auth.token.email));
+    }
+
     // cada student accede solo a su propia informacion de la edicion; los admins leen y escriben todo (regla generica)
     match /events/{eventId}/editions/{editionId}/students/{userEmail} {
       allow read: if isOwnEmail(userEmail);

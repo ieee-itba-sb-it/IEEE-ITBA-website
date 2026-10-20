@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {DataAnalysisUser, UserExam} from "src/app/shared/models/event/data_analysis/exams";
+import {DATA_ANALYSIS_EXAM_DAYS, DataAnalysisUser, UserExam} from "src/app/shared/models/event/data_analysis/exams";
 import {take} from "rxjs";
 import {Router, ActivatedRoute} from "@angular/router";
 import {EventService} from 'src/app/core/services/event/event.service';
@@ -76,7 +76,7 @@ export class ExamListComponent implements OnInit {
         const passed = exam?.passed ?? false;
         const submitted = exam?.submitted ?? false;
 
-        this.exams = Array.from({length: 7}, (_, i) => {
+        this.exams = Array.from({length: DATA_ANALYSIS_EXAM_DAYS}, (_, i) => {
             const day = i + 1;
             return {
                 id: day,

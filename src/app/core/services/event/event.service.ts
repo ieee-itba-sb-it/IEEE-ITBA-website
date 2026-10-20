@@ -358,6 +358,15 @@ export class EventService {
         );
     }
 
+    private getDataAnalysisEditionsRef(): CollectionReference {
+        return collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName
+        );
+    }
+
     private getDataAnalysisStudentsRef(editionId: string): CollectionReference {
         return collection(
             this.afs,
@@ -411,6 +420,7 @@ export class EventService {
                     return throwError(() => new Error('enrollInDataAnalysis failed: terms and conditions not accepted'));
                 }
 
+                const editionRef = doc(this.getDataAnalysisEditionsRef(), editionId);
                 const studentRef = this.getDataAnalysisStudentRef(editionId, inscription.email);
                 const metricsRef = this.getDataAnalysisMetricsRef(editionId);
 
@@ -418,6 +428,8 @@ export class EventService {
                     const studentSnap = await transaction.get(studentRef);
                     if (studentSnap.exists()) throw new AlreadyEnrolledError();
 
+                    // The edition document lets admins list the editions without reading their students
+                    transaction.set(editionRef, {id: editionId}, {merge: true});
                     transaction.set(studentRef, this.buildDataAnalysisStudent(inscription, editionId));
                     transaction.set(metricsRef, this.buildDataAnalysisMetricsIncrements(inscription), {merge: true});
                 }));

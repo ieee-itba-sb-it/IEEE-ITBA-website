@@ -31,3 +31,6 @@ export type DataAnalysisUser = {
     currentExam?: UserExam;
     passedCourse: boolean;
 }
+
+// One exam per day during the course
+export const DATA_ANALYSIS_EXAM_DAYS = 7;
