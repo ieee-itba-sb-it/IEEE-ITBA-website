@@ -32,8 +32,13 @@ import {
     parseArgentineDate
 } from "../../../shared/argentina-time";
 import {
+    DATA_ANALYSIS_DEFAULT_PASSING_SCORE,
+    DATA_ANALYSIS_EXAM_DAYS,
+    DataAnalysisExamState,
     DataAnalysisStudentRow,
     DataAnalysisUser,
+    ExamAccess,
+    ExamDayClosedError,
     getExamsEnd,
     getStudentStatus,
     Question,
@@ -570,7 +575,60 @@ export class EventService {
         );
     }
 
-    public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
+    // What the student can do with the exam of a course day: take it (generating it the first time they open it that
+    // day), review it once submitted, or nothing when it is not today's exam or they already passed the course
+    public getDataAnalysisExam(examDay: number, questionCount: number): Observable<DataAnalysisExamState> {
+        return forkJoin({
+            user: this.authService.getCurrentUser().pipe(take(1)),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            switchMap(({user, event}): Observable<DataAnalysisExamState> => {
+                if (!user) return of({access: ExamAccess.LOGIN});
+
+                return this.getDataAnalysisUser(user).pipe(
+                    switchMap((student): Observable<DataAnalysisExamState> => {
+                        if (!student) return of({access: ExamAccess.INSCRIPTION});
+                        if (!this.isExamDayOpen(event, examDay)) return of({access: ExamAccess.UNAVAILABLE});
+
+                        const passingThreshold = (event?.passingScore ?? DATA_ANALYSIS_DEFAULT_PASSING_SCORE) / 100;
+                        const todayExam = this.getTodayExam(student);
+                        if (todayExam?.submitted) {
+                            return of({access: ExamAccess.REVIEW, student, exam: todayExam, passingThreshold});
+                        }
+                        if (student.passedCourse) return of({access: ExamAccess.UNAVAILABLE});
+
+                        const exam$ = todayExam ? of(todayExam) : this.generateExam(questionCount, student);
+                        return exam$.pipe(map(exam => ({access: ExamAccess.OPEN, student, exam, passingThreshold})));
+                    })
+                );
+            })
+        );
+    }
+
+    // Course day of today (1 = the day exams start), or null when the exams have no start date yet
+    public getExamDay(event: Event | null): number | null {
+        return event?.examStartDate ? this.calculateExamDay(event.examStartDate) : null;
+    }
+
+    // Only today's exam can be taken, and only while the exams last
+    public isExamDayOpen(event: Event | null, examDay: number): boolean {
+        const today = this.getExamDay(event);
+        return today !== null && examDay === today && examDay >= 1 && examDay <= DATA_ANALYSIS_EXAM_DAYS;
+    }
+
+    // The student's exam if it was started today. An exam from a previous day already counted for that day
+    public getTodayExam(student: DataAnalysisUser): UserExam | null {
+        const exam = student.currentExam;
+        if (!exam) return null;
+        const started = this.toDate(exam.started);
+        return this.isSameDay(started, new Date()) ? {...exam, started} : null;
+    }
+
+    private isSameDay(a: Date, b: Date): boolean {
+        return this.normalizeDate(a).getTime() === this.normalizeDate(b).getTime();
+    }
+
+    private generateExam(questionCount: number, student: DataAnalysisUser): Observable<UserExam> {
         const questionsRef = collection(
             this.afs,
             EventService.collectionName,
@@ -578,25 +636,19 @@ export class EventService {
             EventService.questionsCollectionName
         );
 
-        return this.getCurrentDataAnalysisEditionId().pipe(
-            switchMap(editionId => {
-                if (!editionId) return throwError(() => new Error('generateExam failed: there is no current edition'));
+        return from(getDocs(questionsRef).then(async snapshot => {
+            const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
 
-                return from(getDocs(questionsRef).then(async snapshot => {
-                    const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
+            const exam: UserExam = {
+                passed: false,
+                submitted: false,
+                started: new Date(),
+                questions: this.selectRandom(questions, questionCount)
+            };
 
-                    const exam: UserExam = {
-                        passed: false,
-                        submitted: false,
-                        started: new Date(),
-                        questions: this.selectRandom(questions, questionCount)
-                    };
-
-                    await updateDoc(this.getDataAnalysisStudentRef(editionId, user.email), {currentExam: exam});
-                    return exam;
-                }));
-            })
-        );
+            await updateDoc(this.getDataAnalysisStudentRef(student.edition, student.email), {currentExam: exam});
+            return exam;
+        }));
     }
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {
@@ -610,18 +662,26 @@ export class EventService {
         return toReturn;
     }
 
-    // The student document already knows its edition, so the exam is saved there even if a new edition starts meanwhile
-    public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
+    // The student document already knows its edition, so the exam is saved there even if a new edition starts meanwhile.
+    // The exam counts for the day it was started, so it is rejected if it is submitted on another day
+    public submitExam(student: DataAnalysisUser, exam: UserExam): Observable<void> {
+        const submittedAt = new Date();
+        if (!this.isSameDay(this.toDate(exam.started), submittedAt)) {
+            return throwError(() => new ExamDayClosedError());
+        }
+
         return from(updateDoc(
-            this.getDataAnalysisStudentRef(user.edition, user.email),
-            {currentExam: exam, passedCourse: exam.passed}
+            this.getDataAnalysisStudentRef(student.edition, student.email),
+            {
+                currentExam: {...exam, submitted: true, submittedAt},
+                // A failed exam never takes back a passed course
+                passedCourse: exam.passed || student.passedCourse
+            }
         ));
     }
 
     public isReviewAvailable(exam: UserExam): boolean {
-        const started = new Date(exam.started);
-        const now = new Date();
-        return started.getDate() === now.getDate();
+        return this.isSameDay(this.toDate(exam.started), new Date());
     }
 
     public normalizeDate(date: any): Date {
@@ -647,19 +707,9 @@ export class EventService {
         return diffDays + 1;
     }
 
+    // A question is correct when the selected option is the one marked as correct (same rule as the exam review)
     public evaluateExam(questions: Question[], approved_threshold: number): boolean {
-        let correctCount = 0;
-
-        questions.forEach(q => {
-            const selected = q.answers.find(a => a.selected)?.answer ?? '';
-            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
-
-            if (this.compare(selected, correct)) { correctCount++; }
-        });
+        const correctCount = questions.filter(q => q.answers.some(a => a.selected && a.isCorrect)).length;
         return (correctCount / questions.length) >= approved_threshold;
-    }
-
-    private compare(selected: string, correct: string): boolean {
-        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
     }
 }

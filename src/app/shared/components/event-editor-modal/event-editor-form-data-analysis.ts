@@ -1,6 +1,7 @@
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Event} from "../../models/event/event";
 import {getArgentineDate, getArgentineTime, parseArgentineDate} from "../../argentina-time";
+import {DATA_ANALYSIS_DEFAULT_PASSING_SCORE} from "../../models/event/data_analysis/exams";
 
 
 export type DataAnalysisEventForm = {
@@ -10,7 +11,7 @@ export type DataAnalysisEventForm = {
 };
 
 export class DataAnalysisEventEditorForm {
-    static readonly DEFAULT_PASSING_SCORE = 83;
+    static readonly DEFAULT_PASSING_SCORE = DATA_ANALYSIS_DEFAULT_PASSING_SCORE;
 
     private readonly passingScore: FormControl<number>;
     private readonly examStartDate: FormControl<string | null>;

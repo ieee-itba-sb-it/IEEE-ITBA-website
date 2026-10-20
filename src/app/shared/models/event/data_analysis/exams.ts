@@ -14,6 +14,8 @@ export type UserExam = {
     passed: boolean;
     submitted: boolean;
     started: Date;
+    // Must fall on the same day as started: the exam counts for that day
+    submittedAt?: Date;
     questions: Question[];
 }
 
@@ -34,6 +36,34 @@ export type DataAnalysisUser = {
 
 // One exam per day during the course
 export const DATA_ANALYSIS_EXAM_DAYS = 7;
+
+// Percentage of correct answers needed to pass, when the event does not define one
+export const DATA_ANALYSIS_DEFAULT_PASSING_SCORE = 83;
+
+export enum ExamAccess {
+    LOGIN = 'LOGIN',
+    INSCRIPTION = 'INSCRIPTION',
+    // Not today's exam, the exams are closed or the student already passed the course
+    UNAVAILABLE = 'UNAVAILABLE',
+    OPEN = 'OPEN',
+    REVIEW = 'REVIEW'
+}
+
+export type DataAnalysisExamState =
+    | { access: ExamAccess.LOGIN | ExamAccess.INSCRIPTION | ExamAccess.UNAVAILABLE }
+    | {
+        access: ExamAccess.OPEN | ExamAccess.REVIEW;
+        student: DataAnalysisUser;
+        exam: UserExam;
+        // Share of correct answers needed to pass (0-1)
+        passingThreshold: number;
+    };
+
+export class ExamDayClosedError extends Error {
+    constructor() {
+        super('The exam was started on another day and can no longer be submitted');
+    }
+}
 
 export enum StudentStatus {
     PASSED = 'PASSED',

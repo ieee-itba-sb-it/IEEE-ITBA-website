@@ -23,7 +23,9 @@ interface Exam {
 
 export class ExamListComponent implements OnInit {
     exams: Exam[];
+    // Today's exam: one from a previous day already counted for that day
     userExam: UserExam | null = null
+    passedCourse = false
     currentDay: number = 1
     loading = true
     dataAnalysisUser: DataAnalysisUser | null = null;
@@ -63,16 +65,16 @@ export class ExamListComponent implements OnInit {
                         }
                         this.examStartDate = this.eventService.normalizeDate(event.examStartDate);
                         this.currentDay = this.eventService.calculateExamDay(event.examStartDate);
-                        const exam = student.currentExam ?? null;
-                        this.userExam = exam ?? null;
-                        this.buildExamCards(exam);
+                        this.passedCourse = student.passedCourse;
+                        this.userExam = this.eventService.getTodayExam(student);
+                        this.buildExamCards(this.userExam);
                         this.loading = false;
                     });
                 });
             });
     }
 
-    buildExamCards(exam: UserExam | undefined) {
+    buildExamCards(exam: UserExam | null) {
         const passed = exam?.passed ?? false;
         const submitted = exam?.submitted ?? false;
 
@@ -81,7 +83,7 @@ export class ExamListComponent implements OnInit {
             return {
                 id: day,
                 title: `${day}`,
-                available: day === this.currentDay && (!passed || !exam?.submitted),
+                available: day === this.currentDay && !this.passedCourse && !submitted,
                 passed: passed && day === this.currentDay,
                 submitted: day === this.currentDay && submitted,
                 expired: day < this.currentDay

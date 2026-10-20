@@ -779,6 +779,9 @@
               "TITLE": "Examen",
               "QUESTION": "Pregunta",
               "BUTTON_SUBMIT_EXAM": "Enviar examen",
+              "SUBMITTING": "Enviando...",
+              "SUBMIT_ERROR": "No pudimos enviar tu examen. Tus respuestas siguen cargadas: revisá tu conexión y volvé a intentar.",
+              "SUBMIT_ERROR_DAY_CLOSED": "Este examen se empezó otro día y ya no se puede enviar. Volvé a Mis exámenes para rendir el de hoy.",
               "BUTTON_CANCEL": "Cancelar",
               "BUTTON_GO_BACK": "Volver a Mis exámenes",
               "CONFIRMATION_TEXT": "¿Estás seguro que querés enviar el examen?"

@@ -723,6 +723,9 @@
               "TITLE": "Exam",
               "QUESTION": "Question",
               "BUTTON_SUBMIT_EXAM": "Send exam",
+              "SUBMITTING": "Submitting...",
+              "SUBMIT_ERROR": "We could not submit your exam. Your answers are still here: check your connection and try again.",
+              "SUBMIT_ERROR_DAY_CLOSED": "This exam was started on another day and can no longer be submitted. Go back to My exams to take today's exam.",
               "BUTTON_CANCEL": "Cancel",
               "BUTTON_GO_BACK": "Go back to My exams",
               "CONFIRMATION_TEXT": "Are you sure you want to submit the exam?"
