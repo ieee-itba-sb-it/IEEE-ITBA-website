@@ -37,9 +37,9 @@ import {
     AlreadyEnrolledError,
     DataAnalysisInscription,
     DataAnalysisInscriptionStatus,
-    getAgeRange,
-    InscriptionClosedError,
-    OTHER
+    getEditionId,
+    getInscriptionMetricValues,
+    InscriptionClosedError
 } from "../../../shared/models/event/data_analysis/inscription";
 
 @Injectable({
@@ -345,14 +345,9 @@ export class EventService {
     private static readonly metricsCollectionName = "metrics";
     private static readonly metricsSummaryDocumentName = "summary";
 
-    // The edition is derived from the inscription start date: January-July is "YYYY-1C", August-December "YYYY-2C"
     public getEditionId(event: Event | null): string | null {
         const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
-        if (inscriptionDate?.status !== EventStatus.CONFIRMED) return null;
-
-        const start = inscriptionDate.date;
-        const semester = start.getMonth() < 7 ? '1C' : '2C';
-        return `${start.getFullYear()}-${semester}`;
+        return inscriptionDate?.status === EventStatus.CONFIRMED ? getEditionId(inscriptionDate.date) : null;
     }
 
     private getCurrentDataAnalysisEditionId(): Observable<string | null> {
@@ -438,32 +433,16 @@ export class EventService {
         };
     }
 
-    // Only option codes are counted: exact ages and "other" texts are never stored
+    // With merge, an empty map would replace the stored one and wipe its counters, which is why
+    // getInscriptionMetricValues leaves out the fields without values
     private buildDataAnalysisMetricsIncrements(inscription: DataAnalysisInscription) {
-        const {personal, occupation, interests} = inscription;
-        const countOf = (...values: (string | null)[]) => values
-            .filter(value => !!value)
-            .reduce((counters, value) => ({...counters, [value]: increment(1)}), {});
-        const withOther = (selected: string[], other: string | null) => other ? [...selected, OTHER] : selected;
+        const metricValues = getInscriptionMetricValues(inscription);
+        const counters = Object.keys(metricValues).reduce((result, field) => ({
+            ...result,
+            [field]: metricValues[field].reduce((fieldCounters, value) => ({...fieldCounters, [value]: increment(1)}), {})
+        }), {});
 
-        const counters: Record<string, object> = {
-            gender: countOf(personal.gender),
-            ageRange: countOf(getAgeRange(personal.age)),
-            country: countOf(personal.country),
-            occupation: countOf(occupation.occupation),
-            itbaCareer: countOf(occupation.itbaCareer),
-            referralSource: countOf(interests.referralSource),
-            motivation: countOf(...withOther(interests.motivations, interests.motivationOther)),
-            programmingLanguage: countOf(...withOther(interests.programmingLanguages, interests.programmingLanguageOther)),
-            pythonInterest: countOf(...withOther(interests.pythonInterests, interests.pythonInterestOther))
-        };
-
-        // With merge, an empty map would replace the stored one and wipe its counters, so empty ones are left out
-        const nonEmptyCounters = Object.keys(counters)
-            .filter(field => Object.keys(counters[field]).length > 0)
-            .reduce((result, field) => ({...result, [field]: counters[field]}), {});
-
-        return {total: increment(1), ...nonEmptyCounters};
+        return {total: increment(1), ...counters};
     }
 
     public getDataAnalysisStudents(): Observable<DataAnalysisUser[]> {

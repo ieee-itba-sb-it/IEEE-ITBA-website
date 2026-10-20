@@ -96,6 +96,10 @@ export const AGE_RANGES: { label: string; max: number }[] = [
 export const getAgeRange = (age: number): string =>
     AGE_RANGES.find(range => age <= range.max).label;
 
+// The edition is derived from the inscription start date: January-July is "YYYY-1C", August-December "YYYY-2C"
+export const getEditionId = (inscriptionStart: Date): string =>
+    `${inscriptionStart.getFullYear()}-${inscriptionStart.getMonth() < 7 ? '1C' : '2C'}`;
+
 // Anonymous counters of an edition: each field maps an option code to the amount of people that chose it
 export type DataAnalysisMetrics = {
     total: number;
@@ -108,6 +112,34 @@ export type DataAnalysisMetrics = {
     motivation: Record<string, number>;
     programmingLanguage: Record<string, number>;
     pythonInterest: Record<string, number>;
+};
+
+export type DataAnalysisMetricField = Exclude<keyof DataAnalysisMetrics, 'total'>;
+
+// Option codes an inscription adds to each metric. Only codes are counted: exact ages and "other" texts are never
+// stored. Fields without values (e.g. the ITBA career of non ITBA students) are left out
+export const getInscriptionMetricValues = (
+    inscription: DataAnalysisInscription
+): Partial<Record<DataAnalysisMetricField, string[]>> => {
+    const {personal, occupation, interests} = inscription;
+    const withOther = (selected: string[], other: string | null) => other ? [...selected, OTHER] : selected;
+
+    const values: Record<DataAnalysisMetricField, (string | null)[]> = {
+        gender: [personal.gender],
+        ageRange: [getAgeRange(personal.age)],
+        country: [personal.country],
+        occupation: [occupation.occupation],
+        itbaCareer: [occupation.itbaCareer],
+        referralSource: [interests.referralSource],
+        motivation: withOther(interests.motivations, interests.motivationOther),
+        programmingLanguage: withOther(interests.programmingLanguages, interests.programmingLanguageOther),
+        pythonInterest: withOther(interests.pythonInterests, interests.pythonInterestOther)
+    };
+
+    return (Object.keys(values) as DataAnalysisMetricField[])
+        .map(field => [field, values[field].filter(value => !!value)] as const)
+        .filter(([, fieldValues]) => fieldValues.length > 0)
+        .reduce((result, [field, fieldValues]) => ({...result, [field]: fieldValues}), {});
 };
 
 export class InscriptionClosedError extends Error {
