@@ -1,10 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Question, Answer, UserExam, DataAnalysisUser} from "src/app/shared/models/event/data_analysis/exams"
-import {AuthService} from "../../../../../core/services/authorization/auth.service";
+import {
+    Question,
+    Answer,
+    UserExam,
+    DataAnalysisUser,
+    ExamAccess,
+    ExamDayClosedError
+} from "src/app/shared/models/event/data_analysis/exams"
 import {EventService} from "../../../../../core/services/event/event.service";
-import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
 
 
 @Component({
@@ -15,24 +20,28 @@ import {IEEEuser} from 'src/app/shared/models/ieee-user/ieee-user';
 export class ExamComponent implements OnInit {
     loading: boolean = false;
     cantQuestions = 3;
-    user: IEEEuser | null = null;
     dataAnalysisUser: DataAnalysisUser | null = null;
 
     examId: number | null = null;
     reviewMode = false;
     showResult = false;
+    submitting = false;
+    // i18n key of the submit error, null when there is none
+    submitError: string | null = null;
+    // The exam was started on a previous day: it can no longer be submitted
+    examClosed = false;
 
+    currentExam: UserExam | null = null;
     submittedExam: UserExam | null = null;
     examForm!: FormGroup;
     questions: Question[] = [];
 
-    approved_threshold: number = 10 / 12;
+    approved_threshold: number = 0.83;
 
     constructor(
         private route: ActivatedRoute,
         private fb: FormBuilder,
         private eventService: EventService,
-        private authService: AuthService,
         private router: Router
     ) {
     }
@@ -42,61 +51,35 @@ export class ExamComponent implements OnInit {
         this.initForm();
         this.loading = true;
 
-        this.authService.getCurrentUser().subscribe(user => {
-            if (!user){
-                this.router.navigate(['/login']).then(() => {});
-                this.loading = false;
-                return;
-            }
-            this.user = user;
-            this.eventService.getDataAnalysisUser(user).subscribe(student=> {
-                if (!student) {
-                    this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {});
-                    this.loading = false;
-                    return;
+        this.eventService.getDataAnalysisExam(this.examId, this.cantQuestions).subscribe({
+            next: state => {
+                switch (state.access) {
+                    case ExamAccess.LOGIN:
+                        return this.goToLogin();
+                    case ExamAccess.INSCRIPTION:
+                        return this.goToInscription();
+                    case ExamAccess.UNAVAILABLE:
+                        return this.goToExamList();
                 }
-                this.dataAnalysisUser = student;
-                const exam = student.currentExam;
 
-                if (exam) {
-                    const started = exam.started instanceof Date
-                        ? exam.started
-                        : (exam.started as any).toDate();
-
-                    const isToday = exam && this.isToday(started);
-                    if (isToday) {
-                        if(exam.submitted) {
-                            this.submittedExam = exam;
-                            this.reviewMode = true;
-                        }
-                        else{
-                            this.questions = exam.questions;
-                            this.buildForm();
-                        }
-                    } else {
-                        // !isToday -> lo sentimos, tu examen ya no se encuentra disponible (?)
-                    }
-                    this.loading = false;
+                this.dataAnalysisUser = state.student;
+                this.approved_threshold = state.passingThreshold;
+                if (state.access === ExamAccess.REVIEW) {
+                    this.submittedExam = state.exam;
+                    this.reviewMode = true;
                 } else {
-                    this.loading = true;
-                    this.eventService.generateExam(this.cantQuestions, user).subscribe(newExam => {
-                        this.questions = newExam.questions;
-                        this.buildForm();
-                        this.loading = false;
-                    });
-
+                    this.currentExam = state.exam;
+                    this.questions = state.exam.questions;
+                    this.buildForm();
                 }
-            });
+                this.loading = false;
+            },
+            error: err => {
+                console.error(`getDataAnalysisExam failed: ${err}`);
+                this.goToExamList();
+            }
         });
     }
-
-    isToday(date: Date): boolean {
-        const now = new Date();
-        return date.getDate() === now.getDate() &&
-            date.getMonth() === now.getMonth() &&
-            date.getFullYear() === now.getFullYear();
-    }
-
 
     initForm() {
         this.examForm = this.fb.group({
@@ -120,7 +103,7 @@ export class ExamComponent implements OnInit {
     }
 
     onSubmit() {
-        if(!this.dataAnalysisUser) return
+        if(!this.dataAnalysisUser || !this.currentExam || this.submitting || this.examClosed) return
 
         const submittedQuestions: Question[] = this.questions.map((q, i) => {
             const selectedAnswer = this.answersArray.controls[i].value.answer;
@@ -134,16 +117,33 @@ export class ExamComponent implements OnInit {
         });
 
         const passed = this.eventService.evaluateExam(submittedQuestions, this.approved_threshold);
-        this.submittedExam = {
+        const exam: UserExam = {
             passed,
             submitted: true,
-            started: new Date(),
+            started: this.currentExam.started,
             questions: submittedQuestions
         };
 
-        this.eventService.submitExam(this.dataAnalysisUser, this.submittedExam).subscribe(() => {
-            this.reviewMode = true;
-            this.showResult = true;
+        this.submitting = true;
+        this.submitError = null;
+        this.eventService.submitExam(this.dataAnalysisUser, exam).subscribe({
+            next: () => {
+                this.submitting = false;
+                this.submittedExam = exam;
+                this.reviewMode = true;
+                this.showResult = true;
+            },
+            error: err => {
+                this.submitting = false;
+                if (err instanceof ExamDayClosedError) {
+                    this.examClosed = true;
+                    this.submitError = 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.SUBMIT_ERROR_DAY_CLOSED';
+                    return;
+                }
+                // The answers stay in the form so the student can submit again
+                console.error(`submitExam failed: ${err}`);
+                this.submitError = 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.SUBMIT_ERROR';
+            }
         });
     }
 
@@ -153,5 +153,22 @@ export class ExamComponent implements OnInit {
 
     goBack() {
         this.router.navigate(['/data-analysis/exams']).then(() => {});
+    }
+
+    goToInscription():void{
+        this.router.navigate(['/data-analysis/inscription']).then(() => {});
+        this.loading = false;
+        return;
+    }
+    goToLogin():void{
+        this.router.navigate(['/login']).then(() => {});
+        this.loading = false;
+        return;
+    }
+
+    goToExamList():void{
+        this.router.navigate(['/data-analysis/exams']).then(() => {});
+        this.loading = false;
+        return;
     }
 }

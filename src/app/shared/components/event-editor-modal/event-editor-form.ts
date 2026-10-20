@@ -1,10 +1,19 @@
 import {FormGroup, ValidationErrors} from "@angular/forms";
-import {Event, EventDate, EventStatus} from "../../models/event/event";
+import {Event, EventDate, EventStatus, IeeeEvent} from "../../models/event/event";
 import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-date";
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
 import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
+import {DataAnalysisEventEditorForm, DataAnalysisEventForm} from "./event-editor-form-data-analysis";
+import {
+    getDataAnalysisCourseEnd,
+    getDataAnalysisScheduleErrors,
+    InitialEditionState,
+    ScheduleError
+} from "./event-editor-data-analysis-schedule";
+import {getEditionId} from "../../models/event/data_analysis/inscription";
 
-type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm & LocationEventForm;
+type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm &
+    LocationEventForm & Partial<DataAnalysisEventForm>;
 
 type EventForm = FormGroup<EventFormGroup>;
 
@@ -28,6 +37,8 @@ export class EventEditorForm {
     private readonly eventDateEventEditorForm: EventDateEventEditorForm;
     private readonly inscriptionLinkEventEditorForm: InscriptionLinkEventEditorForm;
     private readonly locationEventEditorForm: LocationEventEditorForm;
+    private readonly dataAnalysisEventEditorForm?: DataAnalysisEventEditorForm;
+    private initialEdition?: InitialEditionState;
 
     constructor(event: Event) {
         this.eventInitialState = EventEditorForm.cloneEvent(event);
@@ -42,6 +53,26 @@ export class EventEditorForm {
             ...inscriptionLinkFormGroup,
             ...locationFormGroup
         });
+        if (event.id === IeeeEvent.DATA_ANALYSIS) {
+            this.dataAnalysisEventEditorForm = new DataAnalysisEventEditorForm(event);
+            this.eventForm.addControl("passingScore", this.dataAnalysisEventEditorForm.getForm().passingScore);
+            this.eventForm.addControl("examStartDate", this.dataAnalysisEventEditorForm.getForm().examStartDate);
+
+            const inscriptionDate = event.dates[EventDate.INSCRIPTION];
+            this.initialEdition = {
+                editionId: inscriptionDate.status === EventStatus.CONFIRMED ? getEditionId(inscriptionDate.date) : null,
+                enrolledStudents: null,
+                countFailed: false,
+                courseEnd: getDataAnalysisCourseEnd(event)
+            };
+
+            // The exam settings only apply once the event date is confirmed
+            const eventStatus = eventDateFormGroup[EventDate.EVENT].controls.status;
+            this.dataAnalysisEventEditorForm.setEnabled(eventStatus.value === EventStatus.CONFIRMED);
+            eventStatus.valueChanges.subscribe(status =>
+                this.dataAnalysisEventEditorForm.setEnabled(status === EventStatus.CONFIRMED)
+            );
+        }
     }
 
     get formGroup(): EventForm {
@@ -62,7 +93,8 @@ export class EventEditorForm {
             spectatorInscriptionEnabled: newSpectatorEnabled,
             spectatorInscriptionLink: newSpectatorLink,
             location: newLocationEvent.location,
-            locationLink: newLocationEvent.locationLink
+            locationLink: newLocationEvent.locationLink,
+            ...this.dataAnalysisEventEditorForm?.getCurrentState(),
         };
     }
 
@@ -78,7 +110,37 @@ export class EventEditorForm {
         const areEventDatesValid = this.eventDateEventEditorForm.isValid();
         const isEventInscriptionLinkValid = this.inscriptionLinkEventEditorForm.isValid();
         const isLocationValid = this.locationEventEditorForm.isValid()
-        return areEventDatesValid && isEventInscriptionLinkValid && isLocationValid;
+        const isDataAnalysisValid = this.dataAnalysisEventEditorForm?.isValid() ?? true;
+        return areEventDatesValid &&
+            isEventInscriptionLinkValid &&
+            isLocationValid &&
+            isDataAnalysisValid &&
+            this.getDataAnalysisScheduleErrors().length === 0;
+    }
+
+    getInitialEditionId(): string | null {
+        return this.initialEdition?.editionId ?? null;
+    }
+
+    setInitialEditionStudents(enrolledStudents: number): void {
+        if (this.initialEdition) this.initialEdition = {...this.initialEdition, enrolledStudents};
+    }
+
+    setInitialEditionCountFailed(): void {
+        if (this.initialEdition) this.initialEdition = {...this.initialEdition, countFailed: true};
+    }
+
+    // Rules that relate the inscription, event and exam dates of Data Analysis
+    getDataAnalysisScheduleErrors(): ScheduleError[] {
+        if (!this.dataAnalysisEventEditorForm) return [];
+        return getDataAnalysisScheduleErrors({
+            dates: this.eventDateEventEditorForm.getCurrentState(),
+            examStartDate: this.dataAnalysisEventEditorForm.isEnabled()
+                ? this.dataAnalysisEventEditorForm.getExamStartDateValue()
+                : null,
+            isEventDateValid: eventDate => this.eventDateEventEditorForm.isEventDateValid(eventDate),
+            initialEdition: this.initialEdition
+        });
     }
 
     getEventDateError(eventDate: EventDate, errorName: string): ValidationErrors | null {
@@ -93,6 +155,14 @@ export class EventEditorForm {
         return this.inscriptionLinkEventEditorForm.getSpectatorLinkError(errorName);
     }
 
+    isDataAnalysisEnabled(): boolean {
+        return this.dataAnalysisEventEditorForm?.isEnabled() ?? false;
+    }
+
+    getDataAnalysisError(error:string): ValidationErrors | null {
+        return this.dataAnalysisEventEditorForm?.getError(error) ?? null;
+    }
+
     private hasEventDatesChanged(): boolean {
         return this.eventDateEventEditorForm.hasChanged();
     }
@@ -105,8 +175,13 @@ export class EventEditorForm {
         return this.locationEventEditorForm.hasChanged();
     }
 
+    private hasDataAnalysisChanged(): boolean {
+        return this.dataAnalysisEventEditorForm?.hasChanged() ?? false;
+    }
+
     hasChanged(): boolean {
-        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged() || this.hasLocationChanged();
+        return this.hasEventDatesChanged() || this.hasInscriptionLinkChanged() ||
+            this.hasLocationChanged() || this.hasDataAnalysisChanged();
     }
 
     isEventDateAPeriod(eventDate: EventDate): boolean {

@@ -3,20 +3,31 @@
         <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
     </div>
 
-    <div *ngIf="!loading && userExam?.passed" class="passed-exam">
-        <div class="passed-exam-img">
-            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Passed Exam">
-        </div>
+    <div *ngIf="!loading && passedCourse" class="passed-exam">
         <div class="passed-exam-text">
             <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_PASSED_EXAM' | translate }}</h1>
             <p>{{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_PASSED_EXAM'| translate}}</p>
-            <button class="ieee-button">Ir a Home</button>
+            <button (click)=goToHome() class="ieee-button">{{'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME'| translate}}</button>
+        </div>
+        <div class="passed-exam-img">
+            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Passed Exam"/>
         </div>
     </div>
 
-    <div *ngIf="!loading && !userExam?.passed">
-        <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
+    <div *ngIf="!loading && !passedCourse && !examStartDate" class="passed-exam">
+        <div class="passed-exam-text">
+            <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_NO_START_DATE' | translate }}</h1>
+            <p>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_NO_START_DATE' | translate }}</p>
+            <button (click)=goToHome() class="ieee-button">{{ 'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME' | translate }}</button>
+        </div>
+        <div class="passed-exam-img">
+            <img src="assets/image/events/data-analysis/data-analysis-event.png" alt="Data Analysis"/>
+        </div>
+    </div>
 
+    <div *ngIf="!loading && !passedCourse && examStartDate">
+        <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE' | translate }}</h1>
+        <h2>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.START_DATE' | translate }} {{examStartDate | date:'dd/MM/yyyy'}}</h2>
         <div title="Descripción">
             <p class="description-texto">
                 {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate }}
@@ -38,12 +49,6 @@
                                      *ngIf="!exam.expired && !exam.submitted">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_PENDING' | translate }}
                                 </div>
 
-                                <!-- badge de exito
-                                <div class="badge success" *ngIf="exam.submitted && exam.passed">
-                                    {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BADGE_SUCCESS' | translate }}
-                                </div>
-                                badge de exito-->
-
                             </div>
                         </div>
 
@@ -56,7 +61,7 @@
                             </button>
                             <button *ngIf="exam.submitted"
                                     class="ieee-button ieee-card-button"
-                                    [disabled]="isReviewAvailable()"
+                                    [disabled]="!isReviewAvailable()"
                                     [routerLink]="['day', exam.id]">
                                 {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.BUTTON_REVIEW' | translate }}
                             </button>

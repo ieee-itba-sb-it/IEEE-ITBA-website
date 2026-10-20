@@ -13,9 +13,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
+import {InscriptionComponent} from './pages/inscription/inscription.component';
 
 const routes: Routes = [
-    { path: '',  component: DataAnalysisComponent }
+    { path: '',  component: DataAnalysisComponent },
+    { path: 'inscription', component: InscriptionComponent }
 ];
 
 export const routing = RouterModule.forChild(routes);

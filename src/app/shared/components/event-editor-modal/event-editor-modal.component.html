@@ -236,6 +236,41 @@
                 </div>
             </div>
 
+            <div *ngIf="isDataAnalysis && isDataAnalysisEnabled" class="form-input">
+                <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.MIN_PERCENTAGE' | translate }}</label>
+                <div class="input-group">
+                    <input
+                        type="number"
+                        min="0" max="100"
+                        step="1"
+                        placeholder="83"
+                        class="form-control"
+                        formControlName="passingScore"
+                    />
+                    <span class="input-group-text">%</span>
+                </div>
+                <small class="text-muted">{{ 'DATAANALYSIS.MODAL.MIN_PERCENTAGE_HINT' | translate }}</small>
+                <label class="form-input-label">{{ 'DATAANALYSIS.MODAL.START_EXAMS_DATE' | translate }}</label>
+                <input
+                    type="datetime-local"
+                    class="form-control"
+                    formControlName="examStartDate"/>
+
+                <div *ngIf="hasFormDataAnalysisErrors"
+                     class="error-container">
+                    <p *ngFor="let error of getFormDataAnalysisErrors()"
+                       class="error">
+                        {{ error }}
+                    </p>
+                </div>
+            </div>
+
+            <div *ngIf="isDataAnalysis && getDataAnalysisScheduleErrors().length > 0" class="error-container">
+                <p *ngFor="let error of getDataAnalysisScheduleErrors()" class="error">
+                    {{ error }}
+                </p>
+            </div>
+
             <div *ngIf="!!errorI18n" class="error-container">
                 <p class="error">
                     {{ errorI18n | translate }}
@@ -249,4 +284,5 @@
                 {{ "HOME.EVENTS.EDIT.UPDATE" | translate }}
             </button>
         </div>
+
     </form>

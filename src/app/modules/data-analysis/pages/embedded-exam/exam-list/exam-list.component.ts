@@ -1,9 +1,10 @@
 import {Component, OnInit} from "@angular/core";
-import {DataAnalysisUser, UserExam} from "src/app/shared/models/event/data_analysis/exams";
+import {DATA_ANALYSIS_EXAM_DAYS, DataAnalysisUser, UserExam} from "src/app/shared/models/event/data_analysis/exams";
 import {take} from "rxjs";
 import {Router, ActivatedRoute} from "@angular/router";
 import {EventService} from 'src/app/core/services/event/event.service';
 import {AuthService} from 'src/app/core/services/authorization/auth.service';
+import {IeeeEvent} from "../../../../../shared/models/event/event";
 
 interface Exam {
     id: number;
@@ -22,10 +23,13 @@ interface Exam {
 
 export class ExamListComponent implements OnInit {
     exams: Exam[];
+    // Today's exam: one from a previous day already counted for that day
     userExam: UserExam | null = null
+    passedCourse = false
     currentDay: number = 1
     loading = true
     dataAnalysisUser: DataAnalysisUser | null = null;
+    examStartDate:Date | null = null;
 
     constructor(
         private eventService: EventService,
@@ -50,36 +54,36 @@ export class ExamListComponent implements OnInit {
                 }
                 this.eventService.getDataAnalysisUser(user).subscribe(student => {
                     if (!student) {
-                        this.router.navigate(['/data-analysis/exams/subscribe-exam']).then(() => {
-                        });
+                        this.router.navigate(['/data-analysis/inscription']).then(() => {});
                         return;
                     }
                     this.dataAnalysisUser = student;
-                    this.eventService.getDataAnalysisStartDate().subscribe(startDate => {
-                        if (!startDate) {
+                    this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS).subscribe(event => {
+                        if (!event || !event.examStartDate) {
                             this.loading = false;
                             return;
                         }
-                        this.currentDay = this.eventService.calculateExamDay(startDate);
-                        const exam = student.currentExam ?? null;
-                        this.userExam = exam ?? null;
-                        this.buildExamCards(exam);
+                        this.examStartDate = this.eventService.normalizeDate(event.examStartDate);
+                        this.currentDay = this.eventService.calculateExamDay(event.examStartDate);
+                        this.passedCourse = student.passedCourse;
+                        this.userExam = this.eventService.getTodayExam(student);
+                        this.buildExamCards(this.userExam);
                         this.loading = false;
-                    })
+                    });
                 });
             });
     }
 
-    buildExamCards(exam: UserExam | undefined) {
+    buildExamCards(exam: UserExam | null) {
         const passed = exam?.passed ?? false;
         const submitted = exam?.submitted ?? false;
 
-        this.exams = Array.from({length: 7}, (_, i) => {
+        this.exams = Array.from({length: DATA_ANALYSIS_EXAM_DAYS}, (_, i) => {
             const day = i + 1;
             return {
                 id: day,
                 title: `${day}`,
-                available: day === this.currentDay && (!passed || !exam?.submitted),
+                available: day === this.currentDay && !this.passedCourse && !submitted,
                 passed: passed && day === this.currentDay,
                 submitted: day === this.currentDay && submitted,
                 expired: day < this.currentDay
@@ -92,5 +96,8 @@ export class ExamListComponent implements OnInit {
         return this.eventService.isReviewAvailable(this.userExam);
     }
 
+    protected goToHome() {
+        this.router.navigate(['/data-analysis']).then(() => {})
+    }
 }
 

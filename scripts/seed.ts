@@ -1,4 +1,12 @@
-import {getFirestore} from "firebase-admin/firestore";
+import {FieldValue, getFirestore} from "firebase-admin/firestore";
+import {DATA_ANALYSIS_EXAM_DAYS} from "../src/app/shared/models/event/data_analysis/exams";
+import {
+    DataAnalysisInscription,
+    DataAnalysisMetrics,
+    getEditionId,
+    getInscriptionMetricValues,
+    Occupation
+} from "../src/app/shared/models/event/data_analysis/inscription";
 
 const questions = [
     {
@@ -58,7 +66,9 @@ export async function seedQuestions() {
 
     await db.collection('events')
         .doc('DATA_ANALYSIS')
-        .set({startDate: new Date('2026-06-01T12:00:00')});
+        .set({
+            passingScore: 83 // porcentaje (0-100)
+        }, { merge: true });
 
     for (const q of questions) {
         await db.collection('events')
@@ -69,4 +79,180 @@ export async function seedQuestions() {
     }
 
     console.log('Preguntas cargadas :p');
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const toIsoDate = (date: Date): string =>
+    `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+type SampleAnswers = Pick<DataAnalysisInscription, 'occupation' | 'interests'> & {
+    personal: Omit<DataAnalysisInscription['personal'], 'firstName' | 'lastName'>;
+    sponsorDataSharing: boolean;
+};
+
+const sampleInscription = (email: string, firstName: string, lastName: string, answers: SampleAnswers): DataAnalysisInscription => ({
+    email,
+    personal: {firstName, lastName, ...answers.personal},
+    occupation: answers.occupation,
+    interests: answers.interests,
+    consents: {termsAccepted: true, sponsorDataSharing: answers.sponsorDataSharing}
+});
+
+const sampleInscriptions: DataAnalysisInscription[] = [
+    sampleInscription('ana.gomez@example.com', 'Ana', 'Gómez', {
+        personal: {age: 21, gender: 'FEMALE', country: 'AR'},
+        occupation: {occupation: Occupation.ITBA, itbaCareer: 'COMPUTER_ENGINEERING'},
+        interests: {
+            referralSource: 'INSTAGRAM',
+            motivations: ['PROFESSIONAL_DEVELOPMENT'], motivationOther: null,
+            programmingLanguages: ['PYTHON', 'C'], programmingLanguageOther: null,
+            pythonInterests: ['DATA_ANALYSIS', 'MACHINE_LEARNING'], pythonInterestOther: null,
+            linkedin: 'https://www.linkedin.com/in/ana-gomez'
+        },
+        sponsorDataSharing: true
+    }),
+    sampleInscription('bruno.diaz@example.com', 'Bruno', 'Díaz', {
+        personal: {age: 16, gender: 'MALE', country: 'AR'},
+        occupation: {occupation: Occupation.SCHOOL, itbaCareer: null},
+        interests: {
+            referralSource: 'FRIEND',
+            motivations: ['PERSONAL_INTEREST'], motivationOther: null,
+            programmingLanguages: ['NONE'], programmingLanguageOther: null,
+            pythonInterests: ['GAME_DESIGN'], pythonInterestOther: 'Robótica',
+            linkedin: null
+        },
+        sponsorDataSharing: false
+    }),
+    sampleInscription('carla.ruiz@example.com', 'Carla', 'Ruiz', {
+        personal: {age: 29, gender: 'PREFER_NOT_TO_SAY', country: 'UY'},
+        occupation: {occupation: Occupation.WORK, itbaCareer: null},
+        interests: {
+            referralSource: 'LINKEDIN',
+            motivations: ['CURRENT_JOB'], motivationOther: 'Cambio de carrera',
+            programmingLanguages: ['JAVASCRIPT'], programmingLanguageOther: 'SQL',
+            pythonInterests: ['DATA_ANALYSIS', 'WEB_DEVELOPMENT'], pythonInterestOther: null,
+            linkedin: 'https://www.linkedin.com/in/carla-ruiz'
+        },
+        // Has LinkedIn but did not consent: it must not be stored
+        sponsorDataSharing: false
+    })
+];
+
+// Adds the counts of each inscription exactly like EventService does with increments
+const aggregateMetrics = (inscriptions: DataAnalysisInscription[]): Partial<DataAnalysisMetrics> =>
+    inscriptions.reduce((metrics, inscription) => {
+        const metricValues = getInscriptionMetricValues(inscription);
+        Object.keys(metricValues).forEach(field => {
+            metrics[field] = metrics[field] ?? {};
+            metricValues[field].forEach((value: string) => metrics[field][value] = (metrics[field][value] ?? 0) + 1);
+        });
+        metrics.total = (metrics.total ?? 0) + 1;
+        return metrics;
+    }, {} as Partial<DataAnalysisMetrics>);
+
+// Previous edition, already finished: Diego passed and Elena did not
+const pastInscriptions: DataAnalysisInscription[] = [
+    sampleInscription('diego.lopez@example.com', 'Diego', 'López', {
+        personal: {age: 23, gender: 'MALE', country: 'AR'},
+        occupation: {occupation: Occupation.UNIVERSITY, itbaCareer: null},
+        interests: {
+            referralSource: 'UNIVERSITY',
+            motivations: ['PROFESSIONAL_DEVELOPMENT'], motivationOther: null,
+            programmingLanguages: ['JAVA'], programmingLanguageOther: null,
+            pythonInterests: ['MACHINE_LEARNING', 'COMPUTER_VISION'], pythonInterestOther: null,
+            linkedin: null
+        },
+        sponsorDataSharing: false
+    }),
+    sampleInscription('elena.martinez@example.com', 'Elena', 'Martínez', {
+        personal: {age: 38, gender: 'FEMALE', country: 'CL'},
+        occupation: {occupation: Occupation.WORK, itbaCareer: null},
+        interests: {
+            referralSource: 'MAIL',
+            motivations: ['CURRENT_JOB', 'PERSONAL_INTEREST'], motivationOther: null,
+            programmingLanguages: ['NONE'], programmingLanguageOther: null,
+            pythonInterests: ['DATA_ANALYSIS'], pythonInterestOther: null,
+            linkedin: null
+        },
+        sponsorDataSharing: false
+    })
+];
+
+// Replaces an edition with the given students (as if they had enrolled through the form) and their metrics
+async function writeEdition(editionRef: FirebaseFirestore.DocumentReference, inscriptions: DataAnalysisInscription[],
+                            passedEmails: string[] = []) {
+    const db = getFirestore();
+    const editionId = editionRef.id;
+    await db.recursiveDelete(editionRef);
+    await editionRef.set({id: editionId});
+
+    for (const inscription of inscriptions) {
+        const {personal, consents, interests} = inscription;
+        await editionRef.collection('students').doc(inscription.email).set({
+            email: inscription.email,
+            edition: editionId,
+            firstName: personal.firstName,
+            lastName: personal.lastName,
+            enrolledAt: FieldValue.serverTimestamp(),
+            termsAcceptedAt: FieldValue.serverTimestamp(),
+            sponsorDataSharing: consents.sponsorDataSharing,
+            ...(consents.sponsorDataSharing && interests.linkedin && {linkedin: interests.linkedin}),
+            passedCourse: passedEmails.includes(inscription.email)
+        });
+        console.log(`Alumno ${inscription.email} cargado en ${editionId}`);
+    }
+
+    await editionRef.collection('metrics').doc('summary').set(aggregateMetrics(inscriptions));
+}
+
+// Leaves DATA_ANALYSIS with a consistent timeline, the current edition and the previous one with sample students
+// and their metrics:
+// - event (the course) confirmed from two days ago, with theory classes until the exams start today at noon, until the
+//   last exam day
+// - inscription open from a week before the event until just before the exams start (it may stay open during the
+//   theory classes)
+// Re-running it resets both editions
+export async function seedDataAnalysisEdition() {
+    const db = getFirestore();
+    const eventRef = db.collection('events').doc('DATA_ANALYSIS');
+
+    const today = new Date();
+    const examStart = new Date(today);
+    examStart.setHours(12, 0, 0, 0);
+    const eventStart = new Date(examStart.getTime() - 2 * DAY_MS);
+    const inscriptionStart = new Date(eventStart.getTime() - 7 * DAY_MS);
+    const eventEnd = new Date(examStart.getTime() + (DATA_ANALYSIS_EXAM_DAYS - 1) * DAY_MS);
+
+    await eventRef.set({
+        dates: {
+            INSCRIPTION: {
+                status: 'CONFIRMED',
+                date: toIsoDate(inscriptionStart),
+                time: '00:00',
+                lastDate: toIsoDate(examStart),
+                lastTime: '11:59'
+            },
+            EVENT: {
+                status: 'CONFIRMED',
+                date: toIsoDate(eventStart),
+                time: '12:00',
+                lastDate: toIsoDate(eventEnd),
+                lastTime: '23:59'
+            }
+        },
+        examStartDate: examStart
+    }, {merge: true});
+
+    const editionsRef = eventRef.collection('editions');
+    const editionId = getEditionId(inscriptionStart);
+    await writeEdition(editionsRef.doc(editionId), sampleInscriptions);
+
+    // About six months earlier always falls in the previous semester
+    const pastEditionId = getEditionId(new Date(inscriptionStart.getTime() - 183 * DAY_MS));
+    await writeEdition(editionsRef.doc(pastEditionId), pastInscriptions, ['diego.lopez@example.com']);
+    console.log(`Edición anterior ${pastEditionId} cargada`);
+
+    console.log(`Edición ${editionId} cargada: inscripción del ${toIsoDate(inscriptionStart)} al ${toIsoDate(examStart)} 11:59, `
+        + `curso del ${toIsoDate(eventStart)} al ${toIsoDate(eventEnd)} y exámenes desde el ${toIsoDate(examStart)} 12:00`);
 }

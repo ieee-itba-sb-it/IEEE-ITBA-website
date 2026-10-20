@@ -11,26 +11,51 @@ import {
     collection,
     CollectionReference,
     doc,
+    DocumentReference,
     Firestore,
+    getCountFromServer,
     getDoc,
     getDocs,
+    increment,
     query,
     Query,
-    QueryDocumentSnapshot, runTransaction, setDoc,
+    QueryDocumentSnapshot, runTransaction, serverTimestamp,
     updateDoc,
     where
 } from '@angular/fire/firestore';
 import {eventsCollectionName} from "../../../secrets";
-import {catchError, from, map, Observable, of, timeInterval} from "rxjs";
+import {catchError, forkJoin, from, map, Observable, of, switchMap, take, throwError, timeInterval} from "rxjs";
 import {UserService} from "../user/user.service";
 import {
     getArgentineDate,
     getArgentineTime,
     parseArgentineDate
 } from "../../../shared/argentina-time";
-import {Question, DataAnalysisUser, UserExam} from "../../../shared/models/event/data_analysis/exams";
+import {
+    DATA_ANALYSIS_DEFAULT_PASSING_SCORE,
+    DATA_ANALYSIS_EXAM_DAYS,
+    DataAnalysisExamState,
+    DataAnalysisStudentRow,
+    DataAnalysisUser,
+    ExamAccess,
+    ExamDayClosedError,
+    getExamsEnd,
+    getStudentStatus,
+    Question,
+    UserExam
+} from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
+import {
+    AlreadyEnrolledError,
+    DataAnalysisEditions,
+    DataAnalysisInscription,
+    DataAnalysisInscriptionStatus,
+    DataAnalysisMetrics,
+    getEditionId,
+    getInscriptionMetricValues,
+    InscriptionClosedError
+} from "../../../shared/models/event/data_analysis/inscription";
 
 @Injectable({
     providedIn: 'root'
@@ -235,7 +260,7 @@ export class EventService {
     }
 
     updateEvent(event: Event): Observable<boolean> {
-        return this.userService.isCurrentUserAdmin().pipe((isAdmin) => {
+        return this.userService.isCurrentUserAdmin().pipe(take(1), switchMap((isAdmin) => {
             if (!isAdmin) {
                 console.error('updateEvent failed: user is not admin');
                 return of(false);
@@ -252,7 +277,7 @@ export class EventService {
                 console.error(`updateEvent ${event.id} failed: ${error}`);
                 return of(false);
             }
-        })
+        }));
     }
 
     private mapEventDates(event: Event): EventDoc['dates'] {
@@ -330,91 +355,300 @@ export class EventService {
 
     private static readonly dataAnalysisDocumentName = "DATA_ANALYSIS";
     private static readonly questionsCollectionName = "questions";
+    private static readonly editionsCollectionName = "editions";
     private static readonly studentsCollectionName = "students";
+    private static readonly metricsCollectionName = "metrics";
+    private static readonly metricsSummaryDocumentName = "summary";
 
-    public enrollUserInDataAnalysis(user: IEEEuser): Observable<void> {
-        return new Observable(obs => {
+    public getEditionId(event: Event | null): string | null {
+        const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
+        return inscriptionDate?.status === EventStatus.CONFIRMED ? getEditionId(inscriptionDate.date) : null;
+    }
 
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
+    private getCurrentDataAnalysisEditionId(): Observable<string | null> {
+        return this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(
+            take(1),
+            map(event => this.getEditionId(event))
+        );
+    }
 
-            const student = {
-                email: user.email,
-                enrolledAt: new Date(),
-                passedCourse: false
+    private getDataAnalysisEditionsRef(): CollectionReference {
+        return collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName
+        );
+    }
+
+    private getDataAnalysisStudentsRef(editionId: string): CollectionReference {
+        return collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName,
+            editionId,
+            EventService.studentsCollectionName
+        );
+    }
+
+    private getDataAnalysisStudentRef(editionId: string, email: string): DocumentReference {
+        return doc(this.getDataAnalysisStudentsRef(editionId), email);
+    }
+
+    private getDataAnalysisMetricsRef(editionId: string): DocumentReference {
+        return doc(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.editionsCollectionName,
+            editionId,
+            EventService.metricsCollectionName,
+            EventService.metricsSummaryDocumentName
+        );
+    }
+
+    public getDataAnalysisEditionStudentCount(editionId: string): Observable<number> {
+        return from(getCountFromServer(this.getDataAnalysisStudentsRef(editionId))).pipe(
+            map(snapshot => snapshot.data().count)
+        );
+    }
+
+    private getDataAnalysisStudent(editionId: string, email: string): Observable<DataAnalysisUser | null> {
+        return from(getDoc(this.getDataAnalysisStudentRef(editionId, email))).pipe(
+            map(snap => snap.exists() ? snap.data() as DataAnalysisUser : null)
+        );
+    }
+
+    // Creates the student and adds the anonymous answers to the edition metrics in a single transaction,
+    // so a student is never counted twice nor left without their metrics
+    public enrollInDataAnalysis(inscription: DataAnalysisInscription): Observable<void> {
+        return this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(
+            take(1),
+            switchMap(event => {
+                const editionId = this.getEditionId(event);
+                if (!editionId || !this.isInscriptionOpen(event)) {
+                    return throwError(() => new InscriptionClosedError());
+                }
+                if (!inscription.consents.termsAccepted) {
+                    return throwError(() => new Error('enrollInDataAnalysis failed: terms and conditions not accepted'));
+                }
+
+                const editionRef = doc(this.getDataAnalysisEditionsRef(), editionId);
+                const studentRef = this.getDataAnalysisStudentRef(editionId, inscription.email);
+                const metricsRef = this.getDataAnalysisMetricsRef(editionId);
+
+                return from(runTransaction(this.afs, async transaction => {
+                    const studentSnap = await transaction.get(studentRef);
+                    if (studentSnap.exists()) throw new AlreadyEnrolledError();
+
+                    // The edition document lets admins list the editions without reading their students
+                    transaction.set(editionRef, {id: editionId}, {merge: true});
+                    transaction.set(studentRef, this.buildDataAnalysisStudent(inscription, editionId));
+                    transaction.set(metricsRef, this.buildDataAnalysisMetricsIncrements(inscription), {merge: true});
+                }));
+            })
+        );
+    }
+
+    private buildDataAnalysisStudent(inscription: DataAnalysisInscription, editionId: string) {
+        const {personal, consents, interests} = inscription;
+        return {
+            email: inscription.email,
+            edition: editionId,
+            firstName: personal.firstName,
+            lastName: personal.lastName,
+            enrolledAt: serverTimestamp(),
+            termsAcceptedAt: serverTimestamp(),
+            sponsorDataSharing: consents.sponsorDataSharing,
+            ...(consents.sponsorDataSharing && interests.linkedin && {linkedin: interests.linkedin}),
+            passedCourse: false
+        };
+    }
+
+    // With merge, an empty map would replace the stored one and wipe its counters, which is why
+    // getInscriptionMetricValues leaves out the fields without values
+    private buildDataAnalysisMetricsIncrements(inscription: DataAnalysisInscription) {
+        const metricValues = getInscriptionMetricValues(inscription);
+        const counters = Object.keys(metricValues).reduce((result, field) => ({
+            ...result,
+            [field]: metricValues[field].reduce((fieldCounters, value) => ({...fieldCounters, [value]: increment(1)}), {})
+        }), {});
+
+        return {total: increment(1), ...counters};
+    }
+
+    // Editions with at least one student plus the current one (which may have none yet), most recent first.
+    // Only the edition documents are read, not their students
+    public getDataAnalysisEditions(): Observable<DataAnalysisEditions> {
+        return forkJoin({
+            snapshot: from(getDocs(this.getDataAnalysisEditionsRef())),
+            current: this.getCurrentDataAnalysisEditionId()
+        }).pipe(
+            map(({snapshot, current}) => {
+                const editionIds = snapshot.docs.map(edition => edition.id);
+                const editions = Array.from(new Set(current ? [...editionIds, current] : editionIds))
+                    .sort((a, b) => b.localeCompare(a));
+                return {editions, current};
+            })
+        );
+    }
+
+    // Students of an edition with their status: passed, still taking exams, or failed once the exams closed
+    public getDataAnalysisEditionStudents(editionId: string): Observable<DataAnalysisStudentRow[]> {
+        return forkJoin({
+            snapshot: from(getDocs(this.getDataAnalysisStudentsRef(editionId))),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            map(({snapshot, event}) => {
+                const isCurrentEdition = this.getEditionId(event) === editionId;
+                const examsEnd = getExamsEnd(event?.examStartDate ? this.toDate(event.examStartDate) : null);
+                return snapshot.docs.map(studentDoc => {
+                    const student = studentDoc.data() as DataAnalysisUser;
+                    const row = {...student, enrolledAt: this.toDate(student.enrolledAt)};
+                    return {...row, status: getStudentStatus(row, isCurrentEdition, examsEnd)};
+                });
+            })
+        );
+    }
+
+    // Anonymous counters of an edition, or null when nobody enrolled in it yet
+    public getDataAnalysisMetrics(editionId: string): Observable<DataAnalysisMetrics | null> {
+        return from(getDoc(this.getDataAnalysisMetricsRef(editionId))).pipe(
+            map(snapshot => snapshot.exists() ? snapshot.data() as DataAnalysisMetrics : null)
+        );
+    }
+
+    private toDate(date: any): Date {
+        return date?.toDate ? date.toDate() : new Date(date);
+    }
+
+    // The user's student document in the current edition, or null if they are not enrolled in it
+    public getDataAnalysisUser(user: IEEEuser): Observable<DataAnalysisUser | null> {
+        return this.getCurrentDataAnalysisEditionId().pipe(
+            switchMap(editionId => editionId ? this.getDataAnalysisStudent(editionId, user.email) : of(null))
+        );
+    }
+
+    // A date is open when it is confirmed and today falls within it
+    public isEventDateOpen(eventDate: Event['dates'][EventDate] | null | undefined): boolean {
+        return !!eventDate
+            && eventDate.status === EventStatus.CONFIRMED
+            && this.isEventDateCurrent(eventDate);
+    }
+
+    public isInscriptionOpen(event: Event | null): boolean {
+        return this.isEventDateOpen(event?.dates?.[EventDate.INSCRIPTION]);
+    }
+
+    public getInscriptionEnd(event: Event | null): Date | null {
+        const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
+        return inscriptionDate?.status === EventStatus.CONFIRMED && inscriptionDate.isPeriod
+            ? inscriptionDate.lastDate
+            : null;
+    }
+
+    // Current user, whether they are already enrolled in the current edition and whether the inscription is open
+    public getDataAnalysisInscriptionStatus(): Observable<DataAnalysisInscriptionStatus> {
+        return forkJoin({
+            user: this.authService.getCurrentUser().pipe(take(1)),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            switchMap(({user, event}) => {
+                const editionId = this.getEditionId(event);
+                const enrolled$ = user && editionId
+                    ? this.getDataAnalysisStudent(editionId, user.email).pipe(
+                        map(student => !!student),
+                        catchError(err => {
+                            console.error(`getDataAnalysisInscriptionStatus failed: ${err}`);
+                            return of(false);
+                        }))
+                    : of(false);
+
+                return enrolled$.pipe(map(enrolled => ({
+                    user,
+                    enrolled,
+                    open: this.isInscriptionOpen(event),
+                    end: this.getInscriptionEnd(event)
+                })));
+            })
+        );
+    }
+
+    // What the student can do with the exam of a course day: take it (generating it the first time they open it that
+    // day), review it once submitted, or nothing when it is not today's exam or they already passed the course
+    public getDataAnalysisExam(examDay: number, questionCount: number): Observable<DataAnalysisExamState> {
+        return forkJoin({
+            user: this.authService.getCurrentUser().pipe(take(1)),
+            event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
+        }).pipe(
+            switchMap(({user, event}): Observable<DataAnalysisExamState> => {
+                if (!user) return of({access: ExamAccess.LOGIN});
+
+                return this.getDataAnalysisUser(user).pipe(
+                    switchMap((student): Observable<DataAnalysisExamState> => {
+                        if (!student) return of({access: ExamAccess.INSCRIPTION});
+                        if (!this.isExamDayOpen(event, examDay)) return of({access: ExamAccess.UNAVAILABLE});
+
+                        const passingThreshold = (event?.passingScore ?? DATA_ANALYSIS_DEFAULT_PASSING_SCORE) / 100;
+                        const todayExam = this.getTodayExam(student);
+                        if (todayExam?.submitted) {
+                            return of({access: ExamAccess.REVIEW, student, exam: todayExam, passingThreshold});
+                        }
+                        if (student.passedCourse) return of({access: ExamAccess.UNAVAILABLE});
+
+                        const exam$ = todayExam ? of(todayExam) : this.generateExam(questionCount, student);
+                        return exam$.pipe(map(exam => ({access: ExamAccess.OPEN, student, exam, passingThreshold})));
+                    })
+                );
+            })
+        );
+    }
+
+    // Course day of today (1 = the day exams start), or null when the exams have no start date yet
+    public getExamDay(event: Event | null): number | null {
+        return event?.examStartDate ? this.calculateExamDay(event.examStartDate) : null;
+    }
+
+    // Only today's exam can be taken, and only while the exams last
+    public isExamDayOpen(event: Event | null, examDay: number): boolean {
+        const today = this.getExamDay(event);
+        return today !== null && examDay === today && examDay >= 1 && examDay <= DATA_ANALYSIS_EXAM_DAYS;
+    }
+
+    // The student's exam if it was started today. An exam from a previous day already counted for that day
+    public getTodayExam(student: DataAnalysisUser): UserExam | null {
+        const exam = student.currentExam;
+        if (!exam) return null;
+        const started = this.toDate(exam.started);
+        return this.isSameDay(started, new Date()) ? {...exam, started} : null;
+    }
+
+    private isSameDay(a: Date, b: Date): boolean {
+        return this.normalizeDate(a).getTime() === this.normalizeDate(b).getTime();
+    }
+
+    private generateExam(questionCount: number, student: DataAnalysisUser): Observable<UserExam> {
+        const questionsRef = collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.questionsCollectionName
+        );
+
+        return from(getDocs(questionsRef).then(async snapshot => {
+            const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
+
+            const exam: UserExam = {
+                passed: false,
+                submitted: false,
+                started: new Date(),
+                questions: this.selectRandom(questions, questionCount)
             };
 
-            setDoc(studentRef, student)
-                .then(() => obs.next())
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
-    }
-
-    public getDataAnalysisUser(user: IEEEuser
-    ): Observable<DataAnalysisUser | null> {
-        return new Observable(obs => {
-
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
-
-            getDoc(studentRef)
-                .then(snap => {
-                    obs.next(
-                        snap.exists() ? snap.data() as DataAnalysisUser : null
-                    );
-                })
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
-    }
-
-
-    public generateExam(questionCount: number, user: IEEEuser): Observable<UserExam> {
-        return new Observable(obs => {
-            const questionsRef = collection(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.questionsCollectionName
-            );
-
-            getDocs(questionsRef)
-                .then(async snapshot => {
-                    const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
-
-                    const exam: UserExam = {
-                        passed: false,
-                        submitted: false,
-                        started: new Date(),
-                        questions: this.selectRandom(questions, questionCount)
-                    };
-
-                    const studentRef = doc(
-                        this.afs,
-                        EventService.collectionName,
-                        EventService.dataAnalysisDocumentName,
-                        EventService.studentsCollectionName,
-                        user.email
-                    );
-
-                    await updateDoc(studentRef, { currentExam: exam });
-                    return exam;
-                })
-                .then(exam => obs.next(exam))
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+            await updateDoc(this.getDataAnalysisStudentRef(student.edition, student.email), {currentExam: exam});
+            return exam;
+        }));
     }
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {
@@ -428,71 +662,54 @@ export class EventService {
         return toReturn;
     }
 
-    public submitExam(user: DataAnalysisUser, exam: UserExam): Observable<void> {
-        return new Observable(obs => {
-            const studentRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName,
-                EventService.studentsCollectionName,
-                user.email
-            );
+    // The student document already knows its edition, so the exam is saved there even if a new edition starts meanwhile.
+    // The exam counts for the day it was started, so it is rejected if it is submitted on another day
+    public submitExam(student: DataAnalysisUser, exam: UserExam): Observable<void> {
+        const submittedAt = new Date();
+        if (!this.isSameDay(this.toDate(exam.started), submittedAt)) {
+            return throwError(() => new ExamDayClosedError());
+        }
 
-            updateDoc(studentRef, { currentExam : exam, passedCourse : exam.passed })
-                .then(() => obs.next())
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+        return from(updateDoc(
+            this.getDataAnalysisStudentRef(student.edition, student.email),
+            {
+                currentExam: {...exam, submitted: true, submittedAt},
+                // A failed exam never takes back a passed course
+                passedCourse: exam.passed || student.passedCourse
+            }
+        ));
     }
 
     public isReviewAvailable(exam: UserExam): boolean {
-        const started = new Date(exam.started);
-        const now = new Date();
-        return started.getDate() === now.getDate();
+        return this.isSameDay(this.toDate(exam.started), new Date());
     }
 
-    public getDataAnalysisStartDate(): Observable<Date | null> {
-        return new Observable(obs => {
-            const docRef = doc(
-                this.afs,
-                EventService.collectionName,
-                EventService.dataAnalysisDocumentName
-            );
+    public normalizeDate(date: any): Date {
+        let aux: Date;
+        if (date?.toDate) aux = date.toDate();
+        else if (date instanceof Date) aux = date;
+        else aux = new Date(date);
 
-            getDoc(docRef)
-                .then(snap => {
-                    if (snap.exists()) {
-                        const data = snap.data() as Event;
-                        // TODO: Check property access !!!
-                        obs.next(data['startDate'].toDate());
-                    } else {
-                        obs.next(null);
-                    }
-                })
-                .catch(err => obs.error(err))
-                .finally(() => obs.complete());
-        });
+        return new Date(
+            aux.getFullYear(),
+            aux.getMonth(),
+            aux.getDate()
+        );
     }
 
     public calculateExamDay(startDate: Date): number {
-        const diffMs = new Date().getTime() - startDate.getTime();
+        const start = this.normalizeDate(startDate);
+        const today = this.normalizeDate(new Date());
+
+        const diffMs = today.getTime() - start.getTime();
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
         return diffDays + 1;
     }
 
+    // A question is correct when the selected option is the one marked as correct (same rule as the exam review)
     public evaluateExam(questions: Question[], approved_threshold: number): boolean {
-        let correctCount = 0;
-
-        questions.forEach(q => {
-            const selected = q.answers.find(a => a.selected)?.answer ?? '';
-            const correct = q.answers.find(a => a.isCorrect)?.answer ?? '';
-
-            if (this.compare(selected, correct)) { correctCount++; }
-        });
+        const correctCount = questions.filter(q => q.answers.some(a => a.selected && a.isCorrect)).length;
         return (correctCount / questions.length) >= approved_threshold;
-    }
-
-    private compare(selected: string, correct: string): boolean {
-        return String(selected ?? '').trim().toLowerCase().includes(correct.toLowerCase());
     }
 }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Event, EventDate, EventStatus, sortedEventDates} from "../../models/event/event";
+import {Event, EventDate, EventStatus, IeeeEvent, sortedEventDates} from "../../models/event/event";
 import {EventService} from "../../../core/services/event/event.service";
 import {MDBModalRef} from "angular-bootstrap-md";
 import {AppConfigService} from "../../../core/services/configuration/app-config.service";
@@ -81,6 +81,23 @@ export class EventEditorModalComponent implements OnInit {
             params: {max: InscriptionLinkEventEditorForm.INSCRIPTION_LINK_MAX_LENGTH.toString()}
         },
     }
+    i18nDataAnalysisErrorByFormErrorName: I18nErrorByFormErrorName = {
+        min: {
+            key: 'PASSING_SCORE_MIN'
+        },
+        max: {
+            key: 'PASSING_SCORE_MAX'
+        },
+        required: {
+            key: 'PASSING_SCORE_REQUIRED'
+        },
+        examStartDateRequired: {
+            key: 'EXAM_START_DATE_REQUIRED'
+        },
+        minDate: {
+            key: 'EXAM_START_DATE_PAST'
+        }
+    }
 
     constructor(
         private eventService: EventService,
@@ -91,6 +108,21 @@ export class EventEditorModalComponent implements OnInit {
 
     ngOnInit() {
         this.form = new EventEditorForm(this.event);
+        this.loadInitialEditionStudents();
+    }
+
+    // Needed to warn before moving the inscription of an edition that already has students
+    private loadInitialEditionStudents(): void {
+        const editionId = this.form.getInitialEditionId();
+        if (!editionId) return;
+
+        this.eventService.getDataAnalysisEditionStudentCount(editionId).subscribe({
+            next: count => this.form.setInitialEditionStudents(count),
+            error: error => {
+                console.error(`getDataAnalysisEditionStudentCount ${editionId} failed: ${error}`);
+                this.form.setInitialEditionCountFailed();
+            }
+        });
     }
 
     toggleTooltip(eventStatus: EventStatus) {
@@ -242,5 +274,29 @@ export class EventEditorModalComponent implements OnInit {
                 this.errorI18n = 'HOME.EVENTS.EDIT.ERROR.UPDATE';
             }
         })
+    }
+
+    get isDataAnalysis(): boolean {
+        return this.event.id === IeeeEvent.DATA_ANALYSIS;
+    }
+
+    get isDataAnalysisEnabled(): boolean {
+        return this.form.isDataAnalysisEnabled();
+    }
+
+    getFormDataAnalysisErrors(): string[] {
+        return this.getFormErrors(
+            this.i18nDataAnalysisErrorByFormErrorName,
+            errorName => this.form.getDataAnalysisError(errorName)
+        );
+    }
+
+    getDataAnalysisScheduleErrors(): string[] {
+        return this.form.getDataAnalysisScheduleErrors()
+            .map(error => this.translateService.instant(`HOME.EVENTS.EDIT.ERROR.${error.key}`, error.params));
+    }
+
+    get hasFormDataAnalysisErrors(): boolean {
+        return this.getFormDataAnalysisErrors().length > 0;
     }
 }

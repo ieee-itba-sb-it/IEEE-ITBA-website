@@ -1,0 +1,194 @@
+.subscribe-container{
+    min-height: 100vh;
+    margin-top: 80px;
+    padding: 2rem 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subscribe-card{
+    width: 100%;
+    max-width: 900px;
+}
+
+.title{
+    text-align: center;
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+p{
+    font-size: 1rem;
+}
+
+.intro{
+    margin-bottom: 0.5rem;
+}
+
+.step-form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+}
+
+.step-form mat-form-field{
+    width: 100%;
+}
+
+.field-row{
+    display: flex;
+    gap: 1rem;
+}
+
+.field-row mat-form-field{
+    flex: 1;
+}
+
+.question{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sub-section{
+    margin-top: 1rem;
+}
+
+.question-block{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.checkbox-list{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.checkbox-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.25rem 1rem;
+}
+
+.other-field{
+    margin-top: 0.5rem;
+}
+
+.hint{
+    font-size: 0.85rem;
+    color: gray;
+    margin: 0;
+}
+
+.field-error{
+    color: #f44336;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.submit-error{
+    margin-top: 1rem;
+}
+
+.step-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ieee-button:hover:not(:disabled) {
+    background-color: var(--bs-ieee-bright-blue);
+    color: white;
+}
+
+.ieee-button {
+    align-items: center;
+    gap: 0.5rem;
+    display: flex;
+    font-size: 1.1rem;
+
+    border: 2px solid var(--bs-ieee-bright-blue);
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--bs-ieee-bright-blue);
+    transition: all 0.2s ease;
+}
+
+.ieee-button.secondary{
+    border-color: transparent;
+}
+
+.ieee-button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.inscription-closed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.inscription-closed-text{
+    flex: 1 1 0;
+    max-width: 550px;
+}
+
+.inscription-closed-text .ieee-button{
+    margin-top: 2rem;
+}
+
+.inscription-closed-img{
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+.inscription-closed-img img {
+    display: block;
+    max-width: 100%;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.loading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .field-row{
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .inscription-closed{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .inscription-closed-text{
+        max-width: 100%;
+    }
+}

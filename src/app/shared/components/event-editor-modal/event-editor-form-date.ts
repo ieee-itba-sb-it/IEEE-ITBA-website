@@ -215,6 +215,11 @@ export class EventDateEventEditorForm {
         });
     }
 
+    isEventDateValid(eventDate: EventDate): boolean {
+        const errors = this.form[eventDate].errors;
+        return !errors || Object.keys(errors).length === 0;
+    }
+
     getError(eventDate: EventDate, errorName: string): ValidationErrors | null {
         const eventDateForm = this.form[eventDate];
         const errors = eventDateForm.errors;

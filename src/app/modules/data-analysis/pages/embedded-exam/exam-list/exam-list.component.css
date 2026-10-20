@@ -106,13 +106,39 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 3rem;
 }
 
 .passed-exam-text{
-    margin-left: 2rem;
+    flex: 1 1 0;
+    max-width: 550px;
+}
+
+.passed-exam-text .ieee-button{
+    margin-top: 2rem;
+}
+
+.passed-exam-img{
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
 .passed-exam-img img {
+    display: block;
+    max-width: 100%;
+    max-height: 600px;
     width: auto;
-    height: 600px;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .passed-exam{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .passed-exam-text{
+        max-width: 100%;
+    }
 }

@@ -52,12 +52,16 @@
 
                                     </div>
 
+                                    <p *ngIf="submitError" class="submit-error" role="alert">
+                                        {{ submitError | translate }}
+                                    </p>
+
                                     <div class="d-flex justify-content-center">
                                         <button class="exam-button submit-exam-button"
                                                 type="button"
-                                                [disabled]="reviewMode"
+                                                [disabled]="reviewMode || submitting || examClosed"
                                                 (click)="confirmDialog.showModal()"
-                                        >{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.BUTTON_SUBMIT_EXAM' | translate }}
+                                        >{{ (submitting ? 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.SUBMITTING' : 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.BUTTON_SUBMIT_EXAM') | translate }}
                                         </button>
                                     </div>
 

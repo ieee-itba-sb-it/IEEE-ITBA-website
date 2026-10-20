@@ -34,6 +34,12 @@ export class AdminComponent {
             icon: "handshake",
         },
         {
+            title: "ADMIN.EXAMSTAB.TITLE",
+            link: "exams",
+            isActive: true,
+            icon: "graduation-cap",
+        },
+        {
             title: "ADMIN.ASIMOVADMINTAB.TITLE",
             link: "asimov",
             isActive: true,

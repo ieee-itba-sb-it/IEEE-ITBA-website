@@ -203,6 +203,10 @@
         "CLICK_COMPETE": "Enroll to compete!",
         "CLICK_SPECTATE": "Enroll as a spectator!"
       },
+      "EXAMS": {
+        "OPEN": "Exams are open!",
+        "CLICK": "Go to exams!"
+      },
       "RANKING": {
         "CLICK": "View ranking table!"
       },
@@ -279,7 +283,20 @@
               "YEAR_REQUIRED": "The year is required",
               "YEAR_INVALID": "The year is invalid",
               "YEAR_PAST": "The year cannot be previous to the current year",
-              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ length }} characters)"
+              "INSCRIPTION_LINK_MAX_LENGTH": "The inscription link cannot have more than {{ max }} characters (the entered one has {{ length }} characters)",
+              "PASSING_SCORE_MIN": "The passing score cannot be less than {{ min }}",
+              "PASSING_SCORE_MAX": "The passing score cannot be more than {{ max }}",
+              "PASSING_SCORE_REQUIRED": "The passing score is required",
+              "EXAM_START_DATE_REQUIRED": "The exam start date is required",
+              "EXAM_START_DATE_PAST": "The exam start date cannot be in the past",
+              "EVENT_NOT_PERIOD": "The event must be a period (with start and end dates): the exams last {{days}} days and must fall within the event dates.",
+              "EXAMS_START_BEFORE_EVENT": "The exams start on {{examStart}}, before the event ({{eventStart}}). Move the exam start date within the event or move the event earlier.",
+              "EXAMS_END_AFTER_EVENT": "The {{days}} exam days go from {{examStart}} to {{examEnd}}, but the event ends on {{eventEnd}}. Extend the event until {{examEnd}} or move the exam start earlier.",
+              "INSCRIPTION_ENDS_AFTER_EXAMS_START": "The inscription closes on {{inscriptionEnd}}, after the exams start ({{examStart}}). The inscription can stay open during the event classes, but it must close before the exams start.",
+              "EDITION_CHECK_LOADING": "Checking whether edition {{edition}} has enrolled students...",
+              "EDITION_CHECK_FAILED": "Could not check whether edition {{edition}} has enrolled students, so the edition cannot be changed. Close and reopen the editor to try again, or keep the inscription start in the same semester.",
+              "EDITION_CHANGE_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. With this inscription start date the edition would become {{newEdition}} and those students would lose access to their exams. Keep the inscription start in the same semester or wait until the course ends.",
+              "EDITION_REMOVED_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. If the inscription is no longer confirmed, those students would lose access to their exams. Keep the inscription confirmed until the course ends."
           }
       }
     },
@@ -550,6 +567,11 @@
     }
   },
   "DATAANALYSIS": {
+      "MODAL": {
+          "MIN_PERCENTAGE": "Minimum percentage to pass the exam: ",
+          "MIN_PERCENTAGE_HINT": "Value between 0 and 100. E.g.: 83 means passing with at least 83% correct answers.",
+          "START_EXAMS_DATE": "Start date of the exams: "
+      },
     "PAGETITLE": "ITBA IEEE | Data Analysis in Python Course",
     "PAGEDESCRIPTION": "Data Analysis in Python course organized by IEEE ITBA. Learn how to use Python for data analysis and visualization.",
     "CLASSES": {
@@ -597,17 +619,121 @@
         }
       ]
     },
+      "INSCRIPTION": {
+        "TITLE": "Course inscription",
+        "DESCRIPTION": "To sign up for the course, fill in the following form.",
+        "CLOSING_DATE": "Inscriptions close on",
+        "TITLE_CLOSED": "Inscriptions are closed",
+        "DESCRIPTION_CLOSED": "We are currently outside the Data Analysis course inscription period.",
+        "STEPS": {
+          "PERSONAL": "Personal data",
+          "OCCUPATION": "Current situation",
+          "INTERESTS": "Interests",
+          "CONFIRMATION": "Confirmation"
+        },
+        "FIELDS": {
+          "EMAIL": "Email",
+          "FIRST_NAME": "First name(s)",
+          "LAST_NAME": "Last name(s)",
+          "AGE": "Age",
+          "GENDER": "Gender",
+          "COUNTRY": "Country of residence",
+          "OCCUPATION": "What is your current situation?",
+          "ITBA_CAREER": "Which degree do you study?",
+          "REFERRAL_SOURCE": "How did you hear about the course?",
+          "MOTIVATION": "Why are you interested in the course?",
+          "PROGRAMMING_LANGUAGE": "Do you have previous experience in any of these languages?",
+          "PYTHON_INTEREST": "Which Python applications would you like to learn in the future?",
+          "OTHER": "Other",
+          "LINKEDIN": "LinkedIn profile",
+          "TERMS_PREFIX": "I have read and accept the",
+          "TERMS_LINK": "terms and conditions",
+          "SPONSOR_DATA_SHARING": "I agree that IEEE ITBA may share my contact data with the course sponsors."
+        },
+        "HINTS": {
+          "MIN_AGE": "The minimum age to participate is {{age}} years.",
+          "MAX_OPTIONS": "Choose up to {{max}}.",
+          "OPTIONAL": "Optional"
+        },
+        "ERRORS": {
+          "REQUIRED": "This field is required.",
+          "INVALID": "The entered value is not valid.",
+          "MIN_AGE": "The minimum age is {{age}} years.",
+          "COUNTRY": "Choose a country from the list.",
+          "AT_LEAST_ONE": "Choose at least one option.",
+          "MAX_OPTIONS": "You can choose up to {{max}} options.",
+          "LINKEDIN": "Enter your LinkedIn profile URL.",
+          "TERMS": "You must accept the terms and conditions to sign up.",
+          "SUBMIT": "We couldn't complete your inscription. Please try again in a few minutes."
+        },
+        "BUTTONS": {
+          "NEXT": "Next",
+          "BACK": "Back",
+          "SUBMIT": "Sign up",
+          "SUBMITTING": "Signing up..."
+        },
+        "OPTIONS": {
+          "GENDER": {
+            "FEMALE": "Female",
+            "MALE": "Male",
+            "OTHER": "Other",
+            "PREFER_NOT_TO_SAY": "Prefer not to say"
+          },
+          "OCCUPATION": {
+            "SCHOOL": "Secondary school student",
+            "ITBA": "ITBA university student",
+            "UNIVERSITY": "Student at another university",
+            "WORK": "Working",
+            "NONE": "None of the above"
+          },
+          "REFERRAL_SOURCE": {
+            "FRIEND": "Friend/Acquaintance",
+            "INSTAGRAM": "Instagram",
+            "REDDIT": "Reddit",
+            "LINKEDIN": "LinkedIn",
+            "FACEBOOK": "Facebook",
+            "WHATSAPP": "WhatsApp",
+            "MAIL": "Email",
+            "UNIVERSITY": "At university",
+            "WORK": "At work",
+            "IEEE_ENOTICE": "IEEE eNotice",
+            "OTHER": "Other"
+          },
+          "MOTIVATION": {
+            "CURRENT_JOB": "To apply it in my current job",
+            "PERSONAL_INTEREST": "Personal interest or hobby",
+            "PROFESSIONAL_DEVELOPMENT": "Professional development"
+          },
+          "PROGRAMMING_LANGUAGE": {
+            "NONE": "I have no programming experience"
+          },
+          "PYTHON_INTEREST": {
+            "DATA_ANALYSIS": "Data analysis and manipulation",
+            "MACHINE_LEARNING": "Machine Learning",
+            "WEB_DEVELOPMENT": "Web Development",
+            "GAME_DESIGN": "Game design",
+            "CIRCUIT_DESIGN": "Introduction to electronic circuit design",
+            "COMPUTER_VISION": "Computer Vision",
+            "DESIGN_3D": "3D Design"
+          }
+        }
+      },
       "EMBEDDED_EXAM": {
+          "GOTO_HOME": "Go to Home",
           "EXAM": {
               "TITLE": "Exam",
               "QUESTION": "Question",
               "BUTTON_SUBMIT_EXAM": "Send exam",
+              "SUBMITTING": "Submitting...",
+              "SUBMIT_ERROR": "We could not submit your exam. Your answers are still here: check your connection and try again.",
+              "SUBMIT_ERROR_DAY_CLOSED": "This exam was started on another day and can no longer be submitted. Go back to My exams to take today's exam.",
               "BUTTON_CANCEL": "Cancel",
               "BUTTON_GO_BACK": "Go back to My exams",
               "CONFIRMATION_TEXT": "Are you sure you want to submit the exam?"
           },
           "EXAM_LIST": {
               "TITLE": "My Python Exams",
+              "START_DATE": "Start date:",
               "EXAM_TITLE": "Day",
               "DESCRIPTION": "Here you will find your available exams. A new exam will be enabled each day for seven days until you pass.",
               "BADGE_SUCCESS": "Passed",
@@ -616,7 +742,9 @@
               "BADGE_PENDING": "Pending",
               "BUTTON_REVIEW": "Review exam",
               "TITLE_PASSED_EXAM": "Congratulations, you passed the exam!",
-              "DESCRIPTION_PASSED_EXAM": "You completed the Data Analysis course."
+              "DESCRIPTION_PASSED_EXAM": "You completed the Data Analysis course.",
+              "TITLE_NO_START_DATE": "The exams don't have a start date yet",
+              "DESCRIPTION_NO_START_DATE": "You are already enrolled. We will let you know when the exams are enabled; in the meantime you can come back to this page to check the start date."
           }
       }
   },
@@ -1227,6 +1355,52 @@
       "TABLE": {
         "COMMISSION": "Commission to join"
       }
+    },
+    "EXAMSTAB": {
+      "TITLE": "Exams",
+      "EDITION": "Edition",
+      "CURRENT_EDITION": "current",
+      "NO_EDITIONS": "There are no editions with enrolled students yet",
+      "TABS": {
+        "STUDENTS": "Students",
+        "METRICS": "Metrics"
+      },
+      "TABLE": {
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "ENROLLED_AT": "Enrollment date",
+        "STATUS": "Status"
+      },
+      "STATUS": {
+        "PASSED": "Passed",
+        "IN_PROGRESS": "In progress",
+        "FAILED": "Failed"
+      },
+      "NO_STUDENTS": "There are no enrolled students",
+      "METRICS": {
+        "TOTAL": "Enrolled",
+        "NO_DATA": "There are no metrics for this edition",
+        "MULTIPLE_CHOICE": "Multiple answers: percentages can add up to more than 100%",
+        "ITBA_ONLY": "Percentage of ITBA students",
+        "BAR_TOOLTIP": "{{label}}: {{count}} ({{percentage}}%)",
+        "FIELDS": {
+          "occupation": "Current situation",
+          "itbaCareer": "Degree (ITBA students)",
+          "ageRange": "Age",
+          "gender": "Gender",
+          "country": "Country of residence",
+          "referralSource": "How they heard about the course",
+          "motivation": "Why they were interested",
+          "programmingLanguage": "Previous programming experience",
+          "pythonInterest": "Python applications of interest"
+        }
+      },
+      "ERRORS": {
+        "EDITIONS": "The editions could not be loaded",
+        "STUDENTS": "The students of the edition could not be loaded",
+        "METRICS": "The metrics of the edition could not be loaded"
+      },
+      "CLOSE": "Close"
     },
     "SPONSORSTAB": {
       "TITLE": "Sponsors",

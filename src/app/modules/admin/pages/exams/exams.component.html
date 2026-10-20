@@ -1,0 +1,99 @@
+<ng-container *ngIf="editions; else spinner">
+
+    <p *ngIf="!editions.length" class="empty-state">{{ "ADMIN.EXAMSTAB.NO_EDITIONS" | translate }}</p>
+
+    <ng-container *ngIf="editions.length">
+        <mat-form-field class="edition-select" appearance="outline">
+            <mat-label>{{ "ADMIN.EXAMSTAB.EDITION" | translate }}</mat-label>
+            <mat-select [value]="selectedEdition" (selectionChange)="selectEdition($event.value)">
+                <mat-option *ngFor="let edition of editions" [value]="edition">
+                    {{ edition }}<span *ngIf="edition === currentEdition"> ({{ "ADMIN.EXAMSTAB.CURRENT_EDITION" | translate }})</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-tab-group animationDuration="0ms">
+
+            <!-- Alumnos -->
+            <mat-tab [label]="'ADMIN.EXAMSTAB.TABS.STUDENTS' | translate">
+                <ng-container *ngIf="students; else spinner">
+                    <div class="status-summary" *ngIf="students.length">
+                        <span class="status-badge passed">{{ statusLabel(StudentStatus.PASSED) | translate }}: {{ countByStatus(StudentStatus.PASSED) }}</span>
+                        <span class="status-badge in-progress">{{ statusLabel(StudentStatus.IN_PROGRESS) | translate }}: {{ countByStatus(StudentStatus.IN_PROGRESS) }}</span>
+                        <span class="status-badge failed">{{ statusLabel(StudentStatus.FAILED) | translate }}: {{ countByStatus(StudentStatus.FAILED) }}</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="table align-middle mb-0 mt-2 rounded">
+                            <thead class="bg-light">
+                            <tr>
+                                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.NAME" | translate }}</th>
+                                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.EMAIL" | translate }}</th>
+                                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.ENROLLED_AT" | translate }}</th>
+                                <th class="pb-1 align-middle">{{ "ADMIN.EXAMSTAB.TABLE.STATUS" | translate }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let student of students">
+                                <td class="align-middle">{{ student.firstName }} {{ student.lastName }}</td>
+                                <td class="align-middle">{{ student.email }}</td>
+                                <td class="align-middle">{{ student.enrolledAt | date:'dd/MM/yyyy' }}</td>
+                                <td class="align-middle">
+                                    <span class="status-badge"
+                                          [class.passed]="student.status === StudentStatus.PASSED"
+                                          [class.in-progress]="student.status === StudentStatus.IN_PROGRESS"
+                                          [class.failed]="student.status === StudentStatus.FAILED">
+                                        {{ statusLabel(student.status) | translate }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="!students.length">
+                                <td colspan="4" class="text-center">
+                                    {{ "ADMIN.EXAMSTAB.NO_STUDENTS" | translate }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
+            </mat-tab>
+
+            <!-- Métricas -->
+            <mat-tab [label]="'ADMIN.EXAMSTAB.TABS.METRICS' | translate">
+                <ng-container *ngIf="metrics !== undefined; else spinner">
+                    <p *ngIf="!metrics" class="empty-state">{{ "ADMIN.EXAMSTAB.METRICS.NO_DATA" | translate }}</p>
+
+                    <ng-container *ngIf="metrics">
+                        <div class="stat-tile">
+                            <span class="stat-value">{{ metrics.total }}</span>
+                            <span class="stat-label">{{ "ADMIN.EXAMSTAB.METRICS.TOTAL" | translate }}</span>
+                        </div>
+
+                        <div class="charts-grid">
+                            <section *ngFor="let chart of charts" class="chart-card">
+                                <h3 class="chart-title">{{ "ADMIN.EXAMSTAB.METRICS.FIELDS." + chart.field | translate }}</h3>
+                                <p *ngIf="chart.multipleChoice" class="chart-hint">{{ "ADMIN.EXAMSTAB.METRICS.MULTIPLE_CHOICE" | translate }}</p>
+                                <p *ngIf="chart.field === 'itbaCareer'" class="chart-hint">{{ "ADMIN.EXAMSTAB.METRICS.ITBA_ONLY" | translate }}</p>
+
+                                <ul class="bars">
+                                    <li *ngFor="let bar of chart.bars" class="bar-row" [title]="barTooltip(bar)">
+                                        <span class="bar-label">{{ bar.label }}</span>
+                                        <span class="bar-track">
+                                            <span class="bar-fill" [style.width.%]="bar.percentage"></span>
+                                        </span>
+                                        <span class="bar-value">{{ bar.count }} <span class="bar-percentage">({{ bar.percentage }}%)</span></span>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </mat-tab>
+
+        </mat-tab-group>
+    </ng-container>
+</ng-container>
+
+<ng-template #spinner>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>
