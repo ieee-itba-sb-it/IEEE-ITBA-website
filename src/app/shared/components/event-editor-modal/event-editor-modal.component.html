@@ -265,6 +265,12 @@
                 </div>
             </div>
 
+            <div *ngIf="isDataAnalysis && getDataAnalysisScheduleErrors().length > 0" class="error-container">
+                <p *ngFor="let error of getDataAnalysisScheduleErrors()" class="error">
+                    {{ error }}
+                </p>
+            </div>
+
             <div *ngIf="!!errorI18n" class="error-container">
                 <p class="error">
                     {{ errorI18n | translate }}

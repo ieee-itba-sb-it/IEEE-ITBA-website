@@ -60,6 +60,10 @@ export class DataAnalysisEventEditorForm {
         };
     }
 
+    getExamStartDateValue(): string | null {
+        return this.examStartDate.value;
+    }
+
     setEnabled(enabled: boolean): void {
         enabled ? this.form.enable() : this.form.disable();
     }

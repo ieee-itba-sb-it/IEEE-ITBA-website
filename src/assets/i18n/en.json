@@ -288,7 +288,14 @@
               "PASSING_SCORE_MAX": "The passing score cannot be more than {{ max }}",
               "PASSING_SCORE_REQUIRED": "The passing score is required",
               "EXAM_START_DATE_REQUIRED": "The exam start date is required",
-              "EXAM_START_DATE_PAST": "The exam start date cannot be in the past"
+              "EXAM_START_DATE_PAST": "The exam start date cannot be in the past",
+              "EVENT_NOT_PERIOD": "The event must be a period (with start and end dates): the exams last {{days}} days and must fall within the event dates.",
+              "EXAMS_START_BEFORE_EVENT": "The exams start on {{examStart}}, before the event ({{eventStart}}). Move the exam start date within the event or move the event earlier.",
+              "EXAMS_END_AFTER_EVENT": "The {{days}} exam days go from {{examStart}} to {{examEnd}}, but the event ends on {{eventEnd}}. Extend the event until {{examEnd}} or move the exam start earlier.",
+              "INSCRIPTION_ENDS_AFTER_EVENT_START": "The inscription closes on {{inscriptionEnd}}, after the event starts ({{eventStart}}). The inscription must close before or on the day the course starts.",
+              "EDITION_CHECK_LOADING": "Checking whether edition {{edition}} has enrolled students...",
+              "EDITION_CHANGE_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. With this inscription start date the edition would become {{newEdition}} and those students would lose access to their exams. Keep the inscription start in the same semester or wait until the course ends.",
+              "EDITION_REMOVED_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. If the inscription is no longer confirmed, those students would lose access to their exams. Keep the inscription confirmed until the course ends."
           }
       }
     },

@@ -108,6 +108,21 @@ export class EventEditorModalComponent implements OnInit {
 
     ngOnInit() {
         this.form = new EventEditorForm(this.event);
+        this.loadInitialEditionStudents();
+    }
+
+    // Needed to warn before moving the inscription of an edition that already has students
+    private loadInitialEditionStudents(): void {
+        const editionId = this.form.getInitialEditionId();
+        if (!editionId) return;
+
+        this.eventService.getDataAnalysisEditionStudentCount(editionId).subscribe({
+            next: count => this.form.setInitialEditionStudents(count),
+            error: error => {
+                console.error(`getDataAnalysisEditionStudentCount ${editionId} failed: ${error}`);
+                this.form.setInitialEditionStudents(0);
+            }
+        });
     }
 
     toggleTooltip(eventStatus: EventStatus) {
@@ -274,6 +289,11 @@ export class EventEditorModalComponent implements OnInit {
             this.i18nDataAnalysisErrorByFormErrorName,
             errorName => this.form.getDataAnalysisError(errorName)
         );
+    }
+
+    getDataAnalysisScheduleErrors(): string[] {
+        return this.form.getDataAnalysisScheduleErrors()
+            .map(error => this.translateService.instant(`HOME.EVENTS.EDIT.ERROR.${error.key}`, error.params));
     }
 
     get hasFormDataAnalysisErrors(): boolean {

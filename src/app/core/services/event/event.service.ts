@@ -13,6 +13,7 @@ import {
     doc,
     DocumentReference,
     Firestore,
+    getCountFromServer,
     getDoc,
     getDocs,
     increment,
@@ -381,6 +382,12 @@ export class EventService {
             editionId,
             EventService.metricsCollectionName,
             EventService.metricsSummaryDocumentName
+        );
+    }
+
+    public getDataAnalysisEditionStudentCount(editionId: string): Observable<number> {
+        return from(getCountFromServer(this.getDataAnalysisStudentsRef(editionId))).pipe(
+            map(snapshot => snapshot.data().count)
         );
     }
 

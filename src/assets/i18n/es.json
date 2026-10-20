@@ -344,7 +344,14 @@
              "PASSING_SCORE_MAX": "La puntuación de aprobación debe ser menor o igual a 100",
              "PASSING_SCORE_REQUIRED": "Ingresar un porcentaje mínimo de aprobación",
              "EXAM_START_DATE_REQUIRED": "Ingresar la fecha de inicio de los exámenes",
-             "EXAM_START_DATE_PAST": "La fecha de inicio del examen no puede ser en el pasado"
+             "EXAM_START_DATE_PAST": "La fecha de inicio del examen no puede ser en el pasado",
+             "EVENT_NOT_PERIOD": "El evento tiene que ser un período (con fecha de inicio y de fin): los exámenes duran {{days}} días y tienen que caer dentro de las fechas del evento.",
+             "EXAMS_START_BEFORE_EVENT": "Los exámenes empiezan el {{examStart}}, antes que el evento ({{eventStart}}). Mové el inicio de los exámenes a una fecha dentro del evento o adelantá el evento.",
+             "EXAMS_END_AFTER_EVENT": "Los {{days}} días de exámenes van del {{examStart}} al {{examEnd}}, pero el evento termina el {{eventEnd}}. Extendé el evento hasta el {{examEnd}} o adelantá el inicio de los exámenes.",
+             "INSCRIPTION_ENDS_AFTER_EVENT_START": "La inscripción cierra el {{inscriptionEnd}}, después de que empieza el evento ({{eventStart}}). La inscripción tiene que cerrar antes o el mismo día en que empieza el curso.",
+             "EDITION_CHECK_LOADING": "Verificando si la edición {{edition}} tiene alumnos inscriptos...",
+             "EDITION_CHANGE_WITH_STUDENTS": "La edición {{edition}} tiene alumnos inscriptos ({{students}}) y su curso todavía no terminó. Con esta fecha de inicio de inscripción la edición pasaría a ser {{newEdition}} y esos alumnos perderían el acceso a sus exámenes. Mantené el inicio de la inscripción en el mismo cuatrimestre o esperá a que termine el curso.",
+             "EDITION_REMOVED_WITH_STUDENTS": "La edición {{edition}} tiene alumnos inscriptos ({{students}}) y su curso todavía no terminó. Si la inscripción deja de estar confirmada, esos alumnos perderían el acceso a sus exámenes. Mantené la inscripción confirmada hasta que termine el curso."
          }
       }
     },

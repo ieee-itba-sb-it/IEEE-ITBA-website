@@ -4,6 +4,13 @@ import {EventDateEventEditorForm, EventDateEventForm} from "./event-editor-form-
 import {InscriptionLinkEventEditorForm, InscriptionLinkEventForm} from "./event-editor-form-inscription-link";
 import {LocationEventEditorForm, LocationEventForm} from "./event-editor-form-location";
 import {DataAnalysisEventEditorForm, DataAnalysisEventForm} from "./event-editor-form-data-analysis";
+import {
+    getDataAnalysisCourseEnd,
+    getDataAnalysisScheduleErrors,
+    InitialEditionState,
+    ScheduleError
+} from "./event-editor-data-analysis-schedule";
+import {getEditionId} from "../../models/event/data_analysis/inscription";
 
 type EventFormGroup = EventDateEventForm & InscriptionLinkEventForm &
     LocationEventForm & Partial<DataAnalysisEventForm>;
@@ -31,6 +38,7 @@ export class EventEditorForm {
     private readonly inscriptionLinkEventEditorForm: InscriptionLinkEventEditorForm;
     private readonly locationEventEditorForm: LocationEventEditorForm;
     private readonly dataAnalysisEventEditorForm?: DataAnalysisEventEditorForm;
+    private initialEdition?: InitialEditionState;
 
     constructor(event: Event) {
         this.eventInitialState = EventEditorForm.cloneEvent(event);
@@ -49,6 +57,13 @@ export class EventEditorForm {
             this.dataAnalysisEventEditorForm = new DataAnalysisEventEditorForm(event);
             this.eventForm.addControl("passingScore", this.dataAnalysisEventEditorForm.getForm().passingScore);
             this.eventForm.addControl("examStartDate", this.dataAnalysisEventEditorForm.getForm().examStartDate);
+
+            const inscriptionDate = event.dates[EventDate.INSCRIPTION];
+            this.initialEdition = {
+                editionId: inscriptionDate.status === EventStatus.CONFIRMED ? getEditionId(inscriptionDate.date) : null,
+                enrolledStudents: null,
+                courseEnd: getDataAnalysisCourseEnd(event)
+            };
 
             // The exam settings only apply once the event date is confirmed
             const eventStatus = eventDateFormGroup[EventDate.EVENT].controls.status;
@@ -98,7 +113,29 @@ export class EventEditorForm {
         return areEventDatesValid &&
             isEventInscriptionLinkValid &&
             isLocationValid &&
-            isDataAnalysisValid;
+            isDataAnalysisValid &&
+            this.getDataAnalysisScheduleErrors().length === 0;
+    }
+
+    getInitialEditionId(): string | null {
+        return this.initialEdition?.editionId ?? null;
+    }
+
+    setInitialEditionStudents(enrolledStudents: number): void {
+        if (this.initialEdition) this.initialEdition = {...this.initialEdition, enrolledStudents};
+    }
+
+    // Rules that relate the inscription, event and exam dates of Data Analysis
+    getDataAnalysisScheduleErrors(): ScheduleError[] {
+        if (!this.dataAnalysisEventEditorForm) return [];
+        return getDataAnalysisScheduleErrors({
+            dates: this.eventDateEventEditorForm.getCurrentState(),
+            examStartDate: this.dataAnalysisEventEditorForm.isEnabled()
+                ? this.dataAnalysisEventEditorForm.getExamStartDateValue()
+                : null,
+            isEventDateValid: eventDate => this.eventDateEventEditorForm.isEventDateValid(eventDate),
+            initialEdition: this.initialEdition
+        });
     }
 
     getEventDateError(eventDate: EventDate, errorName: string): ValidationErrors | null {
