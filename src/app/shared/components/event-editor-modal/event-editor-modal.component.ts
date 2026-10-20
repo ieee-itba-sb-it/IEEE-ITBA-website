@@ -120,7 +120,7 @@ export class EventEditorModalComponent implements OnInit {
             next: count => this.form.setInitialEditionStudents(count),
             error: error => {
                 console.error(`getDataAnalysisEditionStudentCount ${editionId} failed: ${error}`);
-                this.form.setInitialEditionStudents(0);
+                this.form.setInitialEditionCountFailed();
             }
         });
     }

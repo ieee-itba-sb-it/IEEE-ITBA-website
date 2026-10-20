@@ -13,6 +13,8 @@ export type InitialEditionState = {
     editionId: string | null;
     // null while it is being loaded
     enrolledStudents: number | null;
+    // The students could not be counted, so changing the edition can not be allowed
+    countFailed: boolean;
     // Last day of the course of that edition, null when it is unknown
     courseEnd: Date | null;
 };
@@ -85,7 +87,7 @@ function getInscriptionErrors(input: ScheduleInput): ScheduleError[] {
 // The edition comes from the inscription start date. Moving it to another semester (or unconfirming it) while the
 // current edition has students and its course has not ended would leave those students without access to their exams
 function getEditionErrors(input: ScheduleInput): ScheduleError[] {
-    const {editionId, enrolledStudents, courseEnd} = input.initialEdition;
+    const {editionId, enrolledStudents, countFailed, courseEnd} = input.initialEdition;
     if (!editionId) return [];
 
     const inscription = input.dates[EventDate.INSCRIPTION];
@@ -94,6 +96,9 @@ function getEditionErrors(input: ScheduleInput): ScheduleError[] {
         : null;
     if (newEditionId === editionId) return [];
 
+    if (countFailed) {
+        return [{key: 'EDITION_CHECK_FAILED', params: {edition: editionId}}];
+    }
     if (enrolledStudents === null) {
         return [{key: 'EDITION_CHECK_LOADING', params: {edition: editionId}}];
     }

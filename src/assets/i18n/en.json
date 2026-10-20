@@ -294,6 +294,7 @@
               "EXAMS_END_AFTER_EVENT": "The {{days}} exam days go from {{examStart}} to {{examEnd}}, but the event ends on {{eventEnd}}. Extend the event until {{examEnd}} or move the exam start earlier.",
               "INSCRIPTION_ENDS_AFTER_EVENT_START": "The inscription closes on {{inscriptionEnd}}, after the event starts ({{eventStart}}). The inscription must close before or on the day the course starts.",
               "EDITION_CHECK_LOADING": "Checking whether edition {{edition}} has enrolled students...",
+              "EDITION_CHECK_FAILED": "Could not check whether edition {{edition}} has enrolled students, so the edition cannot be changed. Close and reopen the editor to try again, or keep the inscription start in the same semester.",
               "EDITION_CHANGE_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. With this inscription start date the edition would become {{newEdition}} and those students would lose access to their exams. Keep the inscription start in the same semester or wait until the course ends.",
               "EDITION_REMOVED_WITH_STUDENTS": "Edition {{edition}} has enrolled students ({{students}}) and its course has not ended yet. If the inscription is no longer confirmed, those students would lose access to their exams. Keep the inscription confirmed until the course ends."
           }

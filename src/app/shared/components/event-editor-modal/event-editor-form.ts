@@ -62,6 +62,7 @@ export class EventEditorForm {
             this.initialEdition = {
                 editionId: inscriptionDate.status === EventStatus.CONFIRMED ? getEditionId(inscriptionDate.date) : null,
                 enrolledStudents: null,
+                countFailed: false,
                 courseEnd: getDataAnalysisCourseEnd(event)
             };
 
@@ -123,6 +124,10 @@ export class EventEditorForm {
 
     setInitialEditionStudents(enrolledStudents: number): void {
         if (this.initialEdition) this.initialEdition = {...this.initialEdition, enrolledStudents};
+    }
+
+    setInitialEditionCountFailed(): void {
+        if (this.initialEdition) this.initialEdition = {...this.initialEdition, countFailed: true};
     }
 
     // Rules that relate the inscription, event and exam dates of Data Analysis
