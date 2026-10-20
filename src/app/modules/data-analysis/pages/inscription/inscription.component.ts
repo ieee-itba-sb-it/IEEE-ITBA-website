@@ -17,8 +17,7 @@ import {
     MAX_PYTHON_INTERESTS,
     MIN_AGE,
     NO_EXPERIENCE,
-    OTHER,
-    StudentType,
+    Occupation,
     TERMS_AND_CONDITIONS_URL
 } from "../../../../shared/models/event/data_analysis/inscription";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -84,8 +83,7 @@ function countryValidator(control: AbstractControl<string>): ValidationErrors | 
 })
 export class InscriptionComponent implements OnInit {
     readonly options = INSCRIPTION_OPTIONS;
-    readonly StudentType = StudentType;
-    readonly OTHER = OTHER;
+    readonly Occupation = Occupation;
     readonly NO_EXPERIENCE = NO_EXPERIENCE;
     readonly minAge = MIN_AGE;
     readonly maxPythonInterests = MAX_PYTHON_INTERESTS;
@@ -109,28 +107,9 @@ export class InscriptionComponent implements OnInit {
         country: new FormControl('AR', {nonNullable: true, validators: [Validators.required, countryValidator]})
     });
 
-    readonly studiesForm = new FormGroup({
-        studentType: new FormControl<StudentType | null>(null, [Validators.required]),
-        school: new FormGroup({
-            name: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-            year: new FormControl('', {nonNullable: true, validators: [Validators.required]})
-        }),
-        university: new FormGroup({
-            degree: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-            careerCategory: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-            university: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-            universityOther: new FormControl('', {nonNullable: true, validators: [Validators.required]})
-        }),
-        itba: new FormGroup({
-            studentId: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d+$/)]}),
-            career: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-            year: new FormControl('', {nonNullable: true, validators: [Validators.required]})
-        })
-    });
-
-    readonly workForm = new FormGroup({
-        works: new FormControl<boolean | null>(null, [Validators.required]),
-        industry: new FormControl('', {nonNullable: true, validators: [Validators.required]})
+    readonly occupationForm = new FormGroup({
+        occupation: new FormControl<Occupation | null>(null, [Validators.required]),
+        itbaCareer: new FormControl('', {nonNullable: true, validators: [Validators.required]})
     });
 
     readonly interestsForm = new FormGroup({
@@ -198,34 +177,11 @@ export class InscriptionComponent implements OnInit {
         }, {validators: multiChoiceValidator(max)});
     }
 
-    // Only the fields that apply to the current answers stay enabled, so hidden fields don't block validation
+    // The ITBA career only applies to ITBA students; disabling it keeps it out of the validation
     private setupConditionalFields(): void {
-        const {studentType, school, university, itba} = this.studiesForm.controls;
-        const groupsByType = {
-            [StudentType.SCHOOL]: school,
-            [StudentType.UNIVERSITY]: university,
-            [StudentType.ITBA]: itba
-        };
-
-        studentType.valueChanges.pipe(startWith(studentType.value), takeUntilDestroyed(this.destroyRef))
-            .subscribe(type => {
-                Object.entries(groupsByType).forEach(([groupType, group]) =>
-                    groupType === type ? group.enable() : group.disable()
-                );
-                if (type === StudentType.UNIVERSITY) this.toggleUniversityOther(university.controls.university.value);
-            });
-
-        university.controls.university.valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe(value => this.toggleUniversityOther(value));
-
-        const {works, industry} = this.workForm.controls;
-        works.valueChanges.pipe(startWith(works.value), takeUntilDestroyed(this.destroyRef))
-            .subscribe(value => value ? industry.enable() : industry.disable());
-    }
-
-    private toggleUniversityOther(university: string): void {
-        const control = this.studiesForm.controls.university.controls.universityOther;
-        university === OTHER ? control.enable() : control.disable();
+        const {occupation, itbaCareer} = this.occupationForm.controls;
+        occupation.valueChanges.pipe(startWith(occupation.value), takeUntilDestroyed(this.destroyRef))
+            .subscribe(value => value === Occupation.ITBA ? itbaCareer.enable() : itbaCareer.disable());
     }
 
     private setupCountries(): void {
@@ -290,8 +246,7 @@ export class InscriptionComponent implements OnInit {
 
     private buildInscription(): DataAnalysisInscription {
         const personal = this.personalForm.getRawValue();
-        const {studentType, school, university, itba} = this.studiesForm.getRawValue();
-        const work = this.workForm.getRawValue();
+        const {occupation, itbaCareer} = this.occupationForm.getRawValue();
         const interests = this.interestsForm.getRawValue();
         const optionalText = (text: string) => text.trim() || null;
 
@@ -304,22 +259,9 @@ export class InscriptionComponent implements OnInit {
                 gender: personal.gender,
                 country: personal.country
             },
-            studies: {
-                studentType,
-                ...(studentType === StudentType.SCHOOL && {school: {name: school.name.trim(), year: school.year}}),
-                ...(studentType === StudentType.UNIVERSITY && {
-                    university: {
-                        degree: university.degree.trim(),
-                        careerCategory: university.careerCategory,
-                        university: university.university,
-                        universityOther: university.university === OTHER ? optionalText(university.universityOther) : null
-                    }
-                }),
-                ...(studentType === StudentType.ITBA && {itba: {studentId: itba.studentId.trim(), career: itba.career, year: itba.year}})
-            },
-            work: {
-                works: work.works,
-                industry: work.works ? work.industry : null
+            occupation: {
+                occupation,
+                itbaCareer: occupation === Occupation.ITBA ? itbaCareer : null
             },
             interests: {
                 referralSource: interests.referralSource,
@@ -337,7 +279,7 @@ export class InscriptionComponent implements OnInit {
     }
 
     get formValid(): boolean {
-        return [this.personalForm, this.studiesForm, this.workForm, this.interestsForm, this.consentsForm]
+        return [this.personalForm, this.occupationForm, this.interestsForm, this.consentsForm]
             .every(form => form.valid);
     }
 

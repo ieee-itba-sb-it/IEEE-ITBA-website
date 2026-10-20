@@ -14,10 +14,11 @@ export const TERMS_AND_CONDITIONS_URL = 'http://bit.ly/TyCIEEE';
 export const MIN_AGE = 12;
 export const MAX_PYTHON_INTERESTS = 3;
 
-export enum StudentType {
-    ITBA = 'ITBA',
+export enum Occupation {
     SCHOOL = 'SCHOOL',
+    ITBA = 'ITBA',
     UNIVERSITY = 'UNIVERSITY',
+    WORK = 'WORK',
     NONE = 'NONE'
 }
 
@@ -26,26 +27,7 @@ export const NO_EXPERIENCE = 'NONE';
 
 export const INSCRIPTION_OPTIONS = {
     GENDER: codes('FEMALE', 'MALE', 'OTHER', 'PREFER_NOT_TO_SAY'),
-    STUDENT_TYPE: codes(StudentType.ITBA, StudentType.SCHOOL, StudentType.UNIVERSITY, StudentType.NONE),
-    SCHOOL_YEAR: codes('PRIMARY_6', 'PRIMARY_7', 'SECONDARY_1', 'SECONDARY_2', 'SECONDARY_3', 'SECONDARY_4', 'SECONDARY_5'),
-    CAREER_CATEGORY: codes(
-        'ADMINISTRATION', 'AGRONOMY', 'ARCHITECTURE', 'ARTS', 'BIOLOGY', 'EXACT_SCIENCES', 'SOCIAL_SCIENCES',
-        'COMPUTING', 'COMMUNICATION', 'LAW', 'DESIGN', 'ECONOMICS', 'EDUCATION', 'PHILOSOPHY', 'ENGINEERING',
-        'LITERATURE', 'MEDICINE', 'DENTISTRY', 'PSYCHOLOGY', 'CHEMISTRY', 'VETERINARY', OTHER
-    ),
-    UNIVERSITY: [
-        {value: 'UBA', label: 'Universidad de Buenos Aires (UBA)'},
-        {value: 'UTN', label: 'Universidad Tecnológica Nacional (UTN)'},
-        {value: 'UNLP', label: 'Universidad Nacional de La Plata (UNLP)'},
-        {value: 'UNC', label: 'Universidad Nacional de Córdoba (UNC)'},
-        {value: 'UADE', label: 'Universidad Argentina de la Empresa (UADE)'},
-        {value: 'UNL', label: 'Universidad Nacional del Litoral (UNL)'},
-        {value: 'UNCUYO', label: 'Universidad Nacional de Cuyo (UNCuyo)'},
-        {value: 'UCA', label: 'Universidad Católica Argentina (UCA)'},
-        {value: 'UTDT', label: 'Universidad Torcuato Di Tella (UTDT)'},
-        {value: 'UNSAM', label: 'Universidad Nacional de San Martín (UNSAM)'},
-        {value: OTHER}
-    ] as InscriptionOption[],
+    OCCUPATION: codes(Occupation.SCHOOL, Occupation.ITBA, Occupation.UNIVERSITY, Occupation.WORK, Occupation.NONE),
     ITBA_CAREER: [
         {value: 'BUSINESS_SOCIAL_ANALYTICS', label: 'Licenciatura en Analítica Empresarial y Social'},
         {value: 'BUSINESS_TECHNOLOGY', label: 'Licenciatura en Negocios y Tecnología'},
@@ -61,13 +43,6 @@ export const INSCRIPTION_OPTIONS = {
         {value: 'CHEMICAL_ENGINEERING', label: 'Ingeniería Química'},
         {value: 'POSTGRADUATE', label: 'Posgrado'}
     ] as InscriptionOption[],
-    ITBA_YEAR: codes('ADMISSION', 'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH'),
-    WORK_INDUSTRY: codes(
-        'ADMINISTRATION', 'AGRICULTURE', 'FOOD', 'ARTS_CULTURE_ENTERTAINMENT', 'CUSTOMER_SERVICE', 'AUTOMOTIVE',
-        'CONSTRUCTION', 'ACCOUNTING', 'DEFENSE', 'LAW', 'DIPLOMACY', 'EDUCATION', 'IT', 'REAL_ESTATE',
-        'MANUFACTURING', 'ELECTRICAL_MACHINERY', 'MARKETING', 'MATERIALS', 'ENVIRONMENT', 'JOURNALISM',
-        'CHEMICAL', 'HEALTH', 'TEXTILE', 'TRANSPORT_TOURISM', 'SALES', OTHER
-    ),
     REFERRAL_SOURCE: codes(
         'FRIEND', 'INSTAGRAM', 'REDDIT', 'LINKEDIN', 'FACEBOOK', 'WHATSAPP', 'MAIL', 'UNIVERSITY', 'WORK',
         'IEEE_ENOTICE', OTHER
@@ -125,27 +100,9 @@ export type DataAnalysisInscription = {
         gender: string;
         country: string;
     };
-    studies: {
-        studentType: StudentType;
-        school?: {
-            name: string;
-            year: string;
-        };
-        university?: {
-            degree: string;
-            careerCategory: string;
-            university: string;
-            universityOther: string | null;
-        };
-        itba?: {
-            studentId: string;
-            career: string;
-            year: string;
-        };
-    };
-    work: {
-        works: boolean;
-        industry: string | null;
+    occupation: {
+        occupation: Occupation;
+        itbaCareer: string | null;
     };
     interests: {
         referralSource: string;

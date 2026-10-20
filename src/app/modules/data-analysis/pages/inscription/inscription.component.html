@@ -86,112 +86,28 @@
                     </form>
                 </mat-step>
 
-                <!-- Estudios -->
-                <mat-step [stepControl]="studiesForm" [label]="'DATAANALYSIS.INSCRIPTION.STEPS.STUDIES' | translate">
-                    <form [formGroup]="studiesForm" class="step-form">
-                        <label class="question">{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.STUDENT_TYPE' | translate }}</label>
-                        <mat-radio-group formControlName="studentType" class="radio-group" color="primary">
-                            <mat-radio-button *ngFor="let option of options.STUDENT_TYPE" [value]="option.value">{{ optionLabel('STUDENT_TYPE', option) }}</mat-radio-button>
+                <!-- Situación actual -->
+                <mat-step [stepControl]="occupationForm" [label]="'DATAANALYSIS.INSCRIPTION.STEPS.OCCUPATION' | translate">
+                    <form [formGroup]="occupationForm" class="step-form">
+                        <label class="question">{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.OCCUPATION' | translate }}</label>
+                        <mat-radio-group formControlName="occupation" class="radio-group" color="primary">
+                            <mat-radio-button *ngFor="let option of options.OCCUPATION" [value]="option.value">{{ optionLabel('OCCUPATION', option) }}</mat-radio-button>
                         </mat-radio-group>
-                        <p class="field-error" *ngIf="studiesForm.controls.studentType.touched && studiesForm.controls.studentType.invalid">
+                        <p class="field-error" *ngIf="occupationForm.controls.occupation.touched && occupationForm.controls.occupation.invalid">
                             {{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}
                         </p>
 
-                        <div *ngIf="studiesForm.controls.studentType.value === StudentType.SCHOOL" formGroupName="school" class="sub-section">
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.SCHOOL_NAME' | translate }}</mat-label>
-                                <input matInput formControlName="name">
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.SCHOOL_YEAR' | translate }}</mat-label>
-                                <mat-select formControlName="year">
-                                    <mat-option *ngFor="let option of options.SCHOOL_YEAR" [value]="option.value">{{ optionLabel('SCHOOL_YEAR', option) }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div *ngIf="studiesForm.controls.studentType.value === StudentType.UNIVERSITY" formGroupName="university" class="sub-section">
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.DEGREE' | translate }}</mat-label>
-                                <input matInput formControlName="degree">
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.CAREER_CATEGORY' | translate }}</mat-label>
-                                <mat-select formControlName="careerCategory">
-                                    <mat-option *ngFor="let option of options.CAREER_CATEGORY" [value]="option.value">{{ optionLabel('CAREER_CATEGORY', option) }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.UNIVERSITY' | translate }}</mat-label>
-                                <mat-select formControlName="university">
-                                    <mat-option *ngFor="let option of options.UNIVERSITY" [value]="option.value">{{ optionLabel('UNIVERSITY', option) }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field *ngIf="studiesForm.controls.university.controls.university.value === OTHER">
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.UNIVERSITY_OTHER' | translate }}</mat-label>
-                                <input matInput formControlName="universityOther">
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div *ngIf="studiesForm.controls.studentType.value === StudentType.ITBA" formGroupName="itba" class="sub-section">
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.STUDENT_ID' | translate }}</mat-label>
-                                <input matInput formControlName="studentId" inputmode="numeric">
-                                <mat-error *ngIf="studiesForm.controls.itba.controls.studentId.hasError('required')">{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                                <mat-error *ngIf="studiesForm.controls.itba.controls.studentId.hasError('pattern')">{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.NUMERIC' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.ITBA_CAREER' | translate }}</mat-label>
-                                <mat-select formControlName="career">
-                                    <mat-option *ngFor="let option of options.ITBA_CAREER" [value]="option.value">{{ optionLabel('ITBA_CAREER', option) }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                            <mat-form-field>
-                                <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.ITBA_YEAR' | translate }}</mat-label>
-                                <mat-select formControlName="year">
-                                    <mat-option *ngFor="let option of options.ITBA_YEAR" [value]="option.value">{{ optionLabel('ITBA_YEAR', option) }}</mat-option>
-                                </mat-select>
-                                <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="step-actions">
-                            <button class="ieee-button secondary" type="button" matStepperPrevious>{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.BACK' | translate }}</button>
-                            <button class="ieee-button" type="button" matStepperNext (click)="studiesForm.markAllAsTouched()">{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.NEXT' | translate }}</button>
-                        </div>
-                    </form>
-                </mat-step>
-
-                <!-- Trabajo -->
-                <mat-step [stepControl]="workForm" [label]="'DATAANALYSIS.INSCRIPTION.STEPS.WORK' | translate">
-                    <form [formGroup]="workForm" class="step-form">
-                        <label class="question">{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.WORKS' | translate }}</label>
-                        <mat-radio-group formControlName="works" class="radio-group" color="primary">
-                            <mat-radio-button [value]="true">{{ 'DATAANALYSIS.INSCRIPTION.OPTIONS.YES' | translate }}</mat-radio-button>
-                            <mat-radio-button [value]="false">{{ 'DATAANALYSIS.INSCRIPTION.OPTIONS.NO' | translate }}</mat-radio-button>
-                        </mat-radio-group>
-                        <p class="field-error" *ngIf="workForm.controls.works.touched && workForm.controls.works.invalid">
-                            {{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}
-                        </p>
-
-                        <mat-form-field *ngIf="workForm.controls.works.value" class="sub-section">
-                            <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.INDUSTRY' | translate }}</mat-label>
-                            <mat-select formControlName="industry">
-                                <mat-option *ngFor="let option of options.WORK_INDUSTRY" [value]="option.value">{{ optionLabel('WORK_INDUSTRY', option) }}</mat-option>
+                        <mat-form-field *ngIf="occupationForm.controls.occupation.value === Occupation.ITBA" class="sub-section">
+                            <mat-label>{{ 'DATAANALYSIS.INSCRIPTION.FIELDS.ITBA_CAREER' | translate }}</mat-label>
+                            <mat-select formControlName="itbaCareer">
+                                <mat-option *ngFor="let option of options.ITBA_CAREER" [value]="option.value">{{ optionLabel('ITBA_CAREER', option) }}</mat-option>
                             </mat-select>
                             <mat-error>{{ 'DATAANALYSIS.INSCRIPTION.ERRORS.REQUIRED' | translate }}</mat-error>
                         </mat-form-field>
 
                         <div class="step-actions">
                             <button class="ieee-button secondary" type="button" matStepperPrevious>{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.BACK' | translate }}</button>
-                            <button class="ieee-button" type="button" matStepperNext (click)="workForm.markAllAsTouched()">{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.NEXT' | translate }}</button>
+                            <button class="ieee-button" type="button" matStepperNext (click)="occupationForm.markAllAsTouched()">{{ 'DATAANALYSIS.INSCRIPTION.BUTTONS.NEXT' | translate }}</button>
                         </div>
                     </form>
                 </mat-step>
