@@ -18,6 +18,7 @@
         <div class="passed-exam-text">
             <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_NO_START_DATE' | translate }}</h1>
             <p>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_NO_START_DATE' | translate }}</p>
+            <ng-container *ngTemplateOutlet="discordNotice"></ng-container>
             <button (click)=goToHome() class="ieee-button">{{ 'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME' | translate }}</button>
         </div>
         <div class="passed-exam-img">
@@ -32,6 +33,7 @@
             <p class="description-texto">
                 {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION' | translate }}
             </p>
+            <ng-container *ngTemplateOutlet="discordNotice"></ng-container>
         </div>
 
         <div title="Exámenes disponibles">
@@ -75,4 +77,14 @@
         </div>
 
     </div>
+
+    <ng-template #discordNotice>
+        <div class="discord-notice">
+            <i class="fab fa-discord"></i>
+            <p>
+                {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DISCORD_NOTICE' | translate }}
+                <a [href]="discordUrl" target="_blank" rel="noopener noreferrer">{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DISCORD_LINK' | translate }}</a>
+            </p>
+        </div>
+    </ng-template>
 </div>

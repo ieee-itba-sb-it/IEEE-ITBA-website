@@ -5,6 +5,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {EventService} from 'src/app/core/services/event/event.service';
 import {AuthService} from 'src/app/core/services/authorization/auth.service';
 import {IeeeEvent} from "../../../../../shared/models/event/event";
+import {DISCORD_URL} from "src/app/shared/models/event/data_analysis/inscription";
 
 interface Exam {
     id: number;
@@ -30,6 +31,7 @@ export class ExamListComponent implements OnInit {
     loading = true
     dataAnalysisUser: DataAnalysisUser | null = null;
     examStartDate:Date | null = null;
+    readonly discordUrl = DISCORD_URL;
 
     constructor(
         private eventService: EventService,

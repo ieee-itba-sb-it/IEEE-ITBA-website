@@ -11,6 +11,7 @@ export type InscriptionOption = {
 const codes = (...values: string[]): InscriptionOption[] => values.map(value => ({value}));
 
 export const TERMS_AND_CONDITIONS_URL = 'http://bit.ly/TyCIEEE';
+export const DISCORD_URL = 'https://discord.gg/6pPYtWJDmW';
 export const MIN_AGE = 12;
 export const MAX_PYTHON_INTERESTS = 3;
 

@@ -642,7 +642,7 @@
     "DESC_TITLE": "Descripción",
     "DESC": "Este curso forma parte de una serie de cursos que ofrecemos, la cual tiene como objetivo principal aprender lo suficiente para automatizar tareas comunes, manipular archivos y hojas de datos de manera eficiente, y representar información gráficamente de manera sencilla. Todas estas tareas pueden ser realizadas usando programación sin necesidad de convertirse en un experto del tema.\nEl contenido de este curso está orientado hacia aquellos que tienen conocimientos básicos sobre programación en Python (tales como tipos de datos, funciones y estructuras de datos). Se verán conceptos y temas fundamentales acerca de librerías, lectura de archivos y análisis y representación de datos, poniendo en práctica lo aprendido mediante desafíos interactivos y ejercicios prácticos.",
     "FORMAT_SUBTITLE": "Formato del curso",
-    "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord. Además, haremos livestreams semanales para poder responder todas sus consultas.",
+    "FORMAT": "Las clases del curso consisten en videos y textos explicativos, intercalados con desafíos interactivos para resolver. Tendrán una semana entre clase y clase para mirar, leer y resolver los desafíos, pudiendo conversar con nosotros y con los demás participantes mediante Discord.",
     "ENROLLBUTTON": "¡Anotate ahora!",
     "CONTENTBUTTON": "Ir al contenido",
     "SOLUTIONBUTTON": "Ir al solucionario",
@@ -667,7 +667,7 @@
             },
             {
                 "QUESTION": "¿Cómo puedo hacer consultas o pedir ayuda?",
-                "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana, y cualquier duda pendiente se responderá durante el livestream."
+                "ANSWER": "Nos vamos a comunicar mediante la aplicación Discord, donde tenemos un servidor con canales tanto de voz como de texto. Ahí podremos responder todas sus consultas durante la semana."
             },
             {
                 "QUESTION": "¿Voy a poder interactuar con otros participantes?",
@@ -801,7 +801,9 @@
               "TITLE_PASSED_EXAM": "¡Felicitaciones, aprobaste el examen!",
               "DESCRIPTION_PASSED_EXAM": "Completaste el curso de Data Analysis.",
               "TITLE_NO_START_DATE": "Los exámenes todavía no tienen fecha de inicio",
-              "DESCRIPTION_NO_START_DATE": "Ya estás inscripto. Te avisaremos cuando se habiliten los exámenes; mientras tanto podés volver a esta página para ver la fecha de inicio."
+              "DESCRIPTION_NO_START_DATE": "Ya estás inscripto. Te avisaremos cuando se habiliten los exámenes; mientras tanto podés volver a esta página para ver la fecha de inicio.",
+              "DISCORD_NOTICE": "Para participar del curso, unite a nuestro servidor de Discord:",
+              "DISCORD_LINK": "Unirme al servidor"
           }
       }
   },

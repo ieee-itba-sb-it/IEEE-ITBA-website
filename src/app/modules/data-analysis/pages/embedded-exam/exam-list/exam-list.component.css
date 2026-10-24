@@ -95,6 +95,31 @@ h2{
     color: gray !important;
 }
 
+.discord-notice {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 5px solid #5865F2;
+    border-radius: 5px;
+    background-color: rgba(88, 101, 242, 0.1);
+}
+
+.discord-notice i {
+    font-size: 2rem;
+    color: #5865F2;
+}
+
+.discord-notice p {
+    margin: 0;
+}
+
+.discord-notice a {
+    font-weight: bold;
+    color: #5865F2;
+}
+
 .loading-container {
     display: flex;
     justify-content: center;

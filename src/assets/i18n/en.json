@@ -586,7 +586,7 @@
     "DESC_TITLE": "Description",
     "DESC": "This course is part of a series of courses we offer, with the main goal of learning how to automate simple tasks, efficient file and spreadsheet manipulation, and creating visual data representations. We believe that all of these tasks can be achieved through programming without the need to become an expert in the topic.\n\nThe contents of this course are oriented towards people who are already familiar with the basics of Python programming (such as data types, functions and data structures). We will go over the basics and fundamentals of libraries, file reading and data analysis and representation, putting into practice what we learn through interactive challenges and practical exercises.",
     "FORMAT_SUBTITLE": "Course format",
-    "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord. In addition to this, we will have weekly livestreams to answer your questions.",
+    "FORMAT": "The classes on this course consist of text and video explanations, with the addition of interactive challenges to solve. There will be a week between classes to read and solve these challenges, while being able to chat with us and the rest of the participants using Discord.",
     "ENROLLBUTTON": "Enroll now!",
     "CONTENTBUTTON": "Go to content",
     "SOLUTIONBUTTON": "Go to solutions",
@@ -611,7 +611,7 @@
         },
         {
           "QUESTION": "How can I ask questions or ask for help?",
-          "ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week, and any remaining questions will be answered during the livestreams."
+          "ANSWER": "We will communicate through Discord, where we have our own server with voice and text channels. There we will answer your questions during the week."
         },
         {
           "QUESTION": "Can I interact with the rest of the participants?",
@@ -744,7 +744,9 @@
               "TITLE_PASSED_EXAM": "Congratulations, you passed the exam!",
               "DESCRIPTION_PASSED_EXAM": "You completed the Data Analysis course.",
               "TITLE_NO_START_DATE": "The exams don't have a start date yet",
-              "DESCRIPTION_NO_START_DATE": "You are already enrolled. We will let you know when the exams are enabled; in the meantime you can come back to this page to check the start date."
+              "DESCRIPTION_NO_START_DATE": "You are already enrolled. We will let you know when the exams are enabled; in the meantime you can come back to this page to check the start date.",
+              "DISCORD_NOTICE": "To take part in the course, join our Discord server:",
+              "DISCORD_LINK": "Join the server"
           }
       }
   },
