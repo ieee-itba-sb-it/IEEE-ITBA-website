@@ -16,13 +16,13 @@
 
             <!-- Alumnos -->
             <mat-tab [label]="'ADMIN.EXAMSTAB.TABS.STUDENTS' | translate">
-                <ng-container *ngIf="students; else spinner">
-                    <div class="status-summary" *ngIf="students.length">
-                        <span class="status-badge passed">{{ statusLabel(StudentStatus.PASSED) | translate }}: {{ countByStatus(StudentStatus.PASSED) }}</span>
-                        <span class="status-badge in-progress">{{ statusLabel(StudentStatus.IN_PROGRESS) | translate }}: {{ countByStatus(StudentStatus.IN_PROGRESS) }}</span>
-                        <span class="status-badge failed">{{ statusLabel(StudentStatus.FAILED) | translate }}: {{ countByStatus(StudentStatus.FAILED) }}</span>
-                    </div>
+                <div class="status-summary" *ngIf="studentsSummary?.total">
+                    <span class="status-badge passed">{{ statusLabel(StudentStatus.PASSED) | translate }}: {{ studentsSummary.byStatus[StudentStatus.PASSED] }}</span>
+                    <span class="status-badge in-progress">{{ statusLabel(StudentStatus.IN_PROGRESS) | translate }}: {{ studentsSummary.byStatus[StudentStatus.IN_PROGRESS] }}</span>
+                    <span class="status-badge failed">{{ statusLabel(StudentStatus.FAILED) | translate }}: {{ studentsSummary.byStatus[StudentStatus.FAILED] }}</span>
+                </div>
 
+                <ng-container *ngIf="students; else spinner">
                     <div class="table-wrapper">
                         <table class="table align-middle mb-0 mt-2 rounded">
                             <thead class="bg-light">
@@ -56,6 +56,16 @@
                         </table>
                     </div>
                 </ng-container>
+
+                <!-- Outside the table so it keeps its page while the next one loads -->
+                <mat-paginator *ngIf="studentsSummary?.total"
+                               [length]="studentsSummary.total"
+                               [pageIndex]="pageIndex"
+                               [pageSize]="pageSize"
+                               [pageSizeOptions]="pageSizeOptions"
+                               [disabled]="!students"
+                               (page)="handlePageEvent($event)">
+                </mat-paginator>
             </mat-tab>
 
             <!-- Métricas -->

@@ -1,3 +1,5 @@
+import {QueryDocumentSnapshot} from "@angular/fire/firestore";
+
 export type Answer = {
     answer: string;
     isCorrect: boolean;
@@ -77,6 +79,19 @@ export type DataAnalysisStudentRow = DataAnalysisUser & {
     status: StudentStatus;
 };
 
+export type DataAnalysisStudentsPage = {
+    students: DataAnalysisStudentRow[];
+    // Last student of the page, from where the next page starts; null when the page is empty
+    cursor: QueryDocumentSnapshot | null;
+};
+
+export type DataAnalysisStudentsSummary = {
+    total: number;
+    byStatus: Record<StudentStatus, number>;
+    // Whether the students that have not passed can still take exams
+    examsOpen: boolean;
+};
+
 // Last moment an exam can be taken: the end of the last exam day, or null when the exams have no start date yet
 export const getExamsEnd = (examStartDate: Date | null): Date | null => {
     if (!examStartDate) return null;
@@ -88,13 +103,10 @@ export const getExamsEnd = (examStartDate: Date | null): Date | null => {
 
 // Students of past editions can no longer take exams. In the current edition the exams stay open until the last
 // exam day (or indefinitely while they have no start date)
-export const getStudentStatus = (
-    student: DataAnalysisUser,
-    isCurrentEdition: boolean,
-    examsEnd: Date | null,
-    now: Date = new Date()
-): StudentStatus => {
+export const areExamsOpen = (isCurrentEdition: boolean, examsEnd: Date | null, now: Date = new Date()): boolean =>
+    isCurrentEdition && (!examsEnd || now <= examsEnd);
+
+export const getStudentStatus = (student: DataAnalysisUser, examsOpen: boolean): StudentStatus => {
     if (student.passedCourse) return StudentStatus.PASSED;
-    const examsOpen = isCurrentEdition && (!examsEnd || now <= examsEnd);
     return examsOpen ? StudentStatus.IN_PROGRESS : StudentStatus.FAILED;
 };

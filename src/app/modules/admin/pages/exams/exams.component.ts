@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { EventService } from 'src/app/core/services/event/event.service';
-import { DataAnalysisStudentRow, StudentStatus } from 'src/app/shared/models/event/data_analysis/exams';
+import {
+    DataAnalysisStudentRow,
+    DataAnalysisStudentsSummary,
+    StudentStatus
+} from 'src/app/shared/models/event/data_analysis/exams';
 import {
     AGE_RANGES,
     DataAnalysisMetricField,
@@ -54,12 +61,20 @@ const METRIC_CHARTS: MetricChartConfig[] = [
 })
 export class ExamsAdminComponent implements OnInit {
     readonly StudentStatus = StudentStatus;
+    readonly pageSizeOptions = [25, 50, 100];
 
     editions?: string[];
     currentEdition: string | null = null;
     selectedEdition: string | null = null;
 
+    studentsSummary?: DataAnalysisStudentsSummary | null;
     students?: DataAnalysisStudentRow[];
+    pageIndex = 0;
+    pageSize = this.pageSizeOptions[0];
+    // Last student of each page already loaded: the paginator only moves one page at a time, so the previous
+    // page's cursor is always known
+    private pageCursors: QueryDocumentSnapshot[] = [];
+    private pageSubscription?: Subscription;
     metrics?: DataAnalysisMetrics | null;
     charts: MetricChart[] = [];
 
@@ -86,17 +101,25 @@ export class ExamsAdminComponent implements OnInit {
 
     selectEdition(editionId: string): void {
         this.selectedEdition = editionId;
-        this.students = undefined;
+        this.studentsSummary = undefined;
         this.metrics = undefined;
+        this.pageSubscription?.unsubscribe();
+        this.students = undefined;
+        this.pageCursors = [];
 
-        this.eventService.getDataAnalysisEditionStudents(editionId).subscribe({
-            next: students => {
+        // The pages need the summary to know whether the exams are open, so the event is read only once per edition
+        this.eventService.getDataAnalysisStudentsSummary(editionId).subscribe({
+            next: summary => {
                 // Ignore responses of an edition that is no longer selected
                 if (editionId !== this.selectedEdition) return;
-                this.students = [...students].sort((a, b) =>
-                    `${a.lastName} ${a.firstName}`.localeCompare(`${b.lastName} ${b.firstName}`));
+                this.studentsSummary = summary;
+                // An empty query would still be charged one read
+                if (summary.total) this.loadPage(0);
+                else this.students = [];
             },
             error: () => {
+                if (editionId !== this.selectedEdition) return;
+                this.studentsSummary = null;
                 this.students = [];
                 this.showError('ADMIN.EXAMSTAB.ERRORS.STUDENTS');
             }
@@ -116,8 +139,37 @@ export class ExamsAdminComponent implements OnInit {
         });
     }
 
-    countByStatus(status: StudentStatus): number {
-        return this.students?.filter(student => student.status === status).length ?? 0;
+    handlePageEvent(event: PageEvent): void {
+        if (event.pageSize !== this.pageSize) {
+            // The cursors depend on the page size
+            this.pageSize = event.pageSize;
+            this.pageCursors = [];
+            this.loadPage(0);
+        } else {
+            this.loadPage(event.pageIndex);
+        }
+    }
+
+    private loadPage(pageIndex: number): void {
+        const editionId = this.selectedEdition;
+        if (!editionId || !this.studentsSummary) return;
+
+        this.pageSubscription?.unsubscribe();
+        this.pageIndex = pageIndex;
+        this.students = undefined;
+
+        const after = pageIndex > 0 ? this.pageCursors[pageIndex - 1] : undefined;
+        const {examsOpen} = this.studentsSummary;
+        this.pageSubscription = this.eventService.getDataAnalysisStudentsPage(editionId, this.pageSize, examsOpen, after).subscribe({
+            next: ({students, cursor}) => {
+                this.students = students;
+                if (cursor) this.pageCursors[pageIndex] = cursor;
+            },
+            error: () => {
+                this.students = [];
+                this.showError('ADMIN.EXAMSTAB.ERRORS.STUDENTS');
+            }
+        });
     }
 
     statusLabel(status: StudentStatus): string {
