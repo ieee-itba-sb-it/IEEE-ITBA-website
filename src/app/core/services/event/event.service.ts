@@ -17,9 +17,13 @@ import {
     getDoc,
     getDocs,
     increment,
+    limit,
+    orderBy,
     query,
     Query,
+    QueryConstraint,
     QueryDocumentSnapshot, runTransaction, serverTimestamp,
+    startAfter,
     updateDoc,
     where
 } from '@angular/fire/firestore';
@@ -32,16 +36,19 @@ import {
     parseArgentineDate
 } from "../../../shared/argentina-time";
 import {
+    areExamsOpen,
     DATA_ANALYSIS_DEFAULT_PASSING_SCORE,
     DATA_ANALYSIS_EXAM_DAYS,
     DataAnalysisExamState,
-    DataAnalysisStudentRow,
+    DataAnalysisStudentsPage,
+    DataAnalysisStudentsSummary,
     DataAnalysisUser,
     ExamAccess,
     ExamDayClosedError,
     getExamsEnd,
     getStudentStatus,
     Question,
+    StudentStatus,
     UserExam
 } from "../../../shared/models/event/data_analysis/exams";
 import {AuthService} from "../authorization/auth.service";
@@ -494,21 +501,53 @@ export class EventService {
         );
     }
 
-    // Students of an edition with their status: passed, still taking exams, or failed once the exams closed
-    public getDataAnalysisEditionStudents(editionId: string): Observable<DataAnalysisStudentRow[]> {
+    // How many students of an edition are in each status, with count queries instead of reading the students.
+    // It also says whether the exams are open, which the pages need to give each student their status
+    public getDataAnalysisStudentsSummary(editionId: string): Observable<DataAnalysisStudentsSummary> {
+        const passedQuery = query(this.getDataAnalysisStudentsRef(editionId), where('passedCourse', '==', true));
         return forkJoin({
-            snapshot: from(getDocs(this.getDataAnalysisStudentsRef(editionId))),
+            total: this.getDataAnalysisEditionStudentCount(editionId),
+            passed: from(getCountFromServer(passedQuery)).pipe(map(snapshot => snapshot.data().count)),
             event: this.getEvent(IeeeEvent.DATA_ANALYSIS).pipe(take(1))
         }).pipe(
-            map(({snapshot, event}) => {
+            map(({total, passed, event}) => {
                 const isCurrentEdition = this.getEditionId(event) === editionId;
                 const examsEnd = getExamsEnd(event?.examStartDate ? this.toDate(event.examStartDate) : null);
-                return snapshot.docs.map(studentDoc => {
+                const examsOpen = areExamsOpen(isCurrentEdition, examsEnd);
+                const notPassed = total - passed;
+                return {
+                    total,
+                    byStatus: {
+                        [StudentStatus.PASSED]: passed,
+                        [StudentStatus.IN_PROGRESS]: examsOpen ? notPassed : 0,
+                        [StudentStatus.FAILED]: examsOpen ? 0 : notPassed
+                    },
+                    examsOpen
+                };
+            })
+        );
+    }
+
+    // One page of the students of an edition sorted by name, with their status: passed, still taking exams, or
+    // failed once the exams closed. Only the students of the page are read
+    public getDataAnalysisStudentsPage(
+        editionId: string,
+        pageSize: number,
+        examsOpen: boolean,
+        after?: QueryDocumentSnapshot
+    ): Observable<DataAnalysisStudentsPage> {
+        const constraints: QueryConstraint[] = [orderBy('lastName'), orderBy('firstName'), limit(pageSize)];
+        if (after) constraints.push(startAfter(after));
+
+        return from(getDocs(query(this.getDataAnalysisStudentsRef(editionId), ...constraints))).pipe(
+            map(snapshot => ({
+                students: snapshot.docs.map(studentDoc => {
                     const student = studentDoc.data() as DataAnalysisUser;
                     const row = {...student, enrolledAt: this.toDate(student.enrolledAt)};
-                    return {...row, status: getStudentStatus(row, isCurrentEdition, examsEnd)};
-                });
-            })
+                    return {...row, status: getStudentStatus(row, examsOpen)};
+                }),
+                cursor: snapshot.docs[snapshot.docs.length - 1] ?? null
+            }))
         );
     }
 
