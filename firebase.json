@@ -4,7 +4,10 @@
   },
   "hosting": {
     "headers": [
-      { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+      { "source": "**", "headers": [{"key": "Cache-Control", "value": "no-cache"}] },
+      { "source": "**/*.+([0-9a-f]).@(js|css|woff2|woff|ttf|png|jpg|jpeg|svg|webp|gif)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}] },
+      { "source": "/assets/**", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}] },
+      { "source": "/assets/i18n/**", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
     ],
     "public": "dist/ITBA-IEEE-Website-A9",
     "ignore": [
@@ -25,6 +28,18 @@
       }
     ],
     "rewrites": [
+      {
+        "source": "**/*.@(php|php5|php7|asp|aspx|cgi|env|sql|yml|yaml|ini|conf|bak|old|backup|save|swp|log|zip)",
+        "destination": "/__not-found"
+      },
+      {
+        "source": "**/.@(env|git|svn|aws|ssh|htaccess|htpasswd|vscode|idea|DS_Store)*{,/**}",
+        "destination": "/__not-found"
+      },
+      {
+        "source": "/@(wp|wordpress|wp-admin|wp-content|wp-includes|wp-json){,/**}",
+        "destination": "/__not-found"
+      },
       {
         "source": "**",
         "destination": "/index.html"

@@ -2,6 +2,7 @@ import {initializeApp} from "firebase-admin/app";
 import {migrateNewsToNewFormat} from "./migrations/migrate-news-to-new-format";
 import {seedDataAnalysisEdition, seedQuestions} from "./seed";
 import {deleteAsimovCollections} from "./asimov/delete-asimov-collections";
+import {migrateDataAnalysisImageToJpg} from "./migrations/migrate-data-analysis-image-to-jpg";
 
 // USO EN PROD (Descomentar)
 // WINDOWS
@@ -23,8 +24,9 @@ initializeApp({
 
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
-    await seedQuestions();
-    await seedDataAnalysisEdition();
+    // await seedQuestions();
+    // await seedDataAnalysisEdition();
+    await migrateDataAnalysisImageToJpg();
 }
 
 main();

@@ -58,7 +58,7 @@ const events: Record<IeeeEvent, any> = {
     },
     [IeeeEvent.DATA_ANALYSIS]: {
         "routerLink": "/data-analysis",
-        "imageSrc": "../../../../../assets/image/events/data-analysis/data-analysis-event.png",
+        "imageSrc": "../../../../../assets/image/events/data-analysis/data-analysis-event.jpg",
         "imageAlt": "Foto de curso analisis de datos",
         "titleCode": "HOME.DATAANALYSIS.TITLE",
         "descriptionCode": "HOME.DATAANALYSIS.TEXT",
