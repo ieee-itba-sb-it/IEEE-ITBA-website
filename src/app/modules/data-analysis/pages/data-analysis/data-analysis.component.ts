@@ -16,6 +16,8 @@ export class DataAnalysisComponent implements OnInit {
     sponsorsServiceVar: SponsorsService;
 
     event?: Event;
+    // Edition the current user is enrolled in, or null when they are not enrolled in the current edition
+    enrolledEdition: string | null = null;
 
     enrollOpen = '11 Sep 2023 03:00:00 UTC';
     enrollClose = '18 Sep 2023 03:00:00 UTC';
@@ -124,6 +126,14 @@ export class DataAnalysisComponent implements OnInit {
     ngOnInit(): void {
         this.seoService.updateMetaTags("DATAANALYSIS.PAGETITLE", "DATAANALYSIS.PAGEDESCRIPTION", ["DATA ANALYSIS", "IEEE", "ITBA", "PYTHON"], 'events/data-analysis/data-analysis-event.jpg');
         this.getEvent();
+        this.getInscriptionStatus();
+    }
+
+    getInscriptionStatus(): void {
+        this.eventService.getDataAnalysisInscriptionStatus()
+            .subscribe(status => {
+                this.enrolledEdition = status.enrolled ? status.edition : null;
+            });
     }
 
     getEvent(): void {

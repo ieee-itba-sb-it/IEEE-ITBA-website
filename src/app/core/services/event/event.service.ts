@@ -607,6 +607,7 @@ export class EventService {
                 return enrolled$.pipe(map(enrolled => ({
                     user,
                     enrolled,
+                    edition: editionId,
                     open: this.isInscriptionOpen(event),
                     end: this.getInscriptionEnd(event)
                 })));

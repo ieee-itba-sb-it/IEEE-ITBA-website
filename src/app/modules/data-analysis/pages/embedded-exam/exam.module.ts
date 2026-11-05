@@ -9,6 +9,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {DiscordNoticeComponent} from "../../components/discord-notice/discord-notice.component";
 @NgModule({
     declarations: [
         ExamComponent,
@@ -22,7 +23,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatRadioModule,
         TranslateModule,
         MatIconModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        DiscordNoticeComponent
     ]
 })
 export class ExamModule {}

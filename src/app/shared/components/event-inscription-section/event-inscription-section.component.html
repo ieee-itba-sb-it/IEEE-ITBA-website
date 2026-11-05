@@ -1,5 +1,8 @@
-<ng-container *ngIf="showEnrollSection() || showExamsButton()">
-    <app-event-section title="{{ (showEnrollSection() ? 'HOME.EVENTS.ENROLL.OPEN' : 'HOME.EVENTS.EXAMS.OPEN') | translate }}" [asimov]="isAsimov">
+<ng-container *ngIf="showSection()">
+    <app-event-section title="{{ sectionTitle() | translate }}" [asimov]="isAsimov">
+        <ng-container *ngIf="showEnrolledConfirmation()">
+            <ng-content select="[enrolledContent]"></ng-content>
+        </ng-container>
         <div class="inscription-button-container" [class.inscription-button-container-dual]="showInscriptionButton() && showSpectatorInscriptionButton()">
             <button *ngIf="showInscriptionButton()" class="btn inscription-button w-25" [style.--color]="(getAppColors() | async).background" (click)="onInscriptionClick()">
                 <span>{{ hasSpectatorInscription() ? ('HOME.EVENTS.ENROLL.CLICK_COMPETE' | translate) : ('HOME.EVENTS.ENROLL.CLICK' | translate) }}</span>

@@ -201,7 +201,8 @@
         "OPEN": "Inscriptions are open!",
         "CLICK": "Enroll now!",
         "CLICK_COMPETE": "Enroll to compete!",
-        "CLICK_SPECTATE": "Enroll as a spectator!"
+        "CLICK_SPECTATE": "Enroll as a spectator!",
+        "ENROLLED": "You are already enrolled!"
       },
       "EXAMS": {
         "OPEN": "Exams are open!",
@@ -591,6 +592,7 @@
     "CONTENTBUTTON": "Go to content",
     "SOLUTIONBUTTON": "Go to solutions",
     "TESTBUTTON": "Start Test",
+    "ENROLLED": "You are already enrolled in the {{course}}, {{edition}} edition.",
     "CONTENT_TITLE": "Course contents",
     "CONTENT_DESC": "The course consists of 2 classes covering the following topics, to access the contents of the classes and the solutions you can click on the corresponding button.",
     "TITLE": "Data Analysis in Python Course",

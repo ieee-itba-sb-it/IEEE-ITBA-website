@@ -4,7 +4,14 @@
   </app-event-title>
 
   <!-- INSCRIPTION section -->
-  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" [examStartDate]="event?.examStartDate" examsRoute="/data-analysis/exams" />
+  <app-event-inscription-section [dates]="event?.dates" [inscriptionLink]="event?.inscriptionLink" [spectatorInscriptionEnabled]="event?.spectatorInscriptionEnabled" [spectatorInscriptionLink]="event?.spectatorInscriptionLink" [examStartDate]="event?.examStartDate" examsRoute="/data-analysis/exams" [enrolled]="!!enrolledEdition">
+    <div enrolledContent>
+      <p class="enrolled-confirmation">
+        {{ 'DATAANALYSIS.ENROLLED' | translate: { course: ('DATAANALYSIS.TITLE' | translate), edition: enrolledEdition } }}
+      </p>
+      <app-discord-notice />
+    </div>
+  </app-event-inscription-section>
 
   <div>
     <div class="d-flex flex-row-reverse">

@@ -164,6 +164,8 @@ export type DataAnalysisEditions = {
 export type DataAnalysisInscriptionStatus = {
     user: IEEEuser | null;
     enrolled: boolean;
+    // Current edition id, or null when the inscription date is not confirmed
+    edition: string | null;
     open: boolean;
     end: Date | null;
 };

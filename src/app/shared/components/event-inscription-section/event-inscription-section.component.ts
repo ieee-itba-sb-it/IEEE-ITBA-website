@@ -17,6 +17,9 @@ export class EventInscriptionSectionComponent {
     @Input() spectatorInscriptionLink?: Event['spectatorInscriptionLink'];
     @Input() examStartDate?: Event['examStartDate'];
     @Input() examsRoute?: string;
+    // The user is already enrolled: while the inscription is open, the [enrolledContent] projected by the page
+    // is shown instead of the inscription button
+    @Input() enrolled: boolean = false;
 
     constructor(
         private appConfigService: AppConfigService,
@@ -27,8 +30,16 @@ export class EventInscriptionSectionComponent {
         return this.appConfigService.getAppColors();
     }
 
+    private isInscriptionOpen(): boolean {
+        return this.eventService.isEventDateOpen(this.dates?.[EventDate.INSCRIPTION]);
+    }
+
     showInscriptionButton(): boolean {
-        return !!this.inscriptionLink && this.eventService.isEventDateOpen(this.dates?.[EventDate.INSCRIPTION]);
+        return !this.enrolled && !!this.inscriptionLink && this.isInscriptionOpen();
+    }
+
+    showEnrolledConfirmation(): boolean {
+        return this.enrolled && this.isInscriptionOpen();
     }
 
     showSpectatorInscriptionButton(): boolean {
@@ -46,6 +57,16 @@ export class EventInscriptionSectionComponent {
 
     showEnrollSection(): boolean {
         return this.showInscriptionButton() || this.showSpectatorInscriptionButton();
+    }
+
+    showSection(): boolean {
+        return this.showEnrollSection() || this.showEnrolledConfirmation() || this.showExamsButton();
+    }
+
+    sectionTitle(): string {
+        if (this.showEnrollSection()) return 'HOME.EVENTS.ENROLL.OPEN';
+        if (this.showEnrolledConfirmation()) return 'HOME.EVENTS.ENROLL.ENROLLED';
+        return 'HOME.EVENTS.EXAMS.OPEN';
     }
 
     hasSpectatorInscription(): boolean {

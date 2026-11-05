@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {CustomMissingTranslationHandler} from '../../shared/CustomMissingTranslationHandler';
 import {HttpLoaderFactory} from '../../shared/translation-helpers';
 import {InscriptionComponent} from './pages/inscription/inscription.component';
+import {DiscordNoticeComponent} from './components/discord-notice/discord-notice.component';
 
 const routes: Routes = [
     { path: '',  component: DataAnalysisComponent },
@@ -42,7 +43,8 @@ export const routing = RouterModule.forChild(routes);
         }),
         FlexLayoutModule,
         MatExpansionModule,
-        MatButtonModule
+        MatButtonModule,
+        DiscordNoticeComponent
     ]
 })
 export class DataAnalysisModule { }
