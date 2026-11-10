@@ -17,12 +17,13 @@ import {
     startAt,
     where,
     writeBatch,
-    runTransaction, DocumentData, arrayUnion
+    runTransaction, DocumentData, arrayUnion, onSnapshot, serverTimestamp
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {defer, from, Observable} from 'rxjs';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 import { IEEEUserFilters } from 'src/app/shared/models/ieee-user/ieee-user-filters';
-import {IEEEMember} from "../../../shared/models/team-member";
+import {AsignacionSolicitud, obtenerMiembroPublico, SolicitudIngreso} from '../../../shared/models/solicitud-ingreso';
+import {Commission} from '../../../shared/models/commission';
 import {roles} from "../../../shared/models/roles/roles.enum";
 
 @Injectable({
@@ -135,56 +136,78 @@ export class AdminService {
         })
     }
 
-    getTeamRequests(): Observable<IEEEMember[]> {
-        return new Observable(subscriber => {
-            getDocs(query(collection(this.afs, "team-requests"))).then(snapshot => {
-                subscriber.next(snapshot.docs.map(doc => doc.data() as IEEEMember));
-            });
-        })
+    obtenerSolicitudes(): Observable<SolicitudIngreso[]> {
+        return new Observable(suscriptor => onSnapshot(collection(this.afs, 'team-requests'),
+            resultado => suscriptor.next(resultado.docs.map(documento => ({
+                ...documento.data(), email: documento.id
+            } as SolicitudIngreso))),
+            error => suscriptor.error(error)
+        ));
     }
 
-    acceptTeamRequests(requests: IEEEMember[]): Observable<void> {
-        return new Observable(subscriber => {
-            runTransaction(this.afs, async transaction => {
-                for(let request of requests) {
-                    let sensitiveData = await transaction.get(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email));
-                    if (sensitiveData.exists()) {
-                        transaction.update(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email), {roles: arrayUnion(roles.member)});
-                    } else {
-                        transaction.set(doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, request.email), {roles: [roles.member]});
-                    }
-                    transaction.update(doc(this.afs, AdminService.USERS_COLLECTION_NAME, request.email), {roles: arrayUnion(roles.member)});
-                    transaction.set(
-                        doc(this.afs, "commissions", request.commissionid, "members", request.email),
-                        { ...request }
-                    );
-                    transaction.delete(
-                        doc(this.afs, "team-requests", request.email)
-                    );
-                }
-            })
-                .then(() => {
-                    subscriber.next();
-                    subscriber.complete();
-                })
-                .catch((err) => subscriber.error(err));
-        })
-    }
-
-    rejectTeamRequests(requests: IEEEMember[]): Observable<void> {
-        return new Observable(subscriber => {
-            let batch = writeBatch(this.afs);
-            for(let request of requests) {
-                batch.delete(
-                    doc(this.afs, "team-requests", request.email)
-                );
+    aceptarSolicitudes(asignaciones: AsignacionSolicitud[]): Observable<void> {
+        return defer(() => from(runTransaction(this.afs, async transaccion => {
+            if (!asignaciones.length || asignaciones.length > 20) {
+                throw new Error('Seleccioná entre 1 y 20 solicitudes.');
             }
-            batch.commit()
-                .then(() => {
-                    subscriber.next();
-                    subscriber.complete();
-                })
-                .catch((err) => subscriber.error(err));
-        });
+            if (new Set(asignaciones.map(asignacion => asignacion.correo)).size !== asignaciones.length) {
+                throw new Error('Hay solicitudes repetidas.');
+            }
+            const documentos = await Promise.all(asignaciones.map(async asignacion => {
+                if (!asignacion.comisionId || !asignacion.cargoId || !['F', 'M'].includes(asignacion.generoCargo)) {
+                    throw new Error('Asigná una comisión y un cargo a cada persona.');
+                }
+                const solicitudRef = doc(this.afs, 'team-requests', asignacion.correo);
+                const usuarioRef = doc(this.afs, AdminService.USERS_COLLECTION_NAME, asignacion.correo);
+                const rolesRef = doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, asignacion.correo);
+                const [solicitud, usuario, comision] = await Promise.all([
+                    transaccion.get(solicitudRef),
+                    transaccion.get(usuarioRef),
+                    transaccion.get(doc(this.afs, 'commissions', asignacion.comisionId))
+                ]);
+                if (!solicitud.exists() || (solicitud.data().estado ?? 'pendiente') !== 'pendiente') {
+                    throw new Error('Una solicitud ya fue revisada. Actualizá la selección.');
+                }
+                if (!usuario.exists()) throw new Error('No se encontró la cuenta de una de las personas.');
+                const datosComision = comision.data() as Commission;
+                if (!datosComision?.positions?.some(cargo => cargo.id === asignacion.cargoId)) {
+                    throw new Error('El cargo seleccionado no pertenece a esa comisión.');
+                }
+                return {asignacion, solicitudRef, usuarioRef, rolesRef, solicitud: solicitud.data() as SolicitudIngreso};
+            }));
+            for (const documento of documentos) {
+                const {asignacion, solicitudRef, usuarioRef, rolesRef, solicitud} = documento;
+                transaccion.set(rolesRef, {roles: arrayUnion(roles.member)}, {merge: true});
+                transaccion.update(usuarioRef, {roles: arrayUnion(roles.member)});
+                transaccion.set(
+                    doc(this.afs, 'commissions', asignacion.comisionId, 'members', asignacion.correo),
+                    obtenerMiembroPublico(solicitud, asignacion)
+                );
+                transaccion.update(solicitudRef, {
+                    estado: 'aceptada',
+                    gender: asignacion.generoCargo,
+                    comisionAsignadaId: asignacion.comisionId,
+                    cargoAsignadoId: asignacion.cargoId,
+                    fechaRevision: serverTimestamp()
+                });
+            }
+        })));
+    }
+
+    rechazarSolicitudes(correos: string[]): Observable<void> {
+        return defer(() => from(runTransaction(this.afs, async transaccion => {
+            if (!correos.length || correos.length > 20) {
+                throw new Error('Seleccioná entre 1 y 20 solicitudes.');
+            }
+            const documentos = await Promise.all(correos.map(correo =>
+                transaccion.get(doc(this.afs, 'team-requests', correo))
+            ));
+            for (const documento of documentos) {
+                if (!documento.exists() || (documento.data().estado ?? 'pendiente') !== 'pendiente') {
+                    throw new Error('Una solicitud ya fue revisada. Actualizá la selección.');
+                }
+                transaccion.update(documento.ref, {estado: 'rechazada', fechaRevision: serverTimestamp()});
+            }
+        })));
     }
 }

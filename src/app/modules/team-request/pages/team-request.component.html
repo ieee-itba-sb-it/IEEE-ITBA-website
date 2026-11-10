@@ -1,98 +1,211 @@
-<div class="main-container d-flex justify-content-center">
-    <mat-card class="p-3" *ngIf="(areRequestsOpen$ | async) === false; else form">
-        <mat-card-title class="text-center">{{ "TEAM_REQUEST.REQUESTS_CLOSE" | translate }}</mat-card-title>
-        <mat-card-content class="mt-2">
-            <p>{{ "TEAM_REQUEST.REQUESTS_CLOSE_MESSAGE" | translate }}</p>
-        </mat-card-content>
-    </mat-card>
-    <ng-template #form>
-        <mat-card class="py-3 px-2" *ngIf="(user$ | async).verifiedEmail; else verifyEmail">
-            <mat-card-title class="text-center">
-              {{ "TEAM_REQUEST.TITLE" | translate }}
-            </mat-card-title>
-            <form>
-                <mat-card-content>
-                    <section>
-                        <h2 class="m-0">{{ "TEAM_REQUEST.EDIT_PROFILE" | translate }}</h2>
-                        <p>{{ "TEAM_REQUEST.VERIFY_DATA" | translate }}</p>
-                        <div class="d-flex justify-content-center gap-5 flex-wrap">
-                            <app-upload-picture-input [(photoURL)]="changedUser.photoURL" [(pictureType)]="pictureType"></app-upload-picture-input>
-                            <div>
-                                <mat-form-field class="w-100">
-                                    <mat-label for="fullname">{{ 'REGISTER.FULL_NAME' | translate }}:</mat-label>
-                                    <input name="fullname" type="text" id="fullname" required matInput [(ngModel)]="changedUser.fullname">
+<main class="main-container inscripcion">
+    <div class="contenido-inscripcion">
+        <header class="encabezado-inscripcion">
+            <h1>¡Forma parte de IEEE ITBA!</h1>
+            <p>¡Súmate a nuestro equipo! ¡Se vienen muchas actividades y necesitamos tu ayuda!</p>
+        </header>
+
+        <p *ngIf="error" class="mensaje mensaje-error" role="alert">{{ error }}</p>
+        <p *ngIf="aviso" class="mensaje mensaje-exito" role="status">{{ aviso }}</p>
+        <app-loading-spinner *ngIf="cargando || cargandoSolicitud"></app-loading-spinner>
+
+        <ng-container *ngIf="!cargando && !cargandoSolicitud && usuario && !falloCarga">
+            <mat-card *ngIf="solicitud && !editando" class="tarjeta estado-solicitud" aria-labelledby="titulo-estado">
+                <span class="etiqueta">Tu inscripción</span>
+                <h2 id="titulo-estado">{{ solicitud.estado === 'aceptada' ? '¡Ya sos parte del equipo!' : solicitud.estado === 'rechazada' ? 'Tu solicitud fue revisada' : 'Tu solicitud está en revisión' }}</h2>
+                <p>{{ solicitud.estado === 'aceptada' ? 'Administración aceptó tu solicitud y te asignó una comisión y un cargo.' : solicitud.estado === 'rechazada' ? 'Tu solicitud no fue aceptada en esta oportunidad. Si la convocatoria está abierta, podés actualizar tus respuestas y volver a postularte.' : 'Ya recibimos tus datos. El equipo se pondrá en contacto con vos para los próximos pasos.' }}</p>
+                <button *ngIf="inscripcionesAbiertas && solicitud.estado !== 'aceptada'" mat-stroked-button color="primary" type="button" (click)="editarSolicitud()">
+                    {{ solicitud.estado === 'rechazada' ? 'Volver a postularme' : 'Actualizar mi solicitud' }}
+                </button>
+            </mat-card>
+
+            <mat-card *ngIf="!inscripcionesAbiertas" class="tarjeta">
+                <h2>Las inscripciones están cerradas</h2>
+                <p>Volvé cuando abramos una nueva convocatoria para sumarte a IEEE ITBA.</p>
+            </mat-card>
+
+            <mat-card *ngIf="inscripcionesAbiertas && !usuario.verifiedEmail" class="tarjeta">
+                <h2>Verificá tu correo para continuar</h2>
+                <p>La solicitud se enviará con tu cuenta: <strong>{{ usuario.email }}</strong>.</p>
+                <div class="acciones">
+                    <button mat-raised-button color="primary" type="button" (click)="enviarVerificacion()" [disabled]="verificando">Enviar correo de verificación</button>
+                    <button mat-stroked-button type="button" (click)="comprobarCorreo()" [disabled]="verificando">Ya verifiqué mi correo</button>
+                </div>
+            </mat-card>
+
+            <form *ngIf="inscripcionesAbiertas && usuario.verifiedEmail && (!solicitud || editando)" [formGroup]="formulario" (ngSubmit)="enviarSolicitud()">
+                <fieldset [disabled]="enviando">
+                    <mat-card class="tarjeta" aria-labelledby="datos-personales">
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="datos-personales" role="heading" aria-level="2">Datos personales</mat-card-title><mat-card-subtitle>Los campos con asterisco son obligatorios.</mat-card-subtitle></mat-card-header>
+                        <div class="perfil-inscripcion">
+                            <div class="foto-inscripcion">
+                                <app-upload-picture-input [compacto]="true" [(photoURL)]="foto" [(pictureType)]="tipoImagen" (cargandoImagenChange)="procesandoFoto = $event"></app-upload-picture-input>
+                            </div>
+                            <div class="campos campos-identidad">
+                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ textos.nombres }}</mat-label><input matInput formControlName="nombres" autocomplete="given-name" maxlength="100" required><mat-error>Ingresá tu nombre.</mat-error></mat-form-field>
+                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ textos.apellido }}</mat-label><input matInput formControlName="apellidos" autocomplete="family-name" maxlength="100" required><mat-error>Ingresá tu apellido.</mat-error></mat-form-field>
+                                <mat-form-field subscriptSizing="dynamic" class="ancho-completo"><mat-label>Correo de contacto</mat-label><input matInput formControlName="correoContacto" type="email" autocomplete="email" maxlength="254" required><mat-hint>Te contactaremos en esta dirección. Tu correo de acceso sigue siendo {{ usuario.email }}.</mat-hint><mat-error>Ingresá un correo electrónico válido.</mat-error></mat-form-field>
+                            </div>
+                        </div>
+                        <div class="campos campos-personales">
+                            <mat-form-field subscriptSizing="dynamic">
+                                <mat-label>{{ textos.legajo }}</mat-label>
+                                <input matInput formControlName="legajo" inputmode="numeric" maxlength="12" required>
+                                <mat-error>Ingresá tu legajo usando solo números.</mat-error>
+                            </mat-form-field>
+                            <mat-form-field subscriptSizing="dynamic">
+                                <mat-label>{{ textos.telefono }}</mat-label>
+                                <input matInput formControlName="telefono" type="tel" autocomplete="tel" maxlength="25" required>
+                                <mat-hint>{{ textos.ayudaTelefono }}</mat-hint>
+                                <mat-error>Ingresá un número de teléfono válido.</mat-error>
+                            </mat-form-field>
+                            <mat-form-field subscriptSizing="dynamic">
+                                <mat-label>{{ textos.fechaNacimiento }}</mat-label>
+                                <input matInput formControlName="fechaNacimiento" [matDatepicker]="calendarioNacimiento" [max]="hoy" (click)="calendarioNacimiento.open()" placeholder="dd/mm/aaaa" autocomplete="bday" required>
+                                <mat-datepicker-toggle matIconSuffix [for]="calendarioNacimiento"></mat-datepicker-toggle>
+                                <mat-datepicker #calendarioNacimiento startView="multi-year"></mat-datepicker>
+                                <mat-hint>{{ textos.ayudaFechaNacimiento }}</mat-hint>
+                                <mat-error>Ingresá una fecha válida que no sea futura.</mat-error>
+                            </mat-form-field>
+                            <div class="pregunta">
+                                <label id="pregunta-carrera" class="enunciado">{{ textos.carrera }} <span aria-hidden="true">*</span></label>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <mat-select formControlName="carrera" aria-labelledby="pregunta-carrera" placeholder="Seleccioná una opción" required><mat-option *ngFor="let carrera of carreras" [value]="carrera">{{ carrera }}</mat-option></mat-select>
+                                    <mat-error>Seleccioná tu carrera.</mat-error>
                                 </mat-form-field>
-                                <mat-form-field class="w-100 mt-2">
-                                    <mat-label for="linkedin">
-                                        <mdb-icon fab icon="linkedin" class="mr-1" required></mdb-icon>
-                                        {{ 'PROFILE.LABELS.LINKEDIN' | translate }}:
-                                    </mat-label>
-                                    <input name="linkedin" type="text" id="linkedin" matInput [(ngModel)]="changedUser.linkedin">
+                            </div>
+                            <div class="pregunta">
+                                <label id="pregunta-anio" class="enunciado">{{ textos.anioCarrera }} <span aria-hidden="true">*</span></label>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <mat-select formControlName="anioCarrera" aria-labelledby="pregunta-anio" placeholder="Seleccioná una opción" required><mat-option *ngFor="let anio of anios" [value]="anio">{{ anio }}</mat-option></mat-select>
+                                    <mat-error>Seleccioná una opción.</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <fieldset class="pregunta pregunta-radio ancho-completo">
+                                <legend class="enunciado">{{ textos.intercambio }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-en-linea" formControlName="intercambio" color="primary" [attr.aria-label]="textos.intercambio">
+                                    <mat-radio-button value="Sí">Sí</mat-radio-button>
+                                    <mat-radio-button value="No">No</mat-radio-button>
+                                    <mat-radio-button value="Tal vez">Tal vez</mat-radio-button>
+                                </mat-radio-group>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.intercambio.invalid">Seleccioná una opción.</p>
+                            </fieldset>
+                        </div>
+                    </mat-card>
+
+                    <mat-card class="tarjeta" aria-labelledby="preferencias">
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="preferencias" role="heading" aria-level="2">{{ textos.seleccionComisiones }}</mat-card-title><mat-card-subtitle>{{ textos.ayudaSeleccionComisiones }}</mat-card-subtitle></mat-card-header>
+                        <fieldset class="pregunta pregunta-radio pregunta-guia">
+                            <legend class="enunciado">{{ textos.conoceComision }}</legend>
+                            <p class="ayuda-pregunta">{{ textos.ayudaConoceComision }}</p>
+                            <mat-radio-group class="opciones-en-linea" [value]="conoceComision" (change)="conoceComision = $event.value" color="primary" [attr.aria-label]="textos.conoceComision">
+                                <mat-radio-button [value]="true">Sí</mat-radio-button>
+                                <mat-radio-button [value]="false">No</mat-radio-button>
+                            </mat-radio-group>
+                        </fieldset>
+                        <mat-expansion-panel class="guia-comisiones" [expanded]="conoceComision === false">
+                            <mat-expansion-panel-header><mat-panel-title>{{ textos.comisiones }}</mat-panel-title></mat-expansion-panel-header>
+                            <p class="ayuda-pregunta">{{ textos.ayudaComisiones }}</p>
+                            <mat-accordion class="comisiones" multi>
+                                <mat-expansion-panel class="ficha-comision" *ngFor="let comision of guiaComisiones">
+                                    <mat-expansion-panel-header><mat-panel-title>{{ comision.titulo }}</mat-panel-title></mat-expansion-panel-header>
+                                    <div class="descripcion-comision">
+                                        <p class="objetivo-comision">{{ comision.objetivo }}</p>
+                                        <p *ngFor="let parrafo of comision.parrafos">{{ parrafo }}</p>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                            <p>Si querés formar parte del equipo que trabaja para competir en la European Rover Challenge no hace falta que completes este formulario, debes inscribirte en el siguiente: <a href="https://forms.gle/wCenhwUgD677Bf7t5" target="_blank" rel="noopener noreferrer">https://forms.gle/wCenhwUgD677Bf7t5</a></p>
+                        </mat-expansion-panel>
+                        <p *ngIf="!comisiones.length" class="mensaje mensaje-error">Todavía no hay comisiones disponibles. Volvé a consultar más adelante.</p>
+                        <div class="campos">
+                            <div class="pregunta">
+                                <label id="pregunta-primera-comision" class="enunciado">{{ textos.primeraComision }} <span aria-hidden="true">*</span></label>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <mat-select formControlName="primeraComision" aria-labelledby="pregunta-primera-comision" placeholder="Seleccioná una opción" (selectionChange)="cambiarPrimeraComision()" required><mat-option *ngFor="let comision of comisiones" [value]="comision.id">{{ comision.titulo }}</mat-option></mat-select>
+                                    <mat-error>Elegí tu comisión principal.</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="pregunta">
+                                <label id="pregunta-segunda-comision" class="enunciado">{{ textos.segundaComision }}</label>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <mat-select formControlName="segundaComision" aria-labelledby="pregunta-segunda-comision"><mat-option value="">Sin segunda opción</mat-option><ng-container *ngFor="let comision of comisiones"><mat-option *ngIf="comision.id !== formulario.value.primeraComision" [value]="comision.id">{{ comision.titulo }}</mat-option></ng-container></mat-select>
                                 </mat-form-field>
                             </div>
                         </div>
-                    </section>
-                    <section>
-                        <h2 class="m-0">Seleccioná tu género</h2>
-                        <mat-form-field class="w-100 mt-2">
-                          <mat-label>
-                            Género
-                          </mat-label>
-                          <mat-select required [(value)]="gender">
-                            <mat-option value="M">
-                              Masculino
-                            </mat-option>
-                            <mat-option value="F">
-                              Femenino
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                    </section>
-                    <section class="mt-2">
-                        <h2 class="m-0">{{ "TEAM_REQUEST.SELECT_COMMISSION" | translate }}</h2>
-                        <mat-form-field class="w-100 mt-2">
-                            <mat-label>
-                              {{ "TEAM_REQUEST.COMMISSION" | translate }}
-                            </mat-label>
-                            <mat-select required [(value)]="selectedCommission">
-                                <mat-option *ngFor="let commission of (commissions$ | async)" [value]="commission">
-                                    {{ commission.title | customTranslate }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field class="w-100" *ngIf="selectedCommission">
-                            <mat-label>
-                              {{ "TEAM_REQUEST.POSITION" | translate }}
-                            </mat-label>
-                            <mat-select required [(value)]="selectedPosition">
-                                <mat-option *ngFor="let position of selectedCommission.positions" [value]="position">
-                                    {{ position.title[gender || "M"] | customTranslate }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </section>
-                </mat-card-content>
-                <mat-card-footer class="w-100 d-flex justify-content-end px-3">
-                    <button mat-raised-button class="save-button" color="primary" (click)="sendTeamRequest()" [disabled]="!canSendTeamRequest() || loading">
-                        <mdb-icon fas [icon]="loading ? 'rotate' : 'paper-plane'" [class.rotate]="loading"></mdb-icon>
-                        <span class="ml-2">{{ loading ? ("TEAM_REQUEST.LOADING" | translate) : ("TEAM_REQUEST.SEND" | translate) }}</span>
-                    </button>
-                </mat-card-footer>
+                    </mat-card>
+
+                    <mat-card class="tarjeta" aria-labelledby="intereses">
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="intereses" role="heading" aria-level="2">{{ textos.informacionAdicional }}</mat-card-title><mat-card-subtitle>{{ textos.ayudaInformacionAdicional }}</mat-card-subtitle></mat-card-header>
+                        <div class="campos">
+                            <div class="pregunta ancho-completo">
+                                <label for="linkedin-inscripcion" class="enunciado">{{ textos.linkedin }}</label>
+                                <p id="ayuda-linkedin" class="ayuda-pregunta">{{ textos.ayudaLinkedin }}</p>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <input id="linkedin-inscripcion" matInput formControlName="linkedin" type="url" maxlength="500" placeholder="https://www.linkedin.com/in/tu-perfil" aria-describedby="ayuda-linkedin">
+                                    <mat-error>Ingresá un enlace completo que empiece con https:// o http://.</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <fieldset class="pregunta pregunta-radio ancho-completo">
+                                <legend class="enunciado">{{ textos.rolEquipo }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-rol" formControlName="rolEquipo" color="primary" [attr.aria-label]="textos.rolEquipo">
+                                    <mat-radio-button *ngFor="let rol of rolesEquipo" [value]="rol.valor">{{ rol.texto }}</mat-radio-button>
+                                </mat-radio-group>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.rolEquipo.invalid">Seleccioná una opción.</p>
+                            </fieldset>
+                            <fieldset class="pregunta pregunta-radio ancho-completo">
+                                <legend class="enunciado">{{ textos.trabaja }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-en-linea" formControlName="trabaja" color="primary" [attr.aria-label]="textos.trabaja">
+                                    <mat-radio-button [value]="true">Si</mat-radio-button>
+                                    <mat-radio-button [value]="false">No</mat-radio-button>
+                                </mat-radio-group>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.trabaja.invalid">Seleccioná una opción.</p>
+                            </fieldset>
+                            <div class="pregunta ancho-completo">
+                                <label for="habilidades-inscripcion" class="enunciado">{{ textos.habilidades }}</label>
+                                <p id="ayuda-habilidades" class="ayuda-pregunta">{{ textos.ayudaHabilidades }}</p>
+                                <mat-form-field subscriptSizing="dynamic"><textarea id="habilidades-inscripcion" matInput formControlName="habilidades" rows="3" maxlength="2000" aria-describedby="ayuda-habilidades"></textarea></mat-form-field>
+                            </div>
+                            <div class="grupo-campos">
+                                <div class="pregunta">
+                                    <label id="pregunta-conocio-ieee" class="enunciado">{{ textos.conocioIEEE }} <span aria-hidden="true">*</span></label>
+                                    <mat-form-field subscriptSizing="dynamic">
+                                        <mat-select formControlName="conocioIEEE" aria-labelledby="pregunta-conocio-ieee" placeholder="Seleccioná una opción" required><mat-option *ngFor="let medio of medios" [value]="medio">{{ medio === 'YouTube' ? 'Youtube' : medio === 'Otro' ? 'Otro:' : medio }}</mat-option></mat-select>
+                                        <mat-error>Seleccioná una opción.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <mat-form-field *ngIf="formulario.value.conocioIEEE === 'Otro'" subscriptSizing="dynamic"><mat-label>Otro:</mat-label><input matInput formControlName="otroMedioIEEE" maxlength="200" required><mat-error>Contanos cómo nos conociste.</mat-error></mat-form-field>
+                            </div>
+                            <div class="grupo-campos">
+                                <div class="pregunta">
+                                    <label id="pregunta-conocio-convocatoria" class="enunciado">{{ textos.conocioConvocatoria }} <span aria-hidden="true">*</span></label>
+                                    <mat-form-field subscriptSizing="dynamic">
+                                        <mat-select formControlName="conocioConvocatoria" aria-labelledby="pregunta-conocio-convocatoria" placeholder="Seleccioná una opción" required><mat-option *ngFor="let medio of medios" [value]="medio">{{ medio === 'YouTube' ? 'Youtube' : medio === 'Otro' ? 'Otro:' : medio }}</mat-option></mat-select>
+                                        <mat-error>Seleccioná una opción.</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <mat-form-field *ngIf="formulario.value.conocioConvocatoria === 'Otro'" subscriptSizing="dynamic"><mat-label>Otro:</mat-label><input matInput formControlName="otroMedioConvocatoria" maxlength="200" required><mat-error>Contanos cómo te enteraste.</mat-error></mat-form-field>
+                            </div>
+                            <div class="pregunta ancho-completo">
+                                <label for="video-inscripcion" class="enunciado enunciado-video">{{ textos.video }}</label>
+                                <mat-form-field subscriptSizing="dynamic">
+                                    <input id="video-inscripcion" matInput formControlName="enlaceVideo" type="url" maxlength="2000" placeholder="https://…">
+                                    <mat-hint>Compartí un enlace al video que el equipo pueda abrir.</mat-hint>
+                                    <mat-error>Ingresá un enlace completo que empiece con https:// o http://.</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card>
+                </fieldset>
+                <footer class="pie-formulario">
+                    <p>El correo de contacto y tus respuestas quedan disponibles para vos y administración. Si te aceptamos, tu nombre, el correo de tu cuenta, foto, LinkedIn, comisión y cargo formarán parte del perfil público del equipo.</p>
+                    <p *ngIf="intentoEnvio && formulario.invalid" class="error-campo" role="alert">Revisá los campos obligatorios y los enlaces. Si elegiste «Otro», completá el detalle.</p>
+                    <div class="acciones">
+                        <button *ngIf="editando" mat-stroked-button type="button" (click)="editando = false" [disabled]="enviando">Cancelar edición</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="enviando || procesandoFoto || !comisiones.length">{{ procesandoFoto ? 'Procesando foto…' : enviando ? 'Enviando solicitud…' : editando ? 'Enviar solicitud actualizada' : 'Quiero sumarme a IEEE ITBA' }}</button>
+                    </div>
+                </footer>
             </form>
-        </mat-card>
-    </ng-template>
-    <ng-template #verifyEmail>
-        <mat-card class="p-3">
-            <mat-card-title class="text-center">{{ "TEAM_REQUEST.NOT_VERIFIED" | translate }}</mat-card-title>
-            <mat-card-content class="mt-2">
-                <p>{{ "TEAM_REQUEST.NOT_VERIFIED_MESSAGE" | translate }}</p>
-            </mat-card-content>
-            <mat-card-footer class="w-100 d-flex justify-content-end px-3">
-                <button mat-raised-button (click)="sendVerificationEmail()" class="save-button mt-2" color="primary" type="button">
-                    <mdb-icon fas icon="envelope"></mdb-icon>
-                    <span class="ml-2">{{ "TEAM_REQUEST.SEND_EMAIL" | translate }}</span>
-                </button>
-            </mat-card-footer>
-        </mat-card>
-    </ng-template>
-</div>
+        </ng-container>
+    </div>
+</main>

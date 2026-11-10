@@ -1,0 +1,64 @@
+:host { display: block; }
+.inscripcion { min-height: 75vh; padding: 128px clamp(16px, 4vw, 56px) 40px; }
+.contenido-inscripcion { width: 100%; max-width: 1100px; margin: 0 auto; }
+.encabezado-inscripcion { margin-bottom: 24px; }
+h1 { color: var(--bs-ieee-bright-blue); font-size: clamp(26px, 3vw, 38px); line-height: 1.2; margin: 0 0 12px; text-wrap: balance; }
+.encabezado-inscripcion p { font-size: 16px; margin: 0; }
+.tarjeta { padding: 24px; margin-bottom: 24px; }
+.titulo-seccion { padding: 0; margin-bottom: 24px; }
+.titulo-seccion mat-card-subtitle { margin-top: 6px; }
+.etiqueta { color: var(--bs-secondary-color); font-size: 14px; }
+.estado-solicitud h2 { margin-top: 8px; }
+.campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; align-items: start; }
+.campos mat-form-field { min-width: 0; width: 100%; }
+.grupo-campos { display: grid; gap: 16px; min-width: 0; }
+.ancho-completo { grid-column: 1 / -1; }
+.perfil-inscripcion { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 32px; align-items: start; margin-bottom: 24px; }
+.foto-inscripcion { padding: 8px 0; }
+.guia-comisiones { margin-bottom: 24px; }
+.comisiones { display: block; margin: 16px 0; }
+.comisiones p, .guia-comisiones p { font-size: 14px; line-height: 1.6; }
+.guia-comisiones a { overflow-wrap: anywhere; }
+.ficha-comision mat-expansion-panel-header { height: auto; min-height: 48px; padding: 12px 16px; }
+.ficha-comision mat-panel-title { font-size: 14px; }
+.objetivo-comision { font-weight: 600; }
+.pregunta { min-width: 0; }
+.enunciado { display: block; width: 100%; font-size: 15px; font-weight: 400; line-height: 1.5; margin: 0 0 10px; }
+.ayuda-pregunta { font-size: 14px; color: var(--bs-secondary-color); margin: 0 0 12px; }
+.opciones-en-linea { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.opciones-rol { display: grid; gap: 8px; }
+.opciones-rol mat-radio-button { display: block; max-width: 100%; }
+.enunciado-video { white-space: pre-line; }
+.acciones { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.acciones button { white-space: normal; height: auto; min-height: 44px; padding-top: 8px; padding-bottom: 8px; }
+.pie-formulario { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px 32px; padding: 0 4px; }
+.pie-formulario p { font-size: 12px; color: var(--bs-secondary-color); margin: 0; }
+.pie-formulario > .error-campo { grid-column: 1 / -1; }
+.pie-formulario .acciones { margin-top: 0; grid-column: 2; grid-row: 1; }
+.mensaje { padding: 14px 16px; border-radius: 4px; margin-bottom: 20px; }
+.mensaje-error { background: var(--bs-ieee-bright-red-20); color: var(--bs-ieee-bright-red); }
+.mensaje-exito { background: var(--bs-ieee-bright-darker-green-20); color: var(--bs-ieee-bright-darker-green); }
+.error-campo { color: var(--bs-ieee-bright-red); font-size: 13px; margin-top: 12px; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+fieldset.pregunta-guia { margin-bottom: 20px; }
+fieldset:disabled { opacity: .7; pointer-events: none; }
+@media (max-width: 1000px) {
+    .perfil-inscripcion { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .pie-formulario { grid-template-columns: minmax(0, 1fr); }
+    .pie-formulario .acciones { grid-column: auto; grid-row: auto; }
+}
+@media (max-width: 767px) {
+    .inscripcion { padding-top: 108px; padding-bottom: 28px; }
+}
+@media (max-width: 640px) {
+    .tarjeta { padding: 20px 16px; margin-bottom: 20px; }
+    .campos { grid-template-columns: minmax(0, 1fr); }
+    .campos-identidad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .campos, .grupo-campos { gap: 20px 12px; }
+    .acciones button { width: 100%; }
+    .encabezado-inscripcion { margin-bottom: 20px; }
+    .encabezado-inscripcion p { font-size: 14px; }
+}
+@media (max-width: 359px) {
+    .campos-identidad { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,3 +1,12 @@
+.foto-compacta { display: flex; align-items: center; gap: 16px; }
+.foto-compacta app-profile-picture { flex-shrink: 0; }
+.datos-foto { min-width: 0; }
+.titulo-foto { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+.titulo-foto span { font-weight: 400; }
+.ayuda-foto { font-size: 12px; color: var(--bs-secondary-color); margin: 0 0 12px; }
+.acciones-foto { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.acciones-foto button { font-size: 13px; }
+
 .row-display {
     display: flex !important;
     flex-direction: row !important;

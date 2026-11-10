@@ -1,8 +1,22 @@
+<input #pictureInput type="file" (change)="uploadPicture($event)" accept="image/png, image/jpeg, image/jpg" class="d-none">
+<div *ngIf="compacto; else presentacionHabitual" class="foto-compacta" [attr.aria-busy]="cargandoImagen">
+    <app-profile-picture size="80px" [src]="photoURL"></app-profile-picture>
+    <div class="datos-foto">
+        <p class="titulo-foto">Foto de perfil <span>(opcional)</span></p>
+        <p class="ayuda-foto">JPG o PNG</p>
+        <div class="acciones-foto">
+            <button mat-stroked-button color="primary" type="button" (click)="pictureInput.click()" [disabled]="cargandoImagen">
+                <mdb-icon fas icon="camera" class="mr-1"></mdb-icon>
+                {{ cargandoImagen ? 'Procesando…' : photoURL ? 'Cambiar foto' : 'Subir foto' }}
+            </button>
+            <button *ngIf="photoURL" mat-button type="button" color="warn" (click)="deletePicture(); pictureInput.value = ''" [disabled]="cargandoImagen">Quitar</button>
+        </div>
+    </div>
+</div>
+<ng-template #presentacionHabitual>
 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4">
     <app-profile-picture *ngIf="!rowDisplay" [class.row-display-icon]="rowDisplay" size="150px" [src]="photoURL"/>
     <div class="picture-buttons d-flex flex-column justify-content-center gap-4" [class.row-display]="rowDisplay">
-        <input #pictureInput type="file" (change)="uploadPicture($event)" accept="image/png, image/jpeg, image/jpg"
-               class="d-none">
         <button mat-raised-button (click)="pictureInput.click()" class="save-button" [class.row-display-button]="rowDisplay" color="secondary" type="button">
             <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
             {{ 'PROFILE.BUTTONS.PICTURE_UPLOAD' | translate }}
@@ -13,3 +27,4 @@
         </button>
     </div>
 </div>
+</ng-template>

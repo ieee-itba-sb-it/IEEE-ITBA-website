@@ -119,9 +119,77 @@ service cloud.firestore {
       allow write: if hasRole("admin");
     }
 
-    match /team-requests/{document=**} {
-      allow read: if hasRole("admin");
-      allow write: if isEmailVerified() || hasRole("admin");
+    function textoInscripcion(valor, maximo) {
+      return valor is string && valor.size() > 0 && valor.size() <= maximo
+        && valor.matches('.*[^\\s].*');
+    }
+
+    function enlaceInscripcion(valor, maximo) {
+      return valor == null || (valor is string && valor.size() <= maximo
+        && valor.matches('https?://[^\\s]+'));
+    }
+
+    function respuestasInscripcionValidas(respuestas) {
+      return respuestas is map
+        && respuestas.keys().hasAll(['nombres', 'apellidos', 'legajo', 'telefono', 'fechaNacimiento', 'carrera',
+          'anioCarrera', 'intercambio', 'rolEquipo', 'trabaja', 'habilidades', 'conocioIEEE',
+          'conocioConvocatoria', 'enlaceVideo'])
+        && respuestas.keys().hasOnly(['nombres', 'apellidos', 'legajo', 'telefono', 'fechaNacimiento', 'carrera',
+          'anioCarrera', 'intercambio', 'rolEquipo', 'trabaja', 'habilidades', 'conocioIEEE',
+          'conocioConvocatoria', 'enlaceVideo', 'esEstudiante', 'correoContacto'])
+        && textoInscripcion(respuestas.nombres, 100)
+        && textoInscripcion(respuestas.apellidos, 100)
+        && (!('correoContacto' in respuestas) || (textoInscripcion(respuestas.correoContacto, 254)
+          && respuestas.correoContacto.matches('[^@\\s]+@[^@\\s]+[.][^@\\s]+')))
+        && respuestas.legajo is string && respuestas.legajo.matches('[0-9]{1,12}')
+        && respuestas.telefono is string && respuestas.telefono.size() <= 25
+        && respuestas.telefono.matches('[+]?([ ()-]*[0-9]){7,15}[ ()-]*')
+        && respuestas.fechaNacimiento is string && respuestas.fechaNacimiento.matches('[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])')
+        && respuestas.carrera in ['Lic. en Analítica Empresarial y Social', 'Lic. en Gestión de Negocios',
+          'Bioingeniería', 'Ing. Electrónica', 'Ing. Industrial', 'Ing. Informática', 'Ing. Mecánica',
+          'Ing. Naval', 'Ing. en Petróleo', 'Ing. Química', 'Ing. Civil', 'Ingeniería en Biotecnología']
+        && respuestas.anioCarrera in ['Ingreso', 'Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Graduado']
+        && respuestas.intercambio in ['Sí', 'No', 'Tal vez']
+        && respuestas.rolEquipo in ['Líder', 'Coordinador/a', 'Jugador/a de equipo', 'Miembro formal', 'Detrás de escena']
+        && respuestas.trabaja is bool
+        && respuestas.habilidades is string && respuestas.habilidades.size() <= 2000
+        && textoInscripcion(respuestas.conocioIEEE, 200)
+        && textoInscripcion(respuestas.conocioConvocatoria, 200)
+        && enlaceInscripcion(respuestas.enlaceVideo, 2000);
+    }
+
+    function solicitudIngresoValida(correo) {
+      let datos = request.resource.data;
+      return datos.keys().hasAll(['name', 'email', 'photo', 'linkedin', 'gender', 'commissionid', 'positionid',
+          'segundaComisionId', 'respuestas', 'estado', 'fechaEnvio'])
+        && datos.keys().hasOnly(['name', 'email', 'photo', 'linkedin', 'gender', 'commissionid', 'positionid',
+          'segundaComisionId', 'respuestas', 'estado', 'fechaEnvio'])
+        && datos.email == correo
+        && respuestasInscripcionValidas(datos.respuestas)
+        && datos.name == datos.respuestas.nombres + ' ' + datos.respuestas.apellidos
+        && (datos.photo == null || (datos.photo is string && datos.photo.size() <= 2000))
+        && enlaceInscripcion(datos.linkedin, 500)
+        && (datos.gender == null || datos.gender in ['F', 'M'])
+        && datos.positionid == null
+        && datos.commissionid is string && datos.commissionid != 'CD'
+        && exists(/databases/$(database)/documents/commissions/$(datos.commissionid))
+        && (datos.segundaComisionId == null || (datos.segundaComisionId is string
+          && datos.segundaComisionId != datos.commissionid && datos.segundaComisionId != 'CD'
+          && exists(/databases/$(database)/documents/commissions/$(datos.segundaComisionId))))
+        && datos.estado == 'pendiente'
+        && datos.fechaEnvio == request.time;
+    }
+
+    match /team-requests/{correo} {
+      allow read, write: if hasRole("admin");
+      allow get: if isOwnEmail(correo);
+      allow create: if isOwnEmail(correo) && isEmailVerified()
+        && get(/databases/$(database)/documents/collection-metadata/team-requests).data.open == true
+        && solicitudIngresoValida(correo);
+      allow update: if isOwnEmail(correo) && isEmailVerified()
+        && resource.data.get('estado', 'pendiente') in ['pendiente', 'rechazada']
+        && get(/databases/$(database)/documents/collection-metadata/team-requests).data.open == true
+        && solicitudIngresoValida(correo);
     }
 
     match /commissions/{document=**}  {

@@ -1,76 +1,58 @@
-<ng-container *ngIf="requests && commissions; else spinner">
-    <div class="toolbar">
-        <mat-card class="d-flex flex-row justify-content-between align-items-center gap-2 py-2 px-4">
-            <div class="d-flex gap-2">
-                <mdb-icon class="d-flex align-items-center" fas [icon]="areRequestOpen ? 'circle-check' : 'triangle-exclamation'"></mdb-icon>
-                <div>
-                  <p class="m-0">{{ areRequestOpen ? ("ADMIN.TEAMREQUESTSTAB.REQUESTS_OPEN" | translate) : ("ADMIN.TEAMREQUESTSTAB.REQUESTS_CLOSE" | translate) }}</p>
-                  <a *ngIf="areRequestOpen" href="/team-request">https://ieeeitba.org.ar/team-request</a>
-                </div>
-            </div>
-            <div>
-                <button mat-raised-button (click)="setRequestsOpen(!areRequestOpen)" color="primary" type="button">
-                    {{ loadingOpen.value ? 'Cargando...' : areRequestOpen ? ("ADMIN.TEAMREQUESTSTAB.CLOSE_REQUESTS" | translate) : ("ADMIN.TEAMREQUESTSTAB.OPEN_REQUESTS" | translate) }}
-                </button>
-            </div>
-        </mat-card>
-    </div>
-    <div *ngIf="getSelectedRequests().length as length" class="d-flex flex-column flex-sm-row justify-content-between align-items-center rounded-3 bg-white mt-2 p-2 gap-2">
-        <p class="m-0"><b>{{ length }} {{ "ADMIN.TEAMREQUESTSTAB.SELECTED_REQUESTS" | translate }}</b></p>
-        <div class="d-flex flex-column flex-sm-row gap-2">
-            <button mat-raised-button (click)="acceptSelectedRequests()" color="primary" type="button">
-                <mdb-icon fas icon="check"></mdb-icon>
-                <span class="ml-2">{{ "ADMIN.TEAMREQUESTSTAB.ACCEPT_REQUESTS" | translate }}</span>
-            </button>
-            <button mat-raised-button (click)="rejectSelectedRequests()" color="warn" type="button">
-                <mdb-icon fas icon="ban"></mdb-icon>
-                <span class="ml-2">{{ "ADMIN.TEAMREQUESTSTAB.REJECT_REQUESTS" | translate }}</span>
-            </button>
+<section class="administracion-solicitudes">
+    <header class="barra-convocatoria">
+        <div><h1>Solicitudes de ingreso</h1><p>{{ inscripcionesAbiertas ? 'La convocatoria está abierta.' : 'La convocatoria está cerrada.' }}</p><a routerLink="/team-request">Ver formulario de inscripción</a></div>
+        <button mat-raised-button color="primary" type="button" [disabled]="cargando || cambiandoConvocatoria" (click)="cambiarConvocatoria()">{{ cambiandoConvocatoria ? 'Guardando…' : inscripcionesAbiertas ? 'Cerrar inscripciones' : 'Abrir inscripciones' }}</button>
+    </header>
+    <p *ngIf="error" class="mensaje error" role="alert">{{ error }}</p>
+    <p *ngIf="aviso" class="mensaje exito" role="status">{{ aviso }}</p>
+    <app-loading-spinner *ngIf="cargando"></app-loading-spinner>
+    <ng-container *ngIf="!cargando">
+        <div class="filtros">
+            <mat-form-field appearance="outline"><mat-label>Estado de las solicitudes</mat-label><mat-select [(ngModel)]="estadoFiltro" (selectionChange)="cambiarFiltro()" [disabled]="procesando"><mat-option value="pendiente">Pendientes</mat-option><mat-option value="aceptada">Aceptadas</mat-option><mat-option value="rechazada">Rechazadas</mat-option></mat-select></mat-form-field>
+            <span>{{ solicitudesVisibles.length }} {{ solicitudesVisibles.length === 1 ? 'solicitud' : 'solicitudes' }}</span>
         </div>
-    </div>
-    <div class="table-wrapper">
-        <table class="table align-middle mb-0 mt-2 rounded">
-            <thead class="bg-light">
-            <tr>
-                <th class="pb-1 align-middle"></th>
-                <th class="pb-1 align-middle">{{ "ADMIN.USERTAB.TABLE.FULL_NAME" | translate }}</th>
-                <th class="pb-1 align-middle">{{ "ADMIN.TEAMREQUESTSTAB.TABLE.COMMISSION" | translate }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let user of requests; index as i" class="user-row">
-                <td class="text-center align-middle">
-                    <mat-checkbox [checked]="user.selected" (change)="selectRequest(i, $event.checked)" />
-                </td>
-                <td class="align-middle">
-                    <div class="d-flex text-center text-sm-start align-items-center gap-3 flex-column flex-sm-row py-2">
-                        <app-profile-picture size="45px" [src]="user.photo"></app-profile-picture>
-                        <div>
-                            <p class="fw-bold mb-1">{{ user.name }}</p>
-                            <p class="text-muted mb-0">{{ user.email }}</p>
-                        </div>
-                    </div>
-                </td>
-                <td class="align-middle">
-                    <div class="d-flex text-center text-sm-start align-items-center py-2">
-                        <div *ngIf="findCommission(user.commissionid) as commission">
-                            <div *ngIf="findPosition(commission, user.positionid) as position">
-                                <p class="fw-bold mb-1">{{ commission.title | customTranslate }}</p>
-                                <p class="text-muted mb-0">{{ position.title[user.gender] | customTranslate }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr *ngIf="!requests.length">
-                <td colspan="3" class="text-center">
-                  {{ "ADMIN.TEAMREQUESTSTAB.NO_REQUESTS" | translate }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</ng-container>
-<ng-template #spinner>
-    <app-loading-spinner></app-loading-spinner>
-</ng-template>
+        <div *ngIf="seleccionadas.length" class="acciones-seleccion">
+            <div><strong>{{ seleccionadas.length }} seleccionadas</strong><p>Asigná una comisión y un cargo a cada persona para aceptar. Podés procesar hasta 20 a la vez.</p></div>
+            <div class="botones"><button mat-raised-button color="primary" type="button" [disabled]="procesando || !puedeAceptar" (click)="aceptarSeleccionadas()">{{ procesando ? 'Procesando…' : 'Aceptar seleccionadas' }}</button><button mat-stroked-button color="warn" type="button" [disabled]="procesando || seleccionadas.length > 20" (click)="rechazarSeleccionadas()">Rechazar seleccionadas</button></div>
+        </div>
+        <article *ngFor="let solicitud of solicitudesVisibles" class="solicitud" [class.seleccionada]="solicitud.seleccionada">
+            <header class="identidad">
+                <mat-checkbox *ngIf="estadoFiltro === 'pendiente'" [(ngModel)]="solicitud.seleccionada" [disabled]="procesando" [aria-label]="'Seleccionar solicitud de ' + solicitud.name"></mat-checkbox>
+                <app-profile-picture size="48px" [src]="solicitud.photo"></app-profile-picture>
+                <div><h2>{{ solicitud.name }}</h2><p>{{ solicitud.email }}</p><small *ngIf="solicitud.fechaEnvio">Enviada el {{ solicitud.fechaEnvio.toDate() | date:'dd/MM/yyyy HH:mm' }}</small></div>
+            </header>
+            <div class="preferencias"><span><strong>Primera opción:</strong> {{ nombreComision(solicitud.commissionid) }}</span><span><strong>Segunda opción:</strong> {{ nombreComision(solicitud.segundaComisionId) }}</span></div>
+            <div *ngIf="estadoFiltro === 'pendiente'" class="asignacion">
+                <mat-form-field appearance="outline"><mat-label>Comisión asignada</mat-label><mat-select [(ngModel)]="solicitud.comisionElegida" (selectionChange)="solicitud.cargoElegido = ''" [disabled]="procesando" required><mat-option *ngFor="let comision of comisiones" [value]="comision.id">{{ comision.title.es }}</mat-option></mat-select></mat-form-field>
+                <mat-form-field appearance="outline"><mat-label>Cargo asignado</mat-label><mat-select [(ngModel)]="solicitud.cargoElegido" [disabled]="procesando || !buscarComision(solicitud.comisionElegida)" required><mat-option *ngFor="let cargo of opcionesCargo(solicitud.comisionElegida, solicitud.gender)" [value]="cargo.valor">{{ cargo.titulo }}</mat-option></mat-select><mat-hint>Obligatorio para aceptar la solicitud.</mat-hint></mat-form-field>
+            </div>
+            <p *ngIf="estadoFiltro === 'aceptada'" class="resultado"><strong>Asignación:</strong> {{ nombreComision(solicitud.comisionAsignadaId) }} · {{ nombreCargo(solicitud) }}</p>
+            <details class="respuestas">
+                <summary>Ver respuestas y datos de contacto</summary>
+                <ng-container *ngIf="solicitud.respuestas as respuestas; else solicitudAnterior">
+                    <dl>
+                        <div><dt>Nombre(s)</dt><dd>{{ respuestas.nombres }}</dd></div>
+                        <div><dt>Apellido(s)</dt><dd>{{ respuestas.apellidos }}</dd></div>
+                        <div><dt>Correo de contacto</dt><dd>{{ respuestas.correoContacto || solicitud.email }}</dd></div>
+                        <div><dt>Legajo</dt><dd>{{ respuestas.legajo }}</dd></div>
+                        <div><dt>Celular / WhatsApp</dt><dd>{{ respuestas.telefono }}</dd></div>
+                        <div><dt>Fecha de nacimiento</dt><dd>{{ respuestas.fechaNacimiento | date:'dd/MM/yyyy' }}</dd></div>
+                        <div><dt>Carrera</dt><dd>{{ respuestas.carrera }}</dd></div>
+                        <div><dt>Año de la carrera</dt><dd>{{ respuestas.anioCarrera }}</dd></div>
+                        <div><dt>Intercambio en los próximos dos cuatrimestres</dt><dd>{{ respuestas.intercambio }}</dd></div>
+                        <div><dt>Rol con el que se identifica</dt><dd>{{ respuestas.rolEquipo }}</dd></div>
+                        <div><dt>¿Trabaja?</dt><dd>{{ respuestas.trabaja ? 'Sí' : 'No' }}</dd></div>
+                        <div><dt>Cómo conoció IEEE ITBA</dt><dd>{{ respuestas.conocioIEEE }}</dd></div>
+                        <div><dt>Cómo conoció la convocatoria</dt><dd>{{ respuestas.conocioConvocatoria }}</dd></div>
+                        <div class="ancho-completo"><dt>Habilidades</dt><dd>{{ respuestas.habilidades || 'No indicó habilidades.' }}</dd></div>
+                        <div class="ancho-completo"><dt>Video de presentación</dt><dd><a *ngIf="respuestas.enlaceVideo && esEnlaceWeb(respuestas.enlaceVideo); else sinVideo" [href]="respuestas.enlaceVideo" target="_blank" rel="noopener noreferrer">Abrir video de presentación</a><ng-template #sinVideo>No incluyó un enlace válido.</ng-template></dd></div>
+                    </dl>
+                </ng-container>
+                <ng-template #solicitudAnterior><p class="nota-anterior">Esta solicitud se creó con el formulario anterior y no incluye las nuevas preguntas.</p></ng-template>
+                <a *ngIf="solicitud.linkedin && esEnlaceWeb(solicitud.linkedin)" [href]="solicitud.linkedin" target="_blank" rel="noopener noreferrer">Ver perfil de LinkedIn</a>
+                <p *ngIf="solicitud.fechaRevision" class="fecha-revision">Revisada el {{ solicitud.fechaRevision.toDate() | date:'dd/MM/yyyy HH:mm' }}</p>
+            </details>
+        </article>
+        <p *ngIf="!solicitudesVisibles.length" class="sin-solicitudes">No hay solicitudes {{ estadoFiltro === 'pendiente' ? 'pendientes' : estadoFiltro === 'aceptada' ? 'aceptadas' : 'rechazadas' }}.</p>
+    </ng-container>
+</section>

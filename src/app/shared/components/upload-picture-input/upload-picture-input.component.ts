@@ -19,6 +19,9 @@ export class UploadPictureInputComponent {
     @Input() pictureType: string;
     @Output() pictureTypeChange = new EventEmitter<string>();
     @Input() rowDisplay: boolean = false;
+    @Input() compacto: boolean = false;
+    cargandoImagen = false;
+    @Output() cargandoImagenChange = new EventEmitter<boolean>();
     error$: BehaviorSubject<string>;
     errorModalRef: MDBModalRef | null = null;
 
@@ -40,11 +43,14 @@ export class UploadPictureInputComponent {
     uploadPicture(event: Event): void {
         const sizeLimit: number = 10;
         const extensions: string[] = ['png', 'jpg', 'jpeg'];
-        const picture: File = event.target['files'][0];
-        const type: string = picture.type.split('/')[1];
+        const entrada = event.target as HTMLInputElement;
+        const picture = entrada.files?.[0];
         if (!picture) return;
+        const type: string = picture.type.split('/')[1];
         if (picture.type.split('/')[0] != 'image') return this.error$.next("FILE_TYPE");
         if (!extensions.includes(type)) return this.error$.next("FILE_EXTENSION");
+        this.cargandoImagen = true;
+        this.cargandoImagenChange.emit(true);
         this.imageCompress.getOrientation(picture)
             .then(async orientation => {
                 const base = await ImageUtils.toBase64(picture);
@@ -65,6 +71,11 @@ export class UploadPictureInputComponent {
             .catch(err => {
                 this.error$.next("COMPRESSION_FAILED");
                 console.log(err.image);
+            })
+            .finally(() => {
+                this.cargandoImagen = false;
+                this.cargandoImagenChange.emit(false);
+                entrada.value = '';
             });
     }
 

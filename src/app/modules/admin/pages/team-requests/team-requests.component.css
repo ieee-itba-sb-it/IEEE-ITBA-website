@@ -1,0 +1,36 @@
+.administracion-solicitudes { max-width: 1100px; margin: 0 auto; }
+.barra-convocatoria, .solicitud { background: #fff; border: 1px solid #dce5ec; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.barra-convocatoria { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+h1 { font-size: 26px; font-weight: 700; color: #12344a; margin-bottom: 8px; }
+h2 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+p { margin-bottom: 8px; }
+.identidad { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.identidad p, .identidad small { color: #526574; overflow-wrap: anywhere; }
+.identidad > div { min-width: 0; }
+.preferencias { display: flex; flex-wrap: wrap; gap: 8px 28px; padding-bottom: 20px; font-size: 14px; }
+.asignacion, dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+.asignacion mat-form-field { width: 100%; min-width: 0; }
+.respuestas { border-top: 1px solid #e3eaf0; margin-top: 8px; padding-top: 16px; }
+.respuestas summary { cursor: pointer; font-weight: 700; color: #00629b; }
+dl { margin: 24px 0 16px; }
+dt { font-size: 12px; color: #526574; }
+dd { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ancho-completo { grid-column: 1 / -1; }
+.filtros { display: flex; align-items: center; gap: 24px; }
+.filtros mat-form-field { min-width: 250px; }
+.acciones-seleccion { background: #eaf5fb; border: 1px solid #c4ddea; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+.acciones-seleccion p { font-size: 13px; margin-top: 6px; }
+.botones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.seleccionada { border-color: #00629b; }
+.mensaje { padding: 16px; border-radius: 8px; }
+.error { background: #fff0ee; color: #9c3024; }
+.exito { background: #e9f6ee; color: #23613d; }
+.sin-solicitudes { text-align: center; padding: 40px 20px; color: #526574; }
+.nota-anterior, .fecha-revision { margin-top: 20px; font-size: 13px; color: #526574; }
+@media (max-width: 640px) {
+    .barra-convocatoria, .filtros { align-items: stretch; flex-direction: column; gap: 12px; }
+    .asignacion, dl { grid-template-columns: 1fr; }
+    .solicitud { padding: 18px 14px; }
+    .identidad { gap: 10px; }
+    .botones button { width: 100%; }
+}

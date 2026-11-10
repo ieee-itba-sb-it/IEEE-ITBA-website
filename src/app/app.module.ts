@@ -38,6 +38,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
 
@@ -109,6 +112,9 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         MatInputModule,
         IconsModule,
         MatSelectModule,
+        MatDatepickerModule,
+        MatRadioModule,
+        MatExpansionModule,
         IconsModule,
         MatDialogModule,
         ReactiveFormsModule,
