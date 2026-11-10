@@ -32,6 +32,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSelectModule} from "@angular/material/select";
 import { SponsorsAdminComponent } from './pages/sponsors/sponsors.component';
 import { ExamsAdminComponent } from './pages/exams/exams.component';
+import { QuillModule } from 'ngx-quill';
+import { MailingAdminComponent } from './pages/mailing/mailing.component';
 
 // Tab manager
 const routes: Routes = [{
@@ -44,6 +46,7 @@ const routes: Routes = [{
         { path: 'team-requests', component: TeamRequestsComponent },
         { path: 'sponsors', component: SponsorsAdminComponent },
         { path: 'exams', component: ExamsAdminComponent },
+        { path: 'mailing', component: MailingAdminComponent },
     ]
 }];
 
@@ -58,7 +61,8 @@ export const routing = RouterModule.forChild(routes);
         PositionEditorModalComponent,
         TeamRequestsComponent,
         SponsorsAdminComponent,
-        ExamsAdminComponent
+        ExamsAdminComponent,
+        MailingAdminComponent
     ],
     imports: [
         routing,
@@ -93,6 +97,7 @@ export const routing = RouterModule.forChild(routes);
         MatTabsModule,
         MatSnackBarModule,
         MatSelectModule,
+        QuillModule.forRoot(),
         TranslateModule,
     ]
 })

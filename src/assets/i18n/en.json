@@ -1360,6 +1360,18 @@
         "COMMISSION": "Commission to join"
       }
     },
+      "MAILINGTAB": {
+          "TITLE": "Emails",
+          "GROUPS": "Recipient groups",
+          "SUBJECT": "Subject",
+          "PLACEHOLDER": "Write the email...",
+          "SEND": "Send",
+          "SENDING": "Sending...",
+          "CONFIRM": "Send \"{{subject}}\" to: {{groups}}? This cannot be undone.",
+          "SENT": "Email sent ✔",
+          "LOAD_ERROR": "Could not load groups:",
+          "SEND_ERROR": "Could not send:"
+      },
     "EXAMSTAB": {
       "TITLE": "Exams",
       "EDITION": "Edition",

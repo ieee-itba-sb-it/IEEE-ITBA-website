@@ -1414,6 +1414,18 @@
         "COMMISSION": "Comisión a entrar"
       }
     },
+    "MAILINGTAB": {
+        "TITLE": "Mails",
+        "GROUPS": "Grupos destinatarios",
+        "SUBJECT": "Asunto",
+        "PLACEHOLDER": "Escribí el mail...",
+        "SEND": "Enviar",
+        "SENDING": "Enviando...",
+        "CONFIRM": "¿Mandar \"{{subject}}\" a: {{groups}}? Esto no se puede deshacer.",
+        "SENT": "Mail enviado ✔",
+        "LOAD_ERROR": "No se pudieron cargar los grupos:",
+        "SEND_ERROR": "No se pudo enviar:"
+    },
     "EXAMSTAB": {
       "TITLE": "Exámenes",
       "EDITION": "Edición",

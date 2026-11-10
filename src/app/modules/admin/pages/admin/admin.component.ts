@@ -40,6 +40,12 @@ export class AdminComponent {
             icon: "graduation-cap",
         },
         {
+            title: "ADMIN.MAILINGTAB.TITLE",
+            link: "mailing",
+            isActive: true,
+            icon: "envelope",
+        },
+        {
             title: "ADMIN.ASIMOVADMINTAB.TITLE",
             link: "asimov",
             isActive: true,

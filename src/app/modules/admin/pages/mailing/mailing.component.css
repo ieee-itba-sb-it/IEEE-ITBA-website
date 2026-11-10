@@ -1,0 +1,3 @@
+.mailing-admin { display: flex; flex-direction: column; gap: 16px; padding: 16px; }
+.full { width: 100%; }
+.error { color: #c62828; }

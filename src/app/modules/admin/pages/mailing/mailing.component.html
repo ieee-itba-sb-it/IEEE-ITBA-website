@@ -1,0 +1,29 @@
+<div class="mailing-admin">
+    <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'ADMIN.MAILINGTAB.GROUPS' | translate }}</mat-label>
+        <mat-select multiple [(ngModel)]="selectedGroups">
+            <mat-option *ngFor="let g of groups" [value]="g.id">{{ g.title }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'ADMIN.MAILINGTAB.SUBJECT' | translate }}</mat-label>
+        <input matInput [(ngModel)]="subject" maxlength="150">
+    </mat-form-field>
+
+    <quill-editor
+        class="full"
+        [modules]="quillConfig"
+        [(ngModel)]="html"
+        [placeholder]="'ADMIN.MAILINGTAB.PLACEHOLDER' | translate"
+        [styles]="{ minHeight: '300px' }">
+    </quill-editor>
+
+    <div>
+        <button mat-raised-button color="primary" (click)="send()" [disabled]="!canSend">
+            {{ (sending ? 'ADMIN.MAILINGTAB.SENDING' : 'ADMIN.MAILINGTAB.SEND') | translate }}
+        </button>
+    </div>
+
+    <p *ngIf="message" [class.error]="isError">{{ message }}</p>
+</div>

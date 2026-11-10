@@ -17,3 +17,4 @@ export const blogCollectionName = 'blog-entries';
 export const userCollectionName = 'users';
 export const metadataCollectionName = 'collection-metadata';
 export const eventsCollectionName = 'events';
+export const mailingFunctionsUrl = ''; // URL de las Edge Functions de Supabase (no configurado todavía)
