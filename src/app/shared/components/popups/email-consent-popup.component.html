@@ -1,0 +1,10 @@
+<div *ngIf="show$ | async" class="popup-container fade-in">
+    <div class="popup">
+        <h2>✉️ {{ 'EMAIL_CONSENT.TITLE' | translate }}</h2>
+        <p class="subtitle">{{ 'EMAIL_CONSENT.TEXT' | translate }}</p>
+        <div class="consent-buttons">
+            <button mat-stroked-button (click)="answer(false)" [disabled]="saving">{{ 'EMAIL_CONSENT.DECLINE' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="answer(true)" [disabled]="saving">{{ 'EMAIL_CONSENT.ACCEPT' | translate }}</button>
+        </div>
+    </div>
+</div>

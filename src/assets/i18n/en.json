@@ -859,7 +859,7 @@
     "ALREADY_SIGNED_UP": "Already signed up?",
     "LOGIN": "Log In",
     "SUCCESS": "Sign up successful.",
-      "EMAIL_CONSENT": "I want to receive news and events from IEEE ITBA by email",
+    "EMAIL_CONSENT": "I want to receive news and events from IEEE ITBA by email",
     "ERROR": {
       "PASS_DONT_MATCH": "Passwords don't match.",
       "EMAIL_IN_USE": "Email is already in use.",
@@ -867,6 +867,12 @@
       "WEAK_PASSWORD": "Weak password.",
       "UNKNOWN_ERROR": "Unknown error."
     }
+  },
+  "EMAIL_CONSENT": {
+      "TITLE": "Want to hear from us?",
+      "TEXT": "We'll email you about IEEE ITBA events, courses and activities. You can change your mind anytime.",
+      "ACCEPT": "Yes, sign me up",
+      "DECLINE": "No, thanks"
   },
   "LOGOUT": {
     "TITLE": "Log Out"

@@ -63,6 +63,7 @@ import { AdminLayoutComponent } from "./components/admin-layout/admin-layout.com
 import { MatListModule } from "@angular/material/list";
 import { RankingPageButtonComponent } from "./components/ranking-page-button/ranking-page-button.component";
 import { EventPopupComponent } from './components/popups/event-popup.component';
+import { EmailConsentPopupComponent } from './components/popups/email-consent-popup.component';
 
 // TODO: Modify this, ContactPageComponent does not belong here!
 const routes: Routes = [];
@@ -78,7 +79,7 @@ export const routing = RouterModule.forChild(routes);
         EventEditorModalComponent, EventEditorButtonComponent, FloatingButtonComponent, UserEditorModalComponent,
         ProfilePictureComponent, AlertModalComponent, AuthActionModalComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe, EventInscriptionSectionComponent,
-        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent, EventPopupComponent],
+        ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent, TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent, EventPopupComponent, EmailConsentPopupComponent],
     imports: [
         routing,
         CommonModule,
@@ -120,6 +121,6 @@ export const routing = RouterModule.forChild(routes);
         ProfilePictureComponent, AlertModalComponent, EventEditorButtonComponent, FloatingButtonComponent,
         EventDateComponent, EventDateSectionComponent, EventDateChipsComponent, FormatDateEventPipe, CustomTranslatePipe,
         EventInscriptionSectionComponent, ProfilePictureStackComponent, UploadPictureInputComponent, EventCourseDetailComponent,
-        TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent, EventPopupComponent],
+        TournamentTreeComponent, AdminLayoutComponent, RankingPageButtonComponent, EventPopupComponent, EmailConsentPopupComponent],
 })
 export class SharedModule { }

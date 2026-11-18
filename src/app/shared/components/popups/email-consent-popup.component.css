@@ -1,0 +1,10 @@
+.popup {
+    max-width: 420px;
+}
+
+.consent-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}

@@ -8,3 +8,4 @@
     <app-loading-spinner></app-loading-spinner>
 </div>
 <app-footer [color]="(getAppColors() | async).background" *ngIf="!loading && !hideChrome"></app-footer>
+<app-email-consent-popup *ngIf="!loading"></app-email-consent-popup>
