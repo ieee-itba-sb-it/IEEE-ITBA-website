@@ -130,10 +130,7 @@ export class AuthService {
             if (!displayName) displayName = user.email.split("@")[0];
             this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified, undefined, this.pendingEmailConsent);
             setDoc(doc(this.afs, 'users', user.email), this.account)
-                .then(res => {
-                    this.pendingEmailConsent = undefined;
-                    this.accountObs.next(this.account);
-                })
+                .then(res => this.accountObs.next(this.account))
                 .catch((err: FirestoreError) => subscriber.error(err))
                 .finally(() => subscriber.complete());
         });
@@ -143,6 +140,7 @@ export class AuthService {
     logout() {
         this.firebaseAuth.signOut();
         this.account = null;
+        this.pendingEmailConsent = undefined;
         this.accountObs.next(null);
     }
 

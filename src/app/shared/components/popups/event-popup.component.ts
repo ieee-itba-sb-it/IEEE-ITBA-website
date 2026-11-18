@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../../core/services/event/event.service';
+import { take } from 'rxjs';
+import { AuthService } from '../../../core/services/authorization/auth.service';
 
 @Component({
     selector: 'app-event-popup',
@@ -14,7 +16,7 @@ export class EventPopupComponent implements OnInit {
     private readonly MAX_EVENTS_SHOWN = 2;
     private readonly MIN_EVENTS_SHOWN = 0;
 
-    constructor(private popup: EventService) { }
+    constructor(private popup: EventService, private authService: AuthService) { }
 
     ngOnInit(): void {
         if (this.shouldShowPopup()) {
@@ -23,8 +25,13 @@ export class EventPopupComponent implements OnInit {
                     this.events = data.slice(0, this.MAX_EVENTS_SHOWN);
 
                     setTimeout(() => {
-                        this.showPopup = true;
-                        this.setLastPopupTime();
+                        // Si el usuario todavía tiene que responder lo de los mails, ese popup tiene prioridad
+                        // No guardamos la fecha, así este aparece la próxima vez que entre
+                        this.authService.needsEmailConsent().pipe(take(1)).subscribe(needsConsent => {
+                            if (needsConsent) return;
+                            this.showPopup = true;
+                            this.setLastPopupTime();
+                        });
                     }, 2000);
                 }
             });
