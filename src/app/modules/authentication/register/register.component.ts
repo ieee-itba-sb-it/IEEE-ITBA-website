@@ -72,12 +72,13 @@ export class RegisterComponent implements OnInit {
             this.pass = this.signupForm.pass.value;
             this.passConf = this.signupForm.passConf.value;
             this.fullname = this.signupForm.fullname.value;
+            const emailConsent: boolean = this.signupForm.emailConsent.checked;
 
             this.isHidden3 = false;
             if (this.pass === this.passConf){
                 this.registerResponse = null;
                 this.authService
-                    .signup(this.email, this.pass, this.fullname)
+                    .signup(this.email, this.pass, this.fullname, emailConsent)
                     .pipe(
                         filter(resp => resp != null),
                         concatMap(() => this.authService.login(this.email, this.pass))
@@ -128,7 +129,8 @@ export class RegisterComponent implements OnInit {
     }
 
     signupWithGoogle() {
-        this.authService.googleLogin().subscribe({
+        const emailConsent = (document.getElementById('emailConsent') as HTMLInputElement)?.checked ?? false;
+        this.authService.googleLogin(emailConsent).subscribe({
             next: (value) => {
                 this.registerResponse = {
                     message: 'REGISTER.SUCCESS',

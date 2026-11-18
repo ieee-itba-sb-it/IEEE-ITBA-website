@@ -859,6 +859,7 @@
     "ALREADY_SIGNED_UP": "Already signed up?",
     "LOGIN": "Log In",
     "SUCCESS": "Sign up successful.",
+      "EMAIL_CONSENT": "I want to receive news and events from IEEE ITBA by email",
     "ERROR": {
       "PASS_DONT_MATCH": "Passwords don't match.",
       "EMAIL_IN_USE": "Email is already in use.",

@@ -916,6 +916,7 @@
     "ALREADY_SIGNED_UP": "¿Ya estás registrado?",
     "LOGIN": "Iniciar Sesión",
     "SUCCESS": "Se registró correctamente.",
+    "EMAIL_CONSENT": "Quiero recibir novedades y eventos de IEEE ITBA por mail",
     "ERROR": {
       "PASS_DONT_MATCH": "Las contraseñas son diferentes",
       "EMAIL_IN_USE": "Correo electrónico ya está en uso",
