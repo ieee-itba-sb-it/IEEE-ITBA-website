@@ -99,6 +99,10 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         });
     }
 
+    identificarCargo(indice: number, cargo: {valor: string}): string {
+        return cargo.valor;
+    }
+
     nombreCargo(solicitud: SolicitudSeleccionable): string {
         const cargo = this.buscarComision(solicitud.comisionAsignadaId)?.positions?.find(posicion => posicion.id === solicitud.cargoAsignadoId);
         return cargo?.title[solicitud.gender || 'M']?.es || solicitud.cargoAsignadoId || '';
