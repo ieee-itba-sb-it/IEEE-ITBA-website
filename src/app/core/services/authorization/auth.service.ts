@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, map } from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import {
@@ -46,6 +46,8 @@ export class AuthService {
     accountObs: ReplaySubject<IEEEuser | null>;
     account: IEEEuser;
 
+    private pendingEmailConsent: boolean | undefined;
+
     // OAuth
     googleProvider: GoogleAuthProvider;
 
@@ -61,7 +63,7 @@ export class AuthService {
                 this.user = usuario;
                 getDoc(doc(this.afs, 'users', usuario.email)).then(data => {
                     const userData = data.data() as IEEEuser;
-                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.roles, userData.uID, usuario.emailVerified, userData.linkedin);
+                    this.account = createRegularUser(userData.fullname, userData.email, userData.photoURL, userData.roles, userData.uID, usuario.emailVerified, userData.linkedin, userData.emailConsent);
                     this.accountObs.next(this.account);
                 }).catch((err: FirestoreError) => {
                     // Caso en el que no exista el usuario en la base de datos (por ejemplo, si acaba de registrarse con google)
@@ -78,12 +80,13 @@ export class AuthService {
     // ---------------Methods---------------
 
     // Signup with email and password
-    signup(email: string, password: string, fullname: string): Observable<UserCredential> {
+    signup(email: string, password: string, fullname: string, emailConsent?: boolean): Observable<UserCredential> {
         return new Observable((subscriber) => {
             this.accountObs.next(null);
+            this.pendingEmailConsent = emailConsent;
             createUserWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then((crededential: UserCredential) => {
-                    this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid);
+                    this.account = createRegularUser(fullname, email, null, [], this.firebaseAuth.currentUser.uid, undefined, undefined, emailConsent);
                     updateProfile(this.firebaseAuth.currentUser, {displayName: fullname});
                     this.accountObs.next(this.account);
                     subscriber.next(crededential);
@@ -105,9 +108,10 @@ export class AuthService {
         );
     }
 
-    googleLogin(): Observable<OAuthCredential> {
+    googleLogin(emailConsent?: boolean): Observable<OAuthCredential> {
         return new Observable<OAuthCredential>(
             (subscriber) => {
+                this.pendingEmailConsent = emailConsent;
                 signInWithPopup(this.firebaseAuth, this.googleProvider)
                     .then((result) => {
                         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -124,9 +128,12 @@ export class AuthService {
         return new Observable<boolean>((subscriber) => {
             let displayName = user.displayName;
             if (!displayName) displayName = user.email.split("@")[0];
-            this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified);
+            this.account = createRegularUser(displayName, user.email, user.photoURL, [], user.uid, user.emailVerified, undefined, this.pendingEmailConsent);
             setDoc(doc(this.afs, 'users', user.email), this.account)
-                .then(res => this.accountObs.next(this.account))
+                .then(res => {
+                    this.pendingEmailConsent = undefined;
+                    this.accountObs.next(this.account);
+                })
                 .catch((err: FirestoreError) => subscriber.error(err))
                 .finally(() => subscriber.complete());
         });
@@ -288,6 +295,27 @@ export class AuthService {
                     subscriber.complete();
                 });
         })
+    }
+
+    saveEmailConsent(emailConsent: boolean): Observable<void> {
+        return new Observable<void>((subscriber) => {
+            if (!this.account) {
+                subscriber.error(new Error('No hay sesión iniciada'));
+                return;
+            }
+            updateDoc(doc(this.afs, 'users', this.account.email), { emailConsent })
+                .then(() => {
+                    this.account = { ...this.account, emailConsent };
+                    this.accountObs.next(this.account);
+                    subscriber.next();
+                })
+                .catch((err: FirestoreError) => subscriber.error(err))
+                .finally(() => subscriber.complete());
+        });
+    }
+
+    needsEmailConsent(): Observable<boolean> {
+        return this.accountObs.pipe(map(user => !!user && user.emailConsent === undefined));
     }
 
     // -----------Info Getters-----------
