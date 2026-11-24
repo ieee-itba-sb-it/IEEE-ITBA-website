@@ -1,208 +1,206 @@
 <main class="main-container inscripcion">
     <div class="contenido-inscripcion">
         <header class="encabezado-inscripcion">
-            <h1>¡Forma parte de IEEE ITBA!</h1>
-            <p>¡Súmate a nuestro equipo! ¡Se vienen muchas actividades y necesitamos tu ayuda!</p>
+            <h1>{{ 'TEAM_REQUEST.PAGE.TITLE' | translate }}</h1>
+            <p>{{ 'TEAM_REQUEST.PAGE.SUBTITLE' | translate }}</p>
         </header>
 
-        <p *ngIf="error" class="mensaje mensaje-error" role="alert">{{ error }}</p>
-        <p *ngIf="aviso" class="mensaje mensaje-exito" role="status">{{ aviso }}</p>
+        <p *ngIf="error" class="mensaje mensaje-error" role="alert">{{ error | translate }}</p>
+        <p *ngIf="aviso" class="mensaje mensaje-exito" role="status">{{ aviso | translate }}</p>
         <app-loading-spinner *ngIf="cargando || cargandoSolicitud"></app-loading-spinner>
 
         <ng-container *ngIf="!cargando && !cargandoSolicitud && usuario && !falloCarga">
             <mat-card *ngIf="solicitud && !editando" class="tarjeta estado-solicitud" aria-labelledby="titulo-estado">
-                <span class="etiqueta">Tu inscripción</span>
-                <h2 id="titulo-estado">{{ solicitud.estado === 'aceptada' ? '¡Ya sos parte del equipo!' : solicitud.estado === 'rechazada' ? 'Tu solicitud fue revisada' : 'Tu solicitud está en revisión' }}</h2>
-                <p>{{ solicitud.estado === 'aceptada' ? 'Administración aceptó tu solicitud y te asignó una comisión y un cargo.' : solicitud.estado === 'rechazada' ? 'Tu solicitud no fue aceptada en esta oportunidad. Si la convocatoria está abierta, podés actualizar tus respuestas y volver a postularte.' : 'Ya recibimos tus datos. El equipo se pondrá en contacto con vos para los próximos pasos.' }}</p>
+                <span class="etiqueta">{{ 'TEAM_REQUEST.STATUS.LABEL' | translate }}</span>
+                <h2 id="titulo-estado">{{ (solicitud.estado === 'aceptada' ? 'TEAM_REQUEST.STATUS.ACCEPTED_TITLE' : solicitud.estado === 'rechazada' ? 'TEAM_REQUEST.STATUS.REJECTED_TITLE' : 'TEAM_REQUEST.STATUS.PENDING_TITLE') | translate }}</h2>
+                <p>{{ (solicitud.estado === 'aceptada' ? 'TEAM_REQUEST.STATUS.ACCEPTED_MESSAGE' : solicitud.estado === 'rechazada' ? 'TEAM_REQUEST.STATUS.REJECTED_MESSAGE' : 'TEAM_REQUEST.STATUS.PENDING_MESSAGE') | translate }}</p>
                 <button *ngIf="inscripcionesAbiertas && solicitud.estado !== 'aceptada'" mat-stroked-button color="primary" type="button" (click)="editarSolicitud()">
-                    {{ solicitud.estado === 'rechazada' ? 'Volver a postularme' : 'Actualizar mi solicitud' }}
+                    {{ (solicitud.estado === 'rechazada' ? 'TEAM_REQUEST.STATUS.REAPPLY' : 'TEAM_REQUEST.STATUS.UPDATE') | translate }}
                 </button>
             </mat-card>
 
             <mat-card *ngIf="!inscripcionesAbiertas" class="tarjeta">
-                <h2>Las inscripciones están cerradas</h2>
-                <p>Volvé cuando abramos una nueva convocatoria para sumarte a IEEE ITBA.</p>
+                <h2>{{ 'TEAM_REQUEST.CLOSED.TITLE' | translate }}</h2>
+                <p>{{ 'TEAM_REQUEST.CLOSED.MESSAGE' | translate }}</p>
             </mat-card>
 
             <mat-card *ngIf="inscripcionesAbiertas && !usuario.verifiedEmail" class="tarjeta">
-                <h2>Verificá tu correo para continuar</h2>
-                <p>La solicitud se enviará con tu cuenta: <strong>{{ usuario.email }}</strong>.</p>
+                <h2>{{ 'TEAM_REQUEST.VERIFY.TITLE' | translate }}</h2>
+                <p>{{ 'TEAM_REQUEST.VERIFY.ACCOUNT' | translate }} <strong>{{ usuario.email }}</strong></p>
                 <div class="acciones">
-                    <button mat-raised-button color="primary" type="button" (click)="enviarVerificacion()" [disabled]="verificando">Enviar correo de verificación</button>
-                    <button mat-stroked-button type="button" (click)="comprobarCorreo()" [disabled]="verificando">Ya verifiqué mi correo</button>
+                    <button mat-raised-button color="primary" type="button" (click)="enviarVerificacion()" [disabled]="verificando">{{ 'TEAM_REQUEST.VERIFY.SEND' | translate }}</button>
+                    <button mat-stroked-button type="button" (click)="comprobarCorreo()" [disabled]="verificando">{{ 'TEAM_REQUEST.VERIFY.CHECK' | translate }}</button>
                 </div>
             </mat-card>
 
             <form *ngIf="inscripcionesAbiertas && usuario.verifiedEmail && (!solicitud || editando)" [formGroup]="formulario" (ngSubmit)="enviarSolicitud()">
                 <fieldset [disabled]="enviando">
                     <mat-card class="tarjeta" aria-labelledby="datos-personales">
-                        <mat-card-header class="titulo-seccion"><mat-card-title id="datos-personales" role="heading" aria-level="2">Datos personales</mat-card-title><mat-card-subtitle>Los campos con asterisco son obligatorios.</mat-card-subtitle></mat-card-header>
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="datos-personales" role="heading" aria-level="2">{{ 'TEAM_REQUEST.SECTIONS.PERSONAL_DATA' | translate }}</mat-card-title><mat-card-subtitle>{{ 'TEAM_REQUEST.SECTIONS.REQUIRED_NOTE' | translate }}</mat-card-subtitle></mat-card-header>
                         <div class="perfil-inscripcion">
                             <div class="foto-inscripcion">
                                 <app-upload-picture-input [compacto]="true" [(photoURL)]="foto" [(pictureType)]="tipoImagen" (cargandoImagenChange)="procesandoFoto = $event"></app-upload-picture-input>
                             </div>
                             <div class="campos campos-identidad">
-                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ textos.nombres }}</mat-label><input matInput formControlName="nombres" autocomplete="given-name" maxlength="100" required><mat-error>Ingresá tu nombre.</mat-error></mat-form-field>
-                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ textos.apellido }}</mat-label><input matInput formControlName="apellidos" autocomplete="family-name" maxlength="100" required><mat-error>Ingresá tu apellido.</mat-error></mat-form-field>
-                                <mat-form-field subscriptSizing="dynamic" class="ancho-completo"><mat-label>Correo de contacto</mat-label><input matInput formControlName="correoContacto" type="email" autocomplete="email" maxlength="254" required><mat-hint>Te contactaremos en esta dirección. Tu correo de acceso sigue siendo {{ usuario.email }}.</mat-hint><mat-error>Ingresá un correo electrónico válido.</mat-error></mat-form-field>
+                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ 'TEAM_REQUEST.FIELDS.FIRST_NAMES' | translate }}</mat-label><input matInput formControlName="nombres" autocomplete="given-name" maxlength="100" required><mat-error>{{ 'TEAM_REQUEST.ERRORS.FIRST_NAMES' | translate }}</mat-error></mat-form-field>
+                                <mat-form-field subscriptSizing="dynamic"><mat-label>{{ 'TEAM_REQUEST.FIELDS.LAST_NAME' | translate }}</mat-label><input matInput formControlName="apellidos" autocomplete="family-name" maxlength="100" required><mat-error>{{ 'TEAM_REQUEST.ERRORS.LAST_NAME' | translate }}</mat-error></mat-form-field>
+                                <mat-form-field subscriptSizing="dynamic" class="ancho-completo"><mat-label>{{ 'TEAM_REQUEST.FIELDS.CONTACT_EMAIL' | translate }}</mat-label><input matInput formControlName="correoContacto" type="email" autocomplete="email" maxlength="254" required><mat-hint>{{ 'TEAM_REQUEST.FIELDS.CONTACT_EMAIL_HINT' | translate: {email: usuario.email} }}</mat-hint><mat-error>{{ 'TEAM_REQUEST.ERRORS.EMAIL' | translate }}</mat-error></mat-form-field>
                             </div>
                         </div>
                         <div class="campos campos-personales">
                             <mat-form-field subscriptSizing="dynamic">
-                                <mat-label>{{ textos.legajo }}</mat-label>
+                                <mat-label>{{ 'TEAM_REQUEST.FIELDS.STUDENT_ID' | translate }}</mat-label>
                                 <input matInput formControlName="legajo" inputmode="numeric" maxlength="12" required>
-                                <mat-error>Ingresá tu legajo usando solo números.</mat-error>
+                                <mat-error>{{ 'TEAM_REQUEST.ERRORS.STUDENT_ID' | translate }}</mat-error>
                             </mat-form-field>
                             <mat-form-field subscriptSizing="dynamic">
-                                <mat-label>{{ textos.telefono }}</mat-label>
+                                <mat-label>{{ 'TEAM_REQUEST.FIELDS.PHONE' | translate }}</mat-label>
                                 <input matInput formControlName="telefono" type="tel" autocomplete="tel" maxlength="25" required>
-                                <mat-hint>{{ textos.ayudaTelefono }}</mat-hint>
-                                <mat-error>Ingresá un número de teléfono válido.</mat-error>
+                                <mat-hint>{{ 'TEAM_REQUEST.FIELDS.PHONE_HINT' | translate }}</mat-hint>
+                                <mat-error>{{ 'TEAM_REQUEST.ERRORS.PHONE' | translate }}</mat-error>
                             </mat-form-field>
                             <mat-form-field subscriptSizing="dynamic">
-                                <mat-label>{{ textos.fechaNacimiento }}</mat-label>
-                                <input matInput formControlName="fechaNacimiento" [matDatepicker]="calendarioNacimiento" [max]="hoy" (click)="calendarioNacimiento.open()" placeholder="dd/mm/aaaa" autocomplete="bday" required>
+                                <mat-label>{{ 'TEAM_REQUEST.FIELDS.BIRTH_DATE' | translate }}</mat-label>
+                                <input matInput formControlName="fechaNacimiento" [matDatepicker]="calendarioNacimiento" [max]="hoy" (click)="calendarioNacimiento.open()" [placeholder]="'TEAM_REQUEST.FIELDS.BIRTH_DATE_PLACEHOLDER' | translate" autocomplete="bday" required>
                                 <mat-datepicker-toggle matIconSuffix [for]="calendarioNacimiento"></mat-datepicker-toggle>
                                 <mat-datepicker #calendarioNacimiento startView="multi-year"></mat-datepicker>
-                                <mat-hint>{{ textos.ayudaFechaNacimiento }}</mat-hint>
-                                <mat-error>Ingresá una fecha válida que no sea futura.</mat-error>
+                                <mat-hint>{{ 'TEAM_REQUEST.FIELDS.BIRTH_DATE_HINT' | translate }}</mat-hint>
+                                <mat-error>{{ 'TEAM_REQUEST.ERRORS.BIRTH_DATE' | translate }}</mat-error>
                             </mat-form-field>
                             <div class="pregunta">
-                                <label id="pregunta-carrera" class="enunciado">{{ textos.carrera }} <span aria-hidden="true">*</span></label>
+                                <label id="pregunta-carrera" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.CAREER' | translate }} <span aria-hidden="true">*</span></label>
                                 <mat-form-field subscriptSizing="dynamic">
-                                    <mat-select formControlName="carrera" aria-labelledby="pregunta-carrera" placeholder="Seleccioná una opción" required><mat-option *ngFor="let carrera of carreras" [value]="carrera">{{ carrera }}</mat-option></mat-select>
-                                    <mat-error>Seleccioná tu carrera.</mat-error>
+                                    <mat-select formControlName="carrera" aria-labelledby="pregunta-carrera" [placeholder]="'TEAM_REQUEST.OPTIONS.SELECT' | translate" required><mat-option *ngFor="let carrera of carreras" [value]="carrera.valor">{{ carrera.clave | translate }}</mat-option></mat-select>
+                                    <mat-error>{{ 'TEAM_REQUEST.ERRORS.CAREER' | translate }}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="pregunta">
-                                <label id="pregunta-anio" class="enunciado">{{ textos.anioCarrera }} <span aria-hidden="true">*</span></label>
+                                <label id="pregunta-anio" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.CAREER_YEAR' | translate }} <span aria-hidden="true">*</span></label>
                                 <mat-form-field subscriptSizing="dynamic">
-                                    <mat-select formControlName="anioCarrera" aria-labelledby="pregunta-anio" placeholder="Seleccioná una opción" required><mat-option *ngFor="let anio of anios" [value]="anio">{{ anio }}</mat-option></mat-select>
-                                    <mat-error>Seleccioná una opción.</mat-error>
+                                    <mat-select formControlName="anioCarrera" aria-labelledby="pregunta-anio" [placeholder]="'TEAM_REQUEST.OPTIONS.SELECT' | translate" required><mat-option *ngFor="let anio of anios" [value]="anio.valor">{{ anio.clave | translate }}</mat-option></mat-select>
+                                    <mat-error>{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</mat-error>
                                 </mat-form-field>
                             </div>
                             <fieldset class="pregunta pregunta-radio ancho-completo">
-                                <legend class="enunciado">{{ textos.intercambio }} <span aria-hidden="true">*</span></legend>
-                                <mat-radio-group class="opciones-en-linea" formControlName="intercambio" color="primary" [attr.aria-label]="textos.intercambio">
-                                    <mat-radio-button value="Sí">Sí</mat-radio-button>
-                                    <mat-radio-button value="No">No</mat-radio-button>
-                                    <mat-radio-button value="Tal vez">Tal vez</mat-radio-button>
+                                <legend class="enunciado">{{ 'TEAM_REQUEST.FIELDS.EXCHANGE' | translate }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-en-linea" formControlName="intercambio" color="primary" [attr.aria-label]="'TEAM_REQUEST.FIELDS.EXCHANGE' | translate">
+                                    <mat-radio-button *ngFor="let opcion of opcionesIntercambio" [value]="opcion.valor">{{ opcion.clave | translate }}</mat-radio-button>
                                 </mat-radio-group>
-                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.intercambio.invalid">Seleccioná una opción.</p>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.intercambio.invalid">{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</p>
                             </fieldset>
                         </div>
                     </mat-card>
 
                     <mat-card class="tarjeta" aria-labelledby="preferencias">
-                        <mat-card-header class="titulo-seccion"><mat-card-title id="preferencias" role="heading" aria-level="2">{{ textos.seleccionComisiones }}</mat-card-title><mat-card-subtitle>{{ textos.ayudaSeleccionComisiones }}</mat-card-subtitle></mat-card-header>
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="preferencias" role="heading" aria-level="2">{{ 'TEAM_REQUEST.SECTIONS.COMMISSION_SELECTION' | translate }}</mat-card-title><mat-card-subtitle>{{ 'TEAM_REQUEST.SECTIONS.COMMISSION_SELECTION_HELP' | translate }}</mat-card-subtitle></mat-card-header>
                         <fieldset class="pregunta pregunta-radio pregunta-guia">
-                            <legend class="enunciado">{{ textos.conoceComision }}</legend>
-                            <p class="ayuda-pregunta">{{ textos.ayudaConoceComision }}</p>
-                            <mat-radio-group class="opciones-en-linea" [value]="conoceComision" (change)="conoceComision = $event.value" color="primary" [attr.aria-label]="textos.conoceComision">
-                                <mat-radio-button [value]="true">Sí</mat-radio-button>
-                                <mat-radio-button [value]="false">No</mat-radio-button>
+                            <legend class="enunciado">{{ 'TEAM_REQUEST.FIELDS.KNOWS_COMMISSION' | translate }}</legend>
+                            <p class="ayuda-pregunta">{{ 'TEAM_REQUEST.FIELDS.KNOWS_COMMISSION_HELP' | translate }}</p>
+                            <mat-radio-group class="opciones-en-linea" [value]="conoceComision" (change)="conoceComision = $event.value" color="primary" [attr.aria-label]="'TEAM_REQUEST.FIELDS.KNOWS_COMMISSION' | translate">
+                                <mat-radio-button [value]="true">{{ 'TEAM_REQUEST.OPTIONS.YES' | translate }}</mat-radio-button>
+                                <mat-radio-button [value]="false">{{ 'TEAM_REQUEST.OPTIONS.NO' | translate }}</mat-radio-button>
                             </mat-radio-group>
                         </fieldset>
                         <mat-expansion-panel class="guia-comisiones" [expanded]="conoceComision === false">
-                            <mat-expansion-panel-header><mat-panel-title>{{ textos.comisiones }}</mat-panel-title></mat-expansion-panel-header>
-                            <p class="ayuda-pregunta">{{ textos.ayudaComisiones }}</p>
+                            <mat-expansion-panel-header><mat-panel-title>{{ 'TEAM_REQUEST.FIELDS.COMMISSIONS' | translate }}</mat-panel-title></mat-expansion-panel-header>
+                            <p class="ayuda-pregunta">{{ 'TEAM_REQUEST.FIELDS.COMMISSIONS_HELP' | translate }}</p>
                             <mat-accordion class="comisiones" multi>
                                 <mat-expansion-panel class="ficha-comision" *ngFor="let comision of guiaComisiones">
-                                    <mat-expansion-panel-header><mat-panel-title>{{ comision.titulo }}</mat-panel-title></mat-expansion-panel-header>
+                                    <mat-expansion-panel-header><mat-panel-title>{{ 'TEAM_REQUEST.COMMISSIONS.' + comision + '.TITLE' | translate }}</mat-panel-title></mat-expansion-panel-header>
                                     <div class="descripcion-comision">
-                                        <p class="objetivo-comision">{{ comision.objetivo }}</p>
-                                        <p *ngFor="let parrafo of comision.parrafos">{{ parrafo }}</p>
+                                        <p class="objetivo-comision">{{ 'TEAM_REQUEST.COMMISSIONS.' + comision + '.GOAL' | translate }}</p>
+                                        <p *ngFor="let parrafo of ('TEAM_REQUEST.COMMISSIONS.' + comision + '.PARAGRAPHS' | translate)">{{ parrafo }}</p>
                                     </div>
                                 </mat-expansion-panel>
                             </mat-accordion>
-                            <p>Si querés formar parte del equipo que trabaja para competir en la European Rover Challenge no hace falta que completes este formulario, debes inscribirte en el siguiente: <a href="https://forms.gle/wCenhwUgD677Bf7t5" target="_blank" rel="noopener noreferrer">https://forms.gle/wCenhwUgD677Bf7t5</a></p>
+                            <p>{{ 'TEAM_REQUEST.FIELDS.ERC' | translate }} <a href="https://forms.gle/wCenhwUgD677Bf7t5" target="_blank" rel="noopener noreferrer">https://forms.gle/wCenhwUgD677Bf7t5</a></p>
                         </mat-expansion-panel>
-                        <p *ngIf="!comisiones.length" class="mensaje mensaje-error">Todavía no hay comisiones disponibles. Volvé a consultar más adelante.</p>
+                        <p *ngIf="!comisiones.length" class="mensaje mensaje-error">{{ 'TEAM_REQUEST.ERRORS.NO_COMMISSIONS' | translate }}</p>
                         <div class="campos">
                             <div class="pregunta">
-                                <label id="pregunta-primera-comision" class="enunciado">{{ textos.primeraComision }} <span aria-hidden="true">*</span></label>
+                                <label id="pregunta-primera-comision" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.FIRST_COMMISSION' | translate }} <span aria-hidden="true">*</span></label>
                                 <mat-form-field subscriptSizing="dynamic">
-                                    <mat-select formControlName="primeraComision" aria-labelledby="pregunta-primera-comision" placeholder="Seleccioná una opción" (selectionChange)="cambiarPrimeraComision()" required><mat-option *ngFor="let comision of comisiones" [value]="comision.id">{{ comision.titulo }}</mat-option></mat-select>
-                                    <mat-error>Elegí tu comisión principal.</mat-error>
+                                    <mat-select formControlName="primeraComision" aria-labelledby="pregunta-primera-comision" [placeholder]="'TEAM_REQUEST.OPTIONS.SELECT' | translate" (selectionChange)="cambiarPrimeraComision()" required><mat-option *ngFor="let comision of comisiones" [value]="comision">{{ 'TEAM_REQUEST.COMMISSIONS.' + comision + '.TITLE' | translate }}</mat-option></mat-select>
+                                    <mat-error>{{ 'TEAM_REQUEST.ERRORS.FIRST_COMMISSION' | translate }}</mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="pregunta">
-                                <label id="pregunta-segunda-comision" class="enunciado">{{ textos.segundaComision }}</label>
+                                <label id="pregunta-segunda-comision" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.SECOND_COMMISSION' | translate }}</label>
                                 <mat-form-field subscriptSizing="dynamic">
-                                    <mat-select formControlName="segundaComision" aria-labelledby="pregunta-segunda-comision"><mat-option value="">Sin segunda opción</mat-option><ng-container *ngFor="let comision of comisiones"><mat-option *ngIf="comision.id !== formulario.value.primeraComision" [value]="comision.id">{{ comision.titulo }}</mat-option></ng-container></mat-select>
+                                    <mat-select formControlName="segundaComision" aria-labelledby="pregunta-segunda-comision"><mat-option value="">{{ 'TEAM_REQUEST.OPTIONS.NO_SECOND' | translate }}</mat-option><ng-container *ngFor="let comision of comisiones"><mat-option *ngIf="comision !== formulario.value.primeraComision" [value]="comision">{{ 'TEAM_REQUEST.COMMISSIONS.' + comision + '.TITLE' | translate }}</mat-option></ng-container></mat-select>
                                 </mat-form-field>
                             </div>
                         </div>
                     </mat-card>
 
                     <mat-card class="tarjeta" aria-labelledby="intereses">
-                        <mat-card-header class="titulo-seccion"><mat-card-title id="intereses" role="heading" aria-level="2">{{ textos.informacionAdicional }}</mat-card-title><mat-card-subtitle>{{ textos.ayudaInformacionAdicional }}</mat-card-subtitle></mat-card-header>
+                        <mat-card-header class="titulo-seccion"><mat-card-title id="intereses" role="heading" aria-level="2">{{ 'TEAM_REQUEST.SECTIONS.ADDITIONAL_INFO' | translate }}</mat-card-title><mat-card-subtitle>{{ 'TEAM_REQUEST.SECTIONS.ADDITIONAL_INFO_HELP' | translate }}</mat-card-subtitle></mat-card-header>
                         <div class="campos">
                             <div class="pregunta ancho-completo">
-                                <label for="linkedin-inscripcion" class="enunciado">{{ textos.linkedin }}</label>
-                                <p id="ayuda-linkedin" class="ayuda-pregunta">{{ textos.ayudaLinkedin }}</p>
+                                <label for="linkedin-inscripcion" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.LINKEDIN' | translate }}</label>
+                                <p id="ayuda-linkedin" class="ayuda-pregunta">{{ 'TEAM_REQUEST.FIELDS.LINKEDIN_HELP' | translate }}</p>
                                 <mat-form-field subscriptSizing="dynamic">
-                                    <input id="linkedin-inscripcion" matInput formControlName="linkedin" type="url" maxlength="500" placeholder="https://www.linkedin.com/in/tu-perfil" aria-describedby="ayuda-linkedin">
-                                    <mat-error>Ingresá un enlace completo que empiece con https:// o http://.</mat-error>
+                                    <input id="linkedin-inscripcion" matInput formControlName="linkedin" type="url" maxlength="500" [placeholder]="'TEAM_REQUEST.FIELDS.LINKEDIN_PLACEHOLDER' | translate" aria-describedby="ayuda-linkedin">
+                                    <mat-error>{{ 'TEAM_REQUEST.ERRORS.LINK' | translate }}</mat-error>
                                 </mat-form-field>
                             </div>
                             <fieldset class="pregunta pregunta-radio ancho-completo">
-                                <legend class="enunciado">{{ textos.rolEquipo }} <span aria-hidden="true">*</span></legend>
-                                <mat-radio-group class="opciones-rol" formControlName="rolEquipo" color="primary" [attr.aria-label]="textos.rolEquipo">
-                                    <mat-radio-button *ngFor="let rol of rolesEquipo" [value]="rol.valor">{{ rol.texto }}</mat-radio-button>
+                                <legend class="enunciado">{{ 'TEAM_REQUEST.FIELDS.TEAM_ROLE' | translate }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-rol" formControlName="rolEquipo" color="primary" [attr.aria-label]="'TEAM_REQUEST.FIELDS.TEAM_ROLE' | translate">
+                                    <mat-radio-button *ngFor="let rol of rolesEquipo" [value]="rol.valor">{{ rol.clave | translate }}</mat-radio-button>
                                 </mat-radio-group>
-                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.rolEquipo.invalid">Seleccioná una opción.</p>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.rolEquipo.invalid">{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</p>
                             </fieldset>
                             <fieldset class="pregunta pregunta-radio ancho-completo">
-                                <legend class="enunciado">{{ textos.trabaja }} <span aria-hidden="true">*</span></legend>
-                                <mat-radio-group class="opciones-en-linea" formControlName="trabaja" color="primary" [attr.aria-label]="textos.trabaja">
-                                    <mat-radio-button [value]="true">Si</mat-radio-button>
-                                    <mat-radio-button [value]="false">No</mat-radio-button>
+                                <legend class="enunciado">{{ 'TEAM_REQUEST.FIELDS.WORKS' | translate }} <span aria-hidden="true">*</span></legend>
+                                <mat-radio-group class="opciones-en-linea" formControlName="trabaja" color="primary" [attr.aria-label]="'TEAM_REQUEST.FIELDS.WORKS' | translate">
+                                    <mat-radio-button [value]="true">{{ 'TEAM_REQUEST.OPTIONS.YES' | translate }}</mat-radio-button>
+                                    <mat-radio-button [value]="false">{{ 'TEAM_REQUEST.OPTIONS.NO' | translate }}</mat-radio-button>
                                 </mat-radio-group>
-                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.trabaja.invalid">Seleccioná una opción.</p>
+                                <p class="error-campo" *ngIf="intentoEnvio && formulario.controls.trabaja.invalid">{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</p>
                             </fieldset>
                             <div class="pregunta ancho-completo">
-                                <label for="habilidades-inscripcion" class="enunciado">{{ textos.habilidades }}</label>
-                                <p id="ayuda-habilidades" class="ayuda-pregunta">{{ textos.ayudaHabilidades }}</p>
+                                <label for="habilidades-inscripcion" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.SKILLS' | translate }}</label>
+                                <p id="ayuda-habilidades" class="ayuda-pregunta">{{ 'TEAM_REQUEST.FIELDS.SKILLS_HELP' | translate }}</p>
                                 <mat-form-field subscriptSizing="dynamic"><textarea id="habilidades-inscripcion" matInput formControlName="habilidades" rows="3" maxlength="2000" aria-describedby="ayuda-habilidades"></textarea></mat-form-field>
                             </div>
                             <div class="grupo-campos">
                                 <div class="pregunta">
-                                    <label id="pregunta-conocio-ieee" class="enunciado">{{ textos.conocioIEEE }} <span aria-hidden="true">*</span></label>
+                                    <label id="pregunta-conocio-ieee" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.HEARD_ABOUT_IEEE' | translate }} <span aria-hidden="true">*</span></label>
                                     <mat-form-field subscriptSizing="dynamic">
-                                        <mat-select formControlName="conocioIEEE" aria-labelledby="pregunta-conocio-ieee" placeholder="Seleccioná una opción" required><mat-option *ngFor="let medio of medios" [value]="medio">{{ medio === 'YouTube' ? 'Youtube' : medio === 'Otro' ? 'Otro:' : medio }}</mat-option></mat-select>
-                                        <mat-error>Seleccioná una opción.</mat-error>
+                                        <mat-select formControlName="conocioIEEE" aria-labelledby="pregunta-conocio-ieee" [placeholder]="'TEAM_REQUEST.OPTIONS.SELECT' | translate" required><mat-option *ngFor="let medio of medios" [value]="medio.valor">{{ medio.clave | translate }}</mat-option></mat-select>
+                                        <mat-error>{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <mat-form-field *ngIf="formulario.value.conocioIEEE === 'Otro'" subscriptSizing="dynamic"><mat-label>Otro:</mat-label><input matInput formControlName="otroMedioIEEE" maxlength="200" required><mat-error>Contanos cómo nos conociste.</mat-error></mat-form-field>
+                                <mat-form-field *ngIf="formulario.value.conocioIEEE === 'Otro'" subscriptSizing="dynamic"><mat-label>{{ 'TEAM_REQUEST.FIELDS.OTHER' | translate }}</mat-label><input matInput formControlName="otroMedioIEEE" maxlength="200" required><mat-error>{{ 'TEAM_REQUEST.ERRORS.OTHER_IEEE' | translate }}</mat-error></mat-form-field>
                             </div>
                             <div class="grupo-campos">
                                 <div class="pregunta">
-                                    <label id="pregunta-conocio-convocatoria" class="enunciado">{{ textos.conocioConvocatoria }} <span aria-hidden="true">*</span></label>
+                                    <label id="pregunta-conocio-convocatoria" class="enunciado">{{ 'TEAM_REQUEST.FIELDS.HEARD_ABOUT_CAMPAIGN' | translate }} <span aria-hidden="true">*</span></label>
                                     <mat-form-field subscriptSizing="dynamic">
-                                        <mat-select formControlName="conocioConvocatoria" aria-labelledby="pregunta-conocio-convocatoria" placeholder="Seleccioná una opción" required><mat-option *ngFor="let medio of medios" [value]="medio">{{ medio === 'YouTube' ? 'Youtube' : medio === 'Otro' ? 'Otro:' : medio }}</mat-option></mat-select>
-                                        <mat-error>Seleccioná una opción.</mat-error>
+                                        <mat-select formControlName="conocioConvocatoria" aria-labelledby="pregunta-conocio-convocatoria" [placeholder]="'TEAM_REQUEST.OPTIONS.SELECT' | translate" required><mat-option *ngFor="let medio of medios" [value]="medio.valor">{{ medio.clave | translate }}</mat-option></mat-select>
+                                        <mat-error>{{ 'TEAM_REQUEST.ERRORS.SELECT_OPTION' | translate }}</mat-error>
                                     </mat-form-field>
                                 </div>
-                                <mat-form-field *ngIf="formulario.value.conocioConvocatoria === 'Otro'" subscriptSizing="dynamic"><mat-label>Otro:</mat-label><input matInput formControlName="otroMedioConvocatoria" maxlength="200" required><mat-error>Contanos cómo te enteraste.</mat-error></mat-form-field>
+                                <mat-form-field *ngIf="formulario.value.conocioConvocatoria === 'Otro'" subscriptSizing="dynamic"><mat-label>{{ 'TEAM_REQUEST.FIELDS.OTHER' | translate }}</mat-label><input matInput formControlName="otroMedioConvocatoria" maxlength="200" required><mat-error>{{ 'TEAM_REQUEST.ERRORS.OTHER_CAMPAIGN' | translate }}</mat-error></mat-form-field>
                             </div>
                             <div class="pregunta ancho-completo">
-                                <label for="video-inscripcion" class="enunciado enunciado-video">{{ textos.video }}</label>
+                                <label for="video-inscripcion" class="enunciado enunciado-video">{{ 'TEAM_REQUEST.FIELDS.VIDEO' | translate }}</label>
                                 <mat-form-field subscriptSizing="dynamic">
                                     <input id="video-inscripcion" matInput formControlName="enlaceVideo" type="url" maxlength="2000" placeholder="https://…">
-                                    <mat-hint>Compartí un enlace al video que el equipo pueda abrir.</mat-hint>
-                                    <mat-error>Ingresá un enlace completo que empiece con https:// o http://.</mat-error>
+                                    <mat-hint>{{ 'TEAM_REQUEST.FIELDS.VIDEO_HINT' | translate }}</mat-hint>
+                                    <mat-error>{{ 'TEAM_REQUEST.ERRORS.LINK' | translate }}</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
                     </mat-card>
                 </fieldset>
                 <footer class="pie-formulario">
-                    <p>El correo de contacto y tus respuestas quedan disponibles para vos y administración. Si te aceptamos, tu nombre, el correo de tu cuenta, foto, LinkedIn, comisión y cargo formarán parte del perfil público del equipo.</p>
-                    <p *ngIf="intentoEnvio && formulario.invalid" class="error-campo" role="alert">Revisá los campos obligatorios y los enlaces. Si elegiste «Otro», completá el detalle.</p>
+                    <p>{{ 'TEAM_REQUEST.FOOTER.PRIVACY' | translate }}</p>
+                    <p *ngIf="intentoEnvio && formulario.invalid" class="error-campo" role="alert">{{ 'TEAM_REQUEST.ERRORS.FORM' | translate }}</p>
                     <div class="acciones">
-                        <button *ngIf="editando" mat-stroked-button type="button" (click)="editando = false" [disabled]="enviando">Cancelar edición</button>
-                        <button mat-raised-button color="primary" type="submit" [disabled]="enviando || procesandoFoto || !comisiones.length">{{ procesandoFoto ? 'Procesando foto…' : enviando ? 'Enviando solicitud…' : editando ? 'Enviar solicitud actualizada' : 'Quiero sumarme a IEEE ITBA' }}</button>
+                        <button *ngIf="editando" mat-stroked-button type="button" (click)="editando = false" [disabled]="enviando">{{ 'TEAM_REQUEST.FOOTER.CANCEL_EDIT' | translate }}</button>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="enviando || procesandoFoto || !comisiones.length">{{ (procesandoFoto ? 'TEAM_REQUEST.FOOTER.PROCESSING_PHOTO' : enviando ? 'TEAM_REQUEST.FOOTER.SENDING' : editando ? 'TEAM_REQUEST.FOOTER.SEND_UPDATE' : 'TEAM_REQUEST.FOOTER.SEND') | translate }}</button>
                     </div>
                 </footer>
             </form>

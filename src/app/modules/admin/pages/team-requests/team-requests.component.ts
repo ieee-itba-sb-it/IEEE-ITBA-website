@@ -3,7 +3,14 @@ import {combineLatest, finalize, Subject, takeUntil} from 'rxjs';
 import {AdminService} from '../../../../core/services/admin/admin.service';
 import {TeamService} from '../../../../core/services/team/team.service';
 import {Commission} from '../../../../shared/models/commission';
-import {AsignacionSolicitud, esEnlaceWeb, EstadoSolicitud, SolicitudIngreso} from '../../../../shared/models/solicitud-ingreso';
+import {
+    ANIOS_INSCRIPCION, AsignacionSolicitud, CARRERAS_INSCRIPCION, claveOpcion, esEnlaceWeb, EstadoSolicitud,
+    MEDIOS_DIFUSION, NOMBRES_ROL_EQUIPO, OPCIONES_INTERCAMBIO, SolicitudIngreso
+} from '../../../../shared/models/solicitud-ingreso';
+import {InternationalText} from '../../../../shared/models/data-types';
+
+const CLAVES_ESTADO: Record<EstadoSolicitud, string> = {pendiente: 'PENDING', aceptada: 'ACCEPTED', rechazada: 'REJECTED'};
+const PREFIJO_ERRORES = 'ADMIN.TEAMREQUESTSTAB.ERRORS.';
 
 interface SolicitudSeleccionable extends SolicitudIngreso {
     seleccionada: boolean;
@@ -27,6 +34,13 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
     error = '';
     aviso = '';
     readonly esEnlaceWeb = esEnlaceWeb;
+    readonly claveOpcion = claveOpcion;
+    readonly claveEstado = CLAVES_ESTADO;
+    readonly carreras = CARRERAS_INSCRIPCION;
+    readonly anios = ANIOS_INSCRIPCION;
+    readonly opcionesIntercambio = OPCIONES_INTERCAMBIO;
+    readonly rolesEquipo = NOMBRES_ROL_EQUIPO;
+    readonly medios = MEDIOS_DIFUSION;
     private readonly destruido = new Subject<void>();
 
     constructor(private administracion: AdminService, private equipo: TeamService) {}
@@ -56,7 +70,7 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
             },
             error: () => {
                 this.cargando = false;
-                this.error = 'No pudimos cargar las solicitudes. Revisá tu conexión y recargá la página.';
+                this.error = PREFIJO_ERRORES + 'LOAD';
             }
         });
     }
@@ -84,17 +98,13 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         return this.comisiones.find(comision => comision.id === id);
     }
 
-    nombreComision(id: string): string {
-        return this.buscarComision(id)?.title.es || id || 'Sin segunda opción';
-    }
-
-    opcionesCargo(comisionId: string, generoAnterior?: string): {valor: string; cargoId: string; generoCargo: 'F' | 'M'; titulo: string}[] {
+    opcionesCargo(comisionId: string, generoAnterior?: string): {valor: string; cargoId: string; generoCargo: 'F' | 'M'; titulo: InternationalText}[] {
         return (this.buscarComision(comisionId)?.positions || []).flatMap(cargo => {
             const generos: ('F' | 'M')[] = cargo.title.F.es === cargo.title.M.es
                 ? [generoAnterior === 'F' ? 'F' : 'M'] : ['F', 'M'];
             return generos.map(generoCargo => ({
                 valor: JSON.stringify([cargo.id, generoCargo]), cargoId: cargo.id,
-                generoCargo, titulo: cargo.title[generoCargo].es
+                generoCargo, titulo: cargo.title[generoCargo]
             }));
         });
     }
@@ -103,9 +113,9 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         return cargo.valor;
     }
 
-    nombreCargo(solicitud: SolicitudSeleccionable): string {
+    nombreCargo(solicitud: SolicitudSeleccionable): InternationalText | null {
         const cargo = this.buscarComision(solicitud.comisionAsignadaId)?.positions?.find(posicion => posicion.id === solicitud.cargoAsignadoId);
-        return cargo?.title[solicitud.gender || 'M']?.es || solicitud.cargoAsignadoId || '';
+        return cargo?.title[solicitud.gender === 'F' ? 'F' : 'M'] ?? null;
     }
 
     cambiarFiltro(): void {
@@ -126,7 +136,7 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         this.administracion.aceptarSolicitudes(asignaciones).pipe(
             finalize(() => this.procesando = false), takeUntil(this.destruido)
         ).subscribe({
-            next: () => this.aviso = 'Las solicitudes seleccionadas fueron aceptadas. Los perfiles del equipo ya están actualizados.',
+            next: () => this.aviso = 'ADMIN.TEAMREQUESTSTAB.ACCEPTED',
             error: error => this.mostrarError(error)
         });
     }
@@ -140,7 +150,7 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         this.administracion.rechazarSolicitudes(correos).pipe(
             finalize(() => this.procesando = false), takeUntil(this.destruido)
         ).subscribe({
-            next: () => this.aviso = 'Las solicitudes fueron rechazadas. Sus respuestas se conservan en el historial privado.',
+            next: () => this.aviso = 'ADMIN.TEAMREQUESTSTAB.REJECTED',
             error: error => this.mostrarError(error)
         });
     }
@@ -151,10 +161,10 @@ export class TeamRequestsComponent implements OnInit, OnDestroy {
         this.error = '';
         this.equipo.setIsTeamRequestOpen(!this.inscripcionesAbiertas).pipe(
             finalize(() => this.cambiandoConvocatoria = false), takeUntil(this.destruido)
-        ).subscribe({error: () => this.error = 'No pudimos cambiar el estado de la convocatoria. Volvé a intentar.'});
+        ).subscribe({error: () => this.error = PREFIJO_ERRORES + 'TOGGLE'});
     }
 
     private mostrarError(error: {code?: string; message?: string}): void {
-        this.error = !error.code && error.message ? error.message : 'No pudimos procesar las solicitudes. Revisá tu conexión y volvé a intentar.';
+        this.error = !error.code && error.message?.startsWith(PREFIJO_ERRORES) ? error.message : PREFIJO_ERRORES + 'PROCESS';
     }
 }

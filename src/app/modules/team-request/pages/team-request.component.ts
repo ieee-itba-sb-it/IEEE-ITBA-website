@@ -9,10 +9,10 @@ import {AuthService} from '../../../core/services/authorization/auth.service';
 import {TeamService} from '../../../core/services/team/team.service';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import {
-    ANIOS_INSCRIPCION, CARRERAS_INSCRIPCION, esEnlaceWeb, MEDIOS_DIFUSION,
-    PlanIntercambio, RespuestasInscripcion, SolicitudIngreso
+    ANIOS_INSCRIPCION, CARRERAS_INSCRIPCION, esEnlaceWeb, esMedioDifusion, MEDIOS_DIFUSION, OPCIONES_INTERCAMBIO,
+    OPCIONES_ROL_EQUIPO, PlanIntercambio, RespuestasInscripcion, SolicitudIngreso
 } from '../../../shared/models/solicitud-ingreso';
-import {COMISIONES_INSCRIPCION, OPCIONES_ROL_EQUIPO, TEXTOS_INSCRIPCION} from './contenido-inscripcion';
+import {COMISIONES_INSCRIPCION} from './contenido-inscripcion';
 import {AdaptadorFechaInscripcion, CalendarioInscripcionIntl} from './calendario-inscripcion';
 
 function validarEnlace(control: AbstractControl): ValidationErrors | null {
@@ -38,7 +38,7 @@ function validarFecha(control: AbstractControl): ValidationErrors | null {
 export class TeamRequestComponent implements OnInit, OnDestroy {
     readonly carreras = CARRERAS_INSCRIPCION;
     readonly anios = ANIOS_INSCRIPCION;
-    readonly textos = TEXTOS_INSCRIPCION;
+    readonly opcionesIntercambio = OPCIONES_INTERCAMBIO;
     readonly guiaComisiones = COMISIONES_INSCRIPCION;
     readonly rolesEquipo = OPCIONES_ROL_EQUIPO;
     readonly medios = MEDIOS_DIFUSION;
@@ -73,7 +73,7 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
     }});
 
     usuario: IEEEuser | null = null;
-    comisiones: {id: string; titulo: string}[] = [];
+    comisiones: string[] = [];
     inscripcionesAbiertas = false;
     cargando = true;
     cargandoSolicitud = true;
@@ -103,8 +103,8 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
         combineLatest([this.equipo.getAllCommissions(), this.equipo.getIsTeamRequestOpen()])
             .pipe(takeUntil(this.destruido)).subscribe({
                 next: ([comisiones, abiertas]) => {
-                    this.comisiones = this.guiaComisiones.filter(guia =>
-                        comisiones.some(comision => comision.id === guia.id && comision.positions?.length)
+                    this.comisiones = this.guiaComisiones.filter(id =>
+                        comisiones.some(comision => comision.id === id && comision.positions?.length)
                     );
                     this.inscripcionesAbiertas = abiertas;
                     this.cargando = false;
@@ -112,7 +112,7 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
                 error: () => {
                     this.cargando = false;
                     this.falloCarga = true;
-                    this.error = 'No pudimos cargar la inscripción. Recargá la página para volver a intentar.';
+                    this.error = 'TEAM_REQUEST.ERRORS.LOAD';
                 }
             });
         this.autorizacion.getCurrentUser().pipe(
@@ -136,7 +136,7 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
             error: () => {
                 this.cargandoSolicitud = false;
                 this.falloCarga = true;
-                this.error = 'No pudimos consultar tu solicitud. Recargá la página antes de enviarla.';
+                this.error = 'TEAM_REQUEST.ERRORS.LOAD_REQUEST';
             }
         });
         if (this.ruta.snapshot.queryParamMap.get('verified') === 'true') this.comprobarCorreo();
@@ -160,10 +160,10 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
             this.formulario.patchValue({
                 ...respuestas,
                 fechaNacimiento: parse(respuestas.fechaNacimiento, 'yyyy-MM-dd', new Date()),
-                conocioIEEE: this.medios.includes(respuestas.conocioIEEE) ? respuestas.conocioIEEE : 'Otro',
-                otroMedioIEEE: this.medios.includes(respuestas.conocioIEEE) ? '' : respuestas.conocioIEEE,
-                conocioConvocatoria: this.medios.includes(respuestas.conocioConvocatoria) ? respuestas.conocioConvocatoria : 'Otro',
-                otroMedioConvocatoria: this.medios.includes(respuestas.conocioConvocatoria) ? '' : respuestas.conocioConvocatoria,
+                conocioIEEE: esMedioDifusion(respuestas.conocioIEEE) ? respuestas.conocioIEEE : 'Otro',
+                otroMedioIEEE: esMedioDifusion(respuestas.conocioIEEE) ? '' : respuestas.conocioIEEE,
+                conocioConvocatoria: esMedioDifusion(respuestas.conocioConvocatoria) ? respuestas.conocioConvocatoria : 'Otro',
+                otroMedioConvocatoria: esMedioDifusion(respuestas.conocioConvocatoria) ? '' : respuestas.conocioConvocatoria,
                 enlaceVideo: respuestas.enlaceVideo || ''
             });
         }
@@ -184,9 +184,9 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
         if (this.formulario.invalid || this.enviando || this.procesandoFoto || !this.usuario?.verifiedEmail || !this.inscripcionesAbiertas
             || this.cargandoSolicitud || this.falloCarga || this.solicitud?.estado === 'aceptada') return;
         const datos = this.formulario.getRawValue();
-        const existeComision = (id: string) => this.comisiones.some(comision => comision.id === id);
+        const existeComision = (id: string) => this.comisiones.includes(id);
         if (!existeComision(datos.primeraComision) || (datos.segundaComision && !existeComision(datos.segundaComision))) {
-            this.error = 'Elegí una comisión disponible.';
+            this.error = 'TEAM_REQUEST.ERRORS.UNAVAILABLE_COMMISSION';
             return;
         }
         this.error = '';
@@ -221,9 +221,10 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
         ).subscribe({
             next: () => {
                 this.editando = false;
-                this.aviso = '¡Recibimos tu solicitud! El equipo la va a revisar y se pondrá en contacto con vos.';
+                this.aviso = 'TEAM_REQUEST.FOOTER.SENT';
             },
-            error: () => this.error = 'No pudimos enviar la solicitud. Revisá tu conexión y que la convocatoria siga abierta. Tus respuestas siguen en el formulario.'
+            error: (error: Error) => this.error = error?.message === TeamService.SOLICITUD_YA_ACEPTADA
+                ? 'TEAM_REQUEST.ERRORS.ALREADY_ACCEPTED' : 'TEAM_REQUEST.ERRORS.SEND'
         });
     }
 
@@ -235,8 +236,8 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
         this.autorizacion.sendVerificationEmail(enlace.toString()).pipe(
             finalize(() => this.verificando = false), takeUntil(this.destruido)
         ).subscribe({
-            next: () => this.aviso = 'Te enviamos un correo. Abrí el enlace y después presioná «Ya verifiqué mi correo».',
-            error: () => this.error = 'No pudimos enviar el correo. Esperá unos minutos y volvé a intentar.'
+            next: () => this.aviso = 'TEAM_REQUEST.VERIFY.SENT',
+            error: () => this.error = 'TEAM_REQUEST.VERIFY.SEND_ERROR'
         });
     }
 
@@ -246,10 +247,10 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
         this.autorizacion.reloadToken().pipe(finalize(() => this.verificando = false), takeUntil(this.destruido)).subscribe({
             next: () => {
                 if (this.usuario) this.usuario = {...this.usuario, verifiedEmail: this.autorizacion.user.emailVerified};
-                this.aviso = this.usuario?.verifiedEmail ? 'Tu correo está verificado.' : 'Tu correo todavía no está verificado.';
+                this.aviso = this.usuario?.verifiedEmail ? 'TEAM_REQUEST.VERIFY.VERIFIED' : 'TEAM_REQUEST.VERIFY.NOT_VERIFIED';
                 void this.navegador.navigate([], {queryParams: {verified: null}, queryParamsHandling: 'merge', replaceUrl: true});
             },
-            error: () => this.error = 'No pudimos comprobar tu correo. Volvé a intentar.'
+            error: () => this.error = 'TEAM_REQUEST.VERIFY.CHECK_ERROR'
         });
     }
 }

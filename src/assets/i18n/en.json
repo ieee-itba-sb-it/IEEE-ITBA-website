@@ -1348,16 +1348,76 @@
     },
     "TEAMREQUESTSTAB": {
       "TITLE": "Team requests",
-      "REQUESTS_OPEN": "Team requests are now open",
-      "REQUESTS_CLOSE": "Team requests are now closed",
-      "OPEN_REQUESTS": "Open team requests",
-      "CLOSE_REQUESTS": "Close team requests",
-      "SELECTED_REQUESTS": "request/s selected",
-      "ACCEPT_REQUESTS": "Accept them",
-      "REJECT_REQUESTS": "Reject them",
-      "NO_REQUESTS": "There are no team requests",
-      "TABLE": {
-        "COMMISSION": "Commission to join"
+      "HEADING": "Membership applications",
+      "OPEN": "Applications are open.",
+      "CLOSED": "Applications are closed.",
+      "VIEW_FORM": "View application form",
+      "SAVING": "Saving…",
+      "OPEN_REQUESTS": "Open applications",
+      "CLOSE_REQUESTS": "Close applications",
+      "FILTER": "Application status",
+      "STATES": {
+        "PENDING": "Pending",
+        "ACCEPTED": "Accepted",
+        "REJECTED": "Rejected"
+      },
+      "COUNT_ONE": "{{count}} application",
+      "COUNT_OTHER": "{{count}} applications",
+      "SELECTED": "{{count}} selected",
+      "SELECTION_HELP": "Assign a commission and a position to each person to accept them. You can process up to 20 at a time.",
+      "PROCESSING": "Processing…",
+      "ACCEPT": "Accept selected",
+      "REJECT": "Reject selected",
+      "SELECT_REQUEST": "Select {{name}}'s application",
+      "SENT_AT": "Sent on {{date}}",
+      "FIRST_OPTION": "First choice:",
+      "SECOND_OPTION": "Second choice:",
+      "NO_SECOND_OPTION": "No second choice",
+      "ASSIGNED_COMMISSION": "Assigned commission",
+      "ASSIGNED_POSITION": "Assigned position",
+      "POSITION_HINT": "Required to accept the application.",
+      "ASSIGNMENT": "Assignment:",
+      "SHOW_ANSWERS": "Show answers and contact details",
+      "ANSWERS": {
+        "FIRST_NAMES": "First name(s)",
+        "LAST_NAMES": "Last name(s)",
+        "CONTACT_EMAIL": "Contact email",
+        "STUDENT_ID": "Student ID",
+        "PHONE": "Mobile / WhatsApp",
+        "BIRTH_DATE": "Date of birth",
+        "CAREER": "Degree",
+        "CAREER_YEAR": "Year of degree",
+        "EXCHANGE": "Exchange in the next two semesters",
+        "TEAM_ROLE": "Role they identify with",
+        "WORKS": "Works?",
+        "HEARD_ABOUT_IEEE": "How they found out about IEEE ITBA",
+        "HEARD_ABOUT_CAMPAIGN": "How they heard about the call",
+        "SKILLS": "Skills",
+        "NO_SKILLS": "No skills provided.",
+        "VIDEO": "Introduction video",
+        "OPEN_VIDEO": "Open introduction video",
+        "NO_VIDEO": "No valid link provided."
+      },
+      "LEGACY_REQUEST": "This application was created with the previous form and does not include the new questions.",
+      "VIEW_LINKEDIN": "View LinkedIn profile",
+      "REVIEWED_AT": "Reviewed on {{date}}",
+      "EMPTY": {
+        "PENDING": "There are no pending applications.",
+        "ACCEPTED": "There are no accepted applications.",
+        "REJECTED": "There are no rejected applications."
+      },
+      "ACCEPTED": "The selected applications were accepted. The team profiles are already updated.",
+      "REJECTED": "The applications were rejected. Their answers are kept in the private history.",
+      "ERRORS": {
+        "LOAD": "We couldn't load the applications. Check your connection and reload the page.",
+        "TOGGLE": "We couldn't change the application status. Please try again.",
+        "PROCESS": "We couldn't process the applications. Check your connection and try again.",
+        "LIMIT": "Select between 1 and 20 applications.",
+        "DUPLICATED": "There are duplicate applications.",
+        "MISSING_ASSIGNMENT": "Assign a commission and a position to each person.",
+        "ALREADY_REVIEWED": "An application has already been reviewed. Refresh your selection.",
+        "ACCOUNT_NOT_FOUND": "One of the accounts could not be found.",
+        "INVALID_POSITION": "The selected position does not belong to that commission."
       }
     },
     "EXAMSTAB": {
@@ -1424,19 +1484,230 @@
       }
   },
   "TEAM_REQUEST": {
-    "TITLE": "Register as an IEEE ITBA member",
-    "EDIT_PROFILE": "Edit your profile",
-    "VERIFY_DATA": "Verify your name, email and LinkedIn. It will show up in the team page.",
-    "SELECT_COMMISSION": "Select your commission and role",
-    "COMMISSION": "Commission:",
-    "POSITION": "Role:",
-    "LOADING": "Loading...",
-    "SEND": "Send",
-    "NOT_VERIFIED": "You are not verified",
-    "NOT_VERIFIED_MESSAGE": "In order to send a team request, you must verify your email.",
-    "SEND_EMAIL": "Send email",
-    "REQUESTS_CLOSE": "Team requests are closed",
-    "REQUESTS_CLOSE_MESSAGE": "Wait until team requests are open to send one"
+    "PAGE": {
+      "TITLE": "Be part of IEEE ITBA!",
+      "SUBTITLE": "Join our team! Lots of activities are coming up and we need your help!"
+    },
+    "STATUS": {
+      "LABEL": "Your application",
+      "ACCEPTED_TITLE": "You're now part of the team!",
+      "ACCEPTED_MESSAGE": "The administration accepted your application and assigned you a commission and a position.",
+      "REJECTED_TITLE": "Your application was reviewed",
+      "REJECTED_MESSAGE": "Your application was not accepted this time. If applications are open, you can update your answers and apply again.",
+      "PENDING_TITLE": "Your application is under review",
+      "PENDING_MESSAGE": "We have received your information. The team will contact you about the next steps.",
+      "REAPPLY": "Apply again",
+      "UPDATE": "Update my application"
+    },
+    "CLOSED": {
+      "TITLE": "Applications are closed",
+      "MESSAGE": "Come back when we open a new call to join IEEE ITBA."
+    },
+    "VERIFY": {
+      "TITLE": "Verify your email to continue",
+      "ACCOUNT": "The application will be sent with your account:",
+      "SEND": "Send verification email",
+      "CHECK": "I already verified my email",
+      "SENT": "We sent you an email. Open the link and then press “I already verified my email”.",
+      "SEND_ERROR": "We couldn't send the email. Wait a few minutes and try again.",
+      "VERIFIED": "Your email is verified.",
+      "NOT_VERIFIED": "Your email is not verified yet.",
+      "CHECK_ERROR": "We couldn't check your email. Please try again."
+    },
+    "SECTIONS": {
+      "PERSONAL_DATA": "Personal information",
+      "REQUIRED_NOTE": "Fields marked with an asterisk are required.",
+      "COMMISSION_SELECTION": "Commission/chapter selection",
+      "COMMISSION_SELECTION_HELP": "If you are only interested in one commission/chapter, fill in only the first option.",
+      "ADDITIONAL_INFO": "Additional information",
+      "ADDITIONAL_INFO_HELP": "Almost done! We just want you to tell us a bit more about yourself."
+    },
+    "FIELDS": {
+      "FIRST_NAMES": "First name(s)",
+      "LAST_NAME": "Last name",
+      "CONTACT_EMAIL": "Contact email",
+      "CONTACT_EMAIL_HINT": "We will contact you at this address. Your sign-in email is still {{email}}.",
+      "STUDENT_ID": "Student ID number",
+      "PHONE": "Mobile number",
+      "PHONE_HINT": "So we can contact you through WhatsApp.",
+      "BIRTH_DATE": "Date of birth",
+      "BIRTH_DATE_HINT": "At IEEE we wish everyone a happy birthday!",
+      "BIRTH_DATE_PLACEHOLDER": "dd/mm/yyyy",
+      "CAREER": "What degree are you studying?",
+      "CAREER_YEAR": "Roughly, what year of your degree are you in?",
+      "EXCHANGE": "Are you planning to go on exchange in the next two semesters?",
+      "KNOWS_COMMISSION": "Do you already know which commission you would like to join?",
+      "KNOWS_COMMISSION_HELP": "If so, go ahead and choose a commission. If not, we'll show you a bit of what each commission does.",
+      "COMMISSIONS": "Commissions",
+      "COMMISSIONS_HELP": "Below is a short description of each commission.",
+      "ERC": "If you want to join the team that competes in the European Rover Challenge, you don't need to fill in this form. Sign up using this one instead:",
+      "FIRST_COMMISSION": "First choice",
+      "SECOND_COMMISSION": "Second choice (optional)",
+      "LINKEDIN": "LinkedIn",
+      "LINKEDIN_HELP": "If you have a LinkedIn profile, you can leave us the link here. We can connect you with other members of the organization and of ITBA.",
+      "LINKEDIN_PLACEHOLDER": "https://www.linkedin.com/in/your-profile",
+      "TEAM_ROLE": "Which role do you identify with the most in a team?",
+      "WORKS": "Do you work?",
+      "SKILLS": "Do you have any skills you would like to tell us about?",
+      "SKILLS_HELP": "For example: writing, video editing, graphic design software, experience in competitions, private tutoring experience, languages, musical instruments, etc.",
+      "HEARD_ABOUT_IEEE": "How did you find out about IEEE ITBA?",
+      "HEARD_ABOUT_CAMPAIGN": "How did you hear about this recruiting campaign?",
+      "OTHER": "Other:",
+      "VIDEO": "We want to hear from you! \nRecord a short video (1 minute max) introducing yourself and telling us what motivates you to join IEEE ITBA. \nDon't be shy! We want to get to know you as you are, what you are interested in and why you want to be part of our community. A simple video with your phone is perfect :)\n\n(optional)",
+      "VIDEO_HINT": "Share a link to a video the team can open."
+    },
+    "ERRORS": {
+      "FIRST_NAMES": "Enter your first name.",
+      "LAST_NAME": "Enter your last name.",
+      "EMAIL": "Enter a valid email address.",
+      "STUDENT_ID": "Enter your student ID using numbers only.",
+      "PHONE": "Enter a valid phone number.",
+      "BIRTH_DATE": "Enter a valid date that is not in the future.",
+      "CAREER": "Select your degree.",
+      "SELECT_OPTION": "Select an option.",
+      "FIRST_COMMISSION": "Choose your main commission.",
+      "LINK": "Enter a full link starting with https:// or http://.",
+      "OTHER_IEEE": "Tell us how you found out about us.",
+      "OTHER_CAMPAIGN": "Tell us how you heard about it.",
+      "FORM": "Check the required fields and the links. If you chose “Other”, fill in the details.",
+      "NO_COMMISSIONS": "There are no commissions available yet. Check again later.",
+      "UNAVAILABLE_COMMISSION": "Choose an available commission.",
+      "LOAD": "We couldn't load the application form. Reload the page to try again.",
+      "LOAD_REQUEST": "We couldn't check your application. Reload the page before sending it.",
+      "SEND": "We couldn't send your application. Check your connection and that applications are still open. Your answers are still in the form.",
+      "ALREADY_ACCEPTED": "Your application has already been accepted."
+    },
+    "FOOTER": {
+      "PRIVACY": "Your contact email and answers are available to you and the administration. If you are accepted, your name, account email, photo, LinkedIn, commission and position will be part of the team's public profile.",
+      "CANCEL_EDIT": "Cancel editing",
+      "PROCESSING_PHOTO": "Processing photo…",
+      "SENDING": "Sending application…",
+      "SEND_UPDATE": "Send updated application",
+      "SEND": "I want to join IEEE ITBA",
+      "SENT": "We received your application! The team will review it and get in touch with you."
+    },
+    "OPTIONS": {
+      "SELECT": "Select an option",
+      "YES": "Yes",
+      "NO": "No",
+      "NO_SECOND": "No second choice",
+      "EXCHANGE": {
+        "YES": "Yes",
+        "NO": "No",
+        "MAYBE": "Maybe"
+      },
+      "CAREERS": {
+        "BUSINESS_ANALYTICS": "B.A. in Business and Social Analytics",
+        "BUSINESS_MANAGEMENT": "B.A. in Business Management",
+        "BIOENGINEERING": "Bioengineering",
+        "ELECTRONICS": "Electronic Engineering",
+        "INDUSTRIAL": "Industrial Engineering",
+        "COMPUTER": "Computer Engineering",
+        "MECHANICAL": "Mechanical Engineering",
+        "NAVAL": "Naval Engineering",
+        "PETROLEUM": "Petroleum Engineering",
+        "CHEMICAL": "Chemical Engineering",
+        "CIVIL": "Civil Engineering",
+        "BIOTECHNOLOGY": "Biotechnology Engineering"
+      },
+      "YEARS": {
+        "ADMISSION": "Admission course",
+        "FIRST": "First",
+        "SECOND": "Second",
+        "THIRD": "Third",
+        "FOURTH": "Fourth",
+        "FIFTH": "Fifth",
+        "GRADUATE": "Graduate"
+      },
+      "MEDIA": {
+        "ACQUAINTANCE": "Someone I know",
+        "INSTAGRAM": "Instagram",
+        "PYTHON_COURSE": "Python course",
+        "CAMPUS": "ITBA campus",
+        "YOUTUBE": "YouTube",
+        "LINKEDIN": "LinkedIn",
+        "WEBSITE": "Our website",
+        "OTHER": "Other:"
+      },
+      "ROLES": {
+        "LEADER": "Leader: \"I'll do whatever it takes to save this company!\"",
+        "COORDINATOR": "Coordinator: \"I like helping and organizing, but I'm not comfortable making decisions\"",
+        "TEAM_PLAYER": "Team player: \"Come on, together we can do it!\"",
+        "FORMAL_MEMBER": "Formal member: \"I enjoy working and interacting with others\"",
+        "BACKSTAGE": "\"Behind the scenes\" member: \"I'd rather help however I can and interact with the public as little as possible\""
+      },
+      "ROLE_NAMES": {
+        "LEADER": "Leader",
+        "COORDINATOR": "Coordinator",
+        "TEAM_PLAYER": "Team player",
+        "FORMAL_MEMBER": "Formal member",
+        "BACKSTAGE": "Behind the scenes"
+      }
+    },
+    "COMMISSIONS": {
+      "EDU": {
+        "TITLE": "Education",
+        "GOAL": "Goal: Develop activities that build technical and technological skills.",
+        "PARAGRAPHS": [
+          "So far, we run two Python programming courses (Introduction to Programming and Data Analysis), a TypeScript course and an IoT (Internet of Things) workshop. We are in charge of running these courses: planning, recording and editing our own videos, creating teaching materials and tutoring students through Discord.",
+          "We are looking to broaden our range of activities, whether by adding more programming courses or other kinds of courses, seminars, workshops, competitions, etc. We have an active development section where we propose changes and improvements to our current activities and create new projects.",
+          "If you like teaching, programming or coming up with new ideas for future activities, we recommend you join us."
+        ]
+      },
+      "FR": {
+        "TITLE": "Fundraising & Logistics",
+        "GOAL": "Goal: Manage the branch's relationship with companies and organizations, raise funds, and organize the logistics of our activities.",
+        "PARAGRAPHS": [
+          "We mainly organize and fund the events the branch offers (IEEEXtreme, the Python and TypeScript courses, the Asimov Cup and the IoT workshop), and we keep in touch with companies and other organizations.",
+          "If you are interested in learning how to work with companies, negotiate and plan events, you are more than welcome to join us."
+        ]
+      },
+      "MEDIA": {
+        "TITLE": "Media & Communication",
+        "GOAL": "Goal: Come up with, organize and carry out the organization's outreach and branding strategy.",
+        "PARAGRAPHS": [
+          "Since our activities are diverse, the commission is made up of 3 sub-teams:",
+          "Writers: we write reports for the organization and run a weekly news project called IEEE News, where we write popular science and technology articles.",
+          "Community Managers: we manage the branch's social media and design the posts. We are also the first point of contact between our audience and the organization.",
+          "Illustrators: we come up with, plan and create everything related to the ITBOTS. Sometimes we help other commissions with design requests. If you want to know more about our work, check out the content we share on the branch's Instagram page.",
+          "Interviewers: this semester we will start a new series of interviews with students from every degree, so if you are interested in audiovisual production, join us!",
+          "If any of these activities catches your attention or you want to learn about these topics, be part of our team."
+        ]
+      },
+      "TI": {
+        "TITLE": "Information Technology",
+        "GOAL": "Goal: Build, maintain and improve the organization's computer systems.",
+        "PARAGRAPHS": [
+          "We develop and maintain the branch's website (ieeeitba.org.ar) and handle the organization's large volume of data.",
+          "Our goal is for every project from the other commissions to be represented on the website.",
+          "Every year we provide full technical support for the organization's events, from building betting systems for the robotics competitions to live-streaming them.",
+          "We are currently developing a bot that sends emails automatically.",
+          "If you have web development experience and enjoy working with and learning many technologies, join our team."
+        ]
+      },
+      "RAS": {
+        "TITLE": "RAS",
+        "GOAL": "Goal: promote projects and events in robotics and automation",
+        "PARAGRAPHS": [
+          "RAS is an IEEE affinity chapter, which means it is governed by its own terms but is supported by IEEE and must follow its guidelines. In ITBA's RAS team, we carry out several activities related to robotics and automation. We build robots to compete in the line follower and mini-sumo categories, take part in robotics competitions and organize our own event: the Asimov Cup.",
+          "If you have already taken part in robotics competitions or are interested in learning about the subject, join the RAS team."
+        ]
+      }
+    },
+    "CALENDAR": {
+      "CALENDAR": "Date of birth calendar",
+      "OPEN": "Open calendar",
+      "CLOSE": "Close calendar",
+      "PREV_MONTH": "Previous month",
+      "NEXT_MONTH": "Next month",
+      "PREV_YEAR": "Previous year",
+      "NEXT_YEAR": "Next year",
+      "PREV_YEARS": "Previous years",
+      "NEXT_YEARS": "Next years",
+      "MONTH_VIEW": "Choose date",
+      "MULTI_YEAR_VIEW": "Choose month and year",
+      "YEAR_RANGE": "From {{start}} to {{end}}"
+    }
   },
   "SPONSORS": {
     "PAGETITLE": "ITBA IEEE | Sponsors",
@@ -1502,6 +1773,15 @@
         "VERIFY_EMAIL": "Verify Email",
         "REQUEST_CHANGE": "Request Change",
         "DELETE_ACCOUNT": "Delete Account"
+    },
+    "PICTURE": {
+      "TITLE": "Profile picture",
+      "OPTIONAL": "(optional)",
+      "FORMATS": "JPG or PNG",
+      "PROCESSING": "Processing…",
+      "CHANGE": "Change picture",
+      "UPLOAD": "Upload picture",
+      "REMOVE": "Remove"
     }
   },
   "ALERT_MODAL": {

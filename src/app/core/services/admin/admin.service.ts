@@ -148,14 +148,14 @@ export class AdminService {
     aceptarSolicitudes(asignaciones: AsignacionSolicitud[]): Observable<void> {
         return defer(() => from(runTransaction(this.afs, async transaccion => {
             if (!asignaciones.length || asignaciones.length > 20) {
-                throw new Error('Seleccioná entre 1 y 20 solicitudes.');
+                throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.LIMIT');
             }
             if (new Set(asignaciones.map(asignacion => asignacion.correo)).size !== asignaciones.length) {
-                throw new Error('Hay solicitudes repetidas.');
+                throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.DUPLICATED');
             }
             const documentos = await Promise.all(asignaciones.map(async asignacion => {
                 if (!asignacion.comisionId || !asignacion.cargoId || !['F', 'M'].includes(asignacion.generoCargo)) {
-                    throw new Error('Asigná una comisión y un cargo a cada persona.');
+                    throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.MISSING_ASSIGNMENT');
                 }
                 const solicitudRef = doc(this.afs, 'team-requests', asignacion.correo);
                 const usuarioRef = doc(this.afs, AdminService.USERS_COLLECTION_NAME, asignacion.correo);
@@ -166,12 +166,12 @@ export class AdminService {
                     transaccion.get(doc(this.afs, 'commissions', asignacion.comisionId))
                 ]);
                 if (!solicitud.exists() || (solicitud.data().estado ?? 'pendiente') !== 'pendiente') {
-                    throw new Error('Una solicitud ya fue revisada. Actualizá la selección.');
+                    throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ALREADY_REVIEWED');
                 }
-                if (!usuario.exists()) throw new Error('No se encontró la cuenta de una de las personas.');
+                if (!usuario.exists()) throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ACCOUNT_NOT_FOUND');
                 const datosComision = comision.data() as Commission;
                 if (!datosComision?.positions?.some(cargo => cargo.id === asignacion.cargoId)) {
-                    throw new Error('El cargo seleccionado no pertenece a esa comisión.');
+                    throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.INVALID_POSITION');
                 }
                 return {asignacion, solicitudRef, usuarioRef, rolesRef, solicitud: solicitud.data() as SolicitudIngreso};
             }));
@@ -197,14 +197,14 @@ export class AdminService {
     rechazarSolicitudes(correos: string[]): Observable<void> {
         return defer(() => from(runTransaction(this.afs, async transaccion => {
             if (!correos.length || correos.length > 20) {
-                throw new Error('Seleccioná entre 1 y 20 solicitudes.');
+                throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.LIMIT');
             }
             const documentos = await Promise.all(correos.map(correo =>
                 transaccion.get(doc(this.afs, 'team-requests', correo))
             ));
             for (const documento of documentos) {
                 if (!documento.exists() || (documento.data().estado ?? 'pendiente') !== 'pendiente') {
-                    throw new Error('Una solicitud ya fue revisada. Actualizá la selección.');
+                    throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ALREADY_REVIEWED');
                 }
                 transaccion.update(documento.ref, {estado: 'rechazada', fechaRevision: serverTimestamp()});
             }

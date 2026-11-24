@@ -2,14 +2,14 @@
 <div *ngIf="compacto; else presentacionHabitual" class="foto-compacta" [attr.aria-busy]="cargandoImagen">
     <app-profile-picture size="80px" [src]="photoURL"></app-profile-picture>
     <div class="datos-foto">
-        <p class="titulo-foto">Foto de perfil <span>(opcional)</span></p>
-        <p class="ayuda-foto">JPG o PNG</p>
+        <p class="titulo-foto">{{ 'PROFILE.PICTURE.TITLE' | translate }} <span>{{ 'PROFILE.PICTURE.OPTIONAL' | translate }}</span></p>
+        <p class="ayuda-foto">{{ 'PROFILE.PICTURE.FORMATS' | translate }}</p>
         <div class="acciones-foto">
             <button mat-stroked-button color="primary" type="button" (click)="pictureInput.click()" [disabled]="cargandoImagen">
                 <mdb-icon fas icon="camera" class="mr-1"></mdb-icon>
-                {{ cargandoImagen ? 'Procesando…' : photoURL ? 'Cambiar foto' : 'Subir foto' }}
+                {{ (cargandoImagen ? 'PROFILE.PICTURE.PROCESSING' : photoURL ? 'PROFILE.PICTURE.CHANGE' : 'PROFILE.PICTURE.UPLOAD') | translate }}
             </button>
-            <button *ngIf="photoURL" mat-button type="button" color="warn" (click)="deletePicture(); pictureInput.value = ''" [disabled]="cargandoImagen">Quitar</button>
+            <button *ngIf="photoURL" mat-button type="button" color="warn" (click)="deletePicture(); pictureInput.value = ''" [disabled]="cargandoImagen">{{ 'PROFILE.PICTURE.REMOVE' | translate }}</button>
         </div>
     </div>
 </div>

@@ -35,6 +35,7 @@ export class TeamService {
     private static readonly USERS_COLLECTION_NAME = 'users';
     private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
     private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
+    static readonly SOLICITUD_YA_ACEPTADA = 'SOLICITUD_YA_ACEPTADA';
 
     constructor(private afs: Firestore) {}
 
@@ -235,7 +236,7 @@ export class TeamService {
             const referencia = doc(this.afs, 'team-requests', solicitud.email);
             const anterior = await transaccion.get(referencia);
             if (anterior.exists() && anterior.data().estado === 'aceptada') {
-                throw new Error('Tu solicitud ya fue aceptada.');
+                throw new Error(TeamService.SOLICITUD_YA_ACEPTADA);
             }
             transaccion.set(referencia, {
                 name: solicitud.name,
