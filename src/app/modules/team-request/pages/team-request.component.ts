@@ -9,20 +9,19 @@ import {AuthService} from '../../../core/services/authorization/auth.service';
 import {TeamService} from '../../../core/services/team/team.service';
 import {IEEEuser} from '../../../shared/models/ieee-user/ieee-user';
 import {
-    ANIOS_INSCRIPCION, CARRERAS_INSCRIPCION, esEnlaceWeb, esMedioDifusion, MEDIOS_DIFUSION, OPCIONES_INTERCAMBIO,
-    OPCIONES_ROL_EQUIPO, PlanIntercambio, RespuestasInscripcion, SolicitudIngreso
-} from '../../../shared/models/solicitud-ingreso';
-import {COMISIONES_INSCRIPCION} from './contenido-inscripcion';
-import {AdaptadorFechaInscripcion, CalendarioInscripcionIntl} from './calendario-inscripcion';
+    COMMISSION_GUIDE_IDS, ExchangePlan, isOption, isWebUrl, OTHER_SOURCE, TEAM_REQUEST_OPTIONS, TeamRequest,
+    TeamRequestAnswers
+} from '../../../shared/models/team-request';
+import {BirthDateAdapter, BirthDatepickerIntl} from './birth-date-picker';
 
-function validarEnlace(control: AbstractControl): ValidationErrors | null {
-    return !control.value || esEnlaceWeb(control.value.trim()) ? null : {enlace: true};
+function validateUrl(control: AbstractControl): ValidationErrors | null {
+    return !control.value || isWebUrl(control.value.trim()) ? null : {url: true};
 }
 
-function validarFecha(control: AbstractControl): ValidationErrors | null {
+function validatePastDate(control: AbstractControl): ValidationErrors | null {
     if (!control.value) return null;
-    const fecha = control.value;
-    return fecha instanceof Date && !Number.isNaN(fecha.getTime()) && fecha <= new Date() ? null : {fecha: true};
+    const date = control.value;
+    return date instanceof Date && !Number.isNaN(date.getTime()) && date <= new Date() ? null : {date: true};
 }
 
 @Component({
@@ -30,225 +29,225 @@ function validarFecha(control: AbstractControl): ValidationErrors | null {
     templateUrl: './team-request.component.html',
     styleUrls: ['./team-request.component.css'],
     providers: [
-        {provide: DateAdapter, useClass: AdaptadorFechaInscripcion},
+        {provide: DateAdapter, useClass: BirthDateAdapter},
         {provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS},
-        {provide: MatDatepickerIntl, useClass: CalendarioInscripcionIntl}
+        {provide: MatDatepickerIntl, useClass: BirthDatepickerIntl}
     ]
 })
 export class TeamRequestComponent implements OnInit, OnDestroy {
-    readonly carreras = CARRERAS_INSCRIPCION;
-    readonly anios = ANIOS_INSCRIPCION;
-    readonly opcionesIntercambio = OPCIONES_INTERCAMBIO;
-    readonly guiaComisiones = COMISIONES_INSCRIPCION;
-    readonly rolesEquipo = OPCIONES_ROL_EQUIPO;
-    readonly medios = MEDIOS_DIFUSION;
-    readonly hoy = new Date();
-    readonly formulario = this.creadorFormulario.group({
-        nombres: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(100)]],
-        apellidos: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(100)]],
-        correoContacto: ['', [Validators.required, Validators.email, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/), Validators.maxLength(254)]],
-        legajo: ['', [Validators.required, Validators.pattern(/^\d{1,12}$/)]],
-        telefono: ['', [Validators.required, Validators.pattern(/^[+]?([ ()-]*[0-9]){7,15}[ ()-]*$/), Validators.maxLength(25)]],
-        fechaNacimiento: [null as Date | null, [Validators.required, validarFecha]],
-        carrera: ['', Validators.required],
-        anioCarrera: ['', Validators.required],
-        intercambio: ['', Validators.required],
-        primeraComision: ['', Validators.required],
-        segundaComision: [''],
-        rolEquipo: ['', Validators.required],
-        trabaja: [null as boolean | null, Validators.required],
-        habilidades: ['', Validators.maxLength(2000)],
-        conocioIEEE: ['', Validators.required],
-        otroMedioIEEE: ['', Validators.maxLength(200)],
-        conocioConvocatoria: ['', Validators.required],
-        otroMedioConvocatoria: ['', Validators.maxLength(200)],
-        enlaceVideo: ['', [validarEnlace, Validators.maxLength(2000)]],
-        linkedin: ['', [validarEnlace, Validators.maxLength(500)]]
-    }, {validators: (grupo: AbstractControl) => {
-        const valores = grupo.value;
-        if (valores.primeraComision && valores.primeraComision === valores.segundaComision) return {comisionesRepetidas: true};
-        if (valores.conocioIEEE === 'Otro' && !valores.otroMedioIEEE?.trim()) return {otroMedioIEEE: true};
-        if (valores.conocioConvocatoria === 'Otro' && !valores.otroMedioConvocatoria?.trim()) return {otroMedioConvocatoria: true};
+    readonly options = TEAM_REQUEST_OPTIONS;
+    readonly commissionGuide = COMMISSION_GUIDE_IDS;
+    readonly otherSource = OTHER_SOURCE;
+    readonly today = new Date();
+    readonly form = this.formBuilder.group({
+        firstNames: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(100)]],
+        lastNames: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(100)]],
+        contactEmail: ['', [Validators.required, Validators.email, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/), Validators.maxLength(254)]],
+        studentId: ['', [Validators.required, Validators.pattern(/^\d{1,12}$/)]],
+        phone: ['', [Validators.required, Validators.pattern(/^[+]?([ ()-]*[0-9]){7,15}[ ()-]*$/), Validators.maxLength(25)]],
+        birthDate: [null as Date | null, [Validators.required, validatePastDate]],
+        career: ['', Validators.required],
+        yearOfStudy: ['', Validators.required],
+        exchangePlan: ['', Validators.required],
+        firstCommission: ['', Validators.required],
+        secondCommission: [''],
+        teamRole: ['', Validators.required],
+        works: [null as boolean | null, Validators.required],
+        skills: ['', Validators.maxLength(2000)],
+        heardAboutIeee: ['', Validators.required],
+        otherSourceIeee: ['', Validators.maxLength(200)],
+        heardAboutCampaign: ['', Validators.required],
+        otherSourceCampaign: ['', Validators.maxLength(200)],
+        videoUrl: ['', [validateUrl, Validators.maxLength(2000)]],
+        linkedin: ['', [validateUrl, Validators.maxLength(500)]]
+    }, {validators: (group: AbstractControl) => {
+        const values = group.value;
+        if (values.firstCommission && values.firstCommission === values.secondCommission) return {repeatedCommission: true};
+        if (values.heardAboutIeee === OTHER_SOURCE && !values.otherSourceIeee?.trim()) return {otherSourceIeee: true};
+        if (values.heardAboutCampaign === OTHER_SOURCE && !values.otherSourceCampaign?.trim()) return {otherSourceCampaign: true};
         return null;
     }});
 
-    usuario: IEEEuser | null = null;
-    comisiones: string[] = [];
-    inscripcionesAbiertas = false;
-    cargando = true;
-    cargandoSolicitud = true;
-    falloCarga = false;
-    enviando = false;
-    procesandoFoto = false;
-    verificando = false;
-    editando = false;
-    intentoEnvio = false;
-    foto: string | null = null;
-    tipoImagen: string;
-    solicitud: SolicitudIngreso | null = null;
+    user: IEEEuser | null = null;
+    commissions: string[] = [];
+    requestsOpen = false;
+    loading = true;
+    loadingRequest = true;
+    loadFailed = false;
+    submitting = false;
+    processingPhoto = false;
+    verifying = false;
+    editing = false;
+    submitAttempted = false;
+    photo: string | null = null;
+    pictureType: string;
+    request: TeamRequest | null = null;
     error = '';
-    aviso = '';
-    conoceComision: boolean | null = null;
-    private readonly destruido = new Subject<void>();
+    notice = '';
+    knowsCommission: boolean | null = null;
+    private readonly destroyed = new Subject<void>();
 
     constructor(
-        private creadorFormulario: FormBuilder,
-        private autorizacion: AuthService,
-        private equipo: TeamService,
-        private ruta: ActivatedRoute,
-        private navegador: Router
+        private formBuilder: FormBuilder,
+        private auth: AuthService,
+        private team: TeamService,
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
-        combineLatest([this.equipo.getAllCommissions(), this.equipo.getIsTeamRequestOpen()])
-            .pipe(takeUntil(this.destruido)).subscribe({
-                next: ([comisiones, abiertas]) => {
-                    this.comisiones = this.guiaComisiones.filter(id =>
-                        comisiones.some(comision => comision.id === id && comision.positions?.length)
+        combineLatest([this.team.getAllCommissions(), this.team.getIsTeamRequestOpen()])
+            .pipe(takeUntil(this.destroyed)).subscribe({
+                next: ([commissions, open]) => {
+                    this.commissions = this.commissionGuide.filter(id =>
+                        commissions.some(commission => commission.id === id && commission.positions?.length)
                     );
-                    this.inscripcionesAbiertas = abiertas;
-                    this.cargando = false;
+                    this.requestsOpen = open;
+                    this.loading = false;
                 },
                 error: () => {
-                    this.cargando = false;
-                    this.falloCarga = true;
+                    this.loading = false;
+                    this.loadFailed = true;
                     this.error = 'TEAM_REQUEST.ERRORS.LOAD';
                 }
             });
-        this.autorizacion.getCurrentUser().pipe(
-            tap(usuario => {
-                if (usuario && !this.usuario) {
-                    this.foto = usuario.photoURL;
-                    this.formulario.patchValue({linkedin: usuario.linkedin || '', correoContacto: usuario.email});
+        this.auth.getCurrentUser().pipe(
+            tap(user => {
+                if (user && !this.user) {
+                    this.photo = user.photoURL;
+                    this.form.patchValue({linkedin: user.linkedin || '', contactEmail: user.email});
                 }
-                this.usuario = usuario;
+                this.user = user;
             }),
-            filter(usuario => !!usuario),
-            distinctUntilChanged((anterior, siguiente) => anterior.email === siguiente.email),
-            switchMap(usuario => this.equipo.obtenerSolicitud(usuario.email)),
-            takeUntil(this.destruido)
+            filter(user => !!user),
+            distinctUntilChanged((previous, current) => previous.email === current.email),
+            switchMap(user => this.team.getTeamRequest(user.email)),
+            takeUntil(this.destroyed)
         ).subscribe({
-            next: solicitud => {
-                this.solicitud = solicitud;
-                this.cargandoSolicitud = false;
-                if (solicitud?.estado === 'aceptada') this.editando = false;
+            next: request => {
+                this.request = request;
+                this.loadingRequest = false;
+                if (request?.status === 'accepted') this.editing = false;
             },
             error: () => {
-                this.cargandoSolicitud = false;
-                this.falloCarga = true;
+                this.loadingRequest = false;
+                this.loadFailed = true;
                 this.error = 'TEAM_REQUEST.ERRORS.LOAD_REQUEST';
             }
         });
-        if (this.ruta.snapshot.queryParamMap.get('verified') === 'true') this.comprobarCorreo();
+        if (this.route.snapshot.queryParamMap.get('verified') === 'true') this.checkEmail();
     }
 
     ngOnDestroy(): void {
-        this.destruido.next();
-        this.destruido.complete();
+        this.destroyed.next();
+        this.destroyed.complete();
     }
 
-    cambiarPrimeraComision(): void {
-        if (this.formulario.value.primeraComision === this.formulario.value.segundaComision) {
-            this.formulario.patchValue({segundaComision: ''});
+    onFirstCommissionChange(): void {
+        if (this.form.value.firstCommission === this.form.value.secondCommission) {
+            this.form.patchValue({secondCommission: ''});
         }
     }
 
-    editarSolicitud(): void {
-        if (!this.solicitud || this.solicitud.estado === 'aceptada') return;
-        const respuestas = this.solicitud.respuestas;
-        if (respuestas) {
-            this.formulario.patchValue({
-                ...respuestas,
-                fechaNacimiento: parse(respuestas.fechaNacimiento, 'yyyy-MM-dd', new Date()),
-                conocioIEEE: esMedioDifusion(respuestas.conocioIEEE) ? respuestas.conocioIEEE : 'Otro',
-                otroMedioIEEE: esMedioDifusion(respuestas.conocioIEEE) ? '' : respuestas.conocioIEEE,
-                conocioConvocatoria: esMedioDifusion(respuestas.conocioConvocatoria) ? respuestas.conocioConvocatoria : 'Otro',
-                otroMedioConvocatoria: esMedioDifusion(respuestas.conocioConvocatoria) ? '' : respuestas.conocioConvocatoria,
-                enlaceVideo: respuestas.enlaceVideo || ''
+    editRequest(): void {
+        if (!this.request || this.request.status === 'accepted') return;
+        const answers = this.request.answers;
+        if (answers) {
+            const ieeeIsOption = isOption('MEDIA', answers.heardAboutIeee);
+            const campaignIsOption = isOption('MEDIA', answers.heardAboutCampaign);
+            this.form.patchValue({
+                ...answers,
+                birthDate: parse(answers.birthDate, 'yyyy-MM-dd', new Date()),
+                heardAboutIeee: ieeeIsOption ? answers.heardAboutIeee : OTHER_SOURCE,
+                otherSourceIeee: ieeeIsOption ? '' : answers.heardAboutIeee,
+                heardAboutCampaign: campaignIsOption ? answers.heardAboutCampaign : OTHER_SOURCE,
+                otherSourceCampaign: campaignIsOption ? '' : answers.heardAboutCampaign,
+                videoUrl: answers.videoUrl || ''
             });
         }
-        this.formulario.patchValue({
-            correoContacto: respuestas?.correoContacto || this.solicitud.email,
-            primeraComision: this.solicitud.commissionid,
-            segundaComision: this.solicitud.segundaComisionId || '',
-            linkedin: this.solicitud.linkedin || ''
+        this.form.patchValue({
+            contactEmail: answers?.contactEmail || this.request.email,
+            firstCommission: this.request.commissionid,
+            secondCommission: this.request.secondCommissionId || '',
+            linkedin: this.request.linkedin || ''
         });
-        this.foto = this.solicitud.photo;
-        this.editando = true;
-        this.aviso = '';
+        this.photo = this.request.photo;
+        this.editing = true;
+        this.notice = '';
     }
 
-    enviarSolicitud(): void {
-        this.intentoEnvio = true;
-        this.formulario.markAllAsTouched();
-        if (this.formulario.invalid || this.enviando || this.procesandoFoto || !this.usuario?.verifiedEmail || !this.inscripcionesAbiertas
-            || this.cargandoSolicitud || this.falloCarga || this.solicitud?.estado === 'aceptada') return;
-        const datos = this.formulario.getRawValue();
-        const existeComision = (id: string) => this.comisiones.includes(id);
-        if (!existeComision(datos.primeraComision) || (datos.segundaComision && !existeComision(datos.segundaComision))) {
+    submitRequest(): void {
+        this.submitAttempted = true;
+        this.form.markAllAsTouched();
+        if (this.form.invalid || this.submitting || this.processingPhoto || !this.user?.verifiedEmail || !this.requestsOpen
+            || this.loadingRequest || this.loadFailed || this.request?.status === 'accepted') return;
+        const values = this.form.getRawValue();
+        const commissionExists = (id: string) => this.commissions.includes(id);
+        if (!commissionExists(values.firstCommission) || (values.secondCommission && !commissionExists(values.secondCommission))) {
             this.error = 'TEAM_REQUEST.ERRORS.UNAVAILABLE_COMMISSION';
             return;
         }
         this.error = '';
-        this.aviso = '';
-        this.enviando = true;
-        const respuestas: RespuestasInscripcion = {
-            nombres: datos.nombres.trim(), apellidos: datos.apellidos.trim(),
-            correoContacto: datos.correoContacto.trim(),
-            legajo: datos.legajo.trim(), telefono: datos.telefono.trim(),
-            fechaNacimiento: format(datos.fechaNacimiento, 'yyyy-MM-dd'), carrera: datos.carrera, anioCarrera: datos.anioCarrera,
-            intercambio: datos.intercambio as PlanIntercambio, rolEquipo: datos.rolEquipo, trabaja: datos.trabaja,
-            habilidades: datos.habilidades.trim(),
-            conocioIEEE: datos.conocioIEEE === 'Otro' ? datos.otroMedioIEEE.trim() : datos.conocioIEEE,
-            conocioConvocatoria: datos.conocioConvocatoria === 'Otro' ? datos.otroMedioConvocatoria.trim() : datos.conocioConvocatoria,
-            enlaceVideo: datos.enlaceVideo.trim() || null
+        this.notice = '';
+        this.submitting = true;
+        const answers: TeamRequestAnswers = {
+            firstNames: values.firstNames.trim(), lastNames: values.lastNames.trim(),
+            contactEmail: values.contactEmail.trim(),
+            studentId: values.studentId.trim(), phone: values.phone.trim(),
+            birthDate: format(values.birthDate, 'yyyy-MM-dd'), career: values.career, yearOfStudy: values.yearOfStudy,
+            exchangePlan: values.exchangePlan as ExchangePlan, teamRole: values.teamRole, works: values.works,
+            skills: values.skills.trim(),
+            heardAboutIeee: values.heardAboutIeee === OTHER_SOURCE ? values.otherSourceIeee.trim() : values.heardAboutIeee,
+            heardAboutCampaign: values.heardAboutCampaign === OTHER_SOURCE ? values.otherSourceCampaign.trim() : values.heardAboutCampaign,
+            videoUrl: values.videoUrl.trim() || null
         };
-        const perfil = {...this.usuario, fullname: `${respuestas.nombres} ${respuestas.apellidos}`, linkedin: datos.linkedin.trim() || null};
-        const cambioDeFoto = this.foto !== this.usuario.photoURL && (!this.foto || this.foto.startsWith('data:'));
-        const imagen = cambioDeFoto ? this.autorizacion.updateProfilePic(this.foto, this.tipoImagen) : of(this.foto);
-        imagen.pipe(
-            concatMap(foto => {
-                perfil.photoURL = foto;
-                return this.autorizacion.updateProfile(perfil);
+        const profile = {...this.user, fullname: `${answers.firstNames} ${answers.lastNames}`, linkedin: values.linkedin.trim() || null};
+        const photoChanged = this.photo !== this.user.photoURL && (!this.photo || this.photo.startsWith('data:'));
+        const photoUpload = photoChanged ? this.auth.updateProfilePic(this.photo, this.pictureType) : of(this.photo);
+        this.auth.ensureVerifiedToken().pipe(
+            concatMap(() => photoUpload),
+            concatMap(photo => {
+                profile.photoURL = photo;
+                return this.auth.updateProfile(profile);
             }),
-            concatMap(() => this.equipo.enviarSolicitud({
-                name: perfil.fullname, email: perfil.email, photo: perfil.photoURL, linkedin: perfil.linkedin,
-                gender: this.solicitud?.gender ?? null, commissionid: datos.primeraComision, positionid: null,
-                segundaComisionId: datos.segundaComision || null, respuestas
+            concatMap(() => this.team.submitTeamRequest({
+                name: profile.fullname, email: profile.email, photo: profile.photoURL, linkedin: profile.linkedin,
+                gender: this.request?.gender ?? null, commissionid: values.firstCommission, positionid: null,
+                secondCommissionId: values.secondCommission || null, answers
             })),
-            finalize(() => this.enviando = false),
-            takeUntil(this.destruido)
+            finalize(() => this.submitting = false),
+            takeUntil(this.destroyed)
         ).subscribe({
             next: () => {
-                this.editando = false;
-                this.aviso = 'TEAM_REQUEST.FOOTER.SENT';
+                this.editing = false;
+                this.notice = 'TEAM_REQUEST.FOOTER.SENT';
             },
-            error: (error: Error) => this.error = error?.message === TeamService.SOLICITUD_YA_ACEPTADA
+            error: (error: Error) => this.error = error?.message === TeamService.REQUEST_ALREADY_ACCEPTED
                 ? 'TEAM_REQUEST.ERRORS.ALREADY_ACCEPTED' : 'TEAM_REQUEST.ERRORS.SEND'
         });
     }
 
-    enviarVerificacion(): void {
-        if (this.verificando) return;
-        this.verificando = true;
-        const enlace = new URL(window.location.href);
-        enlace.searchParams.set('verified', 'true');
-        this.autorizacion.sendVerificationEmail(enlace.toString()).pipe(
-            finalize(() => this.verificando = false), takeUntil(this.destruido)
+    sendVerificationEmail(): void {
+        if (this.verifying) return;
+        this.verifying = true;
+        const returnUrl = new URL(window.location.href);
+        returnUrl.searchParams.set('verified', 'true');
+        this.auth.sendVerificationEmail(returnUrl.toString()).pipe(
+            finalize(() => this.verifying = false), takeUntil(this.destroyed)
         ).subscribe({
-            next: () => this.aviso = 'TEAM_REQUEST.VERIFY.SENT',
+            next: () => this.notice = 'TEAM_REQUEST.VERIFY.SENT',
             error: () => this.error = 'TEAM_REQUEST.VERIFY.SEND_ERROR'
         });
     }
 
-    comprobarCorreo(): void {
-        if (this.verificando) return;
-        this.verificando = true;
-        this.autorizacion.reloadToken().pipe(finalize(() => this.verificando = false), takeUntil(this.destruido)).subscribe({
-            next: () => {
-                if (this.usuario) this.usuario = {...this.usuario, verifiedEmail: this.autorizacion.user.emailVerified};
-                this.aviso = this.usuario?.verifiedEmail ? 'TEAM_REQUEST.VERIFY.VERIFIED' : 'TEAM_REQUEST.VERIFY.NOT_VERIFIED';
-                void this.navegador.navigate([], {queryParams: {verified: null}, queryParamsHandling: 'merge', replaceUrl: true});
+    checkEmail(): void {
+        if (this.verifying) return;
+        this.verifying = true;
+        this.auth.reloadToken().pipe(finalize(() => this.verifying = false), takeUntil(this.destroyed)).subscribe({
+            next: verified => {
+                if (this.user) this.user = {...this.user, verifiedEmail: verified};
+                this.notice = verified ? 'TEAM_REQUEST.VERIFY.VERIFIED' : 'TEAM_REQUEST.VERIFY.NOT_VERIFIED';
+                void this.router.navigate([], {queryParams: {verified: null}, queryParamsHandling: 'merge', replaceUrl: true});
             },
             error: () => this.error = 'TEAM_REQUEST.VERIFY.CHECK_ERROR'
         });

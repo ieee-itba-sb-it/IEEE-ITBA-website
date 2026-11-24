@@ -3,20 +3,26 @@ import {combineLatest, finalize, Subject, takeUntil} from 'rxjs';
 import {AdminService} from '../../../../core/services/admin/admin.service';
 import {TeamService} from '../../../../core/services/team/team.service';
 import {Commission} from '../../../../shared/models/commission';
-import {
-    ANIOS_INSCRIPCION, AsignacionSolicitud, CARRERAS_INSCRIPCION, claveOpcion, esEnlaceWeb, EstadoSolicitud,
-    MEDIOS_DIFUSION, NOMBRES_ROL_EQUIPO, OPCIONES_INTERCAMBIO, SolicitudIngreso
-} from '../../../../shared/models/solicitud-ingreso';
 import {InternationalText} from '../../../../shared/models/data-types';
+import {
+    getOptionKey, getRequestStatus, isWebUrl, TeamRequest, TeamRequestAssignment, TeamRequestStatus
+} from '../../../../shared/models/team-request';
 
-const CLAVES_ESTADO: Record<EstadoSolicitud, string> = {pendiente: 'PENDING', aceptada: 'ACCEPTED', rechazada: 'REJECTED'};
-const PREFIJO_ERRORES = 'ADMIN.TEAMREQUESTSTAB.ERRORS.';
-
-interface SolicitudSeleccionable extends SolicitudIngreso {
-    seleccionada: boolean;
-    comisionElegida: string;
-    cargoElegido: string;
+interface SelectableRequest extends TeamRequest {
+    selected: boolean;
+    chosenCommission: string;
+    chosenPosition: string;
 }
+
+interface PositionOption {
+    value: string;
+    positionId: string;
+    positionGender: 'F' | 'M';
+    title: InternationalText;
+}
+
+const STATUS_KEYS: Record<TeamRequestStatus, string> = {pending: 'PENDING', accepted: 'ACCEPTED', rejected: 'REJECTED'};
+const ERROR_PREFIX = 'ADMIN.TEAMREQUESTSTAB.ERRORS.';
 
 @Component({
     selector: 'app-team-requests',
@@ -24,147 +30,152 @@ interface SolicitudSeleccionable extends SolicitudIngreso {
     styleUrls: ['./team-requests.component.css']
 })
 export class TeamRequestsComponent implements OnInit, OnDestroy {
-    solicitudes: SolicitudSeleccionable[] = [];
-    comisiones: Commission[] = [];
-    estadoFiltro: EstadoSolicitud = 'pendiente';
-    inscripcionesAbiertas = false;
-    cargando = true;
-    procesando = false;
-    cambiandoConvocatoria = false;
+    requests: SelectableRequest[] = [];
+    commissions: Commission[] = [];
+    statusFilter: TeamRequestStatus = 'pending';
+    requestsOpen = false;
+    loading = true;
+    processing = false;
+    togglingRequests = false;
     error = '';
-    aviso = '';
-    readonly esEnlaceWeb = esEnlaceWeb;
-    readonly claveOpcion = claveOpcion;
-    readonly claveEstado = CLAVES_ESTADO;
-    readonly carreras = CARRERAS_INSCRIPCION;
-    readonly anios = ANIOS_INSCRIPCION;
-    readonly opcionesIntercambio = OPCIONES_INTERCAMBIO;
-    readonly rolesEquipo = NOMBRES_ROL_EQUIPO;
-    readonly medios = MEDIOS_DIFUSION;
-    private readonly destruido = new Subject<void>();
+    notice = '';
+    readonly maxReviewedRequests = AdminService.MAX_REVIEWED_REQUESTS;
+    readonly statusKeys = STATUS_KEYS;
+    readonly isWebUrl = isWebUrl;
+    readonly getOptionKey = getOptionKey;
+    private readonly destroyed = new Subject<void>();
 
-    constructor(private administracion: AdminService, private equipo: TeamService) {}
+    constructor(private admin: AdminService, private team: TeamService) {}
 
     ngOnInit(): void {
         combineLatest([
-            this.administracion.obtenerSolicitudes(),
-            this.equipo.getAllCommissions(),
-            this.equipo.getIsTeamRequestOpen()
-        ]).pipe(takeUntil(this.destruido)).subscribe({
-            next: ([solicitudes, comisiones, abiertas]) => {
-                const anteriores = new Map(this.solicitudes.map(solicitud => [solicitud.email, solicitud]));
-                this.comisiones = comisiones;
-                this.inscripcionesAbiertas = abiertas;
-                this.solicitudes = solicitudes.map(solicitud => {
-                    const anterior = anteriores.get(solicitud.email);
-                    const pendiente = (solicitud.estado ?? 'pendiente') === 'pendiente';
+            this.admin.getTeamRequests(),
+            this.team.getAllCommissions(),
+            this.team.getIsTeamRequestOpen()
+        ]).pipe(takeUntil(this.destroyed)).subscribe({
+            next: ([requests, commissions, open]) => {
+                const previous = new Map(this.requests.map(request => [request.email, request]));
+                this.commissions = commissions;
+                this.requestsOpen = open;
+                this.requests = requests.map(request => {
+                    const previousRequest = previous.get(request.email);
+                    const positionId = request.assignedPositionId || request.positionid;
                     return {
-                        ...solicitud,
-                        seleccionada: pendiente && (anterior?.seleccionada ?? false),
-                        comisionElegida: anterior?.comisionElegida || solicitud.comisionAsignadaId || solicitud.commissionid,
-                        cargoElegido: anterior?.cargoElegido || (solicitud.cargoAsignadoId || solicitud.positionid
-                            ? JSON.stringify([solicitud.cargoAsignadoId || solicitud.positionid, solicitud.gender || 'M']) : '')
+                        ...request,
+                        selected: getRequestStatus(request) === 'pending' && (previousRequest?.selected ?? false),
+                        chosenCommission: previousRequest?.chosenCommission || request.assignedCommissionId || request.commissionid,
+                        chosenPosition: previousRequest?.chosenPosition
+                            || (positionId ? JSON.stringify([positionId, request.gender || 'M']) : '')
                     };
-                }).sort((primera, segunda) => (segunda.fechaEnvio?.toMillis() ?? 0) - (primera.fechaEnvio?.toMillis() ?? 0));
-                this.cargando = false;
+                }).sort((first, second) => (second.submittedAt?.toMillis() ?? 0) - (first.submittedAt?.toMillis() ?? 0));
+                this.loading = false;
             },
             error: () => {
-                this.cargando = false;
-                this.error = PREFIJO_ERRORES + 'LOAD';
+                this.loading = false;
+                this.error = ERROR_PREFIX + 'LOAD';
             }
         });
     }
 
     ngOnDestroy(): void {
-        this.destruido.next();
-        this.destruido.complete();
+        this.destroyed.next();
+        this.destroyed.complete();
     }
 
-    get solicitudesVisibles(): SolicitudSeleccionable[] {
-        return this.solicitudes.filter(solicitud => (solicitud.estado ?? 'pendiente') === this.estadoFiltro);
+    get visibleRequests(): SelectableRequest[] {
+        return this.requests.filter(request => getRequestStatus(request) === this.statusFilter);
     }
 
-    get seleccionadas(): SolicitudSeleccionable[] {
-        return this.solicitudes.filter(solicitud => solicitud.seleccionada && (solicitud.estado ?? 'pendiente') === 'pendiente');
+    get selectedRequests(): SelectableRequest[] {
+        return this.requests.filter(request => request.selected && getRequestStatus(request) === 'pending');
     }
 
-    get puedeAceptar(): boolean {
-        return this.seleccionadas.length > 0 && this.seleccionadas.length <= 20 && this.seleccionadas.every(solicitud =>
-            this.opcionesCargo(solicitud.comisionElegida, solicitud.gender).some(cargo => cargo.valor === solicitud.cargoElegido)
+    get canAccept(): boolean {
+        const selected = this.selectedRequests;
+        return selected.length > 0 && selected.length <= this.maxReviewedRequests && selected.every(request =>
+            this.getPositionOptions(request.chosenCommission, request.gender).some(position => position.value === request.chosenPosition)
         );
     }
 
-    buscarComision(id: string): Commission | undefined {
-        return this.comisiones.find(comision => comision.id === id);
+    findCommission(id: string): Commission | undefined {
+        return this.commissions.find(commission => commission.id === id);
     }
 
-    opcionesCargo(comisionId: string, generoAnterior?: string): {valor: string; cargoId: string; generoCargo: 'F' | 'M'; titulo: InternationalText}[] {
-        return (this.buscarComision(comisionId)?.positions || []).flatMap(cargo => {
-            const generos: ('F' | 'M')[] = cargo.title.F.es === cargo.title.M.es
-                ? [generoAnterior === 'F' ? 'F' : 'M'] : ['F', 'M'];
-            return generos.map(generoCargo => ({
-                valor: JSON.stringify([cargo.id, generoCargo]), cargoId: cargo.id,
-                generoCargo, titulo: cargo.title[generoCargo]
+    /** One option per position, split by gender when the position has different titles for each. */
+    getPositionOptions(commissionId: string, previousGender?: string): PositionOption[] {
+        return (this.findCommission(commissionId)?.positions || []).flatMap(position => {
+            const genders: ('F' | 'M')[] = position.title.F.es === position.title.M.es
+                ? [previousGender === 'F' ? 'F' : 'M'] : ['F', 'M'];
+            return genders.map(positionGender => ({
+                value: JSON.stringify([position.id, positionGender]), positionId: position.id,
+                positionGender, title: position.title[positionGender]
             }));
         });
     }
 
-    identificarCargo(indice: number, cargo: {valor: string}): string {
-        return cargo.valor;
+    trackPosition(index: number, position: PositionOption): string {
+        return position.value;
     }
 
-    nombreCargo(solicitud: SolicitudSeleccionable): InternationalText | null {
-        const cargo = this.buscarComision(solicitud.comisionAsignadaId)?.positions?.find(posicion => posicion.id === solicitud.cargoAsignadoId);
-        return cargo?.title[solicitud.gender === 'F' ? 'F' : 'M'] ?? null;
+    getAssignedPositionTitle(request: SelectableRequest): InternationalText | null {
+        const position = this.findCommission(request.assignedCommissionId)?.positions
+            ?.find(candidate => candidate.id === request.assignedPositionId);
+        return position?.title[request.gender === 'F' ? 'F' : 'M'] ?? null;
     }
 
-    cambiarFiltro(): void {
-        this.solicitudes.forEach(solicitud => solicitud.seleccionada = false);
-        this.aviso = '';
+    onFilterChange(): void {
+        this.requests.forEach(request => request.selected = false);
+        this.notice = '';
     }
 
-    aceptarSeleccionadas(): void {
-        if (!this.puedeAceptar || this.procesando) return;
-        const asignaciones: AsignacionSolicitud[] = this.seleccionadas.map(solicitud => {
-            const cargo = this.opcionesCargo(solicitud.comisionElegida, solicitud.gender)
-                .find(opcion => opcion.valor === solicitud.cargoElegido);
-            return {correo: solicitud.email, comisionId: solicitud.comisionElegida, cargoId: cargo.cargoId, generoCargo: cargo.generoCargo};
+    acceptSelected(): void {
+        if (!this.canAccept || this.processing) return;
+        const assignments: TeamRequestAssignment[] = this.selectedRequests.map(request => {
+            const position = this.getPositionOptions(request.chosenCommission, request.gender)
+                .find(option => option.value === request.chosenPosition);
+            return {
+                email: request.email, commissionId: request.chosenCommission,
+                positionId: position.positionId, positionGender: position.positionGender
+            };
         });
-        this.procesando = true;
-        this.error = '';
-        this.aviso = '';
-        this.administracion.aceptarSolicitudes(asignaciones).pipe(
-            finalize(() => this.procesando = false), takeUntil(this.destruido)
+        this.startProcessing();
+        this.admin.acceptTeamRequests(assignments).pipe(
+            finalize(() => this.processing = false), takeUntil(this.destroyed)
         ).subscribe({
-            next: () => this.aviso = 'ADMIN.TEAMREQUESTSTAB.ACCEPTED',
-            error: error => this.mostrarError(error)
+            next: () => this.notice = 'ADMIN.TEAMREQUESTSTAB.ACCEPTED',
+            error: error => this.showError(error)
         });
     }
 
-    rechazarSeleccionadas(): void {
-        if (!this.seleccionadas.length || this.seleccionadas.length > 20 || this.procesando) return;
-        const correos = this.seleccionadas.map(solicitud => solicitud.email);
-        this.procesando = true;
-        this.error = '';
-        this.aviso = '';
-        this.administracion.rechazarSolicitudes(correos).pipe(
-            finalize(() => this.procesando = false), takeUntil(this.destruido)
+    rejectSelected(): void {
+        const selected = this.selectedRequests;
+        if (!selected.length || selected.length > this.maxReviewedRequests || this.processing) return;
+        this.startProcessing();
+        this.admin.rejectTeamRequests(selected.map(request => request.email)).pipe(
+            finalize(() => this.processing = false), takeUntil(this.destroyed)
         ).subscribe({
-            next: () => this.aviso = 'ADMIN.TEAMREQUESTSTAB.REJECTED',
-            error: error => this.mostrarError(error)
+            next: () => this.notice = 'ADMIN.TEAMREQUESTSTAB.REJECTED',
+            error: error => this.showError(error)
         });
     }
 
-    cambiarConvocatoria(): void {
-        if (this.cambiandoConvocatoria) return;
-        this.cambiandoConvocatoria = true;
+    toggleRequestsOpen(): void {
+        if (this.togglingRequests) return;
+        this.togglingRequests = true;
         this.error = '';
-        this.equipo.setIsTeamRequestOpen(!this.inscripcionesAbiertas).pipe(
-            finalize(() => this.cambiandoConvocatoria = false), takeUntil(this.destruido)
-        ).subscribe({error: () => this.error = PREFIJO_ERRORES + 'TOGGLE'});
+        this.team.setIsTeamRequestOpen(!this.requestsOpen).pipe(
+            finalize(() => this.togglingRequests = false), takeUntil(this.destroyed)
+        ).subscribe({error: () => this.error = ERROR_PREFIX + 'TOGGLE'});
     }
 
-    private mostrarError(error: {code?: string; message?: string}): void {
-        this.error = !error.code && error.message?.startsWith(PREFIJO_ERRORES) ? error.message : PREFIJO_ERRORES + 'PROCESS';
+    private startProcessing(): void {
+        this.processing = true;
+        this.error = '';
+        this.notice = '';
+    }
+
+    /** AdminService throws i18n keys; anything else (Firebase errors) gets the generic message. */
+    private showError(error: {code?: string; message?: string}): void {
+        this.error = !error.code && error.message?.startsWith(ERROR_PREFIX) ? error.message : ERROR_PREFIX + 'PROCESS';
     }
 }

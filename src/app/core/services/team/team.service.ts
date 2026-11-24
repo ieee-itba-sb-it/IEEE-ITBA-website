@@ -2,7 +2,7 @@ import {IEEEMember} from '../../../shared/models/team-member';
 import {Injectable} from '@angular/core';
 import {Commission, Position} from 'src/app/shared/models/commission';
 import {defer, from, Observable} from 'rxjs';
-import {SolicitudIngreso} from '../../../shared/models/solicitud-ingreso';
+import {TeamRequest} from '../../../shared/models/team-request';
 import {CommissionType, Role} from '../../../shared/models/ieee-user/ieee-team.enums';
 import {
     arrayRemove,
@@ -35,7 +35,7 @@ export class TeamService {
     private static readonly USERS_COLLECTION_NAME = 'users';
     private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
     private static readonly METADATA_COLLECTION_NAME = 'collection-metadata';
-    static readonly SOLICITUD_YA_ACEPTADA = 'SOLICITUD_YA_ACEPTADA';
+    static readonly REQUEST_ALREADY_ACCEPTED = 'REQUEST_ALREADY_ACCEPTED';
 
     constructor(private afs: Firestore) {}
 
@@ -231,41 +231,41 @@ export class TeamService {
         return this.getMembers(collectionGroup(this.afs, TeamService.MEMBERS_COLLECTION_NAME));
     }
 
-    enviarSolicitud(solicitud: SolicitudIngreso): Observable<void> {
-        return defer(() => from(runTransaction(this.afs, async transaccion => {
-            const referencia = doc(this.afs, 'team-requests', solicitud.email);
-            const anterior = await transaccion.get(referencia);
-            if (anterior.exists() && anterior.data().estado === 'aceptada') {
-                throw new Error(TeamService.SOLICITUD_YA_ACEPTADA);
+    submitTeamRequest(request: TeamRequest): Observable<void> {
+        return defer(() => from(runTransaction(this.afs, async transaction => {
+            const requestRef = doc(this.afs, TeamService.TEAM_REQUESTS_COLLECTION_NAME, request.email);
+            const previous = await transaction.get(requestRef);
+            if (previous.exists() && previous.data().status === 'accepted') {
+                throw new Error(TeamService.REQUEST_ALREADY_ACCEPTED);
             }
-            transaccion.set(referencia, {
-                name: solicitud.name,
-                email: solicitud.email,
-                photo: solicitud.photo ?? null,
-                linkedin: solicitud.linkedin ?? null,
-                gender: solicitud.gender ?? null,
-                commissionid: solicitud.commissionid,
+            transaction.set(requestRef, {
+                name: request.name,
+                email: request.email,
+                photo: request.photo ?? null,
+                linkedin: request.linkedin ?? null,
+                gender: request.gender ?? null,
+                commissionid: request.commissionid,
                 positionid: null,
-                segundaComisionId: solicitud.segundaComisionId ?? null,
-                respuestas: solicitud.respuestas,
-                estado: 'pendiente',
-                fechaEnvio: serverTimestamp()
+                secondCommissionId: request.secondCommissionId ?? null,
+                answers: request.answers,
+                status: 'pending',
+                submittedAt: serverTimestamp()
             });
         })));
     }
 
-    obtenerSolicitud(correo: string): Observable<SolicitudIngreso | null> {
-        return new Observable(suscriptor => onSnapshot(doc(this.afs, 'team-requests', correo),
-            documento => suscriptor.next(documento.exists() ? documento.data() as SolicitudIngreso : null),
-            error => suscriptor.error(error)
+    getTeamRequest(email: string): Observable<TeamRequest | null> {
+        return new Observable(subscriber => onSnapshot(doc(this.afs, TeamService.TEAM_REQUESTS_COLLECTION_NAME, email),
+            request => subscriber.next(request.exists() ? request.data() as TeamRequest : null),
+            error => subscriber.error(error)
         ));
     }
 
     getIsTeamRequestOpen(): Observable<boolean> {
-        return new Observable(suscriptor => onSnapshot(
+        return new Observable(subscriber => onSnapshot(
             doc(this.afs, TeamService.METADATA_COLLECTION_NAME, TeamService.TEAM_REQUESTS_COLLECTION_NAME),
-            documento => suscriptor.next(documento.data()?.open === true),
-            error => suscriptor.error(error)
+            metadata => subscriber.next(metadata.data()?.open === true),
+            error => subscriber.error(error)
         ));
     }
 

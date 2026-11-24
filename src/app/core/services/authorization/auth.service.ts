@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { defer, Observable, ReplaySubject } from 'rxjs';
 import { createRegularUser } from '../../../shared/models/data-types';
 import { IEEEuser } from '../../../shared/models/ieee-user/ieee-user';
 import {
@@ -276,18 +276,35 @@ export class AuthService {
         });
     }
 
-    reloadToken(): Observable<void> {
-        return new Observable<void>((subscriber) => {
-            this.user.reload()
-                .then(() => this.user.getIdToken(true))
-                .then(() => {
-                    subscriber.next();
-                }).catch(err => {
-                    subscriber.error(err);
-                }).finally(() => {
-                    subscriber.complete();
-                });
-        })
+    /**
+     * Reloads the user and forces a new ID token, so Firestore rules see the current `email_verified`.
+     * Waits for Firebase to restore the session first: on page load `currentUser` can still be null.
+     * Emits whether the email is verified.
+     */
+    reloadToken(): Observable<boolean> {
+        return defer(async () => {
+            await this.firebaseAuth.authStateReady();
+            const user = this.firebaseAuth.currentUser;
+            if (!user) throw AuthErrorCodes.USER_SIGNED_OUT;
+            await user.reload();
+            await user.getIdToken(true);
+            return user.emailVerified;
+        });
+    }
+
+    /**
+     * Firestore rules read `email_verified` from the ID token, which can stay false for up to an hour
+     * after the email is verified. If the token is stale, reloads the user and requests a new one.
+     */
+    ensureVerifiedToken(): Observable<void> {
+        return defer(async () => {
+            const user = this.firebaseAuth.currentUser;
+            if (!user) throw AuthErrorCodes.USER_SIGNED_OUT;
+            const {claims} = await user.getIdTokenResult();
+            if (claims['email_verified'] === true) return;
+            await user.reload();
+            if (user.emailVerified) await user.getIdToken(true);
+        });
     }
 
     // -----------Info Getters-----------

@@ -22,7 +22,7 @@ import {
 import {defer, from, Observable} from 'rxjs';
 import { IEEEuser } from 'src/app/shared/models/ieee-user/ieee-user';
 import { IEEEUserFilters } from 'src/app/shared/models/ieee-user/ieee-user-filters';
-import {AsignacionSolicitud, obtenerMiembroPublico, SolicitudIngreso} from '../../../shared/models/solicitud-ingreso';
+import {getRequestStatus, TeamRequest, TeamRequestAssignment, toPublicMember} from '../../../shared/models/team-request';
 import {Commission} from '../../../shared/models/commission';
 import {roles} from "../../../shared/models/roles/roles.enum";
 
@@ -38,6 +38,8 @@ export class AdminService {
     private static readonly MEMBERS_COLLECTION_NAME = 'members';
     private static readonly USERS_COLLECTION_NAME = 'users';
     private static readonly SENSITIVE_USER_DATA_COLLECTION_NAME = 'sensitive-user-data';
+    private static readonly TEAM_REQUESTS_COLLECTION_NAME = 'team-requests';
+    static readonly MAX_REVIEWED_REQUESTS = 20;
 
     constructor(private afs: Firestore) {}
 
@@ -136,77 +138,76 @@ export class AdminService {
         })
     }
 
-    obtenerSolicitudes(): Observable<SolicitudIngreso[]> {
-        return new Observable(suscriptor => onSnapshot(collection(this.afs, 'team-requests'),
-            resultado => suscriptor.next(resultado.docs.map(documento => ({
-                ...documento.data(), email: documento.id
-            } as SolicitudIngreso))),
-            error => suscriptor.error(error)
+    getTeamRequests(): Observable<TeamRequest[]> {
+        return new Observable(subscriber => onSnapshot(collection(this.afs, AdminService.TEAM_REQUESTS_COLLECTION_NAME),
+            snapshot => subscriber.next(snapshot.docs.map(request => ({
+                ...request.data(), email: request.id
+            } as TeamRequest))),
+            error => subscriber.error(error)
         ));
     }
 
-    aceptarSolicitudes(asignaciones: AsignacionSolicitud[]): Observable<void> {
-        return defer(() => from(runTransaction(this.afs, async transaccion => {
-            if (!asignaciones.length || asignaciones.length > 20) {
+    acceptTeamRequests(assignments: TeamRequestAssignment[]): Observable<void> {
+        return defer(() => from(runTransaction(this.afs, async transaction => {
+            if (!assignments.length || assignments.length > AdminService.MAX_REVIEWED_REQUESTS) {
                 throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.LIMIT');
             }
-            if (new Set(asignaciones.map(asignacion => asignacion.correo)).size !== asignaciones.length) {
+            if (new Set(assignments.map(assignment => assignment.email)).size !== assignments.length) {
                 throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.DUPLICATED');
             }
-            const documentos = await Promise.all(asignaciones.map(async asignacion => {
-                if (!asignacion.comisionId || !asignacion.cargoId || !['F', 'M'].includes(asignacion.generoCargo)) {
+            const documents = await Promise.all(assignments.map(async assignment => {
+                if (!assignment.commissionId || !assignment.positionId || !['F', 'M'].includes(assignment.positionGender)) {
                     throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.MISSING_ASSIGNMENT');
                 }
-                const solicitudRef = doc(this.afs, 'team-requests', asignacion.correo);
-                const usuarioRef = doc(this.afs, AdminService.USERS_COLLECTION_NAME, asignacion.correo);
-                const rolesRef = doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, asignacion.correo);
-                const [solicitud, usuario, comision] = await Promise.all([
-                    transaccion.get(solicitudRef),
-                    transaccion.get(usuarioRef),
-                    transaccion.get(doc(this.afs, 'commissions', asignacion.comisionId))
+                const requestRef = doc(this.afs, AdminService.TEAM_REQUESTS_COLLECTION_NAME, assignment.email);
+                const userRef = doc(this.afs, AdminService.USERS_COLLECTION_NAME, assignment.email);
+                const rolesRef = doc(this.afs, AdminService.SENSITIVE_USER_DATA_COLLECTION_NAME, assignment.email);
+                const [request, user, commission] = await Promise.all([
+                    transaction.get(requestRef),
+                    transaction.get(userRef),
+                    transaction.get(doc(this.afs, 'commissions', assignment.commissionId))
                 ]);
-                if (!solicitud.exists() || (solicitud.data().estado ?? 'pendiente') !== 'pendiente') {
+                if (!request.exists() || getRequestStatus(request.data() as TeamRequest) !== 'pending') {
                     throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ALREADY_REVIEWED');
                 }
-                if (!usuario.exists()) throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ACCOUNT_NOT_FOUND');
-                const datosComision = comision.data() as Commission;
-                if (!datosComision?.positions?.some(cargo => cargo.id === asignacion.cargoId)) {
+                if (!user.exists()) throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ACCOUNT_NOT_FOUND');
+                const commissionData = commission.data() as Commission;
+                if (!commissionData?.positions?.some(position => position.id === assignment.positionId)) {
                     throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.INVALID_POSITION');
                 }
-                return {asignacion, solicitudRef, usuarioRef, rolesRef, solicitud: solicitud.data() as SolicitudIngreso};
+                return {assignment, requestRef, userRef, rolesRef, request: request.data() as TeamRequest};
             }));
-            for (const documento of documentos) {
-                const {asignacion, solicitudRef, usuarioRef, rolesRef, solicitud} = documento;
-                transaccion.set(rolesRef, {roles: arrayUnion(roles.member)}, {merge: true});
-                transaccion.update(usuarioRef, {roles: arrayUnion(roles.member)});
-                transaccion.set(
-                    doc(this.afs, 'commissions', asignacion.comisionId, 'members', asignacion.correo),
-                    obtenerMiembroPublico(solicitud, asignacion)
+            for (const {assignment, requestRef, userRef, rolesRef, request} of documents) {
+                transaction.set(rolesRef, {roles: arrayUnion(roles.member)}, {merge: true});
+                transaction.update(userRef, {roles: arrayUnion(roles.member)});
+                transaction.set(
+                    doc(this.afs, 'commissions', assignment.commissionId, 'members', assignment.email),
+                    toPublicMember(request, assignment)
                 );
-                transaccion.update(solicitudRef, {
-                    estado: 'aceptada',
-                    gender: asignacion.generoCargo,
-                    comisionAsignadaId: asignacion.comisionId,
-                    cargoAsignadoId: asignacion.cargoId,
-                    fechaRevision: serverTimestamp()
+                transaction.update(requestRef, {
+                    status: 'accepted',
+                    gender: assignment.positionGender,
+                    assignedCommissionId: assignment.commissionId,
+                    assignedPositionId: assignment.positionId,
+                    reviewedAt: serverTimestamp()
                 });
             }
         })));
     }
 
-    rechazarSolicitudes(correos: string[]): Observable<void> {
-        return defer(() => from(runTransaction(this.afs, async transaccion => {
-            if (!correos.length || correos.length > 20) {
+    rejectTeamRequests(emails: string[]): Observable<void> {
+        return defer(() => from(runTransaction(this.afs, async transaction => {
+            if (!emails.length || emails.length > AdminService.MAX_REVIEWED_REQUESTS) {
                 throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.LIMIT');
             }
-            const documentos = await Promise.all(correos.map(correo =>
-                transaccion.get(doc(this.afs, 'team-requests', correo))
+            const requests = await Promise.all(emails.map(email =>
+                transaction.get(doc(this.afs, AdminService.TEAM_REQUESTS_COLLECTION_NAME, email))
             ));
-            for (const documento of documentos) {
-                if (!documento.exists() || (documento.data().estado ?? 'pendiente') !== 'pendiente') {
+            for (const request of requests) {
+                if (!request.exists() || getRequestStatus(request.data() as TeamRequest) !== 'pending') {
                     throw new Error('ADMIN.TEAMREQUESTSTAB.ERRORS.ALREADY_REVIEWED');
                 }
-                transaccion.update(documento.ref, {estado: 'rechazada', fechaRevision: serverTimestamp()});
+                transaction.update(request.ref, {status: 'rejected', reviewedAt: serverTimestamp()});
             }
         })));
     }

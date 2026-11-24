@@ -1,73 +1,73 @@
-<section class="administracion-solicitudes">
-    <header class="barra-convocatoria">
-        <div><h1>{{ 'ADMIN.TEAMREQUESTSTAB.HEADING' | translate }}</h1><p>{{ (inscripcionesAbiertas ? 'ADMIN.TEAMREQUESTSTAB.OPEN' : 'ADMIN.TEAMREQUESTSTAB.CLOSED') | translate }}</p><a routerLink="/team-request">{{ 'ADMIN.TEAMREQUESTSTAB.VIEW_FORM' | translate }}</a></div>
-        <button mat-raised-button color="primary" type="button" [disabled]="cargando || cambiandoConvocatoria" (click)="cambiarConvocatoria()">{{ (cambiandoConvocatoria ? 'ADMIN.TEAMREQUESTSTAB.SAVING' : inscripcionesAbiertas ? 'ADMIN.TEAMREQUESTSTAB.CLOSE_REQUESTS' : 'ADMIN.TEAMREQUESTSTAB.OPEN_REQUESTS') | translate }}</button>
+<section class="team-requests-admin">
+    <header class="requests-toolbar">
+        <div><h1>{{ 'ADMIN.TEAMREQUESTSTAB.HEADING' | translate }}</h1><p>{{ (requestsOpen ? 'ADMIN.TEAMREQUESTSTAB.OPEN' : 'ADMIN.TEAMREQUESTSTAB.CLOSED') | translate }}</p><a routerLink="/team-request">{{ 'ADMIN.TEAMREQUESTSTAB.VIEW_FORM' | translate }}</a></div>
+        <button mat-raised-button color="primary" type="button" [disabled]="loading || togglingRequests" (click)="toggleRequestsOpen()">{{ (togglingRequests ? 'ADMIN.TEAMREQUESTSTAB.SAVING' : requestsOpen ? 'ADMIN.TEAMREQUESTSTAB.CLOSE_REQUESTS' : 'ADMIN.TEAMREQUESTSTAB.OPEN_REQUESTS') | translate }}</button>
     </header>
-    <p *ngIf="error" class="mensaje error" role="alert">{{ error | translate }}</p>
-    <p *ngIf="aviso" class="mensaje exito" role="status">{{ aviso | translate }}</p>
-    <app-loading-spinner *ngIf="cargando"></app-loading-spinner>
-    <ng-container *ngIf="!cargando">
-        <div class="filtros">
-            <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.FILTER' | translate }}</mat-label><mat-select [(ngModel)]="estadoFiltro" (selectionChange)="cambiarFiltro()" [disabled]="procesando"><mat-option value="pendiente">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.PENDING' | translate }}</mat-option><mat-option value="aceptada">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.ACCEPTED' | translate }}</mat-option><mat-option value="rechazada">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.REJECTED' | translate }}</mat-option></mat-select></mat-form-field>
-            <span>{{ (solicitudesVisibles.length === 1 ? 'ADMIN.TEAMREQUESTSTAB.COUNT_ONE' : 'ADMIN.TEAMREQUESTSTAB.COUNT_OTHER') | translate: {count: solicitudesVisibles.length} }}</span>
+    <p *ngIf="error" class="message error" role="alert">{{ error | translate }}</p>
+    <p *ngIf="notice" class="message success" role="status">{{ notice | translate }}</p>
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+    <ng-container *ngIf="!loading">
+        <div class="filters">
+            <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.FILTER' | translate }}</mat-label><mat-select [(ngModel)]="statusFilter" (selectionChange)="onFilterChange()" [disabled]="processing"><mat-option value="pending">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.PENDING' | translate }}</mat-option><mat-option value="accepted">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.ACCEPTED' | translate }}</mat-option><mat-option value="rejected">{{ 'ADMIN.TEAMREQUESTSTAB.STATES.REJECTED' | translate }}</mat-option></mat-select></mat-form-field>
+            <span>{{ (visibleRequests.length === 1 ? 'ADMIN.TEAMREQUESTSTAB.COUNT_ONE' : 'ADMIN.TEAMREQUESTSTAB.COUNT_OTHER') | translate: {count: visibleRequests.length} }}</span>
         </div>
-        <div *ngIf="seleccionadas.length" class="acciones-seleccion">
-            <div><strong>{{ 'ADMIN.TEAMREQUESTSTAB.SELECTED' | translate: {count: seleccionadas.length} }}</strong><p>{{ 'ADMIN.TEAMREQUESTSTAB.SELECTION_HELP' | translate }}</p></div>
-            <div class="botones"><button mat-raised-button color="primary" type="button" [disabled]="procesando || !puedeAceptar" (click)="aceptarSeleccionadas()">{{ (procesando ? 'ADMIN.TEAMREQUESTSTAB.PROCESSING' : 'ADMIN.TEAMREQUESTSTAB.ACCEPT') | translate }}</button><button mat-stroked-button color="warn" type="button" [disabled]="procesando || seleccionadas.length > 20" (click)="rechazarSeleccionadas()">{{ 'ADMIN.TEAMREQUESTSTAB.REJECT' | translate }}</button></div>
+        <div *ngIf="selectedRequests.length" class="selection-actions">
+            <div><strong>{{ 'ADMIN.TEAMREQUESTSTAB.SELECTED' | translate: {count: selectedRequests.length} }}</strong><p>{{ 'ADMIN.TEAMREQUESTSTAB.SELECTION_HELP' | translate }}</p></div>
+            <div class="buttons"><button mat-raised-button color="primary" type="button" [disabled]="processing || !canAccept" (click)="acceptSelected()">{{ (processing ? 'ADMIN.TEAMREQUESTSTAB.PROCESSING' : 'ADMIN.TEAMREQUESTSTAB.ACCEPT') | translate }}</button><button mat-stroked-button color="warn" type="button" [disabled]="processing || selectedRequests.length > maxReviewedRequests" (click)="rejectSelected()">{{ 'ADMIN.TEAMREQUESTSTAB.REJECT' | translate }}</button></div>
         </div>
-        <article *ngFor="let solicitud of solicitudesVisibles" class="solicitud" [class.seleccionada]="solicitud.seleccionada">
-            <header class="identidad">
-                <mat-checkbox *ngIf="estadoFiltro === 'pendiente'" [(ngModel)]="solicitud.seleccionada" [disabled]="procesando" [aria-label]="'ADMIN.TEAMREQUESTSTAB.SELECT_REQUEST' | translate: {name: solicitud.name}"></mat-checkbox>
-                <app-profile-picture size="48px" [src]="solicitud.photo"></app-profile-picture>
-                <div><h2>{{ solicitud.name }}</h2><p>{{ solicitud.email }}</p><small *ngIf="solicitud.fechaEnvio">{{ 'ADMIN.TEAMREQUESTSTAB.SENT_AT' | translate: {date: solicitud.fechaEnvio.toDate() | date:'dd/MM/yyyy HH:mm'} }}</small></div>
+        <article *ngFor="let request of visibleRequests" class="request" [class.selected]="request.selected">
+            <header class="identity">
+                <mat-checkbox *ngIf="statusFilter === 'pending'" [(ngModel)]="request.selected" [disabled]="processing" [aria-label]="'ADMIN.TEAMREQUESTSTAB.SELECT_REQUEST' | translate: {name: request.name}"></mat-checkbox>
+                <app-profile-picture size="48px" [src]="request.photo"></app-profile-picture>
+                <div><h2>{{ request.name }}</h2><p>{{ request.email }}</p><small *ngIf="request.submittedAt">{{ 'ADMIN.TEAMREQUESTSTAB.SENT_AT' | translate: {date: request.submittedAt.toDate() | date:'dd/MM/yyyy HH:mm'} }}</small></div>
             </header>
-            <div class="preferencias">
-                <span><strong>{{ 'ADMIN.TEAMREQUESTSTAB.FIRST_OPTION' | translate }}</strong> <ng-container *ngTemplateOutlet="nombreComision; context: {$implicit: solicitud.commissionid}"></ng-container></span>
-                <span><strong>{{ 'ADMIN.TEAMREQUESTSTAB.SECOND_OPTION' | translate }}</strong> <ng-container *ngTemplateOutlet="nombreComision; context: {$implicit: solicitud.segundaComisionId}"></ng-container></span>
+            <div class="preferences">
+                <span><strong>{{ 'ADMIN.TEAMREQUESTSTAB.FIRST_OPTION' | translate }}</strong> <ng-container *ngTemplateOutlet="commissionName; context: {$implicit: request.commissionid}"></ng-container></span>
+                <span><strong>{{ 'ADMIN.TEAMREQUESTSTAB.SECOND_OPTION' | translate }}</strong> <ng-container *ngTemplateOutlet="commissionName; context: {$implicit: request.secondCommissionId}"></ng-container></span>
             </div>
-            <div *ngIf="estadoFiltro === 'pendiente'" class="asignacion">
-                <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNED_COMMISSION' | translate }}</mat-label><mat-select [(ngModel)]="solicitud.comisionElegida" (selectionChange)="solicitud.cargoElegido = ''" [disabled]="procesando" required><mat-option *ngFor="let comision of comisiones" [value]="comision.id">{{ comision.title | customTranslate }}</mat-option></mat-select></mat-form-field>
-                <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNED_POSITION' | translate }}</mat-label><mat-select [(ngModel)]="solicitud.cargoElegido" [disabled]="procesando || !buscarComision(solicitud.comisionElegida)" required><mat-option *ngFor="let cargo of opcionesCargo(solicitud.comisionElegida, solicitud.gender); trackBy: identificarCargo" [value]="cargo.valor">{{ cargo.titulo | customTranslate }}</mat-option></mat-select><mat-hint>{{ 'ADMIN.TEAMREQUESTSTAB.POSITION_HINT' | translate }}</mat-hint></mat-form-field>
+            <div *ngIf="statusFilter === 'pending'" class="assignment">
+                <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNED_COMMISSION' | translate }}</mat-label><mat-select [(ngModel)]="request.chosenCommission" (selectionChange)="request.chosenPosition = ''" [disabled]="processing" required><mat-option *ngFor="let commission of commissions" [value]="commission.id">{{ commission.title | customTranslate }}</mat-option></mat-select></mat-form-field>
+                <mat-form-field appearance="outline"><mat-label>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNED_POSITION' | translate }}</mat-label><mat-select [(ngModel)]="request.chosenPosition" [disabled]="processing || !findCommission(request.chosenCommission)" required><mat-option *ngFor="let position of getPositionOptions(request.chosenCommission, request.gender); trackBy: trackPosition" [value]="position.value">{{ position.title | customTranslate }}</mat-option></mat-select><mat-hint>{{ 'ADMIN.TEAMREQUESTSTAB.POSITION_HINT' | translate }}</mat-hint></mat-form-field>
             </div>
-            <p *ngIf="estadoFiltro === 'aceptada'" class="resultado"><strong>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNMENT' | translate }}</strong> <ng-container *ngTemplateOutlet="nombreComision; context: {$implicit: solicitud.comisionAsignadaId}"></ng-container> · {{ nombreCargo(solicitud) ? (nombreCargo(solicitud) | customTranslate) : solicitud.cargoAsignadoId }}</p>
-            <details class="respuestas">
+            <p *ngIf="statusFilter === 'accepted'" class="result"><strong>{{ 'ADMIN.TEAMREQUESTSTAB.ASSIGNMENT' | translate }}</strong> <ng-container *ngTemplateOutlet="commissionName; context: {$implicit: request.assignedCommissionId}"></ng-container> · {{ getAssignedPositionTitle(request) ? (getAssignedPositionTitle(request) | customTranslate) : request.assignedPositionId }}</p>
+            <details class="answers">
                 <summary>{{ 'ADMIN.TEAMREQUESTSTAB.SHOW_ANSWERS' | translate }}</summary>
-                <ng-container *ngIf="solicitud.respuestas as respuestas; else solicitudAnterior">
+                <ng-container *ngIf="request.answers as answers; else legacyRequest">
                     <dl>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.FIRST_NAMES' | translate }}</dt><dd>{{ respuestas.nombres }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.LAST_NAMES' | translate }}</dt><dd>{{ respuestas.apellidos }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CONTACT_EMAIL' | translate }}</dt><dd>{{ respuestas.correoContacto || solicitud.email }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.STUDENT_ID' | translate }}</dt><dd>{{ respuestas.legajo }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.PHONE' | translate }}</dt><dd>{{ respuestas.telefono }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.BIRTH_DATE' | translate }}</dt><dd>{{ respuestas.fechaNacimiento | date:'dd/MM/yyyy' }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CAREER' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: carreras, valor: respuestas.carrera}"></ng-container></dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CAREER_YEAR' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: anios, valor: respuestas.anioCarrera}"></ng-container></dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.EXCHANGE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: opcionesIntercambio, valor: respuestas.intercambio}"></ng-container></dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.TEAM_ROLE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: rolesEquipo, valor: respuestas.rolEquipo}"></ng-container></dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.WORKS' | translate }}</dt><dd>{{ (respuestas.trabaja ? 'TEAM_REQUEST.OPTIONS.YES' : 'TEAM_REQUEST.OPTIONS.NO') | translate }}</dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.HEARD_ABOUT_IEEE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: medios, valor: respuestas.conocioIEEE}"></ng-container></dd></div>
-                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.HEARD_ABOUT_CAMPAIGN' | translate }}</dt><dd><ng-container *ngTemplateOutlet="opcion; context: {lista: medios, valor: respuestas.conocioConvocatoria}"></ng-container></dd></div>
-                        <div class="ancho-completo"><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.SKILLS' | translate }}</dt><dd>{{ respuestas.habilidades || ('ADMIN.TEAMREQUESTSTAB.ANSWERS.NO_SKILLS' | translate) }}</dd></div>
-                        <div class="ancho-completo"><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.VIDEO' | translate }}</dt><dd><a *ngIf="respuestas.enlaceVideo && esEnlaceWeb(respuestas.enlaceVideo); else sinVideo" [href]="respuestas.enlaceVideo" target="_blank" rel="noopener noreferrer">{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.OPEN_VIDEO' | translate }}</a><ng-template #sinVideo>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.NO_VIDEO' | translate }}</ng-template></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.FIRST_NAMES' | translate }}</dt><dd>{{ answers.firstNames }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.LAST_NAMES' | translate }}</dt><dd>{{ answers.lastNames }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CONTACT_EMAIL' | translate }}</dt><dd>{{ answers.contactEmail || request.email }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.STUDENT_ID' | translate }}</dt><dd>{{ answers.studentId }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.PHONE' | translate }}</dt><dd>{{ answers.phone }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.BIRTH_DATE' | translate }}</dt><dd>{{ answers.birthDate | date:'dd/MM/yyyy' }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CAREER' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'CAREERS', value: answers.career}"></ng-container></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.CAREER_YEAR' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'YEARS', value: answers.yearOfStudy}"></ng-container></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.EXCHANGE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'EXCHANGE', value: answers.exchangePlan}"></ng-container></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.TEAM_ROLE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'ROLES', value: answers.teamRole, labels: 'ROLE_NAMES'}"></ng-container></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.WORKS' | translate }}</dt><dd>{{ (answers.works ? 'TEAM_REQUEST.OPTIONS.YES' : 'TEAM_REQUEST.OPTIONS.NO') | translate }}</dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.HEARD_ABOUT_IEEE' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'MEDIA', value: answers.heardAboutIeee}"></ng-container></dd></div>
+                        <div><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.HEARD_ABOUT_CAMPAIGN' | translate }}</dt><dd><ng-container *ngTemplateOutlet="answer; context: {group: 'MEDIA', value: answers.heardAboutCampaign}"></ng-container></dd></div>
+                        <div class="full-width"><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.SKILLS' | translate }}</dt><dd>{{ answers.skills || ('ADMIN.TEAMREQUESTSTAB.ANSWERS.NO_SKILLS' | translate) }}</dd></div>
+                        <div class="full-width"><dt>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.VIDEO' | translate }}</dt><dd><a *ngIf="answers.videoUrl && isWebUrl(answers.videoUrl); else noVideo" [href]="answers.videoUrl" target="_blank" rel="noopener noreferrer">{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.OPEN_VIDEO' | translate }}</a><ng-template #noVideo>{{ 'ADMIN.TEAMREQUESTSTAB.ANSWERS.NO_VIDEO' | translate }}</ng-template></dd></div>
                     </dl>
                 </ng-container>
-                <ng-template #solicitudAnterior><p class="nota-anterior">{{ 'ADMIN.TEAMREQUESTSTAB.LEGACY_REQUEST' | translate }}</p></ng-template>
-                <a *ngIf="solicitud.linkedin && esEnlaceWeb(solicitud.linkedin)" [href]="solicitud.linkedin" target="_blank" rel="noopener noreferrer">{{ 'ADMIN.TEAMREQUESTSTAB.VIEW_LINKEDIN' | translate }}</a>
-                <p *ngIf="solicitud.fechaRevision" class="fecha-revision">{{ 'ADMIN.TEAMREQUESTSTAB.REVIEWED_AT' | translate: {date: solicitud.fechaRevision.toDate() | date:'dd/MM/yyyy HH:mm'} }}</p>
+                <ng-template #legacyRequest><p class="legacy-note">{{ 'ADMIN.TEAMREQUESTSTAB.LEGACY_REQUEST' | translate }}</p></ng-template>
+                <a *ngIf="request.linkedin && isWebUrl(request.linkedin)" [href]="request.linkedin" target="_blank" rel="noopener noreferrer">{{ 'ADMIN.TEAMREQUESTSTAB.VIEW_LINKEDIN' | translate }}</a>
+                <p *ngIf="request.reviewedAt" class="review-date">{{ 'ADMIN.TEAMREQUESTSTAB.REVIEWED_AT' | translate: {date: request.reviewedAt.toDate() | date:'dd/MM/yyyy HH:mm'} }}</p>
             </details>
         </article>
-        <p *ngIf="!solicitudesVisibles.length" class="sin-solicitudes">{{ 'ADMIN.TEAMREQUESTSTAB.EMPTY.' + claveEstado[estadoFiltro] | translate }}</p>
+        <p *ngIf="!visibleRequests.length" class="no-requests">{{ 'ADMIN.TEAMREQUESTSTAB.EMPTY.' + statusKeys[statusFilter] | translate }}</p>
     </ng-container>
 </section>
 
-<!-- Nombre de una comisión de Firestore; si ya no existe se muestra el id, y si no hay id, «Sin segunda opción». -->
-<ng-template #nombreComision let-id>
-    <ng-container *ngIf="buscarComision(id) as comision; else sinComision">{{ comision.title | customTranslate }}</ng-container>
-    <ng-template #sinComision>{{ id || ('ADMIN.TEAMREQUESTSTAB.NO_SECOND_OPTION' | translate) }}</ng-template>
+<!-- Firestore commission name; shows the id if the commission no longer exists, and "No second choice" if there is no id. -->
+<ng-template #commissionName let-id>
+    <ng-container *ngIf="findCommission(id) as commission; else missingCommission">{{ commission.title | customTranslate }}</ng-container>
+    <ng-template #missingCommission>{{ id || ('ADMIN.TEAMREQUESTSTAB.NO_SECOND_OPTION' | translate) }}</ng-template>
 </ng-template>
 
-<!-- Respuesta guardada en español: se traduce si es una opción conocida y si no (texto libre de «Otro») se muestra tal cual. -->
-<ng-template #opcion let-lista="lista" let-valor="valor">
-    <ng-container *ngIf="claveOpcion(lista, valor) as clave; else textoLibre">{{ clave | translate }}</ng-container>
-    <ng-template #textoLibre>{{ valor }}</ng-template>
+<!-- Stored answer: translated when it is a known option code, shown as is when it is free text (the "Other" answer). -->
+<ng-template #answer let-group="group" let-value="value" let-labels="labels">
+    <ng-container *ngIf="getOptionKey(group, value, labels ?? group) as key; else freeText">{{ key | translate }}</ng-container>
+    <ng-template #freeText>{{ value }}</ng-template>
 </ng-template>

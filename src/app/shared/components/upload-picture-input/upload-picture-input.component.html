@@ -1,19 +1,19 @@
 <input #pictureInput type="file" (change)="uploadPicture($event)" accept="image/png, image/jpeg, image/jpg" class="d-none">
-<div *ngIf="compacto; else presentacionHabitual" class="foto-compacta" [attr.aria-busy]="cargandoImagen">
+<div *ngIf="compact; else defaultLayout" class="compact-picture" [attr.aria-busy]="loadingImage">
     <app-profile-picture size="80px" [src]="photoURL"></app-profile-picture>
-    <div class="datos-foto">
-        <p class="titulo-foto">{{ 'PROFILE.PICTURE.TITLE' | translate }} <span>{{ 'PROFILE.PICTURE.OPTIONAL' | translate }}</span></p>
-        <p class="ayuda-foto">{{ 'PROFILE.PICTURE.FORMATS' | translate }}</p>
-        <div class="acciones-foto">
-            <button mat-stroked-button color="primary" type="button" (click)="pictureInput.click()" [disabled]="cargandoImagen">
+    <div class="picture-info">
+        <p class="picture-title">{{ 'PROFILE.PICTURE.TITLE' | translate }} <span>{{ 'PROFILE.PICTURE.OPTIONAL' | translate }}</span></p>
+        <p class="picture-help">{{ 'PROFILE.PICTURE.FORMATS' | translate }}</p>
+        <div class="picture-actions">
+            <button mat-stroked-button color="primary" type="button" (click)="pictureInput.click()" [disabled]="loadingImage">
                 <mdb-icon fas icon="camera" class="mr-1"></mdb-icon>
-                {{ (cargandoImagen ? 'PROFILE.PICTURE.PROCESSING' : photoURL ? 'PROFILE.PICTURE.CHANGE' : 'PROFILE.PICTURE.UPLOAD') | translate }}
+                {{ (loadingImage ? 'PROFILE.PICTURE.PROCESSING' : photoURL ? 'PROFILE.PICTURE.CHANGE' : 'PROFILE.PICTURE.UPLOAD') | translate }}
             </button>
-            <button *ngIf="photoURL" mat-button type="button" color="warn" (click)="deletePicture(); pictureInput.value = ''" [disabled]="cargandoImagen">{{ 'PROFILE.PICTURE.REMOVE' | translate }}</button>
+            <button *ngIf="photoURL" mat-button type="button" color="warn" (click)="deletePicture(); pictureInput.value = ''" [disabled]="loadingImage">{{ 'PROFILE.PICTURE.REMOVE' | translate }}</button>
         </div>
     </div>
 </div>
-<ng-template #presentacionHabitual>
+<ng-template #defaultLayout>
 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4">
     <app-profile-picture *ngIf="!rowDisplay" [class.row-display-icon]="rowDisplay" size="150px" [src]="photoURL"/>
     <div class="picture-buttons d-flex flex-column justify-content-center gap-4" [class.row-display]="rowDisplay">
