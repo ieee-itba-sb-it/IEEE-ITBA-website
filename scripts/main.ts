@@ -24,8 +24,8 @@ initializeApp({
 
 async function main() {
     // Ejecutar migración de noticias al nuevo formato
-    // await seedQuestions();
-    // await seedDataAnalysisEdition();
+    await seedQuestions();
+    await seedDataAnalysisEdition();
     await migrateDataAnalysisImageToJpg();
 }
 

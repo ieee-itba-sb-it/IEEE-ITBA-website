@@ -12,6 +12,9 @@ const questions = [
     {
         id: 1,
         question: '¿Cuál de las siguientes opciones te permite conocer las columnas de un DataFrame?',
+        images: [
+            {url: '/assets/image/logos/data.png', alt: 'Imagen de ejemplo de la pregunta 1'}
+        ],
         answers: [
             {answer: 'df.shape', isCorrect: false, selected: false},
             {answer: 'df.head', isCorrect: false, selected: false},
@@ -22,6 +25,10 @@ const questions = [
     {
         id: 2,
         question: '¿Cuál comando obtiene la categoría más frecuente?',
+        images: [
+            {url: '/assets/image/login/itbot.png', alt: 'Imagen de ejemplo 1 de la pregunta 2'},
+            {url: '/assets/image/login/itbot_espejado.png', alt: 'Imagen de ejemplo 2 de la pregunta 2'}
+        ],
         answers: [
             {answer: "archivo['Categoría'].value_counts().idxmax()", isCorrect: true, selected: false},
             {answer: "archivo['Categoría'].value_counts().max()", isCorrect: false, selected: false},
@@ -32,6 +39,9 @@ const questions = [
     {
         id: 3,
         question: 'p3',
+        images: [
+            {url: '/assets/image/events/data-analysis/data-analysis-event.jpg', alt: 'Imagen de ejemplo de la pregunta 3'}
+        ],
         answers: [
             {answer: "p3.a1", isCorrect: true, selected: false},
             {answer: "p3.a2", isCorrect: false, selected: false},
@@ -42,6 +52,9 @@ const questions = [
     {
         id: 4,
         question: 'p4',
+        images: [
+            {url: '/assets/image/cs/cslogo.png', alt: 'Imagen de ejemplo de la pregunta 4'}
+        ],
         answers: [
             {answer: "p4.a1", isCorrect: true, selected: false},
             {answer: "p4.a2", isCorrect: false, selected: false},
@@ -52,6 +65,9 @@ const questions = [
     {
         id: 5,
         question: 'p5',
+        images: [
+            {url: '/assets/image/emb/IEEE_EMBS_logo.png', alt: 'Imagen de ejemplo de la pregunta 5'}
+        ],
         answers: [
             {answer: "p5.a1", isCorrect: true, selected: false},
             {answer: "p5.a2", isCorrect: false, selected: false},

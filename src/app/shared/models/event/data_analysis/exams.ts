@@ -6,9 +6,18 @@ export type Answer = {
     selected?: boolean;
 }
 
+export type QuestionImage = {
+    // Public URL of the image (e.g. uploaded to the storage bucket or under /assets)
+    url: string;
+    // Description for screen readers and for when the image fails to load
+    alt?: string;
+}
+
 export type Question = {
     id: number;
     question: string;
+    // Shown under the question, in order. Copied into the student's exam with the rest of the question
+    images?: QuestionImage[];
     answers: Answer[];
 }
 

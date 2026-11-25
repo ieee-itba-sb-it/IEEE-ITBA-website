@@ -36,6 +36,7 @@
                                             <p class="question-title">
                                                 <b>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.QUESTION' | translate }} {{ i + 1 }}
                                                     :</b> {{ q.question }}</p>
+                                            <ng-container *ngTemplateOutlet="questionImages; context: {$implicit: q, index: i}"></ng-container>
 
                                             <div class="options-container">
                                                 <mat-radio-group formControlName="answer" class="d-flex flex-column">
@@ -82,6 +83,7 @@
                                         <p class="question-title">
                                             <b>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM.QUESTION' | translate }} {{ i + 1 }}
                                                 :</b> {{ q.question }}</p>
+                                        <ng-container *ngTemplateOutlet="questionImages; context: {$implicit: q, index: i}"></ng-container>
                                         <div class="options-container">
                                             <mat-radio-group [value]="getSelectedAnswer(q.answers)"
                                                              class="d-flex flex-column">
@@ -106,6 +108,20 @@
             </div>
         </div>
     </div>
+
+    <!-- imagenes adjuntas de una pregunta; al hacer click se abren en tamaño completo -->
+    <ng-template #questionImages let-q let-i="index">
+        <div *ngIf="q.images?.length" class="question-images">
+            <a *ngFor="let img of q.images; let j = index"
+               [href]="img.url" target="_blank" rel="noopener noreferrer"
+               class="question-image-link">
+                <img [src]="img.url"
+                     [alt]="img.alt || (('DATAANALYSIS.EMBEDDED_EXAM.EXAM.QUESTION' | translate) + ' ' + (i + 1) + ' - ' + (j + 1))"
+                     class="question-image"
+                     loading="lazy">
+            </a>
+        </div>
+    </ng-template>
 
     <!-- resultado del examen -->
     <div class="result-overlay" *ngIf="showResult">
