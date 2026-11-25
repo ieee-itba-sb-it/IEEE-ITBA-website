@@ -1367,7 +1367,8 @@
       "NO_EDITIONS": "There are no editions with enrolled students yet",
       "TABS": {
         "STUDENTS": "Students",
-        "METRICS": "Metrics"
+        "METRICS": "Metrics",
+        "QUESTIONS": "Questions"
       },
       "TABLE": {
         "NAME": "Name",
@@ -1399,10 +1400,53 @@
           "pythonInterest": "Python applications of interest"
         }
       },
+      "QUESTIONS": {
+        "COUNT": "{{count}} questions in the pool",
+        "NOT_ENOUGH": "each exam needs at least {{count}}",
+        "NEW": "New question",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "CONFIRM_DELETE": "Delete the question?",
+        "EMPTY": "There are no questions yet",
+        "TABLE": {
+          "QUESTION": "Question",
+          "IMAGES": "Images",
+          "CORRECT_ANSWER": "Correct answer"
+        },
+        "EDITOR": {
+          "ADD_TITLE": "New question",
+          "EDIT_TITLE": "Edit question",
+          "QUESTION": "Question",
+          "IMAGES": "Images",
+          "IMAGE_ALT": "Image description (optional)",
+          "ADD_IMAGES": "Add images",
+          "MOVE_UP": "Move up",
+          "MOVE_DOWN": "Move down",
+          "REMOVE_IMAGE": "Remove image",
+          "ANSWERS": "Answers",
+          "ANSWERS_HINT": "Mark the correct answer",
+          "ANSWER": "Answer",
+          "MARK_CORRECT": "Mark as correct",
+          "REMOVE_ANSWER": "Remove answer",
+          "ADD_ANSWER": "Add answer",
+          "SAVE": "Save",
+          "SAVING": "Saving...",
+          "ERRORS": {
+            "QUESTION_REQUIRED": "Write the question",
+            "MIN_ANSWERS": "The question needs at least 2 answers",
+            "EMPTY_ANSWER": "Some answers are empty",
+            "DUPLICATED_ANSWERS": "Some answers are repeated",
+            "CORRECT_REQUIRED": "Mark the correct answer",
+            "SAVE": "The question could not be saved"
+          }
+        }
+      },
       "ERRORS": {
         "EDITIONS": "The editions could not be loaded",
         "STUDENTS": "The students of the edition could not be loaded",
-        "METRICS": "The metrics of the edition could not be loaded"
+        "METRICS": "The metrics of the edition could not be loaded",
+        "QUESTIONS": "The questions could not be loaded",
+        "DELETE_QUESTION": "The question could not be deleted"
       },
       "CLOSE": "Close"
     },

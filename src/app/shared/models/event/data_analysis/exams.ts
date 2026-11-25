@@ -21,6 +21,9 @@ export type Question = {
     answers: Answer[];
 }
 
+// A question as the admin writes it, before it has an id
+export type QuestionDraft = Omit<Question, 'id'>;
+
 export type UserExam = {
     passed: boolean;
     submitted: boolean;
@@ -47,6 +50,9 @@ export type DataAnalysisUser = {
 
 // One exam per day during the course
 export const DATA_ANALYSIS_EXAM_DAYS = 7;
+
+// Questions taken at random from the pool for each exam
+export const DATA_ANALYSIS_EXAM_QUESTION_COUNT = 3;
 
 // Percentage of correct answers needed to pass, when the event does not define one
 export const DATA_ANALYSIS_DEFAULT_PASSING_SCORE = 83;

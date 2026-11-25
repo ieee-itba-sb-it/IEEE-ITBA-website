@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <div>
+        <h2 class="modal-title">
+            <span>{{ (question ? "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.EDIT_TITLE" : "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ADD_TITLE") | translate }}</span>
+        </h2>
+        <h4 *ngIf="question" class="modal-subtitle">#{{ question.id }}</h4>
+    </div>
+    <button type="button" (click)="modalRef.hide()" class="btn" [disabled]="saving">
+        <mdb-icon fas icon="times" size="lg"></mdb-icon>
+    </button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+    <div class="modal-body">
+
+        <!-- Enunciado -->
+        <mat-form-field class="w-100">
+            <mat-label>{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.QUESTION" | translate }}</mat-label>
+            <textarea matInput formControlName="question" cdkTextareaAutosize rows="2"></textarea>
+        </mat-form-field>
+
+        <!-- Imágenes -->
+        <section class="editor-section">
+            <label>{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.IMAGES" | translate }}</label>
+
+            <div formArrayName="images" class="images-list">
+                <div *ngFor="let image of images.controls; let i = index; let first = first; let last = last"
+                     [formGroupName]="i" class="image-row">
+                    <img [src]="image.controls.url.value" [alt]="image.controls.alt.value" class="image-preview">
+                    <mat-form-field class="image-alt">
+                        <mat-label>{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.IMAGE_ALT" | translate }}</mat-label>
+                        <input matInput formControlName="alt">
+                    </mat-form-field>
+                    <div class="row-actions">
+                        <button mat-icon-button type="button" [disabled]="first || saving" (click)="moveImage(i, -1)"
+                                [attr.aria-label]="'ADMIN.EXAMSTAB.QUESTIONS.EDITOR.MOVE_UP' | translate">
+                            <mat-icon>arrow_upward</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button" [disabled]="last || saving" (click)="moveImage(i, 1)"
+                                [attr.aria-label]="'ADMIN.EXAMSTAB.QUESTIONS.EDITOR.MOVE_DOWN' | translate">
+                            <mat-icon>arrow_downward</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button" [disabled]="saving" (click)="removeImage(i)"
+                                [attr.aria-label]="'ADMIN.EXAMSTAB.QUESTIONS.EDITOR.REMOVE_IMAGE' | translate">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <input #fileInput type="file" accept="image/*" multiple hidden (change)="onFilesSelected(fileInput)">
+            <button mat-stroked-button type="button" color="primary" [disabled]="saving" (click)="fileInput.click()">
+                <mat-icon>add_photo_alternate</mat-icon>
+                {{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ADD_IMAGES" | translate }}
+            </button>
+        </section>
+
+        <!-- Respuestas -->
+        <section class="editor-section">
+            <label>{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ANSWERS" | translate }}</label>
+            <p class="hint">{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ANSWERS_HINT" | translate }}</p>
+
+            <mat-radio-group formControlName="correctIndex" class="answers-list">
+                <div formArrayName="answers">
+                    <div *ngFor="let answer of answers.controls; let i = index" [formGroupName]="i" class="answer-row">
+                        <mat-radio-button [value]="i" color="primary"
+                                          [attr.aria-label]="'ADMIN.EXAMSTAB.QUESTIONS.EDITOR.MARK_CORRECT' | translate">
+                        </mat-radio-button>
+                        <mat-form-field class="answer-text">
+                            <mat-label>{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ANSWER" | translate }} {{ i + 1 }}</mat-label>
+                            <input matInput formControlName="answer">
+                        </mat-form-field>
+                        <button mat-icon-button type="button" [disabled]="!canRemoveAnswer() || saving"
+                                (click)="removeAnswer(i)"
+                                [attr.aria-label]="'ADMIN.EXAMSTAB.QUESTIONS.EDITOR.REMOVE_ANSWER' | translate">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-radio-group>
+
+            <button mat-stroked-button type="button" color="primary" [disabled]="saving" (click)="addAnswer()">
+                <mat-icon>add</mat-icon>
+                {{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.ADD_ANSWER" | translate }}
+            </button>
+        </section>
+
+        <div *ngIf="error" class="error-container" role="alert">
+            <p class="error">{{ error | translate }}</p>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn close-btn" [disabled]="saving" (click)="modalRef.hide()">
+            {{ "HOME.EVENTS.EDIT.CANCEL" | translate }}
+        </button>
+        <button *ngIf="!saving; else savingSpinner" type="submit" class="btn save-btn">
+            {{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.SAVE" | translate }}
+        </button>
+        <ng-template #savingSpinner>
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">{{ "ADMIN.EXAMSTAB.QUESTIONS.EDITOR.SAVING" | translate }}</span>
+            </div>
+        </ng-template>
+    </div>
+</form>

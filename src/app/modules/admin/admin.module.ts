@@ -32,6 +32,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSelectModule} from "@angular/material/select";
 import { SponsorsAdminComponent } from './pages/sponsors/sponsors.component';
 import { ExamsAdminComponent } from './pages/exams/exams.component';
+import { QuestionEditorModalComponent } from './components/question-editor-modal/question-editor-modal.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
 
 // Tab manager
 const routes: Routes = [{
@@ -58,7 +61,8 @@ export const routing = RouterModule.forChild(routes);
         PositionEditorModalComponent,
         TeamRequestsComponent,
         SponsorsAdminComponent,
-        ExamsAdminComponent
+        ExamsAdminComponent,
+        QuestionEditorModalComponent
     ],
     imports: [
         routing,
@@ -93,6 +97,8 @@ export const routing = RouterModule.forChild(routes);
         MatTabsModule,
         MatSnackBarModule,
         MatSelectModule,
+        MatRadioModule,
+        MatIconModule,
         TranslateModule,
     ]
 })

@@ -4,12 +4,16 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { MDBModalService } from 'angular-bootstrap-md';
 import { EventService } from 'src/app/core/services/event/event.service';
 import {
+    DATA_ANALYSIS_EXAM_QUESTION_COUNT,
     DataAnalysisStudentRow,
     DataAnalysisStudentsSummary,
+    Question,
     StudentStatus
 } from 'src/app/shared/models/event/data_analysis/exams';
+import { QuestionEditorModalComponent } from '../../components/question-editor-modal/question-editor-modal.component';
 import {
     AGE_RANGES,
     DataAnalysisMetricField,
@@ -62,6 +66,11 @@ const METRIC_CHARTS: MetricChartConfig[] = [
 export class ExamsAdminComponent implements OnInit {
     readonly StudentStatus = StudentStatus;
     readonly pageSizeOptions = [10, 25, 50, 100];
+    // Index of the questions tab, the only one that does not depend on the edition
+    readonly QUESTIONS_TAB = 2;
+    readonly examQuestionCount = DATA_ANALYSIS_EXAM_QUESTION_COUNT;
+
+    selectedTab = 0;
 
     editions?: string[];
     currentEdition: string | null = null;
@@ -78,10 +87,17 @@ export class ExamsAdminComponent implements OnInit {
     metrics?: DataAnalysisMetrics | null;
     charts: MetricChart[] = [];
 
+    // Loaded the first time the questions tab is opened
+    questions?: Question[];
+    // Question waiting for the delete confirmation
+    pendingDeleteId: number | null = null;
+    deleting = false;
+
     constructor(
         private eventService: EventService,
         private snackBar: MatSnackBar,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private modalService: MDBModalService
     ) { }
 
     ngOnInit(): void {
@@ -170,6 +186,56 @@ export class ExamsAdminComponent implements OnInit {
                 this.showError('ADMIN.EXAMSTAB.ERRORS.STUDENTS');
             }
         });
+    }
+
+    selectTab(index: number): void {
+        this.selectedTab = index;
+        if (index === this.QUESTIONS_TAB && !this.questions) this.loadQuestions();
+    }
+
+    private loadQuestions(): void {
+        this.eventService.getDataAnalysisQuestions().subscribe({
+            next: questions => this.questions = questions,
+            error: () => {
+                this.questions = [];
+                this.showError('ADMIN.EXAMSTAB.ERRORS.QUESTIONS');
+            }
+        });
+    }
+
+    // Without a question it creates a new one
+    openQuestionEditor(question?: Question): void {
+        this.pendingDeleteId = null;
+        const modalRef = this.modalService.show(QuestionEditorModalComponent, {
+            data: {question},
+            // Scrollable: only the body scrolls when the modal is taller than the screen
+            class: 'modal-dialog-centered modal-dialog-scrollable modal-lg',
+            ignoreBackdropClick: true
+        });
+        (modalRef.content as QuestionEditorModalComponent).saved.subscribe(saved => {
+            const others = (this.questions ?? []).filter(q => q.id !== saved.id);
+            this.questions = [...others, saved].sort((a, b) => a.id - b.id);
+        });
+    }
+
+    deleteQuestion(question: Question): void {
+        if (this.deleting) return;
+        this.deleting = true;
+        this.eventService.deleteDataAnalysisQuestion(question.id).subscribe({
+            next: () => {
+                this.questions = this.questions?.filter(q => q.id !== question.id);
+                this.pendingDeleteId = null;
+                this.deleting = false;
+            },
+            error: () => {
+                this.deleting = false;
+                this.showError('ADMIN.EXAMSTAB.ERRORS.DELETE_QUESTION');
+            }
+        });
+    }
+
+    correctAnswer(question: Question): string {
+        return question.answers.find(answer => answer.isCorrect)?.answer ?? '—';
     }
 
     statusLabel(status: StudentStatus): string {

@@ -7,7 +7,8 @@ import {
     UserExam,
     DataAnalysisUser,
     ExamAccess,
-    ExamDayClosedError
+    ExamDayClosedError,
+    DATA_ANALYSIS_EXAM_QUESTION_COUNT
 } from "src/app/shared/models/event/data_analysis/exams"
 import {EventService} from "../../../../../core/services/event/event.service";
 
@@ -19,7 +20,7 @@ import {EventService} from "../../../../../core/services/event/event.service";
 })
 export class ExamComponent implements OnInit {
     loading: boolean = false;
-    cantQuestions = 3;
+    cantQuestions = DATA_ANALYSIS_EXAM_QUESTION_COUNT;
     dataAnalysisUser: DataAnalysisUser | null = null;
 
     examId: number | null = null;

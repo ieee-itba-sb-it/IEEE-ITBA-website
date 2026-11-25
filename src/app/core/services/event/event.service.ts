@@ -10,6 +10,7 @@ import {
 import {
     collection,
     CollectionReference,
+    deleteDoc,
     doc,
     DocumentReference,
     Firestore,
@@ -23,6 +24,7 @@ import {
     Query,
     QueryConstraint,
     QueryDocumentSnapshot, runTransaction, serverTimestamp,
+    setDoc,
     startAfter,
     updateDoc,
     where
@@ -48,9 +50,11 @@ import {
     getExamsEnd,
     getStudentStatus,
     Question,
+    QuestionDraft,
     StudentStatus,
     UserExam
 } from "../../../shared/models/event/data_analysis/exams";
+import {StorageService} from "../storage/storage.service";
 import {AuthService} from "../authorization/auth.service";
 import {IEEEuser} from "../../../shared/models/ieee-user/ieee-user";
 import {
@@ -71,7 +75,12 @@ export class EventService {
     private static readonly collectionName = eventsCollectionName;
     private readonly collection: CollectionReference;
 
-    constructor(private afs: Firestore, private userService: UserService, private authService: AuthService) {
+    constructor(
+        private afs: Firestore,
+        private userService: UserService,
+        private authService: AuthService,
+        private storageService: StorageService
+    ) {
         this.collection = collection(this.afs, EventService.collectionName);
     }
 
@@ -366,6 +375,7 @@ export class EventService {
     private static readonly studentsCollectionName = "students";
     private static readonly metricsCollectionName = "metrics";
     private static readonly metricsSummaryDocumentName = "summary";
+    private static readonly questionImagesFolder = "data-analysis/questions";
 
     public getEditionId(event: Event | null): string | null {
         const inscriptionDate = event?.dates?.[EventDate.INSCRIPTION];
@@ -386,6 +396,19 @@ export class EventService {
             EventService.dataAnalysisDocumentName,
             EventService.editionsCollectionName
         );
+    }
+
+    private getDataAnalysisQuestionsRef(): CollectionReference {
+        return collection(
+            this.afs,
+            EventService.collectionName,
+            EventService.dataAnalysisDocumentName,
+            EventService.questionsCollectionName
+        );
+    }
+
+    private getDataAnalysisQuestionRef(id: number): DocumentReference {
+        return doc(this.getDataAnalysisQuestionsRef(), id.toString());
     }
 
     private getDataAnalysisStudentsRef(editionId: string): CollectionReference {
@@ -669,14 +692,7 @@ export class EventService {
     }
 
     private generateExam(questionCount: number, student: DataAnalysisUser): Observable<UserExam> {
-        const questionsRef = collection(
-            this.afs,
-            EventService.collectionName,
-            EventService.dataAnalysisDocumentName,
-            EventService.questionsCollectionName
-        );
-
-        return from(getDocs(questionsRef).then(async snapshot => {
+        return from(getDocs(this.getDataAnalysisQuestionsRef()).then(async snapshot => {
             const questions = snapshot.docs.map(snapshot => snapshot.data() as Question);
 
             const exam: UserExam = {
@@ -689,6 +705,59 @@ export class EventService {
             await updateDoc(this.getDataAnalysisStudentRef(student.edition, student.email), {currentExam: exam});
             return exam;
         }));
+    }
+
+    // QUESTION POOL (admin)
+
+    // Every question of the pool, sorted by id
+    public getDataAnalysisQuestions(): Observable<Question[]> {
+        return from(getDocs(this.getDataAnalysisQuestionsRef())).pipe(
+            map(snapshot => snapshot.docs
+                .map(questionDoc => questionDoc.data() as Question)
+                .sort((a, b) => a.id - b.id))
+        );
+    }
+
+    // Adds a question to the pool and returns it with the id it was saved with
+    // TODO: not implemented yet. Ids are incremental: the new question takes the highest id of the pool + 1, and its
+    //  document id is that number as a string (see getDataAnalysisQuestionRef). Save it already normalized with
+    //  toStoredQuestion
+    public createDataAnalysisQuestion(question: QuestionDraft): Observable<Question> {
+        return throwError(() => new Error('createDataAnalysisQuestion is not implemented yet'));
+    }
+
+    // Replaces the whole question. The exams already generated keep their own copy of it
+    public updateDataAnalysisQuestion(question: Question): Observable<void> {
+        return from(setDoc(this.getDataAnalysisQuestionRef(question.id), this.toStoredQuestion(question)));
+    }
+
+    // Its images stay in the storage: the exams already submitted still show them in their review
+    public deleteDataAnalysisQuestion(id: number): Observable<void> {
+        return from(deleteDoc(this.getDataAnalysisQuestionRef(id)));
+    }
+
+    // Uploads an image for a question and returns its public URL
+    public uploadDataAnalysisQuestionImage(file: File): Observable<string> {
+        const name = file.name.replace(/[^a-zA-Z0-9.\-_]+/g, '-');
+        const path = `${EventService.questionImagesFolder}/${Date.now()}-${name}`;
+        return from(this.storageService.upload(path, file, file.type));
+    }
+
+    // The question as it is stored: trimmed texts, no answer selected, and no empty fields (Firestore rejects undefined)
+    private toStoredQuestion(question: Question): Question {
+        const stored: Question = {
+            id: question.id,
+            question: question.question.trim(),
+            answers: question.answers.map(answer => ({
+                answer: answer.answer.trim(),
+                isCorrect: answer.isCorrect,
+                selected: false
+            }))
+        };
+        if (question.images?.length) {
+            stored.images = question.images.map(({url, alt}) => alt?.trim() ? {url, alt: alt.trim()} : {url});
+        }
+        return stored;
     }
 
     private selectRandom(questions: Question[], questionCount: number): Question[] {

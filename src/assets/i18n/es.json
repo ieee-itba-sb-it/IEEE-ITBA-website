@@ -1421,7 +1421,8 @@
       "NO_EDITIONS": "Todavía no hay ediciones con alumnos inscriptos",
       "TABS": {
         "STUDENTS": "Alumnos",
-        "METRICS": "Métricas"
+        "METRICS": "Métricas",
+        "QUESTIONS": "Preguntas"
       },
       "TABLE": {
         "NAME": "Nombre",
@@ -1453,10 +1454,53 @@
           "pythonInterest": "Aplicaciones de Python de interés"
         }
       },
+      "QUESTIONS": {
+        "COUNT": "{{count}} preguntas en el pool",
+        "NOT_ENOUGH": "cada examen necesita al menos {{count}}",
+        "NEW": "Nueva pregunta",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "CONFIRM_DELETE": "¿Eliminar la pregunta?",
+        "EMPTY": "Todavía no hay preguntas cargadas",
+        "TABLE": {
+          "QUESTION": "Pregunta",
+          "IMAGES": "Imágenes",
+          "CORRECT_ANSWER": "Respuesta correcta"
+        },
+        "EDITOR": {
+          "ADD_TITLE": "Nueva pregunta",
+          "EDIT_TITLE": "Editar pregunta",
+          "QUESTION": "Enunciado",
+          "IMAGES": "Imágenes",
+          "IMAGE_ALT": "Descripción de la imagen (opcional)",
+          "ADD_IMAGES": "Agregar imágenes",
+          "MOVE_UP": "Subir",
+          "MOVE_DOWN": "Bajar",
+          "REMOVE_IMAGE": "Quitar imagen",
+          "ANSWERS": "Respuestas",
+          "ANSWERS_HINT": "Marcá la respuesta correcta",
+          "ANSWER": "Respuesta",
+          "MARK_CORRECT": "Marcar como correcta",
+          "REMOVE_ANSWER": "Quitar respuesta",
+          "ADD_ANSWER": "Agregar respuesta",
+          "SAVE": "Guardar",
+          "SAVING": "Guardando...",
+          "ERRORS": {
+            "QUESTION_REQUIRED": "Escribí el enunciado",
+            "MIN_ANSWERS": "La pregunta necesita al menos 2 respuestas",
+            "EMPTY_ANSWER": "Hay respuestas vacías",
+            "DUPLICATED_ANSWERS": "Hay respuestas repetidas",
+            "CORRECT_REQUIRED": "Marcá cuál es la respuesta correcta",
+            "SAVE": "No se pudo guardar la pregunta"
+          }
+        }
+      },
       "ERRORS": {
         "EDITIONS": "No se pudieron cargar las ediciones",
         "STUDENTS": "No se pudieron cargar los alumnos de la edición",
-        "METRICS": "No se pudieron cargar las métricas de la edición"
+        "METRICS": "No se pudieron cargar las métricas de la edición",
+        "QUESTIONS": "No se pudieron cargar las preguntas",
+        "DELETE_QUESTION": "No se pudo eliminar la pregunta"
       },
       "CLOSE": "Cerrar"
     },
