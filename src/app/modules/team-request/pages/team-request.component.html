@@ -55,13 +55,21 @@
                             </mat-form-field>
                             <mat-form-field subscriptSizing="dynamic">
                                 <mat-label>{{ 'TEAM_REQUEST.FIELDS.PHONE' | translate }}</mat-label>
-                                <input matInput formControlName="phone" type="tel" autocomplete="tel" maxlength="25" required>
+                                <ngx-mat-input-tel
+                                    formControlName="phone"
+                                    [preferredCountries]="['ar']"
+                                    [enablePlaceholder]="true"
+                                    format="national"
+                                    autocomplete="tel"
+                                    style="--ngxMatInputTel-opacity: 1"
+                                    required>
+                                </ngx-mat-input-tel>
                                 <mat-hint>{{ 'TEAM_REQUEST.FIELDS.PHONE_HINT' | translate }}</mat-hint>
                                 <mat-error>{{ 'TEAM_REQUEST.ERRORS.PHONE' | translate }}</mat-error>
                             </mat-form-field>
                             <mat-form-field subscriptSizing="dynamic">
                                 <mat-label>{{ 'TEAM_REQUEST.FIELDS.BIRTH_DATE' | translate }}</mat-label>
-                                <input matInput formControlName="birthDate" [matDatepicker]="birthDatePicker" [max]="today" (click)="birthDatePicker.open()" [placeholder]="'TEAM_REQUEST.FIELDS.BIRTH_DATE_PLACEHOLDER' | translate" autocomplete="bday" required>
+                                <input matInput formControlName="birthDate" readonly [matDatepicker]="birthDatePicker" [max]="today" (click)="birthDatePicker.open()" [placeholder]="'TEAM_REQUEST.FIELDS.BIRTH_DATE_PLACEHOLDER' | translate" autocomplete="bday" required>
                                 <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
                                 <mat-datepicker #birthDatePicker startView="multi-year"></mat-datepicker>
                                 <mat-hint>{{ 'TEAM_REQUEST.FIELDS.BIRTH_DATE_HINT' | translate }}</mat-hint>

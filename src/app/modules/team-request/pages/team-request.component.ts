@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS} from '@angular/material/core';
 import {MatDatepickerIntl} from '@angular/material/datepicker';
 import {format, parse} from 'date-fns';
+import {parsePhoneNumberFromString} from 'libphonenumber-js';
 import {combineLatest, concatMap, distinctUntilChanged, filter, finalize, of, Subject, switchMap, takeUntil, tap} from 'rxjs';
 import {AuthService} from '../../../core/services/authorization/auth.service';
 import {TeamService} from '../../../core/services/team/team.service';
@@ -157,6 +158,7 @@ export class TeamRequestComponent implements OnInit, OnDestroy {
             const campaignIsOption = isOption('MEDIA', answers.heardAboutCampaign);
             this.form.patchValue({
                 ...answers,
+                phone: parsePhoneNumberFromString(answers.phone, 'AR')?.number || answers.phone,
                 birthDate: parse(answers.birthDate, 'yyyy-MM-dd', new Date()),
                 heardAboutIeee: ieeeIsOption ? answers.heardAboutIeee : OTHER_SOURCE,
                 otherSourceIeee: ieeeIsOption ? '' : answers.heardAboutIeee,

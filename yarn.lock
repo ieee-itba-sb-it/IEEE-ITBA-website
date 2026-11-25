@@ -8753,6 +8753,11 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libphonenumber-js@1.13.17:
+  version "1.13.17"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.13.17.tgz#d92bb4427763bc34b94ea2a855c19b2ba4bbb4f2"
+  integrity sha512-V92dxRHhYTsHF5B6IjR8rtKW6qL7xKuERPFFqZt7XQl8A+NikbwEzjhxGpM+R6JnWjaL7/wokWSdTG/eyYAscQ==
+
 libsodium-wrappers@^0.7.10:
   version "0.7.11"
   resolved "https://registry.npmjs.org/libsodium-wrappers/-/libsodium-wrappers-0.7.11.tgz"
@@ -9433,6 +9438,13 @@ ngx-image-compress@^18.1.5:
   integrity sha512-g/k6fK3mTPB5ZQ13KiYrOHdKXgXXZ0/rkXdgP0jQaroXLGu7sGlmvJqSseq/B+1d/6IsBo1wT5oeAzxymuwkfw==
   dependencies:
     tslib "^2.6.3"
+
+ngx-mat-input-tel@18.1.3:
+  version "18.1.3"
+  resolved "https://registry.yarnpkg.com/ngx-mat-input-tel/-/ngx-mat-input-tel-18.1.3.tgz#6d5046de15cfc5c529316725a093ea0546df96ae"
+  integrity sha512-G7FecI3omEVq+EibyBHL1l1fsU2WuGX8v+EafkVavtdOsK7B0j01L/lEYSoDTAzUqycZsk0/HH18K5ZcywiMnA==
+  dependencies:
+    tslib "^2.x"
 
 ngx-page-scroll-core@^11.0.0:
   version "11.0.0"
@@ -11987,6 +11999,11 @@ tslib@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.3.tgz#0438f810ad7a9edcde7a241c3d80db693c8cbfe0"
   integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
+
+tslib@^2.x:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.9.1.tgz#8986213ba2f17f38ba39a7c43d0e565a9134ff5f"
+  integrity sha512-a4Ux9VKuIMHsOS7ENbEq6hK2ZGYIT27Rtl0E4eD9KqwxhKiQeMZE/9xb3IdYwWaSOyIBQLExhQgXDTYoiCxnWA==
 
 tsutils@^3.21.0:
   version "3.21.0"

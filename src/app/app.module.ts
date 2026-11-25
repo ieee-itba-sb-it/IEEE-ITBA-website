@@ -43,6 +43,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RobotFormDialogComponent } from './modules/asimov-admin/pages/robot-manager/robot-form-dialog/robot-form-dialog.component';
 import { MatDialogModule } from "@angular/material/dialog";
+import { NgxMatInputTelComponent } from 'ngx-mat-input-tel';
 
 export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number): number => {
     // easeInOutExpo easing
@@ -110,6 +111,7 @@ export let myEasing: EasingLogic = (t: number, b: number, c: number, d: number):
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
+        NgxMatInputTelComponent,
         IconsModule,
         MatSelectModule,
         MatDatepickerModule,
