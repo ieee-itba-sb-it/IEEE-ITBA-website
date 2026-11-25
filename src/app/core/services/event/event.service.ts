@@ -719,11 +719,22 @@ export class EventService {
     }
 
     // Adds a question to the pool and returns it with the id it was saved with
-    // TODO: not implemented yet. Ids are incremental: the new question takes the highest id of the pool + 1, and its
-    //  document id is that number as a string (see getDataAnalysisQuestionRef). Save it already normalized with
-    //  toStoredQuestion
-    public createDataAnalysisQuestion(question: QuestionDraft): Observable<Question> {
-        return throwError(() => new Error('createDataAnalysisQuestion is not implemented yet'));
+    public createDataAnalysisQuestion(draft: QuestionDraft): Observable<Question> {
+        const lastQuestion = query(
+            this.getDataAnalysisQuestionsRef(), orderBy('id', 'desc'), limit(1));
+
+        return from(getDocs(lastQuestion)).pipe(
+            map(snapshot => snapshot.empty ? 1 : (snapshot.docs[0].data() as Question).id + 1),
+            switchMap(firstId => runTransaction(this.afs, async transaction => {
+
+                let id = firstId;
+                while((await transaction.get(this.getDataAnalysisQuestionRef(id))).exists()) id++;
+
+                const question = this.toStoredQuestion({...draft, id});
+                transaction.set(this.getDataAnalysisQuestionRef(id), question);
+                return question;
+            }))
+        );
     }
 
     // Replaces the whole question. The exams already generated keep their own copy of it
