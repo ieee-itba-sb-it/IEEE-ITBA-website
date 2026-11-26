@@ -7,10 +7,29 @@
         <div class="passed-exam-text">
             <h1>{{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.TITLE_PASSED_EXAM' | translate }}</h1>
             <p>{{'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.DESCRIPTION_PASSED_EXAM'| translate}}</p>
-            <button (click)=goToHome() class="ieee-button">{{'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME'| translate}}</button>
+            <p>{{ (dataAnalysisUser?.certificateUrl ? 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_READY' : 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_PENDING') | translate }}</p>
+            <div class="passed-exam-actions">
+                <button *ngIf="dataAnalysisUser?.certificateUrl" (click)="downloadCertificate()" [disabled]="downloadingCertificate" class="ieee-button">
+                    <mat-icon>download</mat-icon>
+                    {{ (downloadingCertificate ? 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_DOWNLOADING' : 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_DOWNLOAD') | translate }}
+                </button>
+                <button (click)=goToHome() class="ieee-button">{{'DATAANALYSIS.EMBEDDED_EXAM.GOTO_HOME'| translate}}</button>
+            </div>
+            <p *ngIf="certificateDownloadError" class="certificate-error" role="alert">
+                {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_DOWNLOAD_ERROR' | translate }}
+                <a [href]="dataAnalysisUser?.certificateUrl" target="_blank" rel="noopener noreferrer">
+                    {{ 'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_OPEN' | translate }}
+                </a>
+            </p>
         </div>
         <div class="passed-exam-img">
-            <img src="assets/image/events/data-analysis/data-analysis-event.jpg" alt="Passed Exam"/>
+            <img *ngIf="dataAnalysisUser?.certificateUrl; else defaultPassedImage"
+                 [src]="dataAnalysisUser?.certificateUrl"
+                 [alt]="'DATAANALYSIS.EMBEDDED_EXAM.EXAM_LIST.CERTIFICATE_ALT' | translate"
+                 class="certificate-img"/>
+            <ng-template #defaultPassedImage>
+                <img src="assets/image/events/data-analysis/data-analysis-event.jpg" alt="Passed Exam"/>
+            </ng-template>
         </div>
     </div>
 

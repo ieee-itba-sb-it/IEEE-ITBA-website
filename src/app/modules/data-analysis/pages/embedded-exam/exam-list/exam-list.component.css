@@ -132,6 +132,47 @@ h2{
     object-fit: contain;
 }
 
+/* el certificado es apaisado (1600x1131): ocupa el espacio disponible en vez del tamaño de la imagen */
+.passed-exam-img:has(.certificate-img){
+    flex: 1 1 0;
+    max-width: 800px;
+}
+
+.passed-exam-img img.certificate-img{
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* descargar certificado y volver al inicio, en una misma fila y con la misma altura */
+.passed-exam-actions{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.passed-exam-text .passed-exam-actions .ieee-button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: auto;
+    margin: 0;
+}
+
+.passed-exam-actions .mat-icon{
+    width: auto;
+    height: auto;
+    font-size: 1.2em;
+}
+
+.certificate-error{
+    margin-top: 0.75rem;
+    color: var(--bs-ieee-bright-red-60);
+}
+
 @media (max-width: 768px) {
     .passed-exam{
         flex-direction: column;

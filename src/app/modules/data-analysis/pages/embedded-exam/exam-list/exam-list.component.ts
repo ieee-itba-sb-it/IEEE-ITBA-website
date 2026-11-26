@@ -30,6 +30,8 @@ export class ExamListComponent implements OnInit {
     loading = true
     dataAnalysisUser: DataAnalysisUser | null = null;
     examStartDate:Date | null = null;
+    downloadingCertificate = false;
+    certificateDownloadError = false;
 
     constructor(
         private eventService: EventService,
@@ -58,6 +60,8 @@ export class ExamListComponent implements OnInit {
                         return;
                     }
                     this.dataAnalysisUser = student;
+                    // A passed student always sees the certificate, even if the exam dates are no longer set
+                    this.passedCourse = student.passedCourse;
                     this.eventService.getEvent(IeeeEvent.DATA_ANALYSIS).subscribe(event => {
                         if (!event || !event.examStartDate) {
                             this.loading = false;
@@ -65,7 +69,6 @@ export class ExamListComponent implements OnInit {
                         }
                         this.examStartDate = this.eventService.normalizeDate(event.examStartDate);
                         this.currentDay = this.eventService.calculateExamDay(event.examStartDate);
-                        this.passedCourse = student.passedCourse;
                         this.userExam = this.eventService.getTodayExam(student);
                         this.buildExamCards(this.userExam);
                         this.loading = false;
@@ -94,6 +97,21 @@ export class ExamListComponent implements OnInit {
     isReviewAvailable(): boolean {
         if (!this.userExam) return false;
         return this.eventService.isReviewAvailable(this.userExam);
+    }
+
+    downloadCertificate() {
+        if (!this.dataAnalysisUser || this.downloadingCertificate) return;
+
+        this.downloadingCertificate = true;
+        this.certificateDownloadError = false;
+        this.eventService.downloadDataAnalysisCertificate(this.dataAnalysisUser).subscribe({
+            next: () => this.downloadingCertificate = false,
+            error: err => {
+                console.error(`downloadDataAnalysisCertificate failed: ${err}`);
+                this.downloadingCertificate = false;
+                this.certificateDownloadError = true;
+            }
+        });
     }
 
     protected goToHome() {

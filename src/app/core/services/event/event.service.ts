@@ -800,6 +800,30 @@ export class EventService {
         ));
     }
 
+    // Saves the student's certificate as a PNG. The storage is on another origin, so the file is fetched as a blob:
+    // a plain <a download> to a cross-origin URL is ignored by browsers and just opens the image
+    public downloadDataAnalysisCertificate(student: DataAnalysisUser): Observable<void> {
+        if (!student.certificateUrl) {
+            return throwError(() => new Error('downloadDataAnalysisCertificate failed: the student has no certificate'));
+        }
+
+        return from(fetch(student.certificateUrl)).pipe(
+            switchMap(response => {
+                if (!response.ok) throw new Error(`downloadDataAnalysisCertificate failed: HTTP ${response.status}`);
+                return from(response.blob());
+            }),
+            map(blob => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `Certificado Data Analysis - ${student.firstName} ${student.lastName}.png`;
+                link.click();
+                // Revoked on the next tick: some browsers start reading the blob after click() returns
+                setTimeout(() => URL.revokeObjectURL(url));
+            })
+        );
+    }
+
     public isReviewAvailable(exam: UserExam): boolean {
         return this.isSameDay(this.toDate(exam.started), new Date());
     }

@@ -46,6 +46,9 @@ export type DataAnalysisUser = {
     linkedin?: string;
     currentExam?: UserExam;
     passedCourse: boolean;
+    // Public URL of the certificate (PNG under data_analysis/certificates in the storage). Written by
+    // scripts/certificates/generate_certificates.py once the student passed the course; missing until then
+    certificateUrl?: string;
 }
 
 // One exam per day during the course
